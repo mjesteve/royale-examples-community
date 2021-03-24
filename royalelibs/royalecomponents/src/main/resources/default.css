@@ -1,0 +1,52 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace jc "library://ns.apache.org/royale/community";
+
+/*# sourceMappingURL=default.css.map */
+
+jc|PagesNavigationButtonBar {
+  iconClass: ClassReference("org.apache.royale.icons.FontAwesomeToggleIcon");
+  IBeadModel: ClassReference("org.apache.royale.community.models.PagesNavigationButtonBarModel");
+  IBeadView: ClassReference("org.apache.royale.community.views.PagesNavigationButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.community.controllers.PagesNavigationButtonBarController");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PagesNavigationButtonBarItemRenderer");
+
+  /* Heredados de j|ButtonBar {
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
+  */
+  /*
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
+  iconClass: ClassReference("org.apache.royale.icons.MaterialIcon");
+  iconClass: ClassReference("org.apache.royale.icons.FontAwesomeIcon");
+  iconClass: ClassReference("org.apache.royale.icons.FontAwesomeToggleIcon");
+  */
+
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apache.royale.community</groupId>
+        <artifactId>royaleapp</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>royalejewel</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>swf</packaging>
+
+    <name>Royale Jewel Application</name>
+
+    <build>
+        <sourceDirectory>src/main/royale</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.royale.compiler</groupId>
+                <artifactId>royale-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <mainClass>App.mxml</mainClass>
+                    <targets>JSRoyale</targets>
+                    <debug>${compiler.debug}</debug>
+                    <htmlTemplate>${basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
+                    <additionalCompilerOptions>
+                        ${project.compiler.options};
+                        -js-dynamic-access-unknown-members=true <!-- to access JSON object graph subobjects -->
+						
+                        -compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-js.swc:defaults.css;
+                        -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+                        -keep-code-with-metadata=Inject;
+                        -show-binding-warnings=false;
+
+                        -export-public-symbols=false
+                        -prevent-rename-protected-symbols=false
+                        -prevent-rename-internal-symbols=false
+                        -prevent-rename-public-static-methods=false
+                        -prevent-rename-public-instance-methods=false
+                    </additionalCompilerOptions>
+                    <defines>
+                        <property>
+                            <name>BUILD::buildNumber</name>
+                            <value>'"${buildTimestamp}"'</value>
+                        </property>
+                        <property>
+                            <name>BUILD::buildVersion</name>
+                            <value>'"${project.version}"'</value>
+                        </property>
+                    </defines>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.coderplus.maven.plugins</groupId>
+                <artifactId>copy-rename-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>rename-file</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>rename</goal>
+                        </goals>
+                        <configuration>
+                            <fileSets>
+                                <fileSet>
+                                    <sourceFile>${compiler.output-dir-release}/index.html</sourceFile>
+                                    <destinationFile>${compiler.output-dir-release}/index-release.html</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>${compiler.output-dir-debug}/index.html</sourceFile>
+                                    <destinationFile>${compiler.output-dir-debug}/index-debug.html</destinationFile>
+                                </fileSet>
+                            </fileSets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    
+    </buil>
+
+</project>
