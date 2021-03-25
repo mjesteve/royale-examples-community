@@ -15,7 +15,7 @@
 
   <modules>
     <module>royalecomponents</module>
-    <module>SampleLib</module>
+    <!--<module>SampleLib</module>-->
   </modules>
 
   <properties>

@@ -24,7 +24,7 @@ limitations under the License.
             xmlns:config="org.apache.royale.community.config.*"
             xmlns:views="org.apache.royale.community.views.*">
 
-    <!-- <fx:Style source="../../main/resources/default.css"/> -->
+    <!-- <fx:Style source="../../main/resources/defaults.css"/> -->
 
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />

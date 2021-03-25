@@ -51,7 +51,7 @@
         <configuration>
           <!--<targets>${royale.targets}</targets> -->
           <targets>JSRoyale</targets>
-          <debug>${compiler.debug}</debug>
+          <debug>false</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
@@ -94,15 +94,5 @@
     </plugins>
 
   </build>
-
-  <profiles>
-    <profile>
-      <id>apache-release</id>
-      <properties>
-        <compiler.debug>false</compiler.debug>
-      </properties>
-    </profile>
-
-  </profiles>
 
 </project>

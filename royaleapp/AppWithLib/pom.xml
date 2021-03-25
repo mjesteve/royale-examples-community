@@ -32,6 +32,8 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
+  <name>Royale Jewel-Crux Application</name>
+
   <properties>
     <compiler.debug>true</compiler.debug>
   </properties>
@@ -47,7 +49,7 @@
         <configuration>
           <mainClass>AppWithLib.mxml</mainClass>
           <targets>JSRoyale</targets>
-          <debug>${compiler.debug}</debug>
+          <debug>false</debug>
           <htmlTemplate>${basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
           <additionalCompilerOptions>
             -source-map=true;
@@ -98,7 +100,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.royale.communitys</groupId>
+      <groupId>org.apache.royale.community</groupId>
       <artifactId>SampleLib</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
@@ -171,32 +173,5 @@
       <classifier>js</classifier>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>apache-release</id>
-      <properties>
-        <compiler.debug>false</compiler.debug>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>option-with-swf</id>
-      <properties>
-        <!-- no point building the swf target  -->
-        <royale.targets>JSRoyale</royale.targets>
-      </properties>
-      <dependencies>
-        <!-- Needed for Flash compilation -->
-        <!-- <dependency>
-          <groupId>com.adobe.flash.framework</groupId>
-          <artifactId>playerglobal</artifactId>
-          <version>20.0</version>
-          <type>swc</type>
-          <scope>provided</scope>
-        </dependency> -->
-      </dependencies>
-    </profile>
-  </profiles>
 
 </project>

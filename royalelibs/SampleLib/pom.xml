@@ -95,7 +95,7 @@
         <extensions>true</extensions>
         <configuration>
           <targets>JSRoyale</targets>
-          <debug>${compiler.debug}</debug>
+          <debug>false</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
 
@@ -104,19 +104,19 @@
               <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/samplelib-manifest.xml</manifest>
             </namespace>
-            <!-- <namespace>
+            <namespace>
               <type>as</type>
               <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${basedir}/src/main/resources/samplelib-as-manifest.xml</manifest>
-            </namespace> -->
+            </namespace>
           </namespaces>
           <includeClasses>
             <includeClass>SampleLibClasses</includeClass>
           </includeClasses>
           <includeFiles>
             <include-file>
-              <name>default.css</name>
-              <path>../src/main/resources/default.css</path>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
             </include-file>
             <!-- Uncomment To Include Assets like Images -->
             <!-- <include-file>

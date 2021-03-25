@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.apache.royale.community</groupId>
@@ -23,11 +22,12 @@
             <plugin>
                 <groupId>org.apache.royale.compiler</groupId>
                 <artifactId>royale-maven-plugin</artifactId>
+                <version>${royale.compiler.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <mainClass>App.mxml</mainClass>
                     <targets>JSRoyale</targets>
-                    <debug>${compiler.debug}</debug>
+                    <debug>false</debug>
                     <htmlTemplate>${basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
                     <additionalCompilerOptions>
                         ${project.compiler.options};
@@ -85,6 +85,6 @@
             </plugin>
         </plugins>
     
-    </buil>
+    </build>
 
 </project>

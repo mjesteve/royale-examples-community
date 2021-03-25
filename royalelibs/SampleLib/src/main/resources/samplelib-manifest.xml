@@ -17,8 +17,6 @@
   limitations under the License.
 
 -->
-
-
 <componentPackage>
 
   <component id="SampleClass" class="org.apache.royale.community.SampleClass"/>
