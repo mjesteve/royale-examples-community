@@ -118,7 +118,6 @@
       <artifactId>JewelTheme</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>theme</scope>
       <classifier>js</classifier>
     </dependency>
 
