@@ -23,8 +23,8 @@ limitations under the License.
             xmlns:crux="library://ns.apache.org/royale/crux"
             xmlns:views="org.apache.royale.community.views.*">
 
-    <fx:Style source="../resources/defaults.css"/>
-	<!-- <fx:Style source="../../main/resources/defaults.css"/> -->
+    <!-- <fx:Style source="../resources/defaults.css"/> -->
+	<fx:Style source="../../main/resources/defaults.css"/>
 
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />

@@ -60,7 +60,7 @@
                 -->
                 <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
                         dataProvider="{sourcePills2}"
-                        className="pillItemRenderer" style="background: transparent; border: 0px;" >
+                        className="pillListStyle" style="background: transparent; border: 0px;" >
                     <j:beads>
                         <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>
                         <j:TileHorizontalLayout />

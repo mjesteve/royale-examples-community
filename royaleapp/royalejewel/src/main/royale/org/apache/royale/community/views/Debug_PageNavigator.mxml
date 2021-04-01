@@ -177,36 +177,36 @@
         </j:CardHeader>
         <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
             
-                <j:HGroup localId="sectionNavPages" height="50" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCentered" gap="3"
-                    style="padding:20px 20px 0px 20px;">
+            <j:HGroup localId="sectionNavPages" height="50" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCentered" gap="3"
+                style="padding:20px 20px 0px 20px;">
 
-                    <j:Label text="Reg. por Página: " className="normal-dark" style="font-weight: bold;">
-                        <j:beads>
-                            <j:SizeControl size="small"/>
-                            <j:TextAlign align="left"/>
-                        </j:beads>
-                    </j:Label>
-                                        
-                    <jc:ComboBoxJwExt localId="cbPageSize" width="90" height="35" change="onPageSizeChanged()"
-                                      valueField="codigo" >
-                        <jc:dataProvider>
-                            <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
-                        </jc:dataProvider>
-                    </jc:ComboBoxJwExt>
+                <j:Label text="Reg. por Página: " className="normal-dark" style="font-weight: bold;">
+                    <j:beads>
+                        <j:SizeControl size="small"/>
+                        <j:TextAlign align="left"/>
+                    </j:beads>
+                </j:Label>
+                                    
+                <jc:ComboBoxJwExt localId="cbPageSize" width="90" height="35" change="onPageSizeChanged()"
+                                    valueField="codigo" >
+                    <jc:dataProvider>
+                        <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
+                    </jc:dataProvider>
+                </jc:ComboBoxJwExt>
 
-                    <jc:PagesNavigationButtonBar emphasis="primary"
-                                            height="35"
-                                            iconField="icon"
-                                            maxNavButtons="{maxPageNav}"
-                                            pageSize="{pageSize}"
-                                            totalItems="{totalRegs}"
-                                            change="onNavpageChange(event)"
-                                            currentPage="{currentPage}">
-                        <jc:beads>
-                             <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                        </jc:beads>
-                    </jc:PagesNavigationButtonBar>
-                </j:HGroup>
+                <jc:PagesNavigationButtonBar emphasis="primary"
+                                        height="35"
+                                        iconField="icon"
+                                        maxNavButtons="{maxPageNav}"
+                                        pageSize="{pageSize}"
+                                        totalItems="{totalRegs}"
+                                        change="onNavpageChange(event)"
+                                        currentPage="{currentPage}">
+                    <jc:beads>
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                    </jc:beads>
+                </jc:PagesNavigationButtonBar>
+            </j:HGroup>
             
         </j:CardExpandedContent>
 
