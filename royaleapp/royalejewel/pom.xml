@@ -27,8 +27,8 @@
                 <configuration>
                     <mainClass>App.mxml</mainClass>
                     <targets>JSRoyale</targets>
-                    <debug>false</debug>
-                    <htmlTemplate>${basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
+                    <debug>${project.compiler.debug}</debug>
+                    <htmlTemplate>${basedir}/src/main/resources/jewel-app-index-template.html</htmlTemplate>
                     <additionalCompilerOptions>
                         ${project.compiler.options};
                         -js-dynamic-access-unknown-members=true <!-- to access JSON object graph subobjects -->
@@ -83,6 +83,34 @@
                     </execution>
                 </executions>
             </plugin>
+<!-- TODO. Generate custom Theme Community
+            <plugin>
+                <groupId>nl.geodienstencentrum.maven</groupId>
+                <artifactId>sass-maven-plugin</artifactId>
+                <version>3.7.2</version>
+                <configuration>
+                    <resources>
+                    <resource>
+                        <source>
+                            <directory>${basedir}/src/main/sass</directory>
+                            <includes>
+                                <include>**/*.sass</include>
+                            </includes>
+                        </source>
+                        <destination>${basedir}/src/main/resources</destination>
+                    </resource>
+                    </resources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-css-using-sass</id>
+                        <goals>
+                            <goal>update-stylesheets</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+ -->
         </plugins>
     
     </build>

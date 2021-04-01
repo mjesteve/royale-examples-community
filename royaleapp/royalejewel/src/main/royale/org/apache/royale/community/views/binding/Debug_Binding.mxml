@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ScrollableSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml" xmlns:mx="library://ns.apache.org/royale/mx"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    initComplete="onInitialize(event)" style="padding: 0px"
+    >
+    
+    <fx:Script>
+        <![CDATA[
+            
+            public var test:BindingTest = new BindingTest;
+            //public function get test():BindingTest{ return _test; }
+            //public function set test(value:BindingTest):void{ _test = value; }
+
+            protected function onInitialize(event:Event):void
+            {
+                //test = new BindingTest;
+			}
+
+            public function updateData():void
+			{
+                test.UpdateData();
+			}
+
+
+            ]]>
+    </fx:Script>
+
+    <j:beads>
+		<!--<js:ViewDataBinding/>-->
+        <js:ContainerDataBinding/>
+	</j:beads>
+    
+            <j:VGroup width="400" gap="10">
+                    <j:HGroup gap="3">
+                        <j:Label localId="txtproccat" text="TEST BINDABLES:" width="100"/>
+                        <j:Button localId="btcat" text="Update" width="150" click="updateData()"/>                       
+                        <j:Label width="100" height="20" html="{test.idref[0]}" style="background-color: #ec1515">
+                            <j:beads>
+                                <j:SizeControl size="small"/>
+                                <j:TextAlign align="left"/>
+                            </j:beads>
+                        </j:Label>
+                        <j:Label width="100" height="20" html="{test.idref[1]}" style="background-color: #ec1515">
+                            <j:beads>
+                                <j:SizeControl size="small"/>
+                                <j:TextAlign align="left"/>
+                            </j:beads>
+                        </j:Label>
+                        <j:Label width="100" height="20" html="{test.idref[2]}" style="background-color: #ec1515">
+                            <j:beads>
+                                <j:SizeControl size="small"/>
+                                <j:TextAlign align="left"/>
+                            </j:beads>
+                        </j:Label> 
+                        <j:Label width="100" height="20" html="{test.test}" style="background-color: #ec1515">
+                            <j:beads>
+                                <j:SizeControl size="small"/>
+                                <j:TextAlign align="left"/>
+                            </j:beads>
+                        </j:Label>  
+                    </j:HGroup>
+            </j:VGroup>
+</j:ScrollableSectionContent>

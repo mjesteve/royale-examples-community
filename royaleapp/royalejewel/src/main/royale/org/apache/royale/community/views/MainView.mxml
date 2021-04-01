@@ -1,40 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+	    xmlns:views="org.apache.royale.community.views.*"
+	    xmlns:viewsCb="org.apache.royale.community.views.combobox.*"
+	    xmlns:viewsList="org.apache.royale.community.views.list.*"
+	    xmlns:viewsImg="org.apache.royale.community.views.image.*">
 
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
--->
-<j:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic"
-    initComplete="initView()">
-    
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.community.SampleClass;
+        import org.apache.royale.core.StyledUIBase;
 
-            public function initView():void
-            {
-                var s:SampleClass = new SampleClass;
-                s.doSomething();
-            }
+
+
         ]]>
     </fx:Script>
 
-    <j:VGroup>
-        <j:Label text="Hello Jewel + Crux!"/>
-    </j:VGroup>
-</j:View>
+    <j:beads>
+		<!--<js:ContainerDataBinding/>-->
+        <js:ViewDataBinding/>
+	</j:beads>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+        <j:BarRow localId="barRow">
+            <j:BarSection>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
+            </j:BarSection>
+        </j:BarRow>
+    </j:TopAppBar>
+
+     <j:FooterBar localId="footerbar" fixed="true" >
+        <j:BarRow>
+
+            <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:HGroup gap="10">
+                    <j:Label localId="labelCompany" html="{new Date()}" />
+                </j:HGroup>
+            </j:BarSection>
+        </j:BarRow>
+     </j:FooterBar>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true">
+        <j:SectionContent>
+
+                <j:Wizard localId="wizard" width="100%" height="100%">
+                    <j:previousButton>
+                        <j:Group>
+                            <j:IconButton emphasis="{StyledUIBase.SECONDARY}">
+                                <j:icon>
+                                    <js:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}"  size="40"/>
+                                </j:icon>
+                            </j:IconButton>
+                        </j:Group>
+                    </j:previousButton>
+
+                    <j:nextButton>
+                        <j:Group>
+                            <j:IconButton emphasis="{StyledUIBase.SECONDARY}">
+                                <j:icon>
+                                    <js:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}"  size="40"/>
+                                </j:icon>
+                            </j:IconButton>
+                        </j:Group>
+                    </j:nextButton>
+
+                    <j:WizardPage name="page0">
+                        <j:step>
+                            <j:WizardStep initialPage="true" name="page0" nextStep="page1"/>
+                        </j:step>
+                        <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page1">
+                        <j:step>
+                            <j:WizardStep localId="sl"previousStep="page0"  name="page1" nextStep="page2" />
+                        </j:step>
+                        <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page2">
+                        <j:step>
+                            <j:WizardStep localId="s2" previousStep="page1" name="page2" nextStep="page3" />
+                        </j:step>
+                        <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page3">
+                        <j:step>
+                            <j:WizardStep localId="s3" previousStep="page2" name="page3" nextStep="page4" />
+                        </j:step>
+                        <viewsList:Debug_ScrollToIndex percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page4">
+                        <j:step>
+                            <j:WizardStep localId="s4" previousStep="page3" name="page4" nextStep="page5" />
+                        </j:step>
+                        <views:Debug_Pills percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page5">
+                        <j:step>
+                            <j:WizardStep localId="s5" previousStep="page4" name="page5" nextStep="page6" />
+                        </j:step>
+                        <viewsList:MainList percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+
+                    <j:WizardPage name="page6">
+                        <j:step>
+                            <j:WizardStep localId="s6" previousStep="page5" name="page6"/>
+                        </j:step>
+                        <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
+                    </j:WizardPage>
+                </j:Wizard>
+
+        </j:SectionContent>
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>

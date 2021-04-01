@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+	    xmlns:views="org.apache.royale.community.views.*" xmlns:local="*" 
+    >
+    
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.community.vo.TabBarButtonVO;
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.community.itemRenderers.PillsListItemRenderer2;
+                    
+        private var _sourcePills0:ArrayList = new ArrayList();
+        [Bindable]
+        public function get sourcePills0():ArrayList
+        {
+            _sourcePills0 = new ArrayList(["etiqueta 1", "etiqueta2"])
+            return _sourcePills0;
+        }
+
+        private var _sourcePills2:ArrayList = new ArrayList();
+        [Bindable]
+        public function get sourcePills2():ArrayList
+        {
+            //Prueba
+            var ar:Array = new Array;
+            ar.push(new TabBarButtonVO("Etiqueta 1","Valor primer filtro"));
+            ar.push(new TabBarButtonVO("Etiqueta 2","Valor 2º"));
+            _sourcePills2 = new ArrayList(ar)
+            return _sourcePills2;
+            //fin prueba
+        }
+
+
+            ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+
+        <j:ScrollableSectionContent style="padding: 20px">   
+
+            <j:VGroup width="400" gap="10">
+              <!--        itemRenderer="{PillsListItemRenderer2}"
+                <j:List localId="lstPills0" percentWidth="100" minHeight="35"                    
+                        dataProvider="{sourcePills0}" style="background: transparent; border: 0px;">
+                    <j:beads>
+                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false"/>
+                        <j:TileHorizontalLayout />
+                    </j:beads>
+                </j:List> 
+                -->
+                <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
+                        dataProvider="{sourcePills2}"
+                        className="pillItemRenderer"style="background: transparent; border: 0px;" >
+                    <j:beads>
+                        <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>
+                        <j:TileHorizontalLayout />
+                    </j:beads><!-- -->
+                </j:List>
+            </j:VGroup>
+
+        </j:ScrollableSectionContent>
+
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic" >
+ 
+    <fx:Script>
+        <![CDATA[
+            /*import org.apache.royale.community.vo.PillItemVO;
+             
+			[Bindable]
+			private var reg:PillItemVO;
+
+			[Bindable("dataChange")]
+			public function get getReg():PillItemVO
+            {
+                if(!data)
+                    reg = new PillItemVO();
+                else
+                    reg = data as PillItemVO;
+                return reg;
+            }*/
+            
+			import org.apache.royale.community.vo.TabBarButtonVO;
+
+			[Bindable]
+			private var reg:TabBarButtonVO;
+            
+            [Bindable("dataChange")]
+            public function get getReg():TabBarButtonVO
+            {
+                if(data)
+                    reg = data as TabBarButtonVO;
+                else
+                    reg = new TabBarButtonVO('','');
+                return reg;
+            }
+        ]]>
+    </fx:Script>
+ 
+    <j:beads>
+        <js:ItemRendererDataBinding />
+        <j:VerticalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsCenter" />
+    </j:beads>
+
+    <!--<j:VGroup>-->        
+        <j:Label html="{getReg.label}" className="labelFilter">
+            <j:beads>
+                <j:TextAlign align="left"/>
+            </j:beads>
+        </j:Label>
+        <j:Label localId="txt" text="{reg.hash}" className="pillStyle"/>
+    <!--</j:VGroup>-->
+
+</j:ListItemRenderer>

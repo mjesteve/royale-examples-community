@@ -16,7 +16,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Build with Maven - Droyalelib - Servidor CI",
+            "label": "Build with Maven - Droyalelib - ROYALE_HOME",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -47,7 +47,7 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },
+        },//mvn clean install -DskipTests -Droyalelib=D:\Develop_Royale\Projects\Royale-SDK\royale-asjs-fork\frameworks -e -X>build.log
         {
             "label": "Build with Maven - Perfil LOCAL - not inet",
             "type": "shell",

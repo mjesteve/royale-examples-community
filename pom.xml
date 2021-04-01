@@ -30,8 +30,11 @@
     <player.version>15.0</player.version>
     <swf.version>31</swf.version>
 
+    <compiler.output-dir>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir>
     <compiler.output-dir-release>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir-release>
     <compiler.output-dir-debug>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-debug</compiler.output-dir-debug>
+	  <project.compiler.debug>false</project.compiler.debug>
+    <source.map>true</source.map>
 
     <buildTimestamp>DEV</buildTimestamp>
   </properties>
@@ -89,7 +92,14 @@
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-		
+
+<!-- TODO. Generate custom Theme Community
+        <plugin>
+          <groupId>nl.geodienstencentrum.maven</groupId>
+          <artifactId>sass-maven-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+-->		
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
@@ -113,12 +123,13 @@
           <artifactId>maven-scm-plugin</artifactId>
           <version>1.10.0</version>
         </plugin>
-
+<!--
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.1</version>
         </plugin>
+        -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>

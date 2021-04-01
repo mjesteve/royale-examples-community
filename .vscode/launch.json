@@ -22,8 +22,8 @@
             "request": "launch",
             "sourceMaps": true,
             "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
-            "url": "file:///${workspaceRoot}/target/javascript/bin/js-debug/index-debug.html",
-            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug"
+            "url": "file:///${workspaceRoot}/royaleapp/royalejewel/target/javascript/bin/js-debug/index-debug.html",
+            "webRoot": "${workspaceRoot}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-debug"
         },
         {
             "name": "Launch File Allow File Access - Royal App (Release version)",
@@ -31,8 +31,8 @@
             "request": "launch",
             "sourceMaps": true,
             "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
-            "url": "file:///${workspaceRoot}/target/javascript/bin/js-release/index-release.html",
-            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release"
+            "url": "file:///${workspaceRoot}/royaleapp/royalejewel/target/javascript/bin/js-release/index-release.html",
+            "webRoot": "${workspaceRoot}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-release"
         }
     ]
 }

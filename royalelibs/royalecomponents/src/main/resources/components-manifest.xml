@@ -20,6 +20,35 @@
 
 
 <componentPackage>
+    <!-- Custrom Beads -->
+    <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
+    <component id="PagesNavigationButtonBarView" class="org.apache.royale.community.beads.views.PagesNavigationButtonBarView"/>
+    <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
+    <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
 
+    <!-- Extends Jewel Beads -->
+    <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
+    <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
+    <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
+    <component id="SearchFilterJwExt" class="org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt"/>
+    <component id="SearchFilterForDataGrid" class="org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid"/>
+    <component id="ResponsiveResizeListener" class="org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener"/>
+
+    <!-- itemRenderers -->
+    <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
+    <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
+    <component id="PagesNavigationButtonBarItemRenderer" class="org.apache.royale.community.itemRenderers.PagesNavigationButtonBarItemRenderer"/>
+    <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
+
+    <!-- Custom Controls -->
+    <component id="PagesNavigationButtonBar" class="org.apache.royale.community.controls.PagesNavigationButtonBar"/>    
+    <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
+    <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
+
+    <!-- Extends Jewel Controls -->
+    <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
+    <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
+    <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
+    <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
 
 </componentPackage>

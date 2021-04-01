@@ -35,7 +35,7 @@
   <name>Royale Jewel-Crux Application</name>
 
   <properties>
-    <compiler.debug>true</compiler.debug>
+    <project.compiler.debug>true</project.compiler.debug>
   </properties>
 
   <build>
@@ -49,8 +49,8 @@
         <configuration>
           <mainClass>AppWithLib.mxml</mainClass>
           <targets>JSRoyale</targets>
-          <debug>false</debug>
-          <htmlTemplate>${basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
+          <debug>${project.compiler.debug}</debug>
+          <htmlTemplate>${basedir}/src/main/resources/jewel-app-index-template.html</htmlTemplate>
           <additionalCompilerOptions>
             -source-map=true;
             -js-default-initializers=true;

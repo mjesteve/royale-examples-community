@@ -32,13 +32,6 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <properties>
-    <!-- <compiler.debug>true</compiler.debug>
-    <royale.framework.version>0.9.8-SNAPSHOT</royale.framework.version> -->
-    <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
-    <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
-  </properties>
-
   <build>
 
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -51,11 +44,12 @@
         <configuration>
           <!--<targets>${royale.targets}</targets> -->
           <targets>JSRoyale</targets>
-          <debug>false</debug>
+          <debug>${project.compiler.debug}</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+          
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/community</uri>
@@ -81,6 +75,7 @@
               <path>${project.basedir}/src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+
           <additionalCompilerOptions>
             ${project.compiler.options};
             -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->

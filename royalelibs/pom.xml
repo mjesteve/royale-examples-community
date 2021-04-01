@@ -19,8 +19,6 @@
   </modules>
 
   <properties>
-	    <compiler.debug>true</compiler.debug>
-      <source.map>true</source.map>
       <project.compiler.options>
         -js-default-initializers=true;
         -source-map=${source.map};
