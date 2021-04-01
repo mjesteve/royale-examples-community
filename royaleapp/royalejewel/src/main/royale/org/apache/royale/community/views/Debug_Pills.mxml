@@ -4,37 +4,32 @@
         xmlns:js="library://ns.apache.org/royale/basic"
         xmlns:html="library://ns.apache.org/royale/html"
 	    xmlns:views="org.apache.royale.community.views.*"
-    >
+        initComplete="initCompletetHandler()">
     
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.community.vo.TabBarButtonVO;
             import org.apache.royale.collections.ArrayList;
-            import org.apache.royale.community.itemRenderers.PillsListItemRenderer2;
                     
-        private var _sourcePills0:ArrayList = new ArrayList();
-        [Bindable]
-        public function get sourcePills0():ArrayList
-        {
-            _sourcePills0 = new ArrayList(["etiqueta 1", "etiqueta2"])
-            return _sourcePills0;
-        }
+            [Bindable]
+            private var sourcePills:ArrayList;
+            private function initCompletetHandler():void
+            {
+                var ar:Array = new Array();
+                for(var index:int = 0; index < 14; index++)
+                {
+                    ar.push('Pill-'+index.toString());
+                }
+                sourcePills = new ArrayList(ar);
+                lstPills.addEventListener("removePill",removePillHandler);
+            }
 
-        private var _sourcePills2:ArrayList = new ArrayList();
-        [Bindable]
-        public function get sourcePills2():ArrayList
-        {
-            //Prueba
-            var ar:Array = new Array;
-            ar.push(new TabBarButtonVO("Etiqueta 1","Valor primer filtro"));
-            ar.push(new TabBarButtonVO("Etiqueta 2","Valor 2º"));
-            _sourcePills2 = new ArrayList(ar)
-            return _sourcePills2;
-            //fin prueba
-        }
+            public function removePillHandler(event:Event):void
+            {
+                sourcePills.removeItemAt(event.target.index);
+            }
 
 
-            ]]>
+        ]]>
     </fx:Script>
 
     <j:beads>
@@ -59,7 +54,7 @@
                 </j:List> 
                 -->
                 <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
-                        dataProvider="{sourcePills2}"
+                        dataProvider="{sourcePills}"
                         className="pillListStyle" style="background: transparent; border: 0px;" >
                     <j:beads>
                         <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>

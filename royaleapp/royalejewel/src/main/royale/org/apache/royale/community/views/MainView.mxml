@@ -75,28 +75,28 @@
                         <j:step>
                             <j:WizardStep localId="sl"previousStep="page0"  name="page1" nextStep="page2" />
                         </j:step>
-                        <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
+                        <views:Debug_Pills percentHeight="100" percentWidth="100" />
                     </j:WizardPage>
 
                     <j:WizardPage name="page2">
                         <j:step>
                             <j:WizardStep localId="s2" previousStep="page1" name="page2" nextStep="page3" />
                         </j:step>
-                        <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+                        <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
                     </j:WizardPage>
 
                     <j:WizardPage name="page3">
                         <j:step>
                             <j:WizardStep localId="s3" previousStep="page2" name="page3" nextStep="page4" />
                         </j:step>
-                        <viewsList:Debug_ScrollToIndex percentHeight="100" percentWidth="100" />
+                        <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
                     </j:WizardPage>
 
                     <j:WizardPage name="page4">
                         <j:step>
                             <j:WizardStep localId="s4" previousStep="page3" name="page4" nextStep="page5" />
                         </j:step>
-                        <views:Debug_Pills percentHeight="100" percentWidth="100" />
+                        <viewsList:Debug_ScrollToIndex percentHeight="100" percentWidth="100" />
                     </j:WizardPage>
 
                     <j:WizardPage name="page5">
