@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:j="library://ns.apache.org/royale/jewel"
         xmlns:js="library://ns.apache.org/royale/basic"
-	    xmlns:views="org.apache.royale.community.views.*" xmlns:local="*" 
+        xmlns:html="library://ns.apache.org/royale/html"
+	    xmlns:views="org.apache.royale.community.views.*"
     >
     
     <fx:Script>
@@ -40,10 +41,13 @@
         <js:ContainerDataBinding/>
 	</j:beads>
 
-     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
-
-        <j:ScrollableSectionContent style="padding: 20px">   
-
+    <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+        <j:CardHeader>
+            <j:BarSection width="100%" gap="10">
+                <html:H3 text="Page Navigator - Debugger" className="primary-dark block-with-text "/>
+            </j:BarSection>
+        </j:CardHeader>
+        <j:CardPrimaryContent height="100%" >
             <j:VGroup width="400" gap="10">
               <!--        itemRenderer="{PillsListItemRenderer2}"
                 <j:List localId="lstPills0" percentWidth="100" minHeight="35"                    
@@ -56,7 +60,7 @@
                 -->
                 <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
                         dataProvider="{sourcePills2}"
-                        className="pillItemRenderer"style="background: transparent; border: 0px;" >
+                        className="pillItemRenderer" style="background: transparent; border: 0px;" >
                     <j:beads>
                         <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>
                         <j:TileHorizontalLayout />
@@ -64,8 +68,7 @@
                 </j:List>
             </j:VGroup>
 
-        </j:ScrollableSectionContent>
+        </j:CardPrimaryContent>
 
-    </j:ApplicationMainContent>
-
-</j:ResponsiveView>
+    </j:Card>
+</j:VGroup>

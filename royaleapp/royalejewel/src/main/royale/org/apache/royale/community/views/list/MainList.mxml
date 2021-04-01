@@ -75,28 +75,6 @@
         <js:ContainerDataBinding/>
 	</j:beads>
 
-    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
-        <j:BarRow localId="barRow">
-            <j:BarSection>
-                <j:BarTitle text="Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
-            </j:BarSection>
-        </j:BarRow>
-    </j:TopAppBar>
-
-     <j:FooterBar localId="footerbar" fixed="true" >
-        <j:BarRow>
-
-            <j:BarSection itemsHorizontalAlign="itemsRight">
-                <j:HGroup gap="10">
-                    <j:Label localId="labelCompany" html="{new Date()}" />
-                </j:HGroup>
-            </j:BarSection>
-        </j:BarRow>
-     </j:FooterBar>
-
-     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
-        <j:SectionContent>
-
             <j:Grid percentWidth="50" percentHeight="100">
                     
                 <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="2">
@@ -110,9 +88,5 @@
                 </j:GridCell>
                 
             </j:Grid>
-                
-
-        </j:SectionContent>
-    </j:ApplicationMainContent>
 
 </j:VGroup>
