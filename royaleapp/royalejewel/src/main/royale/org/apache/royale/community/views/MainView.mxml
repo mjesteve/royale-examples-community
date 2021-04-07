@@ -68,7 +68,8 @@
                         <j:step>
                             <j:WizardStep initialPage="true" name="page0" nextStep="page1"/>
                         </j:step>
-                        <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+                        <!--<views:Debug_PageNavigator percentHeight="100" percentWidth="100" />-->
+                        <views:Debug_Color percentHeight="100" percentWidth="100" />
                     </j:WizardPage>
 
                     <j:WizardPage name="page1">
