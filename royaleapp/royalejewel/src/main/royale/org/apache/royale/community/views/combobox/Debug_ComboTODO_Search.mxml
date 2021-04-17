@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <j:VGroup
     xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns="http://www.w3.org/1999/xhtml" xmlns:mx="library://ns.apache.org/royale/mx"
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
@@ -182,7 +182,6 @@
 
     <j:beads>
         <js:ViewDataBinding/>
-		<js:BrowserResizeListener/>
     </j:beads>
     <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
         <j:CardHeader>

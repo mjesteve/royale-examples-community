@@ -2,35 +2,35 @@ package org.apache.royale.community.beads.views
 {
     
 	import org.apache.royale.events.Event;
-    import org.apache.royale.community.controls.PagesNavigationButtonBar;
+    import org.apache.royale.community.controls.PageNavigatorButtonBar;
     import org.apache.royale.jewel.beads.views.ButtonBarView;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.utils.sendStrandEvent;
 
-    public class PagesNavigationButtonBarView extends ButtonBarView
+    public class PageNavigatorButtonBarView extends ButtonBarView
     {
 
-        public function PagesNavigationButtonBarView (){
+        public function PageNavigatorButtonBarView (){
             super();
         }
 		
-		private var _buttonBar:PagesNavigationButtonBar;
+		private var _buttonBar:PageNavigatorButtonBar;
 		/**
-		 *  the PagesNavigationButtonBar associated to this view
+		 *  the PageNavigatorButtonBar associated to this view
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		override public function get buttonBar():PagesNavigationButtonBar
+		override public function get buttonBar():PageNavigatorButtonBar
 		{
-			return _strand as PagesNavigationButtonBar;
+			return _strand as PageNavigatorButtonBar;
 		}
-		override public function set buttonBar(value:PagesNavigationButtonBar):void
+		override public function set buttonBar(value:PageNavigatorButtonBar):void
 		{
-			_strand = value as PagesNavigationButtonBar;
+			_strand = value as PageNavigatorButtonBar;
 		}
 		
 		/**

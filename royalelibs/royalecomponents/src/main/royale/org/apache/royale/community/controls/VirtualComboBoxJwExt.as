@@ -12,19 +12,20 @@ package org.apache.royale.community.controls {
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.community.beads.models.ISelectionByFieldModel;
     import org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt;
+    import org.apache.royale.core.IDataProviderModel;
 
 	[Event(name="selectedValueChange", type="org.apache.royale.events.Event")]
     /**
-     * Extension the Jewel ComboBox.
+     * Extension the Jewel VirtualComboBox.
      *
-     * - Nueva propiedad emptyDisabled para indicar si desactivar el componente si no hay datos.
-     * - Nueva propiedad 'disabled'. Activar o desactivar el control.
-     *      Se carga automáticamente el bead ComboBoxDisabled
-     * - Se carga automáticamente el bead ComboBoxTruncateText.
+     * - New emptyDisabled property to indicate whether to disable the component if there is no data.
+     * - New property 'disabled'. Enable or disable the control.
+     *      The ComboBoxDisabled bead is automatically loaded.
+     * - Automatically loads the ComboBoxTruncateText bead.
      *
-     * [TODO - Si hiciese falta...]
-     * - Nueva propiedad 'prompt'. Por defecto  COMBO_BOX_TEXT_PROMPT
-     *      Se carga automáticamente el bead ComboBoxTextPrompt
+     * [TODO - If necessary...] - New property 'prompt'.
+     * - New property 'prompt'. Default COMBO_BOX_TEXT_PROMPT
+     *      The ComboBoxTextPrompt bead is automatically loaded.
      */
     public class VirtualComboBoxJwExt extends VirtualComboBox {
 
@@ -55,13 +56,21 @@ package org.apache.royale.community.controls {
                     addBead(_disabledBead);
                 }
             }
+            //By default the Disabled bead is initialized to true. In this case, we force false.
+            if(_disabledBead) 
+                _disabledBead.disabled = _disabled;
+
             isCreateComplete = true;
-            updateDisabled();
+            
+            //When the dataProvider is set directly in the MXML Tag, at this point in the code, 
+            //the dataProvider property of the model does not yet expose the set object and the 
+            //emptyDisabled bead disables the control. To avoid this, we delay the check.
+            setTimeout(updateDisabled,125);
         }
 
         private function loadTextTruncate():void
         {
-            //Opcionales por tag o por Css
+            //Optional by tag or by Css
             loadBeadFromValuesManager(ComboBoxTruncateText, "comboBoxTruncateText", this);
         }
 
@@ -94,7 +103,11 @@ package org.apache.royale.community.controls {
 
         /***************************************************************************************
          * activePopupControls - comboBoxListCloseOnClick bead (only if custom itemrenderer)
-         */
+         * 
+         * We load by default a custom ItemRenderer, to close the popup on click we must 
+         * load the bead ComboBoxListCloseOnClick.
+         * 
+         ***************************************************************************************/
         private var _activePopupControls:Boolean = false;
         public function set activePopupControls(value:Boolean):void
         {
@@ -127,7 +140,11 @@ package org.apache.royale.community.controls {
 
         override public function set dataProvider(value:Object):void
         {
-            super.dataProvider = value;
+            //Piotr's recommendation - Direct setting instead of super.dataProvider = value
+            IDataProviderModel(model).dataProvider = value;
+
+            if(!isCreateComplete)
+                return;
 
             if (!_disabledBead) return;
             if (!emptyDisabled) return;
@@ -137,17 +154,17 @@ package org.apache.royale.community.controls {
         }
 
         private var _emptyDisabled:Boolean = true;
-
         public function get emptyDisabled():Boolean {
             return _disabledBead ? _emptyDisabled : false;
         }
 
         public function set emptyDisabled(value:Boolean):void
         {
-            if(_emptyDisabled == value)
-                return;
-
             _emptyDisabled = value;
+
+            if(!isCreateComplete)
+                return;
+                
             updateDisabled();
         }
 
@@ -164,6 +181,9 @@ package org.apache.royale.community.controls {
 
         public function set disabled(value:Boolean):void
         {
+            if(!isCreateComplete)
+                return;
+
             if(_disabled == value)
                 return;
 
@@ -176,7 +196,7 @@ package org.apache.royale.community.controls {
             if(!isCreateComplete)
                 return;
 
-            if(_disabled || _emptyDisabled)
+            if(_disabled || (!_disabled && _disabledBead) || _emptyDisabled)
             {
                 if(_disabledBead == null)
                 {
@@ -192,13 +212,14 @@ package org.apache.royale.community.controls {
             }
         }
 
-        public function lengthDataProvider():int {
+        public function lengthDataProvider():int 
+        {
             var size:int = 0
-            if (dataProvider) {
-                if (dataProvider is ArrayListView)
-                    size = (dataProvider as ArrayListView).list.length;
+            if (IDataProviderModel(model).dataProvider) {
+                if (IDataProviderModel(model).dataProvider is ArrayListView)
+                    size = (IDataProviderModel(model).dataProvider as ArrayListView).list.length;
                 else
-                    size = (dataProvider as IArrayList).length;
+                    size = (IDataProviderModel(model).dataProvider as IArrayList).length;
             }
             return size;
         }
@@ -206,7 +227,8 @@ package org.apache.royale.community.controls {
         /***************************************************************************************
          * valueField - selectedValue - selectedChange
          */
-        public function get valueField():String {
+        public function get valueField():String 
+        {
             if(model is ISelectionByFieldModel)
                 return ISelectionByFieldModel(model).valueField;
             else
@@ -245,6 +267,7 @@ package org.apache.royale.community.controls {
                 ISelectionByFieldModel(model).selectedValue = value;
             }
 		}
+        
 		public function get selectedValueString():String
 		{
             if(model is ISelectionByFieldModel)

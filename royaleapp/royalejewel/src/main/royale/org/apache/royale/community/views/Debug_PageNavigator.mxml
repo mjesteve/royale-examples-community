@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml" xmlns:mx="library://ns.apache.org/royale/mx"
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
-    initComplete="onInitComplete()">
+    initComplete="onInitComplete()" percentWidth="100" percentHeight="100">
 
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
         import org.apache.royale.collections.ArrayListView;
-        import org.apache.royale.community.vo.PagesNavigationButtonBarVO;
+        import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
 
         public function onInitComplete():void
         {
-            //cbPageSize.selectedValue = pageSize;
-            cbPageSize.selectedIndex = pageSize-1;
             makeDP(true);
         }
 
@@ -103,14 +101,14 @@
 
         private function onPageSizeChanged():void
         {
-            pageSize = cbPageSize.selectedIndex+1;
+            pageSize = int(cbPageSize.selectedItem);
             currentPage = -1;
             makeDP(false,1);
         }
 
         private function onNavpageChange(event:Event):void
         {
-            var proposedPage:int = (event.target.selectedItem as PagesNavigationButtonBarVO).valuePage;
+            var proposedPage:int = (event.target.selectedItem as PageNavigatorButtonBarVO).valuePage;
             
             makeDP(false,proposedPage);
 
@@ -155,7 +153,7 @@
         IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
         }
 
-        jc|PagesNavigationButtonBar {
+        jc|PageNavigatorButtonBar {
         IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt");
         }
 
@@ -177,8 +175,8 @@
         </j:CardHeader>
         <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
             
-            <j:HGroup localId="sectionNavPages" height="60" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCentered" gap="3"
-                style="padding:20px 20px 0px 20px;">
+            <j:HGroup localId="sectionNavPages" itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
+                style="margin:20px 20px 0px 20px;" percentWidth="100">
 
                 <j:Label text="Reg. por Página: " className="normal-dark" style="font-weight: bold;">
                     <j:beads>
@@ -187,14 +185,25 @@
                     </j:beads>
                 </j:Label>
                                     
-                <jc:ComboBoxJwExt localId="cbPageSize" width="90" height="35" change="onPageSizeChanged()"
-                                    valueField="codigo" >
+                <jc:ComboBoxJwExt localId="cbPageSize" width="90" selectedItem = "{pageSize}" change="onPageSizeChanged()">
                     <jc:dataProvider>
                         <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
                     </jc:dataProvider>
                 </jc:ComboBoxJwExt>
+                                    
+                <j:ComboBox localId="cbPageSize2" width="90" selectedItem = "{pageSize}" change="onPageSizeChanged()">
+                    <j:dataProvider>
+                        <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
+                    </j:dataProvider>
+                    <j:beads>
+                        <j:ComboBoxListCloseOnClick />
+                        <j:ComboBoxTextPrompt prompt="\u21F2 ..." />
+                        <jc:SearchFilterJwExt />
+                        <j:ComboBoxDisabled disabled="false"/>
+                    </j:beads>
+                </j:ComboBox>
 
-                <jc:PagesNavigationButtonBar emphasis="primary"
+                <jc:PageNavigatorButtonBar emphasis="primary"
                                         height="35"
                                         iconField="icon"
                                         maxNavButtons="{maxPageNav}"
@@ -205,7 +214,7 @@
                     <jc:beads>
                             <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
                     </jc:beads>
-                </jc:PagesNavigationButtonBar>
+                </jc:PageNavigatorButtonBar>
             </j:HGroup>
             
         </j:CardExpandedContent>

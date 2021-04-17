@@ -42,7 +42,7 @@ package org.apache.royale.community.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class PagesNavigationButtonBarController extends ListSingleSelectionMouseController
+	public class PageNavigatorButtonBarController extends ListSingleSelectionMouseController
 	{
         /**
          *  Constructor.
@@ -52,7 +52,7 @@ package org.apache.royale.community.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function PagesNavigationButtonBarController()
+		public function PageNavigatorButtonBarController()
 		{
 		}
 

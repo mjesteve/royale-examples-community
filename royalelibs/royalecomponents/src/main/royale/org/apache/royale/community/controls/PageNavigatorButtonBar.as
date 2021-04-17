@@ -3,11 +3,11 @@ package org.apache.royale.community.controls
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.jewel.ToggleButtonBar;
-    import org.apache.royale.community.vo.PagesNavigationButtonBarVO;
-    import org.apache.royale.community.beads.models.PagesNavigationButtonBarModel;
+    import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
+    import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
 
     /**
-     *  The PagesNavigationButtonBar class is a component that displays a set of ToggleButtons. The PagesNavigationButtonBar
+     *  The PageNavigatorButtonBar class is a component that displays a set of ToggleButtons. The PageNavigatorButtonBar
      *  is actually an ToggleButtonBar (IconButtonBar) with an itemRenderer that produces Jewel ToggleButtons.
      *
      *  By default buttons are equally sized, by setting `widthType` to NaN.
@@ -19,7 +19,7 @@ package org.apache.royale.community.controls
      *  org.apache.royale.core.IBeadController: handles input events. ("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
      *  org.apache.royale.core.IBeadLayout: sizes and positions the component parts. ("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
      *  org.apache.royale.core.IDataProviderItemRendererMapper: produces itemRenderers. ("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
-     *  org.apache.royale.core.IItemRenderer: the class or class factory to use. (PagesNavigationButtonBarItemRenderer)
+     *  org.apache.royale.core.IItemRenderer: the class or class factory to use. (PageNavigatorButtonBarItemRenderer)
      *
      *  ButtonBar:
      *  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -33,7 +33,7 @@ package org.apache.royale.community.controls
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public class PagesNavigationButtonBar extends org.apache.royale.jewel.ToggleButtonBar {
+    public class PageNavigatorButtonBar extends org.apache.royale.jewel.ToggleButtonBar {
         /**
          *  constructor.
          *
@@ -43,9 +43,10 @@ package org.apache.royale.community.controls
          *  @productversion Royale 0.9.7
          */
         
-        public function PagesNavigationButtonBar() {
+        public function PageNavigatorButtonBar() {
             super();
-            PagesNavigationButtonBarModel(model).widthType = ButtonBarModel.PERCENT_WIDTHS;
+            PageNavigatorButtonBarModel(model).widthType = ButtonBarModel.PERCENT_WIDTHS;
+            typeNames = "jewelext pagenavigator";
 /*
             typeNames = "jewel buttonbar";
 
@@ -57,49 +58,49 @@ package org.apache.royale.community.controls
         public var pages:ArrayList = new ArrayList();
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get maxNavButtons():int {
-            return PagesNavigationButtonBarModel(model).maxNavButtons;
+            return PageNavigatorButtonBarModel(model).maxNavButtons;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set maxNavButtons(value:int):void {
-            PagesNavigationButtonBarModel(model).maxNavButtons = value;
+            PageNavigatorButtonBarModel(model).maxNavButtons = value;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get pageSize():int {
-            return PagesNavigationButtonBarModel(model).pageSize;
+            return PageNavigatorButtonBarModel(model).pageSize;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set pageSize(value:int):void {
-            PagesNavigationButtonBarModel(model).pageSize = value;
+            PageNavigatorButtonBarModel(model).pageSize = value;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get totalItems():int {
-            return PagesNavigationButtonBarModel(model).totalItems;
+            return PageNavigatorButtonBarModel(model).totalItems;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set totalItems(value:int):void {
-            PagesNavigationButtonBarModel(model).totalItems = value;
+            PageNavigatorButtonBarModel(model).totalItems = value;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get currentPage():int {
-            return PagesNavigationButtonBarModel(model).currentPage;
+            return PageNavigatorButtonBarModel(model).currentPage;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set currentPage(value:int):void 
         {
@@ -118,8 +119,8 @@ package org.apache.royale.community.controls
 
             if(value < 0 || loc_totalItems <= 0)
             {
-                PagesNavigationButtonBarModel(model).currentPage = -1;
-                PagesNavigationButtonBarModel(model).totalPages = 0;
+                PageNavigatorButtonBarModel(model).currentPage = -1;
+                PageNavigatorButtonBarModel(model).totalPages = 0;
                 startIndex = -1;
                 endIndex = -1;
                 dataProvider = pages;
@@ -181,9 +182,9 @@ package org.apache.royale.community.controls
                         }
 
                         if (loc_endPage < loc_maxNavButtons + loc_startPage) {
-                            pages.addItem(new PagesNavigationButtonBarVO("1", 1));
-                            //pages.addItem(new PagesNavigationButtonBarVO("❮", pageIn - 1));
-                            pages.addItem(new PagesNavigationButtonBarVO("",pageIn-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
+                            pages.addItem(new PageNavigatorButtonBarVO("1", 1));
+                            //pages.addItem(new PageNavigatorButtonBarVO("❮", pageIn - 1));
+                            pages.addItem(new PageNavigatorButtonBarVO("",pageIn-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
                             loc_indexToSelect += 2;
                         }
 
@@ -198,19 +199,19 @@ package org.apache.royale.community.controls
             }
 
             for (var idx:int = loc_startPage; idx <= loc_endPage; idx++) {
-                pages.addItem(new PagesNavigationButtonBarVO(idx.toString(), idx, "", (pageIn == idx)));
+                pages.addItem(new PageNavigatorButtonBarVO(idx.toString(), idx, "", (pageIn == idx)));
                 if (pageIn == idx)
                     loc_indexToSelect += idx-loc_startPage+1;
             }
 
             if (pageIn < loc_totalPages - maxNavButtonsAfterCurrentPage) {
-                //pages.addItem(new PagesNavigationButtonBarVO("❯", pageIn + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
-                pages.addItem(new PagesNavigationButtonBarVO("",pageIn+1,FontAwesome5IconType.ANGLE_RIGHT));
-                pages.addItem(new PagesNavigationButtonBarVO(loc_totalPages.toString(), loc_totalPages));
+                //pages.addItem(new PageNavigatorButtonBarVO("❯", pageIn + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
+                pages.addItem(new PageNavigatorButtonBarVO("",pageIn+1,FontAwesome5IconType.ANGLE_RIGHT));
+                pages.addItem(new PageNavigatorButtonBarVO(loc_totalPages.toString(), loc_totalPages));
             }
 
-            PagesNavigationButtonBarModel(model).currentPage = pageIn;
-            PagesNavigationButtonBarModel(model).totalPages = loc_totalPages;
+            PageNavigatorButtonBarModel(model).currentPage = pageIn;
+            PageNavigatorButtonBarModel(model).totalPages = loc_totalPages;
             startIndex = loc_startIndex;
             endIndex = loc_endIndex;
 
@@ -231,28 +232,28 @@ package org.apache.royale.community.controls
         }
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get startIndex():int {
-            return PagesNavigationButtonBarModel(model).startIndex;
+            return PageNavigatorButtonBarModel(model).startIndex;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set startIndex(value:int):void {
-            PagesNavigationButtonBarModel(model).startIndex = value;
+            PageNavigatorButtonBarModel(model).startIndex = value;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function get endIndex():int {
-            return PagesNavigationButtonBarModel(model).endIndex;
+            return PageNavigatorButtonBarModel(model).endIndex;
         }
 		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PagesNavigationButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set endIndex(value:int):void {
-            PagesNavigationButtonBarModel(model).endIndex = value;
+            PageNavigatorButtonBarModel(model).endIndex = value;
         }
 
     }

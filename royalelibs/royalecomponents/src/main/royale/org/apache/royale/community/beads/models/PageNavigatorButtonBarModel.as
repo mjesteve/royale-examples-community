@@ -3,7 +3,7 @@ package org.apache.royale.community.beads.models {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.ButtonBarModel;
 
-    public class PagesNavigationButtonBarModel extends ButtonBarModel {
+    public class PageNavigatorButtonBarModel extends ButtonBarModel {
 
         /**
          *  Constructor.
@@ -13,7 +13,7 @@ package org.apache.royale.community.beads.models {
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function PagesNavigationButtonBarModel() {
+        public function PageNavigatorButtonBarModel() {
         }
 
         private var _maxNavButtons:int = 0;

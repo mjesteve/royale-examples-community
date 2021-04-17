@@ -3,12 +3,12 @@ package org.apache.royale.community.itemRenderers
 
 	import org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
-	import org.apache.royale.community.controls.PagesNavigationButtonBar;
+	import org.apache.royale.community.controls.PageNavigatorButtonBar;
 
-	public class PagesNavigationButtonBarItemRenderer extends ToggleButtonBarItemRenderer
+	public class PageNavigatorButtonBarItemRenderer extends ToggleButtonBarItemRenderer
     {
 
-		public function PagesNavigationButtonBarItemRenderer()
+		public function PageNavigatorButtonBarItemRenderer()
 		{
 			super();
 			selectable = true;
@@ -40,7 +40,7 @@ package org.apache.royale.community.itemRenderers
             super.data = value;
 			if(selectable)
             {
-				selected = ((itemRendererOwnerView as ButtonBarView).buttonBar as PagesNavigationButtonBar).indexToSelect == index ? true : false;
+				selected = ((itemRendererOwnerView as ButtonBarView).buttonBar as PageNavigatorButtonBar).indexToSelect == index ? true : false;
 			}else{
 				selected = false;
 			}
