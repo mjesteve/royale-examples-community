@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml" xmlns:mx="library://ns.apache.org/royale/mx"
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
-    initComplete="onInitComplete()">
+    initComplete="onInitComplete()" percentWidth="100" percentHeight="100">
 
     <fx:Script>
         <![CDATA[
@@ -190,6 +190,18 @@
                         <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
                     </jc:dataProvider>
                 </jc:ComboBoxJwExt>
+                                    
+                <j:ComboBox localId="cbPageSize2" width="90" selectedItem = "{pageSize}" change="onPageSizeChanged()">
+                    <j:dataProvider>
+                        <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
+                    </j:dataProvider>
+                    <j:beads>
+                        <j:ComboBoxListCloseOnClick />
+                        <j:ComboBoxTextPrompt prompt="\u21F2 ..." />
+                        <jc:SearchFilterJwExt />
+                        <j:ComboBoxDisabled disabled="false"/>
+                    </j:beads>
+                </j:ComboBox>
 
                 <jc:PageNavigatorButtonBar emphasis="primary"
                                         height="35"
