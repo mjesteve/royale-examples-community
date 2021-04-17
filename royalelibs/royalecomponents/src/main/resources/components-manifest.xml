@@ -22,7 +22,7 @@
 <componentPackage>
     <!-- Custrom Beads -->
     <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
-    <component id="PagesNavigationButtonBarView" class="org.apache.royale.community.beads.views.PagesNavigationButtonBarView"/>
+    <component id="PageNavigatorButtonBarView" class="org.apache.royale.community.beads.views.PageNavigatorButtonBarView"/>
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
 
@@ -37,11 +37,11 @@
     <!-- itemRenderers -->
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
-    <component id="PagesNavigationButtonBarItemRenderer" class="org.apache.royale.community.itemRenderers.PagesNavigationButtonBarItemRenderer"/>
+    <component id="PageNavigatorButtonBarItemRenderer" class="org.apache.royale.community.itemRenderers.PageNavigatorButtonBarItemRenderer"/>
     <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
 
     <!-- Custom Controls -->
-    <component id="PagesNavigationButtonBar" class="org.apache.royale.community.controls.PagesNavigationButtonBar"/>    
+    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
 

@@ -18,12 +18,12 @@
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace jc "library://ns.apache.org/royale/community";
 
-jc|PagesNavigationButtonBar {
+jc|PageNavigatorButtonBar {
   iconClass: ClassReference("org.apache.royale.icons.FontAwesomeToggleIcon");
-  IBeadModel: ClassReference("org.apache.royale.community.beads.models.PagesNavigationButtonBarModel");
-  IBeadView: ClassReference("org.apache.royale.community.beads.views.PagesNavigationButtonBarView");
-  IBeadController: ClassReference("org.apache.royale.community.beads.controllers.PagesNavigationButtonBarController");
-  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PagesNavigationButtonBarItemRenderer");
+  IBeadModel: ClassReference("org.apache.royale.community.beads.models.PageNavigatorButtonBarModel");
+  IBeadView: ClassReference("org.apache.royale.community.beads.views.PageNavigatorButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.community.beads.controllers.PageNavigatorButtonBarController");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PageNavigatorButtonBarItemRenderer");
 
   /* Heredados de j|ButtonBar {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
@@ -54,7 +54,7 @@ jc|PagesNavigationButtonBar {
      *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
      *  and adds the valueField and selectedValue properties.
      */
-    IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel");
+    IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt");
     IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
     comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
     comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");

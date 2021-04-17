@@ -64,10 +64,10 @@ package
 
         import org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid; SearchFilterForDataGrid;
 
-        import org.apache.royale.community.beads.models.PagesNavigationButtonBarModel;PagesNavigationButtonBarModel;
-        import org.apache.royale.community.beads.controllers.PagesNavigationButtonBarController; PagesNavigationButtonBarController;
-        import org.apache.royale.community.beads.views.PagesNavigationButtonBarView;PagesNavigationButtonBarView;
-        import org.apache.royale.community.vo.PagesNavigationButtonBarVO;PagesNavigationButtonBarVO;
+        import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;PageNavigatorButtonBarModel;
+        import org.apache.royale.community.beads.controllers.PageNavigatorButtonBarController; PageNavigatorButtonBarController;
+        import org.apache.royale.community.beads.views.PageNavigatorButtonBarView;PageNavigatorButtonBarView;
+        import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
 
         import org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue;TriCheckBoxLabelByValue;
         import org.apache.royale.community.jewel.beads.ClipImageJwExt;ClipImageJwExt;
