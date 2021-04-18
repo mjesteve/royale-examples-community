@@ -11,10 +11,12 @@
         import org.apache.royale.collections.ArrayList;
         import org.apache.royale.collections.ArrayListView;
         import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
+        import org.apache.royale.icons.FontAwesomeIcon;
+        import org.apache.royale.jewel.beads.models.ButtonBarModel;
 
         public function onInitComplete():void
         {
-            makeDP(true);
+            makeDP(true);            
         }
 
         [Bindable]
@@ -23,7 +25,7 @@
         [Bindable]
         private var pageSize:int = 10;        
         [Bindable]
-        private var maxPageNav:int = 5;
+        private var maxPageNav:int = 3;
         [Bindable]
         private var currentPage:int = 0;
         [Bindable]
@@ -34,6 +36,8 @@
         private var startIndexPage:int = -1;
         [Bindable]
         private var endIndexPage:int = -1;
+        [Bindable]
+        private var dpNumPages:ArrayList = new ArrayList([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]);
 
         private function makeDP(init:Boolean = false,proposedPage:int = -1):void
         {
@@ -51,52 +55,46 @@
             var asourceSearch:ArrayListView = new ArrayListView(new ArrayList(dp_AsourceAll.toArray()));
 
             totalRegs = asourceSearch.length;
+            totalPages = Math.ceil(totalRegs/pageSize);
 
             var indexToPos:int = 0;
-            
-                totalPages = Math.ceil(totalRegs/pageSize);
 
-                if(proposedPage < 1)
-                    proposedPage = 1;
+            if(proposedPage < 1)
+                proposedPage = 1;
 
-                if(proposedPage > totalPages)
-                    proposedPage = totalPages;
+            if(proposedPage > totalPages)
+                proposedPage = totalPages;
 
-                if(proposedPage != currentPage)
-                    currentPage = proposedPage;
+            if(proposedPage != currentPage)
+                currentPage = proposedPage;
 
-                var loc_startIndexPage:int = 0;
-                var loc_endIndexPage:int = 0;
-                var loc_pagesize:int = pageSize;
-                if(loc_pagesize > totalRegs)
-                    loc_pagesize = totalRegs;
-                loc_startIndexPage = (currentPage - 1) * loc_pagesize;
-                loc_endIndexPage = Math.min(loc_startIndexPage + loc_pagesize - 1, totalRegs - 1);
+            var loc_pagesize:int = pageSize;
+            if(loc_pagesize > totalRegs)
+                loc_pagesize = totalRegs;
+            startIndexPage = (currentPage - 1) * loc_pagesize;
+            endIndexPage = Math.min(startIndexPage + loc_pagesize - 1, totalRegs - 1);
 
-                startIndexPage = loc_startIndexPage;
-                endIndexPage = loc_endIndexPage;
+            //Op1: Filtramos AsourceAll
+            var ireg:int = -1;
+            var isInSearch:Boolean = true;
+            var exitFor:Boolean = false;
+            trace("loc_startIndexPage Init:",startIndexPage.toString(), "loc_endIndexPage Init:",endIndexPage.toString());
+            asourceSearch.filterFunction = function(item:Object):Boolean
+            {
+                if(exitFor)
+                    return false;
 
-                //Op1: Filtramos AsourceAll
-                var ireg:int = -1;
-                var isInSearch:Boolean = true;
-                var exitFor:Boolean = false;
-                trace("loc_startIndexPage Init:",loc_startIndexPage.toString(), "loc_endIndexPage Init:",loc_endIndexPage.toString());
-                asourceSearch.filterFunction = function(item:Object):Boolean
-                {
-                    if(exitFor)
-                        return false;
-
-                    ireg +=1;
-                    if(ireg >= loc_startIndexPage && ireg <= loc_endIndexPage){
-                        return true;
-                    }else{
-                        exitFor = (ireg > loc_endIndexPage);
-                        return false;
-                    }
+                ireg +=1;
+                if(ireg >= startIndexPage && ireg <= endIndexPage){
+                    return true;
+                }else{
+                    exitFor = (ireg > endIndexPage);
+                    return false;
                 }
+            }
 
-                asourceSearch.refresh();
-                dp_Asource = new ArrayList(asourceSearch.toArray());
+            asourceSearch.refresh();
+            dp_Asource = new ArrayList(asourceSearch.toArray());
         }
 
         private function onPageSizeChanged():void
@@ -111,7 +109,11 @@
             var proposedPage:int = (event.target.selectedItem as PageNavigatorButtonBarVO).valuePage;
             
             makeDP(false,proposedPage);
+        }
 
+        private function onChangeDisabled():void
+        {
+            bdisablepaginator.disabled = !tb_Test1.selected;
         }
 
 
@@ -176,9 +178,9 @@
         <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
             
             <j:HGroup localId="sectionNavPages" itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
-                style="margin:20px 20px 0px 20px;" percentWidth="100">
+                style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >
 
-                <j:Label text="Reg. por Página: " className="normal-dark" style="font-weight: bold;">
+                <j:Label text="Rec. page: " className="normal-dark" style="font-weight: bold;">
                     <j:beads>
                         <j:SizeControl size="small"/>
                         <j:TextAlign align="left"/>
@@ -190,31 +192,31 @@
                         <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
                     </jc:dataProvider>
                 </jc:ComboBoxJwExt>
-                                    
-                <j:ComboBox localId="cbPageSize2" width="90" selectedItem = "{pageSize}" change="onPageSizeChanged()">
-                    <j:dataProvider>
-                        <js:ArrayList source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,100]}"/>
-                    </j:dataProvider>
-                    <j:beads>
-                        <j:ComboBoxListCloseOnClick />
-                        <j:ComboBoxTextPrompt prompt="\u21F2 ..." />
-                        <jc:SearchFilterJwExt />
-                        <j:ComboBoxDisabled disabled="false"/>
-                    </j:beads>
-                </j:ComboBox>
 
-                <jc:PageNavigatorButtonBar emphasis="primary"
-                                        height="35"
-                                        iconField="icon"
-                                        maxNavButtons="{maxPageNav}"
-                                        pageSize="{pageSize}"
-                                        totalItems="{totalRegs}"
-                                        change="onNavpageChange(event)"
-                                        currentPage="{currentPage}">
+                <jc:PageNavigatorButtonBar localId="paginator" emphasis="secondary"
+                                            iconField="icon"
+                                            maxNavButtons="{maxPageNav}"
+                                            pageSize="{pageSize}"
+                                            totalItems="{totalRegs}"
+                                            change="onNavpageChange(event)"
+                                            currentPage="{currentPage}">
                     <jc:beads>
-                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                        <j:Disabled localId="bdisablepaginator" disabled="false"/>
                     </jc:beads>
                 </jc:PageNavigatorButtonBar>
+                        
+                <j:ToggleButton localId="tb_Test1" unboxed="true"
+                    text="OFF" selectedText="ON" change="onChangeDisabled()" selected="true">
+                    <j:icon>
+                        <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.TOGGLE_OFF}" faStyle="{FontAwesomeIcon.DUOTONE}" selectedText="{FontAwesome5IconType.TOGGLE_ON}"
+                        faSelectedStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                    </j:icon>
+                    <j:beads>
+                        <j:ToolTip localId="tb_filter_tt" toolTip="{tb_Test1.selected ? 'Disable PageNavigator' :'Activate PageNavigator'}"/>
+                    </j:beads>
+                </j:ToggleButton>
+
             </j:HGroup>
             
         </j:CardExpandedContent>

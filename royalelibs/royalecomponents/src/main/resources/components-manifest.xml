@@ -22,7 +22,6 @@
 <componentPackage>
     <!-- Custrom Beads -->
     <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
-    <component id="PageNavigatorButtonBarView" class="org.apache.royale.community.beads.views.PageNavigatorButtonBarView"/>
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
 
@@ -37,7 +36,6 @@
     <!-- itemRenderers -->
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
-    <component id="PageNavigatorButtonBarItemRenderer" class="org.apache.royale.community.itemRenderers.PageNavigatorButtonBarItemRenderer"/>
     <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
 
     <!-- Custom Controls -->

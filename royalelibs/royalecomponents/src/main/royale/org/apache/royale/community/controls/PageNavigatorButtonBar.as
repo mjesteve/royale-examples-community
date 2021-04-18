@@ -45,14 +45,9 @@ package org.apache.royale.community.controls
         
         public function PageNavigatorButtonBar() {
             super();
-            PageNavigatorButtonBarModel(model).widthType = ButtonBarModel.PERCENT_WIDTHS;
-            typeNames = "jewelext pagenavigator";
-/*
-            typeNames = "jewel buttonbar";
 
-			// default height and rowHeight
-			height = rowHeight = 38;
-*/
+            //typeNames = "jewelext pagenavigator";
+            //typeNames = "jewel buttonbar";
         }
 
         public var pages:ArrayList = new ArrayList();
