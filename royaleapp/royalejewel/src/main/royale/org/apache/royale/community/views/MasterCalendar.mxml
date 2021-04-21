@@ -5,6 +5,7 @@
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
 	xmlns:views="org.apache.royale.community.views.*"
+	style="display:initial;"
     >
     
     <fx:Script>

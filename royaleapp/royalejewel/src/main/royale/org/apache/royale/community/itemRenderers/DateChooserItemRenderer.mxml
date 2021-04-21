@@ -7,7 +7,7 @@
 	xmlns:c="org.apache.royale.community.itemRenderers.*"
 	xmlns:wp="library://ns.apache.org/royale/community"
 
-    style="padding: 0px;" width="200" height="200">
+    style="padding: 0px; width: 200px; height: 200px;" width="200" height="200">
 	
 	
     <fx:Script>
