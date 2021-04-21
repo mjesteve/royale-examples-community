@@ -13,6 +13,9 @@
 
             import org.apache.royale.collections.ArrayList;
 			import org.apache.royale.community.vo.DateItemDescribeVO;
+			
+			public static var MONTHS:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			public static var DAYS:Array = ["S", "M", "T", "W", "T", "F", "S"];
 
             private function onInitComplete():void
 			{        
@@ -32,8 +35,9 @@
             }
             
 			
-            [Bindable]
-            private var propItList:Object = {};
+           [Bindable]
+            private var propItList:Object = {dayNames:DAYS, monthNames:MONTHS,
+                 firstDayOfWeek:0};
 
         ]]>
     </fx:Script>
@@ -50,7 +54,7 @@
             <j:beads>
                 <j:ListPresentationModel variableRowHeight="false" rowHeight="200"/>
                 <j:HorizontalLayout gap="3"/>
-				   <!-- <c:ListItemRendererPropertiesBead propertiesIt="{propItList}"/> -->
+				   <c:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>
             </j:beads>
         </j:List>
 
