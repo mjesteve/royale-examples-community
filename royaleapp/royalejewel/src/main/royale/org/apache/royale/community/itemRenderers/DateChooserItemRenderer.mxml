@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ListItemRenderer
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic"
+	xmlns:c="org.apache.royale.community.itemRenderers.*"
+    style="padding: 0px;" width="200" height="200">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.community.vo.DateItemDescribeVO;
+            import org.apache.royale.core.IDateChooserModel;
+            
+			
+			
+			[Bindable]
+			private var reg:DateItemDescribeVO;
+			
+			public static var MONTHS:Array = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			public static var DAYS:Array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+			[Bindable("dataChange")]
+			public function get getReg():DateItemDescribeVO
+            {
+                trace(this.index);
+                //if(properties){                 
+                    IDateChooserModel(dch.model).selectedDate = null;
+                    IDateChooserModel(dch.model).dayNames = DAYS; //properties['dayNames'];
+                    IDateChooserModel(dch.model).monthNames = MONTHS;//properties['monthNames'];
+                    IDateChooserModel(dch.model).firstDayOfWeek = 1; //properties['firstDayOfWeek']; 
+                //}
+                if(!data)
+                    reg = new DateItemDescribeVO();
+                else
+                    reg = data as DateItemDescribeVO;
+                return reg;
+            }
+
+          
+
+        ]]>
+    </fx:Script>
+ 
+    <!-- <js:beads> -->
+        <!-- <js:ItemRendererDataBinding /> -->
+        <!-- <j:VerticalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsLeft" /> -->
+    <!-- </js:beads> -->
+
+    <j:DateChooser localId="dch" selectedDate="{getReg.date}" percentHeight="100" percentWidth="100" />
+</j:ListItemRenderer>
