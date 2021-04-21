@@ -5,6 +5,7 @@
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:c="org.apache.royale.community.beads.itemRenderers.*"
+	xmlns:wp="library://ns.apache.org/royale/community"
 	style="padding: 0px;"
 	 initComplete="onInitComplete()">
 
@@ -54,7 +55,7 @@
             <j:beads>
                 <j:ListPresentationModel variableRowHeight="false" rowHeight="200"/>
                 <j:HorizontalLayout gap="3"/>
-				   <c:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>
+				   <wp:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>
             </j:beads>
         </j:List>
 
