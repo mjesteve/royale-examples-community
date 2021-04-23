@@ -1,7 +1,6 @@
 package org.apache.royale.community.controls 
 {
     import org.apache.royale.collections.ArrayList;
-    import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.jewel.ToggleButtonBar;
     import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
@@ -14,18 +13,17 @@ package org.apache.royale.community.controls
      *
      *  The ToggleButtonBar uses the following beads:
      *
-     *  org.apache.royale.core.IBeadModel: the data model for the ButtonBar, including the dataProvider. ("org.apache.royale.html.beads.models.ButtonBarModel")
-     *  org.apache.royale.core.IBeadView: constructs the parts of the component. ("org.apache.royale.jewel.beads.views.ButtonBarView")
-     *  org.apache.royale.core.IBeadController: handles input events. ("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+     *  org.apache.royale.core.IBeadModel: the data model for the ButtonBar, including the dataProvider. ("org.apache.royale.community.beads.models.PageNavigatorButtonBarModel")
+     *  org.apache.royale.core.IBeadView: constructs the parts of the component. ("org.apache.royale.jewel.beads.views.ToggleButtonBarView")
+     *  org.apache.royale.core.IBeadController: handles input events. ("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController")
      *  org.apache.royale.core.IBeadLayout: sizes and positions the component parts. ("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
+     * 
      *  org.apache.royale.core.IDataProviderItemRendererMapper: produces itemRenderers. ("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
-     *  org.apache.royale.core.IItemRenderer: the class or class factory to use. (PageNavigatorButtonBarItemRenderer)
-     *
-     *  ButtonBar:
+     *  org.apache.royale.core.IItemRenderer: the class or class factory to use. ("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer")
+     *  iconClass: ClassReference("org.apache.royale.icons.FontAwesomeToggleIcon");
      *  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-     *  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
-     *  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
      *  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
+     *  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
      *
      *  @toplevel
      *  @langversion 3.0
