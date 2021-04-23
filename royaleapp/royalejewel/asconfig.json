@@ -24,11 +24,17 @@
         "source-path": [
             "src/main/resources",
             "../../royalelibs/royalecomponents/src/main/royale/"
+			"../../royalelibs/royalemobiscroll/src/main/royale/",
+
         ],
         "namespace": [
             {
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royalecomponents/src/main/resources/components-manifest.xml"
+            },
+			 {
+                "uri": "library://ns.apache.org/royale/community",
+                "manifest": "../../royalelibs/royalecomponents/src/main/resources/mobiscroll-manifest.xml"
             }
         ],
         "library-path": [

@@ -187,6 +187,23 @@
                 </resources>
               </configuration>
             </execution>
+			 <execution>
+              <id>copy-resources-debug-mobiscroll</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <!-- Copy the assets to the assets output directory -->
+                <outputDirectory>${compiler.output-dir-debug}/mobiscroll</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royalecomponents/src/main/resources/mobiscroll</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
             <execution>
               <id>copy-resources-debug-echarts-js</id>
@@ -256,6 +273,24 @@
                 </resources>
               </configuration>
             </execution>   
+			
+			<execution>
+              <id>copy-resources-release-mobiscroll</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <!-- Copy the assets to the assets output directory -->
+                <outputDirectory>${compiler.output-dir-release}/mobiscroll</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royalemobiscroll/src/main/resources/mobiscroll</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>  
 <!--
             <execution>
               <id>copy-resources-release-echarts-js</id>
