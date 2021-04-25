@@ -16,7 +16,7 @@
         "namespace": [
             {
                 "uri": "library://ns.apache.org/royale/community",
-                "manifest": "src/main/resources/mobiscroll-manifest.xml"
+                "manifest": "src/main/resources/year-calendar-manifest.xml"
             }
         ],
         "define": [
@@ -33,7 +33,7 @@
             "src/main/royale"
         ],
         "include-classes": [
-            "MOBISCROLLClasses"
+            "YEARCALENDARClasses"
         ],
         "include-sources": [
             "src/main/royale"
@@ -46,6 +46,6 @@
         ],
         "source-map": true,
         "remove-circulars": true,
-        "output": "target/RoyaleMobiscroll.swc"
+        "output": "target/RoyaleJs-year-calendar.swc"
     }
 }

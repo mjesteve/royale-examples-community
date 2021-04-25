@@ -5,21 +5,27 @@ package
 	 * @externs
 	 */
 	COMPILE::JS
-	public class mobiscroll{
+	public class Calendar{
 
 		/**
 		 * <inject_script>
+		 * //script.setAttribute("src", "https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js");1.0.2
+		 * //script.setAttribute("src", "https://unpkg.com/js-year-calendar@2.0.0-alpha.2/dist/js-year-calendar.js");
+		 * 
 		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "mobiscroll/js/mobiscroll.javascript.min.js");
+		 * script.setAttribute("src", "js-year-calendar/js-year-calendar.js");
 		 * document.head.appendChild(script);
+		 * 
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
          * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "mobiscroll/css/mobiscroll.javascript.min.css");
+         * link.setAttribute("href", "js-year-calendar/js-year-calendar.css");
          * document.head.appendChild(link);
+		 * 
+         * //link.setAttribute("href", "https://unpkg.com/js-year-calendar@2.0.0-alpha.2/dist/js-year-calendar.css");
 		 * </inject_script>
 		*/
-        public function mobiscroll(){
+        public function Calendar(){
 		}
 		
 		public static function settings(theme:String='windows',lang:String="es"):Object { return null; }
@@ -49,23 +55,7 @@ mobiscroll.datepicker('#calendar', {
 });
 var inst = mobiscroll.date('#calendar');
 inst.show(); // Call the show method
- 
-// Modify a setting
-mobiscrollInstance.settings.readonly = true;
+ */
 
-// Modify settings in an event
-mobiscroll.scroller('#mobiscroll', {
-    onBeforeShow: function (event, inst) {
-        inst.settings.readonly = true;
-    }
-});
-
-
-
-
-
-
-
-*/
 	}
 }

@@ -20,7 +20,7 @@
 
             private function onInitComplete():void
 			{        
-			updateAsourceHolidays();
+			//updateAsourceHolidays();
 			}
             [Bindable]
             private var asourceAnuary:ArrayList;
@@ -51,7 +51,7 @@
     <j:HGroup percentWidth="100" percentHeight="100">
 
         <j:List localId="lstCalendar" percentWidth="100" minHeight="200" style="flex-wrap: wrap;"
-                dataProvider="{asourceAnuary}" itemRenderer="org.apache.royale.community.itemRenderers.DateChooserItemRenderer" >
+                dataProvider="{asourceAnuary}" itemRenderer="org.apache.royale.community.itemRenderers.DateChooserItemRendererJewel" >
             <j:beads>
                 <j:ListPresentationModel variableRowHeight="false" rowHeight="200"/>
                 <j:HorizontalLayout gap="3"/>

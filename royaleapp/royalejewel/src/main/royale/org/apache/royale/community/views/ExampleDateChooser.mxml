@@ -44,10 +44,8 @@ limitations under the License.
     </j:beads>
 
 	 
-	 <j:ApplicationMainContent localId="main" >
-           <views:MasterCalendar name="vMasterCalendar" localId="vMasterCalendar" includeIn="init" />
-
-		
+	<j:ApplicationMainContent localId="main" >
+        <views:MasterCalendar name="vMasterCalendar" localId="vMasterCalendar" includeIn="init" />
 
     </j:ApplicationMainContent>
 	
