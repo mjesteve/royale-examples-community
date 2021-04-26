@@ -40,12 +40,12 @@
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.iest.com/winplusweb</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/mobiscroll-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.iest.com/winplusweb</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/mobiscroll-as-manifest.xml</manifest>
             </namespace>
           </namespaces>

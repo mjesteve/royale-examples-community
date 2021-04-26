@@ -223,6 +223,24 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-debug-fullcalendar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <!-- Copy the assets to the assets output directory -->
+                <outputDirectory>${compiler.output-dir-debug}/fullcalendar</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
     <module>royale-js-year-calendar</module>
             <execution>
@@ -324,6 +342,24 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-js-year-calendar/src/main/resources/js-year-calendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-fullcalendar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <!-- Copy the assets to the assets output directory -->
+                <outputDirectory>${compiler.output-dir-release}/fullcalendar</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

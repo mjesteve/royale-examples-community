@@ -1,0 +1,48 @@
+/*
+ * https://github.com/BowlerHatLLC/vscode-as3mxml/wiki/asconfig.json#library-path
+ */
+ {
+    "config": "royale",
+    "type": "lib",
+    "compilerOptions": {
+        "debug": true,
+        "targets": [
+            // "SWF",
+            "JSRoyale"
+        ],
+        "namespace": [
+            {
+                "uri": "library://ns.apache.org/royale/community/fullcalendar",
+                "manifest": "src/main/resources/fullcalendar-manifest.xml"
+            }
+        ],
+        "define": [
+            {
+                "name": "COMPILE::JS",
+                "value": true
+            },
+            {
+                "name": "COMPILE::SWF",
+                "value": false
+            }
+        ],
+        "source-path": [
+            "src/main/royale"
+        ],
+        "include-classes": [
+            "FULLCALENDARClasses"
+        ],
+        "include-sources": [
+            "src/main/royale"
+        ],
+        "library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ],
+        "js-library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ],
+        "source-map": true,
+        "remove-circulars": true,
+        "output": "target/RoyaleFullCalendar.swc"
+    }
+}

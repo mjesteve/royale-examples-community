@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ScrollableSectionContent
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
+	style="display:initial;"
+    >
+    
+    <fx:Script>
+        <![CDATA[
+         
+            import org.apache.royale.events.Event;
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.collections.SortField;
+            import org.apache.royale.collections.Sort;
+           
+
+        ]]>
+    </fx:Script>
+    
+			<js:Container width="100%" height="100%" >
+				<js:beads>
+					<js:VerticalFlexLayout/>
+				</js:beads>
+				<js:Label id="lbl" text="Hello World" width="200" />
+				<js:TextButton text="Next" click="myCal.next();"/>
+				<calendar:FullCalendar id="myCal" defaultView="dayGridMonth" defaultDate="2018-06-01">
+					<calendar:daygrid showNonCurrentDates="false"/>
+					<calendar:interaction/>
+					<calendar:header>
+					  <fx:Object center="dayGridMonth,dayGridWeek"/>
+					</calendar:header>
+					<calendar:events>
+					  <calendar:Event title='All Day Event' start='2019-04-01'/>
+					  <calendar:Event title='Long Event' start='2019-04-07' end='2019-04-10'/>
+					  <calendar:Event groupId='999' title='Repeating Event' start='2019-04-09T16:00:00'/>
+					  <calendar:Event groupId='999' title='Repeating Event' start='2019-04-16T16:00:00'/>
+					  <calendar:Event title='Conference' start='2019-04-11' end='2019-04-13'/>
+					  <calendar:Event title='Meeting' start='2019-04-12T10:30:00' end='2019-04-12T12:30:00'/>
+					  <calendar:Event title='Lunch' start='2019-04-12T12:00:00'/>
+					  <calendar:Event title='Meeting' start='2019-04-12T14:30:00'/>
+					  <calendar:Event title='Happy Hour' start='2019-04-12T17:30:00'/>
+					  <calendar:Event title='Dinner' start='2019-04-12T20:00:00'/>
+					  <calendar:Event title='Birthday Party' start='2019-04-13T07:00:00'/>
+					  <calendar:Event title='Click for Google' url='http://google.com/' start='2019-04-28'/>
+					</calendar:events>
+				</calendar:FullCalendar>
+			</js:Container>	
+   
+</j:ScrollableSectionContent>
