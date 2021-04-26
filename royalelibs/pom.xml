@@ -17,7 +17,7 @@
     <module>royalecomponents</module>
     <module>royalemobiscroll</module>
     <module>royale-js-year-calendar</module>
-    <module>royalefullcalendar</module>
+    <!-- <module>royalefullcalendar</module> -->
   </modules>
 
   <properties>
