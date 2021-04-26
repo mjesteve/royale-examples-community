@@ -22,6 +22,7 @@
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:views="org.apache.royale.community.views.*"
+	    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
 	initialize="setUp()">
 
 	<fx:Script>
@@ -43,7 +44,8 @@
 
 	<j:initialView>
 		
-		<views:ExampleDateChooser/> 
+	<!--	<views:ExampleDateChooser/> -->
+		<views:ExampleFullCalendar/> 
 	
 	</j:initialView>
 </j:Application>

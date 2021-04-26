@@ -46,7 +46,7 @@
                "manifest": "../../royalelibs/royale-js-year-calendar/src/main/resources/year-calendar-manifest.xml"
            }
            {
-              "uri": "library://ns.apache.org/royale/community",
+              "uri": "library://ns.apache.org/royale/community/fullcalendar",
               "manifest": "../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar-manifest.xml"
           }
         ],
