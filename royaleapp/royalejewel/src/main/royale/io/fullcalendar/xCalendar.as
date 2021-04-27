@@ -6,7 +6,7 @@ package io.fullcalendar
     
     [DefaultProperty("plugins")]
 
-    public class Calendar extends UIBase
+    public class xCalendar extends UIBase
     {
         private var _calendar : Object;
         
@@ -37,9 +37,10 @@ package io.fullcalendar
         public function set eventLimit(value : Boolean) : void { _eventLimit = value; }
         public function get eventLimit() : Boolean { return _eventLimit; }
         
-        public function Calendar()
+        public function xCalendar(el:Element)
         {
             super();
+            
             this.addEventListener('beadsAdded', onInit);
         }
 
@@ -144,8 +145,8 @@ package io.fullcalendar
             ];*/
 
             //_calendar = new window["FullCalendar"].Calendar(positioner, options);
-            _calendar = FullCalendar.Calendar(positioner, options);
-            _calendar.render();
+            //_calendar = FullCalendar.Calendar(positioner, options);
+            //_calendar.render();
         }
         
     }
