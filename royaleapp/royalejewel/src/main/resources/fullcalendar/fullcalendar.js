@@ -7,7 +7,7 @@ link.setAttribute("rel", "stylesheet");
 link.setAttribute("href", "resources/fullcalendar/main.css");
 document.head.appendChild(link);
 */
-getCalendar(el, overrideOptions)
+function getCalendar(el, overrideOptions)
 {
     return new FullCalendar.Calendar(el, overrideOptions);
     //calendar.render();

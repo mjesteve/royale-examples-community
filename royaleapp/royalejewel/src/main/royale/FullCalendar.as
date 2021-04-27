@@ -1,4 +1,4 @@
-package 
+package
 {
 	/**
 	 * @externs
@@ -17,15 +17,15 @@ package
          * var script = document.createElement("script");
          * script.setAttribute("src", "fullcalendar/main.js");
          * document.head.appendChild(script);
-         * 
+         *
          * var script = document.createElement("script");
          * script.setAttribute("src", "fullcalendar/fullcalendar.js");
          * document.head.appendChild(script);
          * </inject_script>
         */
         public function FullCalendar(){}
-        
-		public static function Calendar(el:Element,optionOverrides:Object=null):Object { return null; }
+
+		public static function Calendar(el:Element,optionOverrides:Object=null):Class { return null; }
 
     }
 }
