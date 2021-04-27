@@ -26,6 +26,6 @@
 
     <j:VGroup percentHeight="100" percentWidth="100">
         <j:Button text="Create" click="onInit()" />
-	    <j:Group id="myContainerCalendar" width="100%" height="100%" />
+	    <html:Div id="myContainerCalendar" percentHeight="100" percentWidth="100"/>
     </j:VGroup>
 </j:ScrollableSectionContent>

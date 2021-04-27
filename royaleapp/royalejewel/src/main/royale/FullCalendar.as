@@ -21,7 +21,5 @@ package
         */
         public function FullCalendar(){}
         
-		//public static function Calendar(el:Element,optionOverrides:Object=null):Object { return null; }
-
     }
 }
