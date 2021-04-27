@@ -1,37 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
--->
 <j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:views="org.apache.royale.community.views.*"
-  currentState="init"
+  currentState="init" initComplete="init()"
    >
+<fx:Style>
 
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #script-warning {
+    display: none;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+  }
+
+  #loading {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 10px;
+  }
+
+</fx:Style>
     <fx:Script>
         <![CDATA[
             import org.apache.royale.events.Event;
             import org.apache.royale.jewel.PopUp;
 			import org.apache.royale.collections.ArrayList;
+			 import FullCalendar;
+			 COMPILE::JS{
+		   private function init():void 
+		   {
+		       var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+		   
+				 document.addEventListener('DOMContentLoaded', function() {
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      displayEventTime: false,
+      initialDate: '2019-04-01',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,listYear'
+      },
+      events: {
+        url: 'ics/feed.ics',
+        format: 'ics'
+      }
+    
+      }
+    });
+
+    calendar.render();
+  });
+  }
+
+		   }
 			
 			
+		
         ]]>
     </fx:Script>
    <j:states>
@@ -45,8 +93,21 @@ limitations under the License.
 
 	 
 	<j:ApplicationMainContent localId="main" >
-        <views:FullCalendarView name="vMasterCalendar" localId="vMasterCalendar" includeIn="init" />
+	
+        <!-- <views:FullCalendarView name="vMasterCalendar" localId="vMasterCalendar" includeIn="init" /> -->
+		<j:ScrollableSectionContent
+	style="display:initial;" 
+	
+    >
+<html:Div id='script-warning'>
+    <html:Code>ics/feed.ics</html:Code> must be servable
+  </html:Div>
 
+  <html:Div id='loading'>loading...</html:Div>
+
+  <html:Div id='calendar'></html:Div>
+   
+</j:ScrollableSectionContent>
     </j:ApplicationMainContent>
 	
 </j:ResponsiveView>

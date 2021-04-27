@@ -4,9 +4,10 @@
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
-    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
-	style="display:initial;"
+    
+	style="display:initial;" initComplete="init()"
     >
+	<!-- xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar" -->
     
     <fx:Script>
         <![CDATA[
@@ -15,7 +16,13 @@
             import org.apache.royale.collections.ArrayList;
             import org.apache.royale.collections.SortField;
             import org.apache.royale.collections.Sort;
-           
+           import FullCalendar;
+		   private function init():void 
+		   {
+				var f:FullCalendar = new FullCalendar();
+					trace(f);
+		   }
+		   
 		   
 
         ]]>
@@ -26,7 +33,7 @@
 					<js:VerticalFlexLayout/>
 				</js:beads>
 				<js:Label id="lbl" text="Hello World" width="200" />
-				<js:TextButton text="Next" click="myCal.next();"/>
+				<!--<js:TextButton text="Next" click="myCal.next();"/>
 				<calendar:FullCalendar id="myCal" defaultView="dayGridMonth" defaultDate="2018-06-01">
 					<calendar:daygrid showNonCurrentDates="false"/>
 					<calendar:interaction/>
@@ -46,8 +53,8 @@
 					  <calendar:Event title='Dinner' start='2019-04-12T20:00:00'/>
 					  <calendar:Event title='Birthday Party' start='2019-04-13T07:00:00'/>
 					  <calendar:Event title='Click for Google' url='http://google.com/' start='2019-04-28'/>
-					</calendar:events>
-				</calendar:FullCalendar>
+					</calendar:events> 
+				</calendar:FullCalendar>-->
 			</js:Container>	
    
 </j:ScrollableSectionContent>

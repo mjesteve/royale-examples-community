@@ -1,10 +1,26 @@
 package org.apache.royale.community.io.fullcalendar
 {
+	/**
+     * @externs
+     */
     public class Event
     {
-        /** Wrapper for io.fullcalendar.Event JavaScript class
+        /** Wrapper for org.apache.royale.community.io.fullcalendar.Event JavaScript class
          * TODO: handle changes to an event that's already in the calendar..
          */
+		/**
+         * <inject_script>
+         * // Wrapper for org.apache.royale.community.io.fullcalendar.daygrid JavaScript class
+         * var link = document.createElement("link");
+             * link.setAttribute("rel", "stylesheet");
+             * link.setAttribute("type", "text/css");
+             * link.setAttribute("href", "fullcalendar/daygrid/main.js");
+             * document.head.appendChild(link);
+         * var script = document.createElement("script");
+         * script.setAttribute("src", "fullcalendar/daygrid/main.js");
+         * document.head.appendChild(script);
+         * </inject_script>
+        */ 
         public function Event()
         {
         }

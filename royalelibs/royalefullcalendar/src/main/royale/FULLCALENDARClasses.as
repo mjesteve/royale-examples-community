@@ -13,9 +13,9 @@ package
 	internal class FULLCALENDARClasses
 	{
 		import FullCalendar; FullCalendar;
-		import org.apache.royale.community.io.fullcalendar.daygrid;	daygrid;
-		import org.apache.royale.community.io.fullcalendar.interaction; interaction;
-		import org.apache.royale.community.io.fullcalendar.Event; Event;		
+		//import org.apache.royale.community.io.fullcalendar.daygrid;	daygrid;
+		//import org.apache.royale.community.io.fullcalendar.interaction; interaction;
+		//import org.apache.royale.community.io.fullcalendar.Event; Event;		
 	}
 }
 
