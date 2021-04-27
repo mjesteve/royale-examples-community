@@ -8,23 +8,13 @@
 
     <fx:Script>
         <![CDATA[
-    //initComplete="onInit()"
+			import FullCalendar.Calendar;
 
-			public var mycalendar:Object;
+			public var mycalendar:Calendar;
 			private function onInit():void
 			{
-                //mycalendar = new Calendar(myContainerCalendar.element, {initialView: 'dayGridMonth'});
-                //FullCalendar.calendar = mycalendar;
-
-                //var asCalen:Calendar;
-				//mycalendar = FullCalendar.Calendar(document.getElementById("myContainerCalendar"), {initialView: 'dayGridMonth'});
-                //var calElement = myContainerCalendar.element;
-				//mycalendar = new FullCalendar.Calendar(calElement, { initialView: 'dayGridMonth'});
-                mycalendar = window["getCalendar"](myContainerCalendar.element, {initialView: 'dayGridMonth'});
-                //mycalendar = document.getCalendar(myContainerCalendar.element, {initialView: 'dayGridMonth'});
+				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {initialView: 'dayGridMonth'});
 				mycalendar.render();
-
-                //mycalendar = document.getCalendar(myContainerCalendar.element, {initialView: 'dayGridMonth'});
 			}
 
         ]]>
@@ -35,7 +25,7 @@
     </j:beads>
 
     <j:VGroup percentHeight="100" percentWidth="100">
-        <j:Button click="onInit()" />
-	    <html:Div id="myContainerCalendar" localId="myContainerCalendar" width="100%" height="100%" />
+        <j:Button text="Create" click="onInit()" />
+	    <j:Group id="myContainerCalendar" width="100%" height="100%" />
     </j:VGroup>
 </j:ScrollableSectionContent>
