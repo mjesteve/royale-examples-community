@@ -13,9 +13,20 @@
 			public var mycalendar:Calendar;
 			private function onInit():void
 			{
-				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {initialView: 'dayGridMonth'});
+				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                    timeZone: 'local',
+                    initialView: 'dayGridMonth',
+                    showNonCurrentDates: false,
+                    locales: ['en','es'],
+                    locale: 'en',
+                    events: 'https://fullcalendar.io/demo-events.json',
+                    editable: true,
+                    selectable: true}
+                );
 				mycalendar.render();
 			}
+
+
 
         ]]>
     </fx:Script>
@@ -24,7 +35,7 @@
         <js:ContainerDataBinding/>
     </j:beads>
 
-    <j:VGroup percentHeight="100" percentWidth="100">
+    <j:VGroup percentHeight="100" percentWidth="100" style="padding: 50px;">
         <j:Button text="Create" click="onInit()" />
 	    <html:Div id="myContainerCalendar" percentHeight="100" percentWidth="100"/>
     </j:VGroup>

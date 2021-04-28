@@ -20,8 +20,10 @@
 <componentPackage>
 
   <component id="FullCalendar" class="FullCalendar"/>
+  <component id="Calendar" class="FullCalendar.Calendar"/>
+  <!--
   <component id="daygrid" class="org.apache.royale.community.io.fullcalendar.daygrid"/>
   <component id="interaction" class="org.apache.royale.community.io.fullcalendar.interaction"/>
   <component id="Event" class="org.apache.royale.community.io.fullcalendar.Event"/>
- 
+ -->
 </componentPackage>
