@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+	style="display:initial;" height="200" width="200">
+
+    <fx:Script>
+        <![CDATA[
+			import FullCalendar.Calendar;
+			[Bindable]
+			private var _initCalendar:String;
+			
+			public var mycalendar:Calendar;
+			
+			
+			public function set initCalendar(StEnDate:String):void
+			{
+			_initCalendar = StEnDate;
+			 var stDate:String = StEnDate.split("~")[0];
+			 var endDate:String = StEnDate.split("~")[1];
+			 
+				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                    timeZone: 'local',
+                    initialView: 'dayGridMonth',
+                    showNonCurrentDates: false,
+                    locales: ['en','es'],
+                    locale: 'en',
+                    events: 'https://fullcalendar.io/demo-events.json',
+                    editable: true,
+                    selectable: true,
+					visibleRange: {
+					    start: stDate,
+						end: endDate
+					}
+					
+					}
+                );
+				
+				mycalendar.render();
+			}
+
+			
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+	    <html:Div id="myContainerCalendar" percentHeight="100" percentWidth="100"/>
+</j:VGroup>
