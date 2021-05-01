@@ -22,8 +22,7 @@
     
     <j:HGroup percentHeight="100" percentWidth="100">
         <j:Button localId="btn" click="masterTableForm.updateAsourceHolidays()"/>
-            <!-- <views:MasterCalendarListPage localId="masterTableList" percentHeight="100" width="135"/> -->
-            <views:MasterCalendarDetPage localId="masterTableForm" percentHeight="100" percentWidth="100"/>
+        <views:MasterCalendarDetPage localId="masterTableForm" percentHeight="100" percentWidth="100"/>
     </j:HGroup>
    
 </j:ScrollableSectionContent>

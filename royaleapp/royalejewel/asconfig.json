@@ -25,8 +25,8 @@
             "src/main/resources",
             "../../royalelibs/royalecomponents/src/main/royale/",
 			"../../royalelibs/royalemobiscroll/src/main/royale/",
-			"../../royalelibs/royale-js-year-calendar/src/main/royale/"/*,
-			"../../royalelibs/royalefullcalendar/src/main/royale/"*/
+			"../../royalelibs/royale-js-year-calendar/src/main/royale/",
+			"../../royalelibs/royalefullcalendar/src/main/royale/"
         ],
         "namespace": [
             {
@@ -40,11 +40,11 @@
             {
                "uri": "library://ns.apache.org/royale/community",
                "manifest": "../../royalelibs/royale-js-year-calendar/src/main/resources/year-calendar-manifest.xml"
-           }/*,
+           },
            {
               "uri": "library://ns.apache.org/royale/community/fullcalendar",
               "manifest": "../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar-manifest.xml"
-          }*/
+          }
         ],
         "library-path": [
             /*"${royalelib}/libs/MXRoyale.swc"*/
