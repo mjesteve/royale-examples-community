@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements.  See the NOTICE file distributed with
-this work for additional information regarding copyright ownership.
-The ASF licenses this file to You under the Apache License, Version 2.0
-(the "License"); you may not use this file except in compliance with
-the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+<!---
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
 -->
-<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-            xmlns:js="library://ns.apache.org/royale/basic"
-            xmlns:j="library://ns.apache.org/royale/jewel"
-            xmlns:crux="library://ns.apache.org/royale/crux"
-            xmlns:views="org.apache.royale.community.views.*">
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:views="org.apache.royale.community.views.*"
+	    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
+	initialize="setUp()">
 
-    <!-- <fx:Style source="../resources/defaults.css"/> -->
-	<fx:Style source="../../main/resources/defaults.css"/>
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.jewel.beads.validators.Validator;
+			import org.apache.royale.utils.css.loadCSS;
 
-    <j:valuesImpl>
-        <js:SimpleCSSValuesImpl />
-    </j:valuesImpl>
-    
-    <j:initialView>
-        <views:MainView width="100%" height="100%"/>
-    </j:initialView>
-    
+			public function setUp():void
+			{
+				
+			}
+		]]>
+	</fx:Script>
+	<!-- <fx:Style source="D:/Migration Project/JewelProjMain/src/main/resources/jewel-example-styles.css"/> -->
+
+	<j:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</j:valuesImpl>
+
+	<j:initialView>
+		
+		<views:MainView/> 
+	
+	</j:initialView>
 </j:Application>

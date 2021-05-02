@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.royale.community</groupId>
+    <artifactId>royalelibs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>royalemobiscroll</artifactId>
+  <packaging>swc</packaging>
+
+  <name>Royale Lib Component MultiselectCalendar</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/royale</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
+        <extensions>true</extensions>
+
+        <configuration>
+          <!--<targets>JSRoyale</targets>
+          <includeLookupOnly>true</includeLookupOnly>-->
+          <!--<targets>${royale.targets}</targets> -->
+          <targets>JSRoyale</targets>
+          <debug>false</debug>
+          <skipAS>true</skipAS>
+          <skipExtern>true</skipExtern>
+          <includeLookupOnly>true</includeLookupOnly>
+          <namespaces>
+            <!-- Make the classes listed in the manifest be available under the given namespace -->
+            <namespace>
+              <uri>library://ns.apache.org/royale/community</uri>
+              <manifest>${project.basedir}/src/main/resources/mobiscroll-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+              <type>as</type>
+              <uri>library://ns.apache.org/royale/community</uri>
+              <manifest>${project.basedir}/src/main/resources/mobiscroll-as-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <!-- Tell the compiler which classes to compile and include -->
+          <includeClasses>
+            <includeClass>MOBISCROLLClasses</includeClass>
+          </includeClasses>
+
+          <includeFiles>
+            <include-file>
+              <name>mobiscroll/js/*</name>
+              <path>../src/main/resources/mobiscroll/js/*</path>
+            </include-file>
+			<include-file>
+              <name>mobiscroll/css/*</name>
+              <path>../src/main/resources/mobiscroll/css/*</path>
+            </include-file>
+           
+          </includeFiles>
+
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <additionalCompilerOptions>
+            ${project.compiler.options};
+            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
+            -keep-as3-metadata+=Inject,EventHandler,Event,Bindable;
+            -keep-code-with-metadata=Inject;
+          </additionalCompilerOptions>
+
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+
+
+</project>
