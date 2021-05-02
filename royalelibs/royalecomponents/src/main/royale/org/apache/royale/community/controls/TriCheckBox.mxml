@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+         xmlns:j="library://ns.apache.org/royale/jewel"
+         xmlns:js="library://ns.apache.org/royale/basic"
+         initComplete="init()">
+    <fx:Metadata>
+        [Event(name="change", type="org.apache.royale.events.Event")]
+        [Event(name="valueCommit", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+    <fx:Script>
+        <![CDATA[
+
+            /* STATES:
+                Three states types:
+                REJECTED, UNCHECKED, CHECKED
+            */
+
+            private const DEFAULT_REJECTED:int = 2;
+            private const DEFAULT_UNCHECKED:int = 0;
+            private const DEFAULT_CHECKED:int = 1;
+            private const DEFAULT_REJECTEDSRC:String = "assets/tristate_checkbox.png";
+
+            private var _rejectedValue:int = DEFAULT_REJECTED;
+            public function get rejectedValue():int { return _rejectedValue; }
+            public function set rejectedValue(value:int):void {                
+                if(state==_rejectedValue){ _state = value } 
+                _rejectedValue = value;
+            }
+            
+            public function isRejected():Boolean
+            {
+                return state == _rejectedValue;
+            }
+
+            public function setRejected():void
+            {
+                state = _rejectedValue;
+                dispatchEvent( new Event("valueCommit"));
+            }
+
+            [Bindable("change")]
+            [Bindable("valueCommit")]
+            public function get rejected():Boolean
+            {
+                return isRejected();
+            }
+
+            private var _uncheckedValue:int = DEFAULT_UNCHECKED;
+            public function get uncheckedValue():int { return _uncheckedValue; }
+            public function set uncheckedValue(value:int):void
+            { 
+                if(state==_uncheckedValue){ _state = value }                 
+                _uncheckedValue = value;
+            }
+            
+            public function isUnchecked():Boolean
+            {
+                return state == _uncheckedValue;
+            }
+
+            public function setUnchecked():void
+            {
+                state = _uncheckedValue;
+                dispatchEvent( new Event("valueCommit"));
+            }
+
+            [Bindable("change")]
+            [Bindable("valueCommit")]
+            public function get unchecked():Boolean
+            {
+                return isUnchecked();
+            }
+            
+            private var _checkedValue:int = DEFAULT_CHECKED;
+            public function get checkedValue():int { return _checkedValue; }
+            public function set checkedValue(value:int):void
+            { 
+                if(state==_checkedValue){ _state = value } 
+                _checkedValue = value;
+            }
+            
+            public function isChecked():Boolean
+            {
+                return state == _checkedValue;
+            }
+            
+            public function setChecked():void
+            {
+                state = _checkedValue;
+                dispatchEvent( new Event("valueCommit"));
+            }
+
+            [Bindable("change")]
+            [Bindable("valueCommit")]
+            public function get checked():Boolean
+            {
+                return isChecked();
+            }
+            
+            private var _rejectedSrc:String = DEFAULT_REJECTEDSRC;   
+            //[Bindable]
+            public function get rejectedSrc():String
+            {
+            	return _rejectedSrc;
+            }
+            public function set rejectedSrc(value:String):void
+            {
+            	_rejectedSrc = value;
+                tristateImg.src = value;
+            }
+
+            /* STATE:
+                The current state of the checbox.
+            */
+            private var _state:int;
+            [Bindable]
+            public function get state():int{
+                return _state;
+            }
+            public function set state(value:int):void {
+                if(_state == value)
+                    return;
+                    
+                switch(value) {
+                    case _rejectedValue:
+                        tristateImg.visible = true;
+                        checkbox.selected = false;
+                        break;
+                    case _uncheckedValue:
+                        tristateImg.visible = false;
+                        checkbox.selected = false;
+                        break;
+                    case _checkedValue:
+                        tristateImg.visible = false;
+                        checkbox.selected = true;
+                        break;
+                }
+                _state = value;
+            }
+
+            /*
+                Change the state depending on the selection made
+             */
+            protected function changeState():void {
+                switch(state) {
+                    case _rejectedValue:
+                        state = _uncheckedValue;
+                        break;
+                    case _uncheckedValue:
+                        state = _checkedValue;
+                        break;
+                    case _checkedValue:
+                        state = _rejectedValue;
+                        break;
+                }
+                dispatchEvent( new Event("change"));
+            }
+
+            public function get text():String
+            {
+                return checkbox.text;
+            }
+            public function set text(value:String):void
+            {
+                checkbox.text = value;
+            }
+
+            /*
+                Initial state.
+            */
+            protected function init():void {
+                tristateImg.src = _rejectedSrc;                
+                setUnchecked();
+                /*setSize()
+                addEventListener("sizeChanged", setSize)*/
+            }
+
+            /*private function setSize():void
+            {
+                iButtonSize.width = width;
+                iButtonSize.height = height;
+                tristateImg.style="position: absolute; width: " + width + "px; height: " + height + "px; cursor: pointer";
+            }*/
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:CheckBox localId="checkbox" click="changeState()"/>
+
+            <!--src="{rejectedSrc}"-->
+    <j:Image localId="tristateImg" visible="false"
+            click="changeState()" style="position: absolute; width: 24px; height: 24px; cursor: pointer;" />
+
+</j:HGroup>

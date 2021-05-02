@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+    <!-- Custrom Beads -->
+    <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
+    <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
+    <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
+
+    <!-- Extends Jewel Beads -->
+    <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
+    <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
+    <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
+    <component id="SearchFilterJwExt" class="org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt"/>
+    <component id="SearchFilterForDataGrid" class="org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid"/>
+    <component id="ResponsiveResizeListener" class="org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener"/>
+
+    <!-- itemRenderers -->
+    <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
+    <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
+    <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
+
+    <!-- Custom Controls -->
+    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    
+    <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
+    <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
+
+    <!-- Extends Jewel Controls -->
+    <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
+    <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
+    <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
+    <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
+
+</componentPackage>

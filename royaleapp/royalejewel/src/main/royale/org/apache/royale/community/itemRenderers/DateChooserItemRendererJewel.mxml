@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wp:ListItemRendererProperties
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic"
+	xmlns:c="org.apache.royale.community.itemRenderers.*"
+	xmlns:wp="library://ns.apache.org/royale/community"
+
+    style="padding: 0px; width: 200px; height: 200px;" width="200" height="200">
+	
+	
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.community.vo.DateItemDescribeVO;
+            import org.apache.royale.core.IDateChooserModel;
+            
+			
+			
+			[Bindable]
+			private var reg:DateItemDescribeVO;
+			
+			//public static var MONTHS:Array = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			//public static var DAYS:Array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			
+			public static var MONTHS:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			public static var DAYS:Array = ["S", "M", "T", "W", "T", "F", "S"];
+			[Bindable("dataChange")]
+			public function get getReg():DateItemDescribeVO
+            {
+                trace(this.index);
+                //if(properties){                 
+                    IDateChooserModel(dch.model).selectedDate = null;
+                    IDateChooserModel(dch.model).dayNames = DAYS; //properties['dayNames'];
+                    IDateChooserModel(dch.model).monthNames = MONTHS;//properties['monthNames'];
+                    IDateChooserModel(dch.model).firstDayOfWeek = 0; //properties['firstDayOfWeek']; 
+                //}
+                if(!data)
+                    reg = new DateItemDescribeVO();
+                else
+                    reg = data as DateItemDescribeVO;
+                return reg;
+            }
+
+          
+
+        ]]>
+    </fx:Script>
+ 
+    <wp:beads>
+        <js:ItemRendererDataBinding />
+        <j:VerticalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsLeft" />
+    </wp:beads>
+
+    <j:DateChooser localId="dch" selectedDate="{getReg.date}" percentHeight="100" percentWidth="100" />
+</wp:ListItemRendererProperties>

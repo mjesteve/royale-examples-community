@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	xmlns:models="org.apache.royale.community.models.*"
+    xmlns:views="org.apache.royale.community.views.*"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+
+            const CLDR_NOOK:String = "\u274c";
+            const CLDR_OK:String = "\u2713"; //"\u2705";
+            var txtString:String = " ";
+            var txtClass:String = " ";
+
+            txtString += CLDR_OK+" It respects the selected item if the dataProvider is refreshed"; //Respeta el item seleccionado si se refresca el dataProvider
+            txtClass += CLDR_NOOK+" DO NOT respect the selected item if the dataProvider is refreshed";//NO Respeta el item seleccionado si se refresca el dataProvider
+
+            txtString += "\n "+CLDR_OK+" Set selectedIndex = -1 empty selectedItem"; //Set selectedIndex = -1 vacía selectedItem
+            txtClass += "\n "+CLDR_NOOK+" Set selectedIndex = -1 NOT empty selectedItem";//Set selectedIndex = -1 NO vacía selectedItem
+
+            txtString += "\n";
+            txtClass += "\n";
+            //infocbClassIt.text = txtClass;
+        }
+
+        [Bindable]
+        private var dpString:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClass:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;
+        private var totalCases:Number = 0;
+
+        private function makeDP(init:Boolean = false):void
+        {
+            var prefix:String="";
+
+            if(!init)
+            {
+                prefix = "** ";
+            }
+            var ar:Array = new Array();
+            var ar2:Array = new Array();
+            var varray:Array = new Array();
+            var varray2:Array = new Array();
+            for(var index:int = 0; index < 100; index++)
+            {
+                if(index < 100){
+                    ar.push(prefix+'String: '+index.toString());
+                    ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                }
+                varray.push(prefix+'String: '+index.toString());
+                varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+            }
+            dpString = new ArrayList(ar);
+            dpClass = new ArrayList(ar2);
+            dpStringBig = new ArrayList(varray);
+            dpClassBig = new ArrayList(varray2);
+
+        }
+
+        private function ChangeDataProvider(op:String):void
+        {
+            if(op == 'reset')
+            {
+                dpString = new ArrayList();
+                dpClass = new ArrayList();
+            }else if(op == 're-init')
+            {
+                makeDP(false);
+            }else if(op == 'init')
+            {
+                makeDP(true);
+            }
+        }
+
+        private function clickReset():void
+        {
+            jcb0.selectedIndex=-1;
+            jcb1.selectedIndex=-1;
+            jvcb0.selectedIndex=-1;
+            jvcb1.selectedIndex=-1;
+
+            jecb0.selectedIndex=-1;
+            jecb1.selectedIndex=-1;
+            jevcb0.selectedIndex=-1;
+            jevcb1.selectedIndex=-1;
+
+        }
+        private function clickCheckDis():void
+        {
+            //cbString.disabled = checkdis.selected;             
+        }
+
+        [Bindable]
+        private var txt1text:String;
+        private function changeTxt1():void
+        {
+            txt1text = txt1.text;            
+        }
+
+        private function changeCb2():void
+        {
+            //txt2.text;
+        }
+
+        private function changeCb3():void
+        {
+            /*txtInfo.html = "Codigo: " + cb3.selectedItem.codigo + "\n" + cb3.selectedItem.displaytext;
+            txt3.text = vcb3.selectedValue;*/
+        }
+
+        ]]>
+    </fx:Script>
+
+	<fx:Style>
+        @namespace js "library://ns.apache.org/royale/basic";
+        @namespace j "library://ns.apache.org/royale/jewel";
+        @namespace jc "library://ns.apache.org/royale/community";
+
+         /*  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel");
+        j|ComboBox {
+        IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt");
+          IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView");
+          IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController");
+          IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp");
+        }
+        j|ComboBoxPopUp {
+        IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
+        }*/
+/*
+        j|ComboBox#cbStringIt {
+            IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
+        }
+
+        j|ComboBox#cbClassIt {
+            IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
+        }*/
+
+        jc|ComboBoxJwExt{
+        /**
+        *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
+        *  and adds the valueField and selectedValue properties.
+        comboBoxSearchText: ClassReference("org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt");
+        IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");      
+        */
+        IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel");          
+        comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+        comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
+        comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
+        }
+
+        jc|VirtualComboBoxJwExt{
+        /**
+        *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
+        *  and adds the valueField and selectedValue properties.
+        comboBoxSearchText: ClassReference("org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt");
+        IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");         
+        */
+        IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel");       
+        comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+        comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
+        comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
+        }
+
+	</fx:Style>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+    </j:beads>
+    <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+        <j:CardHeader>
+            <j:BarSection width="100%" gap="10">
+                <html:H3 text="ComboBox - Debugger with SearchFilter" className="primary-dark block-with-text "/>
+            </j:BarSection>
+        </j:CardHeader>
+
+        <j:CardPrimaryContent height="100%" >
+            <j:HGroup percentWidth="100" percentHeight="100" gap="5" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsTop">
+
+                <j:VGroup gap="3" width="200" minWidth="20" height="100%">
+
+                    <j:IconButton unboxed="true" click="ChangeDataProvider('init')" text="Inicializar" width="100%">
+                        <j:icon>    <js:FontAwesomeIcon text="{FontAwesome5IconType.SYNC}"/>   </j:icon>
+                    </j:IconButton>
+
+                    <j:IconButton unboxed="true" click="clickReset()"  width="100%"
+                    text="Set selectedIndex = -1">
+                        <j:icon>  <js:FontAwesomeIcon text="{FontAwesome5IconType.ARROW_CIRCLE_DOWN}"/> </j:icon>
+                    </j:IconButton>
+
+                    <j:IconButton unboxed="true" click="ChangeDataProvider('re-init')" text="Change dataProvider" width="100%">
+                        <j:icon>  <js:FontAwesomeIcon text="{FontAwesome5IconType.ARROW_CIRCLE_DOWN}"/>  </j:icon>
+                    </j:IconButton>
+
+                    <j:IconButton unboxed="true" click="ChangeDataProvider('reset')" text="Set dataProvider = null" width="100%">
+                        <j:icon>   <js:FontAwesomeIcon text="{FontAwesome5IconType.ARROW_CIRCLE_DOWN}"/>  </j:icon>
+                    </j:IconButton>
+
+                    <j:CheckBox id="checkdis" text="¿Disabled?" selected="false"
+                                click="clickCheckDis()"/>
+
+                    <j:TextInput localId="txt1" change="changeTxt1()" >
+                        <j:beads>
+                            <j:TextPrompt prompt="value..."/>
+                            <js:DispatchInputFinishedBead/>
+                        </j:beads>
+                    </j:TextInput>
+
+                </j:VGroup>
+
+                <j:VGroup gap="3" width="200" minWidth="20" percentHeight="100" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter"
+                                style="background-color: #19416b; color: #ffffff;font-weight: bold;">
+                        <j:HGroup percentWidth="100" percentHeight="50" itemsVerticalAlign="itemsCenter">
+                        <j:Label text="Jewel Controls" width="100%" >
+                                    <j:beads>
+                                        <j:TruncateText/>
+                                        <js:Paddings paddingLeft="5"/>
+                                    </j:beads>
+                        </j:Label>
+                        </j:HGroup>
+                        <j:HGroup percentWidth="100" percentHeight="50" itemsVerticalAlign="itemsCenter">
+                        <j:Label text="Jw Extension Controls" width="100%" >
+                            <j:beads>
+                                <j:TruncateText/>
+                                <js:Paddings paddingLeft="5"/>
+                            </j:beads>
+                        </j:Label>      
+                        </j:HGroup>
+                </j:VGroup>
+
+                <j:VGroup gap="3" percentWidth="100" minWidth="20" height="100%">
+                    
+                    <j:Grid percentWidth="100" height="35">
+                                
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:HGroup percentWidth="100" gap="3" height="35" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter"
+                                    style="background-color: #19416b; color: #ffffff;font-weight: bold;">
+                                    <j:Label text="CB - Default ItemRenderer" width="100%" >
+                                        <j:beads> <j:TruncateText/> <js:Paddings paddingLeft="5"/> </j:beads>
+                                    </j:Label>
+                                </j:HGroup>
+
+                        </j:GridCell>    
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+                            
+                                <j:HGroup percentWidth="100" gap="3" height="35" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter"
+                                    style="background-color: #19416b; color: #ffffff;font-weight: bold;">
+                                    <j:Label text="CB - Custom ItemRenderer" width="100%" >
+                                        <j:beads> <j:TruncateText/> <js:Paddings paddingLeft="5"/> </j:beads>
+                                    </j:Label>
+                                </j:HGroup>
+
+                        </j:GridCell>
+                                
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:HGroup percentWidth="100" gap="3" height="35" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter"
+                                    style="background-color: #19416b; color: #ffffff;font-weight: bold;">
+                                    <j:Label text="VCB - Default ItemRenderer" width="100%" >
+                                        <j:beads> <j:TruncateText/> <js:Paddings paddingLeft="5"/> </j:beads>
+                                    </j:Label>
+                                </j:HGroup>
+
+                        </j:GridCell>    
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+                            
+                                <j:HGroup percentWidth="100" gap="3" height="35" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter"
+                                    style="background-color: #19416b; color: #ffffff;font-weight: bold;">
+                                    <j:Label text="VCB - Custom ItemRenderer" width="100%" >
+                                        <j:beads> <j:TruncateText/> <js:Paddings paddingLeft="5"/> </j:beads>
+                                    </j:Label>
+                                </j:HGroup>
+
+                        </j:GridCell>
+
+                    </j:Grid>
+                    
+                    <j:Grid percentWidth="100" percentHeight="50">
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:ComboBox localId="jcb0" percentWidth="100" dataProvider="{dpString}">
+                                    <j:beads>
+                                        <!--<js:CollectionSelectedItemByField localId="vcbClass2" valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </j:beads>
+                                </j:ComboBox>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:ComboBox localId="jcb1" percentWidth="100" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                                    dataProvider="{dpClass}" labelField="displaytext">
+                                    <j:beads>
+                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </j:beads>
+                                </j:ComboBox>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:VirtualComboBox localId="jvcb0" percentWidth="100" dataProvider="{dpStringBig}">
+                                    <j:beads>
+                                        <!--<js:CollectionSelectedItemByField localId="vcbClass2" valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </j:beads>
+                                </j:VirtualComboBox>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <j:VirtualComboBox localId="jvcb1" percentWidth="100" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                                    dataProvider="{dpClassBig}" labelField="displaytext">
+                                    <j:beads>
+                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </j:beads>
+                                </j:VirtualComboBox>
+
+                        </j:GridCell>
+
+                    </j:Grid>    
+                    
+                    <j:Grid percentWidth="100" percentHeight="50">
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <jc:ComboBoxJwExt localId="jecb0" percentWidth="100" dataProvider="{dpString}" activeSearch="false">
+                                    <jc:beads>
+                                        <!--<js:CollectionSelectedItemByField localId="vcbClass2" valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </jc:beads>
+                                </jc:ComboBoxJwExt>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <jc:ComboBoxJwExt localId="jecb1" percentWidth="100" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                                    dataProvider="{dpClass}" labelField="displaytext" activeSearch="false" activePopupControls="false">
+                                    <jc:beads>
+                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </jc:beads>
+                                </jc:ComboBoxJwExt>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <jc:VirtualComboBoxJwExt localId="jevcb0" percentWidth="100" dataProvider="{dpStringBig}">
+                                    <jc:beads>
+                                        <!--<js:CollectionSelectedItemByField localId="vcbClass2" valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </jc:beads>
+                                </jc:VirtualComboBoxJwExt>
+
+                        </j:GridCell>
+                            
+                        <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                                <jc:VirtualComboBoxJwExt localId="jevcb1" percentWidth="100" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                                    dataProvider="{dpClassBig}" labelField="displaytext">
+                                    <jc:beads>
+                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />-->
+                                        <j:SearchFilter/>
+                                    </jc:beads>
+                                </jc:VirtualComboBoxJwExt>
+
+                        </j:GridCell>
+
+                    </j:Grid>
+
+                </j:VGroup>
+
+            </j:HGroup>
+        </j:CardPrimaryContent>
+
+    </j:Card>
+</j:VGroup>

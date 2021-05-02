@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wp:ListItemRendererProperties
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:wp="library://ns.iest.com/winplusweb"
+	className="genericListItemRendererPrincipal">
+
+	<fx:Script>
+			<![CDATA[
+			import com.iest.winplusweb.vo.DateItemDescribeVO;
+			import com.iest.winplusweb.html.accessories.DateTimeToString;
+            
+			[Bindable("dataChange")]
+			public function get printDate():String
+			{
+                this.className = getBackgroundStyle() + " staffList";
+                this.style="padding:0px;";
+
+				if(!data){
+					return null;
+				}else{
+					var formatOut:String='d/m/Y';
+					if(properties){
+						formatOut = String(properties['formatDate']);
+						if(formatOut == "") formatOut='d/m/Y';
+					}
+					return DateTimeToString.formatDate(formatOut,(data as DateItemDescribeVO).date);
+				}
+			}
+
+            private function getBackgroundStyle():String{
+                if(this.index % 2 == 0)
+                    return "backgroundItemWhite";
+                else
+                    return "backgroundItemGrey";
+            }
+
+			]]>
+			
+	</fx:Script>
+	<wp:beads>
+		<js:ItemRendererDataBinding />
+		<j:HorizontalLayout gap="0" itemsVerticalAlign="itemsCenter"/>
+	</wp:beads>
+
+    <j:HGroup percentWidth="100" percentHeight="100" style="padding:0px;">
+
+        <j:Group width="4" percentHeight="100" />
+		
+        <j:HGroup itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsCenter" width="146" percentHeight="100" className="cell" style="padding-left: 5px;">            
+			<j:Label multiline="true" text="{printDate}" percentWidth="100">
+				<j:beads>
+					<j:SizeControl size="small"/><j:TruncateText/>
+				</j:beads>
+			</j:Label>
+        </j:HGroup>
+	</j:HGroup>
+</wp:ListItemRendererProperties>

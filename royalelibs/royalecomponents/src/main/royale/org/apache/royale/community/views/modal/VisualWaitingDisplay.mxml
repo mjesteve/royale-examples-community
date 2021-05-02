@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html">
+
+    <fx:Script>
+        <![CDATA[
+
+        public static const MSG_PROCSERVER:String = "server";
+        public static const MSG_PROCLOCAL:String = "local";
+        public static const IMG_PROCSERVER:String = "assets/spinnerColors.svg";
+        public static const IMG_PROCLOCAL:String = "assets/spinnerGrey.svg";
+
+        private var textDefault:String = "Processing request, please wait";
+        [Bindable]
+        private var message:String = "";
+        [Bindable]
+        public var img:String = "assets/spinnerColors.svg";
+
+        /**
+         * Abre un popup con el texto indicado en paramMessage y con el spinner asociado al tipo de proceso paramWaitType
+         * 
+         * @param paramMessage       ["*": texto por defecto | ""/null: only spinner | other: texto indicado]
+         * @param paramWaitType      ["server": espera backend/spinner 1 | "local": espera front/spinner 2] 
+         */
+        public function open(paramMessage:String=null,paramWaitType:String = "server"):void
+        {
+            
+            if(paramMessage==null || paramMessage==""){
+                paramMessage = "";                
+            }else if(paramMessage=="*"){
+                paramMessage = textDefault;                
+            }
+            message = paramMessage;
+
+            if(paramWaitType == MSG_PROCSERVER){
+                img = IMG_PROCSERVER;
+            }else{
+                img = IMG_PROCLOCAL;
+            }
+
+            if(!popuplocal.open)
+                popuplocal.open = true;
+
+        }
+
+        public function close():void
+        {
+            if(popuplocal.open)
+                popuplocal.open = false;
+        }
+        
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <j:VerticalCenteredLayout/>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:PopUp localId="popuplocal" modal="true">
+        <j:Card width="300" >
+        
+            <j:HGroup percentWidth="100"  gap="3" itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsLeft">
+                <j:Image src="{img}"/>
+                <j:Label localId="msgLabel" visible="{message!=''}"
+                        html="{message}"
+                        multiline="true">
+                    <j:beads>
+                        <j:SizeControl size="small"/>
+                        <j:TextAlign align="left"/>
+                    </j:beads>
+                </j:Label>                
+            </j:HGroup>
+            
+        </j:Card>
+    </j:PopUp>
+
+</j:VGroup>
