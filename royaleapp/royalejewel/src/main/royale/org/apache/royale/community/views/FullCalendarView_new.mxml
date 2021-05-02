@@ -24,6 +24,7 @@
                     selectable: true,
                     height: '100%',
                     //width: '50%', <-- Always set the width to 100% of the parent container
+                    expandRows: true,
                     windowResize: function(arg:Object):void {
                         //alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
                     }}
@@ -44,15 +45,19 @@
                 parentContentCalendar.width = parentContentCalendar.width/2;
                 //...However, the height can be set directly on the calendar container.
                 // AspectRatio:
-                //var asr:Number = Number(mycalendar.getOption('aspectRatio'));
-                //mycalendar.setOption('height', parentContentCalendar.width/asr);
-                mycalendar.setOption('height', 'auto');
-
+                var asr:Number = Number(mycalendar.getOption('aspectRatio'));
+                mycalendar.setOption('height', parentContentCalendar.width/asr+50);
+                
+                parentContentCalendar.height = parentContentCalendar.width/asr+50;
+                //mycalendar.setOption('contentHeight', parentContentCalendar.width/asr);
+                
+                //mycalendar.setOption('height', 'auto');
                 mycalendar.updateSize();
             }
             private function clickBtRestoreSize():void
             {
                 parentContentCalendar.width = primaryContent.width;
+                parentContentCalendar.height = primaryContent.height;
                 mycalendar.setOption('height', '100%');
                 mycalendar.updateSize();
             }

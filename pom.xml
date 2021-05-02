@@ -41,7 +41,7 @@
 
   <modules>
     <module>royaleapp</module>
-    <!--<module>royalelibs</module>-->
+    <!----><module>royalelibs</module>
   </modules>
 
   <build>

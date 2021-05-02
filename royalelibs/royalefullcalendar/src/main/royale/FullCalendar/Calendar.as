@@ -8,6 +8,8 @@ package FullCalendar
     {
         
 		  public function Calendar(el:Element,optionOverrides:Object=null){ }
+      
+      public function gotoDate(dt:Object):void{ }
 
       public function getOption(name:String):Object{ return null;}
 
