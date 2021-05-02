@@ -25,6 +25,7 @@
 	    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
 	initialize="setUp()">
 
+	<fx:Style source="../../main/resources/defaults.css"/>
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.jewel.beads.validators.Validator;
@@ -36,7 +37,6 @@
 			}
 		]]>
 	</fx:Script>
-	<!-- <fx:Style source="D:/Migration Project/JewelProjMain/src/main/resources/jewel-example-styles.css"/> -->
 
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
