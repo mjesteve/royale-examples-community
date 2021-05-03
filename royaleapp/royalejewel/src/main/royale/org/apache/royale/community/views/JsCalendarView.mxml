@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+    initComplete="onInit()"
+	percentWidth="100" percentHeight="100">
+
+    <fx:Script>
+        <![CDATA[
+
+			private var mycalendar:jsCalendar;
+			private function onInit():void
+			{
+			}
+
+            public function refreshSizeCalendar():void
+            {
+            }
+
+            private function clickBtResize():void
+            {
+            }
+            private function clickBtRestoreSize():void
+            {
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <j:Grid  gap="true" itemsVerticalAlign="itemsTop">
+        <jc:ExampleHeader title="jsCalendar - Test">
+        </jc:ExampleHeader>
+            
+        <j:GridCell desktopNumerator="1" desktopDenominator="2" 
+                    tabletNumerator="1" tabletDenominator="2" 
+                    phoneNumerator="1" phoneDenominator="1">
+            <j:Card width="100%" height="450">
+                <html:H3 text="Simple - auto Calendar"/>
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p><p>Default theme - Classic Theme - Material Theme</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentHeight="100" percentWidth="100">
+                    <html:Div className="auto-jsCalendar green"/>
+                    <html:Div className="auto-jsCalendar classic-theme"/>
+                    <html:Div className="auto-jsCalendar material-theme red"/>
+                </j:HGroup>     
+            </j:Card>
+        </j:GridCell>
+        
+    </j:Grid>
+</j:Group> 

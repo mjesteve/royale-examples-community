@@ -22,14 +22,11 @@
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:views="org.apache.royale.community.views.*"
-	    xmlns:calendar="library://ns.apache.org/royale/community/fullcalendar"
 	initialize="setUp()">
 
 	<fx:Style source="../../main/resources/defaults.css"/>
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.jewel.beads.validators.Validator;
-			import org.apache.royale.utils.css.loadCSS;
 
 			public function setUp():void
 			{
@@ -37,11 +34,11 @@
 			}
 		]]>
 	</fx:Script>
-
+<!--
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
-
+-->
 	<j:initialView>
 		
 		<views:MainView/> 

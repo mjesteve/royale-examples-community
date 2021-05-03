@@ -42,6 +42,7 @@
     <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
+    <component id="ExampleHeader" class="org.apache.royale.community.controls.ExampleHeader"/><!-- TDJ -->
 
     <!-- Extends Jewel Controls -->
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
