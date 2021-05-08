@@ -52,8 +52,7 @@
             }
         ],
         "library-path": [
-            /*"${royalelib}/libs/MXRoyale.swc"*/
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/libs/MXRoyale.swc"
         ],
         "js-library-path": [
             "${royalelib}/js/libs/MXRoyaleJS.swc"
