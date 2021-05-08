@@ -35,9 +35,9 @@
     <j:Grid  gap="true" itemsVerticalAlign="itemsTop">
         <jc:ExampleHeader title="jsCalendar - Test (Class .auto-jsCalendar)">
         </jc:ExampleHeader>
-            
-        <j:GridCell desktopNumerator="1" desktopDenominator="2" 
-                    tabletNumerator="1" tabletDenominator="2" 
+
+        <j:GridCell desktopNumerator="1" desktopDenominator="2"
+                    tabletNumerator="1" tabletDenominator="2"
                     phoneNumerator="1" phoneDenominator="1">
             <j:Card percentWidth="100" >
                 <html:H3 text="Simple - auto Calendar"/>
@@ -45,22 +45,32 @@
                     <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p>]]></j:html>
                 </j:Label>
 
-                <j:HGroup percentHeight="100" percentWidth="100">
-                    <j:VGroup itemsVerticalAlign="itemsSameHeight">
-                        <j:Label text="Clean Theme (Default)" />
-                        <html:Div className="auto-jsCalendar green"/>
-                    </j:VGroup>
-                    <j:VGroup itemsVerticalAlign="itemsSameHeight">
-                        <j:Label text="Classic Theme" />
-                        <html:Div className="auto-jsCalendar classic-theme"/>
-                    </j:VGroup>
-                    <j:VGroup itemsVerticalAlign="itemsSameHeight">
-                        <j:Label text=" Material Theme" />
-                        <html:Div className="auto-jsCalendar material-theme red"/>
-                    </j:VGroup>
-                </j:HGroup>     
+                <j:Grid gap="false" itemsVerticalAlign="itemsTop" percentWidth="100">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:VGroup itemsVerticalAlign="itemsTop" percentWidth="100">
+                            <j:Label text="Clean Theme (Default) green" />
+                            <html:Div className="auto-jsCalendar green"/>
+                        </j:VGroup>
+                    </j:GridCell>
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:VGroup itemsVerticalAlign="itemsTop" percentWidth="100">
+                            <j:Label text="Classic Theme" />
+                            <html:Div className="auto-jsCalendar classic-theme"/>
+                        </j:VGroup>
+                    </j:GridCell>
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:VGroup itemsVerticalAlign="itemsTop" percentWidth="100">
+                            <j:Label text="Material Theme red"/>
+                            <html:Div className="auto-jsCalendar material-theme red"/>
+                        </j:VGroup>
+                    </j:GridCell>
+                </j:Grid>
+
             </j:Card>
         </j:GridCell>
-        
+
     </j:Grid>
-</j:Group> 
+</j:Group>

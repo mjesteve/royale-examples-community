@@ -41,7 +41,7 @@
 
   <modules>
     <module>royaleapp</module>
-    <!--<module>royalelibs</module>-->
+    <module>royalelibs</module>
   </modules>
 
   <build>
@@ -99,7 +99,7 @@
           <artifactId>sass-maven-plugin</artifactId>
           <version>3.6.0</version>
         </plugin>
--->		
+-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
@@ -152,7 +152,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.1.0</version>
           <executions>
-            
+
             <execution>
               <id>copy-resources-debug</id>
               <phase>package</phase>
@@ -325,8 +325,8 @@
                   </resource>
                 </resources>
               </configuration>
-            </execution>   
-			
+            </execution>
+
 			      <execution>
               <id>copy-resources-release-mobiscroll</id>
               <phase>package</phase>
@@ -343,7 +343,7 @@
                   </resource>
                 </resources>
               </configuration>
-            </execution>  
+            </execution>
 
 			      <execution>
               <id>copy-resources-release-js-year-calendar</id>
@@ -430,7 +430,7 @@
                 </resources>
               </configuration>
             </execution>
--->            
+-->
           </executions>
         </plugin>
       </plugins>
