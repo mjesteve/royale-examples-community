@@ -148,7 +148,7 @@ package
 		 * 
 		 * </inject_script>
 		*/
-        public function jsCalendar(){
+        public function jsCalendar(target:HTMLElement, date:Object=null, options:Object=null){
 		}
 		
 	}
