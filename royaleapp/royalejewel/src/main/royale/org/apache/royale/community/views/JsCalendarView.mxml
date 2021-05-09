@@ -18,22 +18,25 @@
         ]]>
     </fx:Script>
 
-    <j:beads>
-        <j:ScrollingViewport/>
-    </j:beads>
 
-    <j:Grid  gap="false" itemsVerticalAlign="itemsTop">
-        <jc:ExampleHeader title="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)">
-        </jc:ExampleHeader>
-
-        <j:GridCell desktopNumerator="1" desktopDenominator="1"
-                    tabletNumerator="1" tabletDenominator="1"
-                    phoneNumerator="1" phoneDenominator="1">
-            <j:Card percentWidth="100" >
+    <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+        <j:CardHeader>
+            <j:BarSection width="100%" gap="10">
+                <html:H3 text="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)" className="primary-dark block-with-text "/>
+            </j:BarSection>
+        </j:CardHeader>
+        <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
                 <html:H3 text="Simple - auto Calendar"/>
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p>]]></j:html>
                 </j:Label>
+        </j:CardExpandedContent>
+
+        <j:CardPrimaryContent percentWidth="100" percentHeight="100">
+            <j:beads>
+                <j:ScrollingViewport/>
+            </j:beads>
+            <j:VGroup percentWidth="100" gap="5" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsTop">
 
                 <j:Grid gap="false" itemsVerticalAlign="itemsTop">
                     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
@@ -269,9 +272,10 @@
                         </j:VGroup>
                     </j:GridCell>
                 </j:Grid>
+               
+            </j:VGroup>
 
-            </j:Card>
-        </j:GridCell>
+        </j:CardPrimaryContent>
 
-    </j:Grid>
+    </j:Card>
 </j:Group>
