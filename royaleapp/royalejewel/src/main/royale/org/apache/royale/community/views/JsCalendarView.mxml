@@ -23,7 +23,7 @@
     </j:beads>
 
     <j:Grid  gap="false" itemsVerticalAlign="itemsTop">
-        <jc:ExampleHeader title="jsCalendar - Test (Class .auto-jsCalendar)">
+        <jc:ExampleHeader title="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)">
         </jc:ExampleHeader>
 
         <j:GridCell desktopNumerator="1" desktopDenominator="1"
@@ -195,36 +195,36 @@
                 </j:Grid>
 
                 <j:Grid gap="false" itemsVerticalAlign="itemsTop">
-                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
-                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                        tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup itemsVerticalAlign="itemsTop">
                             <html:H4 text="Micro Theme"/>
                             <html:Div className="auto-jsCalendar micro-theme"/>
                         </j:VGroup>
                     </j:GridCell>
-                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
-                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                        tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup itemsVerticalAlign="itemsTop">
                             <html:H4 text="Micro Theme - Yellow" />
                             <html:Div className="auto-jsCalendar micro-theme yellow"/>
                         </j:VGroup>
                     </j:GridCell>
-                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
-                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                        tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup itemsVerticalAlign="itemsTop">
                             <html:H4 text="Micro Theme - Orange" />
                             <html:Div className="auto-jsCalendar micro-theme orange"/>
                         </j:VGroup>
                     </j:GridCell>
-                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
-                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                        tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup itemsVerticalAlign="itemsTop">
                             <html:H4 text="Micro Theme - Red" />
                             <html:Div className="auto-jsCalendar micro-theme red"/>
                         </j:VGroup>
                     </j:GridCell>
-                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
-                        tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                        tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup itemsVerticalAlign="itemsTop">
                             <html:H4 text="Micro Theme - Green" />
                             <html:Div className="auto-jsCalendar micro-theme green"/>
