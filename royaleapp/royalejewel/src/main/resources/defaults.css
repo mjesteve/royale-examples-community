@@ -135,3 +135,32 @@
   }
 
 }
+
+/* Custom Theme Color - jsCalendar*/
+.jsCalendar.custom-purple tbody td.jsCalendar-current {
+  background-color: #800080;
+}
+.jsCalendar.clean-theme.custom-purple tbody td.jsCalendar-current {
+  background-color: rgba(128, 0, 128, 0.2) !important;
+  border-bottom: 2px solid #800080 !important;
+}
+.jsCalendar.custom-purple *::selection {
+    background: #800080;
+}
+.jsCalendar.custom-purple *::-moz-selection {
+    background: #800080;
+}
+.jsCalendar.material-theme.custom-purple thead {
+    background-color: #800080;
+}
+.jsCalendar.material-theme.custom-purple thead .jsCalendar-nav-left:hover,
+.jsCalendar.material-theme.custom-purple thead .jsCalendar-nav-right:hover {
+    background-color: #660066;
+}
+.jsCalendar.classic-theme.custom-purple thead {
+    background-color: #800080;
+}
+.jsCalendar.classic-theme.custom-purple thead .jsCalendar-nav-left:hover,
+.jsCalendar.classic-theme.custom-purple thead .jsCalendar-nav-right:hover {
+    background-color: #660066;
+}

@@ -57,7 +57,7 @@
             <j:step>
                 <j:WizardStep initialPage="true" name="page0" nextStep="page1"/>
             </j:step>
-            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+            <views:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page1">
@@ -71,7 +71,7 @@
             <j:step>
                 <j:WizardStep localId="s2" previousStep="page1" name="page2" nextStep="page3" />
             </j:step>
-            <views:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
+            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page3">

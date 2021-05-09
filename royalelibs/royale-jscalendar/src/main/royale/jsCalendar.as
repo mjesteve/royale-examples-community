@@ -29,15 +29,16 @@ package
 		 * //script.setAttribute("integrity","sha384-IqymsN08KC67WHkPOiAlEL5w5cmUFIkVI/NR/j1QOYD6bzuZ/JdXGVTHa0sfWnci");
 		 * //script.setAttribute("crossorigin","anonymous");
 		 *  
-		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "jscalendar/source/jsCalendar.js");
-		 * document.head.appendChild(script);
-		 * 
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
          * link.setAttribute("type", "text/css");
          * link.setAttribute("href", "jscalendar/source/jsCalendar.css");
          * document.head.appendChild(link);
+		 * 
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "jscalendar/source/jsCalendar.js");
+		 * document.head.appendChild(script);
+		 * 
 		 * 
 		 * //------------ Optional Languages ------------- 
 		 * //src="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.be.js" integrity="sha384-czOMAb4auqx/S7EgTYgb/Sb3xNKzvCN3heba5z2IR80vAI72y55KvGpYQMOJF0Ul" crossorigin="anonymous">
@@ -115,12 +116,12 @@ package
 		 * document.head.appendChild(script);
 		 * 
 		 * //------------ Optional Themes ------------- 
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.clean.min.css" integrity="sha384-KVMZD/q6PZDK3xYHB7uJwJbE8VGNCaJWAQQ+9i/MsP8VV4eLGQdJRzHjfVACCBMU" crossorigin="anonymous">
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.clean.css" integrity="sha384-ICEMsS1kLS8RctRzIh3D3wXGIGNXdAeq/Cox8tRla+pje3WXoVOd+J0LR7AFXt9q" crossorigin="anonymous">
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.darkseries.min.css" integrity="sha384-ZbdiJ7QkbjnGdb+XFoRs+hUWQqmkaWxNaczaUzb8rhUIl+D+ZaAiqpxse5Nn/rBk" crossorigin="anonymous">
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.darkseries.css" integrity="sha384-1WOpRS9VWHABAzTAZ4pqBzNb+4UGfNq6qvWoz6ROv89xiHFu0SDj8WGIcQo584Jr" crossorigin="anonymous">
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.micro.min.css" integrity="sha384-aOgaUk5MAJeF3DMxm62ZLQdwcwGJHAL+x2HKDLeL0KGzq58mbx1NmWBufXj6av+T" crossorigin="anonymous">
-		 * //<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.micro.css" integrity="sha384-trm9scV3zUQrRLK6sHRClCHa7P/k5N9ZJVRx9UlyE3BZUcont3CLSSC80VWlKXCj" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.clean.min.css" integrity="sha384-KVMZD/q6PZDK3xYHB7uJwJbE8VGNCaJWAQQ+9i/MsP8VV4eLGQdJRzHjfVACCBMU" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.clean.css" integrity="sha384-ICEMsS1kLS8RctRzIh3D3wXGIGNXdAeq/Cox8tRla+pje3WXoVOd+J0LR7AFXt9q" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.darkseries.min.css" integrity="sha384-ZbdiJ7QkbjnGdb+XFoRs+hUWQqmkaWxNaczaUzb8rhUIl+D+ZaAiqpxse5Nn/rBk" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.darkseries.css" integrity="sha384-1WOpRS9VWHABAzTAZ4pqBzNb+4UGfNq6qvWoz6ROv89xiHFu0SDj8WGIcQo584Jr" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.micro.min.css" integrity="sha384-aOgaUk5MAJeF3DMxm62ZLQdwcwGJHAL+x2HKDLeL0KGzq58mbx1NmWBufXj6av+T" crossorigin="anonymous">
+		 * // link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/themes/jsCalendar.micro.css" integrity="sha384-trm9scV3zUQrRLK6sHRClCHa7P/k5N9ZJVRx9UlyE3BZUcont3CLSSC80VWlKXCj" crossorigin="anonymous">
 		 
 		 * link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
@@ -150,6 +151,13 @@ package
 		*/
         public function jsCalendar(target:HTMLElement, date:Object=null, options:Object=null){
 		}
+		public function select(arr:Array=null):void{
+		}
+		public function refresh():void{
+		}
+		public function unselect(arr:Array=null):void{
+		}
+		
 		
 	}
 }
