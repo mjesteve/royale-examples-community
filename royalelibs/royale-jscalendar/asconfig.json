@@ -12,8 +12,8 @@
         ],
         "namespace": [
             {
-                "uri": "library://ns.apache.org/royale/community/fullcalendar",
-                "manifest": "src/main/resources/fullcalendar-manifest.xml"
+                "uri": "library://ns.apache.org/royale/community/jscalendar",
+                "manifest": "src/main/resources/jscalendar-manifest.xml"
             }
         ],
         "define": [
@@ -30,7 +30,7 @@
             "src/main/royale"
         ],
         "include-classes": [
-            "FULLCALENDARClasses"
+            "JSCALENDARClasses"
         ],
         "include-sources": [
             "src/main/royale"
@@ -43,6 +43,6 @@
         ],
         "source-map": true,
         "remove-circulars": true,
-        "output": "target/RoyaleFullCalendar.swc"
+        "output": "target/RoyaleJsCalendar.swc"
     }
 }

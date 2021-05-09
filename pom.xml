@@ -41,7 +41,7 @@
 
   <modules>
     <module>royaleapp</module>
-    <!----><module>royalelibs</module>
+    <module>royalelibs</module>
   </modules>
 
   <build>
@@ -99,7 +99,7 @@
           <artifactId>sass-maven-plugin</artifactId>
           <version>3.6.0</version>
         </plugin>
--->		
+-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
@@ -152,7 +152,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.1.0</version>
           <executions>
-            
+
             <execution>
               <id>copy-resources-debug</id>
               <phase>package</phase>
@@ -240,8 +240,24 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-debug-jsCalendar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/jscalendar</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
-    <module>royale-js-year-calendar</module>
             <execution>
               <id>copy-resources-debug-echarts-js</id>
               <phase>package</phase>
@@ -309,8 +325,8 @@
                   </resource>
                 </resources>
               </configuration>
-            </execution>   
-			
+            </execution>
+
 			      <execution>
               <id>copy-resources-release-mobiscroll</id>
               <phase>package</phase>
@@ -327,7 +343,7 @@
                   </resource>
                 </resources>
               </configuration>
-            </execution>  
+            </execution>
 
 			      <execution>
               <id>copy-resources-release-js-year-calendar</id>
@@ -358,6 +374,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-jsCalendar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/jscalendar</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
@@ -397,7 +430,7 @@
                 </resources>
               </configuration>
             </execution>
--->            
+-->
           </executions>
         </plugin>
       </plugins>

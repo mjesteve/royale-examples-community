@@ -5,7 +5,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build with Maven - Droyalelib - ROYALE_HOME",
+            "label": "Build with Maven - Droyalelib - ROYALE_HOME - royalelibs",
             "type": "shell",
             "command": "mvn",
             "args": [
