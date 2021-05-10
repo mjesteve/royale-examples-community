@@ -136,10 +136,16 @@
 
 }
 
-.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
+/*.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
     color: #be390e;
-}
+}*/
 
+.jewel.togglebutton.toggleButtonUnboxed .fonticon {
+  color: #e6e6e6;
+}
+.jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
+  color: #737373;
+}
 
 /* Custom Theme Color - jsCalendar*/
 .jsCalendar.custom-purple tbody td.jsCalendar-current {
