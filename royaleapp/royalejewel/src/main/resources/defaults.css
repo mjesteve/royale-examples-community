@@ -136,6 +136,11 @@
 
 }
 
+.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
+    color: #be390e;
+}
+
+
 /* Custom Theme Color - jsCalendar*/
 .jsCalendar.custom-purple tbody td.jsCalendar-current {
   background-color: #800080;
