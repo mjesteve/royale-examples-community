@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jc:ListItemRendererProperties
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community" className="jsCalendarItemRenderer" >
+    <fx:Style>
+        @namespace js "library://ns.apache.org/royale/basic";
+        @namespace j "library://ns.apache.org/royale/jewel";
+
+
+
+	</fx:Style>
+    <fx:Script>
+        <![CDATA[
+		import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+        import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
+        import jsCalendar;
+        import mx.events.ItemClickEvent;
+
+        private var _currentResponsiveSize:String;
+        private var mycalendar:jsCalendar;
+        private var ObjectParentContainer:Object;
+
+        private static var idxCount:int = 0;
+
+        override public function set data(value:Object):void
+        {
+            super.data = value;
+
+            if(index == 0)
+            {
+                //We must modify the css of the first element and override "margin-left: 0px" so that the first it is aligned with the rest.
+                //For now I assign the value of the margin-left that is known for layout.horizontal:
+            }
+
+            if(value)
+            {
+
+                var opt:Object = {};
+                var reg:DateItemDescribeVO = value as DateItemDescribeVO;
+                if(properties){
+                    opt = new Object();
+                    opt["navigator"] = "false";
+                    opt["monthFormat"] = "MMM";
+                    opt["dayFormat"] = "D";
+                    opt["firstDayOfTheWeek"] = properties['firstDayOfWeek'];
+                    opt["language"] = properties['lang'];
+
+                    //theme calendar
+                    var responsiveSizeOld:String = _currentResponsiveSize;
+                    _currentResponsiveSize = String(properties['currentResponsiveSize']);
+                    if(_currentResponsiveSize != responsiveSizeOld)
+                    {
+                        if(_currentResponsiveSize == ResponsiveSizes.PHONE)
+                            divCalendar.className = "micro-theme";
+                        else
+                            divCalendar.className = "medium-theme";
+                    }
+                }else{
+                    _currentResponsiveSize = null;
+                }
+
+                mycalendar = new jsCalendar(divCalendar.element, reg.date, opt);
+                mycalendar.clearSelected();
+
+                if (reg.selDates!=null)
+                {
+                    if(reg.selDates.length > 0)
+                    {
+                        mycalendar.select(reg.selDates); //light grey circle around all dates
+                    }
+                }
+/*
+                mycalendar.onDateClick(function(event:Object, date:Object):void{
+                    trace("CLICK DAY", date.toString());
+                });*/
+
+                divCalendar.addEventListener("click", function(e:ItemClickEvent):void {
+                    var objsdt:String = e.target.outerHTML;
+
+                    if(objsdt.indexOf("td")>0)  //see the clicked item should be a date i.e td
+                    {  var at:String = (objsdt.replace("<td>","")).replace("</td>","");
+                        at = at.replace("'","");
+                        at = at.replace("\"","");
+
+                        if(at.indexOf("jsCalendar-selected")>0 || at.indexOf("jsCalendar-selected jsCalendar-current")>0 ) //to unselect existing
+                        {
+                            at =  at.substring(at.lastIndexOf(">")+1,at.length) as String;
+                            for(var yy:int=0; yy<reg.selDates.length; yy++)
+                            {
+                            var currentDt:Date = reg.selDates[yy] as Date;
+                                var ScurrentDt:Date = new Date(currentDt.getFullYear(),currentDt.getMonth(),Number(at));
+                                if(currentDt.getFullYear() == ScurrentDt.getFullYear()
+                                && currentDt.getMonth() == ScurrentDt.getMonth()
+                                &&
+                                currentDt.getDate() == Number(at)  )
+                                {
+                                    var arrPrevSelected:Array = reg.selDates;
+                                    mycalendar.unselect(arrPrevSelected);
+                                    reg.selDates.removeAt(yy);
+                                    mycalendar.select(reg.selDates);
+                                        for(var iii:int=0; iii<ObjectParentContainer.masterPersonModel.config_Asource_Holidays.length; iii++)
+                                    {
+                                        var iiiIndexItem:DateItemDescribeVO  = ObjectParentContainer.masterPersonModel.config_Asource_Holidays.getItemAt(iii);
+                                        if(iiiIndexItem.mes==currentDt.getMonth() && iiiIndexItem.anyo==currentDt.getFullYear()  && iiiIndexItem.dia==currentDt.getDate())
+                                        { //removing from list is not working
+                                        ObjectParentContainer.masterPersonModel.config_Asource_Holidays.removeItemAt(iii);
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            var lIndx:int = 0;
+
+                            if(at.indexOf("jsCalendar-current")>0)  // to select current
+                            {
+                                at =  at.substring(at.lastIndexOf(">")+1,at.length) as String;
+                                if(reg.selDates!=null)
+                                {
+                                    if(reg.selDates.length >0)
+                                    lIndx = reg.selDates.length;
+                                }
+                            }
+                            else //to select
+                            {
+                                if(reg.selDates!=null)
+                                {
+                                    if(reg.selDates.length >0)
+                                        lIndx = reg.selDates.length;
+                                }
+                            }
+                            var ndt:Date = new Date(reg.anyo,reg.mes,Number(at));
+                            var newSelect:DateItemDescribeVO = new DateItemDescribeVO(ndt,null,null);
+
+                            reg.selDates.insertAt(lIndx,ndt);
+                            mycalendar.select(reg.selDates);
+                            ObjectParentContainer.masterPersonModel.config_Asource_Holidays.addItem(newSelect);
+                        }
+
+                    }
+
+                }, false);
+
+            }
+        }
+
+
+        [Bindable]
+        public function fn_GetDisableState():Boolean
+        {
+            ObjectParentContainer = (this.parent as Object).parent;
+            if(this.parent != null)
+            {
+                if((this.parent as Object).parent!=null)
+                {
+                    trace("disabled "+(this.parent as Object).parent.lstCalendar_Disable)
+                    return (this.parent as Object).parent.lstCalendar_Disable;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            return true;
+
+
+        }
+
+
+
+        ]]>
+    </fx:Script>
+
+    <jc:beads>
+        <js:ItemRendererDataBinding />
+        <j:VerticalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsLeft" />
+    </jc:beads>
+    <j:HGroup percentHeight="100" percentWidth="100" style="padding:0px !important;">
+     <j:beads>
+        <j:Disabled disabled="{fn_GetDisableState()}" />
+    </j:beads>
+    <html:Div localId="divCalendar" style="padding:0px !important;">
+
+    </html:Div>
+    </j:HGroup>
+</jc:ListItemRendererProperties>

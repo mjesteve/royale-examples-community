@@ -1,4 +1,4 @@
-package org.apache.royale.community.views
+package org.apache.royale.community.views.binding
 {
 
 	import org.apache.royale.events.EventDispatcher;

@@ -4,14 +4,12 @@
         xmlns:js="library://ns.apache.org/royale/basic"
         xmlns:jc="library://ns.apache.org/royale/community"
         xmlns:html="library://ns.apache.org/royale/html"
-        xmlns:local="org.apache.royale.community.views.*"
+	    xmlns:viewsJscal="*"
         initComplete="onInit()"
         percentWidth="100" percentHeight="100" gap="0">
 
     <fx:Script>
         <![CDATA[
-			import org.apache.royale.community.vo.IconListVO;
-			import org.apache.royale.collections.ArrayList;
 			import org.apache.royale.events.Event;
 			import org.apache.royale.jewel.ToggleButton;
 			import org.apache.royale.icons.FontAwesomeIcon;
@@ -114,7 +112,7 @@
 
     </j:Card>
 
-    <local:JsCalendarViewAuto_Themes localId="vAutoThemes" percentHeight="100" percentWidth="100"
-        visible.autotheme="true" visible.builder="false"/>
+    <viewsJscal:JsCalendarViewAuto_Themes localId="vAutoThemes" percentHeight="100" percentWidth="100" visible.autotheme="true" visible.builder="false"/>
     
+    <viewsJscal:JsCalendarViewYear localId="vYear" percentHeight="100" percentWidth="100" visible.autotheme="false" visible.builder="true"/>
 </j:HGroup>

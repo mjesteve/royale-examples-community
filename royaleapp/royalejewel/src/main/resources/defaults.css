@@ -148,13 +148,10 @@
 }
 
 /* Custom Theme Color - jsCalendar*/
+
 .jsCalendar.custom-purple tbody td.jsCalendar-current {
   background-color: #800080;
-}/*
-.jsCalendar.clean-theme.custom-purple tbody td.jsCalendar-current {
-  background-color: rgba(128, 0, 128, 0.2) !important;
-  border-bottom: 2px solid #800080 !important;
-}*/
+}
 .jsCalendar.custom-purple *::selection {
     background: #800080;
 }
@@ -185,3 +182,5 @@
 .jsCalendar.clean-theme.custom-purple tbody td.jsCalendar-selected {
   background-color: rgba(128, 0, 128, 0.5);
 }
+/* End JSCalendar */
+

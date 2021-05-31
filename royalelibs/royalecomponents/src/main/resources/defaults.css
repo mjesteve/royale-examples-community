@@ -72,3 +72,36 @@ jc|PageNavigatorButtonBar {
     IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt");
   }
   
+/* Style - LabelFormWithButtonBar */
+
+.transitionVisible {
+  transition: width 0.5s;
+}
+.transitionVisible.jewel.group.layout.horizontal.close {
+  width: 20px;
+}
+.transitionVisible.jewel.group.layout.horizontal.open {
+  width: auto;
+}
+.noBackgroundFocus.jewel.togglebutton.unboxed.selected {
+  background: transparent;
+}
+.noBackgroundFocus.jewel.togglebutton.unboxed:focus {
+  background: transparent;
+}
+.noBackgroundFocus.jewel.togglebutton.unboxed.selected .fonticon {
+  font-weight: bold;
+}
+.noBackgroundFocus.jewel.togglebutton.unboxed:hover .fonticon {
+  font-weight: bold;
+}
+.noBackgroundFocus>.jewel.button.unboxed:hover {
+  background: transparent;
+}
+.noBackgroundFocus>.jewel.button.unboxed:focus {
+  background: transparent;
+}
+.noBackgroundFocus>.jewel.button.unboxed:hover .fonticon {
+  font-weight: bold;
+}
+/* End Style - LabelFormWithButtonBar */

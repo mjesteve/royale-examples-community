@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html"
+        xmlns:jc="library://ns.apache.org/royale/community"        
+        xmlns:jcJSCal="org.apache.royale.community.jscalendar.*"
+	    itemsExpand="false">
+
+    <fx:Script>
+        <![CDATA[
+//xmlns:jcJSCal="library://ns.apache.org/royale/community/jscalendar"
+			private var mycalendar:jsCalendar;
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+    
+    <j:CardHeader>
+        <j:BarSection width="100%" gap="10">
+            <html:H3 text="jsCalendar - Royale Custom Control (Control AnnualJSCalendar)" className="primary-dark block-with-text "/>
+        </j:BarSection>
+    </j:CardHeader>
+    <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
+            <html:H3 text="Simple - auto Calendar"/>
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><b>AnnualJSCalendar</b></p>]]></j:html>
+            </j:Label>
+    </j:CardExpandedContent>
+
+    <j:CardPrimaryContent percentWidth="100" percentHeight="100">
+       <jcJSCal:AnnualJSCalendar year="2020"/>
+
+    </j:CardPrimaryContent>
+
+</j:Card>

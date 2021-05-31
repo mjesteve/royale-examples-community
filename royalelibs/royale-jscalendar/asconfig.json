@@ -7,14 +7,21 @@
     "compilerOptions": {
         "debug": true,
         "targets": [
-            // "SWF",
             "JSRoyale"
         ],
         "namespace": [
             {
                 "uri": "library://ns.apache.org/royale/community/jscalendar",
                 "manifest": "src/main/resources/jscalendar-manifest.xml"
+            },
+            {
+                "uri": "library://ns.apache.org/royale/community",
+                "manifest": "../royalecomponents/src/main/resources/components-manifest.xml"
             }
+        ],
+        "include-namespaces": [
+            "library://ns.apache.org/royale/community",
+            "library://ns.apache.org/royale/community/jscalendar"
         ],
         "define": [
             {
@@ -27,7 +34,8 @@
             }
         ],
         "source-path": [
-            "src/main/royale"
+            "src/main/royale",
+            "../royalecomponents/src/main/royale/"
         ],
         "include-classes": [
             "JSCALENDARClasses"

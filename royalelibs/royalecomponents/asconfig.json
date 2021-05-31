@@ -35,7 +35,7 @@
             }
         ],
         "include-classes": [
-            "YEARCALENDARClasses"
+            "ComponentsClasses"
         ],
         "include-sources": [
             "src/main/royale"
@@ -47,8 +47,7 @@
             "${royalelib}/js/libs/MXRoyaleJS.swc"
         ],
         "source-map": true,
-        //"output": "bin/RoyaleComponentsLib.swc"
-        "output": "target/Royale-js-year-calendarLib.swc"
+        "output": "target/RoyaleComponentsLib.swc"
     }
     // ,
     // "additionalOptions": "-js-dynamic-access-unknown-members=true"

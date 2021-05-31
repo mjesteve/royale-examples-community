@@ -80,6 +80,6 @@ package
         import org.apache.royale.community.vo.TabBarButtonVO; TabBarButtonVO;
 
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
-        
+        import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;
     }
 }

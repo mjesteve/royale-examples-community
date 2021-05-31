@@ -1,8 +1,5 @@
 package 
 {
-
-	
-
 	/**
 	 *  @private
 	 *  This class is used to link additional classes into rpc.swc

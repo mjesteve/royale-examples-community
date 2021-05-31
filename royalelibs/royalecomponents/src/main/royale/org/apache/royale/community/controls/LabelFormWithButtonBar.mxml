@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup  xmlns:ns1="com.iest.winplusweb.html.*"
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	itemsVerticalAlign="itemsTop" itemsHorizontalAlign="itemsLeft" gap="3"
+    initComplete="onInit()" rollOut="closeAutoBar()">
+
+    <fx:Metadata>
+        [Event(name="clickButtonMenu", type="org.apache.royale.events.Event")]
+        [Event(name="openBar", type="org.apache.royale.events.Event")]
+        [Event(name="closeBar", type="org.apache.royale.events.Event")]
+        [Event(name="add", type="org.apache.royale.events.Event")]
+        [Event(name="edit", type="org.apache.royale.events.Event")]
+        [Event(name="del", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.events.Event;
+        import org.apache.royale.icons.FontAwesomeIcon;
+
+        public static const TABBAR_SIMPLEBUTTON:String = "simpleButton";
+        public static const TABBAR_CRUD:String = "CRUD";
+
+		private var _text:String = "";
+		public function get text():String{ return _text; }
+        [Bindable]
+		public function set text(value:String):void
+        { 
+            if(_text == value) return;
+            _text = (value == null) ? "" : value;
+        }
+    
+        /**
+         * FontAwesome text
+         */
+		private var _icon:String = "";
+        [Bindable]
+		public function get icon():String{ 
+            if(_icon == "")
+            {
+                if(typeButtonBar == TABBAR_SIMPLEBUTTON)
+                    _icon = FontAwesome5IconType.COG;
+                else
+                    _icon = FontAwesome5IconType.ELLIPSIS_V;
+            }                    
+            return _icon; 
+        }
+		public function set icon(value:String):void
+        { 
+            if(_icon == value) return;
+            _icon = (value == null) ? "" : value;
+
+            if(_icon == "")
+            {
+                if(typeButtonBar == TABBAR_SIMPLEBUTTON)
+                    _icon = FontAwesome5IconType.COG;
+                else
+                    _icon = FontAwesome5IconType.ELLIPSIS_V;
+            }
+        }
+        
+        [Bindable]
+		public var toolTipBtBar:String = "...";
+        [Bindable]
+		public var toolTipBtAdd:String = "Add ...";
+        [Bindable]
+		public var toolTipBtEdit:String = "Edit ...";
+        [Bindable]
+		public var toolTipBtDel:String = "Delete ...";
+
+		private var _typeButtonBar:String = "";
+        [Bindable]
+		public function get typeButtonBar():String
+        { 
+            if(_typeButtonBar == "")
+                _typeButtonBar = TABBAR_SIMPLEBUTTON;
+                
+            return _typeButtonBar; 
+        }
+		public function set typeButtonBar(value:String):void
+        { 
+            if(_typeButtonBar == value) return;
+            _typeButtonBar = (value == null) ? "" : value;
+
+            if(_typeButtonBar == "")
+            {
+                _typeButtonBar = TABBAR_SIMPLEBUTTON;
+            }else{
+                if(_typeButtonBar == TABBAR_CRUD && icon == FontAwesome5IconType.COG)
+                    icon = FontAwesome5IconType.ELLIPSIS_V;
+            }
+        }
+        
+        [Bindable]
+        public var allowAdd:Boolean = true;
+        [Bindable]
+        public var allowEdit:Boolean = true;
+        [Bindable]
+        public var allowDel:Boolean = true;
+
+        private function onInit():void
+        {
+            closeBar();
+        }
+
+        private function openAutoBar():void
+        {
+            if(_typeButtonBar == TABBAR_SIMPLEBUTTON)
+                return;
+
+            if(!isOpen)
+                openBar();
+        }
+
+        private function closeAutoBar():void
+        {
+            if(_typeButtonBar == TABBAR_SIMPLEBUTTON)
+                return;
+
+            if(isOpen)
+                closeBar();            
+        }
+        
+        [Bindable]
+        private var isOpen:Boolean = false;
+
+        private function openBar():void
+        {            
+            dispatchEvent(new Event("openBar"));
+
+            if(_typeButtonBar == TABBAR_SIMPLEBUTTON)
+                return;
+
+            contentBar.removeClass('close');
+            contentBar.addClass('open');
+            isOpen = true;
+        }
+
+        private function closeBar():void
+        {
+            dispatchEvent(new Event("closeBar"));
+
+            if(_typeButtonBar == TABBAR_SIMPLEBUTTON)
+                return;
+            
+            contentBar.removeClass('open');
+            contentBar.addClass('close');
+            isOpen = false;
+        }
+
+        private function onClickBtnMenu():void
+        {
+            if(typeButtonBar == TABBAR_SIMPLEBUTTON)
+                dispatchEvent(new Event("clickButtonMenu"));
+        }
+		/*public native function get icon():org.apache.royale.core.IIcon;
+		public native function set icon(value:org.apache.royale.core.IIcon):void;*/
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding />
+    </j:beads>
+
+    <j:Label localId="lbl" text="{text}"/>
+
+    <j:HGroup localId="contentBar" gap="2" className="transitionVisible noBackgroundFocus" minWidth="0">
+
+        <j:IconButton localId="btOpenBar" unboxed="true" className="noBackgroundFocus" style="padding: 0px;" click="onClickBtnMenu()" 
+            rollOver="openAutoBar()"
+            visible="{typeButtonBar==TABBAR_SIMPLEBUTTON?true:!isOpen}">            
+            <j:icon>
+                <js:FontAwesomeIcon text="{icon}" faStyle="{FontAwesomeIcon.REGULAR}" className="secondary-normal"/>
+            </j:icon>
+            <j:beads>
+                <j:ToolTip localId="btOpenBarTTip" toolTip="{toolTipBtBar}"/>
+            </j:beads>
+        </j:IconButton>
+
+        <j:IconButton localId="btAdd" unboxed="true" style="padding: 0px;" click="dispatchEvent(new Event('add'))"
+            visible="{!isOpen ? false : allowAdd}">
+            <j:icon>
+                <js:FontAwesomeIcon text="{FontAwesome5IconType.PLUS_CIRCLE}" faStyle="{FontAwesomeIcon.REGULAR}" className="secondary-normal"/>
+            </j:icon>
+            <j:beads>
+                <j:ToolTip localId="btAddTTip" toolTip="{toolTipBtAdd}"/>
+            </j:beads>
+        </j:IconButton>
+
+        <j:IconButton localId="btDel" unboxed="true" style="padding: 0px;" click="dispatchEvent(new Event('del'))"
+            visible="{!isOpen ? false : allowDel}">
+            <j:icon>
+                <js:FontAwesomeIcon text="{FontAwesome5IconType.MINUS_CIRCLE}" faStyle="{FontAwesomeIcon.REGULAR}" className="secondary-normal"/>
+            </j:icon>
+            <j:beads>
+                <j:ToolTip localId="btDelTTip" toolTip="{toolTipBtDel}"/>
+            </j:beads>
+        </j:IconButton>
+
+        <j:IconButton localId="btEdit" unboxed="true" style="padding: 0px;" click="dispatchEvent(new Event('edit'))"
+            visible="{!isOpen ? false : allowEdit}">
+            <j:icon>
+                <js:FontAwesomeIcon text="{FontAwesome5IconType.EDIT}" faStyle="{FontAwesomeIcon.REGULAR}" className="secondary-normal"/>
+            </j:icon>
+            <j:beads>
+                <j:ToolTip localId="btEditTTip" toolTip="{toolTipBtEdit}"/>
+            </j:beads>
+        </j:IconButton>
+    </j:HGroup>
+
+</j:HGroup>

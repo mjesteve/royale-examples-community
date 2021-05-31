@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    initComplete="initCompleteHandler(event)"
+    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight"> 
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.events.Event;
+            import org.apache.royale.jewel.Snackbar;
+
+            private function initCompleteHandler(event:Event):void
+            {                
+                
+            }
+
+            private function onProc(operation:String):void
+            {
+                Snackbar.show(operation);
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+    </j:beads>
+
+    <jc:ExampleHeader title="Custom Controls">
+        <jc:description>
+            <![CDATA[<strong>LabelFormWithButtonBar</strong> Custom Label.]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <html:H3 text="Custom LabelFormWithButtonBar"/>
+
+            <jc:LabelFormWithButtonBar localId="lbl1" text="Click button action" icon="{FontAwesome5IconType.COG}"
+                typeButtonBar="{LabelFormWithButtonBar.TABBAR_SIMPLEBUTTON}"
+                clickButtonMenu="onProc('openMenu')"/>
+
+            <jc:LabelFormWithButtonBar localId="lbl2" text="Mouse over icon to open menu"
+                typeButtonBar="{LabelFormWithButtonBar.TABBAR_CRUD}" 
+                allowAdd="true" allowEdit="true" allowDel="true"
+                add="onProc('add')"
+                edit="onProc('edit')"
+                del="onProc('del')"/>
+
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card width="100%">
+            <html:H4 text="Custom TriCheckBox"/>
+
+            <jc:TriCheckBox/>
+            
+        </j:Card>
+    </j:GridCell>
+    
+</j:Grid>
