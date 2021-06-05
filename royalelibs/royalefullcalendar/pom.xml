@@ -29,9 +29,6 @@
         <extensions>true</extensions>
 
         <configuration>
-          <!--<targets>JSRoyale</targets>
-          <includeLookupOnly>true</includeLookupOnly>-->
-          <!--<targets>${royale.targets}</targets> -->
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <skipAS>true</skipAS>
@@ -75,6 +72,5 @@
       </plugin>
     </plugins>
   </build>
-
 
 </project>

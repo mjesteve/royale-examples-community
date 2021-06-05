@@ -28,6 +28,8 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
+  <name>Royale Lib Component Custom</name>
+
   <artifactId>royalecomponents</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>swc</packaging>
@@ -41,8 +43,9 @@
         <artifactId>royale-maven-plugin</artifactId>
         <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
+
         <configuration>
-          <!--<targets>${royale.targets}</targets> -->
+
           <targets>JSRoyale</targets>
           <debug>${project.compiler.debug}</debug>
           <skipAS>true</skipAS>
