@@ -80,11 +80,11 @@
                     _asourceSelected = new Array();
                     return;
                 }
-                var lvalue:Array = value.splice();
+                var lvalue:Array = value.slice();
                 lvalue.sort(_orderDatesFunction);
 
                 //TODO - Change year
-                _asourceLocalSelected = lvalue.splice();
+                _asourceLocalSelected = lvalue.slice();
                 _asourceSelected = getSelByCurrentYear();
 
                 if(asourceAnuary)
@@ -98,7 +98,7 @@
 
             private function getSelByCurrentYear():Array
             {
-                var lvalue:Array = _asourceLocalSelected.splice();
+                var lvalue:Array = _asourceLocalSelected.slice();
                 var arsel:Array = new Array();
                 var len:int = lvalue.length;
                 for(var index:int = 0; index < len; index++)
@@ -112,24 +112,7 @@
                 }
                 return arsel;
             }
-
-/*
-            public function unselectAllDatesFromCalendar():void
-            {
-               var currentYear:int = new Date().getFullYear();
-                var arAnuary:Array = new Array();
-                var arSelectDates:Array = new Array();
-
-                //arAnuary is the year template
-                for(var xx:int=0; xx<12; xx++){
-                    arAnuary.push(new DateItemDescribeVO(new Date(currentYear,xx,1),null,arSelectDates));
-                }
-
-                asourceAnuary = new ArrayList(arAnuary);
-                masterPersonModel.config_Asource_Holidays.removeAll();
-
-            }
-*/
+            
             protected var _readOnly:Boolean = false;
             [Bindable]
             public function get readOnly():Boolean

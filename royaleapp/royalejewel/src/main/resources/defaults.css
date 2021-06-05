@@ -147,8 +147,28 @@
   color: #737373;
 }
 
-/* Custom Theme Color - jsCalendar*/
+/* jsCalendar itemRenderer */
 
+.jsCalendarItemRenderer {
+  padding: 0px !important;
+  background: transparent !important;
+  border: none !important;
+}
+.jsCalendarItemRenderer > .jewel.item {
+  background: transparent !important;
+}
+.jsCalendarItemRenderer > .jewel.item.hovered {
+  background: transparent !important;
+}
+.jsCalendarItemRenderer > .jewel.item.selected {
+  background: transparent !important;
+}
+.jsCalendarItemRenderer > .jewel.item.selectable:active {
+  background: transparent !important;
+}
+
+/* Custom Theme Color - jsCalendar*/
+jsCalendarItemRenderer
 .jsCalendar.custom-purple tbody td.jsCalendar-current {
   background-color: #800080;
 }

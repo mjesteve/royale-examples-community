@@ -4,28 +4,27 @@ package org.apache.royale.community.jscalendar.vo
     [Bindable]
     public class DateItemDescribeVO
     {
-        public var anyo:Number;
-		public var mes:Number;
-		public var dia:Number;
+        public var year:Number;
+		public var month:Number;
+		public var day:Number;
 		public var date:Date;
 		public var selDates:Array;
 
-        public function DateItemDescribeVO(date:Date=null,item:*=null,sDt:Array=null)
+        public function DateItemDescribeVO(date:Date=null,item:*=null,arSel:Array=null)
 		{
 			if(date){
 				this.date = date;
-				this.anyo = date.fullYear;
-				this.mes = date.month;
-				this.dia = date.date;
-				this.selDates = sDt;
+				this.year = date.fullYear;
+				this.month = date.month;
+				this.day = date.date;
+				this.selDates = arSel;
 			}else 			
 			if(item){
-				this.anyo = item.anyo;
-				this.mes = item.mes;
-				this.dia = item.dia;
-				this.selDates = item.sDt;
+				this.year = item.year;
+				this.month = item.month;
+				this.day = item.day;
+				this.selDates = item.arSel;
 			}
-
         }
     }
 }

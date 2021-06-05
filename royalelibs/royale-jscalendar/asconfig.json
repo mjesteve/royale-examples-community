@@ -19,10 +19,6 @@
                 "manifest": "../royalecomponents/src/main/resources/components-manifest.xml"
             }
         ],
-        "include-namespaces": [
-            "library://ns.apache.org/royale/community",
-            "library://ns.apache.org/royale/community/jscalendar"
-        ],
         "define": [
             {
                 "name": "COMPILE::JS",
@@ -34,7 +30,7 @@
             }
         ],
         "source-path": [
-            "src/main/royale",
+            "src/main/royale/",
             "../royalecomponents/src/main/royale/"
         ],
         "include-classes": [
