@@ -13,11 +13,11 @@ package
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
          * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "jscalendar/source/jsCalendar.min.css");
+         * link.setAttribute("href", "jscalendar/source/jsCalendar.css");
          * document.head.appendChild(link);
 		 * 
 		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "jscalendar/source/jsCalendar.min.js");
+		 * script.setAttribute("src", "jscalendar/source/jsCalendar.js");
 		 * document.head.appendChild(script);
 		 * 
 		 * script = document.createElement("script"); script.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.be.js"); script.setAttribute("integrity", "sha384-czOMAb4auqx/S7EgTYgb/Sb3xNKzvCN3heba5z2IR80vAI72y55KvGpYQMOJF0Ul"); script.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script);
@@ -39,20 +39,32 @@ package
 		 * script = document.createElement("script"); script.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.uk.js"); script.setAttribute("integrity", "sha384-tVzYxj0/QLUOY8QNd3YSzik+Zi4ShGbZTMd72rTA3xTtQMyrFquKRPsp1nsZdMJl"); script.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script);
 		 * script = document.createElement("script"); script.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.zh.js"); script.setAttribute("integrity", "sha384-V0QPacMFDmO6dM4PsEqgwCew+6CzJCk0LaaL/cRM1+LQZjoh5GH64OHX+RNLuORd"); script.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script);
 		 * 
+		 *
+		 * //------------ Optional Themes -------------
 		 * link = document.createElement("link");
-         * link.setAttribute("rel", "stylesheet");
-         * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "jscalendar/themes/jsCalendar.medium.css");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.clean.css");
          * document.head.appendChild(link);
 		 * 
-		 * script = document.createElement("script");
-		 * script.setAttribute("src", "jscalendar/extensions/jsCalendar.datepicker.js");
-		 * document.head.appendChild(script);
+         * link = document.createElement("link");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.darkseries.css");
+         * document.head.appendChild(link);
+         * 
 		 * link = document.createElement("link");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.micro.css");
+         * document.head.appendChild(link);
+         * 
+		 * link = document.createElement("link");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.medium.css");
+         * document.head.appendChild(link);
 		 * 
-         * link.setAttribute("rel", "stylesheet");
-         * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "jscalendar/themes/jsCalendar.eventmarks.css");
+		 *
+		 * //------------ Optional Extensions -------------
+		 * script = document.createElement("script");
+		 * script.setAttribute("src", "jscalendar/extensions/jsCalendar.datepicker.js"); document.head.appendChild(script);
+		 * link = document.createElement("link");
+         * 
+		 * link = document.createElement("link");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.eventmarks.css");
          * document.head.appendChild(link);
 		 * 
 		 * script = document.createElement("script");
@@ -62,42 +74,40 @@ package
 		 * </inject_script>
 		*/
         public function jsCalendar(target:HTMLElement, date:Object=null, options:Object=null){
-            /*
-             * Set a Minimum date for the calendar.
-             * Limit to only current month: .min = "now"; .max = "now"
-             * @param   target                      Container
-             *
-             * @param   date    Date Object | Timestamp Number | String                         The date for the calendar
-             *                  Date Object                     Using the javascript date	    new Date()
-             *                  Timestamp Number                Using a timestamp               new Date(2017, 0, 30).getTime() | 1485727200000
-             *                  String                          Date string                     "30/01/2017" | "30-01-2017" | "now"
-             *
-             * @param   options Object                          The options for the calendar
-             *                  "target"                        HTML element
-             *                  "date"	                        Date | Number | String          Set the calendar's date.
-             *                  "navigator"	                    true | false                    Enable/Disable month's navigation buttons.
-             *                  "navigatorPosition"	            "both" | "left" | "right"       Set the month's navigation position
-             *                  "zeroFill"	                    true | false                    Enable/Disable date's number zero fill.
-             *                  "monthFormat"	                String                          Custom month string format
-             *                  "dayFormat"	                    String                          Custom day of the week string format
-             *                  "firstDayOfTheWeek" | "fdotw"	String | Number                 Select the first day of the week
-             *                                                  String
-             *                                                      Day's full name (based on the language)     "Monday"
-             *                                                      Day's number 1-7 starting from Sunday       "2"
-             *                                                  Number
-             *                                                      Day's number 1-7 starting from Sunday       2
-             *                                                  String | Number
-             *                  "language"	                    String
-             *                                                      Belarusian	be | Catalan	ca | Chinese	zh | Dutch	nl | English	en | French	fr
-             *                                                      German	de | Greek	gr | Hungarian	hu | Italian	it | Japanese	ja | Norwegian	no
-             *                                                      Portuguese	pt | Russian	ru | Slovak	sk | Swedish	sv | Spanish	es | Turkish	tr
-             *                                                      Ukrainian	uk
-             *                  "min"	                        false | Date
-             *                  "max"	                        false | Date
-             */
+            //
+            // Set a Minimum date for the calendar.
+            // Limit to only current month: .min = "now"; .max = "now"
+            // @param   target                      Container
+            //
+            // @param   date    Date Object | Timestamp Number | String                         The date for the calendar
+            //                  Date Object                     Using the javascript date	    new Date()
+            //                  Timestamp Number                Using a timestamp               new Date(2017, 0, 30).getTime() | 1485727200000
+            //                  String                          Date string                     "30/01/2017" | "30-01-2017" | "now"
+            //
+            // @param   options Object                          The options for the calendar
+            //                  "target"                        HTML element
+            //                  "date"	                        Date | Number | String          Set the calendar's date.
+            //                  "navigator"	                    true | false                    Enable/Disable month's navigation buttons.
+            //                  "navigatorPosition"	            "both" | "left" | "right"       Set the month's navigation position
+            //                  "zeroFill"	                    true | false                    Enable/Disable date's number zero fill.
+            //                  "monthFormat"	                String                          Custom month string format
+            //                  "dayFormat"	                    String                          Custom day of the week string format
+            //                  "firstDayOfTheWeek" | "fdotw"	String | Number                 Select the first day of the week
+            //                                                  String
+            //                                                      Day's full name (based on the language)     "Monday"
+            //                                                      Day's number 1-7 starting from Sunday       "2"
+            //                                                  Number
+            //                                                      Day's number 1-7 starting from Sunday       2
+            //                                                  String | Number
+            //                  "language"	                    String
+            //                                                      Belarusian	be | Catalan	ca | Chinese	zh | Dutch	nl | English	en | French	fr
+            //                                                      German	de | Greek	gr | Hungarian	hu | Italian	it | Japanese	ja | Norwegian	no
+            //                                                      Portuguese	pt | Russian	ru | Slovak	sk | Swedish	sv | Spanish	es | Turkish	tr
+            //                                                      Ukrainian	uk
+            //                  "min"	                        false | Date
+            //                  "max"	                        false | Date
+            //
 		}
-
-        
         /**
          * Set the calendar date.
          */
@@ -213,18 +223,28 @@ package
             return null;
 		}
 
+
+        // Add a event listeners
         /**
          * Add a click event on the calendar.
          * On month change	.onMonthChange(function(event, date){ ... })
          * On day click	    .onDateClick(function(event, date){ ... })
          */
-        /*public function onMonthChange(callFunc:Function):void
+        public function onDateClick(callback:Function):void
         {
         }
-        public function onDateClick(callFunc:Function):void
+        public function onMonthChange(callback:Function):void
         {
-        }*/
-
+        }
+        public function onDayRender(callback:Function):void
+        {
+        }
+        public function onDateRender(callback:Function):void
+        {
+        }
+        public function onMonthRender(callback:Function):void
+        {
+        }
 
 	}
 }

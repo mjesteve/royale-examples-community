@@ -5,26 +5,28 @@
 	xmlns:j="library://ns.apache.org/royale/jewel"
 	xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
-    xmlns:jc="library://ns.apache.org/royale/community" className="jsCalendarItemRenderer" >
-    <fx:Style>
-        @namespace js "library://ns.apache.org/royale/basic";
-        @namespace j "library://ns.apache.org/royale/jewel";
+    xmlns:jc="library://ns.apache.org/royale/community"
+    className="jsCalendarItemRenderer" >
+    
+    <fx:Metadata>
+        [Event(name="addselday", type="org.apache.royale.community.jscalendar.events.SharedEvent")]
+        [Event(name="delselday", type="org.apache.royale.community.jscalendar.events.SharedEvent")]
+    </fx:Metadata>
 
-
-
-	</fx:Style>
     <fx:Script>
         <![CDATA[
-		import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
-        import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
         import jsCalendar;
-        import mx.events.ItemClickEvent;
+        import org.apache.royale.community.jscalendar.events.SharedEvent;
+        import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
 
-        private var _currentResponsiveSize:String;
         private var mycalendar:jsCalendar;
-        private var ObjectParentContainer:Object;
 
-        private static var idxCount:int = 0;
+        private function get parentHostComponent():Object
+        {
+            return (this.parent as Object).parent;
+        } 
+        
+        private var readOnly:Boolean = true;
 
         override public function set data(value:Object):void
         {
@@ -48,131 +50,48 @@
                     opt["dayFormat"] = "D";
                     opt["firstDayOfTheWeek"] = properties['firstDayOfWeek'];
                     opt["language"] = properties['lang'];
+                    opt["readOnly"] = properties["readOnly"];
+                    readOnly = opt["readOnly"] == null ? true : Boolean(opt["readOnly"]);
 
-                    //theme calendar
-                    var responsiveSizeOld:String = _currentResponsiveSize;
-                    _currentResponsiveSize = String(properties['currentResponsiveSize']);
-                    if(_currentResponsiveSize != responsiveSizeOld)
-                    {
-                        if(_currentResponsiveSize == ResponsiveSizes.PHONE)
-                            divCalendar.className = "micro-theme";
-                        else
-                            divCalendar.className = "medium-theme";
-                    }
+                    divCalendar.className = "medium-theme";
+
                 }else{
-                    _currentResponsiveSize = null;
+                    readOnly = true;
                 }
 
                 mycalendar = new jsCalendar(divCalendar.element, reg.date, opt);
                 mycalendar.clearSelected();
 
-                if (reg.selDates!=null)
-                {
-                    if(reg.selDates.length > 0)
+                if (reg.selDates!=null && reg.selDates.length > 0)
+                    mycalendar.select(reg.selDates); //light grey circle around all dates
+
+                if(readOnly)
+                    return;
+
+                mycalendar.onDateClick(function(event:MouseEvent, date:Date):void{
+                    //var cell:Object = event.target; //td
+                    var cellCss:String =  event.target.className.toString();
+                    var isPrev:Boolean = cellCss.indexOf("jsCalendar-previous")>-1?true:false;
+                    var isNext:Boolean = cellCss.indexOf("jsCalendar-next")>-1?true:false;
+                    var isUnsel:Boolean = cellCss.indexOf("jsCalendar-unselectable")>-1?true:false;
+
+                    if(isPrev || isNext || isUnsel)
+                        return;
+
+                    if(mycalendar.isSelected(date)) // To unselect
                     {
-                        mycalendar.select(reg.selDates); //light grey circle around all dates
+                        mycalendar.unselect([date]);
+                        dispatchEvent( new SharedEvent(SharedEvent.DEL_SELECTEDDAY, date) );
                     }
-                }
-/*
-                mycalendar.onDateClick(function(event:Object, date:Object):void{
-                    trace("CLICK DAY", date.toString());
-                });*/
+                    else // To select
+                    {
+                        mycalendar.select([date]);                   
+                        dispatchEvent( new SharedEvent(SharedEvent.ADD_SELECTEDDAY, date) );
+                    }                   
 
-                divCalendar.addEventListener("click", function(e:ItemClickEvent):void {
-                    var objsdt:String = e.target.outerHTML;
-
-                    if(objsdt.indexOf("td")>0)  //see the clicked item should be a date i.e td
-                    {  var at:String = (objsdt.replace("<td>","")).replace("</td>","");
-                        at = at.replace("'","");
-                        at = at.replace("\"","");
-
-                        if(at.indexOf("jsCalendar-selected")>0 || at.indexOf("jsCalendar-selected jsCalendar-current")>0 ) //to unselect existing
-                        {
-                            at =  at.substring(at.lastIndexOf(">")+1,at.length) as String;
-                            for(var yy:int=0; yy<reg.selDates.length; yy++)
-                            {
-                            var currentDt:Date = reg.selDates[yy] as Date;
-                                var ScurrentDt:Date = new Date(currentDt.getFullYear(),currentDt.getMonth(),Number(at));
-                                if(currentDt.getFullYear() == ScurrentDt.getFullYear()
-                                && currentDt.getMonth() == ScurrentDt.getMonth()
-                                &&
-                                currentDt.getDate() == Number(at)  )
-                                {
-                                    var arrPrevSelected:Array = reg.selDates;
-                                    mycalendar.unselect(arrPrevSelected);
-                                    reg.selDates.removeAt(yy);
-                                    mycalendar.select(reg.selDates);
-                                        for(var iii:int=0; iii<ObjectParentContainer.masterPersonModel.config_Asource_Holidays.length; iii++)
-                                    {
-                                        var iiiIndexItem:DateItemDescribeVO  = ObjectParentContainer.masterPersonModel.config_Asource_Holidays.getItemAt(iii);
-                                        if(iiiIndexItem.mes==currentDt.getMonth() && iiiIndexItem.anyo==currentDt.getFullYear()  && iiiIndexItem.dia==currentDt.getDate())
-                                        { //removing from list is not working
-                                        ObjectParentContainer.masterPersonModel.config_Asource_Holidays.removeItemAt(iii);
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            var lIndx:int = 0;
-
-                            if(at.indexOf("jsCalendar-current")>0)  // to select current
-                            {
-                                at =  at.substring(at.lastIndexOf(">")+1,at.length) as String;
-                                if(reg.selDates!=null)
-                                {
-                                    if(reg.selDates.length >0)
-                                    lIndx = reg.selDates.length;
-                                }
-                            }
-                            else //to select
-                            {
-                                if(reg.selDates!=null)
-                                {
-                                    if(reg.selDates.length >0)
-                                        lIndx = reg.selDates.length;
-                                }
-                            }
-                            var ndt:Date = new Date(reg.anyo,reg.mes,Number(at));
-                            var newSelect:DateItemDescribeVO = new DateItemDescribeVO(ndt,null,null);
-
-                            reg.selDates.insertAt(lIndx,ndt);
-                            mycalendar.select(reg.selDates);
-                            ObjectParentContainer.masterPersonModel.config_Asource_Holidays.addItem(newSelect);
-                        }
-
-                    }
-
-                }, false);
-
+                });
             }
         }
-
-
-        [Bindable]
-        public function fn_GetDisableState():Boolean
-        {
-            ObjectParentContainer = (this.parent as Object).parent;
-            if(this.parent != null)
-            {
-                if((this.parent as Object).parent!=null)
-                {
-                    trace("disabled "+(this.parent as Object).parent.lstCalendar_Disable)
-                    return (this.parent as Object).parent.lstCalendar_Disable;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            return true;
-
-
-        }
-
 
 
         ]]>
@@ -183,11 +102,11 @@
         <j:VerticalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsLeft" />
     </jc:beads>
     <j:HGroup percentHeight="100" percentWidth="100" style="padding:0px !important;">
-     <j:beads>
-        <j:Disabled disabled="{fn_GetDisableState()}" />
-    </j:beads>
-    <html:Div localId="divCalendar" style="padding:0px !important;">
+        <!-- <j:beads>
+            <jc:ReadOnly localId="bDis" readOnly="{readOnly}"/>
+        </j:beads> -->
+        <html:Div localId="divCalendar" style="padding:0px !important;">
 
-    </html:Div>
+        </html:Div>
     </j:HGroup>
 </jc:ListItemRendererProperties>
