@@ -29,6 +29,66 @@
       color: #333333;
     }
 
+    .jewel.topappbar .topBarAppHeader {
+      background: #333333;
+      border: 0;
+      color: #04a3b3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      text-shadow: none;
+      width: 100%;
+      z-index: 20;
+    }
+
+    /*.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
+        color: #be390e;
+      background-color: #B3B3B3;
+    }*/
+    .menubar {
+      min-width: 0;
+      background: #333333 !important;
+      padding: 0;
+      margin-right: 10px;
+    }
+    .menubarMark {
+      box-shadow: #04a3b3 5px 0 0 0 inset;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .jewel.togglebutton.toggleButtonUnboxed .fonticon {
+      /* color: #674104; */
+    }
+    .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
+      color: #04a3b3;
+    }    
+    
+    .primary-lightest {
+            color: #ecede8;
+    }
+    
+    
+    .primary-light {
+            color: #7cdbe4;
+    }
+    
+    
+    .primary-normal {
+            color: #04a3b3;
+    }
+    
+    
+    .primary-dark {
+            color: #13505B;
+    }
+    
+    
+    .primary-darkest {
+            color: #0b3036;
+    }
+    
+
     .jewel.button{
     text-transform: none;
     }
@@ -136,31 +196,4 @@
 
 }
 
-/* Custom Theme Color - jsCalendar*/
-.jsCalendar.custom-purple tbody td.jsCalendar-current {
-  background-color: #800080;
-}
-.jsCalendar.clean-theme.custom-purple tbody td.jsCalendar-current {
-  background-color: rgba(128, 0, 128, 0.2) !important;
-  border-bottom: 2px solid #800080 !important;
-}
-.jsCalendar.custom-purple *::selection {
-    background: #800080;
-}
-.jsCalendar.custom-purple *::-moz-selection {
-    background: #800080;
-}
-.jsCalendar.material-theme.custom-purple thead {
-    background-color: #800080;
-}
-.jsCalendar.material-theme.custom-purple thead .jsCalendar-nav-left:hover,
-.jsCalendar.material-theme.custom-purple thead .jsCalendar-nav-right:hover {
-    background-color: #660066;
-}
-.jsCalendar.classic-theme.custom-purple thead {
-    background-color: #800080;
-}
-.jsCalendar.classic-theme.custom-purple thead .jsCalendar-nav-left:hover,
-.jsCalendar.classic-theme.custom-purple thead .jsCalendar-nav-right:hover {
-    background-color: #660066;
-}
+

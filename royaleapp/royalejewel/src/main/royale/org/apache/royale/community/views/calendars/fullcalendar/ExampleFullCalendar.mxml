@@ -21,7 +21,7 @@ limitations under the License.
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html" 
-	xmlns:views="org.apache.royale.community.views.*"
+	xmlns:viewsFullcal="org.apache.royale.community.views.calendars.fullcalendar.*"
 	currentState="init" initComplete="setUp()"
    >
 
@@ -63,33 +63,30 @@ limitations under the License.
 
 	 
 	<j:ApplicationMainContent localId="main" >
-	<j:ScrollableSectionContent >
+		<j:ScrollableSectionContent >
 			<j:VGroup>
-
-		<j:HGroup>
-        <views:FullCalendarView  localId="vMasterCalendarJan" includeIn="init"  />
-		
-
-        <views:FullCalendarView  localId="vMasterCalendarFeb" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarMar" includeIn="init"  />
-		</j:HGroup>
-		<j:HGroup>
-        <views:FullCalendarView localId="vMasterCalendarApr" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarMay" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarJune" includeIn="init"  />
-		</j:HGroup>
-		<j:HGroup>
-        <views:FullCalendarView  localId="vMasterCalendarJuly" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarAug" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarSep" includeIn="init"  />
-		</j:HGroup>
-		<j:HGroup>
-        <views:FullCalendarView  localId="vMasterCalendarOct" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarNov" includeIn="init"  />
-        <views:FullCalendarView  localId="vMasterCalendarDec" includeIn="init"  />
-</j:HGroup>
-		</j:VGroup>
-			</j:ScrollableSectionContent >
+				<j:HGroup>
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarJan" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarFeb" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarMar" includeIn="init"  />
+				</j:HGroup>
+				<j:HGroup>
+					<viewsFullcal:FullCalendarView localId="vMasterCalendarApr" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarMay" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarJune" includeIn="init"  />
+				</j:HGroup>
+				<j:HGroup>
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarJuly" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarAug" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarSep" includeIn="init"  />
+				</j:HGroup>
+				<j:HGroup>
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarOct" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarNov" includeIn="init"  />
+					<viewsFullcal:FullCalendarView  localId="vMasterCalendarDec" includeIn="init"  />
+				</j:HGroup>
+			</j:VGroup>
+		</j:ScrollableSectionContent >
 
     </j:ApplicationMainContent>
 	

@@ -1,0 +1,121 @@
+﻿.jsCalendar 
+	&.clean-theme 
+		table 
+			background-color: transparent 
+			box-shadow: none 
+			color: #000000 
+			font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif 
+		thead 
+			.jsCalendar-title-name 
+				font-weight: bold 
+			.jsCalendar-week-days 
+				th 
+					font-weight: bold 
+		tbody 
+			td 
+				&:hover 
+					background-color: #F0F0F0 
+					color: #000000 
+				&.jsCalendar-selected 
+					border: unset 
+					background-color: #E0E0E0 
+				&.jsCalendar-current 
+					background-color: transparent 
+					border-bottom: 2px solid #000000 
+					border-radius: unset 
+					color: #000000 
+					font-weight: bold 
+					margin-bottom: 0 
+					&:hover 
+						color: #000000 
+		::-moz-selection 
+			background: #AFAFAF 
+		::selection 
+			background: #AFAFAF 
+		&.blue 
+			tbody 
+				td 
+					&:hover 
+						background-color: rgba(82, 201, 255, 0.3) 
+					&.jsCalendar-current 
+						background-color: rgba(82, 201, 255, 0.2) 
+					&.jsCalendar-selected 
+						background-color: rgba(82, 201, 255, 0.5) 
+			::-moz-selection 
+				background: #83D8FF 
+			::selection 
+				background: #83D8FF 
+		&.yellow 
+			tbody 
+				td 
+					&:hover 
+						background-color: rgba(255, 227, 27, 0.3) 
+					&.jsCalendar-current 
+						background-color: rgba(255, 227, 27, 0.2) 
+					&.jsCalendar-selected 
+						background-color: rgba(255, 227, 27, 0.5) 
+			::-moz-selection 
+				background: #FDE74C 
+			::selection 
+				background: #FDE74C 
+		&.orange 
+			tbody 
+				td 
+					&:hover 
+						background-color: rgba(255, 180, 0, 0.3) 
+					&.jsCalendar-current 
+						background-color: rgba(255, 180, 0, 0.2) 
+					&.jsCalendar-selected 
+						background-color: rgba(255, 180, 0, 0.5) 
+			::-moz-selection 
+				background: #FFB400 
+			::selection 
+				background: #FFB400 
+		&.red 
+			tbody 
+				td 
+					&:hover 
+						background-color: rgba(246, 81, 29, 0.3) 
+					&.jsCalendar-current 
+						background-color: rgba(246, 81, 29, 0.2) 
+					&.jsCalendar-selected 
+						background-color: rgba(246, 81, 29, 0.5) 
+			::-moz-selection 
+				background: #F6511D 
+			::selection 
+				background: #F6511D 
+		&.green 
+			tbody 
+				td 
+					&:hover 
+						background-color: rgba(127, 184, 0, 0.3) 
+					&.jsCalendar-current 
+						background-color: rgba(127, 184, 0, 0.2) 
+					&.jsCalendar-selected 
+						background-color: rgba(127, 184, 0, 0.5) 
+			::-moz-selection 
+				background: #7FB800 
+			::selection 
+				background: #7FB800 
+.jsCalendar.clean-theme thead .jsCalendar-nav-left,
+	.jsCalendar.clean-theme thead .jsCalendar-nav-right 
+	color: #AFAFAF 
+.jsCalendar.clean-theme thead .jsCalendar-nav-left:hover,
+	.jsCalendar.clean-theme thead .jsCalendar-nav-right:hover 
+	background-color: transparent 
+	color: #000000 
+.jsCalendar.clean-theme thead .jsCalendar-week-days th,
+	.jsCalendar.clean-theme tbody td 
+	border-radius: unset 
+	font-size: 14px 
+	height: 42px 
+	line-height: 42px 
+	margin: 2px 2px 
+	width: 42px 
+.jsCalendar.clean-theme tbody td.jsCalendar-previous,
+	.jsCalendar.clean-theme tbody td.jsCalendar-next 
+	color: transparent 
+	opacity: 0 
+.jsCalendar.clean-theme tbody td.jsCalendar-previous:hover,
+	.jsCalendar.clean-theme tbody td.jsCalendar-next:hover 
+	color: transparent 

@@ -1,0 +1,30 @@
+/*
+ * jsCalendar theme
+ * medium v1.2.1
+ * 
+ * 
+ * MIT License
+ * 
+ * Copyright (c) 2019 Grammatopoulos Athanasios-Vasileios
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ */
+
+.jsCalendar.medium-theme *{margin:0;padding:0}.jsCalendar.medium-theme table,.jsCalendar.medium-theme table td,.jsCalendar.medium-theme table th{border:0;box-sizing:content-box}.jsCalendar.medium-theme table{background-color:#fff;border-collapse:collapse;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,.4);color:#000;font-family:'Open Sans',serif,sans-serif;margin:5px}.jsCalendar.medium-theme tr{line-height:0}.jsCalendar.medium-theme thead .jsCalendar-title{height:20px;line-height:20px}.jsCalendar.medium-theme thead .jsCalendar-title-left{float:left}.jsCalendar.medium-theme thead .jsCalendar-title-right{float:right}.jsCalendar.medium-theme thead .jsCalendar-nav-left,.jsCalendar.medium-theme thead .jsCalendar-nav-right{border-radius:10px;color:#999;cursor:pointer;font-family:"Courier New",Courier,monospace;font-size:12px;font-weight:700;height:20px;line-height:20px;margin:10px 8px;text-align:center;transition:color .2s,background-color .2s;width:20px}.jsCalendar.medium-theme thead .jsCalendar-nav-left:hover,.jsCalendar.medium-theme thead .jsCalendar-nav-right:hover{background-color:#e2e2e2;color:#000}.jsCalendar.medium-theme thead .jsCalendar-nav-left{float:left}.jsCalendar.medium-theme thead .jsCalendar-nav-right{float:right}.jsCalendar.medium-theme thead .jsCalendar-title-name{cursor:default;float:left;font-size:18px;padding:0 20px}.jsCalendar.medium-theme thead .jsCalendar-nav-left:after{content:"<"}.jsCalendar.medium-theme thead .jsCalendar-nav-right:after{content:">"}.jsCalendar.medium-theme thead .jsCalendar-week-days th{text-shadow:0 0 1px rgba(0,0,0,.2)}.jsCalendar.medium-theme tbody{cursor:default}.jsCalendar.medium-theme tbody td,.jsCalendar.medium-theme thead .jsCalendar-week-days th{border-radius:22px!important;cursor:default;display:inline-block;font-size:12px;font-weight:lighter;height:22px!important;line-height:22px!important;margin:1px 2px;text-align:center;transition:color .1s,background-color .2s;width:22px!important}.jsCalendar.medium-theme tbody td:hover{background-color:#e6e6e6;cursor:pointer}.jsCalendar.medium-theme tbody td.jsCalendar-current{background-color:#fff!important;border-radius:22px!important;color:#000!important}.jsCalendar.medium-theme tbody td.jsCalendar-selected{height:22px;line-height:22px;width:22px;color:FFFFFF!important}.jsCalendar.medium-theme tbody td.jsCalendar-next,.jsCalendar.medium-theme tbody td.jsCalendar-previous{color:transparent}.jsCalendar.medium-theme tbody td.jsCalendar-unselectable{color:#cacaca}.jsCalendar.medium-theme tbody td.jsCalendar-next:hover,.jsCalendar.medium-theme tbody td.jsCalendar-previous:hover{background:0 0!important;color:transparent!important;cursor:default}.jsCalendar.medium-theme tbody td.jsCalendar-unselectable:hover{background:0 0;cursor:default}.jsCalendar.medium-theme thead{display:block;margin:2px 2px 0 2px}.jsCalendar.medium-theme tbody{display:block;margin:0 2px 2px 2px}.jsCalendar.medium-theme ::-moz-selection{background:#83d8ff}.jsCalendar.medium-theme ::selection{background:#83d8ff}.jsCalendar.medium-theme table{border-radius:0!important}.jsCalendar.medium-theme thead{margin:0!important;padding:4px 4px 0 4px!important}.jsCalendar.medium-theme thead .jsCalendar-title{display:block!important;position:relative!important}.jsCalendar.medium-theme thead .jsCalendar-title-name{border-bottom:1px solid rgba(255,255,255,.4)!important;font-size:13px!important;left:15px!important;position:absolute!important;right:15px!important;text-align:center!important}.jsCalendar.medium-theme thead .jsCalendar-title-left,.jsCalendar.medium-theme thead .jsCalendar-title-right{position:absolute!important;z-index:1!important}.jsCalendar.medium-theme thead .jsCalendar-nav-left,.jsCalendar.medium-theme thead .jsCalendar-nav-right{color:#fff!important}.jsCalendar.medium-theme thead .jsCalendar-nav-left:hover,.jsCalendar.medium-theme thead .jsCalendar-nav-right:hover{background-color:#03a9f4!important}.jsCalendar.medium-theme thead .jsCalendar-title-right{right:0}.jsCalendar.medium-theme thead .jsCalendar-week-days th{font-size:13px!important;text-shadow:none!important;font-weight:700}

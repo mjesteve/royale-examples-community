@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	gap="0" initComplete="onInit()">
+
+     <fx:Script>
+        <![CDATA[
+
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
+
+            private function onInit():void
+            {
+            }
+
+            protected var _year:Number;
+            [Bindable]
+            public function get year():Number{                            
+                return isNaN(_year) ? new Date().fullYear: _year;
+            }
+            public function set year(value:Number):void
+            {
+                if(isNaN(value))
+                    _year = new Date().fullYear;
+                else
+                    _year = value;
+
+                makeAnnuary();
+            }
+
+            [Bindable]
+            protected var asourceAnuary:ArrayList;
+
+            private function makeAnnuary():void
+            {
+                //Array with First day of each month
+                var arAnnuary:Array = new Array();
+                var lastIdxSel:int = 0;
+
+                //arAnnuary is the year template 
+                for( var m:int = 0; m<12; m++)
+                {
+                    var itDay:DateItemDescribeVO = new DateItemDescribeVO(new Date(_year,m,1),null,new Array());
+                    if(_asourceSelected && _asourceSelected.length > 0)
+                    {
+                        for(var yy:int=lastIdxSel; yy<_asourceSelected.length; yy++)
+                        {
+                            if((_asourceSelected[yy] as Date).month > m )
+                            {
+                                lastIdxSel = yy;
+                                break;
+                            }
+                            itDay.selDates.push(_asourceSelected[yy] as Date);
+                        }
+                    }
+                    arAnnuary.push( itDay );
+                }
+                asourceAnuary = new ArrayList(arAnnuary);
+            }
+
+                        
+            protected var _asourceSelected:Array;
+            /**
+             * Array Date's
+             */
+            [Bindable]
+            public function get asourceSelected():Array
+            {
+                return _asourceSelected;
+            }
+            public function set asouceSelected(value:Array):void
+            {
+                //Sort and filter by current year
+                if(!value)
+                {
+                    _asourceLocalSelected = new Array();
+                    _asourceSelected = new Array();
+                    return;
+                }
+                var lvalue:Array = value.slice();
+                lvalue.sort(_orderDatesFunction);
+
+                //TODO - Change year
+                _asourceLocalSelected = lvalue.slice();
+                _asourceSelected = getSelByCurrentYear();
+
+                if(asourceAnuary)
+                    makeAnnuary();
+                
+            }
+            /**
+             * Todas las fechas recibidas (Sin filtro de año y sin Ordenar)
+             */
+            protected var _asourceLocalSelected:Array;
+
+            private function getSelByCurrentYear():Array
+            {
+                var lvalue:Array = _asourceLocalSelected.slice();
+                var arsel:Array = new Array();
+                var len:int = lvalue.length;
+                for(var index:int = 0; index < len; index++)
+                {
+                    var ds:Date = lvalue[index];
+                    if(ds.fullYear>_year)
+                        break;
+                    
+                    if(ds.fullYear == _year)
+                        arsel.push(ds);
+                }
+                return arsel;
+            }
+            
+            protected var _readOnly:Boolean = false;
+            [Bindable]
+            public function get readOnly():Boolean
+            {
+                return _readOnly;
+            }
+            public function set readOnly(value:Boolean):void
+            {
+                _readOnly = value;
+
+            }
+/*
+			private var _currentResponsiveSize:String;
+            public function get currentResponsiveSize():String
+            {
+                return _currentResponsiveSize;
+            }
+            public function set currentResponsiveSize(value:String):void
+            {
+                _currentResponsiveSize = value;
+                if(isActiveView)
+                    makeCols();
+            }
+
+            private function initializeControls():void
+            {
+                if(_idMaster == UtilConstantsMasterConfig.IDMASTER_EMPTY)
+                    return;
+                makeCols();
+            }
+
+            private function makeCols():void
+            {
+                //Controles - visibles - invisibles - Layout Grid
+                propItList = {lang:langModel.normalizedLangId(), dayNames:langModel.langGlb.aDias2, monthNames:langModel.langGlb.aMeses1,
+                 firstDayOfWeek:langModel.langGlb.firstDayOfWeek, currentResponsiveSize: _currentResponsiveSize};
+
+            }
+
+            private function unLinkControls():void
+            {
+                //masterPersonModel_selectedItem = null;
+            }
+
+            private function inicializarPermisos():void
+            {
+
+            }
+
+            public function getRegFromForm():CTypeRegMasterPersonGenGest
+            {
+                var item:CTypeRegMasterPersonGenGest = new CTypeRegMasterPersonGenGest();
+                return item;
+            }
+
+            public function onStateChange():void
+            {
+                //trace('DETALLE - STATE', masterPersonModel.currentState, masterPersonModel.noEditGen);
+                if(masterPersonModel.currentState == UtilConstants.STATE_NORMAL)
+                {
+                    lstCalendar_Disable = true;
+                }
+                else if(masterPersonModel.currentState == UtilConstants.STATE_ADDING){
+                    lstCalendar_Disable = false;
+
+                }
+                else if(masterPersonModel.currentState == UtilConstants.STATE_EDITING){
+                    lstCalendar_Disable = false;
+                }
+                else if(masterPersonModel.currentState == UtilConstants.STATE_REMOVING){
+                    lstCalendar_Disable = false;
+                    unselectAllDatesFromCalendar();
+                }
+
+            }
+*/
+            /**
+             * Function to compare 2 dates.
+             * @param   date1
+             * @param   date2
+             * @return
+             */
+            private static function _orderDatesFunction( date1:Date, date2:Date ):Number
+            {
+                if( date1 > date2 ) return 1;
+                else if(  date1 < date2 ) return 0;
+                else return -1;
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding />
+    </j:beads>
+
+    <jc:ListJwExt localId="lstCalendar" percentWidth="100" percentHeight="100" style="flex-wrap: wrap;"
+            dataProvider="{asourceAnuary}" itemRenderer="org.apache.royale.community.jscalendar.itemRenderers.MonthlyItemRenderer" >
+        <jc:beads>
+            <j:ListPresentationModel variableRowHeight="false"/>
+            <j:HorizontalLayout gap="0"/>
+            <!--<jc:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>-->
+        </jc:beads>
+    </jc:ListJwExt>
+
+</j:HGroup>

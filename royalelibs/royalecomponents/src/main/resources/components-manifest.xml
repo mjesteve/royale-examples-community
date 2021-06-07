@@ -43,6 +43,7 @@
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
     <component id="ExampleHeader" class="org.apache.royale.community.controls.ExampleHeader"/><!-- TDJ -->
+    <component id="LabelFormWithButtonBar" class="org.apache.royale.community.controls.LabelFormWithButtonBar"/>
 
     <!-- Extends Jewel Controls -->
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>

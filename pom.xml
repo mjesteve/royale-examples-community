@@ -13,7 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
-    <maven.version>3.5.4</maven.version>
+    <maven.version>3.6.2</maven.version>
 
      <!-- Royale Library versions -->
     <royale.version>0.9.8-SNAPSHOT</royale.version>

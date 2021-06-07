@@ -14,20 +14,36 @@
   <name>Royale Libs</name>
 
   <modules>
-    <!--  --><module>royalecomponents</module>
+    
     <module>royalemobiscroll</module>
     <module>royale-js-year-calendar</module>
     <module>royalefullcalendar</module>
+    
+    <module>royalecomponents</module>
     <module>royale-jscalendar</module>
   </modules>
 
   <properties>
-      <project.compiler.options>
+    <source.map>true</source.map>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
+    <maven.version>3.6.2</maven.version>
+
+     <!-- Royale Library versions -->
+    <royale.version>0.9.8-SNAPSHOT</royale.version>
+
+    <royale.build-tools.version>1.0.0</royale.build-tools.version>
+
+    <royale.compiler.version>${royale.version}</royale.compiler.version>
+    <royale.typedefs.version>${royale.version}</royale.typedefs.version>
+    <royale.framework.version>${royale.version}</royale.framework.version>
+
+    <project.compiler.options>
         -js-default-initializers=true;
         -source-map=${source.map};
         <!-- -source-map-source-root=/${project.artifactId}/src/main/royale/; -->
         -source-map-source-root=${project.basedir}/src/main/royale/;
-      </project.compiler.options>
+    </project.compiler.options>
   </properties>
 
   <build>
