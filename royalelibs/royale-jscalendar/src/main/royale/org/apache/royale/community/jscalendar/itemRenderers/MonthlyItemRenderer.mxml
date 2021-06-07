@@ -52,12 +52,11 @@
                     opt["language"] = properties['lang'];
                     opt["readOnly"] = properties["readOnly"];
                     readOnly = opt["readOnly"] == null ? true : Boolean(opt["readOnly"]);
-
-                    divCalendar.className = "medium-theme";
-
                 }else{
                     readOnly = true;
                 }
+
+                divCalendar.className = "medium-theme";
 
                 mycalendar = new jsCalendar(divCalendar.element, reg.date, opt);
                 mycalendar.clearSelected();
@@ -105,8 +104,6 @@
         <!-- <j:beads>
             <jc:ReadOnly localId="bDis" readOnly="{readOnly}"/>
         </j:beads> -->
-        <html:Div localId="divCalendar" style="padding:0px !important;">
-
-        </html:Div>
+        <html:Div localId="divCalendar" style="padding:0px !important;" />
     </j:HGroup>
 </jc:ListItemRendererProperties>

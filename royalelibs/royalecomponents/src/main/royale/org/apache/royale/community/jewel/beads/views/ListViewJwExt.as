@@ -124,19 +124,19 @@ package org.apache.royale.community.jewel.beads.views
 					//each item render can have its own height
 					totalHeight = scrollArea.scrollHeight - scrollArea.offsetHeight;
 
-					for (var i:int = 0; i <= index; i++)
+					for (var idxIt:int = 0; idxIt <= index; idxIt++)
 					{
-						var ir:IItemRenderer = dataGroup.getItemRendererForIndex(i) as IItemRenderer;
+						var ir:IItemRenderer = dataGroup.getItemRendererForIndex(idxIt) as IItemRenderer;
 						if(ir)
 						{
 							rowHeight = ir.element.offsetHeight
-							if( i < index )
+							if( idxIt < index )
 								scrollToProposed += rowHeight;
 						}else{
 							//Hiedra. Cuando se elimina un registro del dataprovider lastindexselected 
 							//puede contener un valor incorrecto y no existir el itemRenderer.
 							//Se debería depurar y solucionar en el SDK.
-							trace("ItemRenderer Index:",i.toString(),"lenght total:",index.toString());
+							trace("ItemRenderer Index:",idxIt.toString(),"lenght total:",index.toString());
 						}
 					}
 				} else

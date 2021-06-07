@@ -12,7 +12,7 @@
         ],
         "namespace": [
             {
-                "uri": "library://ns.apache.org/royale/community/fullcalendar",
+                "uri": "library://ns.apache.org/royale/community",
                 "manifest": "src/main/resources/fullcalendar-manifest.xml"
             }
         ],

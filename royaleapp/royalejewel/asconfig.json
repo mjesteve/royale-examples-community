@@ -19,8 +19,10 @@
 {
     "config": "royale",
     "compilerOptions": {
-        "debug": false,
+        "debug": true,
         "targets": ["JSRoyale"],
+        "html-template": "src/main/resources/jewel-app-index-template.html",
+        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css",
         "source-path": [
             "src/main/resources",
             "../../royalelibs/royalecomponents/src/main/royale/",
@@ -34,7 +36,7 @@
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royalecomponents/src/main/resources/components-manifest.xml"
             },
-			 {
+			{
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royalemobiscroll/src/main/resources/mobiscroll-manifest.xml"
             },
@@ -43,11 +45,11 @@
                "manifest": "../../royalelibs/royale-js-year-calendar/src/main/resources/year-calendar-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community/fullcalendar",
+                "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community/jscalendar",
+                "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royale-jscalendar/src/main/resources/jscalendar-manifest.xml"
             }
         ],
@@ -71,9 +73,7 @@
                 "value": "'project.version'"
             }
         ],
-        "source-map": true,
-        "html-template": "src/main/resources/jewel-app-index-template.html",
-        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
+        "source-map": true
     },
     "copySourcePathAssets": true,
     "additionalOptions": [//MXRoyale-${royale.framework.version}-js.swc:defaults.css

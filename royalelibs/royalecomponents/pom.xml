@@ -80,7 +80,7 @@
           </includeFiles>
 
           <additionalCompilerOptions>
-            ${project.compiler.options};
+            ${project.compiler.options}
             -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
             -compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-js.swc:defaults.css;
             -keep-code-with-metadata=Inject;

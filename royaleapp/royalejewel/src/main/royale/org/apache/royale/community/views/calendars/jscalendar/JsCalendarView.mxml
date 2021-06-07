@@ -23,7 +23,7 @@
             private function onChangeView(event:Event):void
             {
                 var lview:ToggleButton = event.target as ToggleButton;
-                if( lview == this.btLineAuto )
+                if( lview == btLineAuto )
                 {
                     btLineCustom.selected = !btLineAuto.selected;
                 }
@@ -56,8 +56,8 @@
 		<js:ContainerDataBinding/>
 	</j:beads>
 
-    <j:Card localId="auxPanel" height="100%" style="min-width:0px;background-color:#B3B3B3;padding:0px;margin-right:10px;">
-        <j:CardHeader style="padding-bottom: 0px; border-bottom: 0px; box-shadow: inset 5px 0 0 0 red;" 
+    <j:Card localId="auxPanel" height="100%" className="menubar">
+        <j:CardHeader className="menubarMark" 
         gap="0" itemsHorizontalAlign="itemsCenter"> 
 
             <j:Grid gap="false">
@@ -88,8 +88,10 @@
         </j:CardHeader>
         <j:CardPrimaryContent gap="0">
             <j:VGroup localId="subAuto" percentWidth="100" gap="0" itemsHorizontalAlign="itemsCenter"
-                visible.autotheme="true" visible.autoselected="true" visible.builder="false">
-                <j:ToggleButton localId="btSubAutoThemes" unboxed="true" className="toggleButtonUnboxed" selected="true" >
+                visible="true" visible.builder="false">
+
+                <j:ToggleButton localId="btSubAutoThemes" unboxed="true" className="toggleButtonUnboxed" selected="true"
+                        change="setTimeout(onChangeView,125,event)">
                     <j:icon>
                         <js:FontAwesomeToggleIcon text="swatchbook" selectedText="swatchbook" relativeSize="{FontAwesomeIcon.SIZE_X2}" />
                     </j:icon>
@@ -98,7 +100,8 @@
                     </j:beads>
                 </j:ToggleButton>
                
-                <j:ToggleButton localId="btSubAutoSelected" unboxed="true" className="toggleButtonUnboxed" selected="false" >
+                <j:ToggleButton localId="btSubAutoSelected" unboxed="true" className="toggleButtonUnboxed" selected="false" 
+                        change="setTimeout(onChangeView,125,event)">
                     <j:icon>
                         <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.CALENDAR_CHECK}" selectedText="{FontAwesome5IconType.CALENDAR_CHECK}" relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
                     </j:icon>
@@ -112,7 +115,7 @@
 
     </j:Card>
 
-    <viewsJscal:JsCalendarViewAuto_Themes localId="vAutoThemes" percentHeight="100" percentWidth="100" visible.autotheme="true" visible.builder="false"/>
-    
-    <!--<viewsJscal:JsCalendarViewYear localId="vYear" percentHeight="100" percentWidth="100" visible.autotheme="false" visible.builder="true"/>-->
+    <viewsJscal:JsCalendarViewAuto_Themes localId="vAutoThemes" percentHeight="100" percentWidth="100" visible="false" visible.autotheme="true"/>
+    <viewsJscal:JsCalendarViewAuto_Select localId="vAutoSelected" percentHeight="100" percentWidth="100" visible="false" visible.autoselected="true"/>
+    <viewsJscal:JsCalendarViewYear localId="vYear" percentHeight="100" percentWidth="100" visible="false" visible.builder="true"/>
 </j:HGroup>

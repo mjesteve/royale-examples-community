@@ -37,12 +37,12 @@
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.apache.org/royale/community/fullcalendar</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/fullcalendar-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/community/fullcalendar</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/fullcalendar-as-manifest.xml</manifest>
             </namespace>
           </namespaces>

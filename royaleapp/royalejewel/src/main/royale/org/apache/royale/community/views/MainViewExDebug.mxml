@@ -25,8 +25,8 @@
         <!-- For Debug  -->
         <!--<views:FullCalendarView name="vMasterCalendar" localId="vMasterCalendar" includeIn="init" />-->
         <j:ScrollableSectionContent>
-            <viewsCC:Test1 localId="test1" name="test1" percentWidth="100" percentHeight="100"/>
-        </<j:ScrollableSectionContent>
+            <viewsCC:Test1 localId="test1" percentWidth="100" percentHeight="100"/>
+        </j:ScrollableSectionContent>
     </j:ApplicationMainContent>
 	
 </j:ResponsiveView>

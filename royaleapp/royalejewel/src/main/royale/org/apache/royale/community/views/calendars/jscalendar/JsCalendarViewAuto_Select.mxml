@@ -8,13 +8,17 @@
 
     <fx:Script>
         <![CDATA[
+            import org.apache.royale.community.jscalendar.events.SharedEvent;
+            import org.apache.royale.community.jscalendar.AnnualJSCalendar;
 
-            [Bindable]
-            private var year:Number;
+            private var myevent:SharedEvent;
+            private var ee:AnnualJSCalendar;
 
-            private function onInit(event:Event):void{
-                
+            private function oninit(parameters:Object):void
+            {
+                ee.year = 2020;
             }
+
         ]]>
     </fx:Script>
 
@@ -24,19 +28,17 @@
     
     <j:CardHeader>
         <j:BarSection width="100%" gap="10">
-            <html:H3 text="jsCalendar - Royale Custom Control (Control AnnualJSCalendar)" className="primary-darkest block-with-text "/>
+            <html:H3 text="jsCalendar - Select" className="primary-darkest block-with-text "/>
         </j:BarSection>
     </j:CardHeader>
     <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">
             <html:H3 text="Simple - auto Calendar"/>
             <j:Label multiline="true">
-                <j:html><![CDATA[<p><b>AnnualJSCalendar</b></p>]]></j:html>
+                <j:html><![CDATA[<p><b>Static / Dynamic</b></p>]]></j:html>
             </j:Label>
     </j:CardExpandedContent>
 
-    <j:CardPrimaryContent>
-       <jc:AnnualJSCalendar localId="vAnnu" percentWidth="100" percentHeight="100"
-        year="{year}"/>
+    <j:CardPrimaryContent percentWidth="100" percentHeight="100">
 
     </j:CardPrimaryContent>
 

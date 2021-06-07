@@ -56,12 +56,12 @@
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.apache.org/royale/community/jscalendar</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/jscalendar-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/community/jscalendar</uri>
+              <uri>library://ns.apache.org/royale/community</uri>
               <manifest>${project.basedir}/src/main/resources/jscalendar-as-manifest.xml</manifest>
             </namespace>
           </namespaces>
@@ -75,14 +75,18 @@
               <name>jscalendar/*</name>
               <path>../src/main/resources/jscalendar/*</path>
             </include-file>
-           
+            <include-file>
+              <name>defaults.css</name>
+              <path>${project.basedir}/src/main/resources/defaults.css</path>
+            </include-file>
           </includeFiles>
 
           <additionalCompilerOptions>
-            ${project.compiler.options};
+            ${project.compiler.options}
             -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -keep-as3-metadata+=Inject,EventHandler,Event,Bindable;
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
             -keep-code-with-metadata=Inject;
+            -show-binding-warnings=false;
           </additionalCompilerOptions>
 
         </configuration>

@@ -17,18 +17,17 @@
 
             protected var _year:Number;
             [Bindable]
-            public function get year():Number{                
-                return _year;
+            public function get year():Number{                            
+                return isNaN(_year) ? new Date().fullYear: _year;
             }
-            public function set(value:Number):void
+            public function set year(value:Number):void
             {
                 if(isNaN(value))
-                    _year = new Date().getYear();
+                    _year = new Date().fullYear;
                 else
                     _year = value;
 
                 makeAnnuary();
-                return;
             }
 
             [Bindable]
@@ -38,13 +37,13 @@
             {
                 //Array with First day of each month
                 var arAnnuary:Array = new Array();
-                var arSelected:Array = new Array();
                 var lastIdxSel:int = 0;
 
+                //arAnnuary is the year template 
                 for( var m:int = 0; m<12; m++)
                 {
                     var itDay:DateItemDescribeVO = new DateItemDescribeVO(new Date(_year,m,1),null,new Array());
-                    if(_asourceSelected.length > 0)
+                    if(_asourceSelected && _asourceSelected.length > 0)
                     {
                         for(var yy:int=lastIdxSel; yy<_asourceSelected.length; yy++)
                         {
