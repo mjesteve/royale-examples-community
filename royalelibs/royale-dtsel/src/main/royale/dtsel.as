@@ -24,32 +24,32 @@ package
         public function dtsel(target:HTMLElement, opt:Object=null){
             
 		}
-        function DTS(elem, config):void { } 
+        public function DTS(elem, config):void { } 
 		
-		function DTBox(elem, settings):void { } 
-		function getterSetter(key, default_val):void { } 
-		function addHandler(key, handlerFn):void { }
-		function setPosition(e):void { }
-		function handler(e):void { }
-		function makeGrid(rows, cols, className, firstRowClass, clickHandler):void { }
+		public function DTBox(elem, settings):void { } 
+		public function getterSetter(key, default_val):void { } 
+		public function addHandler(key, handlerFn):void { }
+		public function setPosition(e):void { }
+		public function handler(e):void { }
+		public function makeGrid(rows, cols, className, firstRowClass, clickHandler):void { }
 
-		function makeRow(label, name, range, changeHandler):void { }
-		function getOffset(elem):void { } 
-		function empty(e):void { } 
-		function tryAppendChild(newChild, refNode):void { }
-		function hookFuncs():void { }
+		public function makeRow(label, name, range, changeHandler):void { }
+		public function getOffset(elem):void { } 
+		public function empty(e):void { } 
+		public function tryAppendChild(newChild, refNode):void { }
+		public function hookFuncs():void { }
 
-		function sortByStringIndex(arr, string):void { }
+		public function sortByStringIndex(arr, string):void { }
 
-		function filterFormatKeys(keys, format):void { }
-		function parseData(value, format, formatObj, setHooks) :void { }
-		function parseDate(value, settings):void { }
-		function parseTime(value, settings):void { }
-		function renderDate(value, settings):void { }
-		function renderTime(value, settings) :void { }
-		function isEqualDate(date1, date2):void { } 
-		function padded(val, pad, default_val):void { } 
-		function setDefaults(obj, objDefaults):void { }
+		public function filterFormatKeys(keys, format):void { }
+		public function parseData(value, format, formatObj, setHooks) :void { }
+		public function parseDate(value, settings):void { }
+		public function parseTime(value, settings):void { }
+		public function renderDate(value, settings):void { }
+		public function renderTime(value, settings) :void { }
+		public function isEqualDate(date1, date2):void { } 
+		public function padded(val, pad, default_val):void { } 
+		public function setDefaults(obj, objDefaults):void { }
 		
 		
 	}

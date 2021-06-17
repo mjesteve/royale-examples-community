@@ -14,13 +14,7 @@
 			import org.apache.royale.jewel.ToggleButton;
 			import org.apache.royale.icons.FontAwesomeIcon;
 
-			import dtsel;
-			private var mycalendar:dtsel;
-			private function onInit():void
-            {
-				mycalendar = dtsel(cal.element);
-			}
-        
+		
       
 
         ]]>
