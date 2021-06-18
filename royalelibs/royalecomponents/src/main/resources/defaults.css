@@ -105,3 +105,10 @@ jc|PageNavigatorButtonBar {
   font-weight: bold;
 }
 /* End Style - LabelFormWithButtonBar */
+
+
+.verticalSplitMinBar {
+  font-weight: 900;
+  font-size: 80% !important;
+  width: 1ex;
+}
