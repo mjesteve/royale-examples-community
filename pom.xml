@@ -257,6 +257,23 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-debug-jsDtSel</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/dtsel</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-dtsel/src/main/resources/dtsel</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
             <execution>
               <id>copy-resources-debug-echarts-js</id>
@@ -391,6 +408,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-jsDtSel</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/dtsel</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-dtsel/src/main/resources/dtsel</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

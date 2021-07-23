@@ -14,13 +14,14 @@
   <name>Royale Libs</name>
 
   <modules>
-    
+<!--
     <module>royalemobiscroll</module>
     <module>royale-js-year-calendar</module>
     <module>royalefullcalendar</module>
-    
-    <module>royalecomponents</module>
     <module>royale-jscalendar</module>
+    <module>royale-dtsel</module>
+-->
+    <module>royalecomponents</module>
   </modules>
 
   <properties>

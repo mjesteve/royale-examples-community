@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <component id="extra" class="org.apache.royale.community.jsdtsel.extra"/>
+    <component id="DtSelBasicControl" class="org.apache.royale.community.jsdtsel.DtSelBasicControl"/>
 
 </componentPackage>

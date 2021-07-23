@@ -72,8 +72,8 @@
 
           <includeFiles>
             <include-file>
-              <name>js/*</name>
-              <path>../src/main/resources/js/*</path>
+              <name>dtsel/*</name>
+              <path>../src/main/resources/dtsel/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>

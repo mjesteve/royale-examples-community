@@ -11,6 +11,8 @@ package
 	internal class JSDTSELClasses
 	{
 		import dtsel; dtsel;
+		import dtsel.DTS; DTS;
+		import org.apache.royale.community.jsdtsel.DtSelBasicControl; DtSelBasicControl;
 		
 	}
 }

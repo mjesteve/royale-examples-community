@@ -2,28 +2,26 @@
 <j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:jc="library://ns.apache.org/royale/community"
-	    xmlns:html="library://ns.apache.org/royale/html"
-
+	xmlns:html="library://ns.apache.org/royale/html"
+    initComplete="onInit()"
 	gap="0">
 
-     <fx:Script>
+    <fx:Script>
         <![CDATA[
-        import dtsel;
-	import dtsel;
-			private var mydtsel:dtsel;
+            import dtsel.DTS;
+
+			private var mydtsel:DTS;
 			private function onInit():void
             {
-				mydtsel = dtsel(cal.element);
+               //trace(dtsel.version);
+				mydtsel = new dtsel.DTS(cal.element ,{defaultView: "MONTHS"} );
 			}
         ]]>
-         </fx:Script>
+    </fx:Script>
 
     <j:beads>
         <js:ContainerDataBinding />
     </j:beads>
 	
-	<html:Div localId="cal" style="padding:0px !important;">
-
-        </html:Div>
+	<html:Div localId="cal" style="padding:0px !important;"/>
 </j:HGroup>
