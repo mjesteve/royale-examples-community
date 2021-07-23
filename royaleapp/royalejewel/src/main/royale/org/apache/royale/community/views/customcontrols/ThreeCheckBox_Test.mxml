@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    initComplete="initCompleteHandler(event)"
+    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight"> 
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.events.Event;
+            import org.apache.royale.jewel.Snackbar;
+
+            private function initCompleteHandler(event:Event):void
+            {                
+                
+            }
+
+            private function onProc(operation:String):void
+            {
+                Snackbar.show(operation);
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+    </j:beads>
+
+    <jc:ExampleHeader title="Custom Controls">
+        <jc:description>
+            <![CDATA[<strong>LabelFormWithButtonBar</strong> Custom Label.]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="States" className="primary-normal"/>
+            </j:CardHeader>
+            <j:CardPrimaryContent>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>A CheckBox can have the following four states.</p>]]></j:html>
+                </j:Label>
+
+                <j:CheckBox text="Not Checked"/>
+
+                <j:CheckBox text="Checked" selected="true"/>
+
+                <j:CheckBox text="Disabled">
+                    <j:beads>
+                        <j:Disabled/>
+                    </j:beads>
+                </j:CheckBox>
+
+                <j:CheckBox text="Checked And Disabled" selected="true">
+                    <j:beads>
+                        <j:Disabled/>
+                    </j:beads>
+                </j:CheckBox>
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+    
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="Switch Version" className="primary-normal"/>
+            </j:CardHeader>
+            <j:CardPrimaryContent>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Switch is s switch representation of CheckBox with same capabilities.</p>]]></j:html>
+                </j:Label>
+
+                <j:Switch text="Not Checked"/>
+
+                <j:Switch text="Checked" selected="true"/>
+
+                <j:Switch text="Disabled">
+                    <j:beads>
+                        <j:Disabled/>
+                    </j:beads>
+                </j:Switch>
+                
+                <j:Switch text="Checked And Disabled" selected="true">
+                    <j:beads>
+                        <j:Disabled/>
+                    </j:beads>
+                </j:Switch>
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+    
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="InputButton Size" className="primary-normal"/>
+            </j:CardHeader>
+            <j:CardPrimaryContent>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>The InputButtonSize bead allow to change dimensions of the check.</p>]]></j:html>
+                </j:Label>
+
+                <j:CheckBox text="No size"/>
+                
+                <j:CheckBox text="width and height to 60">
+                    <j:beads>
+                        <j:InputButtonSize width="60" height="60"/>
+                    </j:beads>
+                </j:CheckBox>
+
+                <j:CheckBox text="Only width to 45">
+                    <j:beads>
+                        <j:InputButtonSize width="45"/>
+                    </j:beads>
+                </j:CheckBox>
+
+                <j:CheckBox text="Only height to 35 and disabled" selected="true">
+                    <j:beads>
+                        <j:Disabled localId="opt3disable" disabled="true"/>
+                        <j:InputButtonSize height="35"/>
+                    </j:beads>
+                </j:CheckBox>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+    
+</j:Grid>
