@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:HGroup  xmlns:ns1="com.iest.winplusweb.html.*"
+<j:HGroup 
     xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
-    xmlns:wp="com.iest.winplusweb.jewel.beads.controls.*"
+	xmlns:jc="library://ns.apache.org/royale/community"
 	itemsVerticalAlign="itemsTop" itemsHorizontalAlign="itemsLeft" gap="3"
     initComplete="onInit()" rollOut="closeAutoBar()" style="flex-wrap: wrap;">
 
