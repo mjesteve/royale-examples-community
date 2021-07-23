@@ -64,7 +64,7 @@ package
 		 * link = document.createElement("link");
          * 
 		 * link = document.createElement("link");
-         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/themes/jsCalendar.eventmarks.css");
+         * link.setAttribute("rel", "stylesheet"); link.setAttribute("type", "text/css"); link.setAttribute("href", "jscalendar/extensions/jsCalendar.eventmarks.css");
          * document.head.appendChild(link);
 		 * 
 		 * script = document.createElement("script");
