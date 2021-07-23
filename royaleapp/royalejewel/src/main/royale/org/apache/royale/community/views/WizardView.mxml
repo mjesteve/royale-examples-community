@@ -8,6 +8,7 @@
     xmlns:viewsList="org.apache.royale.community.views.list.*"
     xmlns:viewsImg="org.apache.royale.community.views.image.*"
 	xmlns:viewsJscal="org.apache.royale.community.views.calendars.jscalendar.*"
+	xmlns:viewsJsdt="org.apache.royale.community.jsdtsel.*"
 	xmlns:viewsFullcal="org.apache.royale.community.views.calendars.fullcalendar.*"
     xmlns:viewsJc="org.apache.royale.community.views.customcontrols.*"
     percentWidth="100" percentHeight="100">
@@ -121,7 +122,12 @@
             </j:step>
             <views:Debug_Color percentHeight="100" percentWidth="100" />
         </j:WizardPage>
-
+        <j:WizardPage name="page11">
+            <j:step>
+                <j:WizardStep localId="s11" name="page11" previousStep="page10"/>
+            </j:step>
+            <!--<viewsJsdt:extra percentHeight="100" percentWidth="100" />-->
+        </j:WizardPage>
     </j:Wizard>
 
 </j:SectionContent>

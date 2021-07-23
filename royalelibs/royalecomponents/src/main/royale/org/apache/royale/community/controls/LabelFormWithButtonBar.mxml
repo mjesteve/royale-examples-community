@@ -3,9 +3,10 @@
     xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:wp="com.iest.winplusweb.jewel.beads.controls.*"
 	itemsVerticalAlign="itemsTop" itemsHorizontalAlign="itemsLeft" gap="3"
-    initComplete="onInit()" rollOut="closeAutoBar()">
+    initComplete="onInit()" rollOut="closeAutoBar()" style="flex-wrap: wrap;">
 
     <fx:Metadata>
         [Event(name="clickButtonMenu", type="org.apache.royale.events.Event")]
@@ -14,6 +15,7 @@
         [Event(name="add", type="org.apache.royale.events.Event")]
         [Event(name="edit", type="org.apache.royale.events.Event")]
         [Event(name="del", type="org.apache.royale.events.Event")]
+        [Event(name="all", type="org.apache.royale.events.Event")]
     </fx:Metadata>
     
     <fx:Script>
@@ -61,7 +63,9 @@
                     _icon = FontAwesome5IconType.ELLIPSIS_V;
             }
         }
-        
+
+        [Bindable]
+        public var visibleMenu:Boolean = "true";
         [Bindable]
 		public var toolTipBtBar:String = "...";
         [Bindable]
@@ -70,6 +74,8 @@
 		public var toolTipBtEdit:String = "Edit ...";
         [Bindable]
 		public var toolTipBtDel:String = "Delete ...";
+        [Bindable]
+		public var toolTipBtAll:String = "Open ...";
 
 		private var _typeButtonBar:String = "";
         [Bindable]
@@ -100,6 +106,8 @@
         public var allowEdit:Boolean = true;
         [Bindable]
         public var allowDel:Boolean = true;
+        [Bindable]
+        public var allowAll:Boolean = true;
 
         private function onInit():void
         {
@@ -166,9 +174,10 @@
         <js:ContainerDataBinding />
     </j:beads>
 
-    <j:Label localId="lbl" text="{text}"/>
+    <j:Label localId="lbl" text="{text}" className="labelFormDetail"/>
 
-    <j:HGroup localId="contentBar" gap="2" className="transitionVisible noBackgroundFocus" minWidth="0">
+    <j:HGroup localId="contentBar" gap="2" className="transitionVisible noBackgroundFocus" minWidth="0" itemsVerticalAlign="itemsCenter"
+        visible="{visibleMenu}">
 
         <j:IconButton localId="btOpenBar" unboxed="true" className="noBackgroundFocus" style="padding: 0px;" click="onClickBtnMenu()" 
             rollOver="openAutoBar()"
@@ -208,6 +217,20 @@
             </j:icon>
             <j:beads>
                 <j:ToolTip localId="btEditTTip" toolTip="{toolTipBtEdit}"/>
+            </j:beads>
+        </j:IconButton>
+        <!--
+        <html:Div style="border:none; border-left: 2px solid orange; height: 1vh; width: 2px;" className="secondary-normal"/>
+        -->
+        <j:Label text="&#124;" className="verticalSplitMinBar primary-normal" visible="{allowAdd || allowEdit || allowDel ? isOpen:false}"/>
+
+        <j:IconButton localId="btAll" unboxed="true" style="padding: 0px;" click="dispatchEvent(new Event('all'))"
+            visible="{!isOpen ? false : allowAll}">
+            <j:icon>
+                <js:FontAwesomeIcon text="{FontAwesome5IconType.COGS}" faStyle="{FontAwesomeIcon.REGULAR}" className="secondary-normal"/>
+            </j:icon>
+            <j:beads>
+                <j:ToolTip localId="btAllTTip" toolTip="{toolTipBtAll}"/>
             </j:beads>
         </j:IconButton>
     </j:HGroup>

@@ -2,7 +2,7 @@ package org.apache.royale.community.utils
 {
 
 	public class UtilArray {
-
+/*
 		public static function GetItemIndexPlusNew(A:Object,campos:Array,valores:Array,tipos:Array=null,
 												   conSegundo:Boolean=false,returnIndex:Boolean=true,comparaciones:Array=null):Object{
 
@@ -93,6 +93,6 @@ package org.apache.royale.community.utils
 
 			return res;
 		}
-
+*/
 	}
 }
