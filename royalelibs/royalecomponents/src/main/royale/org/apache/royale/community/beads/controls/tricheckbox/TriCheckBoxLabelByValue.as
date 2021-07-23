@@ -62,10 +62,10 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		public function get rejectedText():String { return _rejectedText; }
 		public function set rejectedText(value:String):void 		
 		{
+			_rejectedText = value;
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_rejectedText = value;
 			if(hostBase.state==hostBase.rejectedValue)
 				hostBase.text = value;
 		}
@@ -74,10 +74,10 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		public function get uncheckedText():String { return _uncheckedText; }
 		public function set uncheckedText(value:String):void 		
 		{
+			_uncheckedText = value;
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_uncheckedText = value;
 			if(hostBase.state==hostBase.uncheckedValue)
 				hostBase.text = value;
 		}
@@ -86,10 +86,10 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		public function get checkedText():String { return _checkedText; }
 		public function set checkedText(value:String):void 		
 		{
+			_checkedText = value;
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_checkedText = value;
 			if(hostBase.state==hostBase.checkedValue)
 				hostBase.text = value;
 		}
