@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:HGroup  xmlns:ns1="com.iest.winplusweb.html.*"gap="0"
+<j:HGroup  gap="0"
     xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:html="library://ns.apache.org/royale/html"
-    xmlns:c="org.apache.royale.community.beads.itemRenderers.*"
-	xmlns:wp="library://ns.apache.org/royale/community"
+	xmlns:jc="library://ns.apache.org/royale/community"
 	style="padding: 0px;"
-	 initComplete="onInitComplete()">
+	initComplete="onInitComplete()">
 
      <fx:Script>
         <![CDATA[
@@ -55,7 +53,7 @@
             <j:beads>
                 <j:ListPresentationModel variableRowHeight="false" rowHeight="200"/>
                 <j:HorizontalLayout gap="3"/>
-				   <wp:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>
+				   <jc:ListItemRendererPropertiesBead propertiesIt="{propItList}"/>
             </j:beads>
         </j:List>
 
