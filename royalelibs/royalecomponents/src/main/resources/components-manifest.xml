@@ -20,10 +20,12 @@
 
 
 <componentPackage>
-    <!-- Custrom Beads -->
+    <!-- Custom Beads -->
     <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
+    <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
+    <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
 
     <!-- Extends Jewel Beads -->
     <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
@@ -49,6 +51,7 @@
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
     <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
+    <component id="ThreeCheckBox" class="org.apache.royale.community.jewel.ThreeCheckBox"/>
     <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
 
 </componentPackage>
