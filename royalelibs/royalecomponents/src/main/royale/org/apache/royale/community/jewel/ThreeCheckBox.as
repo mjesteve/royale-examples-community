@@ -77,30 +77,22 @@ package org.apache.royale.community.jewel
 
         private var isInitialized:Boolean = false;
         private var stateInit:String="";
+
         private function beadsAddedHandler(event:Event):void
         {
 			removeEventListener("beadsAdded", beadsAddedHandler);
+            
+            isInitialized = true;
 
             if( stateInit != "" )
                 updateState( stateInit );
             else
                 updateState( STATE_UNCHECKED );
 
-            isInitialized = true;
             dispatchEvent(new Event(Event.COMPLETE));
         }
 
-        [Bindable("change")]
-        /**
-         *  <code>true</code> if the check mark is displayed, <code>false</code> otherwise.
-         *  
-         *  @default false
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
+        [Bindable]
 		override public function get selected():Boolean
 		{
             COMPILE::SWF
@@ -109,7 +101,7 @@ package org.apache.royale.community.jewel
             }
             COMPILE::JS
             {
-            return input.checked;
+                return input.checked;
             }
 		}
         /**
@@ -123,30 +115,15 @@ package org.apache.royale.community.jewel
             }
             COMPILE::JS
             {
-            if(!isInitialized && !isClickCommit && !isValueCommit)
-            {
-                if( stateInit == "" || stateInit != STATE_INDETERMINATED)
-                    stateInit = value ? STATE_CHECKED : STATE_UNCHECKED;
-                return;
-            }
-
-            if(input.checked == value && state != STATE_INDETERMINATED)
-                return;
-            
-            input.indeterminate = false;
-            input.checked = value;
-            
-            if(!isClickCommit)
-            {                
-                _state =  value ? STATE_CHECKED : STATE_UNCHECKED;
-                if(!isValueCommit)
-                    dispatchEvent(new Event(Event.CHANGE));
-            }
-
+                if(value)
+                    state = STATE_CHECKED;
+                else{
+                    state = STATE_UNCHECKED;
+                }
             }
 		}
 
-        [Bindable("change")]
+        [Bindable]
 		public function get indeterminated():Boolean
 		{
             COMPILE::SWF
@@ -168,28 +145,137 @@ package org.apache.royale.community.jewel
 			//IToggleButtonModel(model).selected = value;
             }
             COMPILE::JS
-            {
-            if(!isInitialized && !isClickCommit && !isValueCommit)
-            {
+            {            
                 if(value)
-                    stateInit = STATE_INDETERMINATED;
-                return;
-            }
-
-            if(input.indeterminate == value)
-                return;
-
-            input.indeterminate = value;
-
-            if(!isClickCommit && value)
-            {
-                _state = STATE_INDETERMINATED;
-                if(!isValueCommit)
-                    dispatchEvent(new Event(Event.CHANGE));
-            }
-
+                    state = STATE_INDETERMINATED;
+                else{
+                    //next state
+                    state = STATE_UNCHECKED;
+                }
             }
 		}
+
+        public var STATE_UNCHECKED:String = "0";
+        public var STATE_CHECKED:String = "1";
+        public var STATE_INDETERMINATED:String = "-1";
+
+        private var isValueCommit:Boolean = false;
+
+        private var _state:String;
+        /**
+         * 
+         * Component state: checked - unchecked - indeterminate
+         */
+        public function get state():String{
+            return _state;
+        }
+        [Bindable]
+        public function set state(value:String):void
+        {
+            if(_state == value)
+                return;
+
+            isValueCommit = true;
+
+            _state = value;
+
+            updateState(value);
+
+            isValueCommit = false;
+            
+            if(!isInitialized)
+                return;
+
+            if(!isClickCommit)            
+                dispatchEvent(new Event("valueCommit"));
+            else
+                dispatchEvent(new Event("clickCommit"));
+            
+            dispatchEvent(new Event(Event.CHANGE));
+        }
+
+        protected function updateState(value:String):void 
+        {
+            if( !isInitialized )
+            {
+                stateInit = value;
+                return;
+            }
+
+            switch(value) {
+                case STATE_INDETERMINATED:
+                    input.indeterminate = true;
+                    input.checked = false;
+                    break;
+                case STATE_UNCHECKED:
+                    input.indeterminate = false;
+                    input.checked = false;
+                    break;
+                case STATE_CHECKED:
+                    input.indeterminate = false;
+                    input.checked = true;
+                    break;
+            }
+        }
+
+        private var isClickCommit:Boolean = false;
+        /*
+            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminated
+        */
+        protected function changeState():void 
+        {
+            isClickCommit = true;
+
+            if(_state == STATE_INDETERMINATED)
+                state = STATE_UNCHECKED;
+            else if( _state == STATE_CHECKED)
+                state = STATE_INDETERMINATED;
+            else
+                state = STATE_CHECKED;
+            
+            isClickCommit = false;
+        }
+        /**
+         * Test. Debug all dispatched events
+         */
+        /*override public function dispatchEvent(event:Event):Boolean {
+            trace("********** ThreeCheckBox: ", event.type);
+            return super.dispatchEvent(event);
+        }*/
+
+        /**
+         * 
+         * The selected and indeterminate properties, in isolation, cannot provide the real value represented in the component 
+         * because the input-checkbox allows a "selected" state with an "indeterminate". 
+         * 
+         * To know the real state of the component, the new property "state" must be interrogated. 
+         * The following functions are created to retrieve it directly.
+         * 
+         */
+        /**
+         * 
+         * @return true, if the component is in "state" selected
+         */
+        public function isChecked():Boolean
+        {
+            return state == STATE_CHECKED ? true:false;
+        }
+        /**
+         * 
+         * @return true, if the component is in "state" unselected
+         */
+        public function isUnChecked():Boolean
+        {
+            return state == STATE_UNCHECKED ? true:false;
+        }
+        /**
+         * 
+         * @return true, if the component is in "state" indeterminated
+         */
+        public function isIndeterminated():Boolean
+        {
+            return state == STATE_INDETERMINATED ? true:false;
+        }
 
         /**
          *  The string used as a label for the ThreeCheckBox.
@@ -321,110 +407,6 @@ package org.apache.royale.community.jewel
          * It's creation is deferred since Checkboxes sometimes are used without labels.
          */
         protected var textNode:Text;
-
-        public var STATE_UNCHECKED:String = "0";
-        public var STATE_CHECKED:String = "1";
-        public var STATE_INDETERMINATED:String = "-1";
-
-        private var isValueCommit:Boolean = false;
-
-        private var _state:String;
-        /**
-         * 
-         * Component state: checked - unchecked - indeterminate
-         */
-        public function get state():String{
-            return _state;
-        }
-        [Bindable]
-        public function set state(value:String):void
-        {
-            isValueCommit = true;
-
-            updateState(value);
-
-            if(!isClickCommit && isInitialized)
-            {
-                dispatchEvent(new Event(Event.CHANGE));
-            }else{
-                dispatchEvent(new Event("valueCommit"));
-            }
-                
-            isValueCommit = false;
-        }
-
-        protected function updateState(value:String):void 
-        {
-            if(_state == value)
-                return;
-
-            switch(value) {
-                case STATE_INDETERMINATED:
-                    indeterminated = true;
-                    break;
-                case STATE_UNCHECKED:
-                    selected = false;
-                    break;
-                case STATE_CHECKED:
-                    selected = true;
-                    break;
-            }
-            _state = value;
-        }
-
-        private var isClickCommit:Boolean = false;
-        /*
-            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminated
-        */
-        protected function changeState():void 
-        {
-            isClickCommit = true;
-
-            if(_state == STATE_INDETERMINATED)
-                updateState( STATE_UNCHECKED );
-            else if( _state == STATE_CHECKED)
-                updateState( STATE_INDETERMINATED );
-            else
-                updateState( STATE_CHECKED );
-            
-            dispatchEvent(new Event(Event.CHANGE));
-            
-            isClickCommit = false;
-        }
-
-        /**
-         * 
-         * The selected and indeterminate properties, in isolation, cannot provide the real value represented in the component 
-         * because the input-checkbox allows a "selected" state with an "indeterminate". 
-         * 
-         * To know the real state of the component, the new property "state" must be interrogated. 
-         * The following functions are created to retrieve it directly.
-         * 
-         */
-        /**
-         * 
-         * @return true, if the component is in "state" selected
-         */
-        public function isChecked():Boolean
-        {
-            return state == STATE_CHECKED ? true:false;
-        }
-        /**
-         * 
-         * @return true, if the component is in "state" unselected
-         */
-        public function isUnChecked():Boolean
-        {
-            return state == STATE_UNCHECKED ? true:false;
-        }
-        /**
-         * 
-         * @return true, if the component is in "state" indeterminated
-         */
-        public function isIndeterminated():Boolean
-        {
-            return state == STATE_INDETERMINATED ? true:false;
-        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement

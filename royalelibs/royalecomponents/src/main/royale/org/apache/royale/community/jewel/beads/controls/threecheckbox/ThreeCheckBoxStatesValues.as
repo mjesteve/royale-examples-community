@@ -33,7 +33,6 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 				
 			if( checkedValue != "")
 				hostBase.STATE_CHECKED = checkedValue;
-				
 		}
 
 		protected var hostBase:ThreeCheckBox;
