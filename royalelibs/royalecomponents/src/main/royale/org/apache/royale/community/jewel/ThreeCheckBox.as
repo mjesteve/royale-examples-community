@@ -76,7 +76,7 @@ package org.apache.royale.community.jewel
         }
 
         private var isInitialized:Boolean = false;
-        private var stateInit:String="";
+        private var stateInit:String="init";
 
         private function beadsAddedHandler(event:Event):void
         {
@@ -84,10 +84,9 @@ package org.apache.royale.community.jewel
             
             isInitialized = true;
 
-            if( stateInit != "" )
-                updateState( stateInit );
-            else
-                updateState( STATE_UNCHECKED );
+            if( stateInit == "init" )
+                stateInit = STATE_UNCHECKED;
+            state = stateInit;
 
             dispatchEvent(new Event(Event.COMPLETE));
         }
@@ -115,7 +114,7 @@ package org.apache.royale.community.jewel
             }
             COMPILE::JS
             {
-                if(value)
+                if(value)   
                     state = STATE_CHECKED;
                 else{
                     state = STATE_UNCHECKED;
@@ -159,29 +158,34 @@ package org.apache.royale.community.jewel
         public var STATE_CHECKED:String = "1";
         public var STATE_INDETERMINATED:String = "-1";
 
-        private var isValueCommit:Boolean = false;
-
         private var _state:String;
         /**
          * 
          * Component state: checked - unchecked - indeterminate
          */
-        public function get state():String{
-            return _state;
+        public function get state():String
+        {
+            if( !isInitialized )
+                return stateInit;
+            else
+                return _state;
         }
-        [Bindable]
+        [Bindable("change")]
         public function set state(value:String):void
         {
+
+            if( !isInitialized )
+            {
+                stateInit = value;
+                return;
+            }
+
             if(_state == value)
                 return;
 
-            isValueCommit = true;
-
             _state = value;
 
-            updateState(value);
-
-            isValueCommit = false;
+            applyState(value);
             
             if(!isInitialized)
                 return;
@@ -194,13 +198,8 @@ package org.apache.royale.community.jewel
             dispatchEvent(new Event(Event.CHANGE));
         }
 
-        protected function updateState(value:String):void 
+        protected function applyState(value:String):void 
         {
-            if( !isInitialized )
-            {
-                stateInit = value;
-                return;
-            }
 
             switch(value) {
                 case STATE_INDETERMINATED:
@@ -238,10 +237,10 @@ package org.apache.royale.community.jewel
         /**
          * Test. Debug all dispatched events
          */
-        /*override public function dispatchEvent(event:Event):Boolean {
+        override public function dispatchEvent(event:Event):Boolean {
             trace("********** ThreeCheckBox: ", event.type);
             return super.dispatchEvent(event);
-        }*/
+        }
 
         /**
          * 

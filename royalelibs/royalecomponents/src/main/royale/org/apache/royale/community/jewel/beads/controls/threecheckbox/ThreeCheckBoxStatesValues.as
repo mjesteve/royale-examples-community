@@ -24,22 +24,36 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 		 */
 		public function set strand(value:IStrand):void
 		{
-			hostBase = value as ThreeCheckBox;
-			if( indeterminatedValue != "")
+			var hostBase:ThreeCheckBox = value as ThreeCheckBox;
+			
+			var oldstateval:String = hostBase.state;
+			var newstateval:String = hostBase.state;
+
+			if( indeterminatedValue != "" && hostBase.STATE_INDETERMINATED != indeterminatedValue ){
+				if(oldstateval == hostBase.STATE_INDETERMINATED)
+					newstateval = indeterminatedValue;
 				hostBase.STATE_INDETERMINATED = indeterminatedValue;
+			}
 				
-			if( uncheckedValue != "")
+			if( uncheckedValue != "" && hostBase.STATE_UNCHECKED != uncheckedValue ){
+				if(oldstateval == hostBase.STATE_UNCHECKED)
+					newstateval = uncheckedValue;
 				hostBase.STATE_UNCHECKED = uncheckedValue;
+			}
 				
-			if( checkedValue != "")
+			if( checkedValue != "" && hostBase.STATE_CHECKED != checkedValue ){
+				if(oldstateval == hostBase.STATE_CHECKED)
+					newstateval = checkedValue;
 				hostBase.STATE_CHECKED = checkedValue;
+			}
+			
+			if(oldstateval != newstateval)
+				hostBase.state = newstateval;
 		}
 
-		protected var hostBase:ThreeCheckBox;
-
-		public var indeterminatedValue:String;
-		public var uncheckedValue:String;
-		public var checkedValue:String;
+		public var indeterminatedValue:String= "";
+		public var uncheckedValue:String= "";
+		public var checkedValue:String= "";
 		
 	}
 }
