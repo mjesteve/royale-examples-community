@@ -91,6 +91,16 @@ package org.apache.royale.community.jewel
             dispatchEvent(new Event(Event.COMPLETE));
         }
 
+        private var _rejectedVersion:Boolean;        
+        public function set rejectedVersion(value:Boolean):void
+        { 
+            _rejectedVersion = value; 
+            if(value)
+            {
+                toggleClass("rejected",true);
+            }
+        }
+
         [Bindable]
 		override public function get selected():Boolean
 		{
@@ -154,9 +164,15 @@ package org.apache.royale.community.jewel
             }
 		}
 
-        public var STATE_UNCHECKED:String = "0";
-        public var STATE_CHECKED:String = "1";
-        public var STATE_INDETERMINATED:String = "-1";
+        private var _STATE_UNCHECKED:String = "0";
+        public function get STATE_UNCHECKED():String{ return _STATE_UNCHECKED; }
+        public function set STATE_UNCHECKED(value:String):void{ _STATE_UNCHECKED = value; }
+        private var _STATE_CHECKED:String = "1";
+        public function get STATE_CHECKED():String{ return _STATE_CHECKED; }
+        public function set STATE_CHECKED(value:String):void{ _STATE_CHECKED = value; }
+        private var _STATE_INDETERMINATED:String = "-1";
+        public function get STATE_INDETERMINATED():String{ return _STATE_INDETERMINATED; }
+        public function set STATE_INDETERMINATED(value:String):void{ _STATE_INDETERMINATED = value; }
 
         private var _state:String;
         /**
@@ -366,7 +382,9 @@ package org.apache.royale.community.jewel
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var input:HTMLInputElement;
+        private var _input:HTMLInputElement;
+        public function get input():HTMLInputElement{ return _input; }
+        public function set input(value:HTMLInputElement):void{ _input = value; }
 
         /**
          *  the input button

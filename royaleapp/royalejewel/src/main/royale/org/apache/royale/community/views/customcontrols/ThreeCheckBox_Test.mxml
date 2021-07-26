@@ -8,6 +8,35 @@
     
     <fx:Script>
         <![CDATA[
+            import org.apache.royale.community.jewel.ThreeCheckBox;
+
+        [Bindable]
+        private var trcGroupText:String = "None";
+        private function computeTrcGroup():void
+        {
+            var numcheck:int = 0;
+            
+            numcheck += trcOp1.selected?1:0;
+            numcheck += trcOp2.selected?1:0;            
+            numcheck += trcOp3.selected?1:0;
+
+            if(numcheck == 3)
+            {
+                trcGroup.selected = true;
+                trcGroupText = "All";
+            }
+            else if(numcheck == 0)
+            {
+                trcGroup.selected = false;
+                trcGroupText = "None";
+            }
+            else
+            {
+                trcGroup.indeterminated = true;
+                trcGroupText = "Some";
+            }
+            
+        }
 
         ]]>
     </fx:Script>
@@ -24,7 +53,7 @@
         </jc:description>
     </jc:ExampleHeader>
 
-    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
             <j:CardHeader>
                 <j:CardTitle text="States" className="primary-normal"/>
@@ -32,10 +61,14 @@
             <j:CardPrimaryContent>
 
                 <j:Label multiline="true">
-                    <j:html><![CDATA[<p>A ThreeCheckBox can have the following six states.</p>]]></j:html>
+                    <j:html><![CDATA[<p>A <strong>ThreeCheckBox</strong> can have the following six states.</p>]]></j:html>
                 </j:Label>
 
-                <jc:ThreeCheckBox text="Not Checked"/>
+                <jc:ThreeCheckBox text="Not Checked (with ReadOnly bead)">
+                    <jc:beads>
+                        <jc:ReadOnly/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>
 
                 <jc:ThreeCheckBox text="Checked" selected="true"/>
 
@@ -62,6 +95,79 @@
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader itemsVerticalAlign="itemsCenter" gap="10">
+                <j:BarSection gap="3" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter">
+                    <jc:ThreeCheckBox localId="trcGroup" text="{trcGroupText}" >
+                        <jc:beads>
+                            <jc:ReadOnly/>
+                            <j:InputButtonSize width="28" height="28"/>
+                        </jc:beads>
+                    </jc:ThreeCheckBox>
+                </j:BarSection>
+
+                <j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
+                    <j:CardTitle text="Programmatically set State" className="primary-normal" style="flex:0 1 auto;"/>
+                </j:BarSection>
+            </j:CardHeader>
+            <j:CardPrimaryContent>
+
+                <j:CheckBox localId="trcOp1" text="Op 1" change="computeTrcGroup()"/>
+                <j:CheckBox localId="trcOp2" text="Op 2" change="computeTrcGroup()"/>
+                <j:CheckBox localId="trcOp3" text="Op 3" change="computeTrcGroup()"/>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Select one or more options.</p>]]></j:html>
+                </j:Label>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="States - Rejected Version" className="primary-normal"/>
+            </j:CardHeader>
+            <j:CardPrimaryContent>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>By setting the property <strong>"rejectedVersion=true"</strong> the indeterminate status symbol appears as a "minus sign".</p>]]></j:html>
+                </j:Label>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Not Checked (with ReadOnly bead)">
+                    <jc:beads>
+                        <jc:ReadOnly/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Checked" selected="true"/>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Rejected" indeterminated="true"/>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Disabled">
+                    <jc:beads>
+                        <j:Disabled/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Checked And Disabled" selected="true">
+                    <jc:beads>
+                        <j:Disabled/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>
+
+                <jc:ThreeCheckBox rejectedVersion="true" text="Rejected And Disabled" indeterminated="true">
+                    <jc:beads>
+                        <j:Disabled/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
     
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
@@ -74,22 +180,28 @@
                     <j:html><![CDATA[<p>The <strong>ThreeCheckBoxLabelState</strong> bead allows us to display a different Text for each state.</p>]]></j:html>
                 </j:Label>
 
-                <jc:ThreeCheckBox selected="true">
+                <jc:ThreeCheckBox indeterminated="true">
                     <jc:beads>
                         <jc:ThreeCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminatedText="Indeterminate..."/>
                     </jc:beads>
-                </jc:ThreeCheckBox>                
+                </jc:ThreeCheckBox>
 
+                <jc:ThreeCheckBox rejectedVersion="true" indeterminated="true">
+                    <jc:beads>
+                        <jc:ThreeCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminatedText="Rejected..."/>
+                    </jc:beads>
+                </jc:ThreeCheckBox>   
+               
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>The <strong>ThreeCheckBoxStatesValues</strong> bead allows to set a custom value for each state. <p>By default, the "unchecked" state is assigned a value of "0", the "checked" state a value of "1" and the "indeterminate" state a value of "-1".</p>]]></j:html>
                 </j:Label>
 
                 <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter" gap="5">
-                    <j:Label text="Default: "/>
+                    <j:Label text="Default: " width="100"/>
                     <jc:ThreeCheckBox localId="trCh" text="{trCh.state}"/>
                 </j:HGroup>
                 <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter" gap="5">
-                    <j:Label text="Custom: "/>
+                    <j:Label text="Custom: " width="100"/>
                     <jc:ThreeCheckBox localId="trCh1" text="{trCh1.state}" >
                         <jc:beads>
                             <jc:ThreeCheckBoxStatesValues checkedValue="valChecked" uncheckedValue="valUnchecked" indeterminatedValue="valIndeterminate"/>

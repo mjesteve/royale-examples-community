@@ -24,6 +24,7 @@
     <component id="TriCheckBoxLabelByValue" class="org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue"/>
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
+    <component id="ReadOnly" class="org.apache.royale.community.beads.ReadOnly"/>
     <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
     <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
 
