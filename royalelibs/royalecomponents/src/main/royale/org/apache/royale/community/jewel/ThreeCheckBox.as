@@ -101,7 +101,7 @@ package org.apache.royale.community.jewel
             }
         }
 
-        [Bindable]
+        [Bindable("change")]
 		override public function get selected():Boolean
 		{
             COMPILE::SWF
@@ -110,7 +110,7 @@ package org.apache.royale.community.jewel
             }
             COMPILE::JS
             {
-                return input.checked;
+                return input.checked && !input.indeterminate;
             }
 		}
         /**
@@ -132,7 +132,7 @@ package org.apache.royale.community.jewel
             }
 		}
 
-        [Bindable]
+        [Bindable("change")]
 		public function get indeterminated():Boolean
 		{
             COMPILE::SWF
@@ -141,7 +141,7 @@ package org.apache.royale.community.jewel
             }
             COMPILE::JS
             {
-            return input.indeterminate;
+                return input.indeterminate;
             }
 		}
         /**
@@ -187,6 +187,7 @@ package org.apache.royale.community.jewel
                 return _state;
         }
         [Bindable("change")]
+        /*[Inspectable(category="General", enumeration="stateChecked,stateUnchecked,stateIndeterminated")]*/
         public function set state(value:String):void
         {
 
@@ -223,11 +224,17 @@ package org.apache.royale.community.jewel
                     input.checked = false;
                     break;
                 case STATE_UNCHECKED:
-                    input.indeterminate = false;
+                    if(input.indeterminate)
+                    {
+                        input.indeterminate = false;
+                    }
                     input.checked = false;
                     break;
                 case STATE_CHECKED:
-                    input.indeterminate = false;
+                    if(input.indeterminate)
+                    {
+                        input.indeterminate = false;
+                    }
                     input.checked = true;
                     break;
             }

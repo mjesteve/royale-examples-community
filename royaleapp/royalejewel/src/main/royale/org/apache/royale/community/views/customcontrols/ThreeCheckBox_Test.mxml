@@ -53,7 +53,7 @@
         </jc:description>
     </jc:ExampleHeader>
 
-    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
             <j:CardHeader>
                 <j:CardTitle text="States" className="primary-normal"/>
@@ -96,37 +96,7 @@
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-        <j:Card>
-            <j:CardHeader itemsVerticalAlign="itemsCenter" gap="10">
-                <j:BarSection gap="3" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter">
-                    <jc:ThreeCheckBox localId="trcGroup" text="{trcGroupText}" >
-                        <jc:beads>
-                            <jc:ReadOnly/>
-                            <j:InputButtonSize width="28" height="28"/>
-                        </jc:beads>
-                    </jc:ThreeCheckBox>
-                </j:BarSection>
-
-                <j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
-                    <j:CardTitle text="Programmatically set State" className="primary-normal" style="flex:0 1 auto;"/>
-                </j:BarSection>
-            </j:CardHeader>
-            <j:CardPrimaryContent>
-
-                <j:CheckBox localId="trcOp1" text="Op 1" change="computeTrcGroup()"/>
-                <j:CheckBox localId="trcOp2" text="Op 2" change="computeTrcGroup()"/>
-                <j:CheckBox localId="trcOp3" text="Op 3" change="computeTrcGroup()"/>
-
-                <j:Label multiline="true">
-                    <j:html><![CDATA[<p>Select one or more options.</p>]]></j:html>
-                </j:Label>
-
-            </j:CardPrimaryContent>
-        </j:Card>
-    </j:GridCell>
-
-    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
             <j:CardHeader>
                 <j:CardTitle text="States - Rejected Version" className="primary-normal"/>
@@ -164,6 +134,51 @@
                         <j:Disabled/>
                     </jc:beads>
                 </jc:ThreeCheckBox>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            
+            <j:CardHeader itemsVerticalAlign="itemsCenter" gap="10">
+                <j:CardTitle text="Programmatically set State" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Select one or more options.</p>]]></j:html>
+                </j:Label>
+                
+                <j:VGroup percentWidth="100" style="padding: 0; border: 1px solid #29A89F; border-radius: 10px;" gap="5">
+                    <j:HGroup itemsVerticalAlign="itemsCenter" percentWidth="100" style="background-color: #c4cfce; color: #29A89F; padding:10px; border-radius: 10px 10px 0 0;">
+                        <jc:ThreeCheckBox localId="trcGroup" text="{trcGroupText}">
+                            <jc:beads>
+                                <jc:ReadOnly/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
+                    </j:HGroup>
+
+                    <j:VGroup percentWidth="100" style="padding: 7px 20px 20px 20px;" gap="3">
+                        <j:CheckBox localId="trcOp1" text="Op 1" change="computeTrcGroup()"/>
+                        <j:CheckBox localId="trcOp2" text="Op 2" change="computeTrcGroup()"/>
+                        <j:CheckBox localId="trcOp3" text="Op 3" change="computeTrcGroup()"/>
+                    </j:VGroup>
+                </j:VGroup>
+            
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Set the desired state.</p>]]></j:html>
+                </j:Label>
+                
+                <j:HGroup percentWidth="100" gap="3">
+                    <j:Button text="Set unchecked" click="trcSetManual.selected=false;"/>
+                    <j:Button text="Set checked" click="trcSetManual.selected=true;"/>
+                    <j:Button text="Set rejected" click="trcSetManual.indeterminated=true;"/>
+                </j:HGroup>
+
+                <jc:ThreeCheckBox localId="trcSetManual" rejectedVersion="true"/>
 
             </j:CardPrimaryContent>
         </j:Card>
@@ -213,7 +228,7 @@
         </j:Card>
     </j:GridCell>
     
-    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
             <j:CardHeader>
                 <j:CardTitle text="InputButton Size" className="primary-normal"/>
@@ -221,30 +236,56 @@
             <j:CardPrimaryContent>
 
                 <j:Label multiline="true">
-                    <j:html><![CDATA[<p>The InputButtonSize bead allow to change dimensions of the check.</p>]]></j:html>
+                    <j:html><![CDATA[<p>The <strong>InputButtonSize</strong> bead allow to change dimensions of the check.</p><p>Left: Default version, Right: Reject version</p>]]></j:html>
                 </j:Label>
 
-                <jc:ThreeCheckBox text="No size"/>
-                
-                <jc:ThreeCheckBox text="width and height to 60">
-                    <jc:beads>
-                        <j:InputButtonSize width="60" height="60"/>
-                    </jc:beads>
-                </jc:ThreeCheckBox>
+                <j:HGroup percentWidth="100" >
+                    <j:VGroup percentWidth="50" gap="3">
+                        <jc:ThreeCheckBox text="No size"/>
+                        
+                        <jc:ThreeCheckBox text="width and height to 60">
+                            <jc:beads>
+                                <j:InputButtonSize width="60" height="60"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
 
-                <jc:ThreeCheckBox text="Only width to 45">
-                    <jc:beads>
-                        <j:InputButtonSize width="45"/>
-                    </jc:beads>
-                </jc:ThreeCheckBox>
+                        <jc:ThreeCheckBox text="Only width to 45" selected="true">
+                            <jc:beads>
+                                <j:InputButtonSize width="45"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
 
-                <jc:ThreeCheckBox text="Only height to 35 and disabled" selected="true">
-                    <jc:beads>
-                        <j:Disabled localId="opt3disable" disabled="true"/>
-                        <j:InputButtonSize height="35"/>
-                    </jc:beads>
-                </jc:ThreeCheckBox>
+                        <jc:ThreeCheckBox text="Only height to 35 and disabled" indeterminated="true">
+                            <jc:beads>
+                                <j:Disabled localId="opt3disable" disabled="true"/>
+                                <j:InputButtonSize height="35"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
+                    </j:VGroup>
+            
+                    <j:VGroup percentWidth="50" gap="3">
+                        <jc:ThreeCheckBox rejectedVersion="true" text="No size"/>
+                        
+                        <jc:ThreeCheckBox rejectedVersion="true" text="width and height to 60">
+                            <jc:beads>
+                                <j:InputButtonSize width="60" height="60"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
 
+                        <jc:ThreeCheckBox rejectedVersion="true" text="Only width to 45" selected="true">
+                            <jc:beads>
+                                <j:InputButtonSize width="45"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
+
+                        <jc:ThreeCheckBox rejectedVersion="true" text="Only height to 35 and disabled" indeterminated="true">
+                            <jc:beads>
+                                <j:Disabled disabled="true"/>
+                                <j:InputButtonSize height="35"/>
+                            </jc:beads>
+                        </jc:ThreeCheckBox>
+                    </j:VGroup>
+                </j:HGroup>
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>
