@@ -1,15 +1,16 @@
-package org.apache.royale.community.beads.controls.tricheckbox
+package org.apache.royale.community.jewel.beads.controls.threecheckbox
 {
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.community.controls.TriCheckBox;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.community.jewel.ThreeCheckBox;
 
 	
-	public class TriCheckBoxLabelByValue extends Bead
+	public class ThreeCheckBoxLabelState extends Bead
 	{
 		
-		public function TriCheckBoxLabelByValue()
+		public function ThreeCheckBoxLabelState()
 		{
 		}
 		
@@ -26,52 +27,57 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		{
 			_strand = value;
 			listenOnStrand("change", textLabelChangeHandler);
+			listenOnStrand(Event.COMPLETE, textLabelChangeHandler);
 			//listenOnStrand("valueCommit", textLabelChangeHandler);
-			updateHost();
+			//listenOnStrand("clickCommit", textLabelChangeHandler);
 		}
+
+		private function get hostBase():ThreeCheckBox
+		{
+			return _strand as ThreeCheckBox;
+		}
+		
 		protected function textLabelChangeHandler(event:Event):void
 		{
-			updateHost()
+			if(event.type == Event.COMPLETE)
+				IEventDispatcher(_strand).removeEventListener(Event.COMPLETE, textLabelChangeHandler);
+			updateHost();
 		}
 
 		private var _lastText:String;
 		protected function updateHost():void
 		{
-			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if (!hostBase)
 				return;
-			
-			if(!_lastText)
-				_lastText = hostBase.text;
-				
 			switch(hostBase.state)
 			{
-				case hostBase.rejectedValue:
-					_lastText = _rejectedText;
+				case hostBase.STATE_INDETERMINATED:
+					_lastText = _indeterminatedText;
 					break;
-				case hostBase.uncheckedValue:
+				case hostBase.STATE_UNCHECKED:
 					_lastText = _uncheckedText;
 					break;
-				case hostBase.checkedValue:
+				case hostBase.STATE_CHECKED:
 					_lastText = _checkedText;
 					break;			
 				default:
 					break;
 			}
-
-			hostBase.text = _lastText;				
+			if(_lastText != hostBase.text)
+				hostBase.text = _lastText;
+				
         }
 
-		private var _rejectedText:String;
-		public function get rejectedText():String { return _rejectedText; }
-		public function set rejectedText(value:String):void 		
+		private var _indeterminatedText:String;
+		public function get indeterminatedText():String { return _indeterminatedText; }
+		public function set indeterminatedText(value:String):void 		
 		{
-			_rejectedText = value;
-			/*const hostBase:TriCheckBox = _strand as TriCheckBox;
+			_indeterminatedText = value;
+
 			if(!hostBase)
 				return;
-			if(hostBase.state==hostBase.rejectedValue)
-				hostBase.text = value;*/
+			if(hostBase.state == hostBase.STATE_INDETERMINATED)
+				hostBase.text = value;
 		}
 
 		private var _uncheckedText:String;
@@ -79,13 +85,11 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		public function set uncheckedText(value:String):void 		
 		{
 			_uncheckedText = value;
-			/*
-			const hostBase:TriCheckBox = _strand as TriCheckBox;
+
 			if(!hostBase)
 				return;
-			if(hostBase.state==hostBase.uncheckedValue)
+			if(hostBase.state == hostBase.STATE_UNCHECKED)
 				hostBase.text = value;
-			*/
 		}
 
 		private var _checkedText:String;
@@ -93,13 +97,11 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		public function set checkedText(value:String):void 		
 		{
 			_checkedText = value;
-			/*
-			const hostBase:TriCheckBox = _strand as TriCheckBox;
+
 			if(!hostBase)
 				return;
-			if(hostBase.state==hostBase.checkedValue)
+			if(hostBase.state == hostBase.STATE_CHECKED)
 				hostBase.text = value;
-			*/
 		}
 		
 	}
