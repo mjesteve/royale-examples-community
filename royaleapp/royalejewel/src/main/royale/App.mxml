@@ -21,7 +21,7 @@
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
-	xmlns:views="org.apache.royale.community.views.*"
+	xmlns:mainviews="org.apache.royale.community.views.main.*"
 	initialize="setUp()">
 
 	<fx:Style source="../../main/resources/defaults.css"/>
@@ -41,7 +41,7 @@
 -->
 	<j:initialView>
 		
-		<views:MainView/> 
+		<mainviews:MainView/> 
 	
 	</j:initialView>
 </j:Application>
