@@ -84,32 +84,50 @@
 
      <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
         <j:SectionContent>
-
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
                     
-            <j:Grid percentWidth="25" percentHeight="50">
+            <j:Grid gap="true">
                     
                 <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="2">
-
+<!--
                                 <j:ComboBox localId="jcb1" percentWidth="100"
                                     dataProvider="{dpClassBig}" labelField="displaytext">
                                     <j:beads>
-                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
-                                        <j:SearchFilter/> itemRenderer="org.apache.royale.community.views.tmp.itemRenderers.LabelTruncateItemRenderer"-->
+                                        <js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
+                                        <j:SearchFilter/>
                                     </j:beads>
                                 </j:ComboBox>
 
+                    <j:DropDownList localId="jdd" percentWidth="100" 
+                                    dataProvider="{dpClassBig}" labelField="displaytext">
+                        <j:beads>
+                            <js:CollectionSelectedItemByField valueField="codigo" selectedValue="10" />
+                        </j:beads>
+                    </j:DropDownList>-->
+
+                    <jc:DropDownListJwExt localId="jdd1" width="200"
+                                    dataProvider="{dpClassBig}" labelField="displaytext" valueField="codigo" selectedValue="10">
+                        <jc:beads>
+                            <j:ListPresentationModel rowHeight="35"/>
+                        </jc:beads>
+                    </jc:DropDownListJwExt>
                 </j:GridCell>
                     
                 <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="2">
-
+<!--
                                 <j:ComboBox localId="jcb1_1" percentWidth="100"
                                     dataProvider="{dpStringBig}">
                                     <j:beads>
-                                        <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
-                                        <j:SearchFilter/> itemRenderer="org.apache.royale.community.views.tmp.itemRenderers.LabelTruncateItemRenderer"-->
+                                        <js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
+                                        <j:SearchFilter/> itemRenderer="org.apache.royale.community.views.tmp.itemRenderers.LabelTruncateItemRenderer"
                                     </j:beads>
                                 </j:ComboBox>
 
+                    <j:DropDownList localId="jdd1_1" percentWidth="100" 
+                                    dataProvider="{dpStringBig}"/>
+-->
                 </j:GridCell>
                 <!--            
                         <jc:ComboBoxJwExt localId="jecb0" percentWidth="100" dataProvider="{dpString}" activeSearch="false"/>
