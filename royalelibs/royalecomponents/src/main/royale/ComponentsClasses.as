@@ -80,6 +80,12 @@ package
         import org.apache.royale.community.vo.TabBarButtonVO; TabBarButtonVO;
 
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
-        
+        import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;
+
+        import org.apache.royale.community.jewel.supportClasses.ISelectableToggle; ISelectableToggle;
+        import org.apache.royale.community.jewel.ThreeCheckBox; ThreeCheckBox;
+        import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState; ThreeCheckBoxLabelState;
+        import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues; ThreeCheckBoxStatesValues;
+        import org.apache.royale.community.beads.ReadOnly; ReadOnly;
     }
 }

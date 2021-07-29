@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	    xmlns:html="library://ns.apache.org/royale/html"
+
+	gap="0">
+
+     <fx:Script>
+        <![CDATA[
+        import dtsel;
+	import dtsel;
+			private var mydtsel:dtsel;
+			private function onInit():void
+            {
+				mydtsel = dtsel(cal.element);
+			}
+        ]]>
+         </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding />
+    </j:beads>
+	
+	<html:Div localId="cal" style="padding:0px !important;">
+
+        </html:Div>
+</j:HGroup>

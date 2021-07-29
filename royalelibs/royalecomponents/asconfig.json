@@ -35,21 +35,29 @@
             }
         ],
         "include-classes": [
-            "YEARCALENDARClasses"
+            "ComponentsClasses"
         ],
         "include-sources": [
             "src/main/royale"
         ],
         "library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/libs/MXRoyale.swc"
         ],
         "js-library-path": [
             "${royalelib}/js/libs/MXRoyaleJS.swc"
         ],
         "source-map": true,
-        //"output": "bin/RoyaleComponentsLib.swc"
-        "output": "target/Royale-js-year-calendarLib.swc"
-    }
-    // ,
-    // "additionalOptions": "-js-dynamic-access-unknown-members=true"
+        "remove-circulars": true,
+        "keep-as3-metadata": [
+            "Inject", "Dispatcher", "EventHandler", "PostConstruct", "PreDestroy", "ViewAdded", "ViewRemoved", "Bindable", "Transient"
+        ],
+        "js-default-initializers": true,
+        "output": "target/RoyaleComponentsLib.swc"
+    },
+    "copySourcePathAssets": true,
+    "additionalOptions": [//MXRoyale-${royale.framework.version}-js.swc:defaults.css
+        "-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
+        "-js-dynamic-access-unknown-members=true",
+        "-show-binding-warnings=false"
+    ]
 }

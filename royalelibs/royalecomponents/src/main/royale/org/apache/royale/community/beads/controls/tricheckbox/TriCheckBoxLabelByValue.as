@@ -26,7 +26,8 @@ package org.apache.royale.community.beads.controls.tricheckbox
 		{
 			_strand = value;
 			listenOnStrand("change", textLabelChangeHandler);
-			listenOnStrand("valueCommit", textLabelChangeHandler);
+			//listenOnStrand("valueCommit", textLabelChangeHandler);
+			updateHost();
 		}
 		protected function textLabelChangeHandler(event:Event):void
 		{
@@ -39,6 +40,10 @@ package org.apache.royale.community.beads.controls.tricheckbox
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if (!hostBase)
 				return;
+			
+			if(!_lastText)
+				_lastText = hostBase.text;
+				
 			switch(hostBase.state)
 			{
 				case hostBase.rejectedValue:
@@ -53,45 +58,48 @@ package org.apache.royale.community.beads.controls.tricheckbox
 				default:
 					break;
 			}
-			if(_lastText != hostBase.text)
-				hostBase.text = _lastText;
-				
+
+			hostBase.text = _lastText;				
         }
 
 		private var _rejectedText:String;
 		public function get rejectedText():String { return _rejectedText; }
 		public function set rejectedText(value:String):void 		
 		{
-			const hostBase:TriCheckBox = _strand as TriCheckBox;
+			_rejectedText = value;
+			/*const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_rejectedText = value;
 			if(hostBase.state==hostBase.rejectedValue)
-				hostBase.text = value;
+				hostBase.text = value;*/
 		}
 
 		private var _uncheckedText:String;
 		public function get uncheckedText():String { return _uncheckedText; }
 		public function set uncheckedText(value:String):void 		
 		{
+			_uncheckedText = value;
+			/*
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_uncheckedText = value;
 			if(hostBase.state==hostBase.uncheckedValue)
 				hostBase.text = value;
+			*/
 		}
 
 		private var _checkedText:String;
 		public function get checkedText():String { return _checkedText; }
 		public function set checkedText(value:String):void 		
 		{
+			_checkedText = value;
+			/*
 			const hostBase:TriCheckBox = _strand as TriCheckBox;
 			if(!hostBase)
 				return;
-			_checkedText = value;
 			if(hostBase.state==hostBase.checkedValue)
 				hostBase.text = value;
+			*/
 		}
 		
 	}

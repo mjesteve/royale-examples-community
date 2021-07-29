@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html"
+        xmlns:jc="library://ns.apache.org/royale/community" 
+	    itemsExpand="false">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.community.jscalendar.events.SharedEvent;
+            import org.apache.royale.community.jscalendar.AnnualJSCalendar;
+
+            private var myevent:SharedEvent;
+            private var ee:AnnualJSCalendar;
+
+            private function oninit(parameters:Object):void
+            {
+                ee.year = 2020;
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+    
+    <j:CardHeader>
+        <j:BarSection width="100%" gap="10">
+            <html:H3 text="jsCalendar - Select" className="primary-darkest block-with-text "/>
+        </j:BarSection>
+    </j:CardHeader>
+    <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">
+            <html:H3 text="Simple - auto Calendar"/>
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><b>Static / Dynamic</b></p>]]></j:html>
+            </j:Label>
+    </j:CardExpandedContent>
+
+    <j:CardPrimaryContent percentWidth="100" percentHeight="100">
+
+    </j:CardPrimaryContent>
+
+</j:Card>

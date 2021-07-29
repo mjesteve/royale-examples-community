@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:jc="library://ns.apache.org/royale/community"
+        xmlns:html="library://ns.apache.org/royale/html"
+	    xmlns:viewsJscal="org.apache.royale.community.views.calendars.jscalendar.*"
+        initComplete="onInit()"
+        percentWidth="100" percentHeight="100" gap="0">
+
+    <fx:Script>
+        <![CDATA[
+			import org.apache.royale.events.Event;
+			import org.apache.royale.jewel.ToggleButton;
+			import org.apache.royale.icons.FontAwesomeIcon;
+
+
+			private var mycalendar:jsCalendar;
+			private function onInit():void
+            {
+			}
+        
+            private function onChangeView(event:Event):void
+            {
+                var lview:ToggleButton = event.target as ToggleButton;
+                if( lview == btLineAuto )
+                {
+                    btLineCustom.selected = !btLineAuto.selected;
+                }
+                else{
+                    btLineAuto.selected = !btLineCustom.selected;
+                }
+                
+                if(btLineAuto.selected)
+                {
+                    if(btSubAutoSelected.selected)
+                        currentState = "autotheme";
+                    else
+                        currentState = "autoselected";
+                }else{
+                    currentState = "builder";
+                }
+
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:states>
+        <js:State name="autotheme"/>
+        <js:State name="autoselected"/>
+        <js:State name="builder"/>
+    </j:states>
+    <j:beads>
+        <js:SimpleStatesImpl/>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:Card localId="auxPanel" height="100%" className="menubar">
+        <j:CardHeader className="menubarMark" 
+        gap="0" itemsHorizontalAlign="itemsCenter"> 
+
+            <j:Grid gap="false">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+                    <j:ToggleButton localId="btLineAuto" unboxed="true" className="toggleButtonUnboxed" selected="true"
+                        change="setTimeout(onChangeView,125,event)">
+                        <j:icon>
+                            <js:MaterialToggleIcon text="flash_auto" selectedText="flash_auto"/>
+                        </j:icon>
+                        <j:beads>
+                            <j:ToolTip toolTip="Auto Build"/>
+                        </j:beads>
+                    </j:ToggleButton>  
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+                    <j:ToggleButton localId="btLineCustom" unboxed="true" className="toggleButtonUnboxed" selected="false"
+                        change="setTimeout(onChangeView,125,event)">
+                        <j:icon>
+                            <js:MaterialToggleIcon text="construction" selectedText="construction"/>
+                        </j:icon>
+                        <j:beads>
+                            <j:ToolTip toolTip="Build with builder"/>
+                        </j:beads>
+                    </j:ToggleButton>
+                </j:GridCell>
+            </j:Grid>
+
+        </j:CardHeader>
+        <j:CardPrimaryContent gap="0">
+            <j:VGroup localId="subAuto" percentWidth="100" gap="0" itemsHorizontalAlign="itemsCenter"
+                visible="true" visible.builder="false">
+
+                <j:ToggleButton localId="btSubAutoThemes" unboxed="true" className="toggleButtonUnboxed" selected="true"
+                        change="setTimeout(onChangeView,125,event)">
+                    <j:icon>
+                        <js:FontAwesomeToggleIcon text="swatchbook" selectedText="swatchbook" relativeSize="{FontAwesomeIcon.SIZE_X2}" />
+                    </j:icon>
+                    <j:beads>
+                        <j:ToolTip toolTip="Auto Build"/>
+                    </j:beads>
+                </j:ToggleButton>
+               
+                <j:ToggleButton localId="btSubAutoSelected" unboxed="true" className="toggleButtonUnboxed" selected="false" 
+                        change="setTimeout(onChangeView,125,event)">
+                    <j:icon>
+                        <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.CALENDAR_CHECK}" selectedText="{FontAwesome5IconType.CALENDAR_CHECK}" relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                    </j:icon>
+                </j:ToggleButton>
+            </j:VGroup>
+
+            <j:VGroup localId="subConstruct" percentWidth="100" visible.autotheme="false" visible.autoselected="false" visible.builder="true">
+            </j:VGroup>
+
+        </j:CardPrimaryContent>
+
+    </j:Card>
+
+    <viewsJscal:JsCalendarViewAuto_Themes localId="vAutoThemes" percentHeight="100" percentWidth="100" visible="false" visible.autotheme="true"/>
+    <viewsJscal:JsCalendarViewAuto_Select localId="vAutoSelected" percentHeight="100" percentWidth="100" visible="false" visible.autoselected="true"/>
+    <viewsJscal:JsCalendarViewYear localId="vYear" percentHeight="100" percentWidth="100" visible="false" visible.builder="true"/>
+</j:HGroup>

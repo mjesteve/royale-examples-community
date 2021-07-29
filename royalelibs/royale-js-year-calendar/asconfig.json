@@ -39,7 +39,7 @@
             "src/main/royale"
         ],
         "library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/libs/MXRoyale.swc"
         ],
         "js-library-path": [
             "${royalelib}/js/libs/MXRoyaleJS.swc"

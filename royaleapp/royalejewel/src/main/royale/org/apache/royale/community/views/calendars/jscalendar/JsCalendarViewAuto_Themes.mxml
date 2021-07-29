@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:jc="library://ns.apache.org/royale/community"
+        xmlns:html="library://ns.apache.org/royale/html"
+	    itemsExpand="false">
+
+    <fx:Script>
+        <![CDATA[
+
+			private var mycalendar:jsCalendar;
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+    
+    <j:CardHeader>
+        <j:BarSection width="100%" gap="10">
+            <html:H3 text="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)" className="primary-darkest block-with-text "/>
+        </j:BarSection>
+    </j:CardHeader>
+    <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">
+            <html:H3 text="Simple - auto Calendar"/>
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p>]]></j:html>
+            </j:Label>
+    </j:CardExpandedContent>
+
+    <j:CardPrimaryContent percentWidth="100" percentHeight="100">
+        <j:beads>
+            <j:ScrollingViewport/>
+        </j:beads>
+        <j:VGroup percentWidth="100" gap="5" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsTop">
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme (Blue)"/>
+                        <html:Div className="auto-jsCalendar"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme - Yellow" />
+                        <html:Div className="auto-jsCalendar yellow"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme - Orange" />
+                        <html:Div className="auto-jsCalendar orange"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme Red"/>
+                        <html:Div className="auto-jsCalendar red"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme - Green" />
+                        <html:Div className="auto-jsCalendar green"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Black Theme"/>
+                        <html:Div className="auto-jsCalendar black-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Grey Theme"/>
+                        <html:Div className="auto-jsCalendar grey-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="White Theme"/>
+                        <html:Div className="auto-jsCalendar white-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Default" />
+                        <html:Div className="auto-jsCalendar clean-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Default Blue" />
+                        <html:Div className="auto-jsCalendar clean-theme blue"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Yellow" />
+                        <html:Div className="auto-jsCalendar clean-theme yellow"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Orange" />
+                        <html:Div className="auto-jsCalendar clean-theme orange"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Red" />
+                        <html:Div className="auto-jsCalendar clean-theme red"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Green" />
+                        <html:Div className="auto-jsCalendar clean-theme green"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme + Black Theme"/>
+                        <html:Div className="auto-jsCalendar clean-theme black-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme + Grey Theme"/>
+                        <html:Div className="auto-jsCalendar clean-theme grey-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme + White Theme"/>
+                        <html:Div className="auto-jsCalendar clean-theme white-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Default" />
+                        <html:Div className="auto-jsCalendar classic-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Yellow" />
+                        <html:Div className="auto-jsCalendar classic-theme yellow"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Orange" />
+                        <html:Div className="auto-jsCalendar classic-theme orange"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Red" />
+                        <html:Div className="auto-jsCalendar classic-theme red"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Green" />
+                        <html:Div className="auto-jsCalendar classic-theme green"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme + Black Theme"/>
+                        <html:Div className="auto-jsCalendar classic-theme black-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme + Grey Theme"/>
+                        <html:Div className="auto-jsCalendar classic-theme grey-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme + White Theme"/>
+                        <html:Div className="auto-jsCalendar classic-theme white-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme"/>
+                        <html:Div className="auto-jsCalendar material-theme blue"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme - Yellow" />
+                        <html:Div className="auto-jsCalendar material-theme yellow"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme - Orange" />
+                        <html:Div className="auto-jsCalendar material-theme orange"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme - Red" />
+                        <html:Div className="auto-jsCalendar material-theme red"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme - Green" />
+                        <html:Div className="auto-jsCalendar material-theme green"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme + Black Theme"/>
+                        <html:Div className="auto-jsCalendar material-theme black-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme + Grey Theme"/>
+                        <html:Div className="auto-jsCalendar material-theme grey-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme + White Theme"/>
+                        <html:Div className="auto-jsCalendar material-theme white-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                    tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme"/>
+                        <html:Div className="auto-jsCalendar micro-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                    tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme - Yellow" />
+                        <html:Div className="auto-jsCalendar micro-theme yellow"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                    tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme - Orange" />
+                        <html:Div className="auto-jsCalendar micro-theme orange"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                    tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme - Red" />
+                        <html:Div className="auto-jsCalendar micro-theme red"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="5" desktopNumerator="1" desktopDenominator="4"
+                    tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme - Green" />
+                        <html:Div className="auto-jsCalendar micro-theme green"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + Black Theme"/>
+                        <html:Div className="auto-jsCalendar micro-theme black-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + Grey Theme"/>
+                        <html:Div className="auto-jsCalendar micro-theme grey-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + White Theme"/>
+                        <html:Div className="auto-jsCalendar micro-theme white-theme"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+            <j:Grid gap="false" itemsVerticalAlign="itemsTop">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Default Theme - Custom Purple"/>
+                        <html:Div className="auto-jsCalendar custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Clean Theme - Custom Purple" />
+                        <html:Div className="auto-jsCalendar clean-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Material Theme - Custom Purple"/>
+                        <html:Div className="auto-jsCalendar material-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Classic Theme - Custom Purple"/>
+                        <html:Div className="auto-jsCalendar classic-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme - Custom Purple"/>
+                        <html:Div className="auto-jsCalendar micro-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + Clean Theme - Purple"/>
+                        <html:Div className="auto-jsCalendar micro-theme clean-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + Material Theme - Purple"/>
+                        <html:Div className="auto-jsCalendar micro-theme material-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
+                    tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                    <j:VGroup itemsVerticalAlign="itemsTop">
+                        <html:H4 text="Micro Theme + Classic Theme - Purple"/>
+                        <html:Div className="auto-jsCalendar micro-theme classic-theme custom-purple"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+            
+        </j:VGroup>
+
+    </j:CardPrimaryContent>
+
+</j:Card>

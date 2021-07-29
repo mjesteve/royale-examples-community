@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:jc="library://ns.apache.org/royale/community"
+	    xmlns:views="org.apache.royale.community.views.*"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+        }
+
+        [Bindable]
+        private var dpString:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClass:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;
+        private var totalCases:Number = 0;
+
+        private function makeDP(init:Boolean = false):void
+        {
+            var prefix:String="";
+
+            if(!init)
+            {
+                prefix = "** ";
+            }
+            var ar:Array = new Array();
+            var ar2:Array = new Array();
+            var varray:Array = new Array();
+            var varray2:Array = new Array();
+            for(var index:int = 0; index < 2000; index++)
+            {
+                if(index < 100){
+                    ar.push(prefix+'String: '+index.toString());
+                    ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                }
+                varray.push(prefix+'String: '+index.toString());
+                varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+            }
+            dpString = new ArrayList(ar);
+            dpClass = new ArrayList(ar2);
+            dpStringBig = new ArrayList(varray);
+            dpClassBig = new ArrayList(varray2);
+
+        }
+
+
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<!--<js:ViewDataBinding/>-->
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+        <j:BarRow localId="barRow">
+            <j:BarSection>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
+            </j:BarSection>
+        </j:BarRow>
+    </j:TopAppBar>
+
+     <j:FooterBar localId="footerbar" fixed="true" >
+        <j:BarRow>
+
+            <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:HGroup gap="10">
+                    <j:Label localId="labelCompany" html="{new Date()}" />
+                </j:HGroup>
+            </j:BarSection>
+        </j:BarRow>
+     </j:FooterBar>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+        <j:SectionContent>
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
+                    
+            <j:Grid gap="true">
+                    
+                <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="2">
+<!--
+                                <j:ComboBox localId="jcb1" percentWidth="100"
+                                    dataProvider="{dpClassBig}" labelField="displaytext">
+                                    <j:beads>
+                                        <js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
+                                        <j:SearchFilter/>
+                                    </j:beads>
+                                </j:ComboBox>
+
+                    <j:DropDownList localId="jdd" percentWidth="100" 
+                                    dataProvider="{dpClassBig}" labelField="displaytext">
+                        <j:beads>
+                            <js:CollectionSelectedItemByField valueField="codigo" selectedValue="10" />
+                        </j:beads>
+                    </j:DropDownList>-->
+
+                    <jc:DropDownListJwExt localId="jdd1" width="200"
+                                    dataProvider="{dpClassBig}" labelField="displaytext" valueField="codigo" selectedValue="10">
+                        <jc:beads>
+                            <j:ListPresentationModel rowHeight="35"/>
+                        </jc:beads>
+                    </jc:DropDownListJwExt>
+                </j:GridCell>
+                    
+                <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="2">
+<!--
+                                <j:ComboBox localId="jcb1_1" percentWidth="100"
+                                    dataProvider="{dpStringBig}">
+                                    <j:beads>
+                                        <js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
+                                        <j:SearchFilter/> itemRenderer="org.apache.royale.community.views.tmp.itemRenderers.LabelTruncateItemRenderer"
+                                    </j:beads>
+                                </j:ComboBox>
+
+                    <j:DropDownList localId="jdd1_1" percentWidth="100" 
+                                    dataProvider="{dpStringBig}"/>
+-->
+                </j:GridCell>
+                <!--            
+                        <jc:ComboBoxJwExt localId="jecb0" percentWidth="100" dataProvider="{dpString}" activeSearch="false"/>
+                <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+
+                        <jc:ComboBoxJwExt localId="jecb1" percentWidth="100" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                            dataProvider="{dpClass}" labelField="displaytext" activeSearch="false" activePopupControls="false">
+                            <jc:beads>
+                                <js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />
+                                <j:SearchFilter/>
+                            </jc:beads>
+                        </jc:ComboBoxJwExt>
+
+                </j:GridCell>-->
+            </j:Grid>
+                
+
+        </j:SectionContent>
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>

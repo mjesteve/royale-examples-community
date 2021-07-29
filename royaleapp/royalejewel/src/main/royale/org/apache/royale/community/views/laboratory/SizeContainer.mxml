@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight"
+    initComplete="onInitComplete()"> 
+    
+    <fx:Script>
+        <![CDATA[
+            
+            import org.apache.royale.utils.observeElementSize;
+
+            public function onInitComplete():void
+            {
+                observeElementSize(myContainer.element,onSizeChangeMyContainer);
+                observeElementSize(myVContainer.element,onSizeChangeMyVContainer);
+                observeElementSize(myGroup.element,onSizeChangeMyGroup);
+                observeElementSize(myHGroup.element,onSizeChangeMyHGroup);
+                observeElementSize(myDiv.element,onSizeChangeMyDiv);
+                observeElementSize(myCard.element,onSizeChangeMyCard);
+            }
+
+            private function onSizeChangeMyContainer():void
+            {
+                lblMyContainer.text = "Width: "+ myContainer.element.offsetWidth.toString() + " - Height: " + myContainer.element.offsetHeight.toString();
+            }
+            private function onSizeChangeMyVContainer():void
+            {
+                lblMyVContainer.text = "Width: "+ myVContainer.element.offsetWidth.toString() + " - Height: " + myVContainer.element.offsetHeight.toString();
+            }
+            private function onSizeChangeMyGroup():void
+            {
+                lblMyGroup.text = "Width: "+ myGroup.element.offsetWidth.toString() + " - Height: " + myGroup.element.offsetHeight.toString();
+            }
+            private function onSizeChangeMyHGroup():void
+            {
+                lblMyHGroup.text = "Width: "+ myHGroup.element.offsetWidth.toString() + " - Height: " + myHGroup.element.offsetHeight.toString();
+            }
+            private function onSizeChangeMyDiv():void
+            {
+                lblMyDiv.text = "Width: "+ myDiv.element.offsetWidth.toString() + " - Height: " + myDiv.element.offsetHeight.toString();
+            }
+            private function onSizeChangeMyCard():void
+            {
+                lblMyCard.text = "Width: "+ myCard.element.offsetWidth.toString() + " - Height: " + myCard.element.offsetHeight.toString();
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="Container Resizing">
+        <jc:description>
+            <![CDATA[<strong>Tests</strong> ]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
+        <j:Container localId="myContainer" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyContainer" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </j:Container>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
+        <j:VContainer localId="myVContainer" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyVContainer" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </j:VContainer>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+        <j:Group localId="myGroup" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyGroup" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </j:Group>
+    </j:GridCell>
+    
+    <j:GridCell desktopNumerator="1"  desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+        <j:HGroup localId="myHGroup" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyHGroup" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </j:HGroup>
+    </j:GridCell>
+    
+    <j:GridCell desktopNumerator="1"  desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
+        <html:Div localId="myDiv" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyDiv" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </html:Div>
+    </j:GridCell>
+    
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+        <j:Card localId="myCard" percentWidth="100" height="200" style="background-color:#333333;; color: #ffffff;font-weight: bold;">
+            <j:Label localId="lblMyCard" text="" percentWidth="100">
+                <j:beads>
+                    <js:Paddings padding="20"/>
+                    <j:TextAlign align="center"/>
+                </j:beads>
+            </j:Label>
+        </j:Card>
+    </j:GridCell>
+
+</j:Grid>
