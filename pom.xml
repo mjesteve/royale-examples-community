@@ -257,6 +257,23 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-debug-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
             <execution>
               <id>copy-resources-debug-echarts-js</id>
@@ -391,6 +408,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
