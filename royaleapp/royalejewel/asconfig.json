@@ -29,7 +29,8 @@
 			"../../royalelibs/royalemobiscroll/src/main/royale/",
 			"../../royalelibs/royale-js-year-calendar/src/main/royale/",
 			"../../royalelibs/royalefullcalendar/src/main/royale/",
-			"../../royalelibs/royale-jscalendar/src/main/royale/"
+			"../../royalelibs/royale-jscalendar/src/main/royale/",
+			"../../royalelibs/royale-virtual-select/src/main/royale/"
         ],
         "namespace": [
             {
@@ -51,6 +52,10 @@
             {
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royale-jscalendar/src/main/resources/jscalendar-manifest.xml"
+            },
+            {
+                "uri": "library://ns.apache.org/royale/community",
+                "manifest": "../../royalelibs/royale-virtual-select/src/main/resources/virtual-select-manifest.xml"
             }
         ],
         "library-path": [
