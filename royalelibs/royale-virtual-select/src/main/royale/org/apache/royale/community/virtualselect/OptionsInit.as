@@ -1,16 +1,19 @@
-package org.apache.royale.community
+package org.apache.royale.community.virtualselect
 {
     public class OptionsInit
     {        
         public var ele:Element;  //DOM element to initialize plugin<br/>String - #sample-select <br/>Element - document.querySelector('#sample-select')
         public var options:Array = [];  //List of options <br/>[<br/>  { label: 'Option 1', value: '1' }, <br/>  { label: 'Option 2', value: '2' }<br/>  ...<br/>]
-        //public var options[].alias:Array = [];  //Alternative labels to use on search.<br/>Array of string or comma separated string.
-        //public var options[].options:Array = [];  //List of options for option group
-        //public var options[].description:String = [];  //Text to show along with label
+            //public var options[].label:String;  //by default
+            //public var options[].value:String;  //by default
+            //public var options[].alias:Array;  //Alternative labels to use on search.<br/>Array of string or comma separated string.
+            //public var options[].options:Array = [];  //List of options for option group
+            //public var options[].description:String;  //Text to show along with label
         public var valueKey:String = 'value';  //Object key to use to get value from options array
         public var labelKey:String = 'label';  //Object key to use to get label from options array
-        public var descriptionKey:String = 'description';  //Object key to use to get description from options array
         public var aliasKey:String = 'alias';  //Object key to use to get alias from options array
+        public var descriptionKey:String = 'description';  //Object key to use to get description from options array
+
         public var disabledOptions:Array = [];  //List of values to disable options <br/>e.g - [2, 3, 9]
         public var multiple:Boolean = false;  //Enable multi-select
         public var search:Boolean = false;  //Enable search feature (false - for single select <br/>true - for multi-select)

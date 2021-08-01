@@ -20,6 +20,16 @@ package
 		 * script.setAttribute("src", "virtual-select/virtual-select.min.js");
 		 * document.head.appendChild(script);
 		 * 
+         * //link = document.createElement("link");
+         * //link.setAttribute("rel", "stylesheet");
+         * //link.setAttribute("type", "text/css");
+         * //link.setAttribute("href", "virtual-select/tootip.min.css");
+         * //document.head.appendChild(link);
+         * 
+         * //script = document.createElement("script");
+		 * //script.setAttribute("src", "virtual-select/tooltip.min.js");
+		 * //document.head.appendChild(script);
+         * 
 		 * </inject_script>
 		*/
         public function VirtualSelect(){}

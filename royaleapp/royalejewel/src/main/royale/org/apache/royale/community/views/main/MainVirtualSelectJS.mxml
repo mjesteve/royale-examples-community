@@ -10,7 +10,7 @@
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.community.OptionsInit;
+        import org.apache.royale.community.virtualselect.OptionsInit;
 
         public function onInitComplete():void
         {
