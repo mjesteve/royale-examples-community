@@ -4,22 +4,19 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
     style="background-color:#B3B3B3;" itemsVerticalAlign="itemsTop"
     initComplete="onInitComplete()"> 
     
     <fx:Script>
         <![CDATA[
-            
-
-        import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.community.virtualselect.OptionsInit;
 
         public function onInitComplete():void
         {
             makeDP(true);
             makeVList();
         }
-
+        /*
         [Bindable]
         private var dpString:ArrayList = new ArrayList;
         [Bindable]
@@ -27,7 +24,7 @@
         [Bindable]
         private var dpStringBig:ArrayList = new ArrayList;
         [Bindable]
-        private var dpClassBig:ArrayList = new ArrayList;
+        private var dpClassBig:ArrayList = new ArrayList;*/
         [Bindable]
         private var arClassBig:Array = new Array();
         [Bindable]
@@ -42,27 +39,27 @@
             {
                 prefix = "** ";
             }
-            var ar:Array = new Array();
-            var ar2:Array = new Array();
-            var varray:Array = new Array();
-            var varray2:Array = new Array();
+            //var ar:Array = new Array();
+            //var ar2:Array = new Array();
+            //var varray:Array = new Array();
+            //var varray2:Array = new Array();
             var varray3:Array = new Array();
 
             var index:int = 0
             for(index = 0; index < 15000; index++)
             {
-                if(index < 100){
-                    ar.push(prefix+'String: '+index.toString());
-                    ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
-                }
-                varray.push(prefix+'String: '+index.toString());
-                varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                //if(index < 100){
+                    //ar.push(prefix+'String: '+index.toString());
+                    //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                //}
+                //varray.push(prefix+'String: '+index.toString());
+                //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
                 varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
             }
-            dpString = new ArrayList(ar);
+            /*dpString = new ArrayList(ar);
             dpClass = new ArrayList(ar2);
             dpStringBig = new ArrayList(varray);
-            dpClassBig = new ArrayList(varray2);
+            dpClassBig = new ArrayList(varray2);*/
             arClassBig = varray3.slice();
             
             var varray4:Array = new Array();
@@ -89,54 +86,17 @@
 
         }
 
-        private var myvlist:Array = new Array();
-        private var opinit:Array = new Array();
         private function makeVList():void
         {
-            var op:OptionsInit = new OptionsInit();
-            op.ele = myContainerVList1.element;
-            op.options = arClassBig;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[0] as Object));
+            vsJC.makeVList();
+            vsAS.makeVList();
+        }
 
-            op = new OptionsInit();
-            op.ele = myContainerVList2.element;
-            op.options = arClassBig;
-            op.search = true;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[1] as Object));
-
-            op = new OptionsInit();
-            op.ele = myContainerVList3.element;
-            op.options = arClassBig;
-            op.search = true;
-            op.multiple = true;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[2] as Object));
-
-            op = new OptionsInit();
-            op.ele = myContainerVList3_1.element;
-            op.options = arClassBig;
-            op.search = false;
-            op.multiple = true;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[3] as Object));
-
-            myVSel1.init(true);
-            myVSel2.init(true);
-            myVSel3.init(true);
-            myVSel3_1.init(true);
-            myVSel3_2.init(true);
-
-            op = new OptionsInit();
-            op.ele = myContainerVListH1.element;
-            op.options = arHClassBig;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[4] as Object));
-
-            myVSelH1.init(true);
-
-         }
+        private function resfreshData():void
+        {
+            makeDP();
+            //vsJC.makeVList();
+        }
 
         ]]>
     </fx:Script>
@@ -149,114 +109,21 @@
 
     <jc:ExampleHeader title="Virtual Select JS">
         <jc:description>
-            <![CDATA[<strong>Tests</strong> Left: Implementation AS - Right: Royale Implementation"]]>
+            <![CDATA[Tests <strong>Configuration Options</strong>]]>
         </jc:description>
     </jc:ExampleHeader>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      percentHeight="100">
-
-        <j:Card percentHeight="100">
-            <j:CardHeader>
-                <j:CardTitle text="Configurations - Simple dataProvider (Array)" className="primary-normal"/>
-            </j:CardHeader>
-            <j:CardPrimaryContent>
-
-                <j:HGroup percentWidth="100" percentHeight="100">
-
-                    <j:VGroup percentHeight="100" percentWidth="50">
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
-                        </j:Label>
-                        <html:Div localId="myContainerVList1" width="250" />
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
-                        </j:Label>
-                        <html:Div localId="myContainerVList2" width="250" />
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Multiple select</strong> With search box.</p>]]></j:html>
-                        </j:Label>
-                        <html:Div localId="myContainerVList3" width="250" />
-                        
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
-                        </j:Label>
-                        <html:Div localId="myContainerVList3_1" width="250" />
-
-                    </j:VGroup>
-                    
-                    <j:VGroup percentHeight="100" percentWidth="50">
-                    
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSel1" width="250" dataProvider="{arClassBig}"/>
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSel2" width="250" dataProvider="{arClassBig}" search="true"/>
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Multiple select</strong> With search box.</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSel3" width="250" dataProvider="{arClassBig}" search="true" multiple="true"/>
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSel3_1" width="250" dataProvider="{arClassBig}" search="false" multiple="true"/>
-
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Disabled options</strong> (First 3 options disabled)</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSel3_2" width="250" 
-                        dataProvider="{arClassBig}" search="false" multiple="true"
-                        disabledOptions="{[0,1,2]}"/>
-
-                    </j:VGroup>
-                </j:HGroup>
-                
-            </j:CardPrimaryContent>
-        </j:Card>
+        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100" percentHeight="100" 
+        arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
+        resfreshData="resfreshData()"/>
     </j:GridCell>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      percentHeight="100">
-
-        <j:Card percentHeight="100">
-            <j:CardHeader>
-                <j:CardTitle text="Configurations - Hierarchical dataProvider (Array)" className="primary-normal"/>
-            </j:CardHeader>
-            <j:CardPrimaryContent>
-
-                <j:HGroup percentWidth="100" percentHeight="100">
-
-                    <j:VGroup percentHeight="100" percentWidth="50">
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
-                        </j:Label>
-                        <html:Div localId="myContainerVListH1" width="250" />
-
-                        
-
-                    </j:VGroup>
-                    
-                    <j:VGroup percentHeight="100" percentWidth="50">
-                    
-                        <j:Label multiline="true">
-                            <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
-                        </j:Label>
-                        <jc:VirtualSelectJwExt localId="myVSelH1" width="250" dataProvider="{arHClassBig}"/>
-
-                        
-
-                    </j:VGroup>
-                </j:HGroup>
-                
-            </j:CardPrimaryContent>
-        </j:Card>
+        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" percentHeight="100" 
+        arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
+        />
     </j:GridCell>
 </j:Grid>

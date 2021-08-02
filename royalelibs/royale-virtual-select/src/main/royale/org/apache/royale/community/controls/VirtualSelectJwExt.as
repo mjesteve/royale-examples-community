@@ -8,6 +8,7 @@ package org.apache.royale.community.controls
     import org.apache.royale.utils.sendEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.community.virtualselect.OptionsInit;
+    import org.apache.royale.core.StyledUIBase;
 	
     /**
      *  Indicates that the creation is complete.  
@@ -27,7 +28,7 @@ package org.apache.royale.community.controls
      */
 	[Event(name="onUpdateConfig", type="org.apache.royale.events.Event")]
 
-	public class VirtualSelectJwExt extends UIBase
+	public class VirtualSelectJwExt extends StyledUIBase
     {
 
 		/**
@@ -51,7 +52,7 @@ package org.apache.royale.community.controls
 
             _configOption = new OptionsInit
             _configOption.ele = element;
-            _configOption.zIndex = 100;
+            //_configOption.zIndex = 100;
 		}
         
 		override public function addedToParent():void
@@ -91,9 +92,9 @@ package org.apache.royale.community.controls
 
         }
 
-        protected var _instance:Object;
-        public function get instance():Object{ return _instance; }
-        public function set instance(value:Object):void
+        protected var _instance:VirtualSelect;
+        public function get instance():VirtualSelect{ return _instance; }
+        public function set instance(value:VirtualSelect):void
         {
             if( _instance === value)
                 return;
@@ -124,15 +125,16 @@ package org.apache.royale.community.controls
         [Bindable("dataChange")]
         public function get dataProvider():Array
         { 
-            return _configOption.options; 
+            if(_instance)
+                return _instance.sortedOptions();
+            else
+                return _configOption.options; 
         }
         public function set dataProvider(value:Array):void
         { 
             _configOption.options = value ? value : new Array;
             if(_instance){
-
-            }else{
-
+                _instance.setOptions(value);
             }
         }
 
@@ -176,7 +178,7 @@ package org.apache.royale.community.controls
         public var hasOptionDescription:Boolean = false;  //Has description to show along with label
         public var disableSelectAll:Boolean = false;  //Disable select all feature of multiple select
         public var optionsCount:Number = 5;  //4 | 5, No. of options to show on viewport <br/>4 - When hasOptionDescription is true
-        public var optionHeight:String = '40px';  //40px | 50px. Height of each dropdown options <br/>50px - When hasOptionDescription is true
+        public var optionHeight:String = '40px|50px';  //40px | 50px. Height of each dropdown options <br/>50px - When hasOptionDescription is true
         public var position:String = 'auto';  //Position of dropbox (top, bottom, auto)
         public var placeholder:String = 'Select';  //Text to show when no options selected
         public var noOptionsText:String = 'No options found';  //Text to show when no options to show

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" > 
+
+    <fx:Metadata>
+        [Event(name="resfreshData", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.events.Event;
+
+
+        [Bindable]
+        public var arClassBig:Array = new Array();
+        [Bindable]
+        public var arHClassBig:Array = new Array();
+
+        public function makeVList():void
+        {
+            myVSel1.init(true);
+            myVSel2.init(true);
+            myVSel3.init(true);
+            myVSel3_1.init(true);
+            myVSel3_2.init(true);
+
+            myVSelH1.init(true);
+            myVSelH2.init(true);
+            myVSelH3.init(true);
+            myVSelH3_1.init(true);
+            myVSelH3_2.init(true);
+
+         }
+
+         private function refreshData():void
+         {
+             dispatchEvent(new Event("resfreshData"));
+         }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:CardHeader gap="5">
+        <j:VGroup gap="5" percentWidth="50">
+            <j:CardTitle text="Simple dataProvider" className="primary-normal" percentWidth="100"/>            
+            <html:H5 text="Royale Wrapper"  className="primary-dark"/>
+        </j:VGroup>
+        <j:VGroup gap="5" percentWidth="50" itemsHorizontalAlign="itemsRight">
+            <j:CardTitle text="Hierarchical dataProvider" className="primary-normal" percentWidth="100"/>
+            <j:IconButton emphasis="primary" unboxed="true" style="margin-top: 0;" click="refreshData()">
+                <j:beads>
+                    <j:ToolTip toolTip="Refresh Data"/>
+                </j:beads>
+                <j:icon>
+                    <js:MaterialIcon text="{MaterialIconType.REFRESH}" />
+                </j:icon>
+            </j:IconButton>
+        </j:VGroup>
+    </j:CardHeader>
+
+    <j:CardPrimaryContent>
+
+        <j:VGroup percentHeight="100" percentWidth="100">
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel1" percentWidth="90" dataProvider="{arClassBig}"/>
+                <jc:VirtualSelectJwExt localId="myVSelH1" percentWidth="90" dataProvider="{arHClassBig}"/>
+            </j:HGroup>
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel2" percentWidth="90" dataProvider="{arClassBig}"
+                 search="true"/>
+                <jc:VirtualSelectJwExt localId="myVSelH2" percentWidth="90" dataProvider="{arHClassBig}"
+                 search="true"/>
+            </j:HGroup>
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Multiple select</strong> With search box.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel3" percentWidth="90" dataProvider="{arClassBig}"
+                 search="true" multiple="true"/>
+                <jc:VirtualSelectJwExt localId="myVSelH3" percentWidth="90" dataProvider="{arHClassBig}"
+                 search="true" multiple="true"/>
+            </j:HGroup>
+            
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel3_1" percentWidth="90" dataProvider="{arClassBig}"
+                 search="false" multiple="true"/>
+                <jc:VirtualSelectJwExt localId="myVSelH3_1" percentWidth="90" dataProvider="{arHClassBig}"
+                 search="false" multiple="true"/>
+            </j:HGroup>
+            
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Disabled options</strong> (First 3 options disabled)</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel3_2" percentWidth="90" dataProvider="{arClassBig}"
+                 search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
+                <jc:VirtualSelectJwExt localId="myVSelH3_2" percentWidth="90" dataProvider="{arHClassBig}"
+                 search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
+            </j:HGroup>
+
+        </j:VGroup>
+        
+    </j:CardPrimaryContent>
+    
+</j:Card>

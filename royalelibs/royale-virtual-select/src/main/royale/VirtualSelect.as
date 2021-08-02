@@ -87,6 +87,53 @@ package
    * @property {boolean} [showOptionsOnlyOnSearch=false] - Show options to select only if search value is not empty
    * @property {boolean} [selectAllOnlyVisible=false] - Select only visible options on clicking select all checkbox when options filtered by search
    */
-		public static function init(options:Object):Object { return null; }
+		public static function init(options:Object):VirtualSelect { return null; }
+
+        public static function value():Object{ return null;}
+        public static function setValue(value:Object):void{}
+        public static function reset(value:Object):void{}
+        
+        public function setOptions(options:Array):void{}
+        public static function setDisabledOptions(disabledOptions:Array, setOptionsProp:Boolean=false):void{}
+        /**
+         * Select / Deselect all options
+         * @param isSelected 
+         */
+        public static function toggleSelectAll(isSelected:Boolean):void{}
+        /**
+         * To check that if all options selected or not
+         */
+        public static function isAllSelected():void{}
+        /**
+         * To add a new option with existing options
+         * @param data 
+         */
+        public static function addOption(data:Array):void{}
+        /**
+         * Get selected value which is added as "new option" (allowNewOption: true)
+         * @return 
+         */
+        public static function getNewValue():Object{ return null;}
+        /**
+         * Get selected option's display value (i.e label)
+         * @return 
+         */
+        public static function getDisplayValue():Object{ return null;}
+        /**
+         * Get selected option's details. 
+         * It would contains isNew: true property for options added newly by allowNewOption
+         * @return 
+         */
+        public static function getSelectedOptions():Object{ return null;}
+        /**
+         * To open dropbox programmatically
+         */
+        public static function open():void{}
+        /**
+         * To close dropbox programmatically
+         */
+        public static function close():void{}
+
+        public function sortedOptions():Array{ return null; }
 	}
 }
