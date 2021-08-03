@@ -3,7 +3,11 @@
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
-    xmlns:html="library://ns.apache.org/royale/html" > 
+    xmlns:html="library://ns.apache.org/royale/html" >  
+
+    <fx:Metadata>
+        [Event(name="resfreshData", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
     
     <fx:Script>
         <![CDATA[
@@ -108,6 +112,17 @@
 
          }
 
+         private function refreshData():void
+         {
+             dispatchEvent(new Event("resfreshData"));
+         }
+
+         public function refreshData_Res():void
+         {
+             makeVList();
+         }
+
+
         ]]>
     </fx:Script>
 
@@ -116,55 +131,61 @@
             <j:CardTitle text="Simple dataProvider" className="primary-normal" percentWidth="100"/>            
             <html:H5 text="Direct @externs AS"  className="primary-dark"/>
         </j:VGroup>
-        <j:CardTitle text="Hierarchical dataProvider" className="primary-normal" percentWidth="50">
-            <j:beads>
-                <j:TextAlign align="right"/>
-            </j:beads>
-        </j:CardTitle>
+        <j:VGroup gap="5" percentWidth="50" itemsHorizontalAlign="itemsRight">
+            <j:CardTitle text="Hierarchical dataProvider" className="primary-normal" percentWidth="100"/>
+            <j:IconButton emphasis="primary" unboxed="true" style="margin-top: 0;" click="refreshData()">
+                <j:beads>
+                    <j:ToolTip toolTip="Refresh Data"/>
+                </j:beads>
+                <j:icon>
+                    <js:MaterialIcon text="{MaterialIconType.REFRESH}" />
+                </j:icon>
+            </j:IconButton>
+        </j:VGroup>
     </j:CardHeader>
 
     <j:CardPrimaryContent>
 
-        <j:VGroup percentHeight="100" percentWidth="100">
+        <j:VGroup percentWidth="100">
 
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <html:Div localId="myVSel1" percentWidth="90"/>
-                <html:Div localId="myVSelH1" percentWidth="90"/>
+                <html:Div localId="myVSel1" percentWidth="45"/>
+                <html:Div localId="myVSelH1" percentWidth="45"/>
             </j:HGroup>
 
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <html:Div localId="myVSel2" percentWidth="90" />
-                <html:Div localId="myVSelH2" percentWidth="90"/>
+                <html:Div localId="myVSel2" percentWidth="45" />
+                <html:Div localId="myVSelH2" percentWidth="45"/>
             </j:HGroup>
 
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Multiple select</strong> With search box.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <html:Div localId="myVSel3" percentWidth="90" />
-                <html:Div localId="myVSelH3" percentWidth="90"/>
+                <html:Div localId="myVSel3" percentWidth="45" />
+                <html:Div localId="myVSelH3" percentWidth="45"/>
             </j:HGroup>
             
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <html:Div localId="myVSel3_1" percentWidth="90" />
-                <html:Div localId="myVSelH3_1" percentWidth="90"/>
+                <html:Div localId="myVSel3_1" percentWidth="45" />
+                <html:Div localId="myVSelH3_1" percentWidth="45"/>
             </j:HGroup>
             
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Disabled options</strong> (First 3 options disabled)</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <html:Div localId="myVSel3_2" percentWidth="90"/>
-                <html:Div localId="myVSelH3_2" percentWidth="90"/>
+                <html:Div localId="myVSel3_2" percentWidth="45"/>
+                <html:Div localId="myVSelH3_2" percentWidth="45"/>
             </j:HGroup>
 
         </j:VGroup>

@@ -10,6 +10,8 @@
     
     <fx:Script>
         <![CDATA[
+        import org.apache.royale.events.Event;
+
 
         public function onInitComplete():void
         {
@@ -88,14 +90,14 @@
 
         private function makeVList():void
         {
-            vsJC.makeVList();
             vsAS.makeVList();
         }
 
-        private function resfreshData():void
+        private function resfreshData(event:Event):void
         {
             makeDP();
-            //vsJC.makeVList();
+            if( event.target == vsAS)
+                vsAS.refreshData_Res();
         }
 
         ]]>
@@ -115,15 +117,15 @@
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      percentHeight="100">
-        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100" percentHeight="100" 
+        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100"
         arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
-        resfreshData="resfreshData()"/>
+        resfreshData="resfreshData(event)"/>
     </j:GridCell>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      percentHeight="100">
-        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" percentHeight="100" 
+        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" 
         arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
-        />
+        resfreshData="resfreshData(event)"/>
     </j:GridCell>
 </j:Grid>

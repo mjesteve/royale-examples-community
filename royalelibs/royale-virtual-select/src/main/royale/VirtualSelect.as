@@ -89,51 +89,56 @@ package
    */
 		public static function init(options:Object):VirtualSelect { return null; }
 
-        public static function value():Object{ return null;}
-        public static function setValue(value:Object):void{}
-        public static function reset(value:Object):void{}
-        
-        public function setOptions(options:Array):void{}
-        public static function setDisabledOptions(disabledOptions:Array, setOptionsProp:Boolean=false):void{}
+        public function value():Object{ return null;}
+        public function setValue(value:Object):void{}
+        public function reset(value:Object):void{}
+        public function setDisabledOptions(disabledOptions:Array, setOptionsProp:Boolean=false):void{}
         /**
          * Select / Deselect all options
          * @param isSelected 
          */
-        public static function toggleSelectAll(isSelected:Boolean):void{}
+        public function toggleSelectAll(isSelected:Boolean):void{}
         /**
          * To check that if all options selected or not
          */
-        public static function isAllSelected():void{}
+        public function isAllSelected():void{}
         /**
          * To add a new option with existing options
          * @param data 
          */
-        public static function addOption(data:Array):void{}
+        public function addOption(data:Array):void{}
         /**
          * Get selected value which is added as "new option" (allowNewOption: true)
          * @return 
          */
-        public static function getNewValue():Object{ return null;}
+        public function getNewValue():Object{ return null;}
         /**
          * Get selected option's display value (i.e label)
          * @return 
          */
-        public static function getDisplayValue():Object{ return null;}
+        public function getDisplayValue():Object{ return null;}
         /**
          * Get selected option's details. 
          * It would contains isNew: true property for options added newly by allowNewOption
          * @return 
          */
-        public static function getSelectedOptions():Object{ return null;}
+        public function getSelectedOptions():Object{ return null;}
         /**
          * To open dropbox programmatically
          */
-        public static function open():void{}
+        public function open():void{}
         /**
          * To close dropbox programmatically
          */
-        public static function close():void{}
+        public function close():void{}
 
+        
+        public function setOptions(options:Array):void{}
         public function sortedOptions():Array{ return null; }
+        /**
+         * Update Options
+         * @param options 
+         */
+        public function setServerOptions(options:Array):void{}
 	}
 }

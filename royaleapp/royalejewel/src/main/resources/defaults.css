@@ -196,4 +196,31 @@
 
 }
 
+/* No coge el defaults.css de virtual-select*/
+
+.vscomp-wrapper {
+  display:inline-flex;
+  position:relative;
+  width:100%;
+  font-family: 'Open Sans', serif, sans-serif !important;
+  color: #333333 !important;
+  font-size: inherit !important;
+}
+
+.vscomp-option-text span > mark  {
+  background-color: #04a3b3;
+}
+
+span > mark {
+  background-color: #04a3b3;
+}
+
+mark {
+  background-color: #04a3b3;
+}
+
+.vscomp-royale {
+  background-color: #333333 !important;
+  color: #04a3b3 !important;
+}
 
