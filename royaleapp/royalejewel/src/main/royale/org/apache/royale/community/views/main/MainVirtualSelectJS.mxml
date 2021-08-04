@@ -26,8 +26,8 @@
         private var dpStringBig:ArrayList = new ArrayList;
         [Bindable]
         private var dpClassBig:ArrayList = new ArrayList;
+        [Bindable]
         private var arClassBig:Array = new Array();
-        private var totalCases:Number = 0;
 
         private function makeDP(init:Boolean = false):void
         {
@@ -37,26 +37,26 @@
             {
                 prefix = "** ";
             }
-            var ar:Array = new Array();
-            var ar2:Array = new Array();
-            var varray:Array = new Array();
+            //var ar:Array = new Array();
+            //var ar2:Array = new Array();
+            //var varray:Array = new Array();
             var varray2:Array = new Array();
-
-            arClassBig = new Array();
+            var varray3:Array = new Array();
 
             for(var index:int = 0; index < 10000; index++)
             {
-                if(index < 100){
-                    ar.push(prefix+'String: '+index.toString());
-                    ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
-                }
-                varray.push(prefix+'String: '+index.toString());
+                //if(index < 100){
+                    //ar.push(prefix+'String: '+index.toString());
+                    //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                //}
+                //varray.push(prefix+'String: '+index.toString());
                 varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
-                arClassBig.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
+                varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
             }
-            dpString = new ArrayList(ar);
-            dpClass = new ArrayList(ar2);
-            dpStringBig = new ArrayList(varray);
+            arClassBig = varray3.slice();
+            //dpString = new ArrayList(ar);
+            //dpClass = new ArrayList(ar2);
+            //dpStringBig = new ArrayList(varray);
             dpClassBig = new ArrayList(varray2);
 
         }
@@ -65,12 +65,12 @@
         private var opinit:OptionsInit = new OptionsInit();
         private function makeVList():void
         {
-            if(!myvlist)
+           /* if(!myvlist)
             {
                 opinit.ele = myContainerVList.element;
                 opinit.options = arClassBig;
                 myvlist = VirtualSelect.init(opinit as Object);
-            }
+            }*/
         }
 
 
@@ -117,12 +117,17 @@
                 <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
                     <j:HGroup localId="parentGroup" percentHeight="100" percentWidth="100">
 
-                        <html:Div id="myContainerVList" width="250" />
+                      <!--   <html:Div id="myContainerVList" width="250" />-->
                         
+                        <jc:VirtualSelectJwExt localId="myVSel4" width="250" dataProvider="{arClassBig}" 
+                        search="true" multiple="false" keepAlwaysOpen="true" additionalClasses="vscomp-royale"/>
+                        
+                        <jc:VirtualSelectJwExt localId="myVSel5" width="250" dataProvider="{arClassBig}" 
+                        search="true" multiple="false" />
+
                         <jc:VirtualComboBoxJwExt localId="jevcb1" width="250" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
                             dataProvider="{dpClassBig}" labelField="displaytext">
                             <jc:beads>
-                                <!--<js:CollectionSelectedItemByField valueField="codigo" selectedValue="{txt1text}" />-->
                                 <j:SearchFilter/>
                             </jc:beads>
                         </jc:VirtualComboBoxJwExt>

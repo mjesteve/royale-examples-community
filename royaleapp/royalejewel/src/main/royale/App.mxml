@@ -40,9 +40,9 @@
 	</j:valuesImpl>
 -->
 	<j:initialView>
-		
+
 		<mainviews:MainView/> 
-<!--
+<!--		
 		<mainviews:MainVirtualSelectJS/> 
 -->
 	

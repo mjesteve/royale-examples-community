@@ -131,10 +131,14 @@ package
          * To close dropbox programmatically
          */
         public function close():void{}
-
-        
+        /**
+         * Update the dataprovider.
+         * 
+         * There is a problem in the component and it does not recreate the dropdown items,
+         * instead, we can use setSeverOptions which does.
+         */
         public function setOptions(options:Array):void{}
-        public function sortedOptions():Array{ return null; }
+        public var sortedOptions:Array;
         /**
          * Update Options
          * @param options 

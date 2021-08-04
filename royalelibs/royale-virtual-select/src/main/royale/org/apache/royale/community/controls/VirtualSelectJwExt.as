@@ -70,6 +70,7 @@ package org.apache.royale.community.controls
             _configOption.ele = element;
             _configOption.silentInitialValueSet = true;
             _configOption.markSearchResults = true;
+            _configOption.optionHeight = "34px"; // _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
 		}
         
 		override public function addedToParent():void
@@ -78,6 +79,13 @@ package org.apache.royale.community.controls
             dispatchEvent(new Event("onCreationComplete"));
             init();
 		}
+        /**
+         * Test. Debug all dispatched events
+         */
+        override public function dispatchEvent(event:Event):Boolean {
+            trace("********** VirtualSelectJwExt: EVENT ", event);
+            return super.dispatchEvent(event);
+        }
 
         //POR AHORA ES PÚBLICO POR SI QUEREMOS ASIGNAR LA CONFIGURACIÓN EN BRUTO
         private var _configOption:OptionsInit;
@@ -136,7 +144,6 @@ package org.apache.royale.community.controls
 		 */
 		public function init(make:Boolean = false):void
 		{
-
             if(!instance)
                 instance = VirtualSelect.init(_configOption as Object);
             /*else
@@ -164,14 +171,14 @@ package org.apache.royale.community.controls
                 return null;
         }
 
-        [Bindable("dataChange")]
         public function get dataProvider():Array
         { 
             if(_instance)
-                return _instance.sortedOptions();
+                return _instance.sortedOptions;
             else
                 return _configOption.options; 
         }
+        [Bindable]
         public function set dataProvider(value:Array):void
         { 
             _configOption.options = value ? value : new Array;
@@ -196,8 +203,8 @@ package org.apache.royale.community.controls
         /**
          * List of values to disable options <br/>e.g - [2, 3, 9]
          */
-        [Bindable]
         public function get disabledOptions():Array{ return _configOption.disabledOptions; }
+        [Bindable]
         public function set disabledOptions(value:Array):void
         { 
             _configOption.disabledOptions = value; 
@@ -209,7 +216,7 @@ package org.apache.royale.community.controls
          * Enable multi-select
          */
         public function get multiple():Boolean{ return _configOption.multiple; }
-        public function set multiple(value:Boolean):void{ _configOption.multiple = value; }
+        public function set multiple(value:Boolean):void{ _configOption.multiple = value;}
         /**
          * Maximum no.of options allowed to choose in multiple select<br>0 - for no limit
          */
@@ -219,7 +226,7 @@ package org.apache.royale.community.controls
          * Enable search feature (false - for single select <br/>true - for multi-select)
          */
         public function get search():Boolean{ return _configOption.search; }
-        public function set search(value:Boolean):void{ _configOption.search = value; }    
+        public function set search(value:Boolean):void{ _configOption.search = value; }
         /**
          * Mark matched term in label
          */

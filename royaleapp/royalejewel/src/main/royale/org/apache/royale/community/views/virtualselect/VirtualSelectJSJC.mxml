@@ -16,10 +16,16 @@
         import org.apache.royale.collections.ArrayList;
 
         [Bindable]
-        public var arlClassBig:ArrayList = new ArrayList();
+        public var dpClassBig:ArrayList = new ArrayList();
 
+        private var _arClassBig:Array = new Array();
+        public function get arClassBig():Array{ return _arClassBig; }
         [Bindable]
-        public var arClassBig:Array = new Array();
+        public function set arClassBig(value:Array):void
+        { 
+            _arClassBig = value; 
+            dpClassBig = new ArrayList(value);
+        }
         [Bindable]
         public var arHClassBig:Array = new Array();
         [Bindable]
@@ -123,13 +129,18 @@
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
                 <jc:VirtualSelectJwExt localId="myVSel4" percentWidth="45" dataProvider="{arClassBig}"
-                 search="false" multiple="true" keepAlwaysOpen="true" additionalClasses="vscomp-royale"/>
+                 search="true" multiple="false" keepAlwaysOpen="true" additionalClasses="vscomp-royale"/>
                 
                 <!--<jc:VirtualSelectJwExt localId="myVSelH4" percentWidth="45" dataProvider="{arHClassBig}"
                  search="false" multiple="true" keepAlwaysOpen="true"/> -->
 
-                <jc:VirtualComboBoxJwExt localId="myVSelH4" percentWidth="45" dataProvider="{arlClassBig}" emptyDisabled="false"
-                labelField="label"/>
+                <jc:VirtualComboBoxJwExt localId="myVSelH4" percentWidth="45" 
+                    itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                    dataProvider="{dpClassBig}" labelField="label">
+                    <jc:beads>
+                        <j:SearchFilter/>
+                    </jc:beads>
+                </jc:VirtualComboBoxJwExt>
             </j:HGroup>
 
         </j:VGroup>

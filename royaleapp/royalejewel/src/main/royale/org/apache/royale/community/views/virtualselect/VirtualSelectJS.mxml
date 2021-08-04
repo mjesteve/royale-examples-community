@@ -32,14 +32,17 @@
         [Bindable]
         private var arHClassBig:Array = new Array();
         private var totalCases:Number = 0;
+        private var prefix:String="";
 
         private function makeDP(init:Boolean = false):void
         {
-            var prefix:String="";
 
-            if(!init)
-            {
+            if(init){
+                prefix = "";
+            }else if(prefix == ""){
                 prefix = "** ";
+            }else {
+                prefix = "";
             }
             //var ar:Array = new Array();
             //var ar2:Array = new Array();
