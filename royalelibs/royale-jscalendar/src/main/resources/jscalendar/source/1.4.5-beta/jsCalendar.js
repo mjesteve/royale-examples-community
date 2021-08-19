@@ -68,8 +68,6 @@ var jsCalendar = (function(){
         this._create();
         // Update
         this._update();
-        // set not frozen
-        this._isFrozen = false;
     };
 
     // Languages
@@ -626,11 +624,6 @@ var jsCalendar = (function(){
                 date.setDate(1);
                 that._eventFire('month', date, event);
             }, false);
-
-            this._target.querySelector('.'+ this._elements.month.className)
-                .addEventListener('click', function(event) {
-               that.yearPicker.className += ' active';
-            });
         }
 
         // Days row
@@ -643,8 +636,6 @@ var jsCalendar = (function(){
                 this._elements.days.length - 1
             ]);
         }
-
-        this._createYearsPicker();
 
         // Body rows
         this._elements.bodyRows = [];
@@ -668,57 +659,6 @@ var jsCalendar = (function(){
         // Extensions call create
         this.extensionsCall('create', [this._elements]);
     };
-
-    JsCalendar.prototype._createYearsPicker = function() {
-        var that = this;
-
-        // If it doesn't exist, create it.
-        if (!this.yearPicker) {
-            this.yearPicker = document.createElement( 'table' );
-            this.yearPicker.className = 'year-picker';
-
-            this._target.append(this.yearPicker);
-        }
-
-        // Clean up its content.
-        while(this.yearPicker.firstChild)
-            this.yearPicker.removeChild(this.yearPicker.firstChild);
-
-        var yearPickerBody = document.createElement('tbody');
-
-        var selectableYears = [];
-        for (var offset = 15; offset > 0; --offset)
-            selectableYears.push(this._date.getFullYear() - offset);
-        for (var offset = 0; offset < 15; ++offset)
-            selectableYears.push(this._date.getFullYear() + offset);
-
-        for (var row = 0, insertedYears = 0; row < 7; ++row) {
-            var tr = document.createElement('tr');
-
-            for (var column = 0; column < 4; ++column) {
-                var td = document.createElement('td');
-                td.innerText = selectableYears[++insertedYears];
-
-                if (td.innerText.trim() == this._date.getFullYear())
-                    td.className = 'jsCalendar-current';
-
-                td.addEventListener('click', function(event) {
-                    var date = new Date(that._date.getTime());
-                    date.setFullYear(event.currentTarget.innerText);
-                    that.yearPicker.className = that.yearPicker.className.replace('active', '');
-                    that.set(date);
-
-                    that._eventFire('month', date, event);
-                });
-
-                tr.append(td);
-            }
-
-            yearPickerBody.append(tr);
-        }
-
-        this.yearPicker.append(yearPickerBody);
-    }
 
     // Select dates on calendar
     JsCalendar.prototype._selectDates = function(dates) {
@@ -774,7 +714,6 @@ var jsCalendar = (function(){
 
     // Update calendar
     JsCalendar.prototype._update = function() {
-        if (true === this._isFrozen) return this;
         // Get month info
         var month = this._getVisibleMonth(this._date);
         // Save data
@@ -900,9 +839,6 @@ var jsCalendar = (function(){
                 }
             }
         }
-
-        this._createYearsPicker();
-
         // Extensions call update
         this.extensionsCall('update', [month]);
     };
@@ -947,9 +883,6 @@ var jsCalendar = (function(){
     };
     JsCalendar.prototype.onMonthChange = function(callback) {
         return this._on('month', callback);
-    };
-    JsCalendar.prototype.onYearChange = function(callback) {
-        return this._on('year', callback);
     };
     JsCalendar.prototype.onDayRender = function(callback) {
         return this._on('day_render', callback);
@@ -1008,20 +941,6 @@ var jsCalendar = (function(){
 
         // Return
         return this;
-    };
-
-    JsCalendar.prototype.freeze = function() {
-        this._isFrozen = true;
-        return this;
-    };
-
-    JsCalendar.prototype.unfreeze = function() {
-        this._isFrozen = false;
-        return this;
-    };
-
-    JsCalendar.prototype.isFrozen = function() {
-        return this._isFrozen;
     };
 
     // Refresh
