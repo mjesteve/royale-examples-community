@@ -5,7 +5,6 @@
         xmlns:jc="library://ns.apache.org/royale/community"
         xmlns:html="library://ns.apache.org/royale/html"
 	    xmlns:viewsJsdt="org.apache.royale.community.views.jsdtsel.*"
-        initComplete="onInit()"
         percentWidth="100" percentHeight="100" gap="0">
 
     <fx:Script>

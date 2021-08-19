@@ -171,6 +171,25 @@
             </execution>
 
             <execution>
+              <id>copy-resources-debug-Tests</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>Tests.html</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+            <execution>
               <id>copy-resources-debug-components</id>
               <phase>package</phase>
               <goals>
@@ -188,6 +207,7 @@
               </configuration>
             </execution>
 
+                <!-- 
 			      <execution>
               <id>copy-resources-debug-mobiscroll</id>
               <phase>package</phase>
@@ -195,7 +215,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-debug}/mobiscroll</outputDirectory>
                 <resources>
                   <resource>
@@ -213,7 +232,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-debug}/js-year-calendar</outputDirectory>
                 <resources>
                   <resource>
@@ -223,6 +241,7 @@
                 </resources>
               </configuration>
             </execution>
+                 -->
 
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
@@ -252,6 +271,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-debug-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
@@ -316,7 +352,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
                 <resources>
                   <resource>
@@ -327,6 +362,7 @@
               </configuration>
             </execution>
 
+                <!--
 			      <execution>
               <id>copy-resources-release-mobiscroll</id>
               <phase>package</phase>
@@ -334,7 +370,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/mobiscroll</outputDirectory>
                 <resources>
                   <resource>
@@ -352,7 +387,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/js-year-calendar</outputDirectory>
                 <resources>
                   <resource>
@@ -362,7 +396,7 @@
                 </resources>
               </configuration>
             </execution>
-
+             -->
 			      <execution>
               <id>copy-resources-release-fullcalendar</id>
               <phase>package</phase>
@@ -391,6 +425,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
@@ -436,40 +487,6 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <profiles>
-    <profile>
-      <id>local</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-                <execution>
-                    <id>copy-local-resources-release</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>copy-resources</goal>
-                    </goals>
-                    <configuration>
-                        <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
-                        <encoding>ISO-8859-1</encoding>
-                        <resources>
-                          <resource>
-                              <directory>src/main/resources/local-assets</directory>
-                              <filtering>true</filtering>
-                          </resource>
-                        </resources>
-                    </configuration>
-                </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
   <dependencies>
     <dependency>

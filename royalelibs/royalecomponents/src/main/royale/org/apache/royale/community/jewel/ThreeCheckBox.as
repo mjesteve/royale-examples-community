@@ -260,10 +260,10 @@ package org.apache.royale.community.jewel
         /**
          * Test. Debug all dispatched events
          */
-        override public function dispatchEvent(event:Event):Boolean {
+        /*override public function dispatchEvent(event:Event):Boolean {
             trace("********** ThreeCheckBox: ", event.type);
             return super.dispatchEvent(event);
-        }
+        }*/
 
         /**
          * 

@@ -5,7 +5,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "[royalelibs] Build with Maven",
+            "label": "--[royalelibs] Build with Maven",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -16,7 +16,7 @@
             "problemMatcher": []
         },
         {
-            "label": "[royalelibs] Build with Maven - Droyalelib - ROYALE_HOME",
+            "label": "--[royalelibs] Build with Maven - Droyalelib - ROYALE_HOME",
             "type": "shell",
             "command": "mvn",
             "args": [

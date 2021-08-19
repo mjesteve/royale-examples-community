@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsTop"
+    initComplete="onInitComplete()"> 
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.events.Event;
+
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+            makeVList();
+        }
+        /*
+        [Bindable]
+        private var dpString:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClass:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;*/
+        [Bindable]
+        private var arStringBig:Array = new Array();
+        [Bindable]
+        private var arClassBig:Array = new Array();
+        [Bindable]
+        private var arHClassBig:Array = new Array();
+        private var prefix:String="";
+
+        private function makeDP(init:Boolean = false):void
+        {
+
+            if(init){
+                prefix = "";
+            }else if(prefix == ""){
+                prefix = "** ";
+            }else {
+                prefix = "";
+            }
+            //var ar:Array = new Array();
+            //var ar2:Array = new Array();
+            //var varray:Array = new Array();
+            var varray2:Array = new Array();
+            var varray3:Array = new Array();
+
+            var index:int = 0
+            for(index = 0; index < 15000; index++)
+            {
+                //if(index < 100){
+                    //ar.push(prefix+'String: '+index.toString());
+                    //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                //}
+                //varray.push(prefix+'String: '+index.toString());
+                //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
+                varray2.push(prefix+'Desc: '+index.toString());
+            }
+            /*dpString = new ArrayList(ar);
+            dpClass = new ArrayList(ar2);
+            dpStringBig = new ArrayList(varray);
+            dpClassBig = new ArrayList(varray2);*/
+            arStringBig = varray2.slice();
+            arClassBig = varray3.slice();
+            
+            var varray4:Array = new Array();
+            var archil:Array;
+            var itemHeader:Object;
+            index = 0;
+            for(var idx:int = 0; idx < 150; idx++)
+            {
+                if( idx > 0 )
+                {
+                    itemHeader.options = archil;
+                    varray4.push(itemHeader);
+                }
+                archil = new Array();
+                itemHeader = { label: 'Option Group: '+idx.toString() };
+                
+                for(var idxc:int = 0; idxc < 10; idxc++)
+                {
+                    archil.push({ label: prefix+'Desc: '+idx.toString()+' - '+idxc.toString(), value: index.toString() });
+                    index++;
+                }
+            }
+            arHClassBig = varray4.slice();
+
+        }
+
+        private function makeVList():void
+        {
+            vsAS.makeVList();
+        }
+
+        private function resfreshData(event:Event):void
+        {
+            makeDP();
+            if( event.target == vsAS)
+                vsAS.refreshData_Res();
+        }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="Virtual Select JS">
+        <jc:description>
+            <![CDATA[Tests <strong>Configuration Options</strong>]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
+     >
+        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100" percentHeight="100"
+        arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
+        resfreshData="resfreshData(event)"/>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
+     ><!-- -->
+        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" percentHeight="100"
+        arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
+        resfreshData="resfreshData(event)"/>
+    </j:GridCell>
+</j:Grid>

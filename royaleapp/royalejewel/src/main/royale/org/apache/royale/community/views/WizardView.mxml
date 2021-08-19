@@ -12,6 +12,7 @@
 	xmlns:viewsFullcal="org.apache.royale.community.views.calendars.fullcalendar.*"
     xmlns:viewsJc="org.apache.royale.community.views.customcontrols.*"
     xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
     percentWidth="100" percentHeight="100">
 
      <fx:Script>
@@ -22,7 +23,7 @@
        
         private function changeHandler(event:Event):void
         {
-            if( WizardModel(event.target).currentStep.name == "page1" )
+            if( WizardModel(event.target).currentStep.name == "page4" )
                 vFullCalendar.refreshSizeCalendar();
         }
         
@@ -58,53 +59,56 @@
             </j:Group>
         </j:nextButton>
 
+
         <j:WizardPage name="page0">
             <j:step>
-                <j:WizardStep localId="s0" initialPage="true" name="page0"  nextStep="page1"/>
+                <j:WizardStep initialPage="true" localId="s0" name="page0"  nextStep="page1"/>
             </j:step>
-            <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
+            <!-- -->
+            <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page1">
             <j:step>
                 <j:WizardStep localId="s1" name="page1" previousStep="page0" nextStep="page2"/>
             </j:step>
-            <viewsJc:ThreeCheckBox_Test percentHeight="100" percentWidth="100" />
+            <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page2">
             <j:step>
                 <j:WizardStep localId="s2" name="page2" previousStep="page1" nextStep="page3"/>
             </j:step>
-            <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
+            <viewsJc:ThreeCheckBox_Test percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page3">
             <j:step>
                 <j:WizardStep localId="s3" name="page3" previousStep="page2" nextStep="page4"/>
             </j:step>
-            <viewsFullcal:FullCalendarView_new localId="vFullCalendar" percentHeight="100" percentWidth="100" />
+            <!-- -->
+            <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page4">
             <j:step>
                 <j:WizardStep localId="s4" name="page4" previousStep="page3" nextStep="page5"/>
             </j:step>
-            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+            <viewsFullcal:FullCalendarView_new localId="vFullCalendar" percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page5">
             <j:step>
                 <j:WizardStep localId="s5" name="page5" previousStep="page4" nextStep="page6"/>
             </j:step>
-            <views:Debug_Pills percentHeight="100" percentWidth="100" />
+            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page6">
             <j:step>
                 <j:WizardStep localId="s6" name="page6" previousStep="page5" nextStep="page7"/>
             </j:step>
-            <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
+            <views:Debug_Pills percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page7">
@@ -118,37 +122,43 @@
             <j:step>
                 <j:WizardStep localId="s8" name="page8" previousStep="page7" nextStep="page9"/>
             </j:step>
-            <viewsList:MainList percentHeight="100" percentWidth="100" />
+            <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page9">
             <j:step>
                 <j:WizardStep localId="s9" name="page9" previousStep="page8" nextStep="page10"/>
             </j:step>
-            <viewsList:Debug_ScrollToIndex percentHeight="100" percentWidth="100" />
+            <viewsList:MainList percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page10">
             <j:step>
                 <j:WizardStep localId="s10" name="page10" previousStep="page9" nextStep="page11"/>
             </j:step>
-            <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
+            <viewsList:Debug_ScrollToIndex percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page11">
             <j:step>
                 <j:WizardStep localId="s11" name="page11" previousStep="page10" nextStep="page12"/>
             </j:step>
-            <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+            <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page12">
             <j:step>
-                <j:WizardStep localId="s12" name="page12" previousStep="page11"/>
+                <j:WizardStep localId="s12" name="page12" previousStep="page11" nextStep="page13"/>
+            </j:step>
+            <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+        </j:WizardPage>
+
+        <j:WizardPage name="page13">
+            <j:step>
+                <j:WizardStep localId="s13" name="page13" previousStep="page12"/>
             </j:step>
             <views:Debug_Color percentHeight="100" percentWidth="100" />
         </j:WizardPage>
-
 <!--
         <j:WizardPage name="page11">
             <j:step>

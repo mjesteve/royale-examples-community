@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight">
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.collections.ArrayList;
+
+			public function assignNewData(cmb:ComboBox):void
+			{
+				cmb.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
+			}
+
+			private function describeItem(item:*):String {
+				const intro:String = "";
+				var evaluated:String;
+				/*if (item is String) {
+					evaluated = "String value: '" + item + "'";
+				} else {
+					if (item === null || item === undefined) {
+						evaluated = "Nothing Selected";
+					}
+					else {
+						if (item is IconListVO) {
+							evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+						} else {
+							evaluated = "Object : " + item;
+						}
+					}
+				}*/
+				return intro + evaluated;
+			}
+
+			[Bindable]
+			public var promptText:String = "The text here is truncated";
+		]]>
+	</fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+            <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="JS Virtual Select - Debugger">
+        <jc:description>
+            <![CDATA[<strong>ThreeCheckBox</strong> Custom Jewel CheckBox with three states.]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+	<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:Card>
+			<j:CardHeader>
+				<j:BarSection>
+					<html:H3 text="String Collection" className="secondary-normal"/>
+				</j:BarSection>
+				<j:BarSection itemsHorizontalAlign="itemsRight">
+					<j:IconButton unboxed="true" click="assignNewData(watchmenComboBox)">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
+						</j:icon>
+						<j:beads>
+							<j:ToolTip toolTip="Assign new data"/>
+						</j:beads>
+					</j:IconButton>
+				</j:BarSection>
+			</j:CardHeader>
+			<j:CardPrimaryContent>
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>This <b>ComboBox</b> is using a simple string collection as <i>dataProvider</i> and a <b>ComboBoxTextPrompt</b> bead to show a prompt message.</p>]]></j:html>
+				</j:Label>
+
+				<j:ComboBox localId="watchmenComboBox" dataProvider="{listModel.watchmen}">
+					<j:beads>
+						<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
+					</j:beads>
+				</j:ComboBox>
+
+			</j:CardPrimaryContent>
+			<j:CardActions itemsVerticalAlign="itemsCenter">
+				<j:BarSection>
+					<j:Label localId="watchmenComboBoxResult" html="{describeItem(watchmenComboBox.selectedItem)}"/>
+				</j:BarSection>
+				<j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
+					<j:Label text="Select Index: "/>
+					<j:NumericStepper valueChange="watchmenComboBox.selectedIndex = event.target.value" minimum="0" maximum="5"/>
+				</j:BarSection>
+			</j:CardActions>
+		</j:Card>
+	</j:GridCell>
+
+	<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:Card>
+			<j:CardHeader>
+				<j:BarSection>
+					<html:H3 text="Object Collection" className="secondary-normal"/>
+				</j:BarSection>
+				<j:BarSection itemsHorizontalAlign="itemsRight">
+					<j:IconButton unboxed="true" click="assignNewData(avengersComboBox)">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
+						</j:icon>
+						<j:beads>
+							<j:ToolTip toolTip="Assign new data"/>
+						</j:beads>
+					</j:IconButton>
+				</j:BarSection>
+			</j:CardHeader>
+			<j:CardPrimaryContent>
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>This <b>ComboBox</b> is using an object collection as <i>dataProvider</i>. Use <i>labelField</i> to indicate the object property to use as label. A <b>ComboBoxTextPrompt</b> bead is used to show a prompt message.</p>]]></j:html>
+				</j:Label>
+
+				<j:ComboBox localId="avengersComboBox" labelField="label" dataProvider="{listModel.avengers}">
+					<j:beads>
+						<j:ComboBoxTextPrompt prompt="Avengers Team..."/>
+					</j:beads>
+				</j:ComboBox>
+
+			</j:CardPrimaryContent>
+			<j:CardActions itemsVerticalAlign="itemsCenter">
+				<j:BarSection>
+					<j:Label localId="avengersComboBoxResult" html="{describeItem(avengersComboBox.selectedItem)}"/>
+				</j:BarSection>
+				<j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
+					<j:Label text="Select Index: "/>
+					<j:NumericStepper valueChange="avengersComboBox.selectedIndex = event.target.value" minimum="0" maximum="8"/>
+				</j:BarSection>
+			</j:CardActions>
+		</j:Card>
+	</j:GridCell>
+
+
+</j:Grid>
