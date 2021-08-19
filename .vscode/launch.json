@@ -28,7 +28,7 @@
             "webRoot": "${workspaceRoot}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-debug"
         },
         {
-            "name": "Launch Chrome - localhost - Royal App (Debug release)",
+            "name": "Launch FireFox - localhost - Royal App (Debug version)",
             "type": "firefox",
             "request": "launch",
             "url": "http://localhost:8080/royale.community.example.release/index-release.html",

@@ -27,8 +27,7 @@
         private var opvinit:Array = new Array();
         public function makeVList():void
         {
-            return;
-            setTimeout(function():void{
+           // setTimeout(function():void{
 
                 var op:OptionsInit = new OptionsInit();
                 op.ele = myVSel1.element;
@@ -114,7 +113,7 @@
                 op.position = "top";
                 opvinit.push(op);
                 myvhlist.push(VirtualSelect.init(opvinit[4] as Object));
-                },300);
+            //    },300);
 
          }
 
