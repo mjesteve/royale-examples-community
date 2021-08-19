@@ -23,7 +23,7 @@
        
         private function changeHandler(event:Event):void
         {
-            if( WizardModel(event.target).currentStep.name == "page1" )
+            if( WizardModel(event.target).currentStep.name == "page4" )
                 vFullCalendar.refreshSizeCalendar();
         }
         
@@ -64,6 +64,7 @@
             <j:step>
                 <j:WizardStep initialPage="true" localId="s0" name="page0"  nextStep="page1"/>
             </j:step>
+            <!-- -->
             <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
@@ -85,6 +86,7 @@
             <j:step>
                 <j:WizardStep localId="s3" name="page3" previousStep="page2" nextStep="page4"/>
             </j:step>
+            <!-- -->
             <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 

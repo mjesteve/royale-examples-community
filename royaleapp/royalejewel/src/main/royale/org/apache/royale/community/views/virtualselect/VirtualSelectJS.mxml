@@ -28,10 +28,11 @@
         [Bindable]
         private var dpClassBig:ArrayList = new ArrayList;*/
         [Bindable]
+        private var arStringBig:Array = new Array();
+        [Bindable]
         private var arClassBig:Array = new Array();
         [Bindable]
         private var arHClassBig:Array = new Array();
-        private var totalCases:Number = 0;
         private var prefix:String="";
 
         private function makeDP(init:Boolean = false):void
@@ -47,7 +48,7 @@
             //var ar:Array = new Array();
             //var ar2:Array = new Array();
             //var varray:Array = new Array();
-            //var varray2:Array = new Array();
+            var varray2:Array = new Array();
             var varray3:Array = new Array();
 
             var index:int = 0
@@ -60,11 +61,13 @@
                 //varray.push(prefix+'String: '+index.toString());
                 //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
                 varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
+                varray2.push(prefix+'Desc: '+index.toString());
             }
             /*dpString = new ArrayList(ar);
             dpClass = new ArrayList(ar2);
             dpStringBig = new ArrayList(varray);
             dpClassBig = new ArrayList(varray2);*/
+            arStringBig = varray2.slice();
             arClassBig = varray3.slice();
             
             var varray4:Array = new Array();
@@ -119,15 +122,15 @@
     </jc:ExampleHeader>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
-     percentHeight="100">
-        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100"
+     >
+        <viewsVSel:VirtualSelectJSJC localId="vsJC" percentWidth="100" percentHeight="100"
         arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
         resfreshData="resfreshData(event)"/>
     </j:GridCell>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
-     percentHeight="100">
-        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" 
+     ><!-- -->
+        <viewsVSel:VirtualSelectJSAS localId="vsAS" percentWidth="100" percentHeight="100"
         arClassBig="{arClassBig}" arHClassBig="{arHClassBig}"
         resfreshData="resfreshData(event)"/>
     </j:GridCell>

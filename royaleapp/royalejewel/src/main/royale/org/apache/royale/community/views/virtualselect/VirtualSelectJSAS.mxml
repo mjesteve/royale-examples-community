@@ -11,9 +11,11 @@
     
     <fx:Script>
         <![CDATA[
-            
+        import VirtualSelect
         import org.apache.royale.community.virtualselect.OptionsInit;
 
+        [Bindable]
+        private var arStringBig:Array = new Array();
         [Bindable]
         public var arClassBig:Array = new Array();
         [Bindable]
@@ -25,90 +27,94 @@
         private var opvinit:Array = new Array();
         public function makeVList():void
         {
-            var op:OptionsInit = new OptionsInit();
-            op.ele = myVSel1.element;
-            op.options = arClassBig;
-            op.position = "bottom";
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[0] as Object));
+            return;
+            setTimeout(function():void{
 
-            op = new OptionsInit();
-            op.ele = myVSelH1.element;
-            op.options = arHClassBig;
-            op.position = "bottom";
-            opvinit.push(op);
-            myvhlist.push(VirtualSelect.init(opvinit[0] as Object));
+                var op:OptionsInit = new OptionsInit();
+                op.ele = myVSel1.element;
+                op.options = arClassBig;
+                op.position = "bottom";
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[0] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSel2.element;
-            op.options = arClassBig;
-            op.position = "bottom";
-            op.search = true;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[1] as Object));
+                op = new OptionsInit();
+                op.ele = myVSelH1.element;
+                op.options = arHClassBig;
+                op.position = "bottom";
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[0] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSelH2.element;
-            op.options = arHClassBig;
-            op.position = "bottom";
-            op.search = true;
-            opvinit.push(op);
-            myvhlist.push(VirtualSelect.init(opvinit[1] as Object));
+                op = new OptionsInit();
+                op.ele = myVSel2.element;
+                op.options = arClassBig;
+                op.position = "bottom";
+                op.search = true;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[1] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSel3.element;
-            op.options = arClassBig;
-            op.search = true;
-            op.multiple = true;
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[2] as Object));
+                op = new OptionsInit();
+                op.ele = myVSelH2.element;
+                op.options = arHClassBig;
+                op.position = "bottom";
+                op.search = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[1] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSelH3.element;
-            op.options = arHClassBig;
-            op.search = true;
-            op.multiple = true;
-            opvinit.push(op);
-            myvhlist.push(VirtualSelect.init(opvinit[2] as Object));
+                op = new OptionsInit();
+                op.ele = myVSel3.element;
+                op.options = arClassBig;
+                op.search = true;
+                op.multiple = true;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[2] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSel3_1.element;
-            op.options = arClassBig;
-            op.search = false;
-            op.multiple = true;
-            op.position = "top";
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[3] as Object));
+                op = new OptionsInit();
+                op.ele = myVSelH3.element;
+                op.options = arHClassBig;
+                op.search = true;
+                op.multiple = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[2] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSelH3_1.element;
-            op.options = arHClassBig;
-            op.search = false;
-            op.multiple = true;
-            op.position = "top";
-            op.showDropboxAsPopup = true;
-            opvinit.push(op);
-            myvhlist.push(VirtualSelect.init(opvinit[3] as Object));
+                op = new OptionsInit();
+                op.ele = myVSel3_1.element;
+                op.options = arClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.position = "top";
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[3] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSel3_2.element;
-            op.options = arClassBig;
-            op.search = false;
-            op.multiple = true;
-            op.disabledOptions = [0,1,2];
-            op.position = "top";
-            opinit.push(op);
-            myvlist.push(VirtualSelect.init(opinit[4] as Object));
+                op = new OptionsInit();
+                op.ele = myVSelH3_1.element;
+                op.options = arHClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.position = "top";
+                op.showDropboxAsPopup = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[3] as Object));
 
-            op = new OptionsInit();
-            op.ele = myVSelH3_2.element;
-            op.options = arHClassBig;
-            op.search = false;
-            op.multiple = true;
-            op.disabledOptions = [0,1,2];
-            op.position = "top";
-            opvinit.push(op);
-            myvhlist.push(VirtualSelect.init(opvinit[4] as Object));
+                op = new OptionsInit();
+                op.ele = myVSel3_2.element;
+                op.options = arClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.disabledOptions = [0,1,2];
+                op.position = "top";
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[4] as Object));
+
+                op = new OptionsInit();
+                op.ele = myVSelH3_2.element;
+                op.options = arHClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.disabledOptions = [0,1,2];
+                op.position = "top";
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[4] as Object));
+                },300);
 
          }
 

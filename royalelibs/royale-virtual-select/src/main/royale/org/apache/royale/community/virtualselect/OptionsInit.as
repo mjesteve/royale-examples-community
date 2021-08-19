@@ -2,6 +2,8 @@ package org.apache.royale.community.virtualselect
 {
     public class OptionsInit
     {        
+        //## Properties
+        //vers.1.0.14
         public var ele:Element;  //DOM element to initialize plugin<br/>String - #sample-select <br/>Element - document.querySelector('#sample-select')
         public var options:Array = [];  //List of options <br/>[<br/>  { label: 'Option 1', value: '1' }, <br/>  { label: 'Option 2', value: '2' }<br/>  ...<br/>]
             //public var options[].label:String;  //by default
@@ -24,14 +26,7 @@ package org.apache.royale.community.virtualselect
         public var optionsCount:Number = 5;  //4 | 5, No. of options to show on viewport <br/>4 - When hasOptionDescription is true
         public var optionHeight:String = '40px';  //40px | 50px. Height of each dropdown options <br/>50px - When hasOptionDescription is true
         public var position:String = 'auto';  //Position of dropbox (top, bottom, auto)
-        public var placeholder:String = 'Select';  //Text to show when no options selected
-        public var noOptionsText:String = 'No options found';  //Text to show when no options to show
-        public var noSearchResultsText:String = 'No results found';  //Text to show when no results on search
-        public var selectAllText:String = 'Select all';  //Text to show near select all checkbox when search is disabled
-        public var searchPlaceholderText:String = 'Search...';  //Text to show as placeholder for search input
-        public var optionsSelectedText:String = 'options selected';  //Text to use when displaying no.of values selected text (i.e. 3 options selected)
-        public var clearButtonText:String = 'Clear';  //Tooltip text for clear button
-        public var selectedValue:Array = [];  //Single value or array of values to select on init
+        public var selectedValue:Object = [];  //Single value or array of values to select on init
         public var silentInitialValueSet:Boolean = false;  //To avoid change event trigger on setting initial value
         public var dropboxWidth:String;  //Custom width for dropbox
         public var zIndex:Number = 1;  //CSS z-index value for dropbox
@@ -54,6 +49,31 @@ package org.apache.royale.community.virtualselect
         public var showOptionsOnlyOnSearch:Boolean = false;  //Show options to select only if search value is not empty
         public var selectAllOnlyVisible:Boolean = false;  //Select only visible options on clicking select all checkbox when options filtered by search
 
+        //## Text Properties
+        public var placeholder:String = 'Select';  //Text to show when no options selected
+        public var noOptionsText:String = 'No options found';  //Text to show when no options to show
+        public var noSearchResultsText:String = 'No results found';  //Text to show when no results on search
+        public var selectAllText:String = 'Select all';  //Text to show near select all checkbox when search is disabled
+        public var searchPlaceholderText:String = 'Search...';  //Text to show as placeholder for search input
+        public var optionsSelectedText:String = 'options selected';  //Text to use when displaying no.of values selected text (i.e. 3 options selected)
+        public var clearButtonText:String = 'Clear';  //Tooltip text for clear button
+
+        //vers.1.0.15
+        //## Properties
+        public var dropboxWrapper:String ='body';   //Parent element to render dropbox. (self, body, or any css selectror) Original Default value 'self'.
+                                                    //Use this when container of dropdown has overflow scroll or hiddden value.
+        public var alwaysShowSelectedOptionsCount:Boolean = false;  // By default, no.of options selected text would be shown when there is no enough space to show all selected values. 
+                                                                    //Set true to override this.
+        public var disableAllOptionsSelectedText:Boolean = false;   // By default, when all values selected "All (10)" value text would be shown. 
+                                                                    //Set true to show value text as "10 options selected".   
+        public var showValueAsTags:Boolean = true;  //Show each selected values as tags with remove icon (False by default)
+
+        //## Text Properties
+        public var optionSelectedText:String; // Text to use when displaying no.of values selected text and only one value is selected (i.e. 1 option selected)
+        public var allOptionsSelectedText:String = 'All'; // Text to use when displaying all values selected text (i.e. All (10))
+        public var moreText:String = 'more...'; // Text to show when more than noOfDisplayValues options selected (i.e + 10 more...)
+
         public function OptionsInit():void{}
+
     }
 }

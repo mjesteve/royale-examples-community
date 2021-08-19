@@ -16,6 +16,8 @@
         import org.apache.royale.collections.ArrayList;
 
         [Bindable]
+        private var arStringBig:Array = new Array();
+        [Bindable]
         public var dpClassBig:ArrayList = new ArrayList();
 
         private var _arClassBig:Array = new Array();
@@ -31,13 +33,13 @@
         [Bindable]
         public var localSelectedValue:String;
 
-         private function refreshData():void
-         {
-             dispatchEvent(new Event("resfreshData"));
-         }
+        private function refreshData():void
+        {
+            dispatchEvent(new Event("resfreshData"));
+        }
 
-         private function onChangeVS(event:Event):void
-         {
+        private function onChangeVS(event:Event):void
+        {
             var ar:Object = (event.target as VirtualSelectJwExt).getSelectedOptions();
             if(!ar)
                 localSelectedValue = "";
@@ -45,7 +47,7 @@
                 localSelectedValue = (ar as Array).length.toString() + ' Registros seleccionados';
             else
                 localSelectedValue = ar.value + '-' + ar.label;
-         }
+        }
 
         ]]>
     </fx:Script>
@@ -80,8 +82,10 @@
                 <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <jc:VirtualSelectJwExt localId="myVSel1" percentWidth="45" dataProvider="{arClassBig}" onChange="onChangeVS(event)"/>
-                <jc:VirtualSelectJwExt localId="myVSelH1" percentWidth="45" dataProvider="{arHClassBig}"/>
+                <jc:VirtualSelectJwExt localId="myVSel1" percentWidth="45" position="bottom"
+                dataProvider="{arStringBig}" onChange="onChangeVS(event)"/>
+                <jc:VirtualSelectJwExt localId="myVSelH1" percentWidth="45" position="bottom"
+                dataProvider="{arHClassBig}"/>
             </j:HGroup>
 
             <j:Label multiline="true">
@@ -141,6 +145,16 @@
                         <j:SearchFilter/>
                     </jc:beads>
                 </jc:VirtualComboBoxJwExt>
+            </j:HGroup>
+            
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Preselect value/s</strong> (Left, first 3 options selected - Right, 2 value selected)</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <jc:VirtualSelectJwExt localId="myVSel5" percentWidth="45" dataProvider="{arClassBig}"
+                 search="false" multiple="true" initialSelectedValue="{[0,1,2]}"/>
+                <jc:VirtualSelectJwExt localId="myVSelH5" percentWidth="45" dataProvider="{arHClassBig}"
+                 search="false" multiple="true" initialSelectedValue="2"/>
             </j:HGroup>
 
         </j:VGroup>

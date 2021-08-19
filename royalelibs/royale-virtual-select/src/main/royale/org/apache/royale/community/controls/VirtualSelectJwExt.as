@@ -4,12 +4,15 @@ package org.apache.royale.community.controls
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.core.UIBase;
-    import org.apache.royale.utils.sendEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.community.virtualselect.OptionsInit;
     import org.apache.royale.core.StyledUIBase;
+    import VirtualSelect;
 	
+    /**
+     *  Click in the component
+     */
+	[Event(name="onButtonClick", type="org.apache.royale.events.Event")]
     /**
      *  Indicates that the creation is complete.  
      */
@@ -66,24 +69,33 @@ package org.apache.royale.community.controls
 			super();			
 			typeNames = "";
 
+            //The default values assigned in the variable definitions, of the _configOption class, are not really taken.
+            //Any default values that we want to "make effective" we have to set specifically:
+
             _configOption = new OptionsInit
             _configOption.ele = element;
             _configOption.silentInitialValueSet = true;
             _configOption.markSearchResults = true;
             _configOption.optionHeight = "34px"; // _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
+            _configOption.zIndex = 80;
+            _configOption.dropboxWrapper = 'body';
+            _configOption.showValueAsTags = false;
+            _configOption.position = 'bottom';
 		}
         
 		override public function addedToParent():void
 		{
 			super.addedToParent();
             dispatchEvent(new Event("onCreationComplete"));
-            init();
+            // When properties are not of simple type (String, Number,...), even if they are set in the mxml tag, 
+            // they are set after creation.
+            setTimeout(init,125);
 		}
         /**
          * Test. Debug all dispatched events
          */
         override public function dispatchEvent(event:Event):Boolean {
-            trace("********** VirtualSelectJwExt: EVENT ", event);
+            //trace("********** VirtualSelectJwExt: EVENT ", event);
             return super.dispatchEvent(event);
         }
 
@@ -110,11 +122,26 @@ package org.apache.royale.community.controls
                 return;
            
             _instance = value;
-            addEventListener('change', changeHandler);
-            addEventListener('beforeOpen', beforeOpenHandler);
-            addEventListener('afterOpen', afterOpenHandler);
-            addEventListener('reset', resetHandler);
+            var nlist:NodeList = element.getElementsByClassName('vscomp-toggle-button');
+            if(nlist && nlist.length>0)
+            {
+                var etxt:HTMLDivElement = nlist[0] as HTMLDivElement;
+                etxt.addEventListener('click', clickHandler);
+                if(_type == 'list')
+                    etxt.style['display']='none';
+            }
+            
+            element.addEventListener('change', changeHandler);
+            element.addEventListener('beforeOpen', beforeOpenHandler);
+            element.addEventListener('afterOpen', afterOpenHandler);
+            element.addEventListener('reset', resetHandler);
+
             dispatchEvent(new Event("onCompleteInicialize"));
+        }
+
+        private function clickHandler(event:Event):void
+        {
+            dispatchEvent(new Event("onButtonClick"));
         }
 
         private function changeHandler(event:Event):void
@@ -170,6 +197,25 @@ package org.apache.royale.community.controls
             else
                 return null;
         }
+        /**
+         * type: 'select' or 'list'
+         */
+        private var _type:String = 'select';
+        public function get type():String
+        { 
+            return _type; 
+        }
+        [Inspectable(category="General", enumeration="list,select")]
+        public function set type(value:String):void
+        { 
+            _type = value;
+            if(value == 'list')
+            {
+                if(!_configOption.keepAlwaysOpen)
+                    _configOption.keepAlwaysOpen = true;
+                _configOption.zIndex = 1;                   
+            } 
+        }
 
         public function get dataProvider():Array
         { 
@@ -183,7 +229,8 @@ package org.apache.royale.community.controls
         { 
             _configOption.options = value ? value : new Array;
             if(_instance){
-                _instance.setServerOptions(value);
+                //_instance.setOptions(value);
+               _instance.setServerOptions(value);
             }
         }
 
@@ -223,6 +270,45 @@ package org.apache.royale.community.controls
         public function get maxValues():Number{ return _configOption.maxValues; }
         public function set maxValues(value:Number):void{ _configOption.maxValues = value; }
         /**
+         * selectedValue: Single value or array of values to select on init
+         * 
+         * This property is only used to assign the selected initial values and its name can cause confusion.  
+         * I rename it to initialSelectedValue
+         * 
+         * Note: When properties are not of simple type (String, Number,...), even if they are set in the mxml tag, 
+         * they are set after creation. To apply it we manually perform the update.
+         * (The .setValue does not work properly)
+         */
+        public function get initialSelectedValue():Object{ return _configOption.selectedValue; }
+        public function set initialSelectedValue(value:Object):void
+        { 
+            _configOption.selectedValue = value;
+            if(_instance)
+                _instance.setValue(value);
+        }
+        /**
+         * Get selected value.
+         * 
+         * [todo]
+         * In Royale implementation the Binding has been simulated - setter.
+         * (The .setValue does not work properly)
+         */
+        public function get value():Object
+        {
+            if(_instance)
+                return _instance.value;
+            else
+                return null;
+        }
+        [Bindable]
+        public function set value(value:Object):void
+        {
+            if(_instance)
+                _instance.setValue(value);
+            else
+                _configOption.selectedValue = value;
+        }
+        /**
          * Enable search feature (false - for single select <br/>true - for multi-select)
          */
         public function get search():Boolean{ return _configOption.search; }
@@ -236,15 +322,30 @@ package org.apache.royale.community.controls
          * Keep dropbox always open with fixed height
          */
         public function get keepAlwaysOpen():Boolean{ return _configOption.keepAlwaysOpen; }
-        public function set keepAlwaysOpen(value:Boolean):void{ _configOption.keepAlwaysOpen = value; }
+        public function set keepAlwaysOpen(value:Boolean):void
+        {
+            if(!value && _type == 'list')
+                value = true;
+            _configOption.keepAlwaysOpen = value; 
+        }
+        /**
+         * Position of dropbox (top, bottom, auto)
+         */
+        public function get position():String{ return _configOption.position; }
+        [Inspectable(category="General", enumeration="auto,bottom,top")]
+        public function set position(value:String):void
+        { 
+            _configOption.position = value; 
+        }
 
         public var hideClearButton:Boolean = false;  //Hide clear value button
         public var autoSelectFirstOption:Boolean = false;  //Select first option by default on load
         public var hasOptionDescription:Boolean = false;  //Has description to show along with label
         public var disableSelectAll:Boolean = false;  //Disable select all feature of multiple select
-        public var optionsCount:String = '4|5';  //5, No. of options to show on viewport <br/>4 - When hasOptionDescription is true
-        public var optionHeight:String = '40px|50px';  //40px. Height of each dropdown options <br/>50px - When hasOptionDescription is true
-        public var position:String = 'auto';  //Position of dropbox (top, bottom, auto)
+        public var optionsCount:String = '5';  //4|5: 5, No. of options to show on viewport <br/>4 - When hasOptionDescription is true
+        public var optionHeight:String = '40px';  //40px|50px. 40px. Height of each dropdown options <br/>50px - When hasOptionDescription is true
+        
+
         public var placeholder:String = 'Select';  //Text to show when no options selected
         public var noOptionsText:String = 'No options found';  //Text to show when no options to show
         public var noSearchResultsText:String = 'No results found';  //Text to show when no results on search
@@ -252,10 +353,23 @@ package org.apache.royale.community.controls
         public var searchPlaceholderText:String = 'Search...';  //Text to show as placeholder for search input
         public var optionsSelectedText:String = 'options selected';  //Text to use when displaying no.of values selected text (i.e. 3 options selected)
         public var clearButtonText:String = 'Clear';  //Tooltip text for clear button
-        public var selectedValue:Array = [];  //Single value or array of values to select on init
         public var silentInitialValueSet:Boolean = false;  //To avoid change event trigger on setting initial value
         public var dropboxWidth:String;  //Custom width for dropbox
-        public var zIndex:Number = 1;  //CSS z-index value for dropbox
+        
+        /**
+         * CSS z-index value for dropbox
+         */
+        private var _zIndex:Number = -1;
+        public function get zIndex():Number{ return _configOption.zIndex; }
+        public function set zIndex(value:Number):void
+        {
+             _zIndex = value; 
+            if(_type == 'list' || _configOption.keepAlwaysOpen)
+                _configOption.zIndex = 1;
+            else   
+                configOption.zIndex = value;
+        }
+
         public var noOfDisplayValues:Number = 50;  //Maximum no.of values to show in the tooltip for multi-select
         public var allowNewOption:Boolean = false;  //Allow to add new option by searching
         public var tooltipFontSize:String = '14px';  //Font size for tooltip
@@ -279,6 +393,46 @@ package org.apache.royale.community.controls
         public var showOptionsOnlyOnSearch:Boolean = false;  //Show options to select only if search value is not empty
         public var selectAllOnlyVisible:Boolean = false;  //Select only visible options on clicking select all checkbox when options filtered by search
 
-
+        //vers.1.0.15
+        /**
+         * Show each selected values as tags with remove icon
+         */
+        public function get showValueAsTags():Boolean{ return _configOption.showValueAsTags; }
+        public function set showValueAsTags(value:Boolean):void{ _configOption.showValueAsTags = value; }
+        /**
+         * Parent element to render dropbox. (self, body, or any css selectror)
+         * Use this when container of dropdown has overflow scroll or hiddden value.
+         * 
+         * (In the royale wrapper this property must always be set to "body", so that it is always fully visible. We do not give access to the property. )
+         */
+        //public function get dropboxWrapper():String{ return _configOption.dropboxWrapper; }
+        //public function set dropboxWrapper(value:String):void{ _configOption.dropboxWrapper = value; }
+        /**
+         * By default, no.of options selected text would be shown when there is no enough space to show all selected values. 
+         * Set true to override this.
+         */
+        public function get alwaysShowSelectedOptionsCount():Boolean{ return _configOption.alwaysShowSelectedOptionsCount; }
+        public function set alwaysShowSelectedOptionsCount(value:Boolean):void{ _configOption.alwaysShowSelectedOptionsCount = value; }
+        /**
+         * By default, when all values selected "All (10)" value text would be shown. 
+         * Set true to show value text as "10 options selected". 
+         */
+        public function get disableAllOptionsSelectedText():Boolean{ return _configOption.disableAllOptionsSelectedText; }
+        public function set disableAllOptionsSelectedText(value:Boolean):void{ _configOption.disableAllOptionsSelectedText = value; }
+        /**
+         * Text to use when displaying no.of values selected text and only one value is selected (i.e. 1 option selected)
+         */
+        public function get optionSelectedText():String{ return _configOption.optionSelectedText; }
+        public function set optionSelectedText(value:String):void{ _configOption.optionSelectedText = value; }
+        /**
+         * Text to use when displaying all values selected text (i.e. All (10))
+         */
+        public function get allOptionsSelectedText():String{ return _configOption.allOptionsSelectedText; }
+        public function set allOptionsSelectedText(value:String):void{ _configOption.allOptionsSelectedText = value; }
+        /**
+         * Text to show when more than noOfDisplayValues options selected (i.e + 10 more...)
+         */
+        public function get moreText():String{ return _configOption.moreText; }
+        public function set moreText(value:String):void{ _configOption.moreText = value; }
 	}
 }
