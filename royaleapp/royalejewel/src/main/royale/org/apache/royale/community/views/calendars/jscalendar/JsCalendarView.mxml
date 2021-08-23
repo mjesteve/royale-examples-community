@@ -57,6 +57,12 @@
 		<js:ContainerDataBinding/>
 	</j:beads>
 
+    <jc:HExampleHeader title="JS Calendar">
+        <jc:description>
+            <![CDATA[Tests <strong>jsCalendar</strong> [WIP] (<a href="https://gramthanos.github.io/jsCalendar" target="_blank">https://gramthanos.github.io/jsCalendar</a>)]]>
+        </jc:description>
+    </jc:HExampleHeader>
+
     <j:Card localId="auxPanel" height="100%" className="menubar">
         <j:CardHeader className="menubarMark" 
         gap="0" itemsHorizontalAlign="itemsCenter"> 

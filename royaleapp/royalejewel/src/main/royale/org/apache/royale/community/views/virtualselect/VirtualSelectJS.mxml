@@ -117,7 +117,7 @@
 
     <jc:ExampleHeader title="JS Virtual Select">
         <jc:description>
-            <![CDATA[Tests <strong>Configuration Options</strong>]]>
+            <![CDATA[Tests <strong>Configuration Options</strong> [WIP] (<a href="https://sa-si-dev.github.io/virtual-select/#/" target="_blank">https://sa-si-dev.github.io/virtual-select</a>)]]>
         </jc:description>
     </jc:ExampleHeader>
 
