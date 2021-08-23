@@ -40,9 +40,12 @@
             private function navigateTo():void 
             {
                 var navop:NavigationLinkVO = currentNavOption;
-                main.selectedContent = currentNavOption.hash;                
+                main.selectedContent = currentNavOption.hash;
                 if(!drawer.fixed)
                     drawer.close();
+                
+                if(currentNavOption.hash == "fullcalendar_panel")
+                    vFullCalendar.refreshSizeCalendar();
             }
 
             private function collapsibleChangeHandler(event:Event):void
@@ -130,7 +133,7 @@
             <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="jscalendar_panel">
-            <!-- <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" /> -->
+            <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="fullcalendar_panel">
             <viewsFullcal:FullCalendarView_new localId="vFullCalendar" percentHeight="100" percentWidth="100" />

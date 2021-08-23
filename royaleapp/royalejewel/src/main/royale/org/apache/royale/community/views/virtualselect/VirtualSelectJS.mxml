@@ -115,7 +115,7 @@
         <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="Virtual Select JS">
+    <jc:ExampleHeader title="JS Virtual Select">
         <jc:description>
             <![CDATA[Tests <strong>Configuration Options</strong>]]>
         </jc:description>

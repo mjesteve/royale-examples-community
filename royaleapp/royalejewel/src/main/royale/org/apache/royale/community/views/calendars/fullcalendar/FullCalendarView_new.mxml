@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml"
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:html="library://ns.apache.org/royale/html"
-    initComplete="onInit()"
-	percentWidth="100" percentHeight="100">
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    style="background-color:#B3B3B3;"
+    initComplete="onInit()"> 
 
     <fx:Script>
         <![CDATA[
@@ -73,26 +74,41 @@
         ]]>
     </fx:Script>
 
-    <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
-        <j:CardHeader>
-            <j:BarSection width="100%" gap="10">
-                <html:H3 text="JS FullCalendar - Debugger" className="primary-dark block-with-text "/>
-            </j:BarSection>
-        </j:CardHeader>
+    <j:beads>
+        <js:ContainerDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+        <j:ScrollingViewport/>
+    </j:beads>
 
-        <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">            
-            <j:HGroup itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
-                style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >
-                <j:Button localId="btResize" text="Resize 50%" click="clickBtResize()"/>
-                <j:Button localId="btRestoreSize" text="Restore Size 100%" click="clickBtRestoreSize()"/>               
-            </j:HGroup>
-        </j:CardExpandedContent>
+    <jc:ExampleHeader title="JS FullCalendar">
+        <jc:description>
+            <![CDATA[Tests <strong>JS FullCalendar</strong>]]>
+        </jc:description>
+    </jc:ExampleHeader>
 
-        <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
-            <j:Group localId="parentContentCalendar" percentHeight="100" percentWidth="100">
-                <html:Div id="myContainerCalendar" percentWidth="100"/>
-            </j:Group>     
-        </j:CardPrimaryContent>
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+        <j:Card percentHeight="100" percentWidth="100" minHeight="624">
+            <j:CardHeader>
+                <j:BarSection width="100%" gap="10">
+                    <html:H3 text="Simple wrapper [WIP]" className="primary-dark block-with-text "/>
+                </j:BarSection>
+            </j:CardHeader>
 
-    </j:Card>
-</j:VGroup>
+            <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">            
+                <j:HGroup itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
+                    style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >
+                    <j:Button localId="btResize" text="Resize 50%" click="clickBtResize()"/>
+                    <j:Button localId="btRestoreSize" text="Restore Size 100%" click="clickBtRestoreSize()"/>               
+                </j:HGroup>
+            </j:CardExpandedContent>
+
+            <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+                <j:Group localId="parentContentCalendar" percentHeight="100" percentWidth="100">
+                    <html:Div id="myContainerCalendar" percentWidth="100"/>
+                </j:Group>     
+            </j:CardPrimaryContent>
+
+        </j:Card>
+    </j:GridCell>
+
+</j:Grid>
