@@ -16,18 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.community.vo
+package org.apache.royale.community.vos
 {
+    import org.apache.royale.collections.IArrayList;
+    
     [Bindable]
-    public class IconListVO
+    public class NavigationLinkVO
     {
         public var label:String;
+        public var hash:String;
         public var icon:String;
+        public var img:String;
+        public var disabled:Boolean;
+        
+        //for collapsible example
+        public var subMenu:IArrayList;
+        public var open:Boolean;
+        public var selectedChild:NavigationLinkVO;
 
-        public function IconListVO(label:String, icon:String = null)
+        public function NavigationLinkVO(label:String, hash:String, icon:String = null, img:String = null, disabled:Boolean = false)
         {
             this.label = label;
+            this.hash = hash;
             this.icon = icon;
+            this.img = img;
+            this.disabled = disabled;
         }
     }
 }

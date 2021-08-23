@@ -8,9 +8,9 @@ document.head.appendChild(link_jscalendar);
 var script_jscalendar = document.createElement("script");
 script_jscalendar.setAttribute("src", "./jscalendar/source/jsCalendar.js");
 document.head.appendChild(script_jscalendar);
-   
-window.onload = function()
-{
+  
+window.addEventListener('load', function() 
+{   
     var script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.be.js"); script_jscalendar.setAttribute("integrity", "sha384-czOMAb4auqx/S7EgTYgb/Sb3xNKzvCN3heba5z2IR80vAI72y55KvGpYQMOJF0Ul"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
     var script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.ca.js"); script_jscalendar.setAttribute("integrity", "sha384-qzGOaC9zqJRFiV0hpjawSZ5AZyBN/5LfGURBE+pQVG6jZZG4hZjJI7l8ob7UUsfI"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
     var script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.de.js"); script_jscalendar.setAttribute("integrity", "sha384-i0GkTTXTirBg3whOHw5AqlI80IINcvOfx2HjQ/x4uqJ+wsB465gvhaekGGxPlxVX"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
@@ -39,7 +39,7 @@ window.onload = function()
     var script_jscalendar = document.createElement("script");
     script_jscalendar.setAttribute("src", "./jscalendar/extensions/jsCalendar.eventmarks.js");
     document.head.appendChild(script_jscalendar);
-}
+});
 
 //------------ Optional Themes -------------
 var link_jscalendar = document.createElement("link");

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,39 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns:j="library://ns.apache.org/royale/jewel" 
-	xmlns:js="library://ns.apache.org/royale/basic" 
-	xmlns:mainviews="org.apache.royale.community.views.main.*"
-	initialize="setUp()">
+package org.apache.royale.community.vos
+{
+    [Bindable]
+    public class IconListVO
+    {
+        public var label:String;
+        public var icon:String;
 
-	<fx:Style source="../../main/resources/defaults.css"/>
-	<fx:Script>
-		<![CDATA[
-
-			public function setUp():void
-			{
-				trace("Initizlize Application");
-			}
-
-			override public function start():void{
-				trace("Start Application");
-				super.start();
-			}
-		]]>
-	</fx:Script>
-<!--
-	<j:valuesImpl>
-		<js:SimpleCSSValuesImpl />
-	</j:valuesImpl>
--->
-	<j:initialView>
-		<mainviews:MainView/> 
-<!--		
-		<mainviews:MainVirtualSelectJS/> 
--->
-
-	
-	</j:initialView>
-</j:Application>
+        public function IconListVO(label:String, icon:String = null)
+        {
+            this.label = label;
+            this.icon = icon;
+        }
+    }
+}

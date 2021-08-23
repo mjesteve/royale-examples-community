@@ -25,7 +25,7 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-			import org.apache.royale.community.vo.TabBarButtonVO;
+			import org.apache.royale.community.vos.TabBarButtonVO;
             
             [Bindable("dataChange")]
             public function get tabButton():TabBarButtonVO

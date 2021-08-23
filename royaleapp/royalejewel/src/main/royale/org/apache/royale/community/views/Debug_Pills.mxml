@@ -46,7 +46,7 @@
     <j:Card itemsExpand="false" percentHeight="100" percentWidth="50">
         <j:CardHeader>
             <j:BarSection width="100%" gap="10">
-                <html:H3 text="Page Navigator - Debugger" className="primary-dark block-with-text "/>
+                <html:H3 text="Badges - Test" className="primary-dark block-with-text "/>
             </j:BarSection>
         </j:CardHeader>
         <j:CardPrimaryContent height="100%" >

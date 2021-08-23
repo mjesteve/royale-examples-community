@@ -161,12 +161,20 @@ package org.apache.royale.community.controls
                 }
 
                 /**
-                 * La primera y la última página, siempre estarán visibles.
+                 * [es] La primera y la última página, siempre estarán visibles.
                  * Siempre que el num.total de pag. sea mayor al num.de botones que se desea tener siempre visibles
                  * aparecerán los botones extra de desplazamiento.
                  * Cuando la pri.pag > 1 aparecerá la pag.1 -> anterior -> pag.2 ...
                  * Cuando la ult.pag < total.pages aparecerá ult.pag.-1 -> siguiente -> ult.pag.
                  */
+                /**
+                 * [en] The first and the last page will always be visible.
+                 * Whenever the total number of pages is greater than the number of buttons you want to have always visible, 
+                 * the extra scroll buttons will appear.
+                 * When the first page > 1, page 1 -> previous -> page 2 ... will appear.
+                 * When the ult.pag < total.pages will appear ult.pag.-1 -> next -> ult.pag.
+                 */
+
 
                 if (loc_startPage > 1 && loc_endPage > 1 && loc_totalPages > loc_maxNavButtons) {
                     if (pageIn > 1) {
@@ -213,8 +221,11 @@ package org.apache.royale.community.controls
             _indexToSelect = loc_indexToSelect;
             dataProvider = pages;
             selectedIndex = _indexToSelect; 
-            //Para poder quitarnos el indexToSelect, al asignar el selectedIndex se debería actualizar un item del dataprovider para que 
-            //el DataitemRendererFactoryForCollectionView lance el itemUpdatedHandler y actualice el itemRenderer. QUIZÁ a través del controller.selectedIndexChange?
+
+            // [es] Para poder quitarnos el indexToSelect, al asignar el selectedIndex se debería actualizar un item del dataprovider para que 
+            // el DataitemRendererFactoryForCollectionView lance el itemUpdatedHandler y actualice el itemRenderer. QUIZÁ a través del controller.selectedIndexChange?            
+            // [en] In order to remove the indexToSelect, assigning the selectedIndex should update an item in the dataprovider so that the 
+            // DataitemRendererFactoryForCollectionView launches the itemUpdatedHandler and updates the itemRenderer. MAYBE through the controller.selectedIndexChange?
 
             //trace("selectedIndex/currentPage: " + loc_indexToSelect.toString() + " / " + pageIn.toString());
         }

@@ -1,4 +1,4 @@
-package org.apache.royale.community.vo
+package org.apache.royale.community.vos
 {
 
     [Bindable]

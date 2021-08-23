@@ -17,34 +17,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:TabBarButtonInidicatorRestrictedToContentItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<j:NavigationLinkItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns="http://www.w3.org/1999/xhtml">
+    xmlns="http://www.w3.org/1999/xhtml"
+    height="48" style="{navlink.disabled ? 'color: #dedede' : '' }">
 
     <fx:Script>
         <![CDATA[
-			import org.apache.royale.community.vos.TabBarButtonVO;
+            import org.apache.royale.community.vos.NavigationLinkVO;
             
             [Bindable("dataChange")]
-            public function get tabButton():TabBarButtonVO
+            public function get navlink():NavigationLinkVO
             {
-                return data as TabBarButtonVO;
+                return data as NavigationLinkVO;
             }
 		]]>
     </fx:Script>
 
     <j:beads>
         <js:ItemRendererDataBinding />
-        <j:HorizontalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsCenter" gap="4" />
+        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
+        <j:Disabled disabled="{navlink.disabled}"/>
     </j:beads>
 
-    <!--<j:HGroup gap="4" itemsHorizontalAlign="itemsCentered">-->
-        <js:MaterialIcon text="{tabButton.icon : ''}"  
-                    visible="{tabButton.icon != null : false}"/>
-        <html:Span text="{tabButton.label : ''}"/>
-    <!--</j:HGroup>-->
+    <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
+    
+    <html:Span text="{navlink.label}"/>
 
-</j:TabBarButtonInidicatorRestrictedToContentItemRenderer>
+</j:NavigationLinkItemRenderer>
 

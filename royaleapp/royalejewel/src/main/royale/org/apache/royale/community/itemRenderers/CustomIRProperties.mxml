@@ -9,7 +9,7 @@
 
 	<fx:Script>
 			<![CDATA[
-			import org.apache.royale.community.vo.CTypeExMasterTables;
+			import org.apache.royale.community.vos.CTypeExMasterTables;
 			
 			[Bindable("dataChange")]
 			public function get getReg():CTypeExMasterTables

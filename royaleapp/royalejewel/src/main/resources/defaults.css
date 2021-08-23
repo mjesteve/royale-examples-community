@@ -123,6 +123,11 @@
       text-align: center;
     }
 
+  /* Navigator - Drawer CSS */
+    .navigation-section-group{
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+    }
+
     .navigation-section-title.jewel.label {
       font-size: 1.5em;
       font-weight: bold;
@@ -133,9 +138,14 @@
       padding-top: 4px;
       padding-bottom: 4px;
     }
-    
-    .echarts-content > * {
-      flex: 1 0 auto;
+
+    .navIconLinkItemRenderer
+    {
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+    }
+
+    .navSectionItemRenderer{
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
     }
 
   /* List Pills CSS */
