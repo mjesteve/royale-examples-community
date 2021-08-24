@@ -42,24 +42,78 @@
       z-index: 20;
     }
 
-    /*.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
-        color: #be390e;
-      background-color: #B3B3B3;
-    }*/
-    .menubar {
-      min-width: 0;
+    .contentMainViews {
+      background-color:#B3B3B3;
+    }
+
+    /* Custom tabbar ----------------------------------- */
+    
+    .CustomTabBar .jewel.card {
+      border-radius: 0;
+    }
+
+    .CustomTabBar.menubuttonbarcard {
+      border-radius: 0;
       background: #333333 !important;
-      padding: 0;
-      margin-right: 10px;
+      padding: 0 !important;
     }
-    .menubarMark {
+
+    .CustomTabBar.menubuttonbar {
       box-shadow: #04a3b3 5px 0 0 0 inset;
-      padding-bottom: 0;
-      border-bottom: 0;
+      padding: 0 0 0 5px !important;
+      border-bottom: 1px solid #04a3b3 !important;
     }
-    .jewel.togglebutton.toggleButtonUnboxed .fonticon {
-      /* color: #674104; */
+
+    .CustomTabBar.menubuttonbarcontent {
+      padding: 0 !important;
     }
+
+    .CustomTabBar .jewel.tabbarbutton {
+      color: #8d8d8d;
+    }
+
+    .CustomTabBar .jewel.tabbarbutton.hovered {
+      background: rgba(179, 179, 179, 0.15);
+    }
+    
+    .CustomTabBar .jewel.tabbarbutton.selected {
+      background: rgba(179, 179, 179, 0.25);
+      color: #04a3b3;
+    }    
+    
+    .CustomTabBar .jewel.tabbarbutton.selectable:active {
+      background: rgba(179, 179, 179, 0.25);
+      color: #04a3b3;
+    }
+
+    .CustomTabBar .jewel.tabbarbutton.layout.horizontal {
+      padding: 12px 12px !important;
+    }
+
+    .CustomTabBar .jewel.tabbarbutton.layout.vertical {
+      padding: 12px 12px !important;
+    }
+
+    .CustomTabBar .jewel.tabbarbutton .indicator>.indicator-content {
+      background-color: #04a3b3;
+    }
+
+    .CustomTabBar .jewel.tabbar.layout.vertical .indicator>.indicator-content {
+      width: 5px;
+    }
+
+    .tabBarGroupJSCalendarItemRenderer{
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarGroupCustomIconItemRenderer");
+    }
+
+    .tabBarJSCalendarItemRenderer{
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarCustomIconItemRenderer");
+        width: 60px;
+    }
+    
+
+    /* ------------------------------------------------------- */
+
     .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
       color: #04a3b3;
     }    
@@ -94,13 +148,6 @@
     }
     .jewel.datagrid .jewel.buttonbar.header{
       overflow: hidden;
-    }
-    .jewel.card .card-header{
-      border-bottom: 1px solid #d2dadf;
-    }
-
-    .jewel.card .card-actions{
-        border-top: 1px solid #d2dadf;
     }
 
     .jewel.label{

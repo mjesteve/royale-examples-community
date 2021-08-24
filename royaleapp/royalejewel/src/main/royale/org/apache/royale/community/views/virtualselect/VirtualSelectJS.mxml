@@ -5,7 +5,6 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
-    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsTop"
     initComplete="onInitComplete()"> 
     
     <fx:Script>
@@ -111,7 +110,7 @@
 
     <j:beads>
         <js:ViewDataBinding/>
-		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
         <j:ScrollingViewport/>
     </j:beads>
 

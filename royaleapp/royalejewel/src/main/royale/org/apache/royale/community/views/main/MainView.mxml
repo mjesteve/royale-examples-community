@@ -127,19 +127,19 @@
         </j:BarRow>
      </j:FooterBar>
 
-     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true">
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="contentMainViews">
         <views:WelcomeSection name="welcome_panel"/>
         <j:ScrollableSectionContent name="virtualselect_panel">
-            <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" />
+            <viewsVSel:VirtualSelectJS/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="jscalendar_panel">
-            <viewsJscal:JsCalendarView localId="vJsCalendar" percentHeight="100" percentWidth="100" />
+            <viewsJscal:JsCalendarView localId="vJsCalendar"/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="fullcalendar_panel">
-            <viewsFullcal:FullCalendarView_new localId="vFullCalendar" percentHeight="100" percentWidth="100" />
+            <viewsFullcal:FullCalendarView_new localId="vFullCalendar"/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="threecheckbox_panel">
-            <viewsJc:ThreeCheckBox_Test percentHeight="100" percentWidth="100" />
+            <viewsJc:ThreeCheckBox_Test/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
             <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />

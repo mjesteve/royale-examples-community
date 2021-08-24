@@ -77,7 +77,6 @@ package
         import org.apache.royale.community.jewel.beads.controls.BadgeOnClick; BadgeOnClick;
         import org.apache.royale.community.events.ITCustomEvent; ITCustomEvent;
         import org.apache.royale.community.vo.PillItemVO; PillItemVO;
-        import org.apache.royale.community.vo.TabBarButtonVO; TabBarButtonVO;
 
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
         import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;
