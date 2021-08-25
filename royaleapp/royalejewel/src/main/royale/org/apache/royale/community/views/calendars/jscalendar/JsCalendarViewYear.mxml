@@ -4,7 +4,7 @@
         xmlns:js="library://ns.apache.org/royale/basic"
         xmlns:html="library://ns.apache.org/royale/html"
         xmlns:jc="library://ns.apache.org/royale/community" 
-	    itemsExpand="false">
+	    itemsExpand="false" initComplete="onInit(event)">
 
     <fx:Script>
         <![CDATA[
@@ -12,8 +12,9 @@
             [Bindable]
             private var year:Number;
 
-            private function onInit(event:Event):void{
-                
+            private function onInit(event:Event):void
+            {
+                ctYear.value = new Date().fullYear;
             }
         ]]>
     </fx:Script>
@@ -23,10 +24,21 @@
 	</j:beads>
 
     <j:CardHeader>
+        <j:BarSection percentWidth="100">
         <j:VGroup gap="5" percentWidth="100">
             <j:CardTitle text="jsCalendar - Royale Custom Control" className="primary-normal" percentWidth="100"/>
             <html:H5 text="Control AnnualJSCalendar"  className="primary-dark"/>
         </j:VGroup>
+        </j:BarSection>
+        
+        <j:BarSection width="150" itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsRight">
+            <j:NumericStepper localId="ctYear" minimum="1900" maximum="2999" percentWidth="100" style="font-weight: bold;"
+                valueChange="year=ctYear.value;">
+                <j:beads>
+                    <j:TextAlign align="right"/>
+                </j:beads>
+            </j:NumericStepper>
+        </j:BarSection>
     </j:CardHeader>
 
     <j:CardPrimaryContent>
