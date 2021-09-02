@@ -142,7 +142,7 @@
             <viewsJc:ThreeCheckBox_Test/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
-            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+            <views:Debug_PageNavigator/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />

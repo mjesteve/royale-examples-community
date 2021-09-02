@@ -4,7 +4,7 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
-    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight"> 
+    itemsVerticalAlign="itemsSameHeight"> 
     
     <fx:Script>
         <![CDATA[

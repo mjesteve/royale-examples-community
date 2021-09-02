@@ -38,7 +38,7 @@ limitations under the License.
 	</j:beads>
 
     <j:VGroup percentWidth="100">
-        <html:H1 text="{title}" className="primary-dark block-with-text"/>
+        <html:H1 text="{title}" className="primary-dark"/>
         <html:P innerHTML="{description}"/>
     </j:VGroup>
 
