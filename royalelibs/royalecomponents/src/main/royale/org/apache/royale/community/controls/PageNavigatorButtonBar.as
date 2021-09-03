@@ -1,7 +1,6 @@
 package org.apache.royale.community.controls 
 {
     import org.apache.royale.collections.ArrayList;
-    import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.jewel.ToggleButtonBar;
     import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
@@ -116,8 +115,8 @@ package org.apache.royale.community.controls
             {
                 PageNavigatorButtonBarModel(model).currentPage = -1;
                 PageNavigatorButtonBarModel(model).totalPages = 0;
-                startIndex = -1;
-                endIndex = -1;
+                PageNavigatorButtonBarModel(model).startIndex = -1;
+                PageNavigatorButtonBarModel(model).endIndex = -1;
                 dataProvider = pages;
                 selectedIndex = -1;
                 return;
@@ -215,8 +214,8 @@ package org.apache.royale.community.controls
 
             PageNavigatorButtonBarModel(model).currentPage = pageIn;
             PageNavigatorButtonBarModel(model).totalPages = loc_totalPages;
-            startIndex = loc_startIndex;
-            endIndex = loc_endIndex;
+            PageNavigatorButtonBarModel(model).startIndex = loc_startIndex;
+            PageNavigatorButtonBarModel(model).endIndex = loc_endIndex;
 
             _indexToSelect = loc_indexToSelect;
             dataProvider = pages;
@@ -236,7 +235,6 @@ package org.apache.royale.community.controls
         {
         	return _indexToSelect;
         }
-
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
@@ -246,20 +244,8 @@ package org.apache.royale.community.controls
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
-        public function set startIndex(value:int):void {
-            PageNavigatorButtonBarModel(model).startIndex = value;
-        }
-		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
-		 */
         public function get endIndex():int {
             return PageNavigatorButtonBarModel(model).endIndex;
-        }
-		/**
-		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
-		 */
-        public function set endIndex(value:int):void {
-            PageNavigatorButtonBarModel(model).endIndex = value;
         }
 
     }

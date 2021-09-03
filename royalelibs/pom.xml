@@ -17,8 +17,8 @@
     <!--
     <module>royalefullcalendar</module>
     <module>royale-virtual-select</module>
-    <module>royalecomponents</module> -->
     <module>royale-jscalendar</module>
+    <module>royalecomponents</module> -->
   </modules>
 
   <properties>

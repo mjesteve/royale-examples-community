@@ -65,6 +65,7 @@ package
         import org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid; SearchFilterForDataGrid;
 
         import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;PageNavigatorButtonBarModel;
+        import org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList; PageNavigatorList;
         import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
 
         import org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue;TriCheckBoxLabelByValue;
