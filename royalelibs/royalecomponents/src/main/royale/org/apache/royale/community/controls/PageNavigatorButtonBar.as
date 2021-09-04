@@ -49,7 +49,7 @@ package org.apache.royale.community.controls
             //typeNames = "jewel buttonbar";
         }
 
-        public var pages:ArrayList = new ArrayList();
+        public var currentPageButtons:ArrayList = new ArrayList();
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
@@ -60,7 +60,8 @@ package org.apache.royale.community.controls
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
-        public function set maxNavButtons(value:int):void {
+        public function set maxNavButtons(value:int):void 
+        {
             PageNavigatorButtonBarModel(model).maxNavButtons = value;
         }
 		/**
@@ -72,8 +73,16 @@ package org.apache.royale.community.controls
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
-        public function set pageSize(value:int):void {
+        public function set pageSize(value:int):void 
+        {
             PageNavigatorButtonBarModel(model).pageSize = value;
+        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
+		 */
+        [Bindable("totalPagesChanged")]
+        public function get totalPages():int {
+            return PageNavigatorButtonBarModel(model).totalPages;
         }
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
@@ -90,6 +99,7 @@ package org.apache.royale.community.controls
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
+        [Bindable("currentPageChanged")]
         public function get currentPage():int {
             return PageNavigatorButtonBarModel(model).currentPage;
         }
@@ -97,6 +107,11 @@ package org.apache.royale.community.controls
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
         public function set currentPage(value:int):void 
+        {
+            makeButtonBar(value);
+        }
+
+        protected function makeButtonBar(activePage:int):void
         {
             var loc_maxNavButtons:int = maxNavButtons;
             var loc_totalItems:int = totalItems;
@@ -108,16 +123,16 @@ package org.apache.royale.community.controls
             var loc_endIndex:int = 0;
 
             var loc_indexToSelect:int = -1;
-            var pageIn:int = value;
-            pages = new ArrayList();
+            var pageIn:int = activePage;
+            currentPageButtons = new ArrayList();
 
-            if(value < 0 || loc_totalItems <= 0)
+            if(activePage < 0 || loc_totalItems <= 0)
             {
-                PageNavigatorButtonBarModel(model).currentPage = -1;
                 PageNavigatorButtonBarModel(model).totalPages = 0;
                 PageNavigatorButtonBarModel(model).startIndex = -1;
                 PageNavigatorButtonBarModel(model).endIndex = -1;
-                dataProvider = pages;
+                PageNavigatorButtonBarModel(model).currentPage = -1;
+                dataProvider = currentPageButtons;
                 selectedIndex = -1;
                 return;
             }
@@ -125,8 +140,8 @@ package org.apache.royale.community.controls
             if (loc_pageSize <= 0)
                 loc_pageSize = 8;
 
-            if (loc_maxNavButtons < 0)
-                loc_maxNavButtons = 0;
+            if (loc_maxNavButtons < 1)
+                loc_maxNavButtons = 1;
 
             loc_totalPages = Math.ceil(loc_totalItems / loc_pageSize);
             if (loc_totalPages <= loc_maxNavButtons) {
@@ -184,9 +199,9 @@ package org.apache.royale.community.controls
                         }
 
                         if (loc_endPage < loc_maxNavButtons + loc_startPage) {
-                            pages.addItem(new PageNavigatorButtonBarVO("1", 1));
-                            //pages.addItem(new PageNavigatorButtonBarVO("❮", pageIn - 1));
-                            pages.addItem(new PageNavigatorButtonBarVO("",pageIn-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
+                            currentPageButtons.addItem(new PageNavigatorButtonBarVO("1", 1));
+                            //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❮", pageIn - 1));
+                            currentPageButtons.addItem(new PageNavigatorButtonBarVO("",pageIn-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
                             loc_indexToSelect += 2;
                         }
 
@@ -201,24 +216,24 @@ package org.apache.royale.community.controls
             }
 
             for (var idx:int = loc_startPage; idx <= loc_endPage; idx++) {
-                pages.addItem(new PageNavigatorButtonBarVO(idx.toString(), idx, "", (pageIn == idx)));
+                currentPageButtons.addItem(new PageNavigatorButtonBarVO(idx.toString(), idx, "", (pageIn == idx)));
                 if (pageIn == idx)
                     loc_indexToSelect += idx-loc_startPage+1;
             }
 
             if (pageIn < loc_totalPages - maxNavButtonsAfterCurrentPage) {
-                //pages.addItem(new PageNavigatorButtonBarVO("❯", pageIn + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
-                pages.addItem(new PageNavigatorButtonBarVO("",pageIn+1,FontAwesome5IconType.ANGLE_RIGHT));
-                pages.addItem(new PageNavigatorButtonBarVO(loc_totalPages.toString(), loc_totalPages));
+                //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❯", pageIn + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
+                currentPageButtons.addItem(new PageNavigatorButtonBarVO("",pageIn+1,FontAwesome5IconType.ANGLE_RIGHT));
+                currentPageButtons.addItem(new PageNavigatorButtonBarVO(loc_totalPages.toString(), loc_totalPages));
             }
 
-            PageNavigatorButtonBarModel(model).currentPage = pageIn;
             PageNavigatorButtonBarModel(model).totalPages = loc_totalPages;
             PageNavigatorButtonBarModel(model).startIndex = loc_startIndex;
             PageNavigatorButtonBarModel(model).endIndex = loc_endIndex;
+            PageNavigatorButtonBarModel(model).currentPage = pageIn;
 
             _indexToSelect = loc_indexToSelect;
-            dataProvider = pages;
+            dataProvider = currentPageButtons;
             selectedIndex = _indexToSelect; 
 
             // [es] Para poder quitarnos el indexToSelect, al asignar el selectedIndex se debería actualizar un item del dataprovider para que 
