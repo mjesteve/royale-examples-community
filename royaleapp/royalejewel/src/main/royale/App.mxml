@@ -44,12 +44,11 @@
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
 -->
-	<j:initialView>
+	<j:initialView>		
 		<mainviews:MainView/> 
 <!--		
+		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
 -->
-
-	
 	</j:initialView>
 </j:Application>

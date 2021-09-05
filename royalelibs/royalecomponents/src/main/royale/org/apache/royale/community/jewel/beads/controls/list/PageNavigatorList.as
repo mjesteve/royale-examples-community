@@ -1,14 +1,14 @@
 package org.apache.royale.community.jewel.beads.controls.list
 {
     
-	import org.apache.royale.core.Bead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.List;
-    import org.apache.royale.community.controls.PageNavigatorButtonBar;
-    import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.collections.ArrayListView;
     import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.jewel.DataContainer;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.community.controls.PageNavigatorButtonBar;
+    import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
 
     public class PageNavigatorList  extends Bead
@@ -33,26 +33,30 @@ package org.apache.royale.community.jewel.beads.controls.list
 		}
 		public function set pageNavigator(value:PageNavigatorButtonBar):void
 		{
-			removeListListeners();
-			
+			removeListListeners();	
 			_pageNavigator = value;
-
 			addListListeners();
 		}
 
-		protected function addListListeners():void {
+		protected function addListListeners():void 
+		{
 			if(_pageNavigator)
 			{
-				_pageNavigator.addEventListener('change', pageChangedEventHandler);
-				PageNavigatorButtonBarModel(_pageNavigator.model).addEventListener('pageSizeChanged', pageSizeChangedEventHandler);
+				_pageNavigator.addEventListener('change', manualNavigationEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).addEventListener('pageSizeChanged', pageSizedEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).addEventListener('maxNavButtonsChanged', configChangedEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).addEventListener('currentPageChanged', valueCommitPageEventHandler);
 			}
 		}
 
-		protected function removeListListeners():void {
+		protected function removeListListeners():void 
+		{
 			if(_pageNavigator)
 			{
-				_pageNavigator.removeEventListener('change', pageChangedEventHandler);
-				PageNavigatorButtonBarModel(_pageNavigator.model).removeEventListener('pageSizeChanged', pageSizeChangedEventHandler);
+				_pageNavigator.removeEventListener('change', manualNavigationEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).removeEventListener('pageSizeChanged', pageSizedEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).removeEventListener('maxNavButtonsChanged', configChangedEventHandler);
+				PageNavigatorButtonBarModel(_pageNavigator.model).removeEventListener('currentPageChanged', valueCommitPageEventHandler);
 			}
 		}
 		
@@ -71,16 +75,32 @@ package org.apache.royale.community.jewel.beads.controls.list
 			//listenOnStrand('dataProviderChanged', dataProviderListChangedEventHandler);
 		}
 
-		private function pageChangedEventHandler(event:Event):void
+		private var filtering:Boolean;
+		protected function valueCommitPageEventHandler(event:Event):void
+		{
+			//We will only act when currentPage has been set programmatically, directly in the Paginator.
+			if(filtering)
+				return;
+            var proposedPage:int = (event.target.selectedItem as PageNavigatorButtonBarVO).valuePage;
+            applyFilter(_pageNavigator.currentPage);
+		}
+
+		protected function manualNavigationEventHandler(event:Event):void
 		{
             var proposedPage:int = (event.target.selectedItem as PageNavigatorButtonBarVO).valuePage;
             applyFilter(proposedPage);
 		}
 
-		private function pageSizeChangedEventHandler(event:Event):void
+		protected function configChangedEventHandler(event:Event):void
 		{
-            _pageNavigator.currentPage = -1;
-            applyFilter(1);
+			//Force a refresh of the list dataprovider
+			applyFilter(_pageNavigator.currentPage);
+		}
+
+		protected function pageSizedEventHandler(event:Event):void
+		{
+			//Force a refresh of the list dataprovider
+			applyFilter();
 		}
 		
 		private var _dataProvider:ArrayList;
@@ -95,22 +115,36 @@ package org.apache.royale.community.jewel.beads.controls.list
 			applyFilter();
         }
 
-        private function applyFilter(proposedPage:int = -1):void
+        protected function applyFilter(proposedPage:int = -1):void
         {
 			if(!_pageNavigator)
 				return;
 
+			filtering = true;
+			
 			var ar:Array = !_dataProvider ? new Array() : _dataProvider.source;
             var asourceSearch:ArrayListView = new ArrayListView(new ArrayList(ar));
 			
-			if( filterFunction )
+			if( filterFunction && ar.length > 0 )
 			{
 				asourceSearch.filterFunction = filterFunction;
             	asourceSearch.refresh();
 				ar = asourceSearch.toArray();
 				asourceSearch = new ArrayListView(new ArrayList(ar));
 			}
+
+			if(ar.length <= 0)
+			{
+            	_pageNavigator.totalItems = 0;
+				_pageNavigator.currentPage = -1;
+				(_strand as DataContainer).dataProvider = new ArrayList();
+
+				filtering = false;
+				return;
+			}
+
             _pageNavigator.totalItems = asourceSearch.length;
+
             var totalPages:int = Math.ceil(_pageNavigator.totalItems/_pageNavigator.pageSize);
             var indexToPos:int = 0;
 
@@ -145,7 +179,9 @@ package org.apache.royale.community.jewel.beads.controls.list
             }
 
             asourceSearch.refresh();
-			(_strand as List).dataProvider = new ArrayList(asourceSearch.toArray());
+			(_strand as DataContainer).dataProvider = new ArrayList(asourceSearch.toArray());
+
+			filtering = false;
         }
 
 		private var _filterFunction:Function = null;

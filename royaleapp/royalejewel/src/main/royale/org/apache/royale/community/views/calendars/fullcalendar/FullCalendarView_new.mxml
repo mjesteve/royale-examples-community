@@ -79,7 +79,7 @@
 		<js:Paddings paddingTop="5" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
     </j:beads>
 
-    <jc:HExampleHeader title="JS FullCalendar">
+    <jc:HExampleHeader title="JS FullCalendar - Royale Wrapper">
         <jc:description>
             <![CDATA[Tests <strong>JS FullCalendar</strong> (<a href="https://fullcalendar.io/" target="_blank">https://fullcalendar.io/</a>)]]>
         </jc:description>
