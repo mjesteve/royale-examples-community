@@ -24,6 +24,7 @@
             dp_AsourceAll = new ArrayListView(new ArrayList(ar2));
             dp_AsourceList = new ArrayList(ar2);
 
+            totalRegs = ar2.length;
             makeDP(1);
         }
         [Bindable]
@@ -47,14 +48,13 @@
         {
             var indexToPos:int = 0;
             var asourceSearch:ArrayListView = new ArrayListView(new ArrayList(dp_AsourceAll.toArray()));
-
-            totalRegs = asourceSearch.length;
             var totalPages:int = Math.ceil(totalRegs/pageSize);
             //The NumericStepper 'pageNum' needs to know the totalPages because it has it bound in the 'maximun' property. 
             //(it actually has the '.totalPages' property of the PageNavigatorButtonButtonBar 'paginator' bound)
-            //The same is true for the NumericStepper 'pageNumlink'. 
+            //The same is true for the NumericStepper's 'pageNumlink' and 'pageNumlinkSearch'. 
             pageNum.maximum = totalPages;
             pageNumlink.maximum = totalPages;
+            pageNumlinkSearch.maximum = totalPages;
 
             if(proposedPage < 1)
                 proposedPage = 1;
@@ -202,6 +202,8 @@
 
             <j:CardActions>
                 <j:Grid gap="true">
+<!--
+-->
                     
                     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
                         <j:VGroup gap="5" percentWidth="100">
@@ -240,11 +242,12 @@
 
                         </j:VGroup>
                     </j:GridCell>
-<!--
--->
+                    
                     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
                         <j:VGroup gap="5" percentWidth="100">
+<!--
 
+-->
                             <j:Label multiline="true">
                                 <j:html><![CDATA[<p>The <strong>PageNavigatorButtonBar</strong> is controlled from the Bead <strong>PageNavigatorList</strong>, defined in the List. The dataProvider is assigned to the bead that will filter it according to the selected page and assign it to the List..</p>]]></j:html>
                             </j:Label>
@@ -275,8 +278,23 @@
                             <j:Label multiline="true">
                                 <j:html><![CDATA[<p>We can filter the dataProvider before paging it by setting the property <strong>filterFunction</strong></p>]]></j:html>
                             </j:Label>
+
+                            <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                                <j:Label multiline="true" text="Set this page number:"/>
+                                <j:NumericStepper localId="pageNumlinkSearch" maxWidth="110" percentWidth="100"
+                                minimum="1" value="{paginatorlinkSearch.currentPage}" valueChange="paginatorlinkSearch.currentPage=pageNumlinkSearch.value;"/>
+                            </j:HGroup>
                             
                             <j:HGroup gap="5" percentWidth="100" itemsVerticalAlign="itemsCenter">
+
+                                <jc:PageNavigatorButtonBar localId="paginatorlinkSearch" emphasis="emphasized"
+                                                        maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
+                                    <jc:beads>
+                                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                                        <j:Disabled disabled="{!tb_Test1.selected}"/>
+                                    </jc:beads>
+                                </jc:PageNavigatorButtonBar>
+
                                 <j:IconTextInput localId="seachInput" rightPosition="false"  percentWidth="50" change="onSearch()">
                                     <j:beads>
                                         <j:TextPrompt prompt="Search..."/>
@@ -286,14 +304,6 @@
                                         faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
                                     </j:icon>
                                 </j:IconTextInput> 
-
-                                <jc:PageNavigatorButtonBar localId="paginatorlinkSearch" emphasis="emphasized"
-                                                        maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
-                                    <jc:beads>
-                                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                        <j:Disabled disabled="{!tb_Test1.selected}"/>
-                                    </jc:beads>
-                                </jc:PageNavigatorButtonBar>
                             </j:HGroup>
 
                             <jc:ListJwExt localId="listwithnavSearch" percentWidth="100"

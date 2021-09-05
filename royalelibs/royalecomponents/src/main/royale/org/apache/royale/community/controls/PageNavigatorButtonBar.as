@@ -4,6 +4,10 @@ package org.apache.royale.community.controls
     import org.apache.royale.jewel.ToggleButtonBar;
     import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
+    import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.html.getStyle;
+    import org.apache.royale.core.ElementWrapper;
 
     /**
      *  The PageNavigatorButtonBar class is a component that displays a set of ToggleButtons. The PageNavigatorButtonBar
@@ -14,15 +18,13 @@ package org.apache.royale.community.controls
      *  The ToggleButtonBar uses the following beads:
      *
      *  org.apache.royale.core.IBeadModel: the data model for the ButtonBar, including the dataProvider. ("org.apache.royale.html.beads.models.ButtonBarModel")
-     *  org.apache.royale.core.IBeadView: constructs the parts of the component. ("org.apache.royale.jewel.beads.views.ButtonBarView")
-     *  org.apache.royale.core.IBeadController: handles input events. ("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+     *  org.apache.royale.core.IBeadView: constructs the parts of the component. ("org.apache.royale.jewel.beads.views.ToggleButtonBarView")
+     *  org.apache.royale.core.IBeadController: handles input events. ("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController")
      *  org.apache.royale.core.IBeadLayout: sizes and positions the component parts. ("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
      *  org.apache.royale.core.IDataProviderItemRendererMapper: produces itemRenderers. ("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
      *  org.apache.royale.core.IItemRenderer: the class or class factory to use. (PageNavigatorButtonBarItemRenderer)
      *
-     *  ButtonBar:
      *  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-     *  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
      *  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
      *  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
      *
@@ -44,13 +46,22 @@ package org.apache.royale.community.controls
         
         public function PageNavigatorButtonBar() {
             super();
-
             //typeNames = "jewelext pagenavigator";
             //typeNames = "jewel buttonbar";
+            //element.style.flexWrap = "wrap";
+            addEventListener("beadsAdded", beadsAddedHandler);
         }
 
-        public var currentPageButtons:ArrayList = new ArrayList();
+        private function beadsAddedHandler(event:Event):void
+        {
+			removeEventListener("beadsAdded", beadsAddedHandler);
+            
+		    var control:IClassSelectorListSupport = this as IClassSelectorListSupport;
+			var style:CSSStyleDeclaration = getStyle(control as ElementWrapper);
+			style["flex-wrap"] = "wrap";
+        }
 
+        private var currentMaxNavButtons:int = -1;
 		/**
 		 * @royaleignorecoercion org.apache.royale.community.beads.models.PageNavigatorButtonBarModel
 		 */
@@ -62,6 +73,7 @@ package org.apache.royale.community.controls
 		 */
         public function set maxNavButtons(value:int):void 
         {
+            currentMaxNavButtons = value;
             PageNavigatorButtonBarModel(model).maxNavButtons = value;
         }
 		/**
@@ -113,6 +125,19 @@ package org.apache.royale.community.controls
 
         protected function makeButtonBar(activePage:int):void
         {
+            if(activePage < 0 || totalItems <= 0)
+            {
+                if(totalItems <= 0) currentMaxNavButtons = -1;
+
+                PageNavigatorButtonBarModel(model).totalPages = 0;
+                PageNavigatorButtonBarModel(model).startIndex = -1;
+                PageNavigatorButtonBarModel(model).endIndex = -1;
+                PageNavigatorButtonBarModel(model).currentPage = -1;
+                dataProvider = new ArrayList();
+                selectedIndex = -1;
+                return;
+            }
+
             var loc_maxNavButtons:int = maxNavButtons;
             var loc_totalItems:int = totalItems;
             var loc_pageSize:int = pageSize;
@@ -121,57 +146,43 @@ package org.apache.royale.community.controls
             var loc_endPage:int = 0;
             var loc_startIndex:int = 0;
             var loc_endIndex:int = 0;
-
             var loc_indexToSelect:int = -1;
-            var pageIn:int = activePage;
-            currentPageButtons = new ArrayList();
+            var newPage:int = activePage;
+            var currentPageButtons:ArrayList = new ArrayList();
 
-            if(activePage < 0 || loc_totalItems <= 0)
-            {
-                PageNavigatorButtonBarModel(model).totalPages = 0;
-                PageNavigatorButtonBarModel(model).startIndex = -1;
-                PageNavigatorButtonBarModel(model).endIndex = -1;
-                PageNavigatorButtonBarModel(model).currentPage = -1;
-                dataProvider = currentPageButtons;
-                selectedIndex = -1;
-                return;
-            }
-
-            if (loc_pageSize <= 0)
-                loc_pageSize = 8;
-
-            if (loc_maxNavButtons < 1)
-                loc_maxNavButtons = 1;
+            if (loc_pageSize <= 0) loc_pageSize = 10;
+            if (loc_maxNavButtons < 1) loc_maxNavButtons = 1;
 
             loc_totalPages = Math.ceil(loc_totalItems / loc_pageSize);
-            if (loc_totalPages <= loc_maxNavButtons) {
-                loc_maxNavButtons = loc_totalPages;
+
+            if (loc_totalPages <= loc_maxNavButtons) loc_maxNavButtons = loc_totalPages;
+
+            if (newPage < 1) {
+                newPage = 1;
+            } else if (newPage > loc_totalPages) {
+                newPage = loc_totalPages;
             }
 
-            if (pageIn < 1) {
-                pageIn = 1;
-            } else if (pageIn > loc_totalPages) {
-                pageIn = loc_totalPages;
-            }
-
-            loc_startIndex = (pageIn - 1) * loc_pageSize;
+            loc_startIndex = (newPage - 1) * loc_pageSize;
             loc_endIndex = Math.min(loc_startIndex + loc_pageSize - 1, loc_totalItems - 1);
 
-            if (loc_totalPages <= loc_maxNavButtons) {
+            if (loc_totalPages <= loc_maxNavButtons) 
+            {
                 loc_startPage = 1;
                 loc_endPage = loc_totalPages;
-            } else {
+            } else 
+            {
                 var maxNavButtonsBeforeCurrentPage:int = Math.floor(loc_maxNavButtons / 2);
                 var maxNavButtonsAfterCurrentPage:int = Math.ceil(loc_maxNavButtons / 2) - 1;
-                if (pageIn <= maxNavButtonsBeforeCurrentPage) {
+                if (newPage <= maxNavButtonsBeforeCurrentPage) {
                     loc_startPage = 1;
                     loc_endPage = loc_maxNavButtons;
-                } else if (pageIn + maxNavButtonsAfterCurrentPage >= loc_totalPages) {
+                } else if (newPage + maxNavButtonsAfterCurrentPage >= loc_totalPages) {
                     loc_startPage = loc_totalPages - loc_maxNavButtons + 1;
                     loc_endPage = loc_totalPages;
                 } else {
-                    loc_startPage = pageIn - maxNavButtonsBeforeCurrentPage;
-                    loc_endPage = pageIn + maxNavButtonsAfterCurrentPage;
+                    loc_startPage = newPage - maxNavButtonsBeforeCurrentPage;
+                    loc_endPage = newPage + maxNavButtonsAfterCurrentPage;
                 }
 
                 /**
@@ -191,17 +202,17 @@ package org.apache.royale.community.controls
 
 
                 if (loc_startPage > 1 && loc_endPage > 1 && loc_totalPages > loc_maxNavButtons) {
-                    if (pageIn > 1) {
+                    if (newPage > 1) {
 
-                        if (loc_endPage == loc_totalPages && pageIn < loc_totalPages - maxNavButtonsAfterCurrentPage) {
+                        if (loc_endPage == loc_totalPages && newPage < loc_totalPages - maxNavButtonsAfterCurrentPage) {
                             loc_endPage -= 1;
                             loc_startPage -= 1;
                         }
 
                         if (loc_endPage < loc_maxNavButtons + loc_startPage) {
                             currentPageButtons.addItem(new PageNavigatorButtonBarVO("1", 1));
-                            //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❮", pageIn - 1));
-                            currentPageButtons.addItem(new PageNavigatorButtonBarVO("",pageIn-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
+                            //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❮", newPage - 1));
+                            currentPageButtons.addItem(new PageNavigatorButtonBarVO("",newPage-1,FontAwesome5IconType.ANGLE_LEFT)); //MaterialIconType.KEYBOARD_ARROW_LEFT
                             loc_indexToSelect += 2;
                         }
 
@@ -216,21 +227,21 @@ package org.apache.royale.community.controls
             }
 
             for (var idx:int = loc_startPage; idx <= loc_endPage; idx++) {
-                currentPageButtons.addItem(new PageNavigatorButtonBarVO(idx.toString(), idx, "", (pageIn == idx)));
-                if (pageIn == idx)
+                currentPageButtons.addItem(new PageNavigatorButtonBarVO(idx.toString(), idx, "", (newPage == idx)));
+                if (newPage == idx)
                     loc_indexToSelect += idx-loc_startPage+1;
             }
 
-            if (pageIn < loc_totalPages - maxNavButtonsAfterCurrentPage) {
-                //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❯", pageIn + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
-                currentPageButtons.addItem(new PageNavigatorButtonBarVO("",pageIn+1,FontAwesome5IconType.ANGLE_RIGHT));
+            if (newPage < loc_totalPages - maxNavButtonsAfterCurrentPage) {
+                //currentPageButtons.addItem(new PageNavigatorButtonBarVO("❯", newPage + 1)); //FontAwesome5IconType.ANGLE_RIGHT //MaterialIconType.KEYBOARD_ARROW_RIGHT
+                currentPageButtons.addItem(new PageNavigatorButtonBarVO("",newPage+1,FontAwesome5IconType.ANGLE_RIGHT));
                 currentPageButtons.addItem(new PageNavigatorButtonBarVO(loc_totalPages.toString(), loc_totalPages));
             }
 
             PageNavigatorButtonBarModel(model).totalPages = loc_totalPages;
             PageNavigatorButtonBarModel(model).startIndex = loc_startIndex;
             PageNavigatorButtonBarModel(model).endIndex = loc_endIndex;
-            PageNavigatorButtonBarModel(model).currentPage = pageIn;
+            PageNavigatorButtonBarModel(model).currentPage = newPage;
 
             _indexToSelect = loc_indexToSelect;
             dataProvider = currentPageButtons;
@@ -241,7 +252,7 @@ package org.apache.royale.community.controls
             // [en] In order to remove the indexToSelect, assigning the selectedIndex should update an item in the dataprovider so that the 
             // DataitemRendererFactoryForCollectionView launches the itemUpdatedHandler and updates the itemRenderer. MAYBE through the controller.selectedIndexChange?
 
-            //trace("selectedIndex/currentPage: " + loc_indexToSelect.toString() + " / " + pageIn.toString());
+            //trace("selectedIndex/currentPage: " + loc_indexToSelect.toString() + " / " + newPage.toString());
         }
         
         private var _indexToSelect:int = -1;
