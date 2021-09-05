@@ -65,6 +65,7 @@ package
         import org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid; SearchFilterForDataGrid;
 
         import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;PageNavigatorButtonBarModel;
+        import org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList; PageNavigatorList;
         import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
 
         import org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue;TriCheckBoxLabelByValue;
@@ -77,7 +78,6 @@ package
         import org.apache.royale.community.jewel.beads.controls.BadgeOnClick; BadgeOnClick;
         import org.apache.royale.community.events.ITCustomEvent; ITCustomEvent;
         import org.apache.royale.community.vo.PillItemVO; PillItemVO;
-        import org.apache.royale.community.vo.TabBarButtonVO; TabBarButtonVO;
 
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
         import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;

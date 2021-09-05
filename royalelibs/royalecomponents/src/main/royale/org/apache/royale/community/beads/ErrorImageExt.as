@@ -53,8 +53,7 @@ package org.apache.royale.community.beads
 
                 //Los beads de modelo se cargan después de los beads añadido en los tags.
                 //Para poder añadir un listerner del cambio de url del modelo y poder actuar si es 
-                //cadena vacía o nulo, lo añadiremos después de la carga de todos los beads, para ello
-                // por lo tanto ...
+                //cadena vacía o nulo lo añadiremos después de la carga de todos los beads ...
                 (_strand as EventDispatcher).addEventListener("beadsAdded", beadsAddedHandler);
             }
         }

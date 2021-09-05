@@ -373,7 +373,7 @@
     <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
         <j:CardHeader>
             <j:BarSection width="100%" gap="10">
-                <html:H3 text="Scroll To Index - Debugger" className="primary-dark block-with-text "/>
+                <html:H3 text="Scroll To Index - Debugger" className="primary-dark"/>
             </j:BarSection>
         </j:CardHeader>
 

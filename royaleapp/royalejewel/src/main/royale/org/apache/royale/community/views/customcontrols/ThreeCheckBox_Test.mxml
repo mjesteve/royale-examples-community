@@ -4,7 +4,7 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
-    style="background-color:#B3B3B3;" itemsVerticalAlign="itemsSameHeight"> 
+    itemsVerticalAlign="itemsSameHeight"> 
     
     <fx:Script>
         <![CDATA[
@@ -43,11 +43,11 @@
 
     <j:beads>
         <js:ViewDataBinding/>
-		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
-            <j:ScrollingViewport/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="Custom Controls">
+    <jc:ExampleHeader title="ThreeCheckBox - Custom Controls">
         <jc:description>
             <![CDATA[<strong>ThreeCheckBox</strong> Custom Jewel CheckBox with three states.]]>
         </jc:description>

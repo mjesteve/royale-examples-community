@@ -30,7 +30,12 @@
 
 			public function setUp():void
 			{
-				
+				trace("Initizlize Application");
+			}
+
+			override public function start():void{
+				trace("Start Application");
+				super.start();
 			}
 		]]>
 	</fx:Script>
@@ -39,12 +44,11 @@
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
 -->
-	<j:initialView>
+	<j:initialView>		
 		<mainviews:MainView/> 
 <!--		
+		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
 -->
-
-	
 	</j:initialView>
 </j:Application>

@@ -28,7 +28,7 @@
     
     <j:CardHeader>
         <j:BarSection width="100%" gap="10">
-            <html:H3 text="jsCalendar - Select" className="primary-darkest block-with-text "/>
+            <html:H3 text="jsCalendar - Select" className="primary-darkest"/>
         </j:BarSection>
     </j:CardHeader>
     <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">

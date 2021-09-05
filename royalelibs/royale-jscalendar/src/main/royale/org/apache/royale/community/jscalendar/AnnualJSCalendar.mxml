@@ -24,26 +24,44 @@
             {
                 if(isNaN(value))
                     _year = new Date().fullYear;
-                else
+                
+                if( value != _year)
+                {
                     _year = value;
-
-                makeAnnuary();
+                    if( !building )
+                    {
+                        do { makeAnnuary(); } while(building);
+                    }
+                }
             }
 
             [Bindable]
             protected var asourceAnuary:ArrayList;
-
-            private function makeAnnuary():void
+            protected var building:Boolean = false;
+            protected function makeAnnuary():void
             {
+                building = true;
+
                 //Array with First day of each month
                 var arAnnuary:Array = new Array();
                 var lastIdxSel:int = 0;
 
+                if(isNaN(_year))
+                    _year = new Date().fullYear;                
+                var localYear:Number = _year;
+                
                 //arAnnuary is the year template 
                 for( var m:int = 0; m<12; m++)
                 {
-                    var itDay:DateItemDescribeVO = new DateItemDescribeVO(new Date(_year,m,1),null,new Array());
-                    if(_asourceSelected && _asourceSelected.length > 0)
+                    if(localYear != _year)
+                    {
+                        //Cancel make
+                        trace("CANCEL - localyear, new year", localYear, _year);
+                        return;
+                    }
+
+                    var itDay:DateItemDescribeVO = new DateItemDescribeVO(new Date(localYear,m,1),null,new Array());
+                    /*if(_asourceSelected && _asourceSelected.length > 0)
                     {
                         for(var yy:int=lastIdxSel; yy<_asourceSelected.length; yy++)
                         {
@@ -54,10 +72,11 @@
                             }
                             itDay.selDates.push(_asourceSelected[yy] as Date);
                         }
-                    }
+                    }*/
                     arAnnuary.push( itDay );
                 }
                 asourceAnuary = new ArrayList(arAnnuary);
+                building = false;
             }
 
                         

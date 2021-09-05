@@ -8,6 +8,7 @@ package org.apache.royale.community.controls
     import org.apache.royale.community.virtualselect.OptionsInit;
     import org.apache.royale.core.StyledUIBase;
     import VirtualSelect;
+    import org.apache.royale.utils.observeElementSize;
 	
     /**
      *  Click in the component
@@ -131,12 +132,22 @@ package org.apache.royale.community.controls
                     etxt.style['display']='none';
             }
             
+            observeElementSize(element,onSizeChangeMyContainer);
             element.addEventListener('change', changeHandler);
             element.addEventListener('beforeOpen', beforeOpenHandler);
             element.addEventListener('afterOpen', afterOpenHandler);
             element.addEventListener('reset', resetHandler);
 
             dispatchEvent(new Event("onCompleteInicialize"));
+        }
+        private var localwidth:Number;
+        private function onSizeChangeMyContainer():void
+        {
+            if(localwidth != element.offsetWidth)
+            {
+                trace("CHANGE WIDTH", localwidth, element.offsetWidth);
+                localwidth = element.offsetWidth;
+            }
         }
 
         private function clickHandler(event:Event):void

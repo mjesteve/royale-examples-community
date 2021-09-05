@@ -43,18 +43,17 @@
 
                 var opt:Object = {};
                 var reg:DateItemDescribeVO = value as DateItemDescribeVO;
+                opt = new Object();
+                opt["navigator"] = "false";
+                opt["monthFormat"] = "MMM";
+                opt["dayFormat"] = "D";
+                opt["readOnly"] = true;
                 if(properties){
-                    opt = new Object();
-                    opt["navigator"] = "false";
-                    opt["monthFormat"] = "MMM";
-                    opt["dayFormat"] = "D";
                     opt["firstDayOfTheWeek"] = properties['firstDayOfWeek'];
                     opt["language"] = properties['lang'];
                     opt["readOnly"] = properties["readOnly"];
-                    readOnly = opt["readOnly"] == null ? true : Boolean(opt["readOnly"]);
-                }else{
-                    readOnly = true;
                 }
+                readOnly = opt["readOnly"] == null ? true : Boolean(opt["readOnly"]);
 
                 divCalendar.className = "medium-theme";
 
@@ -104,6 +103,6 @@
         <!-- <j:beads>
             <jc:ReadOnly localId="bDis" readOnly="{readOnly}"/>
         </j:beads> -->
-        <html:Div localId="divCalendar" style="padding:0px !important;" />
+        <html:Div localId="divCalendar" style="padding:0px !important;" className="medium-theme"/>
     </j:HGroup>
 </jc:ListItemRendererProperties>

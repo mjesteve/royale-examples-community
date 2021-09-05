@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ScrollableSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:js="library://ns.apache.org/royale/basic" >
+    
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.utils.OSUtils;
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:Group>
+        <j:beads>
+            <j:VerticalCenteredLayout gap="9"/>
+            <js:Paddings padding="50"/>
+        </j:beads>
+
+        <j:Label width="400" multiline="true" html="Jewel Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile.&lt;br>&lt;strong>This OS: {OSUtils.getOS() + ' (' + OSUtils.getOSVersion() + ')' }&lt;/strong>">
+            <j:beads>
+                <j:SizeControl size="small"/>
+                <j:TextAlign align="center"/>
+            </j:beads>
+        </j:Label>
+
+    </j:Group>
+</j:ScrollableSectionContent

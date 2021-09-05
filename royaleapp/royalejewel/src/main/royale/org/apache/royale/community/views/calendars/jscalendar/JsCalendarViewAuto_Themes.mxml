@@ -17,18 +17,13 @@
     <j:beads>
 		<js:ContainerDataBinding/>
 	</j:beads>
-    
+
     <j:CardHeader>
-        <j:BarSection width="100%" gap="10">
-            <html:H3 text="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)" className="primary-darkest block-with-text "/>
-        </j:BarSection>
+        <j:VGroup gap="5" percentWidth="100">
+            <j:CardTitle text="jsCalendar - Themes &amp;&amp; Colors (Class .auto-jsCalendar)" className="primary-normal" percentWidth="100"/>            
+            <html:H5 text="Simple - auto Calendar"  className="primary-dark"/>
+        </j:VGroup>
     </j:CardHeader>
-    <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">
-            <html:H3 text="Simple - auto Calendar"/>
-            <j:Label multiline="true">
-                <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p>]]></j:html>
-            </j:Label>
-    </j:CardExpandedContent>
 
     <j:CardPrimaryContent percentWidth="100" percentHeight="100">
         <j:beads>
@@ -36,6 +31,9 @@
         </j:beads>
         <j:VGroup percentWidth="100" gap="5" itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsTop">
 
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p>*All <b>.auto-jsCalendar</b> elements are initiated as a calendar, when the page's load event fire.</p>]]></j:html>
+            </j:Label>
             <j:Grid gap="false" itemsVerticalAlign="itemsTop">
                 <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="3"
                     tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">

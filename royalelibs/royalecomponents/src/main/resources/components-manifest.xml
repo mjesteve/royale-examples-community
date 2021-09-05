@@ -27,7 +27,8 @@
     <component id="ReadOnly" class="org.apache.royale.community.beads.ReadOnly"/>
     <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
     <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
-
+    <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
+    
     <!-- Extends Jewel Beads -->
     <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
@@ -46,6 +47,7 @@
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
     <component id="ExampleHeader" class="org.apache.royale.community.controls.ExampleHeader"/><!-- TDJ -->
+    <component id="HExampleHeader" class="org.apache.royale.community.controls.HExampleHeader"/>
     <component id="LabelFormWithButtonBar" class="org.apache.royale.community.controls.LabelFormWithButtonBar"/>
 
     <!-- Extends Jewel Controls -->
