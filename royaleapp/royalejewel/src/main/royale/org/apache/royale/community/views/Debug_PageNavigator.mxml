@@ -4,7 +4,7 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
-    initComplete="onInitComplete()" >
+    initComplete="onInitComplete()">
 
     <fx:Script>
         <![CDATA[
@@ -34,7 +34,7 @@
         private var dp_Asource:ArrayList = new ArrayList;
         private var dp_AsourceAll:ArrayListView = new ArrayListView;
         [Bindable]
-        private var pageSize:int = 12;        
+        private var pageSize:int = 10;        
         [Bindable]
         private var maxPageNav:int = 2;
         [Bindable]
@@ -142,7 +142,7 @@
         <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="Custom Component">
+    <jc:ExampleHeader title="PageNavigatorButtonBar - Custom Component">
         <jc:description>
             <![CDATA[The <strong>PageNavigatorButtonBar</strong> is a simple Paging Bar. It can be used independently, representing the page number in which we are within a total number of records or, linked to a List through the Bead <strong>PageNavigatorList</strong> that will be in charge of paging the data and assigning the dataProvider to the Ready.]]>
         </jc:description>
@@ -151,11 +151,6 @@
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card>
-
-            <j:CardHeader>
-                <j:CardTitle text="Page Navigator - [WIP]" className="primary-normal"/>
-            </j:CardHeader>
-
             <j:CardPrimaryContent style="min-height: auto;">
                 <j:Grid gap="true">
 
@@ -170,7 +165,7 @@
                     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
                         <j:VGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
                             <j:Label multiline="true" text="NO. of buttons between the first and last:"/>
-                            <j:NumericStepper localId="nummaxbutton" maxWidth="110" percentWidth="100"
+                            <j:NumericStepper localId="nummaxbutton" maxWidth="130" percentWidth="100"
                              minimum="1" maximum="10" value="{maxPageNav}" valueChange="onMaxNavButtonsChanged(event)">
                                 <j:beads>
                                     <j:ToolTip toolTip="(Example range: 1 to 10)"/>
@@ -199,128 +194,159 @@
                 </j:Grid>
 
             </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
 
-            <j:CardActions>
-                <j:Grid gap="true">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="Stand-alone" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+
+                <j:VGroup gap="5" percentWidth="100">
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p><strong>Stand-alone</strong> page navigator. The <strong>PageNavigatorButtonBar</strong> control must be provided with the total number of records and the selected page, with this information it renders the browser buttons. <br/>When a page is selected, 'change', we can get it and use it to filter the List.</p>]]></j:html>
+                    </j:Label>
+
+                    <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                        <j:Label multiline="true" text="Set this page number:"/>
+                        <j:NumericStepper localId="pageNum" maxWidth="130" percentWidth="100"
+                        minimum="1" maximum="{paginator.totalPages}" 
+                        value="{paginator.currentPage}" valueChange="makeDP(pageNum.value)"/>
+                    </j:HGroup>
+                    
+                    <jc:PageNavigatorButtonBar localId="paginator" emphasis="secondary"
+                                                maxNavButtons="{maxPageNav}"
+                                                pageSize="{pageSize}"
+                                                totalItems="{totalRegs}"
+                                                change="onNavpageChange(event)"
+                                                currentPage="{currentPage}">
+                        <jc:beads>
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                            <j:Disabled  disabled="{!tb_Test1.selected}"/>
+                        </jc:beads>
+                    </jc:PageNavigatorButtonBar>
+                
+                    <jc:ListJwExt localId="exampleNumListCustom" percentWidth="100" minHeight="35"
+                    dataProvider="{dp_Asource}" labelField="displaytext" 
+                    itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
+                        <jc:beads>
+                            <j:ListAlternateRowColor />
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                        </jc:beads>
+                    </jc:ListJwExt>
+
+                </j:VGroup>
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+
+        <j:Card>
+
+            <j:CardHeader>
+                <j:CardTitle text="Data linked" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+            
+                <j:VGroup gap="5" percentWidth="100">
 <!--
 -->
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>The <strong>PageNavigatorButtonBar</strong> is controlled from the Bead <strong>PageNavigatorList</strong>, defined in the List. The dataProvider is assigned to the bead that will filter it according to the selected page and assign it to the List..</p>]]></j:html>
+                    </j:Label>
+
+                    <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                        <j:Label multiline="true" text="Set this page number:"/>
+                        <j:NumericStepper localId="pageNumlink" maxWidth="130" percentWidth="100"
+                        minimum="1" value="{paginatorlink.currentPage}" valueChange="paginatorlink.currentPage=pageNumlink.value;"/>
+                    </j:HGroup>
+
+                    <jc:PageNavigatorButtonBar localId="paginatorlink" emphasis="primary"
+                                            maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
+                        <jc:beads>
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                            <j:Disabled disabled="{!tb_Test1.selected}"/>
+                        </jc:beads>
+                    </jc:PageNavigatorButtonBar>
+
+                    <jc:ListJwExt localId="listwithnav" percentWidth="100" minHeight="35"
+                    labelField="displaytext" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
+                        <jc:beads>
+                            <j:ListAlternateRowColor />
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                            <jc:PageNavigatorList localId="pageNavBead" pageNavigator="{paginatorlink}" dataProvider="{dp_AsourceList}"/>
+                        </jc:beads>
+                    </jc:ListJwExt>
+
+                </j:VGroup>
+
+            </j:CardPrimaryContent>
+
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+
+        <j:Card>
+
+            <j:CardHeader>
+                <j:CardTitle text="Data linked - Dynamic filtering" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+
+                <j:VGroup gap="5" percentWidth="100">
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>We can filter the dataProvider before paging it by setting the property <strong>filterFunction</strong></p>]]></j:html>
+                    </j:Label>
+
+                    <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                        <j:Label multiline="true" text="Set this page number:"/>
+                        <j:NumericStepper localId="pageNumlinkSearch" maxWidth="130" percentWidth="100"
+                        minimum="1" value="{paginatorlinkSearch.currentPage}" valueChange="paginatorlinkSearch.currentPage=pageNumlinkSearch.value;"/>
+                    </j:HGroup>
                     
-                    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
-                        <j:VGroup gap="5" percentWidth="100">
+                    <j:HGroup gap="5" percentWidth="100" itemsVerticalAlign="itemsCenter">
 
-                            <j:Label multiline="true">
-                                <j:html><![CDATA[<p><strong>Stand-alone</strong> page navigator. The <strong>PageNavigatorButtonBar</strong> control must be provided with the total number of records and the selected page, with this information it renders the browser buttons. <br/>When a page is selected, 'change', we can get it and use it to filter the List.</p>]]></j:html>
-                            </j:Label>
+                        <jc:PageNavigatorButtonBar localId="paginatorlinkSearch" emphasis="emphasized"
+                                                maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
+                            <jc:beads>
+                                <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                                <j:Disabled disabled="{!tb_Test1.selected}"/>
+                            </jc:beads>
+                        </jc:PageNavigatorButtonBar>
 
-                            <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
-                                <j:Label multiline="true" text="Set this page number:"/>
-                                <j:NumericStepper localId="pageNum" maxWidth="110" percentWidth="100"
-                                minimum="1" maximum="{paginator.totalPages}" 
-                                value="{paginator.currentPage}" valueChange="makeDP(pageNum.value)"/>
-                            </j:HGroup>
-                            
-                            <jc:PageNavigatorButtonBar localId="paginator" emphasis="secondary"
-                                                        maxNavButtons="{maxPageNav}"
-                                                        pageSize="{pageSize}"
-                                                        totalItems="{totalRegs}"
-                                                        change="onNavpageChange(event)"
-                                                        currentPage="{currentPage}">
-                                <jc:beads>
-                                    <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                    <j:Disabled  disabled="{!tb_Test1.selected}"/>
-                                </jc:beads>
-                            </jc:PageNavigatorButtonBar>
-                        
-                            <jc:ListJwExt localId="exampleNumListCustom" percentWidth="100"
-                            dataProvider="{dp_Asource}" labelField="displaytext" 
-                            itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
-                                <jc:beads>
-                                    <j:ListAlternateRowColor />
-                                    <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                </jc:beads>
-                            </jc:ListJwExt>
+                        <j:IconTextInput localId="seachInput" rightPosition="false"  percentWidth="50" change="onSearch()">
+                            <j:beads>
+                                <j:TextPrompt prompt="Search..."/>
+                            </j:beads>
+                            <j:icon>
+                                <js:FontAwesomeIcon text="{FontAwesome5IconType.SEARCH}" emphasis="primary" className="primary-dark"
+                                faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
+                            </j:icon>
+                        </j:IconTextInput> 
+                    </j:HGroup>
 
-                        </j:VGroup>
-                    </j:GridCell>
-                    
-                    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-                        <j:VGroup gap="5" percentWidth="100">
-<!--
+                    <jc:ListJwExt localId="listwithnavSearch" percentWidth="100" minHeight="35"
+                    labelField="displaytext" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
+                        <jc:beads>
+                            <j:ListAlternateRowColor />
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                            <jc:PageNavigatorList localId="pageNavSearchBead" pageNavigator="{paginatorlinkSearch}" 
+                                                    dataProvider="{dp_AsourceList}" filterFunction="preFilterList"/>
+                        </jc:beads>
+                    </jc:ListJwExt>
+                </j:VGroup>
 
--->
-                            <j:Label multiline="true">
-                                <j:html><![CDATA[<p>The <strong>PageNavigatorButtonBar</strong> is controlled from the Bead <strong>PageNavigatorList</strong>, defined in the List. The dataProvider is assigned to the bead that will filter it according to the selected page and assign it to the List..</p>]]></j:html>
-                            </j:Label>
-
-                            <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
-                                <j:Label multiline="true" text="Set this page number:"/>
-                                <j:NumericStepper localId="pageNumlink" maxWidth="110" percentWidth="100"
-                                minimum="1" value="{paginatorlink.currentPage}" valueChange="paginatorlink.currentPage=pageNumlink.value;"/>
-                            </j:HGroup>
-
-                            <jc:PageNavigatorButtonBar localId="paginatorlink" emphasis="primary"
-                                                    maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
-                                <jc:beads>
-                                    <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                    <j:Disabled disabled="{!tb_Test1.selected}"/>
-                                </jc:beads>
-                            </jc:PageNavigatorButtonBar>
-
-                            <jc:ListJwExt localId="listwithnav" percentWidth="100"
-                            labelField="displaytext" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
-                                <jc:beads>
-                                    <j:ListAlternateRowColor />
-                                    <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                    <jc:PageNavigatorList localId="pageNavBead" pageNavigator="{paginatorlink}" dataProvider="{dp_AsourceList}"/>
-                                </jc:beads>
-                            </jc:ListJwExt>
-
-                            <j:Label multiline="true">
-                                <j:html><![CDATA[<p>We can filter the dataProvider before paging it by setting the property <strong>filterFunction</strong></p>]]></j:html>
-                            </j:Label>
-
-                            <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
-                                <j:Label multiline="true" text="Set this page number:"/>
-                                <j:NumericStepper localId="pageNumlinkSearch" maxWidth="110" percentWidth="100"
-                                minimum="1" value="{paginatorlinkSearch.currentPage}" valueChange="paginatorlinkSearch.currentPage=pageNumlinkSearch.value;"/>
-                            </j:HGroup>
-                            
-                            <j:HGroup gap="5" percentWidth="100" itemsVerticalAlign="itemsCenter">
-
-                                <jc:PageNavigatorButtonBar localId="paginatorlinkSearch" emphasis="emphasized"
-                                                        maxNavButtons="{maxPageNav}" pageSize="{pageSize}">
-                                    <jc:beads>
-                                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                        <j:Disabled disabled="{!tb_Test1.selected}"/>
-                                    </jc:beads>
-                                </jc:PageNavigatorButtonBar>
-
-                                <j:IconTextInput localId="seachInput" rightPosition="false"  percentWidth="50" change="onSearch()">
-                                    <j:beads>
-                                        <j:TextPrompt prompt="Search..."/>
-                                    </j:beads>
-                                    <j:icon>
-                                        <js:FontAwesomeIcon text="{FontAwesome5IconType.SEARCH}" emphasis="primary" className="primary-dark"
-                                        faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
-                                    </j:icon>
-                                </j:IconTextInput> 
-                            </j:HGroup>
-
-                            <jc:ListJwExt localId="listwithnavSearch" percentWidth="100"
-                            labelField="displaytext" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer">
-                                <jc:beads>
-                                    <j:ListAlternateRowColor />
-                                    <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
-                                    <jc:PageNavigatorList localId="pageNavSearchBead" pageNavigator="{paginatorlinkSearch}" 
-                                                          dataProvider="{dp_AsourceList}" filterFunction="preFilterList"/>
-                                </jc:beads>
-                            </jc:ListJwExt>
-
-                        </j:VGroup>
-                    </j:GridCell>
-                </j:Grid>
-
-            </j:CardActions>
+            </j:CardPrimaryContent>
 
         </j:Card>
     </j:GridCell>

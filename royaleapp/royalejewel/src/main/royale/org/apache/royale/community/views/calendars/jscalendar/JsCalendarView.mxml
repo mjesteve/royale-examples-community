@@ -50,7 +50,7 @@
 		<js:Paddings paddingTop="5" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 	</j:beads>
 
-    <jc:HExampleHeader title="JS Calendar">
+    <jc:HExampleHeader title="JS Calendar - Royale Wrapper">
         <jc:description>
             <![CDATA[Tests <strong>jsCalendar</strong> [WIP] (<a href="https://gramthanos.github.io/jsCalendar" target="_blank">https://gramthanos.github.io/jsCalendar</a>)]]>
         </jc:description>

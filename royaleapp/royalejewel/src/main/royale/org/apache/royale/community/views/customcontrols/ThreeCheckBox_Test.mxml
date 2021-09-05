@@ -47,7 +47,7 @@
         <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="Custom Controls">
+    <jc:ExampleHeader title="ThreeCheckBox - Custom Controls">
         <jc:description>
             <![CDATA[<strong>ThreeCheckBox</strong> Custom Jewel CheckBox with three states.]]>
         </jc:description>

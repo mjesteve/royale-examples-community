@@ -114,7 +114,7 @@
         <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="JS Virtual Select">
+    <jc:ExampleHeader title="JS Virtual Select - Royale Wrapper">
         <jc:description>
             <![CDATA[Tests <strong>Configuration Options</strong> [WIP] (<a href="https://sa-si-dev.github.io/virtual-select/#/" target="_blank">https://sa-si-dev.github.io/virtual-select</a>)]]>
         </jc:description>
