@@ -109,7 +109,7 @@
                         <js:MaterialIcon text="{MaterialIconType.MENU}" />
                     </j:icon>
                 </j:IconButton>
-                <j:BarTitle text="Apache Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
+                <j:BarTitle text="Apache Royale Tests      [ Royale 0.9.9-SNAPSHOT ]"/>
             </j:BarSection>
             <j:BarSection>
             </j:BarSection>

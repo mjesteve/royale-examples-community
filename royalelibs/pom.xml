@@ -14,11 +14,11 @@
   <name>Royale Libs</name>
 
   <modules>
-    <!--
+    <!-- -->
     <module>royalefullcalendar</module>
     <module>royale-virtual-select</module>
     <module>royale-jscalendar</module>
-    <module>royalecomponents</module> -->
+    <module>royalecomponents</module>
   </modules>
 
   <properties>
@@ -28,7 +28,7 @@
     <maven.version>3.6.2</maven.version>
 
      <!-- Royale Library versions -->
-    <royale.version>0.9.8-SNAPSHOT</royale.version>
+    <royale.version>0.9.9-SNAPSHOT</royale.version>
 
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
