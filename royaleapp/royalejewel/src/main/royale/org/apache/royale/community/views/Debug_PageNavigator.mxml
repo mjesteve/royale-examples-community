@@ -115,8 +115,7 @@
             var proposedPage:int = (event.target.selectedItem as PageNavigatorButtonBarVO).valuePage;
             makeDP(proposedPage);
         }
-/*
-*/
+        
         private function preFilterList(item:Object):Boolean
         {
             if(!item)
@@ -199,7 +198,7 @@
 
     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
-        <j:Card>
+        <j:Card percentHeight="100">
             <j:CardHeader>
                 <j:CardTitle text="Stand-alone" className="primary-normal"/>
             </j:CardHeader>
@@ -247,7 +246,7 @@
 
     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
-        <j:Card>
+        <j:Card percentHeight="100">
 
             <j:CardHeader>
                 <j:CardTitle text="Data linked" className="primary-normal"/>
@@ -294,7 +293,7 @@
 
     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="3" desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
-        <j:Card>
+        <j:Card percentHeight="100">
 
             <j:CardHeader>
                 <j:CardTitle text="Data linked - Dynamic filtering" className="primary-normal"/>

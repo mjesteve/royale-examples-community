@@ -14,11 +14,11 @@
   <name>Royale Libs</name>
 
   <modules>
-    <!-- -->
+    <!-- 
     <module>royalefullcalendar</module>
     <module>royale-virtual-select</module>
     <module>royale-jscalendar</module>
-    <module>royalecomponents</module>
+    <module>royalecomponents</module> -->
   </modules>
 
   <properties>
