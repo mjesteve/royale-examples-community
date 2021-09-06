@@ -109,7 +109,7 @@
                         <js:MaterialIcon text="{MaterialIconType.MENU}" />
                     </j:icon>
                 </j:IconButton>
-                <j:BarTitle text="Apache Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
+                <j:BarTitle text="Apache Royale Tests      [ Royale 0.9.9-SNAPSHOT ]"/>
             </j:BarSection>
             <j:BarSection>
             </j:BarSection>
@@ -141,15 +141,15 @@
         <j:ScrollableSectionContent name="threecheckbox_panel">
             <viewsJc:ThreeCheckBox_Test/>
         </j:ScrollableSectionContent>
-        <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
-            <views:Debug_PageNavigator/>
-        </j:ScrollableSectionContent>
-        <j:ScrollableSectionContent name="SizeContainer_panel">
+        <j:SectionContent name="Debug_PageNavigator_panel">
+            <views:Debug_PageNavigator percentHeight="100" percentWidth="100"/>
+        </j:SectionContent>
+        <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
-        </j:ScrollableSectionContent>
-        <j:ScrollableSectionContent name="Debug_Pills_panel">
-            <views:Debug_Pills percentHeight="100" percentWidth="100" />
-        </j:ScrollableSectionContent>
+        </j:SectionContent>
+        <j:SectionContent name="Debug_Pills_panel">
+            <views:Debug_Pills percentHeight="100" percentWidth="100"/>
+        </j:SectionContent>
         <j:ScrollableSectionContent name="Debug_ErrorImage_panel">
             <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
