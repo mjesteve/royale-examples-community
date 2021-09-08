@@ -30,17 +30,18 @@
     <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
     
     <!-- Extends Jewel Beads -->
-    <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
     <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
     <component id="SearchFilterJwExt" class="org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt"/>
     <component id="SearchFilterForDataGrid" class="org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid"/>
     <component id="ResponsiveResizeListener" class="org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener"/>
+    <component id="BadgeJwExt" class="org.apache.royale.community.jewel.beads.controls.BadgeJwExt"/>
+    <component id="BadgeWithMouseClickJwExt" class="org.apache.royale.community.jewel.beads.controls.BadgeWithMouseClickJwExt"/>
 
     <!-- itemRenderers -->
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
-    <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
+    <component id="PillsListWithLabelItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListWithLabelItemRenderer"/>
 
     <!-- Custom Controls -->
     <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    

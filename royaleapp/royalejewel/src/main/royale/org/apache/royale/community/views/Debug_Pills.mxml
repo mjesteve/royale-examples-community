@@ -63,7 +63,7 @@
                 <j:VGroup gap="5" percentWidth="100">
 
                     <j:Label multiline="true">
-                        <j:html><![CDATA[<p>List of selection criteria to filter a data set.</p><p>A <strong>Jewel List</strong> is used with a custom ItemRenderer composed of a <strong>Jewel Button</strong> with the Bead <strong>BadgeWithMouseClick</strong>.</p><p>The click on the badge bubbles, up to the List, like '<strong>removePill</strong>'.</p></p><p>The style of the List and the ItemRenderer components is defined under the CSS class '<strong>pillButtonStyle</strong>'.</p>]]></j:html>
+                        <j:html><![CDATA[<p>List of selection criteria to filter a data set.</p><p>A <strong>Jewel List</strong> is used with a custom ItemRenderer composed of a <strong>Jewel Button</strong> with the Bead <strong>BadgeWithMouseClick</strong>.</p><p>The click on the badge bubbles, up to the List, like '<strong>removePill</strong>'.</p></p><p>The style of the List and the ItemRenderer components is defined under the CSS class '<strong>pillListStyle</strong> and <strong>pillButtonStyle</strong>'.</p>]]></j:html>
                     </j:Label>
                     <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
                             dataProvider="{sourcePills}"
@@ -82,7 +82,7 @@
 
     <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
-        <j:Card percentHeight="100">
+        <j:Card percentHeight="100" minHeight="252">
             <j:CardHeader>
                 <j:CardTitle text="2nd Example" className="primary-normal"/>
             </j:CardHeader>
@@ -93,14 +93,27 @@
             
                     <j:Label multiline="true">
                         <j:html><![CDATA[<p>We add a '<strong>Reset</strong>' button to a <strong>Jewel ComboBox</strong>.</p><p>In this proposal, a ComboBox is wrapped in a Group to which we add the Bead <strong>BadgeWithMouseClick</strong> which will reset the ComboBox when clicked.</p>]]></j:html>
-                    </j:Label>
-            
-                    <j:Group width="200" className="pillComboStyle" >
-                        <j:beads>
-                            <j:BadgeWithMouseClick text="↶" click="emptySelected()"/>
-                        </j:beads>
-                        <j:ComboBox localId="cbPills" percentWidth="100" dataProvider="{sourcePills}"/>
-                    </j:Group>
+                    </j:Label>            
+                    
+                    <j:HGroup percentWidth="100" gap="5">
+                        <j:Group width="200" className="resetComboBadgeStyle" >
+                            <j:beads>
+                                <j:BadgeWithMouseClick text="×" click="emptySelected()"/>
+                            </j:beads>
+                            <j:ComboBox localId="cbPills" percentWidth="100" dataProvider="{sourcePills}"/>
+                        </j:Group>
+
+                        <j:Group width="200" className="resetComboBadgeTransStyle" >
+                            <jc:ComboBoxJwExt localId="cbPills2" percentWidth="100" dataProvider="{sourcePills}">
+                            <jc:beads>
+                                <jc:BadgeWithMouseClickJwExt text="." subindex="true" click="cbPills2.reset()">
+                                    <jc:html>
+                                    </jc:html>                                    
+                                </jc:BadgeWithMouseClickJwExt>
+                            </jc:beads>
+                            </jc:ComboBoxJwExt>
+                        </j:Group>
+                    </j:HGroup>
             
                 </j:VGroup>
             

@@ -65,7 +65,7 @@
     <j:Button unboxed="true" text="● {reg.text}" className="pillButtonStyle">
         <j:beads>
             <j:SizeControl size="small" />
-            <jc:BadgeOnClick text="✖" click="removePill(event)"/>
+            <j:BadgeWithMouseClick text="✖" click="removePill(event)"/>
         </j:beads>
     </j:Button>
     
