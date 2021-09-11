@@ -74,7 +74,7 @@
             <j:ResponsiveDrawer auto="true"/>
         </j:beads>
         <j:DrawerHeader>
-            <j:ImageButton src="assets/community-royale-jewel-white.svg" height="140" click="goToHome()"/>
+            <j:ImageButton src="assets/community-royale-jewel-04a3b3.svg" height="140" click="goToHome()"/>
         </j:DrawerHeader>
         <j:DrawerContent>
             <j:Navigation localId="collapsibleNavigation" change="collapsibleChangeHandler(event)"
@@ -141,9 +141,9 @@
         <j:ScrollableSectionContent name="threecheckbox_panel">
             <viewsJc:ThreeCheckBox_Test/>
         </j:ScrollableSectionContent>
-        <j:SectionContent name="Debug_PageNavigator_panel">
-            <views:Debug_PageNavigator percentHeight="100" percentWidth="100"/>
-        </j:SectionContent>
+        <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
+            <views:Debug_PageNavigator />
+        </j:ScrollableSectionContent>
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
         </j:SectionContent>
