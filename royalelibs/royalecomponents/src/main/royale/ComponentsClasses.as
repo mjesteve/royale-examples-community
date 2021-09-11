@@ -74,10 +74,12 @@ package
         import org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener; ResponsiveResizeListener;
         import org.apache.royale.community.jewel.GridCell; GridCell;
 
-        import org.apache.royale.community.itemRenderers.PillsListItemRenderer; PillsListItemRenderer;
-        import org.apache.royale.community.jewel.beads.controls.BadgeOnClick; BadgeOnClick;
+        import org.apache.royale.community.itemRenderers.PillsListWithLabelItemRenderer; PillsListWithLabelItemRenderer;
         import org.apache.royale.community.events.ITCustomEvent; ITCustomEvent;
         import org.apache.royale.community.vo.PillItemVO; PillItemVO;
+        import org.apache.royale.community.jewel.beads.controls.BadgeJwExt; BadgeJwExt;
+        import org.apache.royale.community.jewel.beads.controls.BadgeWithMouseClickJwExt; BadgeWithMouseClickJwExt;
+        import org.apache.royale.community.beads.ReadOnly; ReadOnly;
 
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
         import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;
@@ -86,6 +88,5 @@ package
         import org.apache.royale.community.jewel.ThreeCheckBox; ThreeCheckBox;
         import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState; ThreeCheckBoxLabelState;
         import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues; ThreeCheckBoxStatesValues;
-        import org.apache.royale.community.beads.ReadOnly; ReadOnly;
     }
 }

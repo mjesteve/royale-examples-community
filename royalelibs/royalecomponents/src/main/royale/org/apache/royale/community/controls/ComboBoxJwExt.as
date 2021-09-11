@@ -299,7 +299,7 @@ package org.apache.royale.community.controls {
 
         public function reset():void
         {
-            if(model is ISelectionByFieldModel)
+            if(model is ISelectionByFieldModel && valueField != "")
             {
                 ISelectionByFieldModel(model).selectedValue = null;
             }else{
