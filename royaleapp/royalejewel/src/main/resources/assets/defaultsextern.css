@@ -21,4 +21,6 @@
   /* Style 2 - Button */
   .resetComboBadgeTransStyle .jewel.badge {
     clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+    -moz-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
    }

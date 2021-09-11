@@ -252,18 +252,20 @@
     color: #29A89F;
     cursor: pointer;
     font-size: 1.37em !important;
-    left: 0;
-    top: 0;
+    left: 20px !important;
+    top: auto !important;
     text-align: center;
     min-width: 0 !important;
     width: 38px;
   }
-  .resetComboBadgeStyle .jewel.combobox .jewel.textinput {
+
+  .resetComboBadgeStyle .jewel.textinput {
     padding-left: 37px;
   }
-  .resetComboBadgeStyle .jewel.combobox .jewel.textinput input {
-    border-radius: 0;
+  .resetComboBadgeStyle .jewel.textinput input {
+    border-radius: 0 !important;
   }  
+  
   .resetComboBadgeStyle .jewel.badge:hover {
     background: linear-gradient(#d9d9d9, silver);
     border: 1px solid #a6a6a6;
@@ -285,10 +287,10 @@
     background-color: #29A89F;
     border-radius: 0 0 .25rem 0;
     position: absolute;
-    right: 0;
-    bottom: 0em;
-    height: 22px;
-    width: 22px;
+    right: 1px;
+    bottom: 0px;
+    height: 26px;
+    width: 26px;
     min-width: 0;
     cursor: pointer;
     /* The compiler does not accept this property or at least not in this way ...    
@@ -302,9 +304,13 @@
     display: flex;
     font-size: initial;
     position: absolute;
-    right: 1px;
-    bottom: 1px;
+    right: 2px;
+    bottom: 2px;
     box-sizing: border-box;
+   }
+   
+   .resetComboBadgeTransStyle .jewel.badge:hover::after {
+     font-weight: bold;
    }
 /*}*/
 

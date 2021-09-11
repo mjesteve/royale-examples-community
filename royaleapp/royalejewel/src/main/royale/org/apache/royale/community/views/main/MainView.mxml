@@ -147,9 +147,9 @@
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
         </j:SectionContent>
-        <j:SectionContent name="Debug_Pills_panel">
-            <views:Debug_Pills percentHeight="100" percentWidth="100"/>
-        </j:SectionContent>
+        <j:ScrollableSectionContent name="Debug_Pills_panel">
+            <views:Debug_Pills />
+        </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_ErrorImage_panel">
             <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
