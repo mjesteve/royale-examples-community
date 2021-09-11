@@ -14,331 +14,407 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-@namespace "http://www.w3.org/1999/xhtml";
-@namespace j "library://ns.apache.org/royale/jewel";
-@namespace jc "library://ns.apache.org/royale/community";
-
-/*
-@media (min-width: 0px){
-*/
-  .Application {
-      font-family: 'Open Sans', serif, sans-serif;
-      color: #434343;
+ @namespace "http://www.w3.org/1999/xhtml";
+ @namespace j "library://ns.apache.org/royale/jewel";
+ @namespace jc "library://ns.apache.org/royale/community";
+ 
+ /*
+ @media (min-width: 0px){
+ */
+   .Application {
+       font-family: 'Open Sans', serif, sans-serif;
+       color: #434343;
+     }
+     .jewel.application{
+       font-family: 'Open Sans', serif, sans-serif;
+       color: #333333;
+     }
+ 
+     .jewel.topappbar .topBarAppHeader {
+       background: linear-gradient(#404040, #262626);
+       border-bottom: 1px solid black;
+       border-top: 1px solid #595959;
+       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+       color: #04a3b3;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       position: fixed;
+       width: 100%;
+       z-index: 20;
+     }
+ 
+     .contentMainViews {
+       background-color:#B3B3B3;
+     }
+ 
+     /* Custom tabbar ----------------------------------- */
+     
+     .CustomTabBar .jewel.card {
+       border-radius: 0;
+     }
+ 
+     .CustomTabBar.menubuttonbarcard {
+       border-radius: 0;
+       background: #333333 !important;
+       padding: 0 !important;
+     }
+ 
+     .CustomTabBar.menubuttonbar {
+       box-shadow: #04a3b3 5px 0 0 0 inset;
+       padding: 0 0 0 5px !important;
+       border-bottom: 1px solid #04a3b3 !important;
+     }
+ 
+     .CustomTabBar.menubuttonbarcontent {
+       padding: 0 !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton {
+       color: #8d8d8d;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.hovered {
+       background: rgba(179, 179, 179, 0.15);
+     }
+     
+     .CustomTabBar .jewel.tabbarbutton.selected {
+       background: rgba(179, 179, 179, 0.25);
+       color: #04a3b3;
+     }    
+     
+     .CustomTabBar .jewel.tabbarbutton.selectable:active {
+       background: rgba(179, 179, 179, 0.25);
+       color: #04a3b3;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.layout.horizontal {
+       padding: 12px 12px !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.layout.vertical {
+       padding: 12px 12px !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton .indicator>.indicator-content {
+       background-color: #04a3b3;
+     }
+ 
+     .CustomTabBar .jewel.tabbar.layout.vertical .indicator>.indicator-content {
+       width: 5px;
+     }
+ 
+     .tabBarGroupJSCalendarItemRenderer{
+         IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarGroupCustomIconItemRenderer");
+     }
+ 
+     .tabBarJSCalendarItemRenderer{
+         IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarCustomIconItemRenderer");
+         width: 60px;
+     }
+     
+ 
+     /* ------------------------------------------------------- */
+ 
+     .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
+       color: #04a3b3;
+     }    
+     
+     .primary-lightest {
+             color: #ecede8;
+     }
+     
+     
+     .primary-light {
+             color: #7cdbe4;
+     }
+     
+     
+     .primary-normal {
+             color: #04a3b3;
+     }
+     
+     
+     .primary-dark {
+             color: #13505B;
+     }
+     
+     
+     .primary-darkest {
+             color: #0b3036;
+     }
+     
+ 
+     .jewel.button{
+     text-transform: none;
+     }
+     .jewel.datagrid .jewel.buttonbar.header{
+       overflow: hidden;
+     }
+ 
+     .jewel.label{
+       line-height: 1.2em;
+     }
+ 
+     .relative{
+       position: relative;
+       height: 100%;
+     }
+ 
+     .absolute{
+       position: absolute;
+       z-index: 1;
+     }
+ 
+     .center{
+       margin-left: auto;
+       margin-right: auto;
+       text-align: center;
+     }
+ 
+   /* List Pills CSS */
+   .pillListStyle{
+     IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PillsListItemRenderer");
+     background: transparent !important;
+     border: none !important;
+     box-shadow: none !important;
+   }
+   .pillListStyle>.jewel.item.hovered {
+     background: transparent;
+   }
+   .pillListStyle>.jewel.item.selected{
+   background: transparent;
+   }
+   .pillListStyle>.jewel.item.primary {
+     background: transparent;
+     cursor: default !important;
+   }
+   .pillListStyle>.jewel.item.selectable:active {
+     background: transparent;
+   }
+   .pillListStyle .jewel.badge {
+     background: linear-gradient(#e6e6e6, #cccccc);
+     border-radius: 25px;
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0 1px 0 white;
+     color: #808080;
+     cursor: pointer;
+     font-size: .70em !important;
+     font-weight: bold;
+     text-align: center;
+   }
+   .pillButtonStyle {
+     background-color: rgb(158, 158, 158) !important;
+     border-radius: 12px !important;
+     border: none !important;
+     color: white !important;
+     cursor: default !important;
+     font-weight: normal !important;
+     justify-content: left !important;
+     margin: 8px 8px 0px 0px !important;
+     padding: 5px 10px !important;
+     text-overflow: ellipsis;
+     text-transform: none !important;
+   }
+ 
+   /* ComboBox Pills CSS */
+ 
+   /* Style 1 - Button */
+   .resetComboBadgeStyle .jewel.badge {
+     background: linear-gradient(#e6e6e6, #cccccc);
+     border-radius: 0.25rem 0px 0px 0.25rem;
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0 1px 0 white;
+     color: #29A89F;
+     cursor: pointer;
+     font-size: 1.37em !important;
+     left: 20px !important;
+     top: auto !important;
+     text-align: center;
+     min-width: 0 !important;
+     width: 38px;
+   }
+ 
+   .resetComboBadgeStyle .jewel.textinput {
+     padding-left: 37px;
+   }
+   .resetComboBadgeStyle .jewel.textinput input {
+     border-radius: 0 !important;
+   }  
+   
+   .resetComboBadgeStyle .jewel.badge:hover {
+     background: linear-gradient(#d9d9d9, silver);
+     border: 1px solid #a6a6a6;
+     color: #808080;
+   }
+   .resetComboBadgeStyle .jewel.badge:hover:focus {
+     background: linear-gradient(#d9d9d9, silver);
+     border: 1px solid #a6a6a6;
+     color: #808080;
+   }  
+   .resetComboBadgeStyle .jewel.badge:focus {
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+     color: #808080;
+   }
+   
+   /* Style 2 - Button */
+   .resetComboBadgeTransStyle .jewel.badge {
+     background-color: #29A89F;
+     border-radius: 0 0 .25rem 0;
+     position: absolute;
+     right: 1px;
+     bottom: 0px;
+     height: 26px;
+     width: 26px;
+     min-width: 0;
+     cursor: pointer;
+     /* The compiler does not accept this property or at least not in this way ...    
+     An assets / defaultsextern.css file has been created, included in the jewel-app-index-template.html template, where this property is included.    
+     clip-path: polygon(100% 0%, 0% 100%, 100% 100%);*/    
     }
-    .jewel.application{
-      font-family: 'Open Sans', serif, sans-serif;
-      color: #333333;
-    }
-
-    .jewel.topappbar .topBarAppHeader {
-      background: #333333;
-      border: 0;
-      color: #04a3b3;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: fixed;
-      text-shadow: none;
-      width: 100%;
-      z-index: 20;
-    }
-
-    .contentMainViews {
-      background-color:#B3B3B3;
-    }
-
-    /* Custom tabbar ----------------------------------- */
     
-    .CustomTabBar .jewel.card {
-      border-radius: 0;
-    }
-
-    .CustomTabBar.menubuttonbarcard {
-      border-radius: 0;
-      background: #333333 !important;
-      padding: 0 !important;
-    }
-
-    .CustomTabBar.menubuttonbar {
-      box-shadow: #04a3b3 5px 0 0 0 inset;
-      padding: 0 0 0 5px !important;
-      border-bottom: 1px solid #04a3b3 !important;
-    }
-
-    .CustomTabBar.menubuttonbarcontent {
-      padding: 0 !important;
-    }
-
-    .CustomTabBar .jewel.tabbarbutton {
-      color: #8d8d8d;
-    }
-
-    .CustomTabBar .jewel.tabbarbutton.hovered {
-      background: rgba(179, 179, 179, 0.15);
+    .resetComboBadgeTransStyle .jewel.badge::after {
+     color: #fff;
+     content: "×";
+     display: flex;
+     font-size: initial;
+     position: absolute;
+     right: 2px;
+     bottom: 2px;
+     box-sizing: border-box;
     }
     
-    .CustomTabBar .jewel.tabbarbutton.selected {
-      background: rgba(179, 179, 179, 0.25);
-      color: #04a3b3;
-    }    
-    
-    .CustomTabBar .jewel.tabbarbutton.selectable:active {
-      background: rgba(179, 179, 179, 0.25);
-      color: #04a3b3;
-    }
-
-    .CustomTabBar .jewel.tabbarbutton.layout.horizontal {
-      padding: 12px 12px !important;
-    }
-
-    .CustomTabBar .jewel.tabbarbutton.layout.vertical {
-      padding: 12px 12px !important;
-    }
-
-    .CustomTabBar .jewel.tabbarbutton .indicator>.indicator-content {
-      background-color: #04a3b3;
-    }
-
-    .CustomTabBar .jewel.tabbar.layout.vertical .indicator>.indicator-content {
-      width: 5px;
-    }
-
-    .tabBarGroupJSCalendarItemRenderer{
-        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarGroupCustomIconItemRenderer");
-    }
-
-    .tabBarJSCalendarItemRenderer{
-        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarCustomIconItemRenderer");
-        width: 60px;
-    }
-    
-
-    /* ------------------------------------------------------- */
-
-    .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
-      color: #04a3b3;
-    }    
-    
-    .primary-lightest {
-            color: #ecede8;
-    }
-    
-    
-    .primary-light {
-            color: #7cdbe4;
-    }
-    
-    
-    .primary-normal {
-            color: #04a3b3;
-    }
-    
-    
-    .primary-dark {
-            color: #13505B;
-    }
-    
-    
-    .primary-darkest {
-            color: #0b3036;
-    }
-    
-
-    .jewel.button{
-    text-transform: none;
-    }
-    .jewel.datagrid .jewel.buttonbar.header{
-      overflow: hidden;
-    }
-
-    .jewel.label{
-      line-height: 1.2em;
-    }
-
-    .relative{
-      position: relative;
-      height: 100%;
-    }
-
-    .absolute{
-      position: absolute;
-      z-index: 1;
-    }
-
-    .center{
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-  /* Navigator - Drawer CSS */
-    .navigation-section-group{
-        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
-    }
-
-    .navigation-section-title.jewel.label {
-      font-size: 1.5em;
+    .resetComboBadgeTransStyle .jewel.badge:hover::after {
       font-weight: bold;
     }
-
-    .navigation-section-group .navigationlink {
-      padding-left: 34px;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-
-    .navIconLinkItemRenderer
-    {
-        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
-    }
-
-    .navSectionItemRenderer{
-        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
-    }
-
-  /* List Pills CSS */
-  .pillListStyle{
-    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PillsListItemRenderer");
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-  .pillListStyle>.jewel.item.hovered {
-    background: transparent;
-  }
-  .pillListStyle>.jewel.item.selected{
-  background: transparent;
-  }
-  .pillListStyle>.jewel.item.primary {
-    background: transparent;
-    cursor: default !important;
-  }
-  .pillListStyle>.jewel.item.selectable:active {
-    background: transparent;
-  }
-  .pillListStyle .jewel.badge {
-    background: linear-gradient(#e6e6e6, #cccccc);
-    border-radius: 25px;
-    border: 1px solid #b3b3b3;
-    box-shadow: inset 0 1px 0 white;
-    color: #808080;
-    cursor: pointer;
-    font-size: .70em !important;
-    font-weight: bold;
-    text-align: center;
-  }
-  .pillButtonStyle {
-    background-color: rgb(158, 158, 158) !important;
-    border-radius: 12px !important;
-    border: none !important;
-    color: white !important;
-    cursor: default !important;
-    font-weight: normal !important;
-    justify-content: left !important;
-    margin: 8px 8px 0px 0px !important;
-    padding: 5px 10px !important;
-    text-overflow: ellipsis;
-    text-transform: none !important;
-  }
-
-  /* ComboBox Pills CSS */
-
-  /* Style 1 - Button */
-  .resetComboBadgeStyle .jewel.badge {
-    background: linear-gradient(#e6e6e6, #cccccc);
-    border-radius: 0.25rem 0px 0px 0.25rem;
-    border: 1px solid #b3b3b3;
-    box-shadow: inset 0 1px 0 white;
-    color: #29A89F;
-    cursor: pointer;
-    font-size: 1.37em !important;
-    left: 20px !important;
-    top: auto !important;
-    text-align: center;
-    min-width: 0 !important;
-    width: 38px;
-  }
-
-  .resetComboBadgeStyle .jewel.textinput {
-    padding-left: 37px;
-  }
-  .resetComboBadgeStyle .jewel.textinput input {
-    border-radius: 0 !important;
-  }  
-  
-  .resetComboBadgeStyle .jewel.badge:hover {
-    background: linear-gradient(#d9d9d9, silver);
-    border: 1px solid #a6a6a6;
-    color: #808080;
-  }
-  .resetComboBadgeStyle .jewel.badge:hover:focus {
-    background: linear-gradient(#d9d9d9, silver);
-    border: 1px solid #a6a6a6;
-    color: #808080;
-  }  
-  .resetComboBadgeStyle .jewel.badge:focus {
-    border: 1px solid #b3b3b3;
-    box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    color: #808080;
-  }
-  
-  /* Style 2 - Button */
-  .resetComboBadgeTransStyle .jewel.badge {
-    background-color: #29A89F;
-    border-radius: 0 0 .25rem 0;
-    position: absolute;
-    right: 1px;
-    bottom: 0px;
-    height: 26px;
-    width: 26px;
-    min-width: 0;
-    cursor: pointer;
-    /* The compiler does not accept this property or at least not in this way ...    
-    An assets / defaultsextern.css file has been created, included in the jewel-app-index-template.html template, where this property is included.    
-    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);*/    
+ /*}*/
+ 
+ /* No coge el defaults.css de virtual-select*/
+ 
+ .vscomp-wrapper {
+   display:inline-flex;
+   position:relative;
+   width:100%;
+   font-family: 'Open Sans', serif, sans-serif !important;
+   color: #333333 !important;
+   font-size: inherit !important;
+ }
+ 
+ .vscomp-option-text span > mark  {
+   background-color: #04a3b3;
+ }
+ 
+ span > mark {
+   background-color: #04a3b3;
+ }
+ 
+ mark {
+   background-color: #04a3b3;
+ }
+ 
+ .vscomp-royale {
+   background-color: #333333 !important;
+   color: #04a3b3 !important;
+ }
+ 
+ /* Navigator - Drawer CSS */
+ .jewel.drawer.fixed .drawermain {
+   background-color: #333333;
+   border-left: 0;
+   /* border-right: 1px solid #d9d9d9; */
+   display: inline-flex;
+   flex-direction: column;
+   height: 100%;
+   left: 0;
+   overflow: hidden;
+   right: auto;
+   touch-action: none;
+   transform: translateX(-104%);
+   transition: transform 250ms 0ms;
+   width: 240px;
+   will-change: transform;
+ }
+ 
+ .jewel.navigation {
+   background-color: transparent;
+   /*background: linear-gradient(#04a3b3, #262626);*/
+ }
+ 
+ .jewel.drawerheader {
+   align-items: center;
+   /* background: linear-gradient(#2ebcb2, #24948c); */
+   background: linear-gradient(#404040, #262626);
+   /* border-bottom: 1px solid #155651; */
+   border-bottom: 1px solid black;
+   border-top: 1px solid #595959;
+   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+   color: #04a3b3;
+   display: flex;
+   flex-direction: column;
+   flex-shrink: 0;
+   padding: 16px;
+   position: relative;
+ }
+ 
+ .jewel.drawercontent .jewel.divider {
+   display: none;
+ }
+ 
+ .jewel.navigationlink {
+     color: #04a3b3;
+     /* border-bottom: 1px solid #000000; */
+ }
+ 
+ .jewel.navigationlink:hover {
+         background-color: #04a3b3 !important;
+         color: #000000;
+         font-weight: bold;
+ }
+ 
+ /* The compiler does not accept the 'filter' property. We move these classes to the attached defaultsextern.css file. ... */
+ /* https://tests.christianoliff.com/hex-to-css-filter-generator/ */
+ /* #000 */    
+ /*.jewel.navigationlink:hover .svgmenu {   
+   filter: invert(0%) sepia(1%) saturate(3%) hue-rotate(326deg) brightness(97%) contrast(104%);
+ }*/
+ /* #04a3b3 */ 
+ /*
+ .jewel.navigationlink .svgmenu {
+   filter: invert(48%) sepia(70%) saturate(590%) hue-rotate(137deg) brightness(92%) contrast(97%);
+ }*/
+ 
+   .navigation-section-group{
+       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+       
+       border-bottom: 1px solid #000000;
+       border-top: 1px solid #000000;
+   }
+ 
+   .navigation-section-group .navigationlink {
+     padding-left: 34px;
+     padding-top: 4px;
+     padding-bottom: 4px;
+     color: #B3B3B3 !important;
+     font-weight: initial;
    }
    
-   .resetComboBadgeTransStyle .jewel.badge::after {
-    color: #fff;
-    content: "×";
-    display: flex;
-    font-size: initial;
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    box-sizing: border-box;
+   .navigation-section-group .navigationlink.hovered {
+     background: rgba(179, 179, 179, 0.15) !important;
+     font-weight: 500;
    }
-   
-   .resetComboBadgeTransStyle .jewel.badge:hover::after {
+ 
+   .navigation-section-title.jewel.label {
+     font-size: 1.5em;
      font-weight: bold;
    }
-/*}*/
-
-/* No coge el defaults.css de virtual-select*/
-
-.vscomp-wrapper {
-  display:inline-flex;
-  position:relative;
-  width:100%;
-  font-family: 'Open Sans', serif, sans-serif !important;
-  color: #333333 !important;
-  font-size: inherit !important;
-}
-
-.vscomp-option-text span > mark  {
-  background-color: #04a3b3;
-}
-
-span > mark {
-  background-color: #04a3b3;
-}
-
-mark {
-  background-color: #04a3b3;
-}
-
-.vscomp-royale {
-  background-color: #333333 !important;
-  color: #04a3b3 !important;
-}
-
+ 
+   .navIconLinkItemRenderer
+   {
+       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+   }
+ 
+   .navSectionItemRenderer{
+       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
+   }
+   

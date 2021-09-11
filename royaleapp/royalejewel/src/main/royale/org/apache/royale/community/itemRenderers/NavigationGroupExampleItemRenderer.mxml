@@ -86,7 +86,7 @@ limitations under the License.
     <!-- if we need to layout items in the render introduce a container like the following -->
     <j:HGroup gap="8" itemsVerticalAlign="itemsCenter" height="48">
         <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
-        <j:Image src="{navlink.img}"  visible="{navlink.img != null}" style="margin-left:0;"/>
+        <j:Image src="{navlink.img}"  visible="{navlink.img != null}" className="svgmenu" style="margin-left:0;"/>
         <html:Span className="navigation-section-title" text="{text}"/>
         
         <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 

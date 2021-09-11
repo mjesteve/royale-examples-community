@@ -138,7 +138,6 @@
     <j:beads>
         <js:ContainerDataBinding/>
 		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
-        <j:ScrollingViewport/>
     </j:beads>
 
     <jc:ExampleHeader title="PageNavigatorButtonBar - Custom Component">

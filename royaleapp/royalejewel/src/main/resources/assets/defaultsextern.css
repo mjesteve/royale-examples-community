@@ -18,9 +18,33 @@
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace jc "library://ns.apache.org/royale/community";
   
-  /* Style 2 - Button */
-  .resetComboBadgeTransStyle .jewel.badge {
-    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
-    -webkit-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
-    -moz-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
-   }
+
+
+/* https://tests.christianoliff.com/hex-to-css-filter-generator/ */
+
+.jewel.navigationlink:hover .svgmenu { /* #000 */       
+  filter: 
+        invert(0%) 
+        sepia(1%) 
+        saturate(3%) 
+        hue-rotate(326deg) 
+        brightness(97%) 
+        contrast(104%);
+}
+
+.jewel.navigationlink .svgmenu { /* #04a3b3 */ 
+  filter:  
+        invert(48%) 
+        sepia(70%) 
+        saturate(590%) 
+        hue-rotate(137deg) 
+        brightness(92%) 
+        contrast(97%);
+} 
+
+/* Style 2 - Button */
+.resetComboBadgeTransStyle .jewel.badge {
+  clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+  -webkit-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+  -moz-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+  }
