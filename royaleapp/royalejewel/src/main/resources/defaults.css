@@ -355,7 +355,6 @@
  
  .jewel.navigation {
    background-color: transparent;
-   /*background: linear-gradient(#04a3b3, #262626);*/
  }
  
  .navSectionItemRenderer{
@@ -373,7 +372,6 @@
 
  .jewel.navigationlink {
      color: #04a3b3;
-     /* border-bottom: 1px solid #000000; */
  }
  
  .jewel.navigationlink:hover {
@@ -430,8 +428,7 @@
     border-right: 5px solid #16767f;
     font-weight: 500;
     background-color: #262626 !important;
-   }
-   
+   }   
  
    .navigation-section-title.jewel.label {
      font-size: 1.5em;

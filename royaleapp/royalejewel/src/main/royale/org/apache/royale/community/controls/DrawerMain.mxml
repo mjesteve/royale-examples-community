@@ -2,8 +2,7 @@
 <j:Drawer xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:models="org.apache.royale.community.models.*"
-    initComplete="initialized()">
+    xmlns:models="org.apache.royale.community.models.*">
 
     <fx:Metadata>
         [Event(name="goToHome", type="org.apache.royale.events.Event")]
@@ -15,16 +14,10 @@
 
             import org.apache.royale.community.vos.NavigationLinkVO;
             import org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer;
-            import org.apache.royale.jewel.itemRenderers.CollapsibleNavigationSectionRenderer;
             import org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer;
 
             [Bindable("currentNavOptionChange")]
             public var currentNavOption:NavigationLinkVO;
-
-            private function initialized():void
-            {
-                
-            }
 
             private function goToHome():void
             {
@@ -44,6 +37,13 @@
                     close();
             }
 
+            /**
+             * When a level item is selected, it is marked as "selected" and the top level item is marked as "selected". 
+             * We make sure that the selection is unique, so that when a second level item is selected, 
+             * the item that may have been selected before must be deselected.
+             * 
+             * With CSS selectors we apply the style associated with the "[selected]" attribute.
+             */
             private function changeStyleSelectedSubMenu():void{
                 var ir:NavigationGroupExampleItemRenderer;
                 var irSubMenu:NavigationLinkItemRenderer;
