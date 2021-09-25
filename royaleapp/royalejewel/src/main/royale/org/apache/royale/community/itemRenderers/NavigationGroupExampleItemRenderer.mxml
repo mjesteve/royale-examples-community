@@ -38,6 +38,10 @@ limitations under the License.
             return data as NavigationLinkVO;
         }
 
+        public function get childNav():Navigation{
+            return childNavigation;
+        }
+
         /**
          * override in subclasses as a simple way to configure the nested content field
          * if it is not 'subMenu' (the default)
@@ -46,11 +50,17 @@ limitations under the License.
             return 'submenu';
         }*/
 
+        override public function get childNavClassName():String
+        {
+            return "navigation-section-group";
+        }
+
         //probably don't want this for touch interfaces...
         override public function get retainHover():Boolean{
             return true;
         }
 
+        //Click Section Header
         private function handleNavToggle(event:Event):void{
             var triggerBinding:Boolean;
             if (event.target == this){
@@ -58,11 +68,12 @@ limitations under the License.
                 //trigger the binding because ItemRendererDataBinding only listens to dataChange
                 triggerBinding = true;
             }
-
-            if (triggerBinding) dispatchEvent(new Event('dataChange'));
+            
+            if (triggerBinding) 
+                dispatchEvent(new Event('dataChange'));
         }
 
-
+        //Click Item Content : dispatch Navigation parent event change.
         override public function onChange(selectedItem:Object):void{
             trace('selectedItem',selectedItem)
             var parentNav:Navigation =  this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
@@ -72,6 +83,7 @@ limitations under the License.
                 if (parentNav.selectedItem != this.data) {
                     parentNav.selectedItem = this.data;
                 }
+
                 parentNav.dispatchEvent(new Event('change'));
             }
         }
@@ -84,8 +96,9 @@ limitations under the License.
     </j:beads>
 
     <!-- if we need to layout items in the render introduce a container like the following -->
-    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter" height="48">
-        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
+    <j:HGroup localId="HHeader" gap="8" itemsVerticalAlign="itemsCenter" height="48">
+        <j:Group width="4" percentHeight="100" className="indicator"/>
+        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}" style="margin-left:0;"/>
         <j:Image src="{navlink.img}"  visible="{navlink.img != null}" className="svgmenu" style="margin-left:0;"/>
         <html:Span className="navigation-section-title" text="{text}"/>
         

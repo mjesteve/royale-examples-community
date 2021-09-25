@@ -319,8 +319,9 @@
  }
  
  /* Navigator - Drawer CSS */
- .jewel.drawer.fixed .drawermain {
-   background-color: #333333;
+
+ .jewel.drawer .drawermain {
+   background-color: #333333 !important;
    border-left: 0;
    /* border-right: 1px solid #d9d9d9; */
    display: inline-flex;
@@ -334,11 +335,6 @@
    transition: transform 250ms 0ms;
    width: 240px;
    will-change: transform;
- }
- 
- .jewel.navigation {
-   background-color: transparent;
-   /*background: linear-gradient(#04a3b3, #262626);*/
  }
  
  .jewel.drawerheader {
@@ -357,10 +353,24 @@
    position: relative;
  }
  
- .jewel.drawercontent .jewel.divider {
-   display: none;
+ .jewel.navigation {
+   background-color: transparent;
+   /*background: linear-gradient(#04a3b3, #262626);*/
  }
  
+ .navSectionItemRenderer{
+     IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
+ }
+
+.jewel.navigationgroup .header-fixed {
+  border-left: 4px solid #000000;
+}
+
+/* First anchor = cab sub-menu*/
+.jewel.navigationgroup[selected] > a {
+        border-left: 5px solid #04a3b3;
+}
+
  .jewel.navigationlink {
      color: #04a3b3;
      /* border-bottom: 1px solid #000000; */
@@ -368,9 +378,14 @@
  
  .jewel.navigationlink:hover {
          background-color: #04a3b3 !important;
-         color: #000000;
+         color: #16767f;
          font-weight: bold;
  }
+
+ .jewel.navigationlink.selectable {
+     background: linear-gradient(#404040, #262626);
+ }
+ 
  
  /* The compiler does not accept the 'filter' property. We move these classes to the attached defaultsextern.css file. ... */
  /* https://tests.christianoliff.com/hex-to-css-filter-generator/ */
@@ -396,25 +411,30 @@
      padding-top: 4px;
      padding-bottom: 4px;
      color: #B3B3B3 !important;
-     font-weight: initial;
+     font-weight: lighter;
    }
    
    .navigation-section-group .navigationlink.hovered {
      background: rgba(179, 179, 179, 0.15) !important;
      font-weight: 500;
    }
+   .navigation-section-group .navigationlink[selected] {
+           background-color: #16767f !important;
+           border-right: 5px solid #262626;
+           color: #262626 !important;
+           font-weight: 500;
+   }   
+   
+   .jewel.navigationlink[selected]:hover {
+    color: #04a3b3 !important;
+    border-right: 5px solid #16767f;
+    font-weight: 500;
+    background-color: #262626 !important;
+   }
+   
  
    .navigation-section-title.jewel.label {
      font-size: 1.5em;
      font-weight: bold;
-   }
- 
-   .navIconLinkItemRenderer
-   {
-       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
-   }
- 
-   .navSectionItemRenderer{
-       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
    }
    

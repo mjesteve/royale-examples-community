@@ -3,7 +3,7 @@
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:views="org.apache.royale.community.views.*"
-    xmlns:models="org.apache.royale.community.models.*"
+    xmlns:localControls="org.apache.royale.community.controls.*"
     xmlns:viewsImg="org.apache.royale.community.views.image.*"
 	xmlns:viewsJscal="org.apache.royale.community.views.calendars.jscalendar.*"
 	xmlns:viewsFullcal="org.apache.royale.community.views.calendars.fullcalendar.*"
@@ -11,92 +11,44 @@
     xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
     xmlns:viewsCb="org.apache.royale.community.views.combobox.*"
-    initComplete="setNavSelection()">
+    initComplete="init()">
 
     <fx:Script>
         <![CDATA[
             import org.apache.royale.community.vos.NavigationLinkVO;
-            import org.apache.royale.jewel.Navigation;
-
-
-            private var currentNavOption:NavigationLinkVO;
             
-            private function setNavSelection():void {
+            private function init():void 
+            {
                 goToHome();
             }
 
             private function goToHome():void
             {
-                currentNavOption = new NavigationLinkVO("Welcome", "welcome_panel", null);
-                navigateTo();
-            }
-
-            private function navChangeHandler(event:Event):void
-            {
-                currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;                
+                drawer.currentNavOption = new NavigationLinkVO("Welcome", "welcome_panel", null);
                 navigateTo();
             }
 
             private function navigateTo():void 
             {
-                var navop:NavigationLinkVO = currentNavOption;
-                main.selectedContent = currentNavOption.hash;
-                if(!drawer.fixed)
-                    drawer.close();
+                main.selectedContent = drawer.currentNavOption.hash;
                 
-                if(currentNavOption.hash == "fullcalendar_panel")
+                if(drawer.currentNavOption.hash == "fullcalendar_panel")
                     vFullCalendar.refreshSizeCalendar();
-            }
-
-            private function collapsibleChangeHandler(event:Event):void
-            {
-                currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;
-                var navop:NavigationLinkVO = currentNavOption;
-                currentNavOption = currentNavOption.selectedChild;
-                navigateTo();
             }
 
 
         ]]>
     </fx:Script>
 
-    <j:model>
-        <models:MainNavigationModel localId="mainNavigationModel"/>
-    </j:model>
-
     <j:beads>
-		<js:ContainerDataBinding/>
-        <!--<js:ViewDataBinding/>-->
+        <js:ViewDataBinding/>
 	</j:beads>
 
-    <j:Drawer localId="drawer">
-        <j:beads>
+    <localControls:DrawerMain localId="drawer" goToHome="goToHome()" onChangeView="navigateTo()">
+        <localControls:beads>
             <j:ResponsiveDrawer auto="true"/>
-        </j:beads>
-        <j:DrawerHeader>
-            <j:ImageButton src="assets/community-royale-jewel-04a3b3.svg" height="140" click="goToHome()"/>
-        </j:DrawerHeader>
-        <j:DrawerContent>
-            <j:Navigation localId="collapsibleNavigation" change="collapsibleChangeHandler(event)"
-                className="navSectionItemRenderer">
-                <j:beads>
-                    <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="collapsibleNavMainMenu" destinationPropertyName="dataProvider"/>
-                </j:beads>
-            </j:Navigation>
-            <j:Divider/>
-        </j:DrawerContent>
-
-        <j:DrawerFooter localId="drawerFooter">
-            <j:BarSection>
-                <j:IconButton>
-                    <j:icon>
-                        <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
-                    </j:icon>
-                </j:IconButton>
-            </j:BarSection>
-        </j:DrawerFooter>
-
-    </j:Drawer>
+        </localControls:beads>
+    </localControls:DrawerMain>
 
     <j:TopAppBar localId="topappbar" id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:BarRow localId="barRow">
@@ -129,6 +81,7 @@
 
      <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="contentMainViews">
         <views:WelcomeSection name="welcome_panel"/>
+        <!-- -->
         <j:ScrollableSectionContent name="virtualselect_panel">
             <viewsVSel:VirtualSelectJS/>
         </j:ScrollableSectionContent>
