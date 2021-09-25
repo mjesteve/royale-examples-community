@@ -22,14 +22,20 @@
 
 /* https://tests.christianoliff.com/hex-to-css-filter-generator/ */
 
-.jewel.navigationlink:hover .svgmenu { /* #000 */       
-  filter: 
+.jewel.navigationlink:hover .svgmenu { 
+  filter:  
+        /* #000 */      
+        /*
         invert(0%) 
         sepia(1%) 
         saturate(3%) 
         hue-rotate(326deg) 
         brightness(97%) 
         contrast(104%);
+        */
+        /* #16767f */
+        invert(36%) sepia(58%) saturate(640%) hue-rotate(137deg) brightness(89%) contrast(85%);
+
 }
 
 .jewel.navigationlink .svgmenu { /* #04a3b3 */ 
