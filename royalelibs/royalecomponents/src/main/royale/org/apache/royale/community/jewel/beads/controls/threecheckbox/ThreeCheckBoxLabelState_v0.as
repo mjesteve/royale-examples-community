@@ -1,22 +1,16 @@
 package org.apache.royale.community.jewel.beads.controls.threecheckbox
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.community.jewel.ThreeCheckBox;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
-	}
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.community.jewel.ThreeCheckBox;
 
-	/**
-	 * The ThreeCheckBoxLabelState bead allows us to display a different Text for each state.
-	 */
-    COMPILE::JS
-	public class ThreeCheckBoxLabelState extends Bead
+
+	public class ThreeCheckBoxLabelState_v0 extends Bead
 	{
 
-		public function ThreeCheckBoxLabelState()
+		public function ThreeCheckBoxLabelState_v0()
 		{
 		}
 
@@ -110,14 +104,5 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 				hostBase.text = value;
 		}
 
-	}
-
-    COMPILE::SWF
-	public class ThreeCheckBoxLabelState
-	{
-
-		public function ThreeCheckBoxLabelState()
-		{
-		}
 	}
 }
