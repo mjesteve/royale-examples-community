@@ -18,7 +18,7 @@ package org.apache.royale.community.jewel
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.events.Event;
-    import org.apache.royale.community.jewel.supportClasses.ISelectableToggle;
+    import org.apache.royale.community.jewel.supportClasses.ISelectableWithIndeterminacy;
     
     /**
      *  Dispatched when the state of the control is set by code and not by manual user intervention.
@@ -56,7 +56,7 @@ package org.apache.royale.community.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class ThreeCheckBox extends SelectableButtonBase implements ISelectableToggle, IInputButton, ITextButton
+    public class ThreeCheckBox extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
     {
         /**
          *  Constructor.

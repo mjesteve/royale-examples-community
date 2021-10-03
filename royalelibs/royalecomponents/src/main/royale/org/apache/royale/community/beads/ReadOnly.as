@@ -39,7 +39,7 @@ package org.apache.royale.community.beads
 
 		private var _readonly:Boolean = true;
         /**
-		 *  A boolean flag to enable or disable the host control.
+		 *  A boolean flag to lock or unlock the host control.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

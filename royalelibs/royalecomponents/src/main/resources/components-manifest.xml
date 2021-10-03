@@ -28,6 +28,8 @@
     <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
     <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
     <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
+    <component id="ComboBoxRequireSelection" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection"/>
+    <component id="ComboBoxReadOnly" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
     
     <!-- Extends Jewel Beads -->
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>

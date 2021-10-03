@@ -44,7 +44,7 @@ package org.apache.royale.community.models
             arnav = new Array();
             arnav.push(new NavigationLinkVO("Three Check Box", "threecheckbox_panel",MaterialIconType.CHECK_BOX));
             arnav.push(new NavigationLinkVO("Basic PageNavigator", "Debug_PageNavigator_panel",MaterialIconType.LAST_PAGE));
-            arnav.push(new NavigationLinkVO("Combobox extended", "Debug_ComboTODO_panel",MaterialIconType.CREDIT_CARD));
+            arnav.push(new NavigationLinkVO("ComboBox extended", "ComboBoxJwExt_panel",MaterialIconType.CREDIT_CARD));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 
@@ -57,7 +57,8 @@ package org.apache.royale.community.models
 
             item = new NavigationLinkVO("Laboratory - Debug", '$collapsible', "running_with_errors");
             arnav = new Array();
-            arnav.push(new NavigationLinkVO("SearchFilter - ComboBox", "Debug_ComboTODO_Search_panel"));
+            arnav.push(new NavigationLinkVO("Jewel ComboBox", "Debug_ComboTODO_panel"));
+            arnav.push(new NavigationLinkVO("Jewel ComboBox - SearchFilter", "Debug_ComboTODO_Search_panel"));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 

@@ -3,7 +3,7 @@ package org.apache.royale.community.jewel.supportClasses
     import org.apache.royale.core.ISelectable;
 
     /**
-     *  The ISelectableToggle interface is a marker interface for indicating a class has three states by two property: 
+     *  The ISelectableWithIndeterminacy interface is a marker interface for indicating a class has three states by two property: 
      *  selected property (inherited from ISelectable) and indeterminated property.
      *  
      *  @langversion 3.0
@@ -11,7 +11,7 @@ package org.apache.royale.community.jewel.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.8
      */
-	public interface ISelectableToggle extends ISelectable
+	public interface ISelectableWithIndeterminacy extends ISelectable
 	{
         /**
          *  <code>true</code> if the item is indeterminated.

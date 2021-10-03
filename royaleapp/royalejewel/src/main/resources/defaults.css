@@ -21,10 +21,32 @@
  /*
  @media (min-width: 0px){
  */
-   .Application {
-       font-family: 'Open Sans', serif, sans-serif;
-       color: #434343;
-     }
+.Application {
+  font-family: 'Open Sans', serif, sans-serif;
+  color: #434343;
+}
+
+/* scrollbar ----------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #04a3b3 transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #04a3b3;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #04a3b3;
+}
+/* End scrollbar ----------------------------------------- */
+
      .jewel.application{
        font-family: 'Open Sans', serif, sans-serif;
        color: #333333;
@@ -290,7 +312,7 @@
     }
  /*}*/
  
- /* No coge el defaults.css de virtual-select*/
+ /* No coge el defaults.css de virtual-select  ------------------------------------------ */
  
  .vscomp-wrapper {
    display:inline-flex;
@@ -318,7 +340,7 @@
    color: #04a3b3 !important;
  }
  
- /* Navigator - Drawer CSS */
+ /* Navigator - Drawer CSS --------------------------------------------------------------- */
 
  .jewel.drawer .drawermain {
    background-color: #333333 !important;
@@ -397,41 +419,55 @@
    filter: invert(48%) sepia(70%) saturate(590%) hue-rotate(137deg) brightness(92%) contrast(97%);
  }*/
  
-   .navigation-section-group{
-       IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
-       
-       border-bottom: 1px solid #000000;
-       border-top: 1px solid #000000;
-   }
- 
-   .navigation-section-group .navigationlink {
-     padding-left: 34px;
-     padding-top: 4px;
-     padding-bottom: 4px;
-     color: #B3B3B3 !important;
-     font-weight: lighter;
-   }
-   
-   .navigation-section-group .navigationlink.hovered {
-     background: rgba(179, 179, 179, 0.15) !important;
-     font-weight: 500;
-   }
-   .navigation-section-group .navigationlink[selected] {
-           background-color: #16767f !important;
-           border-right: 5px solid #262626;
-           color: #262626 !important;
-           font-weight: 500;
-   }   
-   
-   .jewel.navigationlink[selected]:hover {
-    color: #04a3b3 !important;
-    border-right: 5px solid #16767f;
-    font-weight: 500;
-    background-color: #262626 !important;
-   }   
- 
-   .navigation-section-title.jewel.label {
-     font-size: 1.5em;
-     font-weight: bold;
-   }
-   
+.navigation-section-group{
+    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+    /*
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;*/
+}
+
+.navigation-section-group .navigationlink {
+  padding-left: 34px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #B3B3B3 !important;
+  font-weight: lighter;
+}
+
+.navigation-section-group .navigationlink.hovered {
+  background: rgba(179, 179, 179, 0.15) !important;
+  font-weight: 500;
+}
+.navigation-section-group .navigationlink[selected] {
+        background-color: #16767f !important;
+        border-right: 5px solid #262626;
+        color: #262626 !important;
+        font-weight: 500;
+}   
+
+.jewel.navigationlink[selected]:hover {
+color: #04a3b3 !important;
+border-right: 5px solid #16767f;
+font-weight: 500;
+background-color: #262626 !important;
+}   
+
+.navigation-section-title.jewel.label {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Custom CSS Selectors */
+
+.formatHeader
+{
+padding: 17px;
+background: linear-gradient(#404040, #262626);
+color: #04a3b3;
+}
+
+.codeExample
+{
+  border-radius: 10px;
+  border: 0px solid;
+}
