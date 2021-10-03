@@ -13,6 +13,8 @@ package org.apache.royale.community.jewel.beads.controls.combobox
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
      *  a Jewel ComboBox to filter options as we type
+	 * 
+	 *  This extension is intended for local debugging
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

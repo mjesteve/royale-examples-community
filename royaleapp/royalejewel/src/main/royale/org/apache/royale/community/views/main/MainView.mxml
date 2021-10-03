@@ -33,8 +33,8 @@
             {
                 main.selectedContent = drawer.currentNavOption.hash;
                 
-                if(drawer.currentNavOption.hash == "fullcalendar_panel")
-                    vFullCalendar.refreshSizeCalendar();
+                //if(drawer.currentNavOption.hash == "fullcalendar_panel")
+                //    vFullCalendar.refreshSizeCalendar();
             }
 
 
@@ -100,12 +100,13 @@
             <viewsJc:ThreeCheckBox_Test/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
-            <views:Debug_PageNavigator />
+            <viewsJc:Debug_PageNavigator />
         </j:ScrollableSectionContent>
-        <j:ScrollableSectionContent name="Debug_ComboTODO_panel">
-            <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+        <j:ScrollableSectionContent name="ComboBoxJwExt_panel">
+            <viewsJc:ComboBoxJwExt_Test/>
         </j:ScrollableSectionContent>
 
+        <!-- -->
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
         </j:SectionContent>        
@@ -118,6 +119,9 @@
 
         <j:ScrollableSectionContent name="Debug_ComboTODO_Search_panel">
             <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="Debug_ComboTODO_panel">
+            <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
 
     </j:ApplicationMainContent>

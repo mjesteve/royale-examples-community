@@ -4,24 +4,12 @@
         xmlns:js="library://ns.apache.org/royale/basic"
         xmlns:html="library://ns.apache.org/royale/html">
 
-    <!-- [todo] Show the ToolTip only when the text has actually been truncated. -->
-
     <j:beads>
         <js:ItemRendererDataBinding />
         <j:ToolTip localId="tt"  toolTip="{text}"/>
         <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
     </j:beads>
 
-    <j:Label text="{text}" style="max-width:100%;">
-        <j:beads>
-            <!-- We leave the scroll width -->
-            <js:Paddings paddingRight="8"/>
-            <js:EllipsisOverflow/>
-        </j:beads>
-    </j:Label>
-
-    <!-- It would also be valid to: -->
-    <!--
     <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter">
         <j:beads>
             <js:Paddings paddingRight="8"/>
@@ -32,5 +20,4 @@
             </j:beads>
         </j:Label>
     </j:HGroup>
-    -->
 </j:ListItemRenderer>

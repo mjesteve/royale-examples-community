@@ -18,51 +18,72 @@
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace jc "library://ns.apache.org/royale/community";
 
+
+/* ************************************* Extends Jewel ToggleButtonBar [PageNavigatorButtonBar ] *************************************
+Inherited from j|ButtonBar {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
+}
+Inherited from j|ToggleButtonBar {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
+}
+*/
 jc|PageNavigatorButtonBar {
   iconClass: ClassReference("org.apache.royale.icons.FontAwesomeToggleIcon");
   IBeadModel: ClassReference("org.apache.royale.community.beads.models.PageNavigatorButtonBarModel");
+}
 
-  /* 
-  Inherited from j|ButtonBar {
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
-  }
-  Inherited from j|ToggleButtonBar {
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView");
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController");
-    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
-  }
-  */
-  }
-  
-  jc|ComboBoxJwExt{
-    /*
-     *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
-     *  and adds the valueField and selectedValue properties.
-     */
-    IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt");
-    IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
-    comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
-    comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
-    comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
-    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
-  }
-  
-  jc|VirtualComboBoxJwExt{
-    /*
-     *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
-     *  and adds the valueField and selectedValue properties.
-     */
-    IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel");
-    IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");                
-    comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
-    comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
-    comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
-    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
-  }
-  
+/* ************************************* Extends Jewel ComboBox & VirtualComboBox [ComboBoxJwExt &  VirtualComboBoxJwExt ] *************************************
+Inherited from j|ComboBox {
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView");
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp");
+}
+j|ComboBoxPopUp{
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
+}
+
+Inherited from j|VirtualComboBox {
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.VirtualComboBoxPopUp");
+}
+j|VirtualComboBoxPopUp {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualComboBoxPopUpView");
+}
+*/
+
+jc|ComboBoxJwExt{
+  /*
+    *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
+    *  and adds the valueField and selectedValue properties.
+    */
+  IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt");
+  IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer");
+  /* Customs */
+  comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+  comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
+  comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+}
+
+jc|VirtualComboBoxJwExt{
+  /*
+    *  The ComboBoxByFieldModel class bead extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
+    *  and adds the valueField and selectedValue properties.
+    */
+  IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel");
+  IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"); 
+  /* Customs */
+  comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+  comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
+  comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+}
+
   jc|ListJwExt {
     /* Custom scrollToIndex */
     IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.ListViewJwExt");
