@@ -14,6 +14,8 @@ package org.apache.royale.community.controls {
     import org.apache.royale.community.beads.models.ISelectionByFieldModel;
     import org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt;
     import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly;
+    import org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer;
+    import org.apache.royale.core.ClassFactory;
 
 	[Event(name="selectedValueChange", type="org.apache.royale.events.Event")]
     /**
@@ -43,10 +45,11 @@ package org.apache.royale.community.controls {
         {
 			removeEventListener("beadsAdded", beadsAddedHandler);
 
+            loadTextPromp();
+            loadTextTruncate();
+            //loadTruncatedItemRenderer();
             loadActivePopupControls();
             loadSearchText();
-            loadTextTruncate();
-            loadTextPromp();
             loadEmptyBead();
             isCreateComplete = true;
             
@@ -60,6 +63,32 @@ package org.apache.royale.community.controls {
         {
             //Optional by tag or by Css
             loadBeadFromValuesManager(ComboBoxTruncateText, "comboBoxTruncateText", this);
+        }
+
+        /***************************************************************************************
+         * itemRendererTruncateByDefault - 
+         */
+        private var _itemRendererTruncateByDefault:Boolean=false;
+        public function set itemRendererTruncateByDefault(value:Boolean):void
+        {
+            _itemRendererTruncateByDefault = value;
+            // The pseudo-class css itemrenderertruncate has the IItemRenderer assigned to it.
+            // It adds the css selector but does not recognise the IItemRenderer assigned by ClassReference.
+            if(value)
+                addClass('itemrenderertruncate');
+        }
+
+        override protected function loadBeads():void
+        {
+            // We must assign the itemRenderer to the control before loading the IBeadView bead.
+            // At first it assigns the correct itemRenderer, but then it does not recognise it and sets the default itemRenderer, why? 
+            // (After this instruction, it has been verified that the itemRenderer is never set again).
+            if(_itemRendererTruncateByDefault)
+            {
+                itemRenderer = new ClassFactory(LabelTruncateItemRenderer);
+                // var it:Object = itemRenderer.newInstance();
+            }
+            super.loadBeads();
         }
 
         /***************************************************************************************
@@ -135,7 +164,7 @@ package org.apache.royale.community.controls {
                 {
                     var customIt:Boolean = (itemRenderer!=null);
                     if(!customIt){
-                        customIt = (ValuesManager.valuesImpl.getValue(view.host, "iItemRenderer") != null);
+                        customIt = (ValuesManager.valuesImpl.getValue(this, "iItemRenderer") != null);
                         // Checking that the bead is applied to a Jewel ComboBox and has a custom item renderer assigned
                         if( customIt ){
                             _clickBead = new ComboBoxListCloseOnClick();

@@ -40,10 +40,11 @@
 		]]>
 	</fx:Script>
 <!--
+-->
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
--->
+	
 	<j:initialView>		
 		<mainviews:MainView/> 
 <!--		
