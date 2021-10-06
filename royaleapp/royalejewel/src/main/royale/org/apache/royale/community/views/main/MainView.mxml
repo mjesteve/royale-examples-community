@@ -82,7 +82,7 @@
 
      <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="contentMainViews">
         <views:WelcomeSection name="welcome_panel"/>
-        <!--
+        <!-- -->
         <j:ScrollableSectionContent name="virtualselect_panel">
             <viewsVSel:VirtualSelectJS/>
         </j:ScrollableSectionContent>
@@ -101,12 +101,12 @@
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
             <viewsJc:Debug_PageNavigator />
-        </j:ScrollableSectionContent> -->
+        </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="ComboBoxJwExt_panel">
             <viewsJc:ComboBoxJwExt_Test/>
         </j:ScrollableSectionContent>
 
-        <!-- 
+        <!-- -->
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
         </j:SectionContent>        
@@ -123,7 +123,7 @@
         <j:ScrollableSectionContent name="Debug_ComboTODO_panel">
             <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
--->
+
     </j:ApplicationMainContent>
 
 </j:ResponsiveView>
