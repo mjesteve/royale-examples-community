@@ -48,6 +48,7 @@
 	<j:initialView>		
 		<mainviews:MainView/> 
 <!--		
+		<mainviews:MainVirtualComboBox/> 
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
 -->

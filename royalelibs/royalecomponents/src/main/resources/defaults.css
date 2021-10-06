@@ -65,8 +65,8 @@ jc|ComboBoxJwExt{
   IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
   /* Customs */
   comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
-  comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
-  comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+  /* comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"); */
+  /* comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"); */
 }
 
 jc|VirtualComboBoxJwExt{
@@ -78,8 +78,8 @@ jc|VirtualComboBoxJwExt{
   IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
   /* Customs */
   comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
-  comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled");
-  comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt");
+  /* comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"); */
+  /* comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"); */
 }
 .jewel.combobox.itemrenderertruncate{  
   IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"); 

@@ -406,6 +406,11 @@
      background: linear-gradient(#404040, #262626);
  }
  
+ .separador {
+   background-color: #04a3b3;
+   width: 100%;
+   margin-top: 34px !important;
+ }
  
  /* The compiler does not accept the 'filter' property. We move these classes to the attached defaultsextern.css file. ... */
  /* https://tests.christianoliff.com/hex-to-css-filter-generator/ */

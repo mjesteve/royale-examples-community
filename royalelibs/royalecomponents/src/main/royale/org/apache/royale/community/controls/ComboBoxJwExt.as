@@ -3,6 +3,7 @@ package org.apache.royale.community.controls {
     import org.apache.royale.collections.ArrayListView;
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.ClassFactory;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.ComboBox;
@@ -11,7 +12,9 @@ package org.apache.royale.community.controls {
     import org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt;
     import org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText;
     import org.apache.royale.utils.loadBeadFromValuesManager;
+
     import org.apache.royale.community.beads.models.ISelectionByFieldModel;
+    import org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer;
     import org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt;
     import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly;
 
@@ -41,10 +44,10 @@ package org.apache.royale.community.controls {
         {
 			removeEventListener("beadsAdded", beadsAddedHandler);
 
+            loadTextPromp();
+            loadTextTruncate();
             loadActivePopupControls();
             loadSearchText();
-            loadTextTruncate();
-            loadTextPromp();
             loadEmptyBead();
             isCreateComplete = true;
             
@@ -58,6 +61,38 @@ package org.apache.royale.community.controls {
         {
             //Optional by tag or by Css
             loadBeadFromValuesManager(ComboBoxTruncateText, "comboBoxTruncateText", this);
+        }
+
+        /***************************************************************************************
+         * itemRendererTruncateByDefault - 
+         */
+        private var _itemRendererTruncateByDefault:Boolean=false;
+        public function set itemRendererTruncateByDefault(value:Boolean):void
+        {
+            _itemRendererTruncateByDefault = value;
+            // The pseudo-class css itemrenderertruncate has the IItemRenderer assigned to it.
+            // It adds the css selector but does not recognise the IItemRenderer assigned by ClassReference.
+            //if(value)
+            //{
+            //    addClass('itemrenderertruncate');
+            //}
+        }
+
+        override protected function loadBeads():void
+        {
+            // We must assign the itemRenderer to the control before loading the IBeadView bead.
+            if(_itemRendererTruncateByDefault)
+            {
+                //it works.
+                //This option may not be ideal because even if the itemrenderer is different, references to LabelTruncateItemRenderer will still be needed.
+                itemRenderer = new ClassFactory(LabelTruncateItemRenderer);
+                
+                //This option does not work. Any style specified in the css class is recognised but the IItemRenderer is not obtained.
+                //This is perhaps the best option. No dependency is loaded until an itemRenderer is assigned.
+                //addClass('itemrenderertruncate'); 
+                activePopupControls = false;
+            }
+            super.loadBeads();
         }
 
         /***************************************************************************************
@@ -85,9 +120,11 @@ package org.apache.royale.community.controls {
             {               
                 //Opcionales por tag o por Css
                 textPromptBead = loadBeadFromValuesManager(ComboBoxTextPrompt, "comboBoxTextPrompt", this) as ComboBoxTextPrompt;
-                if(!textPromptBead)
+                if(textPromptBead == null)
+                {
                     textPromptBead = new ComboBoxTextPrompt;
-                
+                    addBead(textPromptBead);
+                }
                 textPromptBead.prompt = _textPrompt;
             }
         }
@@ -113,27 +150,28 @@ package org.apache.royale.community.controls {
         }
 
         /***************************************************************************************
-         * activePopupControls - comboBoxListCloseOnClick bead (only if custom itemrenderer)
+         * activePopupControls - comboBoxListCloseOnClick bead 
          * 
          * We load by default a custom ItemRenderer, to close the popup on click we must 
          * load the bead ComboBoxListCloseOnClick.
          * 
          ***************************************************************************************/
-        private var _activePopupControls:Boolean = false;
+        private var _activePopupControls:Boolean = true;
         public function set activePopupControls(value:Boolean):void
         {
             _activePopupControls = value;
         }
         private function loadActivePopupControls():void
         {
-            if(!_activePopupControls  && view)
+            if(!_activePopupControls || _itemRendererTruncateByDefault)
             {
+                //If the itemRenderer is read-only, clicking on any graphical part should trigger the click and close the popup.
                 var _clickBead:ComboBoxListCloseOnClick = loadBeadFromValuesManager(ComboBoxListCloseOnClick, "comboBoxListCloseOnClick", this) as ComboBoxListCloseOnClick;
                 if(_clickBead == null)
                 {
                     var customIt:Boolean = (itemRenderer!=null);
                     if(!customIt){
-                        customIt = (ValuesManager.valuesImpl.getValue(view.host, "iItemRenderer") != null);
+                        customIt = (ValuesManager.valuesImpl.getValue(this, "iItemRenderer") != null);
                         // Checking that the bead is applied to a Jewel ComboBox and has a custom item renderer assigned
                         if( customIt ){
                             _clickBead = new ComboBoxListCloseOnClick();
