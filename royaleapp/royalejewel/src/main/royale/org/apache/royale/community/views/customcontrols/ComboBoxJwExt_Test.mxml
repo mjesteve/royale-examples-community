@@ -58,7 +58,7 @@
                 var desc:String = prefix+'Item String: '+index.toString();
                 var objdesc:Object = {codigo:index,displaytext:desc};
 
-                var descwider:String = prefix+'Item [ '+index.toString()+ ' ] Desc.: '+index.toString()+' - '+index.toString()+' - '+index.toString()+' - '+index.toString();
+                var descwider:String = prefix+'Item [ '+index.toString()+ ' ] Desc.: '+index.toString()+' - '+ new String('*******************************************************************');
                 var objdescwider:Object = {codigo:index,displaytext:descwider};
                 
                 if(index < 100){
@@ -84,7 +84,7 @@
 
         }
 		
-		private function clearDataProvider():void
+        private function clearDataProvider():void
 		{
 			cbdisablednodata.dataProvider = null;
             vcbdisablednodata.dataProvider = null;
@@ -99,7 +99,8 @@
             cbreadnodata.dataProvider = dpString;
             vcbreadnodata.dataProvider = dpString;
 		}
-
+/*
+*/
         ]]>
     </fx:Script>
 
@@ -110,14 +111,14 @@
 
     <jc:ExampleHeader title="ComboBoxJwExt / VirtualComboBoxJwExt - Custom Controls">
         <jc:description>
-            <![CDATA[<strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> are extensions of Jewel's ComboBox and VirtualComboBox controls respectively..]]>
+            <![CDATA[<strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> are extensions of Jewel's ComboBox and VirtualComboBox controls respectively.<p><b/>Almost all the features of these implementations go against the PAIG directives and should therefore be read as examples to automate recurring needs, in these controls, within our application.</p>]]>
         </jc:description>
     </jc:ExampleHeader>
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
         <j:Card>
             <j:CardHeader>
-                <j:CardTitle text="New Properties and Automations" className="primary-normal"/>
+                <j:CardTitle text="New Properties - Automatic loading of beads" className="primary-normal"/>
             </j:CardHeader>
             <j:CardExpandedContent className="formatHeader">
                 <j:HGroup percentWidth="100" gap="3">
@@ -155,8 +156,10 @@
                     </jc:VirtualComboBoxJwExt>
                 </j:HGroup>
 
+                <html:Hr className="separador"/>
+
                 <j:Label multiline="true">
-                    <j:html><![CDATA[<p>Automatically loads the <strong>ComboBoxTruncateText</strong> bead. In this example we use a new <strong>ComboBoxRequireSelection</strong> bead.</p>]]></j:html>
+                    <j:html><![CDATA[<p>Automatically loads the <strong>ComboBoxTruncateText</strong> bead. <br/>In this example we use a new <strong>ComboBoxRequireSelection</strong> bead.</p>]]></j:html>
                 </j:Label>
 
                 <j:HGroup percentWidth="100" gap="3">
@@ -175,6 +178,75 @@
                         </jc:VirtualComboBoxJwExt>
                     </j:VGroup>
                 </j:HGroup>
+
+                <html:Hr className="separador"/>
+                 
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>The <strong>itemRendererTruncateByDefault</strong> property to true will set <strong>LabelTruncateItemRenderer</strong> as default Itemrenderer (a customised Jewel ListitemRenderer consisting of a Jewel Label with the EllipsisOverflow account)</p>]]></j:html>
+                </j:Label>  
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" dataProvider="{dpStringWider}" activeTextPromp="true" itemRendererTruncateByDefault="true"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" dataProvider="{dpStringBigWider}" activeTextPromp="true" itemRendererTruncateByDefault="true"/>
+                </j:HGroup>
+<!-- 
+-->
+                <html:Hr className="separador"/>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>When a <strong>custom itemRenderer</strong> is specified only <strong>mouse click on the component's canvas</strong> will be captured as the <strong>PopUp close event</strong>. This is great for when our ItemRenderer contains an active CheckBox, but not when it is a simple Label. To override this behaviour there is the <strong>Jewel ComboBoxListCloseOnClick</strong> bead.</p>]]></j:html>
+                </j:Label>
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<strong>Jewel ComboBox</strong> and <strong>VirtualComboBox</strong> : <br/>(If you look at it, hovering the mouse over the popup items does NOT show the "hand" pointer on all of them and clicking on it will select the item but will not close the popup.)]]></j:html>
+                </j:Label>
+                <j:HGroup percentWidth="100" gap="3" >
+                    <j:ComboBox percentWidth="50" dataProvider="{dpStringWider}"/>
+                    <j:VirtualComboBox percentWidth="50" dataProvider="{dpStringBigWider}"/>
+                </j:HGroup>               
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Setting the <strong>activePopupControl</strong> property to <strong>false</strong> tells the control that the configured ItemRenderer is read-only and automatically loading the <strong>ComboBoxListCloseOnClick</strong> bead.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpString}"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpStringBig}"/>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>          
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Setting the <strong>activeSearch</strong> property to <strong>true</strong> to load the Jewel <strong>SearchFilter</strong> bead automatically.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" activeSearch="true" dataProvider="{this.dpString}"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" activeSearch="true" dataProvider="{this.dpStringBig}"/>
+                </j:HGroup>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="New Features" className="primary-normal"/>
+            </j:CardHeader>
+            
+            <j:CardExpandedContent className="formatHeader">
+                <j:HGroup percentWidth="100" gap="3">
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>ComboBox</strong> version]]></j:html>
+                    </j:Label>
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>VirtualComboBox</strong> version]]></j:html>
+                    </j:Label>
+                </j:HGroup>
+
+            </j:CardExpandedContent>
+
+            <j:CardPrimaryContent>
                
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>If we need to leave the control inactive when the data source is empty we can set the <strong>emptyDisabled</strong> or <strong>emptyReadOnly</strong> properties to true (Automatically loads the <strong>ComboBoxDisabled</strong> or new <strong>ComboBoxReadOnly</strong> beads)</p>]]></j:html>
@@ -204,8 +276,6 @@
                         </j:IconButton>
                     </j:HGroup>
                 </j:HGroup>
-<!--    
--->
                 <j:HGroup percentWidth="100" gap="3" >
                     <jc:ComboBoxJwExt localId="cbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
                         <jc:dataProvider>
@@ -235,72 +305,9 @@
                         </jc:dataProvider>
                     </jc:VirtualComboBoxJwExt>
                 </j:HGroup>
-               
-                <j:Label multiline="true">
-                    <j:html><![CDATA[<p><strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> load a default ItemRenderer (CSS) <strong>LabelTruncateItemRenderer</strong>, a custom Jewel ListitemRenderer composed by a Jewel Label with the EllipsisOverflow bead.</p>]]></j:html>
-                </j:Label>               
-                <j:Label multiline="true" className="codeExample formatHeader">
-                    <j:html><![CDATA[IItemRenderer: ClassReference(&quot;org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer&quot;);]]></j:html>
-                </j:Label>
 
-                <j:HGroup percentWidth="100" gap="3" >
-                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" dataProvider="{dpStringWider}"/>
-                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" dataProvider="{dpStringBigWider}"/>
-                </j:HGroup>
-<!-- 
--->
-                <j:HGroup percentWidth="100" gap="3" >
-                    <j:ComboBox percentWidth="50" dataProvider="{dpStringWider}"
-                    itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateIR2"/>
-                    <j:VirtualComboBox percentWidth="50" dataProvider="{dpStringBigWider}"
-                    itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateIR2">
-                        <j:beads>
-						    <j:ComboBoxPresentationModel rowCount="4" rowHeight="35"/>
-                        </j:beads>
-                    </j:VirtualComboBox>
-                </j:HGroup>
-
-                <j:Label multiline="true">
-                    <j:html><![CDATA[<p>Note: When a custom itemRenderer is specified only <strong>mouse click on the component's canvas</strong> will be captured as the <strong>PopUp close event</strong>. This is great for when our ItemRenderer contains an active CheckBox, but not when it is a simple Label. To override this behaviour there is the ComboBoxListCloseOnClick bead.</p>]]></j:html>
-                </j:Label>
-               
-                <j:Label multiline="true">
-                    <j:html><![CDATA[<p>The <strong>activePopupControls</strong> property to <strong>true</strong>:</p>]]></j:html>
-                </j:Label>
-                              
-                <j:Label multiline="true">
-                    <j:html><![CDATA[<p>The <strong>activePopupControls</strong> property to <strong>true</strong>:</p>]]></j:html>
-                </j:Label>
-
-                <j:HGroup percentWidth="100" gap="3" >
-                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpString}"/>
-                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpStringBig}"/>
-                </j:HGroup>
-
-            </j:CardPrimaryContent>
-        </j:Card>
-    </j:GridCell>
-
-    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-        <j:Card>
-            <j:CardHeader>
-                <j:CardTitle text="TODO" className="primary-normal"/>
-            </j:CardHeader>
-            
-            <j:CardExpandedContent className="formatHeader">
-                <j:HGroup percentWidth="100" gap="3">
-                    <j:Label multiline="true" percentWidth="50">
-                        <j:html><![CDATA[<strong>ComboBox</strong> version]]></j:html>
-                    </j:Label>
-                    <j:Label multiline="true" percentWidth="50">
-                        <j:html><![CDATA[<strong>VirtualComboBox</strong> version]]></j:html>
-                    </j:Label>
-                </j:HGroup>
-
-            </j:CardExpandedContent>
-
-            <j:CardPrimaryContent>
-               
+                <html:Hr className="separador"/>
+<!--       
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>
                 </j:Label>
@@ -312,8 +319,7 @@
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Respetar el item seleccionado en una actualización de Dataprovider</p>]]></j:html>
                 </j:Label>
-
-
+-->          
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>

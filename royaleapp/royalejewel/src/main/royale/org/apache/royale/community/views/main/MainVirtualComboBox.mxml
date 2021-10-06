@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	xmlns:views="org.apache.royale.community.views.*"
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.community.virtualselect.OptionsInit;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+            makeVList();
+        }
+        /*
+        [Bindable]
+        private var dpString:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClass:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBig:ArrayList = new ArrayList;*/
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var arStringBig:Array = new Array();
+        [Bindable]
+        private var arClassBig:Array = new Array();
+        [Bindable]
+        private var arHClassBig:Array = new Array();
+        private var prefix:String="";
+
+        private function makeDP(init:Boolean = false):void
+        {
+
+            if(init){
+                prefix = "";
+            }else if(prefix == ""){
+                prefix = "** ";
+            }else {
+                prefix = "";
+            }
+            //var ar:Array = new Array();
+            //var ar2:Array = new Array();
+            //var varray:Array = new Array();
+            var varray2:Array = new Array();
+            var varray3:Array = new Array();
+
+            var index:int = 0
+            for(index = 0; index < 15000; index++)
+            {
+                //if(index < 100){
+                    //ar.push(prefix+'String: '+index.toString());
+                    //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                //}
+                //varray.push(prefix+'String: '+index.toString());
+                //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
+                varray3.push({ label: prefix+'Desc: '+index.toString()+'***************************', value: index.toString() });
+                varray2.push(prefix+'Desc: '+index.toString());
+            }
+            /*dpString = new ArrayList(ar);
+            dpClass = new ArrayList(ar2);
+            dpStringBig = new ArrayList(varray);
+            dpClassBig = new ArrayList(varray2);*/
+            arStringBig = varray2.slice();
+            arClassBig = varray3.slice();
+            dpClassBig = new ArrayList(arClassBig);
+            
+            var varray4:Array = new Array();
+            var archil:Array;
+            var itemHeader:Object;
+            index = 0;
+            for(var idx:int = 0; idx < 150; idx++)
+            {
+                if( idx > 0 )
+                {
+                    itemHeader.options = archil;
+                    varray4.push(itemHeader);
+                }
+                archil = new Array();
+                itemHeader = { label: 'Option Group: '+idx.toString() };
+                
+                for(var idxc:int = 0; idxc < 10; idxc++)
+                {
+                    archil.push({ label: prefix+'Desc: '+idx.toString()+' - '+idxc.toString(), value: index.toString() });
+                    index++;
+                }
+            }
+            arHClassBig = varray4.slice();
+
+        }
+
+        private var myvlist:Object;
+        private var opinit:OptionsInit = new OptionsInit();
+        private function makeVList():void
+        {
+           /* if(!myvlist)
+            {
+                opinit.ele = myContainerVList.element;
+                opinit.options = arClassBig;
+                myvlist = VirtualSelect.init(opinit as Object);
+            }*/
+        }
+
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<!--<js:ViewDataBinding/>-->
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+        <j:BarRow localId="barRow">
+            <j:BarSection>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.9-SNAPSHOT ]"/>
+            </j:BarSection>
+        </j:BarRow>
+    </j:TopAppBar>
+
+     <j:FooterBar localId="footerbar" fixed="true" >
+        <j:BarRow>
+
+            <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:HGroup gap="10">
+                    <j:Label localId="labelCompany" html="{new Date()}" />
+                </j:HGroup>
+            </j:BarSection>
+        </j:BarRow>
+     </j:FooterBar>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+        <j:ScrollableSectionContent>
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
+            <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+                <j:CardHeader>
+                    <j:BarSection width="100%" gap="10">
+                        <html:H3 text="VirtualComboBoxJwExt - Debugger" className="primary-dark"/>
+                    </j:BarSection>
+                </j:CardHeader>
+
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+  
+                <j:HGroup width="150" gap="3" >
+                    <jc:VirtualComboBoxJwExt percentWidth="100" dataProvider="{dpClassBig}" 
+                                            itemRendererTruncateByDefault="true"/>
+                </j:HGroup>
+                    
+                </j:CardPrimaryContent>
+
+            </j:Card>
+
+        </j:ScrollableSectionContent>
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>
