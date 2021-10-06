@@ -276,8 +276,6 @@
                         </j:IconButton>
                     </j:HGroup>
                 </j:HGroup>
-<!--  
--->
                 <j:HGroup percentWidth="100" gap="3" >
                     <jc:ComboBoxJwExt localId="cbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
                         <jc:dataProvider>
@@ -309,7 +307,7 @@
                 </j:HGroup>
 
                 <html:Hr className="separador"/>
-               
+<!--       
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>
                 </j:Label>
@@ -321,8 +319,7 @@
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Respetar el item seleccionado en una actualización de Dataprovider</p>]]></j:html>
                 </j:Label>
-
-
+-->          
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>
