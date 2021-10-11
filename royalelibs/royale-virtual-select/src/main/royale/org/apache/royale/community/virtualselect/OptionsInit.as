@@ -73,7 +73,7 @@ package org.apache.royale.community.virtualselect
         public var allOptionsSelectedText:String = 'All'; // Text to use when displaying all values selected text (i.e. All (10))
         public var moreText:String = 'more...'; // Text to show when more than noOfDisplayValues options selected (i.e + 10 more...)
 
-        public function OptionsInit():void{}
+        public function OptionsInit(){}
 
     }
 }

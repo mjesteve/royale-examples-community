@@ -100,7 +100,7 @@ package org.apache.royale.community.controls
             return super.dispatchEvent(event);
         }
 
-        //POR AHORA ES PÚBLICO POR SI QUEREMOS ASIGNAR LA CONFIGURACIÓN EN BRUTO
+        //For now we expose it to the public in case we want to assign the raw configuration.
         private var _configOption:OptionsInit;
         [Bindable("configOptionChange")]
         public function get configOption():OptionsInit{ 
