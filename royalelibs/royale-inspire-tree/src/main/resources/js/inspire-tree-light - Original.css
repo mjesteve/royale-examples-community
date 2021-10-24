@@ -156,14 +156,10 @@
 .inspire-tree > .btn.icon {
   margin-left: 2px; }
 
-
 .inspire-tree > ol > .folder:first-child:not(:only-child) {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC");
   background-position: 11px 13px;
-  background-repeat: no-repeat; 
-
-  }
-  
+  background-repeat: no-repeat; }
 
 .inspire-tree .folder:last-child:not(:only-child), .inspire-tree li .folder:last-child {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC");
@@ -314,15 +310,3 @@
 .inspire-tree .matched > .wholerow:hover,
 .inspire-tree .matched > .title-wrap:hover + .wholerow {
   background-color: rgba(247, 255, 170, 0.5); }
-  
-.inspire-tree > ol > .folder{
-  padding-right : 25px;
-} 
-.inspire-tree .title {
-	padding-left : 77px !important;
-}
-.inspire-tree [type="checkbox"] {
-    left: 28px !important;
-    width: 55px !important;
-    }
-	

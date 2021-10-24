@@ -1,0 +1,11 @@
+.inspire-tree > ol > .folder{
+  padding-right : 25px;
+}
+
+.inspire-tree .title {
+	padding-left : 77px !important;
+}
+.inspire-tree [type="checkbox"] {
+    left: 28px !important;
+    width: 55px !important;
+    }

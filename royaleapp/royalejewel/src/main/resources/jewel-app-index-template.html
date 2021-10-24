@@ -27,7 +27,7 @@
       (When retrieving the css created dynamically with 'getClassStyle'. 
       'getClassStyle' is coupled to the “first” stylesheet referenced in the html template. 
       With the current implementation, if you have more than one, getClassStyle will fail to find the appropriate items 
-      if the item being looked for is not within the first file)
+      if the item being looked for is not within the first file)${body}
     -->
     <link rel="stylesheet" type="text/css" href="${application}.css">
     <link rel="stylesheet" type="text/css" href="assets/defaultsextern.css">
@@ -35,6 +35,6 @@
 ${head}
 </head>
 <body>
-${body}
+	<script type="text/javascript" src="AppStart.js" defer></script>
 </body>
 </html>

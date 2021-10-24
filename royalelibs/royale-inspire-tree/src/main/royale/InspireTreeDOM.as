@@ -1,5 +1,10 @@
 package
 {
+	COMPILE::JS
+    {
+        import InspireTree;
+        import com.proj.example.inspiretree.vos.ConfigDOM;
+    }
 
 	/**
 	 * @externs
@@ -8,19 +13,6 @@ package
 	public class InspireTreeDOM{
 		/**
 		 * <inject_script>
-		 * 
-		 * //var script = document.createElement("script");
-		 * //script.setAttribute("src", "js/load.js");
-		 * //script.setAttribute("async", "async");
-		 * //document.head.appendChild(script);
-		 * 
-		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "js/lodash.js");
-		 * document.head.appendChild(script);
-		 * 
-		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "js/inspire-tree.js");
-		 * document.head.appendChild(script);
 		 * 
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
@@ -40,10 +32,17 @@ package
 		 * 
 		 * </inject_script>
 		*/
-        public function InspireTreeDOM(target:InspireTree,target:Object){
+        public function InspireTreeDOM(tree:InspireTree, opts:ConfigDOM=null){
 		}
-		
 
+		/**
+		 * Get a tree instance based on an ID.
+		 *
+		 * @category DOM
+		 * @param {string} id Tree ID.
+		 * @return {InspireTree} Tree instance.
+		 */
+		public static function getTreeById(id:String):InspireTree{ return null; }
 	}
 	
 	
