@@ -48,12 +48,6 @@
         "include-sources": [
             "src/main/royale"
         ],
-        "library-path": [
-            "${royalelib}/libs/MXRoyale.swc"
-        ],
-        "js-library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
-        ],
         "source-map": true,
         "remove-circulars": true,
         "keep-as3-metadata": [
@@ -63,8 +57,7 @@
         "output": "target/RoyaleJsCalendar.swc"
     },
     "copySourcePathAssets": true,
-    "additionalOptions": [//MXRoyale-${royale.framework.version}-js.swc:defaults.css
-        "-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
+    "additionalOptions": [
         "-js-dynamic-access-unknown-members=true",
         "-show-binding-warnings=false"
     ]

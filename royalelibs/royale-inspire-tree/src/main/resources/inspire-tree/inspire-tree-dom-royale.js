@@ -2618,10 +2618,11 @@
                 // Build and set classnames
                 var classNames = classlist(node, 'a').concat(['title', 'icon']);
 
-                if (!this.props.dom.config.showCheckboxes) {
+                // Royale - Allow icon + checkbox
+                //if (!this.props.dom.config.showCheckboxes) {
                     var folder = this.props.expanded ? 'icon-folder-open' : 'icon-folder';
                     classNames.push(node.itree.icon || (this.props.hasOrWillHaveChildren ? folder : 'icon-file-empty'));
-                }
+                //}
 
                 attributes.class = attributes.className = classNames.join(' ');
 
@@ -3281,9 +3282,10 @@
             // If user didn't specify showCheckboxes,
             // but is using checkbox selection mode,
             // enable it automatically.
-            if (tree.config.selection.mode === 'checkbox' && !_.isBoolean(_.get(opts, 'showCheckboxes'))) {
-                this.config.showCheckboxes = true;
-            }
+            // Royale - commented
+            //if (tree.config.selection.mode === 'checkbox' && !_.isBoolean(_.get(opts, 'showCheckboxes'))) {
+            //    this.config.showCheckboxes = true;
+            //}
 
             // Cache because we use in loops
             this.isDynamic = _.isFunction(this._tree.config.data);

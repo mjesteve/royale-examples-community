@@ -68,7 +68,6 @@
                         <j:Label multiline="true" text="Set this page number:"/>
                     </j:HGroup>
                     
-
                 </j:VGroup>
             </j:CardPrimaryContent>
         </j:Card>

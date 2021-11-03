@@ -5460,42 +5460,80 @@
           disableDirectDeselection: false,
           mode: 'default',
           multiple: false,
-          require: false
+          require: false,
+          unlinkCheckSelect: false // Royale - Maintain the difference between checkbox and selected
         },
         showCheckboxes: false,
         sort: false
       }); // If checkbox mode, we must force auto-selecting children
 
       if (_this.config.selection.mode === 'checkbox') {
-        _this.config.selection.autoSelectChildren = true; // In checkbox mode, checked=selected
+        _this.config.selection.autoSelectChildren = true; 
+        
+        // In checkbox mode, checked=selected
 
-        _this.on('node.checked', function (node) {
-          if (!node.selected()) {
-            node.select(true);
-          }
-        });
+        // Royale - Maintain the difference between checkbox and selected
+        if(!_this.config.selection.unlinkCheckSelect)
+        {
+          _this.on('node.checked', function (node) {
+            if (!node.selected()) {
+              node.select(true);
+            }
+          });
+  
+          _this.on('node.selected', function (node) {
+            if (!node.checked()) {
+              node.check(true);
+            }
+          });
 
-        _this.on('node.selected', function (node) {
-          if (!node.checked()) {
-            node.check(true);
-          }
-        });
+          _this.on('node.unchecked', function (node) {
+            if (node.selected()) {
+              node.deselect(true);
+            }
+          });
+  
+          _this.on('node.deselected', function (node) {
+            if (node.checked()) {
+              node.uncheck(true);
+            }
+          });
 
-        _this.on('node.unchecked', function (node) {
-          if (node.selected()) {
-            node.deselect(true);
-          }
-        });
+        }else{
+          _this.on('node.checked', function (node) {
+            if (!node.checked()) {
+              node.check(true);
+            }
+            if (!node.selected()) {
+              node.select(true);
+            }
+          });
+  
+          _this.on('node.selected', function (node) {
+            if (!node.selected()) {
+              node.select(true);
+            }
+          });
 
-        _this.on('node.deselected', function (node) {
-          if (node.checked()) {
-            node.uncheck(true);
-          }
-        });
+          _this.on('node.unchecked', function (node) {
+            if (node.checked()) {
+              node.uncheck(true);
+            }
+            if (!node.selected()) {
+              node.select(true);
+            }
+          });
+  
+          _this.on('node.deselected', function (node) {
+            if (node.selected()) {
+              node.deselect(true);
+            }
+          });
+        }
       } // If auto-selecting children, we must force multiselect
 
 
-      if (_this.config.selection.autoSelectChildren) {
+      if (_this.config.selection.autoSelectChildren && !_this.config.selection.unlinkCheckSelect) {
         _this.config.selection.multiple = true;
         _this.config.selection.autoDeselect = false;
       } // Treat editable as full edit mode

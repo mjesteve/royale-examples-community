@@ -52,7 +52,7 @@
         "output": "target/InspireTree.swc"
     },
     "copySourcePathAssets": true,
-    "additionalOptions": [//MXRoyale-${royale.framework.version}-js.swc:defaults.css
+    "additionalOptions": [
         "-js-dynamic-access-unknown-members=true",
         "-show-binding-warnings=false"
     ]

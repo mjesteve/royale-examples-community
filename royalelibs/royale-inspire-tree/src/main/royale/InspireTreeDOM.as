@@ -3,7 +3,7 @@ package
 	COMPILE::JS
     {
         import InspireTree;
-        import com.proj.example.inspiretree.vos.ConfigDOM;
+        import org.apache.royale.community.inspiretree.vos.ConfigDOM;
     }
 
 	/**
@@ -13,27 +13,39 @@ package
 	public class InspireTreeDOM{
 		/**
 		 * <inject_script>
+		 * //Without sass:
+		 * //var link = document.createElement("link");
+         * //link.setAttribute("rel", "stylesheet");
+         * //link.setAttribute("type", "text/css");
+         * //link.setAttribute("href", "inspire-tree/inspire-tree-dark.min.css");
+         * //document.head.appendChild(link);
+		 * //
+		 * //var link = document.createElement("link");
+         * //link.setAttribute("rel", "stylesheet");
+         * //link.setAttribute("type", "text/css");
+         * //link.setAttribute("href", "inspire-tree/inspire-tree-light-jewel-blue.css");
+         * //document.head.appendChild(link);
+		 * 
+		 * var script = document.createElement("script");
+		 * //script.setAttribute("src", "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js");
+		 * script.setAttribute("src", "inspire-tree/lodash.min.js");
+		 * document.head.appendChild(script);
 		 * 
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
          * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "js/inspire-tree-dark.min.css");
-         * document.head.appendChild(link);
-		 * 
-		 * var link = document.createElement("link");
-         * link.setAttribute("rel", "stylesheet");
-         * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "js/inspire-tree-light.css");
+         * link.setAttribute("href", "inspire-tree/inspire-tree-custom.css");
          * document.head.appendChild(link);
 		 * 
 		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "js/inspire-tree-dom.js");
+		 * script.setAttribute("src", "inspire-tree/inspire-tree-dom-royale.js");
 		 * document.head.appendChild(script);
 		 * 
 		 * </inject_script>
 		*/
         public function InspireTreeDOM(tree:InspireTree, opts:ConfigDOM=null){
 		}
+        public var config:ConfigDOM;
 
 		/**
 		 * Get a tree instance based on an ID.

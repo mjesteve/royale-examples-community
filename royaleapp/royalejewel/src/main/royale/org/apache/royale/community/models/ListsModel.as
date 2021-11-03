@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.community.models
 {
-	import vos.IconListVO;
-	import vos.DetailIconListVO;
 	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.community.vos.IconListVO;
+	import org.apache.royale.community.vos.DetailIconListVO;
 
 	[Bindable]
 	public class ListsModel

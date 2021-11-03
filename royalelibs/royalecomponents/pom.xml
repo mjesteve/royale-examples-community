@@ -82,7 +82,7 @@
           <additionalCompilerOptions>
             ${project.compiler.options}
             -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -compiler.exclude-defaults-css-files=MXRoyale-0.9.9-SNAPSHOT-js.swc:defaults.css;
+            <!-- -compiler.exclude-defaults-css-files=MXRoyale-0.9.9-SNAPSHOT-js.swc:defaults.css; -->
             -keep-code-with-metadata=Inject;
             -keep-as3-metadata+=Inject,Dispatcher,Event,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
             -show-binding-warnings=false;

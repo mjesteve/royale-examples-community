@@ -15,6 +15,8 @@
  *  limitations under the License.
  */
 @namespace "http://www.w3.org/1999/xhtml";
-@namespace j "library://ns.apache.org/royale/jewel";
 @namespace jc "library://ns.apache.org/royale/community";
 
+jc|InspireTreeBasicControl {
+    IBeadModel: ClassReference("org.apache.royale.community.inspiretree.beads.models.InspireTreeModel");
+}

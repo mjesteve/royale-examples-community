@@ -4,9 +4,9 @@ package
     {
         import TreeNode;
         import TreeNodes;
-        import com.proj.example.inspiretree.vos.OptionsTree;
-        import com.proj.example.inspiretree.vos.ConfigTree;
-        import com.proj.example.inspiretree.vos.OptionsTree;
+        import org.apache.royale.community.inspiretree.vos.OptionsTree;
+        import org.apache.royale.community.inspiretree.vos.ConfigTree;
+        import org.apache.royale.community.inspiretree.vos.OptionsTree;
     }
 
 	/**
@@ -19,7 +19,7 @@ package
 		 * <inject_script>
 		 * 
 		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "js/inspire-tree-royale.js");
+		 * script.setAttribute("src", "inspire-tree/inspire-tree-royale.js");
 		 * document.head.appendChild(script);
          * 
 		 * </inject_script>
@@ -728,7 +728,6 @@ package
          * @return {TreeNode} Selected node object.
          */
         public function selectFirstAvailableNode():TreeNode { return null; }
-
         /**
          * Shift node in the first index position.
          *

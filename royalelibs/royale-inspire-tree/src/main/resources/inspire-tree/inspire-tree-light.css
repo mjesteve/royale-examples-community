@@ -6,21 +6,21 @@
   height: 20px;
   transition: all 150ms linear;
   width: 20px; }
-  .inspire-tree .btn:hover {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); }
-  .inspire-tree .btn + .btn {
-    margin-left: 5px; }
-  .inspire-tree .btn.icon {
-    position: relative; }
-    .inspire-tree .btn.icon::before {
-      display: block;
-      height: 14px;
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%);
-      width: 14px; }
+.inspire-tree .btn:hover {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); }
+.inspire-tree .btn + .btn {
+  margin-left: 5px; }
+.inspire-tree .btn.icon {
+  position: relative; }
+.inspire-tree .btn.icon::before {
+  display: block;
+  height: 14px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 14px; }
 
 .inspire-tree .btn-group {
   display: inline-block;
@@ -39,83 +39,83 @@
   padding: 0;
   position: absolute;
   z-index: 10; }
-  .itree-menu a {
-    display: block;
-    padding: 3px 8px; }
-    .itree-menu a:hover {
-      background: rgba(218, 250, 255, 0.5);
-      color: rgba(164, 234, 245, 0.5); }
+.itree-menu a {
+  display: block;
+  padding: 3px 8px; }
+.itree-menu a:hover {
+  background: rgba(218, 250, 255, 0.5);
+  color: rgba(164, 234, 245, 0.5); }
 
 .inspire-tree {
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   /* ~~@@@~~~~~ Lists ~~~~~@@@~~ */
   /* ~~@@@~~~~~ Node Content ~~~~~@@@~~ */ }
-  .inspire-tree:focus {
-    outline: none; }
-  .inspire-tree, .inspire-tree * {
-    box-sizing: border-box; }
-  .inspire-tree ol {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-    .inspire-tree ol ol {
-      padding-left: 20px; }
-  .inspire-tree .collapsed > ol, .inspire-tree .hidden {
-    display: none; }
-  .inspire-tree li > .title-wrap {
-    min-height: 25px;
-    position: relative;
-    z-index: 2; }
-  .inspire-tree .toggle {
-    height: 25px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 25px;
-    z-index: 2; }
-    .inspire-tree .toggle::before {
-      display: block;
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%); }
-  .inspire-tree [type="checkbox"] {
-    left: 18px;
-    position: absolute;
-    top: 4px;
-    vertical-align: middle;
-    width: 20px;
-    z-index: 2; }
-  .inspire-tree .title {
-    cursor: default;
-    display: block;
-    height: 25px;
-    line-height: 25px;
-    overflow: hidden;
-    padding-left: 42px;
-    position: relative;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    white-space: nowrap;
-    z-index: 1; }
-    .inspire-tree .title.load-more {
-      color: #476cb8;
-      cursor: pointer; }
-      .inspire-tree .title.load-more:hover {
-        text-decoration: underline; }
-    .inspire-tree .title::before {
-      left: 24px;
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
-      vertical-align: top; }
-    .inspire-tree .title:focus {
-      outline: none; }
+.inspire-tree:focus {
+  outline: none; }
+.inspire-tree, .inspire-tree * {
+  box-sizing: border-box; }
+.inspire-tree ol {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+.inspire-tree ol ol {
+  padding-left: 20px; }
+.inspire-tree .collapsed > ol, .inspire-tree .hidden {
+  display: none; }
+.inspire-tree li > .title-wrap {
+  min-height: 25px;
+  position: relative;
+  z-index: 2; }
+.inspire-tree .toggle {
+  height: 25px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 25px;
+  z-index: 2; }
+.inspire-tree .toggle::before {
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+.inspire-tree [type="checkbox"] {
+  left: 18px;
+  position: absolute;
+  top: 4px;
+  vertical-align: middle;
+  width: 20px;
+  z-index: 2; }
+.inspire-tree .title {
+  cursor: default;
+  display: block;
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+  padding-left: 42px;
+  position: relative;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+  z-index: 1; }
+.inspire-tree .title.load-more {
+  color: #476cb8;
+  cursor: pointer; }
+.inspire-tree .title.load-more:hover {
+  text-decoration: underline; }
+.inspire-tree .title::before {
+  left: 24px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  vertical-align: top; }
+.inspire-tree .title:focus {
+  outline: none; }
 
 .inspire-tree.drag-and-drop li:not(.drop-target) {
   opacity: .5; }
@@ -135,10 +135,10 @@
   height: 25px;
   line-height: 25px;
   padding-top: 2px; }
-  .inspire-tree .editable form input {
-    height: 20px; }
-  .inspire-tree .editable form input, .inspire-tree .editable form .btn {
-    vertical-align: top; }
+.inspire-tree .editable form input {
+  height: 20px; }
+.inspire-tree .editable form input, .inspire-tree .editable form .btn {
+  vertical-align: top; }
 
 .inspire-tree .editable > .btn-group {
   display: none;
@@ -162,7 +162,7 @@
   background-position: 11px 13px;
   background-repeat: no-repeat; 
 
-  }
+}
   
 
 .inspire-tree .folder:last-child:not(:only-child), .inspire-tree li .folder:last-child {
@@ -314,15 +314,21 @@
 .inspire-tree .matched > .wholerow:hover,
 .inspire-tree .matched > .title-wrap:hover + .wholerow {
   background-color: rgba(247, 255, 170, 0.5); }
-  
+
+
+/* Custom */
+.inspire-tree {
+  overflow: auto;
+}
+
 .inspire-tree > ol > .folder{
   padding-right : 25px;
 } 
 .inspire-tree .title {
-	padding-left : 77px !important;
+  padding-left : 82px !important;
 }
 .inspire-tree [type="checkbox"] {
-    left: 28px !important;
-    width: 55px !important;
-    }
+  left: 50px !important;
+  /*width: 55px !important;*/
+}
 	

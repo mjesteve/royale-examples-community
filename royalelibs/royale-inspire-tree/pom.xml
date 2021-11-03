@@ -39,6 +39,34 @@
     <sourceDirectory>src/main/royale</sourceDirectory>
 
     <plugins>
+
+      <!-- Include sass compilation -->
+		  <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <version>3.7.2</version>
+        <configuration>
+          <resources>
+            <resource>
+              <source>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                  <include>**/*.sass</include>
+                </includes>
+              </source>
+              <destination>${basedir}/src/main/resources/inspire-tree</destination>
+            </resource>
+          </resources>
+        </configuration>
+        <executions>
+              <execution>
+                  <id>generate-css-using-sass</id>
+                  <goals>
+                      <goal>update-stylesheets</goal>
+                  </goals>
+              </execution>
+        </executions>
+      </plugin>
     
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
@@ -53,6 +81,15 @@
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+
+          <additionalCompilerOptions>
+            ${project.compiler.options}
+            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+            -show-binding-warnings=false;
+          </additionalCompilerOptions>
+
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
@@ -67,13 +104,13 @@
           </namespaces>
           <!-- Tell the compiler which classes to compile and include -->
           <includeClasses>
-            <includeClass>VIRTUALSELECTClasses</includeClass>
+            <includeClass>INSPIRETREEClasses</includeClass>
           </includeClasses>
 
           <includeFiles>
             <include-file>
-              <name>js/*</name>
-              <path>../src/main/resources/js/*</path>
+              <name>inspire-tree/*</name>
+              <path>../src/main/resources/inspire-tree/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>
@@ -81,18 +118,12 @@
             </include-file>
           </includeFiles>
 
-          <additionalCompilerOptions>
-            ${project.compiler.options}
-            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
-            -keep-code-with-metadata=Inject;
-            -show-binding-warnings=false;
-          </additionalCompilerOptions>
-
         </configuration>
 
       </plugin>
+    
     </plugins>
+
   </build>
 
 </project>
