@@ -21,5 +21,12 @@
 
 <componentPackage>
 
+  <component id="InspireTreeBasicControl" class="org.apache.royale.community.inspiretree.InspireTreeBasicControl"/>
+  
+  <component id="InspireTreeCheckBoxModeBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead"/>
+  <component id="InspireTreeEventsBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeEventsBead"/>
+  <component id="InspireTreeIconBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeIconBead"/>
+  <component id="InspireTreePaginateBead" class="org.apache.royale.community.inspiretree.beads.InspireTreePaginateBead"/>
+  <component id="InspireTreeReadOnlyCheckBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeReadOnlyCheckBead"/>
 
 </componentPackage>

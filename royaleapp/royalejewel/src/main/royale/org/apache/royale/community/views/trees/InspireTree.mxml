@@ -68,6 +68,7 @@
                         <j:Label multiline="true" text="Set this page number:"/>
                     </j:HGroup>
                     
+                    <jc:InspireTreeBasicControl />
                 </j:VGroup>
             </j:CardPrimaryContent>
         </j:Card>

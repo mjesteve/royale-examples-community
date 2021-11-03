@@ -132,7 +132,7 @@
 
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MXRoyale</artifactId>
+      <artifactId>MXRoyaleBase</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
       <scope>provided</scope>
