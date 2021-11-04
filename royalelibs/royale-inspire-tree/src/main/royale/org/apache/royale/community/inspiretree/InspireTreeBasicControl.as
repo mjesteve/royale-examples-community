@@ -16,7 +16,8 @@ package org.apache.royale.community.inspiretree
         import org.apache.royale.html.util.addElementToWrapper;
     	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
     	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
-    	import org.apache.royale.core.StyledUIBase;
+    	import org.apache.royale.core.IMXMLDocument;
+    	import org.apache.royale.utils.MXMLDataInterpreter;
 	}
     /**
      *  It triggers just before launching the creation.  
@@ -35,7 +36,7 @@ package org.apache.royale.community.inspiretree
 	[Event(name="onPrepareTreeDataComplete", type="org.apache.royale.events.Event")]
 
 	COMPILE::JS
-	public class InspireTreeBasicControl extends StyledUIBase implements IInspireTree
+	public class InspireTreeBasicControl extends StyledUIBase implements IMXMLDocument, IInspireTree
 	{
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -55,6 +56,56 @@ package org.apache.royale.community.inspiretree
 			//typeNames = "inspiretree";
             addEventListener("beadsAdded", beadsAddedHandler);
         }
+
+        private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+
+		/**
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+
+		/**
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+
+		/**
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+         * 
+         *  @royalesuppresspublicvarwarning
+		 */
+		public var mxmlContent:Array;
 
         private function beadsAddedHandler(event:Event):void
         {

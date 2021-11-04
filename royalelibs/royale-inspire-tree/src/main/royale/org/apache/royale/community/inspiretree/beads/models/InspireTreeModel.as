@@ -26,6 +26,9 @@ package org.apache.royale.community.inspiretree.beads.models
 		 */
 		override public function set dataProvider(value:Object):void
 		{
+			if( value == null)
+				value = {};
+
 			super.dataProvider = value;
 
 			if(value is IArrayList)
@@ -211,7 +214,7 @@ package org.apache.royale.community.inspiretree.beads.models
 			{
 				_configOption = new OptionsTree();
 				_configOption.selection = {
-					//allowLoadEvents:['selected'],
+					data: {},
 					autoDeselect: true, 
 					autoSelectChildren: false,
 					disableDirectDeselection: true,
@@ -220,7 +223,6 @@ package org.apache.royale.community.inspiretree.beads.models
 					require: false,
 					unlinkCheckSelect: true
 				};
-				//_configOption.showCheckboxes = false;
 			}
 			return _configOption; 
 		}
