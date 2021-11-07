@@ -19,6 +19,8 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
     import org.apache.royale.events.ValueEvent;
+    import org.apache.royale.collections.ArrayList;
+    import org.apache.royale.collections.ArrayList;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBead  extends Strand implements IBead
@@ -79,17 +81,17 @@ package org.apache.royale.community.inspiretree.beads
 		private function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
-			//treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
+
 			if(treeModel)
 			{
-				//treeModel.checkboxField = _checkboxField;
-				//treeModel.checkboxFunction = _checkboxFunction;
+				//InspireTree JS does not support mode switching after initialization. For now we don't either.
 				///treeModel.checkboxMode = true;
 				///treeModel.showCheckboxes = _showCheckboxes;
 				//treeModel.addEventListener("checkboxModeChanged", updateHost);
 				//treeModel.addEventListener("showCheckboxesChanged", updateHost);
 
 				treeModel.showCheckboxes = _showCheckboxes;
+				treeModel.checkedIsSelected = _checkedIsSelected;
 			}
 		}
 
@@ -101,13 +103,14 @@ package org.apache.royale.community.inspiretree.beads
 
 		private function completeTreeData(event:Event, revertTreeData:Array = null):Array
 		{
-			if( !treeModel) return null;
+			if( !_treeModel) return null;
 
+			var data:Array = (_treeModel.dataProvider as ArrayList).source;
 			var treeData:Array;
 			if(revertTreeData)
 				treeData = revertTreeData;
 			else
-				treeData = treeModel.treeData;
+				treeData = _treeModel.treeData;
 
 			var idxGen:int=0;
 
@@ -120,7 +123,7 @@ package org.apache.royale.community.inspiretree.beads
 				for (var idxChild:int=0; idxChild < itemGroup.children.length; idxChild++)
 				{
 					var itemDetail:ItemTreeNode = ItemTreeNode(itemGroup.children[idxChild]);
-					itemDetail.itree.state.checked = _checkboxFunction(itemDetail, treeModel.dataProvider[idxGen+idxChild]);
+					itemDetail.itree.state.checked = _checkboxFunction(itemDetail, data[idxGen+idxChild]);
 
 					if(itemDetail.itree.state.checked == true)
 						iChildCheckedCount++; //how many children nodes are selected of a parent
@@ -161,11 +164,12 @@ package org.apache.royale.community.inspiretree.beads
 		}
 		public function set showCheckboxes(value:Boolean):void
 		{
-			if(treeModel)
+			if(value == _showCheckboxes) return;
+			if(_treeModel)
 			{
-				if(value == _showCheckboxes) return;
 				treeModel.showCheckboxes = value;
-				IInspireTree(_strand).reCreateViewTree( true );
+				if(IInspireTree(_strand).isInitialized())
+					IInspireTree(_strand).reCreateViewTree( true );
 			}
 			_showCheckboxes = value;
 		}
@@ -224,6 +228,23 @@ package org.apache.royale.community.inspiretree.beads
 				lastRevertVal = value;
 		}
 
+		private var _checkedIsSelected:Boolean = true;
+		public function get checkedIsSelected():Boolean{ 
+			return _checkedIsSelected; 
+		}
+		public function set checkedIsSelected(value:Boolean):void
+		{
+			if(value == _checkedIsSelected) return;
+
+			if(_treeModel)
+			{
+				_treeModel.checkedIsSelected = value;
+				if(IInspireTree(_strand).isInitialized())
+					IInspireTree(_strand).reCreateViewTree( true );
+			}
+			_checkedIsSelected = value;
+		}
+
 		private var lastRevertVal:Boolean = false;
 		private var readOnly:Boolean = false;
 		private function onReadOnlyChange(event:ValueEvent):void
@@ -245,7 +266,13 @@ package org.apache.royale.community.inspiretree.beads
 
 		public function onClickHandler(event:*, node:ItemTreeNode):void
 		{
-			if(event["clientX"] >= (_strand as StyledUIBase).width - 20)
+			
+			var wParent:Number = (_strand as StyledUIBase).width;
+			var wItem:Number = Number( node.itree.ref.clientWidth ? node.itree.ref.clientWidth:0 );
+			var wScroll:Number = (wParent-wItem);
+			//trace('wParent',wParent,"offsetX",event["offsetX"],'wItem',wItem,'wScroll',wScroll);
+			//trace('  From ',wParent - (20 + wScroll)," To",wParent);
+			if( Number(event["offsetX"]) >= wParent - (20 + wScroll) )
 			{
 				fn_RevertSpecificNode(node.id, true);
 			}

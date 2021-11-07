@@ -3240,10 +3240,13 @@
 
             classCallCheck(this, InspireDOM);
 
-            if (!(tree instanceof InspireTree)) {
-                throw new TypeError('Tree argument is not an InspireTree instance.');
-            }
-
+            // Royale - We comment this block because very often a false TypeError error occurs: 
+            // "TypeError: Right-hand side of 'instanceof' is not callable"
+            // We override the check because we are sure that the object is an Instance of InspireTree.
+            //if (!(tree instanceof InspireTree)) {
+            //    throw new TypeError('Tree argument is not an InspireTree instance.');
+            //}
+            
             // Init properties
             this._tree = tree;
             this.batching = 0;

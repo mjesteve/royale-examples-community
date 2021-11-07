@@ -115,10 +115,16 @@ package org.apache.royale.community.inspiretree
 		override public function addedToParent():void
 		{
 			super.addedToParent();
+			//The model is loaded
 			if (!_initialized)
-			{				
-				dispatchEvent(new Event("initComplete"));
-				//The model is loaded
+			{
+				dispatchEvent(new Event("initComplete"));				
+				
+				if(!InspireTreeModel(model).useCustomStyle)
+				{
+					if(!InspireTreeModel(model).checkboxMode && !containsClass('withoutcheckbox'))
+						addClass('withoutcheckbox');
+				}
 				reCreateViewTree();
 				_initialized = true;
 			}
@@ -288,12 +294,11 @@ package org.apache.royale.community.inspiretree
             dispatchEvent(new Event("onBeforeCreation"));
 
 			//if(!onlyView || !jsTree)
-				jsTree = new InspireTree(InspireTreeModel(model).configOption);
+			jsTree = new InspireTree(InspireTreeModel(model).configOption);
 
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
-			uid = element.getAttribute('data-uid');
-			trace(uid);
+			uid = element.getAttribute('data-uid'); trace(uid);
             dispatchEvent(new Event("onCreationComplete"));
 		}
 		

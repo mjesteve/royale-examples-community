@@ -19,17 +19,19 @@ package
          * //link.setAttribute("type", "text/css");
          * //link.setAttribute("href", "inspire-tree/inspire-tree-dark.min.css");
          * //document.head.appendChild(link);
-		 * //
+		 * 
 		 * //var link = document.createElement("link");
          * //link.setAttribute("rel", "stylesheet");
          * //link.setAttribute("type", "text/css");
          * //link.setAttribute("href", "inspire-tree/inspire-tree-light-jewel-blue.css");
          * //document.head.appendChild(link);
 		 * 
-		 * var script = document.createElement("script");
-		 * //script.setAttribute("src", "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js");
-		 * script.setAttribute("src", "inspire-tree/lodash.min.js");
-		 * document.head.appendChild(script);
+		 * // FIX: Direct insertion in the html template because it does not load in time. [todo]
+		 * 
+		 * //var script = document.createElement("script");
+		 * //	//script.setAttribute("src", "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js");
+		 * //script.setAttribute("src", "inspire-tree/lodash.min.js");
+		 * //document.head.appendChild(script);
 		 * 
 		 * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");

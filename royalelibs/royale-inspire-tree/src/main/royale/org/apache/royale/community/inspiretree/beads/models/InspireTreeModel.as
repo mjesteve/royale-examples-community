@@ -27,7 +27,7 @@ package org.apache.royale.community.inspiretree.beads.models
 		override public function set dataProvider(value:Object):void
 		{
 			if( value == null)
-				value = {};
+				value = [];
 
 			super.dataProvider = value;
 
@@ -61,7 +61,7 @@ package org.apache.royale.community.inspiretree.beads.models
 			if (value == _treeData) return;
 
 			_treeData = value;
-			//Se realiza un mapeo-binding entre el objeto js y el objeto as.
+			//A mapping-binding is performed between the js object and the as object.
 			configOption.data = _treeData;
 			dispatchEvent(new Event("treeDataChanged"));
 		}
@@ -176,6 +176,16 @@ package org.apache.royale.community.inspiretree.beads.models
                 sendEvent(this,"allowDragAndDropChanged");
 			}
 		}
+		private var _checkedIsSelected:Boolean = true; //InspireTree JS Default Behavior
+		public function get checkedIsSelected():Boolean{ return _checkedIsSelected; }
+		public function set checkedIsSelected(value:Boolean):void
+		{
+			if (value == _checkedIsSelected) return;
+
+			_checkedIsSelected = value; 
+			configOption.selection["checkedIsSelected"] = value;
+		}
+
 		/**
 		 * Show paginated nodes.
 		 * By default 10 nodes per page will be displayed, to change this, set the 'numNodesPage' property.
@@ -214,15 +224,15 @@ package org.apache.royale.community.inspiretree.beads.models
 			{
 				_configOption = new OptionsTree();
 				_configOption.selection = {
-					data: {},
 					autoDeselect: true, 
 					autoSelectChildren: false,
 					disableDirectDeselection: true,
 					mode: 'tree',
 					multiple: false,
 					require: false,
-					unlinkCheckSelect: true
+					checkedIsSelected: true
 				};
+				_configOption.data = [];
 			}
 			return _configOption; 
 		}
@@ -256,6 +266,8 @@ package org.apache.royale.community.inspiretree.beads.models
                 sendEvent(this,"ConfigOptionViewChanged");
 			}
 		}
+
+		public var useCustomStyle:Boolean = false;
 
 		private function itemToLabel(item:Object):String
 		{

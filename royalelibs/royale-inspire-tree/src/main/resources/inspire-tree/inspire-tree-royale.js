@@ -5461,19 +5461,20 @@
           mode: 'default',
           multiple: false,
           require: false,
-          unlinkCheckSelect: false // Royale - Maintain the difference between checkbox and selected
+          checkedIsSelected: true // Royale - Maintain the difference between checkbox and selected
         },
         showCheckboxes: false,
         sort: false
       }); // If checkbox mode, we must force auto-selecting children
 
-      if (_this.config.selection.mode === 'checkbox') {
+      if (_this.config.selection.mode === 'checkbox') 
+      {
         _this.config.selection.autoSelectChildren = true; 
         
         // In checkbox mode, checked=selected
 
         // Royale - Maintain the difference between checkbox and selected
-        if(!_this.config.selection.unlinkCheckSelect)
+        if(_this.config.selection.checkedIsSelected)
         {
           _this.on('node.checked', function (node) {
             if (!node.selected()) {
@@ -5504,9 +5505,9 @@
             if (!node.checked()) {
               node.check(true);
             }
-            if (!node.selected()) {
+            /*if (!node.selected()) {
               node.select(true);
-            }
+            }*/
           });
   
           _this.on('node.selected', function (node) {
@@ -5519,9 +5520,9 @@
             if (node.checked()) {
               node.uncheck(true);
             }
-            if (!node.selected()) {
+            /*if (!node.selected()) {
               node.select(true);
-            }
+            }*/
           });
   
           _this.on('node.deselected', function (node) {
@@ -5533,7 +5534,7 @@
       } // If auto-selecting children, we must force multiselect
 
 
-      if (_this.config.selection.autoSelectChildren && !_this.config.selection.unlinkCheckSelect) {
+      if (_this.config.selection.autoSelectChildren && _this.config.selection.checkedIsSelected) {
         _this.config.selection.multiple = true;
         _this.config.selection.autoDeselect = false;
       } // Treat editable as full edit mode

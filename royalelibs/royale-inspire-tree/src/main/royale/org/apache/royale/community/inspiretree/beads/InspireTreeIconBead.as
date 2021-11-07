@@ -70,6 +70,7 @@ package org.apache.royale.community.inspiretree.beads
 
 			var treeModel:InspireTreeModel = (_strand.getBeadByType(IBeadModel) as InspireTreeModel);
 			treeModel.addEventListener("checkboxModeChanged", updateHost);
+			treeModel.useCustomStyle = true;
 
 			setIcons(null);
 		}
