@@ -21,6 +21,7 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.collections.ArrayList;
+    import org.apache.royale.collections.IArrayList;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBead  extends Strand implements IBead
@@ -105,7 +106,13 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			if( !_treeModel) return null;
 
-			var data:Array = (_treeModel.dataProvider as ArrayList).source;
+			var data:Array = [];
+
+			if(_treeModel.dataProvider is IArrayList)
+				data = IArrayList(_treeModel.dataProvider).source;
+			else
+				data = _treeModel.dataProvider as Array;
+				
 			var treeData:Array;
 			if(revertTreeData)
 				treeData = revertTreeData;
@@ -228,7 +235,7 @@ package org.apache.royale.community.inspiretree.beads
 				lastRevertVal = value;
 		}
 
-		private var _checkedIsSelected:Boolean = true;
+		private var _checkedIsSelected:Boolean = false;
 		public function get checkedIsSelected():Boolean{ 
 			return _checkedIsSelected; 
 		}

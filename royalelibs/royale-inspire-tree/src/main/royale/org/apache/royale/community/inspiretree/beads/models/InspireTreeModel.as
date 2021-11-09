@@ -230,7 +230,7 @@ package org.apache.royale.community.inspiretree.beads.models
 					mode: 'tree',
 					multiple: false,
 					require: false,
-					checkedIsSelected: true
+					checkedIsSelected: false //As List
 				};
 				_configOption.data = [];
 			}

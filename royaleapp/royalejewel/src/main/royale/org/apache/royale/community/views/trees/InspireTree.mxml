@@ -9,17 +9,19 @@
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.community.models.UsersPermissions;
+        import org.apache.royale.community.vos.PermissVO;
         
         public function onInitComplete():void
         {
-            var prefix:String="";
+            /*var prefix:String="";
             var ar2:Array = new Array();
             for(var index:int = 0; index < 1000; index++)
             {
                 ar2.push({id:index,displaytext:prefix+'Desc: '+index.toString()});
             } 
             dp_Asource = new ArrayList(ar2);
-            makeDP();
+            makeDP();*/
         }
 
         [Bindable]
@@ -35,6 +37,23 @@
             
         }
 
+
+		public function itemToLabelParent(item:Object):String
+		{
+			if(!item)
+				return '';
+			var localItem:PermissVO = item as PermissVO;
+			return localItem.idobj+" - "+localItem.desobj;
+		}
+
+		public function itemToLabelChild(item:Object):String
+		{
+			if(!item)
+				return '';
+			var localItem:PermissVO = item as PermissVO;
+			return localItem.desacc;
+		}
+
         ]]>
     </fx:Script>
 
@@ -49,7 +68,7 @@
         </jc:description>
     </jc:ExampleHeader>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>
@@ -63,18 +82,18 @@
                     <j:Label multiline="true">
                         <j:html><![CDATA[<p><strong>Basic</strong> configuration.</p>]]></j:html>
                     </j:Label>
-
-                    <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
-                        <j:Label multiline="true" text="Set this page number:"/>
-                    </j:HGroup>
                     
-                    <jc:InspireTreeBasicControl />
+                    <jc:InspireTreeBasicControl localId="treeBasic" percentWidth="100" percentHeight="100" maxHeight="500"
+                        dataProvider="{new UsersPermissions();}"
+                        boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
+                    </jc:InspireTreeBasicControl>
                 </j:VGroup>
+
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>
@@ -86,20 +105,41 @@
                 <j:VGroup gap="5" percentWidth="100">
 
                     <j:Label multiline="true">
-                        <j:html><![CDATA[<p>Enable <strong>checkBox</strong>checkbox mode in the config:</p>]]></j:html> 
+                        <j:html><![CDATA[<p>Enable <strong>checkBox</strong> mode via bead <strong>InspireTreeCheckBoxModeBead</strong>.</p>]]></j:html> 
                     </j:Label>
 
-                    <j:HGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
-                        <j:Label multiline="true" text="Set this page number:"/>
-                    </j:HGroup>
+                    <j:VGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                        <j:Label multiline="true" text="Default setting: checked and selected are the same thing."/>
+                    </j:VGroup>
                     
+                    <jc:InspireTreeBasicControl localId="treeCheckIsData" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
+                        dataProvider="{new UsersPermissions(67);}"
+                        boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
+                        <jc:beads>
+                            <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="true"/>
+                        </jc:beads>
+                    </jc:InspireTreeBasicControl>
+
+                    <j:VGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
+                        <j:Label multiline="true">
+                            <j:html><![CDATA[<p>New operation: checked and selected are different states. Property <strong>checkedIsSelected</strong>, of the InspireTreeCheckBoxModeBead bead, set to false.</p>]]></j:html> 
+                        </j:Label>
+                    </j:VGroup>
+                    
+                    <jc:InspireTreeBasicControl localId="treeCheckIsData2" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
+                        dataProvider="{new UsersPermissions(67);}"
+                        boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
+                        <jc:beads>
+                            <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="false"/>
+                        </jc:beads>
+                    </jc:InspireTreeBasicControl>
 
                 </j:VGroup>
             </j:CardPrimaryContent>
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>
@@ -124,7 +164,7 @@
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>
@@ -151,7 +191,7 @@
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>
@@ -185,7 +225,7 @@
         </j:Card>
     </j:GridCell>
 
-    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="6" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="4" desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
         <j:Card percentWidth="100" percentHeight="100">
             <j:CardHeader>

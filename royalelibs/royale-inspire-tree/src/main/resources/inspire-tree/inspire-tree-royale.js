@@ -5461,7 +5461,7 @@
           mode: 'default',
           multiple: false,
           require: false,
-          checkedIsSelected: true // Royale - Maintain the difference between checkbox and selected
+          checkedIsSelected: false // Royale - Maintain the difference between checkbox and selected
         },
         showCheckboxes: false,
         sort: false
@@ -5469,13 +5469,12 @@
 
       if (_this.config.selection.mode === 'checkbox') 
       {
-        _this.config.selection.autoSelectChildren = true; 
-        
-        // In checkbox mode, checked=selected
-
         // Royale - Maintain the difference between checkbox and selected
         if(_this.config.selection.checkedIsSelected)
         {
+          _this.config.selection.autoSelectChildren = true; 
+
+          // In checkbox mode, checked=selected
           _this.on('node.checked', function (node) {
             if (!node.selected()) {
               node.select(true);
