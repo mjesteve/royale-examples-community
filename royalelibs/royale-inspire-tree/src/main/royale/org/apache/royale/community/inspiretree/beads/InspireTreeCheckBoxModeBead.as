@@ -112,7 +112,7 @@ package org.apache.royale.community.inspiretree.beads
 				data = IArrayList(_treeModel.dataProvider).source;
 			else
 				data = _treeModel.dataProvider as Array;
-				
+
 			var treeData:Array;
 			if(revertTreeData)
 				treeData = revertTreeData;
@@ -171,9 +171,10 @@ package org.apache.royale.community.inspiretree.beads
 		}
 		public function set showCheckboxes(value:Boolean):void
 		{
-			if(value == _showCheckboxes) return;
 			if(_treeModel)
 			{
+				if(value == _showCheckboxes && value == treeModel.showCheckboxes) return;
+
 				treeModel.showCheckboxes = value;
 				if(IInspireTree(_strand).isInitialized())
 					IInspireTree(_strand).reCreateViewTree( true );
@@ -241,10 +242,10 @@ package org.apache.royale.community.inspiretree.beads
 		}
 		public function set checkedIsSelected(value:Boolean):void
 		{
-			if(value == _checkedIsSelected) return;
-
 			if(_treeModel)
 			{
+				if(value == _checkedIsSelected && _treeModel.checkedIsSelected == value) return;
+				
 				_treeModel.checkedIsSelected = value;
 				if(IInspireTree(_strand).isInitialized())
 					IInspireTree(_strand).reCreateViewTree( true );
@@ -277,9 +278,10 @@ package org.apache.royale.community.inspiretree.beads
 			var wParent:Number = (_strand as StyledUIBase).width;
 			var wItem:Number = Number( node.itree.ref.clientWidth ? node.itree.ref.clientWidth:0 );
 			var wScroll:Number = (wParent-wItem);
+			var wIcon:Number = 20;
 			//trace('wParent',wParent,"offsetX",event["offsetX"],'wItem',wItem,'wScroll',wScroll);
 			//trace('  From ',wParent - (20 + wScroll)," To",wParent);
-			if( Number(event["offsetX"]) >= wParent - (20 + wScroll) )
+			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
 				fn_RevertSpecificNode(node.id, true);
 			}

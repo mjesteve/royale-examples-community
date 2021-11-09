@@ -83,7 +83,7 @@ package org.apache.royale.community.inspiretree.beads
 			updateHost();
 		}
 
-		private var _readonly:Boolean = false;
+		private var _readOnly:Boolean = false;
         /**
 		 *  A boolean flag to enable or disable the host control.
 		 *
@@ -92,24 +92,20 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable]
         public function get readOnly():Boolean
         {
-            return _readonly;
+            return _readOnly;
         }
         public function set readOnly(value:Boolean):void
         {
-			if(value != _readonly)
-			{
-				_readonly = value;
-				if(_strand)
-				{
-					updateHost();
-					sendStrandEvent(_strand, new ValueEvent("readonlyChange", readOnly));
-				}
-			}
+			var lro:Boolean = _readOnly;
+			_readOnly = value;
+			updateHost();
+			if(_strand && value != lro)
+				sendStrandEvent(_strand, new ValueEvent("readonlyChange", _readOnly));
         }
 
+		[Bindable]
 		private function updateHost(event:Event = null):void
 		{
 			if(!strand)
@@ -140,3 +136,4 @@ package org.apache.royale.community.inspiretree.beads
 	{
     }
 }
+
