@@ -45,6 +45,7 @@ package org.apache.royale.community.models
             arnav.push(new NavigationLinkVO("Three Check Box", "threecheckbox_panel",MaterialIconType.CHECK_BOX));
             arnav.push(new NavigationLinkVO("Basic PageNavigator", "Debug_PageNavigator_panel",MaterialIconType.LAST_PAGE));
             arnav.push(new NavigationLinkVO("ComboBox extended", "ComboBoxJwExt_panel",MaterialIconType.CREDIT_CARD));
+            arnav.push(new NavigationLinkVO("ContextMenu GridItemRenderer", "ContextMenu_Test",MaterialIconType.CONTENT_COPY));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 

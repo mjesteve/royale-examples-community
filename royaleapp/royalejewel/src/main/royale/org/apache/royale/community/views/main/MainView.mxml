@@ -105,7 +105,9 @@
         <j:ScrollableSectionContent name="ComboBoxJwExt_panel">
             <viewsJc:ComboBoxJwExt_Test/>
         </j:ScrollableSectionContent>
-
+         <j:ScrollableSectionContent name="ContextMenu_panel">
+            <viewsJc:ContextMenu_Test/>
+        </j:ScrollableSectionContent>
         <!-- -->
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
