@@ -49,10 +49,10 @@
             "src/main/royale"
         ],
         "library-path": [
-            "${royalelib}/libs/MXRoyale.swc"
+            "${royalelib}/libs/MXRoyaleBase.swc"
         ],
         "js-library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/js/libs/MXRoyaleBaseJS.swc"
         ],
         "source-map": true,
         "remove-circulars": true,
@@ -64,7 +64,7 @@
     },
     "copySourcePathAssets": true,
     "additionalOptions": [//MXRoyale-${royale.framework.version}-js.swc:defaults.css
-        "-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
+        //"-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
         "-js-dynamic-access-unknown-members=true",
         "-show-binding-warnings=false"
     ]

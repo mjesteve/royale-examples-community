@@ -490,11 +490,12 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${player.version}</version>
-      <type>swc</type>
-      <scope>runtime</scope>
+        <groupId>org.apache.royale.typedefs</groupId>
+        <artifactId>royale-typedefs-playerglobal</artifactId>
+        <version>${royale.typedefs.version}</version>
+        <type>swc</type>
+        <classifier>swf</classifier>
+        <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -537,17 +538,6 @@
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>jspresso</id>
-      <url>http://repository.jspresso.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>
