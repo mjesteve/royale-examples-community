@@ -24,6 +24,7 @@
 			private function InitCompleteHandler():void
 			{
 				//var dp:ArrayList = new UsersPermissions();
+				trace();
 			}
 
 			  public function expand():void{
@@ -33,6 +34,13 @@
 			  public function expandchild():void{
 			  treeTest.jsTree.nodes().expandDeep();
 			  }
+
+			public function emptychecks():void
+			{
+			  	//treeTest.jsTree.restoreDeep();
+				//treeTest.jsTree.model.invokeDeep(['check'],[false]);
+				beadCheckTest.checkAllNode(chCheckBox.selected);
+			}
 
 			public function restoreNodes():void{
 			  treeTest.jsTree.restore();
@@ -83,6 +91,9 @@
 			{
 				var objConfig:Object;
 
+				groupText0.visible = false;
+				groupText.visible = false;
+
 				var typeIcons:String = (event.currentTarget as RadioButton).value.toLocaleString();
 				if( typeIcons == "custom")
 				{
@@ -107,8 +118,6 @@
 				}
 				else
 				{
-					groupText0.visible = false;
-					groupText.visible = false;
 					objConfig = {typeIconsSet:typeIcons};
 				}
 				treeTestIcons.setIcons( objConfig );
@@ -198,7 +207,6 @@
 									<!-- <j:Button text="Restore Nodes Deep" click="restoreDeep()"/> -->
 									<!-- <j:Button text="Restore a node" click="restoreANode()"/> -->
 									<j:Button text="Expand Selected Nodes n child" click="expandchild()"/>
-									<j:Button text="Add Image to Nodes" click="expandchild();" style="margin-left:10px;"/>
 									<j:Button text="Set PlusIcon" click="treeTestIcons.plusIcon = 'assets/117-user-minus.svg';" style="margin-left:10px;"/>
 
 								</j:GridCell>
@@ -208,7 +216,6 @@
 									<j:VGroup gap="5" percentHeight="100" minHeight="100">
 										<j:HGroup height="40" itemsVerticalAlign="itemsCenter" gap="10">
 											<j:CheckBox localId="chPaginate" text="Paginate" />
-											<!-- <j:CheckBox localId="chCheckBox" text="CheckBox Mode" selected="true" />	 -->
 											<j:CheckBox localId="chRevert" text="Revert icon" />
 										</j:HGroup>
 										<j:Label text="Type of Icon-Set: "	/>
@@ -269,26 +276,29 @@
 											</j:VGroup>
 										</j:HGroup>
 
-										<j:HGroup itemsVerticalAlign="itemsCenter" percentWidth="100" gap="10">
-											<j:VGroup gap="10" percentWidth="100" >
+										<j:HGroup gap="5" style="flex-wrap: wrap;" percentWidth="100">
 											<j:CheckBox localId="chReadOnly" text="Read-Only" selected="false"/>
-											<j:HGroup percentWidth="100">
-                                            <trees:treePermissions localId="treeTest" percentWidth="50" height="300" >
+											<j:VGroup gap="3" style="margin: 0 10px 10px 10px;" itemsHorizontalAlign="itemsLeft">
+												<j:CheckBox localId="chCheckBox" text="All Unchecked"
+													change="chCheckBox.selected?chCheckBox.text='All Checked':chCheckBox.text='All Unchecked';"/>
+												<j:Button text="Apply ..." click="emptychecks();" style="margin-left:30px;"/>
+											</j:VGroup>
+										</j:HGroup>
+
+										<j:HGroup percentWidth="100">
+											<trees:treePermissions localId="treeTest" percentWidth="50" height="300" >
 												<trees:beads>
 													<jc:InspireTreeIconBead localId="treeTestIcons" />
-                                            		<jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
+													<jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
 												</trees:beads>
 											</trees:treePermissions>
 											<trees:treePermissions localId="treeTestCheck" percentWidth="50" height="300" >
 												<trees:beads>
-													<jc:InspireTreeCheckBoxModeBead checkboxField = "checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+													<jc:InspireTreeCheckBoxModeBead localId="beadCheckTest" checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
 													<jc:InspireTreeIconBead localId="treeTestIconsCheck" />
-                                            		<jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
+													<jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
 												</trees:beads>
 											</trees:treePermissions>
-                                    		</j:HGroup>
-                                    		</j:VGroup>
-
 										</j:HGroup>
 
 									</j:VGroup>
@@ -299,7 +309,7 @@
 						</j:CardPrimaryContent>
 					</j:Card>
 				</j:GridCell>
-<!--
+				
 				<j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 					<j:Card  height="100%"  width="100%" >
@@ -356,7 +366,7 @@
                                         <trees:beads>
                                             <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
                                             <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-											<jc:InspireTreeCheckBoxModeBead checkboxField = "checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
                                             <jc:InspireTreeIconBead />
                                         </trees:beads>
                                     </trees:treePermissions>
@@ -368,7 +378,7 @@
                                         <trees:beads>
                                             <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
                                             <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-											<jc:InspireTreeCheckBoxModeBead checkboxField = "checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
                                             <jc:InspireTreeIconBead typeIconsSet="none"/>
                                         </trees:beads>
                                     </trees:treePermissions>
@@ -380,7 +390,7 @@
                                         <trees:beads>
                                             <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
                                             <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-											<jc:InspireTreeCheckBoxModeBead checkboxField = "checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
                                             <jc:InspireTreeIconBead typeIconsSet="custom" childIcon="assets/114-user.svg" parentIcon="assets/114-user.svg"  parentOpenIcon="assets/114-user.svg"  parentSelectedIcon="assets/114-user.svg" parentOpenSelectedIcon="assets/114-user.svg" childSelectedIcon="assets/114-user.svg"/>
                                         </trees:beads>
                                     </trees:treePermissions>
@@ -392,7 +402,7 @@
                                         <trees:beads>
                                             <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
                                             <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-											<jc:InspireTreeCheckBoxModeBead checkboxField = "checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
                                             <jc:InspireTreeIconBead typeIconsSet="customClasses" childIcon="iconUserClass" parentIcon="parentIconUserClass" parentOpenIcon="parentOpenIconUserClass" parentOpenSelectedIcon="parentOpenSelectedIconUserClass" parentSelectedIcon="parentSelectedIconUserClass"  childSelectedIcon="iconUserSelectedClass" minusIcon="iconUserMinusClass" plusIcon="iconUserPlusClass"/>
                                         </trees:beads>
                                     </trees:treePermissions>
@@ -404,6 +414,7 @@
 					</j:Card>
 
 				</j:GridCell>
+<!--
  -->
 			</j:Grid>
 

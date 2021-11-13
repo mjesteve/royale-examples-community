@@ -93,6 +93,12 @@ package org.apache.royale.community.inspiretree.beads
 
 				treeModel.showCheckboxes = _showCheckboxes;
 				treeModel.checkedIsSelected = _checkedIsSelected;
+				if(treeModel.checkboxMode && treeModel.treeData)
+				{
+					completeTreeData(null,null);
+					if( readOnly )
+						onReadOnlyChange(null);
+				}
 			}
 		}
 
@@ -257,7 +263,8 @@ package org.apache.royale.community.inspiretree.beads
 		private var readOnly:Boolean = false;
 		private function onReadOnlyChange(event:ValueEvent):void
 		{
-			readOnly = Boolean(event.value);
+			if(event)
+				readOnly = Boolean(event.value);
 
 			if(!_showCheckboxes)
 				return;
@@ -283,14 +290,14 @@ package org.apache.royale.community.inspiretree.beads
 			//trace('  From ',wParent - (20 + wScroll)," To",wParent);
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
-				fn_RevertSpecificNode(node.id, true);
+				revertStateCheckedNode(node.id, true);
 			}
 		}
 
-		public function fn_RevertSpecificNode(pNodeFilter:String, byID:Boolean):String
+		public function revertStateCheckedNode(pNodeFilter:String, byID:Boolean):String
 		{
 			var idNodeParent:String;
-			var arOrg:Array = (_strand.getBeadByType(IBeadModel) as InspireTreeModel).dataProviderTree;
+			var arOrg:Array = treeModel.dataProviderTree;
 			arOrg = completeTreeData(null,arOrg);
 			var lenar:int = arOrg.length;
 
@@ -325,6 +332,46 @@ package org.apache.royale.community.inspiretree.beads
 			}
 
 			return idNodeParent;
+		}
+
+		/**
+		 * Check/Uncheck all nodes 
+		 * @param valueChecked [true|false] true Check all nodes
+		 */
+		public function checkAllNode(valueChecked:Boolean):void
+		{
+			var idNodeParent:String;
+			var arOrg:Array = treeModel.treeData;
+			var lenar:int = arOrg.length;
+
+			for (var idxnode:int=0; idxnode < lenar; idxnode++)
+			{
+				var it:Object = arOrg[idxnode]; //var it:ItemTreeNode;
+				var itreal:Object = (_strand as IInspireTree).jsTree.model[idxnode]; //var itreal:TreeNode //jsTree.node(it.id)
+
+				if(it.children && it.children.length>0)
+				{
+					var lench:int = it.children.length;
+					for (var idxnch:int=0; idxnch < lench; idxnch++)
+					{
+						var itemch:Object = it.children[idxnch];
+						itemch.id = itreal.children[idxnch].id;
+
+						if(!valueChecked) {
+							if(itemch.itree.state.checked)
+								(_strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
+						}else if(!itemch.itree.state.checked){
+								(_strand as IInspireTree).jsTree.node(itemch.id).check(true);
+						}
+					}
+				}
+
+				if(itreal.itree.state.checked != it.itree.state.checked)
+				{
+					(_strand as IInspireTree).jsTree.node(it.id).refreshIndeterminateState();
+				}
+			}
+
 		}
 
 		private function updateHost(event:Event = null):void

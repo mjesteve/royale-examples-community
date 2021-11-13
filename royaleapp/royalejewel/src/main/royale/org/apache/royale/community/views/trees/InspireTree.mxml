@@ -113,7 +113,7 @@
                     </j:VGroup>
                     
                     <jc:InspireTreeBasicControl localId="treeCheckIsData" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
-                        dataProvider="{new UsersPermissions(67);}"
+                        dataProvider="{new UsersPermissions(1);}"
                         boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
                         <jc:beads>
                             <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="true"/>
@@ -127,7 +127,7 @@
                     </j:VGroup>
                     
                     <jc:InspireTreeBasicControl localId="treeCheckIsData2" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
-                        dataProvider="{new UsersPermissions(67);}"
+                        dataProvider="{new UsersPermissions(1);}"
                         boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
                         <jc:beads>
                             <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="false"/>

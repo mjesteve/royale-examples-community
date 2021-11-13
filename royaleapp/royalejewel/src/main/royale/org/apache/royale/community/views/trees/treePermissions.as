@@ -7,7 +7,6 @@ package org.apache.royale.community.views.trees
 	import org.apache.royale.community.vos.PermissVO;
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.IBead;
 
 	public class treePermissions extends InspireTreeBasicControl
@@ -18,6 +17,7 @@ package org.apache.royale.community.views.trees
 		public function treePermissions(){
 			super();						
 			addEventListener("beadsAdded", beadsAddedHandler);
+			//addEventListener("initComplete", setData);
 		}
 		
        	protected function beadsAddedHandler(event:Event):void
@@ -36,10 +36,10 @@ package org.apache.royale.community.views.trees
 			}
 			setData();
 		}
-		private function setData():void
+		private function setData(event:Event = null):void
 		{
 			//Filter permissions - Test codigo=0
-			dataProvider = getUsersPermiss(69);
+			dataProvider = getUsersPermiss(1);
 		}
 
 		public function itemToLabelParent(item:Object):String
