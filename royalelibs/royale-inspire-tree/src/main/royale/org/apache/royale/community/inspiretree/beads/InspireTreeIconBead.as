@@ -378,7 +378,8 @@ package org.apache.royale.community.inspiretree.beads
 			}
 			else if(_typeIconsSet == "customClass")
 			{
-				(_strand as IStyledUIBase).addClass(_className);
+				if(_className != "")
+					(_strand as IStyledUIBase).addClass(_className);
 			}
 			else if(_typeIconsSet == "none")
 			{
@@ -506,7 +507,8 @@ package org.apache.royale.community.inspiretree.beads
 				}
 				else if(_typeIconsSet == 'customClass')
 				{
-					(_strand as IStyledUIBase).removeClass(_className);
+					if(_className != "")
+						(_strand as IStyledUIBase).removeClass(_className);
 				}
 				else if(_typeIconsSet == 'none')
 				{
