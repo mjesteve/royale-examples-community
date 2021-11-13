@@ -67,7 +67,7 @@ package org.apache.royale.community.inspiretree.vos
          * multiple - Allow multiple nodes to be selected at a time.
          * require - Require at least one selected node.
          *      
-         *  unlinkCheckSelect: CUSTOM PROPERTY Hiedra (in checkbox mode checked <> selected)
+         *  checkedIsSelected: CUSTOM PROPERTY Hiedra (in checkbox mode checked <> selected)
          */
         public var selection:Object = { mode: 'tree', autoDeselect: true, autoSelectChildren: true, disableDirectDeselection: true,  multiple: false, require: false };
         /**

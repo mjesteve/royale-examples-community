@@ -14,7 +14,6 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
-    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.utils.sendStrandEvent;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.events.Event;
