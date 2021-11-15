@@ -39,7 +39,7 @@ package org.apache.royale.community.views.trees
 		private function setData(event:Event = null):void
 		{
 			//Filter permissions - Test codigo=0
-			dataProvider = getUsersPermiss(1);
+			dataProvider = getUsersPermiss();
 		}
 
 		public function itemToLabelParent(item:Object):String
