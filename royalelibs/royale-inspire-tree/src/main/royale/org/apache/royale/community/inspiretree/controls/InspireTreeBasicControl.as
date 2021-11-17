@@ -277,6 +277,49 @@ package org.apache.royale.community.inspiretree.controls
 			}
 			return localdataProviderTree;		
 		}
+
+		public function updateImagesOnParentChild():void
+		{ 	
+			var idxNode:int = 0;
+			for (var idxGen:int=0; idxGen < dataProvider.length; idxGen++)
+        	{
+				if(jsTree.model[idxNode].itree !=null)
+					if(jsTree.model[idxNode].itree.ref.childNodes !=null)
+						if(jsTree.model[idxNode].itree.ref.childNodes[0].childNodes !=null)
+							if(jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length > 1)
+							{
+								var idxIcon:int = jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length-1;
+								if(dataProvider.source[idxGen].image !="")
+									jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].style =  " background-image:url('"+dataProvider.source[idxGen].image+"'); background-repeat: no-repeat; background-position: 30px 10px;";
+
+								//var sclass:String = jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].class as String;
+								//if(sclass.indexOf("icon-folder")>0)
+								//{
+								//	jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].class = sclass.replace(".icon-folder","");	
+
+								//}
+							}
+				
+				if(jsTree.model[idxNode].children!=null)
+					for (var idxChild:int=0; idxChild < jsTree.model[idxNode].children.length; idxChild++)
+					{
+						idxGen++;
+						if( idxGen < dataProvider.length)
+						{
+							var idxIconChild:int = jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes.length-1;
+							if(dataProvider.source[idxGen].image !="")
+								jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].style =  " background-image:url('"+dataProvider.source[idxGen].image+"'); background-repeat: no-repeat; background-position: 30px 10px;";
+							
+							//var sclassChild:String = jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].class as String;
+							//if(sclassChild.indexOf("icon-file-empty")>0)
+							//{
+							//	jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].class = sclassChild.replace(".icon-file-empty","");
+							//}
+						}
+					}
+				idxNode++;
+			}
+		}
 		// End ---------------------------------------- Data configuration -------------------------------------------------
 
 		
@@ -300,6 +343,7 @@ package org.apache.royale.community.inspiretree.controls
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
 			uid = element.getAttribute('data-uid'); trace(uid);
+			updateImagesOnParentChild();
             dispatchEvent(new Event("onCreationComplete"));
 		}
 		
