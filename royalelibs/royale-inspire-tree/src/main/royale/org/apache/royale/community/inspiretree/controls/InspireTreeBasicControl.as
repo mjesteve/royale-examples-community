@@ -292,12 +292,12 @@ package org.apache.royale.community.inspiretree.controls
 								if(dataProvider.source[idxGen].image !="")
 									jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].style =  " background-image:url('"+dataProvider.source[idxGen].image+"'); background-repeat: no-repeat; background-position: 30px 10px;";
 
-								//var sclass:String = jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].class as String;
-								//if(sclass.indexOf("icon-folder")>0)
-								//{
-								//	jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].class = sclass.replace(".icon-folder","");	
+								var sclass:String = jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].className as String;
+								if(sclass.indexOf("icon-folder")>0)
+								{
+									jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].className = sclass.replace("icon-folder","");	
 
-								//}
+								}
 							}
 				
 				if(jsTree.model[idxNode].children!=null)
@@ -310,11 +310,11 @@ package org.apache.royale.community.inspiretree.controls
 							if(dataProvider.source[idxGen].image !="")
 								jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].style =  " background-image:url('"+dataProvider.source[idxGen].image+"'); background-repeat: no-repeat; background-position: 30px 10px;";
 							
-							//var sclassChild:String = jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].class as String;
-							//if(sclassChild.indexOf("icon-file-empty")>0)
-							//{
-							//	jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].class = sclassChild.replace(".icon-file-empty","");
-							//}
+							var sclassChild:String = jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].className as String;
+							if(sclassChild.indexOf("icon-file-empty")>0)
+							{
+								jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].className = sclassChild.replace("icon-file-empty","");
+							}
 						}
 					}
 				idxNode++;
