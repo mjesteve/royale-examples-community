@@ -496,6 +496,28 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	&.readonly
 		input[type="checkbox"]
 			z-index: -1
+.inspire-tree
+	&.customimagerendering
+		.icon-folder
+			&::before
+				background-image: url()
+		.icon-folder-open
+			&::before
+				background-image: url()
+		.icon-file-empty
+			&::before
+				background-image: url()
+		.selected
+			& > .title-wrap
+				.icon-folder
+					&::before
+						background-image: url()
+				.icon-folder-open
+					&::before
+						background-image: url()
+				.icon-file-empty
+					&::before
+						background-image: url()
 
 .inspire-tree .wholerow:hover,
 .inspire-tree .title-wrap:hover + .wholerow

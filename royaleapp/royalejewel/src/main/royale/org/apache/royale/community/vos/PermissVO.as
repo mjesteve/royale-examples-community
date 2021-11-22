@@ -10,9 +10,9 @@ package org.apache.royale.community.vos
 		public var desacc:String = "";
 		public var checked:uint = 0;
 		public var enabled:uint = 1;
-		public var image:String = "";
+		public var icon:String = "";
 
-		public function PermissVO(idobj:int = -1, desobj:String = "", idxacc:int = -1, desacc:String = "", checked:uint = 0, enabled:uint = 1,image:String="")
+		public function PermissVO(idobj:int = -1, desobj:String = "", idxacc:int = -1, desacc:String = "", checked:uint = 0, enabled:uint = 1,icon:String="")
 		{
 			this.idobj = idobj;
 			this.desobj = desobj;
@@ -20,7 +20,7 @@ package org.apache.royale.community.vos
 			this.desacc = desacc;
 			this.checked = checked;
 			this.enabled = enabled;
-			this.image = image;
+			this.icon = icon;
 		}
 		
 	}

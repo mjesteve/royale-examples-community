@@ -505,6 +505,25 @@
   z-index: -1;
 }
 
+.inspire-tree.customimagerendering .icon-folder::before {
+  background-image: url();
+}
+.inspire-tree.customimagerendering .icon-folder-open::before {
+  background-image: url();
+}
+.inspire-tree.customimagerendering .icon-file-empty::before {
+  background-image: url();
+}
+.inspire-tree.customimagerendering .selected > .title-wrap .icon-folder::before {
+  background-image: url();
+}
+.inspire-tree.customimagerendering .selected > .title-wrap .icon-folder-open::before {
+  background-image: url();
+}
+.inspire-tree.customimagerendering .selected > .title-wrap .icon-file-empty::before {
+  background-image: url();
+}
+
 .inspire-tree .wholerow:hover,
 .inspire-tree .title-wrap:hover + .wholerow {
   background-color: #05bacc;
