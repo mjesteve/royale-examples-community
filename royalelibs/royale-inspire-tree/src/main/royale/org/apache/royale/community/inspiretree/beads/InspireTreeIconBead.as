@@ -439,6 +439,8 @@ package org.apache.royale.community.inspiretree.beads
 		 *  	 parentSelectedIcon:'folderSelectedClosedIcon.svg', parentOpenSelectedIcon:'folderSelectedOpenIcon',
 		 * 		 childIcon:'defaultLeafIcon.svg', childSelectedIcon:'defaultSelectedLeafIcon.svg',
 		 * 		 minusIcon:'disclosureClosedIcon.svg', plusIcon:'disclosureOpenIcon.svg'} );
+		 * 		
+		 * 		setIcons( {typeIconsSet:'customIcons'} );
 		 */
 		public function setIcons(collectionIcons:Object = null):void
 		{
