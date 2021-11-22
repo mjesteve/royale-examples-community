@@ -15,6 +15,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
 
     COMPILE::JS
 	public class InspireTreeIconBead  extends Strand implements IBead
@@ -80,10 +81,10 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			return _typeIconsSet;
 		}
-        [Inspectable(category="General", enumeration="default,custom,customClass,customClasses,none")]
+        [Inspectable(category="General", enumeration="default,custom,customClass,customClasses,none,customIcons")]
 		/**
 		 * typeIconsSet property: tree should have parent and child icons or not
-		 * default,custom,customClass,customClasses,none
+		 * default,custom,customClass,customClasses,none,customIcons
 		 */
 		public function set typeIconsSet(value:String):void
 		{
@@ -385,6 +386,11 @@ package org.apache.royale.community.inspiretree.beads
 			{
 				(_strand as IStyledUIBase).addClass("noneicon");
 			}
+			else if(_typeIconsSet == "customIcons")
+			{
+				(_strand as IStyledUIBase).addClass("customimagerendering");
+			}
+
 			else if(_typeIconsSet == 'customClasses')
 			{
 				if(_parentIcon != "" && (propertyChange == "" || propertyChange == "parentIcon") )
@@ -514,10 +520,15 @@ package org.apache.royale.community.inspiretree.beads
 				{
 					(_strand as IStyledUIBase).removeClass("noneicon");
 				}
+				else if(_typeIconsSet == "customIcons")
+				{
+					(_strand as IStyledUIBase).removeClass("customimagerendering");
+
+				}
 			}
 
 			//Apply the new configuration
-			if(prop.typeIconsSet == 'default' || prop.typeIconsSet == 'none' || prop.typeIconsSet == 'customClass')
+			if(prop.typeIconsSet == 'default' || prop.typeIconsSet == 'none' || prop.typeIconsSet == 'customIcons' || prop.typeIconsSet == 'customClass')
 			{
 				parentIcon = "";
 				parentOpenIcon = "";
@@ -550,6 +561,42 @@ package org.apache.royale.community.inspiretree.beads
 
 			_updateInProgress = false;
 
+		}
+
+		public function updateImagesOnParentChild():void
+		{ 	
+			if(typeIconsSet != "customIcons")
+				return;
+			var idxNode:int = 0;
+			for (var idxGen:int=0; idxGen < (strand as InspireTreeBasicControl).dataProvider.length; idxGen++)
+        	{
+				if((strand as InspireTreeBasicControl).jsTree.model[idxNode].itree !=null)
+					if((strand as InspireTreeBasicControl).jsTree.model[idxNode].itree.ref.childNodes !=null)
+						if((strand as InspireTreeBasicControl).jsTree.model[idxNode].itree.ref.childNodes[0].childNodes !=null)
+							if((strand as InspireTreeBasicControl).jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length > 1)
+							{
+								var idxIcon:int = (strand as InspireTreeBasicControl).jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length-1;
+								if((strand as InspireTreeBasicControl).dataProvider.source[idxGen].icon !="")
+									(strand as InspireTreeBasicControl).jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].style =  " background-image:url('"+(strand as InspireTreeBasicControl).dataProvider.source[idxGen].icon+"'); background-repeat: no-repeat; background-position: 30px 10px;";
+
+							
+							}
+				
+				if((strand as InspireTreeBasicControl).jsTree.model[idxNode].children!=null)
+					for (var idxChild:int=0; idxChild < (strand as InspireTreeBasicControl).jsTree.model[idxNode].children.length; idxChild++)
+					{
+						idxGen++;
+						if( idxGen < (strand as InspireTreeBasicControl).dataProvider.length)
+						{
+							var idxIconChild:int = (strand as InspireTreeBasicControl).jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes.length-1;
+							if((strand as InspireTreeBasicControl).dataProvider.source[idxGen].icon !="")
+								(strand as InspireTreeBasicControl).jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].style =  " background-image:url('"+(strand as InspireTreeBasicControl).dataProvider.source[idxGen].icon+"'); background-repeat: no-repeat; background-position: 30px 10px;";
+							
+							
+						}
+					}
+				idxNode++;
+			}
 		}
 
 	}
