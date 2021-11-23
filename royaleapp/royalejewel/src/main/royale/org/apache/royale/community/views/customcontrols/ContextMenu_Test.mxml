@@ -26,9 +26,9 @@
         @namespace "http://www.w3.org/1999/xhtml";
         @namespace j "library://ns.apache.org/royale/jewel";
 
-      /* j|DataGrid {
+       j|DataGrid {
             IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DataGridEditorRenderer");
-        }*/
+        }
     </fx:Style>
     <j:beads>
         <js:ViewDataBinding/>
@@ -50,9 +50,8 @@
                 </j:CardHeader>
                 
                 <j:CardPrimaryContent>
-                                    <html:H3 text="ContextMenu in Editable DataGrid"/>
 
-                   <!-- <j:DataGrid  width="100%" height="100%" dataProvider="{dp}"
+                    <j:DataGrid  width="100%" height="100%" dataProvider="{dp}"
                         >
                         <j:columns>
                             <j:DataGridColumn label="First Name" dataField="firstname"/>
@@ -61,7 +60,7 @@
                         </j:columns>
                         
                        
-                    </j:DataGrid> -->
+                    </j:DataGrid> 
                 </j:CardPrimaryContent>
 
                
