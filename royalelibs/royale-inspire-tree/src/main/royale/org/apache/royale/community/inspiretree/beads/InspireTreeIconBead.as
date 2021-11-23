@@ -569,8 +569,14 @@ package org.apache.royale.community.inspiretree.beads
 		}
 
 		public function updateImagesOnParentChild():void
-		{ 	
+		{ 		
+			if(!strand || _typeIconsSet!= 'customIcons')
+				return;
+
 			var hostComponent:InspireTreeBasicControl = strand as InspireTreeBasicControl;
+			if(!hostComponent.dataProvider)
+				return;
+
 			var idxNode:int = 0;
 			for (var idxGen:int=0; idxGen < hostComponent.dataProvider.length; idxGen++)
         	{
