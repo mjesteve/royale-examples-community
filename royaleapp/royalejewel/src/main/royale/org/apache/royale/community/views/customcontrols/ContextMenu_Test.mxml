@@ -10,16 +10,25 @@
     
     <fx:Script>
         <![CDATA[
-      
+            	import org.apache.royale.collections.ArrayList;
+
+            [Bindable]
+      private var dp:ArrayList = new ArrayList([
+			{firstname:"Alina", surname:"Kazi"},
+			{firstname:"Maria", surname:"Jose"},
+			{firstname:"Irhaa", surname:"Khan"},
+			{firstname:"Arham", surname:"Khan"}
+			
+		]);
         ]]>
     </fx:Script>
 	<fx:Style>
         @namespace "http://www.w3.org/1999/xhtml";
         @namespace j "library://ns.apache.org/royale/jewel";
 
-       j|DataGrid {
+      /* j|DataGrid {
             IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DataGridEditorRenderer");
-        }
+        }*/
     </fx:Style>
     <j:beads>
         <js:ViewDataBinding/>
@@ -37,26 +46,22 @@
 
         <j:Card width="500">
                 <j:CardHeader>
-                    <html:H3 text="ContextMenu in Editable DataGrid" className="primary-normal"/>
+                    <html:H3 text="ContextMenu in Editable DataGrid"/>
                 </j:CardHeader>
                 
                 <j:CardPrimaryContent>
-                    <j:DataGrid  width="100%" height="100%" 
+                                    <html:H3 text="ContextMenu in Editable DataGrid"/>
+
+                   <!-- <j:DataGrid  width="100%" height="100%" dataProvider="{dp}"
                         >
                         <j:columns>
                             <j:DataGridColumn label="First Name" dataField="firstname"/>
                             <j:DataGridColumn label="Surname" dataField="surname" 
                                 />
                         </j:columns>
-                        <js:ArrayList>
-                            <fx:Array>
-                                <vos:UserVO firstname="Alina" surname="Kazi"/>
-                                <vos:UserVO firstname="Maria" surname="Jose"/>
-                                <vos:UserVO firstname="Irhaa" surname="Khan"/>
-                                <vos:UserVO firstname="Arham" surname="Khan"/>
-                            </fx:Array>
-                        </js:ArrayList>
-                    </j:DataGrid>
+                        
+                       
+                    </j:DataGrid> -->
                 </j:CardPrimaryContent>
 
                
