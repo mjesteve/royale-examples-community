@@ -302,7 +302,9 @@ package org.apache.royale.community.inspiretree.controls
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
 			uid = element.getAttribute('data-uid'); trace(uid);
-		 	(getBeadByType(InspireTreeIconBead) as InspireTreeIconBead).updateImagesOnParentChild();
+			// To make the view independent from the control, the assignment of icons must be done in the bead and not here...
+			// We will capture in the bead the event "onCreationComplete" and there we will call updateImagesOnParentChild()
+		 	//(getBeadByType(InspireTreeIconBead) as InspireTreeIconBead).updateImagesOnParentChild();
             dispatchEvent(new Event("onCreationComplete"));
 		}
 		
