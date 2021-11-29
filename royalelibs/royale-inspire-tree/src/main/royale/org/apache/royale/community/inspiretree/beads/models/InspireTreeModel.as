@@ -6,7 +6,7 @@ package org.apache.royale.community.inspiretree.beads.models
 	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.collections.IArrayList;
-	import org.apache.royale.community.inspiretree.IInspireTree;
+	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
 	
 	//COMPILE::JS

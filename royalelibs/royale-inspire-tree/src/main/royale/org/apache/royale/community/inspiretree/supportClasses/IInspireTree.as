@@ -1,4 +1,4 @@
-package org.apache.royale.community.inspiretree
+package org.apache.royale.community.inspiretree.supportClasses
 {
     public interface IInspireTree
     {

@@ -7,12 +7,12 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
+    import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
+	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
-    import org.apache.royale.community.inspiretree.IInspireTree;
        
     COMPILE::JS
 	public class InspireTreeEventsBead  extends Strand implements IBead

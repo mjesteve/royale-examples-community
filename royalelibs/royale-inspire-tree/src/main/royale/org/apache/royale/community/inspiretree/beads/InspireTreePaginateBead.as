@@ -8,14 +8,14 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @productversion Royale 0.9.8
 	 */
 	COMPILE::JS{
-	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.Strand;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
-    import org.apache.royale.community.inspiretree.IInspireTree;
+		import org.apache.royale.core.IBead;
+		import org.apache.royale.core.IBeadModel;
+		import org.apache.royale.core.IStrand;
+		import org.apache.royale.core.Strand;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.events.IEventDispatcher;
+		import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
+    	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	}
     COMPILE::JS
 	public class InspireTreePaginateBead  extends Strand implements IBead

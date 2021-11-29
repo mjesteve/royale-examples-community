@@ -24,7 +24,7 @@ package
 			
 			import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel; InspireTreeModel;
 			
-			import org.apache.royale.community.inspiretree.InspireTreeBasicControl; InspireTreeBasicControl;			
+			import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl; InspireTreeBasicControl;			
 			import org.apache.royale.community.inspiretree.vos.ItemTreeNode; ItemTreeNode;
 			import org.apache.royale.community.inspiretree.vos.ConfigDOM; ConfigDOM;
 			import org.apache.royale.community.inspiretree.vos.OptionsTree; OptionsTree;

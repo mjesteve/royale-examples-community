@@ -8,13 +8,13 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @productversion Royale 0.9.8
 	 */
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.core.Strand;
-    import org.apache.royale.community.inspiretree.IInspireTree;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
+	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
+	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
+	import org.apache.royale.events.IEventDispatcher;
 
     COMPILE::JS
 	public class InspireTreeIconBead  extends Strand implements IBead

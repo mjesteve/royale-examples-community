@@ -1,4 +1,4 @@
-package org.apache.royale.community.inspiretree
+package org.apache.royale.community.inspiretree.controls
 {
     COMPILE::SWF {
     import flash.events.Event;
@@ -9,14 +9,15 @@ package org.apache.royale.community.inspiretree
 		import InspireTree;
 		import InspireTreeDOM;
     	import org.apache.royale.core.IDataProviderModel;
+    	import org.apache.royale.core.IMXMLDocument;
     	import org.apache.royale.core.ISelectionModel;
 		import org.apache.royale.core.StyledUIBase;
         import org.apache.royale.core.WrappedHTMLElement;
-    	import org.apache.royale.events.Event;
-        import org.apache.royale.html.util.addElementToWrapper;
     	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
+    	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
     	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
-    	import org.apache.royale.core.IMXMLDocument;
+        import org.apache.royale.html.util.addElementToWrapper;
+    	import org.apache.royale.events.Event;
     	import org.apache.royale.utils.MXMLDataInterpreter;
 	}
     /**

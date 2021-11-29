@@ -21,7 +21,7 @@
 
 <componentPackage>
 
-  <component id="InspireTreeBasicControl" class="org.apache.royale.community.inspiretree.InspireTreeBasicControl"/>
+  <component id="InspireTreeBasicControl" class="org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl"/>
   
   <component id="InspireTreeCheckBoxModeBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead"/>
   <component id="InspireTreeEventsBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeEventsBead"/>

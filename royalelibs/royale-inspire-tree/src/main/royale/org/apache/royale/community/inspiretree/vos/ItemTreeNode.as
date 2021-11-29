@@ -1,8 +1,5 @@
 package org.apache.royale.community.inspiretree.vos
 {
-   
-
-
 	/**
 	 * text - Text used in display.
 	 * id - Unique ID. If missing, one will be generated.
