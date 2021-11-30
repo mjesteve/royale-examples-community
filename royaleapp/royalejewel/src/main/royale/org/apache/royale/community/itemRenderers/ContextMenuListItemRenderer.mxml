@@ -39,7 +39,7 @@ limitations under the License.
 		  }
 		  public function handleClick():void
 		  {
-			 dispatchEvent(new Event("fn_Copy"));
+			 dispatchEvent(new Event(ContextMenu.click));
 
 		  }
   

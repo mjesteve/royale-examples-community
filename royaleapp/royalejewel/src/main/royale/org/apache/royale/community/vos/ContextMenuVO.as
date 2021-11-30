@@ -25,9 +25,9 @@ package org.apache.royale.community.vos
 		
         public var label:String;
         public var icon:String;
-        public var click:MouseEvent;
+        public var click:String;
 
-        public function ContextMenuVO(label:String, icon:String = null,click:MouseEvent = null)
+        public function ContextMenuVO(label:String, icon:String = null,click:String = null)
         {
             this.label = label;
             this.icon = icon;
