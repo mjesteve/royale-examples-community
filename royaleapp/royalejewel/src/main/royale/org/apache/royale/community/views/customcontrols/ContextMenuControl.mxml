@@ -5,21 +5,27 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     itemsVerticalAlign="itemsSameHeight"
-	xmlns:vos="org.apache.royale.community.vos.*" width="113" 
+	xmlns:vos="org.apache.royale.community.vos.*" width="113" initComplete="fn_init()"
    >
     
     <fx:Script>
         <![CDATA[
             	import org.apache.royale.collections.ArrayList;
             	import org.apache.royale.community.vos.ContextMenuVO;
+            	import org.apache.royale.events.MouseEvent;
 
-            [Bindable]
-      private var dp:ArrayList = new ArrayList([
-			new ContextMenuVO("Copy","assets/copy16.png")
-		]);
-                public function fn_Copy():void
+                
+                    [Bindable]
+            private var dp:ArrayList = new ArrayList([
+                    new ContextMenuVO("Copy","assets/copy16.png")
+                ]);
+                public function fn_Copy(e:MouseEvent):void
                 {
                         trace("click Event called fn_Copy");
+                }
+
+                public function fn_init():void{
+                    listContextMenu.addEventListener(MouseEvent.CLICK,fn_Copy);
                 }
 
                  
