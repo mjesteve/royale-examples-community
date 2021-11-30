@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    itemsVerticalAlign="itemsSameHeight"
+	xmlns:vos="org.apache.royale.community.vos.*"
+   >
+    
+    <fx:Script>
+        <![CDATA[
+            	import org.apache.royale.collections.ArrayList;
+
+            [Bindable]
+      private var dp:ArrayList = new ArrayList([
+			{firstname:"Alina", surname:"Kazi"},
+			{firstname:"Maria", surname:"Jose"},
+			{firstname:"Irhaa", surname:"Khan"},
+			{firstname:"Arham", surname:"Khan"}
+			
+		]);
+        ]]>
+    </fx:Script>
+	<fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
+        @namespace j "library://ns.apache.org/royale/jewel";
+
+       j|DataGrid {
+            IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DataGridEditorRenderer");
+        }
+    </fx:Style>
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+    </j:beads>
+ <jc:ExampleHeader title="ContextMenu in Editable DataGrid - Custom Controls">
+        <jc:description>
+            <![CDATA[<strong>ContextMenu</strong>  is customized control applied to Jewel's GridItemRenderer]]>
+        </jc:description>
+    </jc:ExampleHeader>
+  
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+       
+
+        <j:Card width="500">
+                <j:CardHeader>
+                    <html:H3 text="ContextMenu in Editable DataGrid"/>
+                </j:CardHeader>
+                
+                <j:CardPrimaryContent>
+
+                    <j:DataGrid  width="100%" height="100%" dataProvider="{dp}"
+                        >
+                        <j:columns>
+                            <j:DataGridColumn label="First Name" dataField="firstname"/>
+                            <j:DataGridColumn label="Surname" dataField="surname" 
+                                />
+                        </j:columns>
+                        
+                       
+                    </j:DataGrid> 
+                </j:CardPrimaryContent>
+
+               
+            </j:Card>
+    </j:GridCell>
+    
+</j:Grid>

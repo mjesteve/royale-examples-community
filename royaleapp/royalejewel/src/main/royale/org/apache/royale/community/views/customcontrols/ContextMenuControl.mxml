@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid  xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    itemsVerticalAlign="itemsSameHeight"
+	xmlns:vos="org.apache.royale.community.vos.*" width="113" 
+   >
+    
+    <fx:Script>
+        <![CDATA[
+            	import org.apache.royale.collections.ArrayList;
+            	import org.apache.royale.community.vos.ContextMenuVO;
+
+            [Bindable]
+      private var dp:ArrayList = new ArrayList([
+			new ContextMenuVO("Copy","assets/copy16.png")
+		]);
+                public function fn_Copy():void
+                {
+                        trace("click Event called fn_Copy");
+                }
+       
+        ]]>
+    </fx:Script>
+	<fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
+        @namespace j "library://ns.apache.org/royale/jewel";
+
+       
+        j|List {
+            IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.ContextMenuListItemRenderer");
+        } 
+    </fx:Style>
+    <j:beads>
+        <js:ViewDataBinding/>
+        <js:Paddings paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0" />
+    </j:beads>
+ 
+    <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+       
+    <j:List localId="listContextMenu"  width="113" > <!--dataProvider="{dp}" -->
+        <js:ArrayList>
+            <fx:Array>
+                <vos:ContextMenuVO label="Copy" icon="assets/copy16.png" click="{fn_Copy}" />
+                <vos:ContextMenuVO label="Paste" icon="assets/paste.png" />
+                <vos:ContextMenuVO label="Undo" />
+            </fx:Array>
+        </js:ArrayList>
+    </j:List> 
+               
+    </j:GridCell>
+    
+</j:Grid>
