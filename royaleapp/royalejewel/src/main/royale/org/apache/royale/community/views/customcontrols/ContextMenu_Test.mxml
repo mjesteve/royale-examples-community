@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     itemsVerticalAlign="itemsSameHeight"
 	xmlns:vos="org.apache.royale.community.vos.*"
+    width="100%"
    >
     
     <fx:Script>
@@ -13,24 +14,21 @@
             	import org.apache.royale.collections.ArrayList;
             	import org.apache.royale.community.views.customcontrols.ContextMenuControl;
             	import org.apache.royale.jewel.PopUp;
+            	import org.apache.royale.events.MouseEvent;
                 private var contextMenu:PopUp;
 
                 COMPILE::JS
-                public function btnClick():void
+                public function btnClick(e:MouseEvent):void
                 {
-                    if(!contextMenu)
-                    {
                         var objContextMenuControl:ContextMenuControl = new ContextMenuControl();
-                        objContextMenuControl.width = 113;
-                        var rect:Object = element.getBoundingClientRect();
+                       var rect:Object = e.target.element.getBoundingClientRect();
+                        objContextMenuControl.style = " position: 'absolute'; left: "+(e.screenX) + "px; "+"top:"+(e.screenY) + "px";
+                      //  objContextMenuControl.style = " position: 'absolute'; left: "+(rect.x + rect.width - rect.width/2) + "px; "+"top:"+(rect.y + rect.height) + "px";
                         contextMenu = new PopUp();
                         contextMenu.content = objContextMenuControl;
-                        contextMenu.style = " position: 'absolute'; left: "+(rect.x + rect.width - width/2) + "px; "+"top:"+(rect.y + rect.height) + "px";
                         contextMenu.width = 113;
                         addElement(contextMenu);
-
-                    }
-                    contextMenu.open = true;
+                        contextMenu.open = true;
                     	
 
                 }
@@ -49,11 +47,11 @@
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
        
 
-        <j:Card width="500">
+        <j:Card width="100%">
           
                 <j:CardPrimaryContent>
 
-                  <j:Button click="btnClick()" text="openPopup"/>
+                  <j:Button click="btnClick(event)"  text="openPopup"/>
                 </j:CardPrimaryContent>
 
                
