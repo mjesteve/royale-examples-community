@@ -22,6 +22,7 @@
                 public function fn_Copy(e:MouseEvent):void
                 {
                         trace("click Event called fn_Copy");
+                        dispatchEvent(new Event("fn_Close"));
                 }
 
                 public function fn_init():void{

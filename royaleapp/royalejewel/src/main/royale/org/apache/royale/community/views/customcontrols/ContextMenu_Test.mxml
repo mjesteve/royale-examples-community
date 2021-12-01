@@ -5,7 +5,7 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     itemsVerticalAlign="itemsSameHeight"
-	xmlns:vos="org.apache.royale.community.vos.*"
+	xmlns:vos="org.apache.royale.community.vos.*" 
     width="100%"
    >
     
@@ -20,19 +20,26 @@
                 COMPILE::JS
                 public function btnClick(e:MouseEvent):void
                 {
-                        var objContextMenuControl:ContextMenuControl = new ContextMenuControl();
-                       var rect:Object = e.target.element.getBoundingClientRect();
-                        objContextMenuControl.style = " position: 'absolute'; left: "+(e.screenX) + "px; "+"top:"+(e.screenY) + "px";
-                      //  objContextMenuControl.style = " position: 'absolute'; left: "+(rect.x + rect.width - rect.width/2) + "px; "+"top:"+(rect.y + rect.height) + "px";
-                        contextMenu = new PopUp();
-                        contextMenu.content = objContextMenuControl;
-                        contextMenu.width = 113;
-                        addElement(contextMenu);
-                        contextMenu.open = true;
+                    var objContextMenuControl:ContextMenuControl = new ContextMenuControl();
+                      objContextMenuControl.addEventListener(MouseEvent.CLICK,fn_Close);
+                    var rect:Object = e.target.element.getBoundingClientRect();
+                    objContextMenuControl.style = " position: 'absolute'; left: "+(e.screenX) + "px; "+"top:"+(e.screenY) + "px";
+                    //  objContextMenuControl.style = " position: 'absolute'; left: "+(rect.x + rect.width - rect.width/2) + "px; "+"top:"+(rect.y + rect.height) + "px";
+                    contextMenu = new PopUp();
+                    contextMenu.content = objContextMenuControl;
+                    contextMenu.width = 113;
+                    addElement(contextMenu);
+                    contextMenu.open = true;
                     	
 
                 }
+                private function fn_Close(e:MouseEvent):void
+                {
+                    trace("fn_Close Event");
+                    contextMenu.open = false;
+                }
 
+             
 
       
         ]]>
