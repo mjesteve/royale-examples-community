@@ -28,6 +28,7 @@ package
 			import org.apache.royale.community.inspiretree.vos.ItemTreeNode; ItemTreeNode;
 			import org.apache.royale.community.inspiretree.vos.ConfigDOM; ConfigDOM;
 			import org.apache.royale.community.inspiretree.vos.OptionsTree; OptionsTree;
+			import org.apache.royale.community.inspiretree.supportClasses.IInspireTree; IInspireTree;
 		}		
 	}
 }
