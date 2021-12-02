@@ -21,7 +21,7 @@ limitations under the License.
     xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic"
-      xmlns:html="library://ns.apache.org/royale/html" width="110" initComplete="fn_init()">
+      xmlns:html="library://ns.apache.org/royale/html" width="110" >
 
     <fx:Script>
         <![CDATA[
@@ -33,13 +33,11 @@ limitations under the License.
             {
                 return data as ContextMenuVO;
             }
-			
-		  public function fn_init():void
-		  {
-		  }
+		
 		  public function handleClick():void
 		  {
-			 dispatchEvent(new Event(ContextMenu.click));
+        if(ContextMenu.click != null)
+			    dispatchEvent(new Event(ContextMenu.click));
 
 		  }
   

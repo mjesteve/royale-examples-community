@@ -25,8 +25,17 @@
                         dispatchEvent(new Event("fn_Close"));
                 }
 
+
+                 public function fn_Paste(e:MouseEvent):void
+                {
+                        trace("click Event called fn_Paste");
+                        dispatchEvent(new Event("fn_Close"));
+                }
+
                 public function fn_init():void{
                     listContextMenu.addEventListener(MouseEvent.CLICK,fn_Copy);
+                    listContextMenu.addEventListener(MouseEvent.CLICK,fn_Paste);
+                    
                 }
 
                  
@@ -53,7 +62,7 @@
         <js:ArrayList>
             <fx:Array>
                 <vos:ContextMenuVO label="Copy" icon="assets/copy16.png" click="{fn_Copy}" />
-                <vos:ContextMenuVO label="Paste" icon="assets/paste.png" />
+                <vos:ContextMenuVO label="Paste" icon="assets/paste.png"  click="{fn_Paste}"  />
                 <vos:ContextMenuVO label="Undo" />
             </fx:Array>
         </js:ArrayList>

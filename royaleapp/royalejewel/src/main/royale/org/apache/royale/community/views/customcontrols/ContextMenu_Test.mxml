@@ -24,7 +24,6 @@
                       objContextMenuControl.addEventListener(MouseEvent.CLICK,fn_Close);
                     var rect:Object = e.target.element.getBoundingClientRect();
                     objContextMenuControl.style = " position: 'absolute'; left: "+(e.screenX) + "px; "+"top:"+(e.screenY) + "px";
-                    //  objContextMenuControl.style = " position: 'absolute'; left: "+(rect.x + rect.width - rect.width/2) + "px; "+"top:"+(rect.y + rect.height) + "px";
                     contextMenu = new PopUp();
                     contextMenu.content = objContextMenuControl;
                     contextMenu.width = 113;
