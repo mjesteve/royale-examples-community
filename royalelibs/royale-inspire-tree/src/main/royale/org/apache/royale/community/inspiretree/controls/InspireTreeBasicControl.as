@@ -19,8 +19,6 @@ package org.apache.royale.community.inspiretree.controls
         import org.apache.royale.html.util.addElementToWrapper;
     	import org.apache.royale.events.Event;
     	import org.apache.royale.utils.MXMLDataInterpreter;
-    	import org.apache.royale.community.inspiretree.beads.InspireTreeIconBead;
-    	import org.apache.royale.community.inspiretree.beads.InspireTreeIconBead;
 	}
     /**
      *  It triggers just before launching the creation.  
