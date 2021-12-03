@@ -34,12 +34,12 @@ limitations under the License.
                 return data as ContextMenuVO;
             }
 		
-		  public function handleClick():void
-		  {
-        if(ContextMenu.click != null)
-			    dispatchEvent(new Event(ContextMenu.click));
+            public function handleClick():void
+            {
+              if(ContextMenu.click != null)
+                dispatchEvent(new Event(ContextMenu.click));
 
-		  }
+            }
   
 		]]>
     </fx:Script>

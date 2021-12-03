@@ -5,37 +5,24 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     itemsVerticalAlign="itemsSameHeight"
-	xmlns:vos="org.apache.royale.community.vos.*" width="113" initComplete="fn_init()"
+	xmlns:vos="org.apache.royale.community.vos.*" width="113"
    >
     
     <fx:Script>
         <![CDATA[
             	import org.apache.royale.collections.ArrayList;
             	import org.apache.royale.community.vos.ContextMenuVO;
-            	import org.apache.royale.events.MouseEvent;
+            	import org.apache.royale.jewel.List;
 
                 
-                    [Bindable]
-            private var dp:ArrayList = new ArrayList([
-                    new ContextMenuVO("Copy","assets/copy16.png")
+                [Bindable]
+                private var dp:ArrayList = new ArrayList([
+                new ContextMenuVO("-","-","-"),
                 ]);
-                public function fn_Copy(e:MouseEvent):void
-                {
-                        trace("click Event called fn_Copy");
-                        dispatchEvent(new Event("fn_Close"));
-                }
 
 
-                 public function fn_Paste(e:MouseEvent):void
-                {
-                        trace("click Event called fn_Paste");
-                        dispatchEvent(new Event("fn_Close"));
-                }
-
-                public function fn_init():void{
-                    listContextMenu.addEventListener(MouseEvent.CLICK,fn_Copy);
-                    listContextMenu.addEventListener(MouseEvent.CLICK,fn_Paste);
-                    
+                public function fn_initialize(arr:ArrayList):void{
+                   dp = arr;
                 }
 
                  
@@ -58,14 +45,14 @@
  
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
        
-    <j:List localId="listContextMenu"  width="113" > <!--dataProvider="{dp}" -->
-        <js:ArrayList>
+    <j:List localId="listContextMenu"  width="113"  dataProvider="{dp}" >    
+       <!-- <js:ArrayList>
             <fx:Array>
                 <vos:ContextMenuVO label="Copy" icon="assets/copy16.png" click="{fn_Copy}" />
                 <vos:ContextMenuVO label="Paste" icon="assets/paste.png"  click="{fn_Paste}"  />
                 <vos:ContextMenuVO label="Undo" />
             </fx:Array>
-        </js:ArrayList>
+        </js:ArrayList> -->
     </j:List> 
                
     </j:GridCell>

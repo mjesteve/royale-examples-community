@@ -15,13 +15,22 @@
             	import org.apache.royale.community.views.customcontrols.ContextMenuControl;
             	import org.apache.royale.jewel.PopUp;
             	import org.apache.royale.events.MouseEvent;
+            	import org.apache.royale.community.vos.ContextMenuVO;
                 private var contextMenu:PopUp;
+                
+                [Bindable]
+                private var dp:ArrayList = new ArrayList([
+                new ContextMenuVO("Copy","assets/copy16.png","fn_Copy"),
+                new ContextMenuVO("Paste","assets/paste.png","fn_Paste")
+
+                ]);
 
                 COMPILE::JS
                 public function btnClick(e:MouseEvent):void
                 {
                     var objContextMenuControl:ContextMenuControl = new ContextMenuControl();
-                      objContextMenuControl.addEventListener(MouseEvent.CLICK,fn_Close);
+                    objContextMenuControl.addEventListener(MouseEvent.CLICK,fn_HandleClick);
+                    objContextMenuControl.fn_initialize(dp); //pass the dataprovider
                     var rect:Object = e.target.element.getBoundingClientRect();
                     objContextMenuControl.style = " position: 'absolute'; left: "+(e.screenX) + "px; "+"top:"+(e.screenY) + "px";
                     contextMenu = new PopUp();
@@ -32,12 +41,49 @@
                     	
 
                 }
-                private function fn_Close(e:MouseEvent):void
+                public function fn_HandleClick(e:MouseEvent):void
                 {
-                    trace("fn_Close Event");
-                    contextMenu.open = false;
+                    for(var i:int = 0;i<dp.length;i++)
+                    {   
+                        if(e.target.element.innerText != '')
+                        {
+                            if (e.target.element.innerText == dp[i].label) //if the text area is clicked
+                            {
+                                if(dp[i].click != null)
+                                if(dp[i].click != '')
+                                {
+                                    var objfunction:Function = this[dp[i].click] ;
+                                    objfunction.call();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (e.target.parent.org_apache_royale_jewel_itemRenderers_ListItemRenderer__text == dp[i].label) //if the image area is clicked
+                            {
+                                if(dp[i].click != null)
+                                if(dp[i].click != '')
+                                {
+                                    var objfunction2:Function = this[dp[i].click] ;
+                                    objfunction2.call();
+                                }
+                            }
+                        }
+                    }
                 }
 
+               public function fn_Copy():void
+                {
+                        trace("called fn_Copy");
+                      
+                }
+
+
+                public function fn_Paste():void
+                {
+                        trace(" called fn_Paste");
+
+                }
              
 
       
