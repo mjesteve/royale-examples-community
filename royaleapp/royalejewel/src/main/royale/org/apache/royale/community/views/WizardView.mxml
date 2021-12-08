@@ -79,7 +79,7 @@
             <j:step>
                 <j:WizardStep localId="s2" name="page2" previousStep="page1" nextStep="page3"/>
             </j:step>
-            <viewsJc:ThreeCheckBox_Test percentHeight="100" percentWidth="100" />
+            <viewsJc:TriStateCheckBox_Test percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page3">
@@ -101,7 +101,7 @@
             <j:step>
                 <j:WizardStep localId="s5" name="page5" previousStep="page4" nextStep="page6"/>
             </j:step>
-            <views:Debug_PageNavigator percentHeight="100" percentWidth="100" />
+            <viewsJc:Debug_PageNavigator percentHeight="100" percentWidth="100" />
         </j:WizardPage>
 
         <j:WizardPage name="page6">

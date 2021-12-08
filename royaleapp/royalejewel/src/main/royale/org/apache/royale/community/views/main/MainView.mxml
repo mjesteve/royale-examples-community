@@ -96,8 +96,8 @@
             <viewsTree:InspireTree />
         </j:ScrollableSectionContent>
 
-        <j:ScrollableSectionContent name="threecheckbox_panel">
-            <viewsJc:ThreeCheckBox_Test/>
+        <j:ScrollableSectionContent name="TriStateCheckBox_panel">
+            <viewsJc:TriStateCheckBox_Test/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
             <viewsJc:Debug_PageNavigator />

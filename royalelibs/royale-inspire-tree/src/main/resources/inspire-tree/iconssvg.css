@@ -1,0 +1,61 @@
+/*
+Error: Undefined variable: "$primary-color-darkback".
+        on line 4 of D:/Develop_Royale/Projects/mjesteve/royale-examples-community/royalelibs/royale-inspire-tree/src/main/resources/iconssvg.sass
+
+1: 
+2: 
+3: 
+4: $icon-collapse-svg: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color-darkback}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
+5: $icon-collapse-svg-selected: $icon-collapse-svg
+6: $icon-collapse-svg-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$primary-color-darkback}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E ")
+7: $icon-collapse-svg-disabled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$disabled-color}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E ")
+8: 
+9: $icon-expand-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$primary-color}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E ")
+
+Backtrace:
+D:/Develop_Royale/Projects/mjesteve/royale-examples-community/royalelibs/royale-inspire-tree/src/main/resources/iconssvg.sass:4
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/string_interpolation.rb:93:in `_perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:182:in `perform_arg'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:129:in `block in _perform'
+org/jruby/RubyArray.java:1792:in `each'
+org/jruby/RubyEnumerable.java:1194:in `each_with_index'
+org/jruby/RubyEnumerator.java:327:in `each'
+org/jruby/RubyEnumerable.java:833:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:128:in `_perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:478:in `visit_variable'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+org/jruby/RubyArray.java:1792:in `each'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin.rb:82:in `update_stylesheets'
+<script>:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$primary-color-darkback\".\A         on line 4 of D:/Develop_Royale/Projects/mjesteve/royale-examples-community/royalelibs/royale-inspire-tree/src/main/resources/iconssvg.sass\A \A 1: \A 2: \A 3: \A 4: $icon-collapse-svg: encodeSVG(\"<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color-darkback}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>\")\A 5: $icon-collapse-svg-selected: $icon-collapse-svg\A 6: $icon-collapse-svg-hover: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$primary-color-darkback}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E \")\A 7: $icon-collapse-svg-disabled: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$disabled-color}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E \")\A 8: \A 9: $icon-expand-svg: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E %3Cpath fill='%23{$primary-color}' d='M1.4 0 6 4.6 10.6 0 12 1.4l-6 6-6-6z'/%3E %3C/svg%3E \")"; }

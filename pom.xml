@@ -52,6 +52,7 @@
           <artifactId>royale-maven-plugin</artifactId>
           <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
+
           <configuration>
             <targetPlayer>${player.version}</targetPlayer>
             <debug>${royale.debug}</debug>
@@ -293,6 +294,23 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-debug-inspire-tree</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/inspire-tree</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
             <execution>
               <id>copy-resources-debug-echarts-js</id>
@@ -447,6 +465,23 @@
                 </resources>
               </configuration>
             </execution>
+
+			      <execution>
+              <id>copy-resources-release-inspire-tree</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/inspire-tree</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
 <!--
             <execution>
               <id>copy-resources-release-echarts-js</id>
@@ -489,12 +524,20 @@
   </build>
 
   <dependencies>
+    <!-- Needed for Flash compilation -->
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
+      <!--<groupId>com.adobe.flash.framework</groupId>
       <artifactId>playerglobal</artifactId>
       <version>${player.version}</version>
       <type>swc</type>
-      <scope>runtime</scope>
+      <scope>runtime</scope>-->
+      
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale-typedefs-playerglobal</artifactId>
+      <version>${royale.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+      <scope>runtime</scope> 
     </dependency>
 
     <dependency>
@@ -505,6 +548,11 @@
       <scope>provided</scope>
       <classifier>typedefs</classifier>
     </dependency>
+        <!--
+        By declaring this dependency here, we force the royale-externs-js to be
+        added to the external library path of all modules. Without this it would
+        have gone to the library path.
+        -->
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-js</artifactId>
@@ -537,17 +585,6 @@
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>jspresso</id>
-      <url>http://repository.jspresso.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>

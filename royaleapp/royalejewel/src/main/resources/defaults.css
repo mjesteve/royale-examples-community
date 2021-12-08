@@ -22,7 +22,7 @@
  @media (min-width: 0px){
  */
 .Application {
-  font-family: 'Open Sans', serif, sans-serif;
+  font-family: "Open Sans", serif, sans-serif !important;
   color: #434343;
 }
 
@@ -48,7 +48,7 @@
 /* End scrollbar ----------------------------------------- */
 
      .jewel.application{
-       font-family: 'Open Sans', serif, sans-serif;
+      font-family: "Open Sans", serif, sans-serif !important;
        color: #333333;
      }
  
@@ -312,7 +312,7 @@
     }
  /*}*/
  
- /* No coge el defaults.css de virtual-select  ------------------------------------------ */
+ /* Does not recognise the default.css file of virtual-select ------------------------------------------ */
  
  .vscomp-wrapper {
    display:inline-flex;
@@ -476,3 +476,87 @@ color: #04a3b3;
   border-radius: 10px;
   border: 0px solid;
 }
+
+/* Custom Inspire-Tree CSS */
+
+.inspire-tree {
+  background: white;
+}
+
+.inspire-tree.IconsSetPermiss .icon-folder::before,
+.inspire-tree.IconsSetPermiss .icon-folder-open::before,
+.inspire-tree.IconsSetPermiss .selected>.title-wrap .icon-folder::before,
+.inspire-tree.IconsSetPermiss .selected>.title-wrap .icon-folder-open::before {
+    /* icon "link"
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 16px 16px;*/
+    /* icon "puzle" (optimized) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='16' height='16' viewBox='0 0 172 172' style=' fill:%23000000;'%3E%3Cg fill='none' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'%3E%3C/path%3E%3Cg fill='%23666666'%3E%3Cpath d='M82.41667,0c-9.89717,0 -17.91667,8.0195 -17.91667,17.91667v10.75h-43v43h9.72819c9.374,0 17.90166,6.74518 18.84049,16.06901c1.075,10.72849 -7.31235,19.76432 -17.81868,19.76432h-10.75v43h43v-9.72819c0,-9.374 6.74518,-17.90166 16.06901,-18.84049c10.72849,-1.075 19.76432,7.31235 19.76432,17.81868v10.75h43v-43h10.75c9.89717,0 17.91667,-8.0195 17.91667,-17.91667c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667h-10.75v-43h-43v-10.75c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.inspire-tree.IconsSetPermiss .icon-file-empty::before,
+.inspire-tree.IconsSetPermiss .selected > .title-wrap .icon-file-empty::before {
+    background-image: url();
+}
+
+.inspire-tree.parentIconUserClass .icon-folder::before {
+  background-image: url(assets/116-user-plus.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenIconUserClass .icon-folder-open::before {
+  background-image: url(assets/117-user-minus.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserClass .icon-file-empty::before {
+  background-image: url(assets/114-user.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+.inspire-tree.parentSelectedIconUserClass .selected > .title-wrap .icon-folder::before {
+  background-image: url(assets/folder-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenSelectedIconUserClass .selected > .title-wrap .icon-folder-open::before {
+  background-image: url(assets/folder-open-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserSelectedClass .selected > .title-wrap .icon-file-empty::before {
+  background-image: url(assets/paper.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserMinusClass .icon-collapse::before {
+  background-image: url(assets/minus.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserPlusClass .icon-expand::before {
+  background-image: url(assets/plus.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+
+.inspire-tree.parentIconUserClass1 .icon-folder::before {
+  background-image: url(assets/folder-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenIconUserClass1 .icon-folder-open::before {
+  background-image: url(assets/folder-open-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
