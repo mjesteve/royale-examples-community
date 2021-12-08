@@ -48,7 +48,7 @@
 
     <jc:ExampleHeader title="JS Virtual Select - Debugger">
         <jc:description>
-            <![CDATA[<strong>ThreeCheckBox</strong> Custom Jewel CheckBox with three states.]]>
+            <![CDATA[<strong>TriStateCheckBox</strong> Custom Jewel CheckBox with three states.]]>
         </jc:description>
     </jc:ExampleHeader>
 

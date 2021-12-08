@@ -25,8 +25,8 @@
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
     <component id="ReadOnly" class="org.apache.royale.community.beads.ReadOnly"/>
-    <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
-    <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
+    <component id="TriStateCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
+    <component id="TriStateCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxStatesValues"/>
     <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
     <component id="ComboBoxRequireSelection" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection"/>
     <component id="ComboBoxReadOnly" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
@@ -57,7 +57,7 @@
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
     <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
-    <component id="ThreeCheckBox" class="org.apache.royale.community.jewel.ThreeCheckBox"/>
+    <component id="TriStateCheckBox" class="org.apache.royale.community.jewel.TriStateCheckBox"/>
     <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
 
 </componentPackage>

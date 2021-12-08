@@ -1,8 +1,8 @@
-package org.apache.royale.community.jewel.beads.controls.threecheckbox
+package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.community.jewel.ThreeCheckBox;
+	import org.apache.royale.community.jewel.TriStateCheckBox;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
@@ -10,13 +10,13 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 	}
 
 	/**
-	 * The ThreeCheckBoxLabelState bead allows us to display a different Text for each state.
+	 * The TriStateCheckBoxLabelState bead allows us to display a different Text for each state.
 	 */
     COMPILE::JS
-	public class ThreeCheckBoxLabelState extends Bead
+	public class TriStateCheckBoxLabelState extends Bead
 	{
 
-		public function ThreeCheckBoxLabelState()
+		public function TriStateCheckBoxLabelState()
 		{
 		}
 
@@ -38,9 +38,9 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 			//listenOnStrand("clickCommit", textLabelChangeHandler);
 		}
 
-		private function get hostBase():ThreeCheckBox
+		private function get hostBase():TriStateCheckBox
 		{
-			return _strand as ThreeCheckBox;
+			return _strand as TriStateCheckBox;
 		}
 
 		protected function textLabelChangeHandler(event:Event):void
@@ -113,10 +113,10 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 	}
 
     COMPILE::SWF
-	public class ThreeCheckBoxLabelState
+	public class TriStateCheckBoxLabelState
 	{
 
-		public function ThreeCheckBoxLabelState()
+		public function TriStateCheckBoxLabelState()
 		{
 		}
 	}

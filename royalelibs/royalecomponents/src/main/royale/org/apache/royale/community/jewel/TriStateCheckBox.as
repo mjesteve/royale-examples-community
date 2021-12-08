@@ -35,9 +35,9 @@ package org.apache.royale.community.jewel
      */
 	[Event(name="clickCommit", type="org.apache.royale.events.Event")]
     /**
-     *  The Jewel ThreeCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state.
+     *  The Jewel TriStateCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state.
      *
-     *  When a user clicks or touches this control or its associated text, the ThreeCheckBox changes.
+     *  When a user clicks or touches this control or its associated text, the TriStateCheckBox changes.
      *  Its state from unchecked to checked or, from checked to indeterminated or, from indeterminated to unchecked.
      *  The state of the control is no longer binary: unchecked, checked, and indeterminated.
      *
@@ -48,7 +48,7 @@ package org.apache.royale.community.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::JS
-    public class ThreeCheckBox extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
+    public class TriStateCheckBox extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
     {
         /**
          *  Constructor.
@@ -58,7 +58,7 @@ package org.apache.royale.community.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function ThreeCheckBox()
+		public function TriStateCheckBox()
 		{
 			super();
 
@@ -255,7 +255,7 @@ package org.apache.royale.community.jewel
         }
 
         /**
-         *  The string used as a label for the ThreeCheckBox.
+         *  The string used as a label for the TriStateCheckBox.
          *
          *  @royaleignorecoercion Text
          *
@@ -290,7 +290,7 @@ package org.apache.royale.community.jewel
 		}
 
         /**
-         *  The value associated with the ThreeCheckBox.
+         *  The value associated with the TriStateCheckBox.
          *
          *  TODO. Manage the configured value according to the 3 current states.
          *
@@ -408,9 +408,9 @@ package org.apache.royale.community.jewel
     }
 
     COMPILE::SWF
-    public class ThreeCheckBox extends org.apache.royale.jewel.CheckBox
+    public class TriStateCheckBox extends org.apache.royale.jewel.CheckBox
     {
-		public function ThreeCheckBox()
+		public function TriStateCheckBox()
 		{
 			super();
         }

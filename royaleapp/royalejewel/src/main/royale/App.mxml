@@ -46,9 +46,9 @@
 	</j:valuesImpl>
 	
 	<j:initialView>		
-		<mainviews:MainExample_Hiedra/>
-<!--		
 		<mainviews:MainView/> 
+<!--		
+		<mainviews:MainExample_Hiedra/>
 		<mainviews:MainVirtualComboBox/> 
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 

@@ -42,7 +42,7 @@ package org.apache.royale.community.models
 
             item = new NavigationLinkVO("Jewel custom components", '$collapsible', null,"assets/jewel-only-icon.svg");
             arnav = new Array();
-            arnav.push(new NavigationLinkVO("Three Check Box", "threecheckbox_panel",MaterialIconType.CHECK_BOX));
+            arnav.push(new NavigationLinkVO("TriState CheckBox", "TriStateCheckBox_panel",MaterialIconType.CHECK_BOX));
             arnav.push(new NavigationLinkVO("Basic PageNavigator", "Debug_PageNavigator_panel",MaterialIconType.LAST_PAGE));
             arnav.push(new NavigationLinkVO("ComboBox extended", "ComboBoxJwExt_panel",MaterialIconType.CREDIT_CARD));
             item.subMenu = new ArrayList(arnav);

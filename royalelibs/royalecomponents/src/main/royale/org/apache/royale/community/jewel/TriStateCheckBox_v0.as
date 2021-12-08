@@ -44,9 +44,9 @@ package org.apache.royale.community.jewel
      */
 	[Event(name="clickCommit", type="org.apache.royale.events.Event")]
     /**
-     *  The Jewel Ext ThreeCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state.
+     *  The Jewel Ext TriStateCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state.
      *
-     *  When a user clicks or touches this control or its associated text, the ThreeCheckBox changes.
+     *  When a user clicks or touches this control or its associated text, the TriStateCheckBox changes.
      *  its state from unchecked to checked or, from checked to indeterminated or, from indeterminated to unchecked.
      *  The state of the control is no longer binary: unchecked, checked, and indeterminated.
      *
@@ -56,7 +56,7 @@ package org.apache.royale.community.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class ThreeCheckBox_v0 extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
+    public class TriStateCheckBox_v0 extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
     {
         /**
          *  Constructor.
@@ -66,7 +66,7 @@ package org.apache.royale.community.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function ThreeCheckBox_v0()
+		public function TriStateCheckBox_v0()
 		{
 			super();
 
@@ -276,7 +276,7 @@ package org.apache.royale.community.jewel
          * Test. Debug all dispatched events
          */
         /*override public function dispatchEvent(event:Event):Boolean {
-            trace("********** ThreeCheckBox: ", event.type);
+            trace("********** TriStateCheckBox: ", event.type);
             return super.dispatchEvent(event);
         }*/
 
@@ -315,7 +315,7 @@ package org.apache.royale.community.jewel
         }
 
         /**
-         *  The string used as a label for the ThreeCheckBox.
+         *  The string used as a label for the TriStateCheckBox.
          *
          *  @royaleignorecoercion Text
          *
@@ -357,7 +357,7 @@ package org.apache.royale.community.jewel
 		}
 
         /**
-         *  The value associated with the ThreeCheckBox.
+         *  The value associated with the TriStateCheckBox.
          *
          *  TODO. Manage the configured value according to the 3 current states.
          *

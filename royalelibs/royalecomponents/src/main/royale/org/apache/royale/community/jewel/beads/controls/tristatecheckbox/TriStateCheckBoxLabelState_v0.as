@@ -1,16 +1,16 @@
-package org.apache.royale.community.jewel.beads.controls.threecheckbox
+package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 {
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.community.jewel.ThreeCheckBox;
+	import org.apache.royale.community.jewel.TriStateCheckBox;
 
 
-	public class ThreeCheckBoxLabelState_v0 extends Bead
+	public class TriStateCheckBoxLabelState_v0 extends Bead
 	{
 
-		public function ThreeCheckBoxLabelState_v0()
+		public function TriStateCheckBoxLabelState_v0()
 		{
 		}
 
@@ -32,9 +32,9 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 			//listenOnStrand("clickCommit", textLabelChangeHandler);
 		}
 
-		private function get hostBase():ThreeCheckBox
+		private function get hostBase():TriStateCheckBox
 		{
-			return _strand as ThreeCheckBox;
+			return _strand as TriStateCheckBox;
 		}
 
 		protected function textLabelChangeHandler(event:Event):void

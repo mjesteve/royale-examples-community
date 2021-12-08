@@ -1,20 +1,14 @@
-package org.apache.royale.community.jewel.beads.controls.threecheckbox
+package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.community.jewel.ThreeCheckBox;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	}
+	import org.apache.royale.community.jewel.TriStateCheckBox;
 
-	/**
-	 * The ThreeCheckBoxStatesValues bead allows to set a custom value for each state.
-	 */
-    COMPILE::JS
-	public class ThreeCheckBoxStatesValues implements IBead
+
+	public class TriStateCheckBoxStatesValues_v0 implements IBead
 	{
 
-		public function ThreeCheckBoxStatesValues()
+		public function TriStateCheckBoxStatesValues_v0()
 		{
 		}
 
@@ -30,7 +24,7 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 		 */
 		public function set strand(value:IStrand):void
 		{
-			var hostBase:ThreeCheckBox = value as ThreeCheckBox;
+			var hostBase:TriStateCheckBox = value as TriStateCheckBox;
 
 			var oldstateval:String = hostBase.state;
 			var newstateval:String = hostBase.state;
@@ -61,14 +55,5 @@ package org.apache.royale.community.jewel.beads.controls.threecheckbox
 		public var uncheckedValue:String= "";
 		public var checkedValue:String= "";
 
-	}
-
-    COMPILE::SWF
-	public class ThreeCheckBoxStatesValues
-	{
-
-		public function ThreeCheckBoxStatesValues()
-		{
-		}
 	}
 }
