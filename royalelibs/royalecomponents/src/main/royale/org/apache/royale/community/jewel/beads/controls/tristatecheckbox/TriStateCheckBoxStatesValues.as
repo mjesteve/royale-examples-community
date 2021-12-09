@@ -35,10 +35,10 @@ package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 			var oldstateval:String = hostBase.state;
 			var newstateval:String = hostBase.state;
 
-			if( indeterminatedValue != "" && hostBase.STATE_INDETERMINATED != indeterminatedValue ){
-				if(oldstateval == hostBase.STATE_INDETERMINATED)
-					newstateval = indeterminatedValue;
-				hostBase.STATE_INDETERMINATED = indeterminatedValue;
+			if( indeterminateValue != "" && hostBase.STATE_INDETERMINATE != indeterminateValue ){
+				if(oldstateval == hostBase.STATE_INDETERMINATE)
+					newstateval = indeterminateValue;
+				hostBase.STATE_INDETERMINATE = indeterminateValue;
 			}
 
 			if( uncheckedValue != "" && hostBase.STATE_UNCHECKED != uncheckedValue ){
@@ -57,7 +57,7 @@ package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 				hostBase.state = newstateval;
 		}
 
-		public var indeterminatedValue:String= "";
+		public var indeterminateValue:String= "";
 		public var uncheckedValue:String= "";
 		public var checkedValue:String= "";
 

@@ -57,8 +57,8 @@ package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 				return;
 			switch(hostBase.state)
 			{
-				case hostBase.STATE_INDETERMINATED:
-					_lastText = _indeterminatedText;
+				case hostBase.STATE_INDETERMINATE:
+					_lastText = _indeterminateText;
 					break;
 				case hostBase.STATE_UNCHECKED:
 					_lastText = _uncheckedText;
@@ -74,15 +74,15 @@ package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 
         }
 
-		private var _indeterminatedText:String;
-		public function get indeterminatedText():String { return _indeterminatedText; }
-		public function set indeterminatedText(value:String):void
+		private var _indeterminateText:String;
+		public function get indeterminateText():String { return _indeterminateText; }
+		public function set indeterminateText(value:String):void
 		{
-			_indeterminatedText = value;
+			_indeterminateText = value;
 
 			if(!hostBase)
 				return;
-			if(hostBase.state == hostBase.STATE_INDETERMINATED)
+			if(hostBase.state == hostBase.STATE_INDETERMINATE)
 				hostBase.text = value;
 		}
 

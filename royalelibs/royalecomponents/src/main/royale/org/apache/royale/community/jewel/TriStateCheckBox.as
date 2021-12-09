@@ -35,11 +35,11 @@ package org.apache.royale.community.jewel
      */
 	[Event(name="clickCommit", type="org.apache.royale.events.Event")]
     /**
-     *  The Jewel TriStateCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state.
+     *  The Jewel TriStateCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminate" state.
      *
      *  When a user clicks or touches this control or its associated text, the TriStateCheckBox changes.
-     *  Its state from unchecked to checked or, from checked to indeterminated or, from indeterminated to unchecked.
-     *  The state of the control is no longer binary: unchecked, checked, and indeterminated.
+     *  Its state from unchecked to checked or, from checked to indeterminate or, from indeterminate to unchecked.
+     *  The state of the control is no longer binary: unchecked, checked, and indeterminate.
      *
      *
      *  @langversion 3.0
@@ -111,17 +111,17 @@ package org.apache.royale.community.jewel
 		}
 
         [Bindable("change")]
-		public function get indeterminated():Boolean
+		public function get indeterminate():Boolean
 		{
             return input.indeterminate;
 		}
         /**
          *  @private
          */
-		public function set indeterminated(value:Boolean):void
+		public function set indeterminate(value:Boolean):void
 		{
             if(value)
-                state = STATE_INDETERMINATED;
+                state = STATE_INDETERMINATE;
             else{
                 state = STATE_UNCHECKED;
             }
@@ -133,9 +133,9 @@ package org.apache.royale.community.jewel
         private var _STATE_CHECKED:String = "1";
         public function get STATE_CHECKED():String{ return _STATE_CHECKED; }
         public function set STATE_CHECKED(value:String):void{ _STATE_CHECKED = value; }
-        private var _STATE_INDETERMINATED:String = "-1";
-        public function get STATE_INDETERMINATED():String{ return _STATE_INDETERMINATED; }
-        public function set STATE_INDETERMINATED(value:String):void{ _STATE_INDETERMINATED = value; }
+        private var _STATE_INDETERMINATE:String = "-1";
+        public function get STATE_INDETERMINATE():String{ return _STATE_INDETERMINATE; }
+        public function set STATE_INDETERMINATE(value:String):void{ _STATE_INDETERMINATE = value; }
 
         private var _state:String;
         /**
@@ -150,7 +150,7 @@ package org.apache.royale.community.jewel
                 return _state;
         }
         [Bindable("change")]
-        /*[Inspectable(category="General", enumeration="stateChecked,stateUnchecked,stateIndeterminated")]*/
+        /*[Inspectable(category="General", enumeration="stateChecked,stateUnchecked,stateIndeterminate")]*/
         public function set state(value:String):void
         {
 
@@ -181,7 +181,7 @@ package org.apache.royale.community.jewel
         protected function applyState(value:String):void
         {
             switch(value) {
-                case STATE_INDETERMINATED:
+                case STATE_INDETERMINATE:
                     input.indeterminate = true;
                     input.checked = false;
                     break;
@@ -204,16 +204,16 @@ package org.apache.royale.community.jewel
 
         private var isClickCommit:Boolean = false;
         /*
-            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminated
+            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminate
         */
         protected function changeState():void
         {
             isClickCommit = true;
 
-            if(_state == STATE_INDETERMINATED)
+            if(_state == STATE_INDETERMINATE)
                 state = STATE_UNCHECKED;
             else if( _state == STATE_CHECKED)
-                state = STATE_INDETERMINATED;
+                state = STATE_INDETERMINATE;
             else
                 state = STATE_CHECKED;
 
@@ -247,11 +247,11 @@ package org.apache.royale.community.jewel
         }
         /**
          *
-         * @return true, if the component is in "state" indeterminated
+         * @return true, if the component is in "state" indeterminate
          */
-        public function isIndeterminated():Boolean
+        public function isIndeterminate():Boolean
         {
-            return state == STATE_INDETERMINATED ? true:false;
+            return state == STATE_INDETERMINATE ? true:false;
         }
 
         /**
