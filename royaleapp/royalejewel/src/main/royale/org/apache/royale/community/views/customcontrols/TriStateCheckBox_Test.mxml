@@ -32,7 +32,7 @@
             }
             else
             {
-                trcGroup.indeterminated = true;
+                trcGroup.indeterminate = true;
                 trcGroupText = "Some";
             }
             
@@ -71,7 +71,7 @@
 
                 <jc:TriStateCheckBox text="Checked" selected="true"/>
 
-                <jc:TriStateCheckBox text="Indeterminated" indeterminated="true"/>
+                <jc:TriStateCheckBox text="Indeterminate" indeterminate="true"/>
 
                 <jc:TriStateCheckBox text="Disabled">
                     <jc:beads>
@@ -85,7 +85,7 @@
                     </jc:beads>
                 </jc:TriStateCheckBox>
 
-                <jc:TriStateCheckBox text="Indeterminated And Disabled" indeterminated="true">
+                <jc:TriStateCheckBox text="Indeterminate And Disabled" indeterminate="true">
                     <jc:beads>
                         <j:Disabled/>
                     </jc:beads>
@@ -114,7 +114,7 @@
 
                 <jc:TriStateCheckBox rejectedVersion="true" text="Checked" selected="true"/>
 
-                <jc:TriStateCheckBox rejectedVersion="true" text="Rejected" indeterminated="true"/>
+                <jc:TriStateCheckBox rejectedVersion="true" text="Rejected" indeterminate="true"/>
 
                 <jc:TriStateCheckBox rejectedVersion="true" text="Disabled">
                     <jc:beads>
@@ -128,7 +128,7 @@
                     </jc:beads>
                 </jc:TriStateCheckBox>
 
-                <jc:TriStateCheckBox rejectedVersion="true" text="Rejected And Disabled" indeterminated="true">
+                <jc:TriStateCheckBox rejectedVersion="true" text="Rejected And Disabled" indeterminate="true">
                     <jc:beads>
                         <j:Disabled/>
                     </jc:beads>
@@ -174,7 +174,7 @@
                 <j:HGroup percentWidth="100" gap="3">
                     <j:Button text="Set unchecked" click="trcSetManual.selected=false;"/>
                     <j:Button text="Set checked" click="trcSetManual.selected=true;"/>
-                    <j:Button text="Set rejected" click="trcSetManual.indeterminated=true;"/>
+                    <j:Button text="Set rejected" click="trcSetManual.indeterminate=true;"/>
                 </j:HGroup>
 
                 <jc:TriStateCheckBox localId="trcSetManual" rejectedVersion="true"/>
@@ -194,15 +194,15 @@
                     <j:html><![CDATA[<p>The <strong>TriStateCheckBoxLabelState</strong> bead allows us to display a different Text for each state.</p>]]></j:html>
                 </j:Label>
 
-                <jc:TriStateCheckBox indeterminated="true">
+                <jc:TriStateCheckBox indeterminate="true">
                     <jc:beads>
-                        <jc:TriStateCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminatedText="Indeterminate..."/>
+                        <jc:TriStateCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminateText="Indeterminate..."/>
                     </jc:beads>
                 </jc:TriStateCheckBox>
 
-                <jc:TriStateCheckBox rejectedVersion="true" indeterminated="true">
+                <jc:TriStateCheckBox rejectedVersion="true" indeterminate="true">
                     <jc:beads>
-                        <jc:TriStateCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminatedText="Rejected..."/>
+                        <jc:TriStateCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminateText="Rejected..."/>
                     </jc:beads>
                 </jc:TriStateCheckBox>   
                
@@ -218,7 +218,7 @@
                     <j:Label text="Custom: " width="100"/>
                     <jc:TriStateCheckBox localId="trCh1" text="{trCh1.state}" >
                         <jc:beads>
-                            <jc:TriStateCheckBoxStatesValues checkedValue="valChecked" uncheckedValue="valUnchecked" indeterminatedValue="valIndeterminate"/>
+                            <jc:TriStateCheckBoxStatesValues checkedValue="valChecked" uncheckedValue="valUnchecked" indeterminateValue="valIndeterminate"/>
                         </jc:beads>
                     </jc:TriStateCheckBox>
                 </j:HGroup>
@@ -254,7 +254,7 @@
                             </jc:beads>
                         </jc:TriStateCheckBox>
 
-                        <jc:TriStateCheckBox text="Only height to 35 and disabled" indeterminated="true">
+                        <jc:TriStateCheckBox text="Only height to 35 and disabled" indeterminate="true">
                             <jc:beads>
                                 <j:Disabled localId="opt3disable" disabled="true"/>
                                 <j:InputButtonSize height="35"/>
@@ -277,7 +277,7 @@
                             </jc:beads>
                         </jc:TriStateCheckBox>
 
-                        <jc:TriStateCheckBox rejectedVersion="true" text="Only height to 35 and disabled" indeterminated="true">
+                        <jc:TriStateCheckBox rejectedVersion="true" text="Only height to 35 and disabled" indeterminate="true">
                             <jc:beads>
                                 <j:Disabled disabled="true"/>
                                 <j:InputButtonSize height="35"/>

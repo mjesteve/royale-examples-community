@@ -245,7 +245,7 @@ jc|VirtualComboBoxJwExt{
 }
 
 
-/* New state indeterminated */
+/* New state indeterminate */
 
 .jewel.checkbox input:indeterminate+span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%2329A89F' /%3E%3C/svg%3E") no-repeat center center;
@@ -276,7 +276,7 @@ jc|VirtualComboBoxJwExt{
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%23cccccc' /%3E%3C/svg%3E") no-repeat center center;
 }
 
-/* New state indeterminated - version rejected */
+/* New state indeterminate - version rejected */
 
 .jewel.checkbox.rejected input:indeterminate+span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%2329A89F' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;

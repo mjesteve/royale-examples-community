@@ -111,7 +111,7 @@
 
     <jc:ExampleHeader title="ComboBoxJwExt / VirtualComboBoxJwExt - Custom Controls">
         <jc:description>
-            <![CDATA[<strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> are extensions of Jewel's ComboBox and VirtualComboBox controls respectively.<p><b/>Almost all the features of these implementations go against the PAIG directives and should therefore be read as examples to automate recurring needs, in these controls, within our application.</p>]]>
+            <![CDATA[<strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> are extensions of Jewel's ComboBox and VirtualComboBox controls respectively.<p><b/>Almost all the features of these implementations go against the PAYG directives and should therefore be read as examples to automate recurring needs, in these controls, within our application.</p>]]>
         </jc:description>
     </jc:ExampleHeader>
 

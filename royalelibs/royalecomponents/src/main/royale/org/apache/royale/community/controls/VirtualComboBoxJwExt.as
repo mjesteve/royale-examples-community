@@ -109,7 +109,11 @@ package org.apache.royale.community.controls {
         public function get textPrompt():String{ return _textPrompt; }
         public function set textPrompt(value:String):void
         {
-            _textPrompt = value; 
+            if(value && value.length>0)
+                _textPrompt = value; 
+            else
+                _textPrompt = COMBO_BOX_TEXT_PROMPT;
+                
             if(_activeTextPromp && textPromptBead)
                 textPromptBead.prompt = _textPrompt;
         }
