@@ -5,7 +5,7 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
     itemsVerticalAlign="itemsSameHeight"
-	xmlns:vos="org.apache.royale.community.vos.*" 
+	xmlns:vos="org.apache.royale.community.vos.*"  initComplete="init()"
     width="100%"
    >
     
@@ -24,7 +24,11 @@
                 new ContextMenuVO("Paste","assets/paste.png","fn_Paste")
 
                 ]);
-
+                public function init():void
+                {
+                    addEventListener("fn_Copy",fn_Copy);
+                    addEventListener("fn_Paste",fn_Paste);
+                }
                 COMPILE::JS
                 public function btnClick(e:MouseEvent):void
                 {
@@ -43,6 +47,16 @@
                 }
                 public function fn_HandleClick(e:MouseEvent):void
                 {
+                      for(var i:int = 0;i<dp.length;i++)
+                    {
+                        if(e.target.element.innerText == dp[i].label)
+                        {
+                            var str:String = dp[i].click;
+                            dispatchEvent(str);
+                          
+                        }
+                    }
+                    /*
                     for(var i:int = 0;i<dp.length;i++)
                     {   
                         if(e.target.element.innerText != '')
@@ -52,6 +66,7 @@
                                 if(dp[i].click != null)
                                 if(dp[i].click != '')
                                 {
+                                     //below function can be used when we want to keep funtion level scope only
                                     var objfunction:Function = this[dp[i].click] ;
                                     objfunction.call();
                                 }
@@ -64,12 +79,13 @@
                                 if(dp[i].click != null)
                                 if(dp[i].click != '')
                                 {
+                                     //below function can be used when we want to keep funtion level scope only
                                     var objfunction2:Function = this[dp[i].click] ;
                                     objfunction2.call();
                                 }
                             }
                         }
-                    }
+                    }*/
                 }
 
                public function fn_Copy():void
