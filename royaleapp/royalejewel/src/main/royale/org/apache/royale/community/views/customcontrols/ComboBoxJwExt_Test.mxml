@@ -276,17 +276,18 @@
                         </j:IconButton>
                     </j:HGroup>
                 </j:HGroup>
+
                 <j:HGroup percentWidth="100" gap="3" >
                     <jc:ComboBoxJwExt localId="cbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
                         <jc:dataProvider>
                             <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
                         </jc:dataProvider>
                     </jc:ComboBoxJwExt>
-                    <jc:VirtualComboBoxJwExt localId="vcbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
+                    <jc:VirtualComboBoxJwExtBis localId="vcbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true" disabled="{chforce.selected}">
                         <jc:dataProvider>
                             <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
                         </jc:dataProvider>
-                    </jc:VirtualComboBoxJwExt>
+                    </jc:VirtualComboBoxJwExtBis>
                 </j:HGroup>
                
                 <j:Label multiline="true">
@@ -299,14 +300,16 @@
                             <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
                         </jc:dataProvider>
                     </jc:ComboBoxJwExt>
-                    <jc:VirtualComboBoxJwExt localId="vcbreadnodata" percentWidth="50" activeTextPromp="true" emptyReadOnly="true">
+                    <jc:VirtualComboBoxJwExtBis localId="vcbreadnodata" percentWidth="50" activeTextPromp="true" emptyReadOnly="true" readOnly="{chforce.selected}">
                         <jc:dataProvider>
                             <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
                         </jc:dataProvider>
-                    </jc:VirtualComboBoxJwExt>
+                    </jc:VirtualComboBoxJwExtBis>
                 </j:HGroup>
 
                 <html:Hr className="separador"/>
+
+                <j:CheckBox localId="chforce" selected="false" text="Force disabled/readOnly"/>
 <!--       
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>

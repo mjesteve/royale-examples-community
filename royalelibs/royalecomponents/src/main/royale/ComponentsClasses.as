@@ -46,6 +46,7 @@ package
         
         import org.apache.royale.community.controls.ComboBoxJwExt; ComboBoxJwExt;
         import org.apache.royale.community.controls.VirtualComboBoxJwExt; VirtualComboBoxJwExt;
+        import org.apache.royale.community.controls.VirtualComboBoxJwExtBis; VirtualComboBoxJwExtBis;
 
         import org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt; ComboBoxModelJwExt;
         import org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel; ComboBoxByFieldModel;

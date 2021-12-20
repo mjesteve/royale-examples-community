@@ -30,13 +30,13 @@ package org.apache.royale.community.controls {
      *      The ComboBoxTextPrompt bead is automatically loaded.
      * 
      */
-    public class VirtualComboBoxJwExt extends VirtualComboBox {
+    public class VirtualComboBoxJwExtBis extends VirtualComboBox {
 
         private static const COMBO_BOX_TEXT_PROMPT:String = "\u21F2 ...";
 
         private var isCreateComplete:Boolean = false;
 
-        public function VirtualComboBoxJwExt() {
+        public function VirtualComboBoxJwExtBis() {
             super();
             addEventListener("beadsAdded", beadsAddedHandler);
         }

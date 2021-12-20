@@ -59,5 +59,6 @@
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
     <component id="TriStateCheckBox" class="org.apache.royale.community.jewel.TriStateCheckBox"/>
     <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
+    <component id="VirtualComboBoxJwExtBis" class="org.apache.royale.community.controls.VirtualComboBoxJwExtBis"/>
 
 </componentPackage>
