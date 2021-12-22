@@ -26,7 +26,7 @@
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
     <component id="ReadOnly" class="org.apache.royale.community.beads.ReadOnly"/>
     <component id="TriStateCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
-    <component id="TriStateCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxStatesValues"/>
+    <component id="TriStateCheckBoxState" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState"/>
     <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
     <component id="ComboBoxRequireSelection" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection"/>
     <component id="ComboBoxReadOnly" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly"/>

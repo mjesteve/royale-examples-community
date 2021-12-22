@@ -5,10 +5,10 @@ package org.apache.royale.community.jewel.beads.controls.tristatecheckbox
 	import org.apache.royale.community.jewel.TriStateCheckBox;
 
 
-	public class TriStateCheckBoxStatesValues_v0 implements IBead
+	public class TriStateCheckBoxState_v0 implements IBead
 	{
 
-		public function TriStateCheckBoxStatesValues_v0()
+		public function TriStateCheckBoxState_v0()
 		{
 		}
 

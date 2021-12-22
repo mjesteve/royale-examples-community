@@ -86,7 +86,7 @@ package
 
         import org.apache.royale.community.jewel.TriStateCheckBox; TriStateCheckBox;
         import org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState; TriStateCheckBoxLabelState;
-        import org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxStatesValues; TriStateCheckBoxStatesValues;
+        import org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState; TriStateCheckBoxState;
         import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection; ComboBoxRequireSelection;
         import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly; ComboBoxReadOnly;
         import org.apache.royale.community.jewel.supportClasses.ISelectableWithIndeterminacy; ISelectableWithIndeterminacy;
