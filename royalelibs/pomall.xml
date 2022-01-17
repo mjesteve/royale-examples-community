@@ -44,6 +44,10 @@
         -source-map=${source.map};
         <!-- -source-map-source-root=/${project.artifactId}/src/main/royale/; -->
         -source-map-source-root=${project.basedir}/src/main/royale/;
+        -js-dynamic-access-unknown-members=true;
+        -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+        -keep-code-with-metadata=Inject;
+        -show-binding-warnings=false;
     </project.compiler.options>
   </properties>
 

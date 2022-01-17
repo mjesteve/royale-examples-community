@@ -84,19 +84,6 @@
 
           <additionalCompilerOptions>
             ${project.compiler.options}
-            <!-- email Josh: 
-            With js-dynamic-access-unknown-members, the "dynamic-access" part of the name refers to how the JS is generated. 
-            It basically says that if you try to access a member that doesn't exist on a class, the generated JS should use 
-            brackets/string (obj["field"]) instead of a dot (obj.field) for member access. 
-            The idea is to force Closure compiler not to rename the name of the field on that particular line because Closure leaves strings as-is.
-            setTheme() is not declared on the Object class, so the generated JS output for obj.setTheme() will be obj["setTheme"]() if js-dynamic-access-unknown-members is true. 
-            If js-dynamic-access-unknown-members is false, then it will remain as obj.setTheme() in the generated JS, which may or may not be renamed by Closure in the release build.
-            (in some cases, Closure decides not to rename things, for whatever magical reasons it has... yes, even after months of wrangling Closure, 
-            I still don't completely understand everything that it does) -->
-            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
-            -keep-code-with-metadata=Inject;
-            -show-binding-warnings=false;
           </additionalCompilerOptions>
 
           <namespaces>

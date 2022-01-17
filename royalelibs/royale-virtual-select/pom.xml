@@ -83,10 +83,6 @@
 
           <additionalCompilerOptions>
             ${project.compiler.options}
-            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
-            -keep-code-with-metadata=Inject;
-            -show-binding-warnings=false;
           </additionalCompilerOptions>
 
         </configuration>
