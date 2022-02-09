@@ -95,12 +95,38 @@ export class DomUtils {
     $ele.setAttribute(name, value);
   }
 
+  static setAttrFromEle($from, $to, attrList, valueLessProps) {
+    const values = {};
+
+    attrList.forEach((attr) => {
+      values[attr] = $from.getAttribute(attr);
+    });
+
+    attrList.forEach((attr) => {
+      let value = values[attr];
+
+      if (value || (valueLessProps.indexOf(attr) !== -1 && value === '')) {
+        $to.setAttribute(attr, value);
+      }
+    });
+  }
+
   static setStyle($ele, name, value) {
     if (!$ele) {
       return;
     }
 
     $ele.style[name] = value;
+  }
+
+  static setStyles($ele, props) {
+    if (!$ele || !props) {
+      return;
+    }
+
+    Object.keys(props).forEach((name) => {
+      $ele.style[name] = props[name];
+    });
   }
 
   static getElements($ele) {
@@ -131,7 +157,7 @@ export class DomUtils {
     });
   }
 
-  static dispatchEvent($ele, eventName) {
+  static dispatchEvent($ele, eventName, bubbles = false) {
     if (!$ele) {
       return;
     }
@@ -141,24 +167,9 @@ export class DomUtils {
     /** using setTimeout to trigger asynchronous event */
     setTimeout(() => {
       $ele.forEach(($this) => {
-        $this.dispatchEvent(new Event(eventName, { bubbles: true }));
+        $this.dispatchEvent(new CustomEvent(eventName, { bubbles }));
       });
     }, 0);
-  }
-
-  /** convert object to style attribute */
-  static getStyleText(props, skipAttrName) {
-    let result = '';
-
-    for (let k in props) {
-      result += `${k}: ${props[k]};`;
-    }
-
-    if (result && !skipAttrName) {
-      result = `style="${result}"`;
-    }
-
-    return result;
   }
 
   /** convert object to dom attributes */

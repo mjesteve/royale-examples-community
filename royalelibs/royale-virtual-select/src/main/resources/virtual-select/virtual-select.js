@@ -9,6 +9,66 @@ const keyDownMethodMapping = {
   40: 'onDownArrowPress',
 };
 
+const valueLessProps = ['multiple', 'disabled', 'required', 'autofocus'];
+
+const attrPropsMapping = {
+  id: 'id',
+  multiple: 'multiple',
+  placeholder: 'placeholder',
+  name: 'name',
+  disabled: 'disabled',
+  required: 'required',
+  autofocus: 'autofocus',
+  'data-dropbox-wrapper': 'dropboxWrapper',
+  'data-value-key': 'valueKey',
+  'data-label-key': 'labelKey',
+  'data-description-key': 'descriptionKey',
+  'data-alias-key': 'aliasKey',
+  'data-search': 'search',
+  'data-hide-clear-button': 'hideClearButton',
+  'data-auto-select-first-option': 'autoSelectFirstOption',
+  'data-has-option-description': 'hasOptionDescription',
+  'data-options-count': 'optionsCount',
+  'data-option-height': 'optionHeight',
+  'data-position': 'position',
+  'data-text-direction': 'textDirection',
+  'data-no-options-text': 'noOptionsText',
+  'data-no-search-results-text': 'noSearchResultsText',
+  'data-select-all-text': 'selectAllText',
+  'data-search-placeholder-text': 'searchPlaceholderText',
+  'data-options-selected-text': 'optionsSelectedText',
+  'data-option-selected-text': 'optionSelectedText',
+  'data-all-options-selected-text': 'allOptionsSelectedText',
+  'data-clear-button-text': 'clearButtonText',
+  'data-more-text': 'moreText',
+  'data-silent-initial-value-set': 'silentInitialValueSet',
+  'data-dropbox-width': 'dropboxWidth',
+  'data-z-index': 'zIndex',
+  'data-no-of-display-values': 'noOfDisplayValues',
+  'data-allow-new-option': 'allowNewOption',
+  'data-mark-search-results': 'markSearchResults',
+  'data-tooltip-font-size': 'tooltipFontSize',
+  'data-tooltip-alignment': 'tooltipAlignment',
+  'data-tooltip-max-width': 'tooltipMaxWidth',
+  'data-show-selected-options-first': 'showSelectedOptionsFirst',
+  'data-disable-select-all': 'disableSelectAll',
+  'data-keep-always-open': 'keepAlwaysOpen',
+  'data-max-values': 'maxValues',
+  'data-additional-classes': 'additionalClasses',
+  'data-show-dropbox-as-popup': 'showDropboxAsPopup',
+  'data-popup-dropbox-breakpoint': 'popupDropboxBreakpoint',
+  'data-hide-value-tooltip-on-select-all': 'hideValueTooltipOnSelectAll',
+  'data-show-options-only-on-search': 'showOptionsOnlyOnSearch',
+  'data-select-all-only-visible': 'selectAllOnlyVisible',
+  'data-always-show-selected-options-count': 'alwaysShowSelectedOptionsCount',
+  'data-disable-all-options-selected-text': 'disableAllOptionsSelectedText',
+  'data-show-value-as-tags': 'showValueAsTags',
+  'data-disable-option-group-checkbox': 'disableOptionGroupCheckbox',
+  'data-enable-secure-text': 'enableSecureText',
+  'data-set-value-as-array': 'setValueAsArray',
+  'data-disable-validation': 'disableValidation',
+};
+
 /** Class representing VirtualSelect */
 export class VirtualSelect {
   /**
@@ -28,6 +88,9 @@ export class VirtualSelect {
    * @property {string} [aliasKey=alias] - Key name to get alias from options object
    * @property {boolean} [multiple=false] - Enable multiselect
    * @property {boolean} [search=false] - Enable search
+   * @property {boolean} [disabled=false] - Disable dropdown
+   * @property {boolean} [required=false] - Enable required validation
+   * @property {boolean} [autofocus=false] - Autofocus dropdown on load
    * @property {boolean} [hideClearButton=false] - Hide clear button
    * @property {boolean} [autoSelectFirstOption=false] - Select first option by default on load
    * @property {boolean} [hasOptionDescription=false] - Has description to show along with label
@@ -35,6 +98,7 @@ export class VirtualSelect {
    * @property {string} [optionsCount=5|4] - No.of options to show on viewport
    * @property {string} [optionHeight=40px|50px] - Height of each dropdown options
    * @property {string} [position=auto] - Position of dropbox (top, bottom, auto)
+   * @property {string} [textDirection=ltr] - Direction of text (ltr or rtl)
    * @property {array} [disabledOptions] - Options to disable (array of values)
    * @property {(string|array)} [selectedValue] - Single value or array of values to select on init
    * @property {boolean} [silentInitialValueSet=false] - To avoid "change event" trigger on setting initial value
@@ -63,6 +127,11 @@ export class VirtualSelect {
    * @property {boolean} [disableAllOptionsSelectedText=false] - By default, when all values selected "All (10)" value text would be shown.
    * Set true to show value text as "10 options selected".
    * @property {boolean} [showValueAsTags=false] - Show each selected values as tags with remove icon
+   * @property {boolean} [disableOptionGroupCheckbox=false] - Disable option group title checkbox
+   * @property {boolean} [enableSecureText=false] - Set true to replace HTML tags from option's text (value and label) to prevent XSS attack.
+   * This feature is not enabled by default to avoid performance issue.
+   * @property {boolean} [setValueAsArray=false] - Set value for hidden input in array format (e.g. '["1", "2"]')
+   * @property {boolean} [disableValidation=false] - Disable required validation
    *
    * @property {string} [placeholder=Select] - Text to show when no options selected
    * @property {string} [noOptionsText=No options found] - Text to show when no options to show
@@ -78,6 +147,7 @@ export class VirtualSelect {
    */
   constructor(options) {
     try {
+      this.createSecureTextElements();
       this.setProps(options);
       this.setDisabledOptions(options.disabledOptions);
       this.setOptions(options.options);
@@ -132,6 +202,10 @@ export class VirtualSelect {
       wrapperClasses += ' show-value-as-tags';
     }
 
+    if (this.textDirection) {
+      wrapperClasses += ` text-direction-${this.textDirection}`;
+    }
+
     let html = `<div class="vscomp-ele-wrapper ${wrapperClasses}" tabindex="0">
         <input type="hidden" name="${this.name}" class="vscomp-hidden-input">
 
@@ -182,17 +256,7 @@ export class VirtualSelect {
   renderDropbox({ wrapperClasses }) {
     let $wrapper = this.dropboxWrapper !== 'self' ? document.querySelector(this.dropboxWrapper) : null;
 
-    let dropboxContainerStyle = {
-      'z-index': this.zIndex,
-    };
-
-    if (!this.showAsPopup) {
-      if (this.dropboxWidth) {
-        dropboxContainerStyle.width = this.dropboxWidth;
-      }
-    }
-
-    let html = `<div class="vscomp-dropbox-container" ${DomUtils.getStyleText(dropboxContainerStyle)}>
+    let html = `<div class="vscomp-dropbox-container">
         <div class="vscomp-dropbox">
           <div class="vscomp-search-wrapper"></div>
 
@@ -204,6 +268,7 @@ export class VirtualSelect {
             </div>
           </div>
 
+          <div class="vscomp-options-bottom-freezer"></div>
           <div class="vscomp-no-options">${this.noOptionsText}</div>
           <div class="vscomp-no-search-results">${this.noSearchResultsText}</div>
 
@@ -236,11 +301,8 @@ export class VirtualSelect {
     let markSearchResults = this.markSearchResults && this.searchValue ? true : false;
     let searchRegex;
     let labelRenderer = this.labelRenderer;
+    let disableOptionGroupCheckbox = this.disableOptionGroupCheckbox;
     let hasLabelRenderer = typeof labelRenderer === 'function';
-
-    let styleText = DomUtils.getStyleText({
-      height: this.optionHeight + 'px',
-    });
 
     if (markSearchResults) {
       searchRegex = new RegExp(`(${this.searchValue})`, 'gi');
@@ -262,6 +324,7 @@ export class VirtualSelect {
       let leftSection = checkboxHtml;
       let rightSection = '';
       let description = '';
+      let groupIndexText = '';
 
       if (d.isFocused) {
         optionClasses += ' focused';
@@ -273,15 +336,19 @@ export class VirtualSelect {
 
       if (d.isGroupTitle) {
         optionClasses += ' group-title';
-        leftSection = '';
-      } else {
-        if (d.isSelected) {
-          optionClasses += ' selected';
+
+        if (disableOptionGroupCheckbox) {
+          leftSection = '';
         }
+      }
+
+      if (d.isSelected) {
+        optionClasses += ' selected';
       }
 
       if (d.isGroupOption) {
         optionClasses += ' group-option';
+        groupIndexText = `data-group-index="${d.groupIndex}"`;
       }
 
       if (hasLabelRenderer) {
@@ -303,7 +370,9 @@ export class VirtualSelect {
         }
       }
 
-      html += `<div class="${optionClasses}" data-value="${d.value}" data-index="${d.index}" data-visible-index="${d.visibleIndex}" ${styleText}>
+      html += `<div class="${optionClasses}" data-value="${d.value}" data-index="${d.index}" data-visible-index="${d.visibleIndex}"
+          ${groupIndexText}
+        >
           ${leftSection}
           <span class="vscomp-option-text" ${optionTooltip}>
             ${optionLabel}
@@ -314,16 +383,9 @@ export class VirtualSelect {
     });
 
     this.$options.innerHTML = html;
-    let hasNoOptions = !this.options.length && !this.hasServerSearch;
-    let hasNoSearchResults = !hasNoOptions && !visibleOptions.length;
+    this.$visibleOptions = this.$options.querySelectorAll('.vscomp-option');
 
-    if (!this.allowNewOption || this.hasServerSearch || this.showOptionsOnlyOnSearch) {
-      DomUtils.toggleClass(this.$allWrappers, 'has-no-search-results', hasNoSearchResults);
-    }
-
-    DomUtils.toggleClass(this.$allWrappers, 'has-no-options', hasNoOptions);
-    this.setOptionsPosition();
-    this.setOptionsTooltip();
+    this.afterRenderOptions();
   }
 
   renderSearch() {
@@ -415,11 +477,13 @@ export class VirtualSelect {
     }
   }
 
-  onEnterPress() {
-    if (!this.isOpened()) {
-      this.openDropbox();
-    } else {
+  onEnterPress(e) {
+    e.preventDefault();
+
+    if (this.isOpened()) {
       this.selectFocusedOption();
+    } else {
+      this.openDropbox();
     }
   }
 
@@ -462,7 +526,28 @@ export class VirtualSelect {
   }
 
   onOptionsClick(e) {
-    this.selectOption(e.target.closest('.vscomp-option:not(.disabled):not(.group-title)'));
+    let $option = e.target.closest('.vscomp-option');
+
+    if ($option && !DomUtils.hasClass($option, 'disabled')) {
+      if (DomUtils.hasClass($option, 'group-title')) {
+        if (!this.disableOptionGroupCheckbox) {
+          this.onGroupTitleClick($option);
+        }
+      } else {
+        this.selectOption($option, { event: e });
+      }
+    }
+  }
+
+  onGroupTitleClick($ele) {
+    if (!$ele) {
+      return;
+    }
+
+    let isAdding = !DomUtils.hasClass($ele, 'selected');
+
+    this.toggleGroupTitleCheckbox($ele, isAdding);
+    this.toggleGroupOptions($ele, isAdding);
   }
 
   onDropboxContainerClick(e) {
@@ -558,15 +643,15 @@ export class VirtualSelect {
 
   /** after event methods - start */
   afterRenderWrapper() {
-    DomUtils.setAttr(this.$ele, 'name', this.name);
     DomUtils.addClass(this.$ele, 'vscomp-ele');
 
     this.renderSearch();
+    this.setDropboxStyles();
     this.setOptionsHeight();
     this.setVisibleOptions();
     this.setOptionsContainerHeight();
     this.addEvents();
-    this.setMethods();
+    this.setEleProps();
 
     if (!this.keepAlwaysOpen && !this.showAsPopup) {
       this.initDropboxPopover();
@@ -581,6 +666,30 @@ export class VirtualSelect {
     if (this.showOptionsOnlyOnSearch) {
       this.setSearchValue('', false, true);
     }
+
+    if (this.initialDisabled) {
+      this.disable();
+    }
+
+    if (this.autofocus) {
+      this.focus();
+    }
+  }
+
+  afterRenderOptions() {
+    let visibleOptions = this.getVisibleOptions();
+    let hasNoOptions = !this.options.length && !this.hasServerSearch;
+    let hasNoSearchResults = !hasNoOptions && !visibleOptions.length;
+
+    if (!this.allowNewOption || this.hasServerSearch || this.showOptionsOnlyOnSearch) {
+      DomUtils.toggleClass(this.$allWrappers, 'has-no-search-results', hasNoSearchResults);
+    }
+
+    DomUtils.toggleClass(this.$allWrappers, 'has-no-options', hasNoOptions);
+
+    this.setOptionAttr();
+    this.setOptionsPosition();
+    this.setOptionsTooltip();
   }
 
   afterSetOptionsContainerHeight(reset) {
@@ -666,6 +775,13 @@ export class VirtualSelect {
     this.alwaysShowSelectedOptionsCount = convertToBoolean(options.alwaysShowSelectedOptionsCount);
     this.disableAllOptionsSelectedText = convertToBoolean(options.disableAllOptionsSelectedText);
     this.showValueAsTags = convertToBoolean(options.showValueAsTags);
+    this.disableOptionGroupCheckbox = convertToBoolean(options.disableOptionGroupCheckbox);
+    this.enableSecureText = convertToBoolean(options.enableSecureText);
+    this.setValueAsArray = convertToBoolean(options.setValueAsArray);
+    this.disableValidation = convertToBoolean(options.disableValidation);
+    this.initialDisabled = convertToBoolean(options.disabled);
+    this.required = convertToBoolean(options.required);
+    this.autofocus = convertToBoolean(options.autofocus);
     this.noOptionsText = options.noOptionsText;
     this.noSearchResultsText = options.noSearchResultsText;
     this.selectAllText = options.selectAllText;
@@ -677,6 +793,7 @@ export class VirtualSelect {
     this.moreText = options.moreText;
     this.placeholder = options.placeholder;
     this.position = options.position;
+    this.textDirection = options.textDirection;
     this.dropboxWidth = options.dropboxWidth;
     this.tooltipFontSize = options.tooltipFontSize;
     this.tooltipAlignment = options.tooltipAlignment;
@@ -684,7 +801,7 @@ export class VirtualSelect {
     this.noOfDisplayValues = parseInt(options.noOfDisplayValues);
     this.zIndex = parseInt(options.zIndex);
     this.maxValues = parseInt(options.maxValues);
-    this.name = options.name;
+    this.name = this.secureText(options.name);
     this.additionalClasses = options.additionalClasses;
     this.popupDropboxBreakpoint = options.popupDropboxBreakpoint;
     this.onServerSearch = options.onServerSearch;
@@ -708,6 +825,7 @@ export class VirtualSelect {
 
     if (this.maxValues || this.hasServerSearch || this.showOptionsOnlyOnSearch) {
       this.disableSelectAll = true;
+      this.disableOptionGroupCheckbox = true;
     }
 
     if (this.keepAlwaysOpen) {
@@ -731,12 +849,6 @@ export class VirtualSelect {
       optionsCount: 5,
       noOfDisplayValues: 50,
       optionHeight: '40px',
-      multiple: false,
-      hideClearButton: false,
-      autoSelectFirstOption: false,
-      hasOptionDescription: false,
-      silentInitialValueSet: false,
-      disableSelectAll: false,
       noOptionsText: 'No options found',
       noSearchResultsText: 'No results found',
       selectAllText: 'Select All',
@@ -749,24 +861,15 @@ export class VirtualSelect {
       placeholder: 'Select',
       position: 'auto',
       zIndex: options.keepAlwaysOpen ? 1 : 2,
-      allowNewOption: false,
-      markSearchResults: false,
       tooltipFontSize: '14px',
       tooltipAlignment: 'center',
       tooltipMaxWidth: '300px',
-      showSelectedOptionsFirst: false,
       name: '',
       additionalClasses: '',
-      keepAlwaysOpen: false,
       maxValues: 0,
       showDropboxAsPopup: true,
       popupDropboxBreakpoint: '576px',
       hideValueTooltipOnSelectAll: true,
-      showOptionsOnlyOnSearch: false,
-      selectAllOnlyVisible: false,
-      alwaysShowSelectedOptionsCount: false,
-      disableAllOptionsSelectedText: false,
-      showValueAsTags: false,
     };
 
     if (options.hasOptionDescription) {
@@ -778,73 +881,32 @@ export class VirtualSelect {
   }
 
   setPropsFromElementAttr(options) {
-    let $ele = options.ele;
-    let mapping = {
-      multiple: 'multiple',
-      placeholder: 'placeholder',
-      name: 'name',
-      'data-dropbox-wrapper': 'dropboxWrapper',
-      'data-value-key': 'valueKey',
-      'data-label-key': 'labelKey',
-      'data-description-key': 'descriptionKey',
-      'data-alias-key': 'aliasKey',
-      'data-search': 'search',
-      'data-hide-clear-button': 'hideClearButton',
-      'data-auto-select-first-option': 'autoSelectFirstOption',
-      'data-has-option-description': 'hasOptionDescription',
-      'data-options-count': 'optionsCount',
-      'data-option-height': 'optionHeight',
-      'data-position': 'position',
-      'data-no-options-text': 'noOptionsText',
-      'data-no-search-results-text': 'noSearchResultsText',
-      'data-select-all-text': 'selectAllText',
-      'data-search-placeholder-text': 'searchPlaceholderText',
-      'data-options-selected-text': 'optionsSelectedText',
-      'data-option-selected-text': 'optionSelectedText',
-      'data-all-options-selected-text': 'allOptionsSelectedText',
-      'data-clear-button-text': 'clearButtonText',
-      'data-more-text': 'moreText',
-      'data-silent-initial-value-set': 'silentInitialValueSet',
-      'data-dropbox-width': 'dropboxWidth',
-      'data-z-index': 'zIndex',
-      'data-no-of-display-values': 'noOfDisplayValues',
-      'data-allow-new-option': 'allowNewOption',
-      'data-mark-search-results': 'markSearchResults',
-      'data-tooltip-font-size': 'tooltipFontSize',
-      'data-tooltip-alignment': 'tooltipAlignment',
-      'data-tooltip-max-width': 'tooltipMaxWidth',
-      'data-show-selected-options-first': 'showSelectedOptionsFirst',
-      'data-disable-select-all': 'disableSelectAll',
-      'data-keep-always-open': 'keepAlwaysOpen',
-      'data-max-values': 'maxValues',
-      'data-additional-classes': 'additionalClasses',
-      'data-show-dropbox-as-popup': 'showDropboxAsPopup',
-      'data-popup-dropbox-breakpoint': 'popupDropboxBreakpoint',
-      'data-hide-value-tooltip-on-select-all': 'hideValueTooltipOnSelectAll',
-      'data-show-options-only-on-search': 'showOptionsOnlyOnSearch',
-      'data-select-all-only-visible': 'selectAllOnlyVisible',
-      'data-always-show-selected-options-count': 'alwaysShowSelectedOptionsCount',
-      'data-disable-all-options-selected-text': 'disableAllOptionsSelectedText',
-      'data-show-value-as-tags': 'showValueAsTags',
-    };
+    const $ele = options.ele;
 
-    for (let k in mapping) {
+    for (let k in attrPropsMapping) {
       let value = $ele.getAttribute(k);
 
-      if (k === 'multiple' && (value === '' || value === 'true')) {
+      if (valueLessProps.indexOf(k) !== -1 && (value === '' || value === 'true')) {
         value = true;
       }
 
       if (value) {
-        options[mapping[k]] = value;
+        options[attrPropsMapping[k]] = value;
       }
     }
   }
 
-  setMethods() {
+  setEleProps() {
     let $ele = this.$ele;
     $ele.virtualSelect = this;
     $ele.value = this.multiple ? [] : '';
+    $ele.name = this.name;
+    $ele.disabled = false;
+    $ele.required = this.required;
+    $ele.autofocus = this.autofocus;
+    $ele.multiple = this.multiple;
+    $ele.form = $ele.closest('form');
+
     $ele.reset = VirtualSelect.reset;
     $ele.setValue = VirtualSelect.setValueMethod;
     $ele.setOptions = VirtualSelect.setOptionsMethod;
@@ -857,7 +919,12 @@ export class VirtualSelect {
     $ele.getSelectedOptions = VirtualSelect.getSelectedOptionsMethod;
     $ele.open = VirtualSelect.openMethod;
     $ele.close = VirtualSelect.closeMethod;
+    $ele.focus = VirtualSelect.focusMethod;
+    $ele.enable = VirtualSelect.enableMethod;
+    $ele.disable = VirtualSelect.disableMethod;
     $ele.destroy = VirtualSelect.destroyMethod;
+    $ele.validate = VirtualSelect.validateMethod;
+    $ele.toggleRequired = VirtualSelect.toggleRequiredMethod;
 
     if (this.hasDropboxWrapper) {
       this.$dropboxWrapper.virtualSelect = this;
@@ -865,25 +932,26 @@ export class VirtualSelect {
   }
 
   setValueMethod(value, silentChange) {
-    if (!Array.isArray(value)) {
-      value = [value];
-    }
-
-    value = value.map((v) => {
-      return v || v == 0 ? v.toString() : '';
-    });
-
+    let valuesMapping = {};
     let validValues = [];
 
-    if (this.allowNewOption && value) {
-      this.setNewOptionsFromValue(value);
+    if (value) {
+      if (!Array.isArray(value)) {
+        value = [value];
+      }
+
+      value = value.map((v) => {
+        return v || v == 0 ? v.toString() : '';
+      });
+
+      if (this.allowNewOption && value) {
+        this.setNewOptionsFromValue(value);
+      }
+
+      value.forEach((d) => {
+        valuesMapping[d] = true;
+      });
     }
-
-    let valuesMapping = {};
-
-    value.forEach((d) => {
-      valuesMapping[d] = true;
-    });
 
     this.options.forEach((d) => {
       if (valuesMapping[d.value] === true && !d.isDisabled && !d.isGroupTitle) {
@@ -899,7 +967,7 @@ export class VirtualSelect {
     }
 
     this.beforeValueSet();
-    this.setValue(validValues, !silentChange);
+    this.setValue(validValues, { disableEvent: silentChange });
     this.afterValueSet();
   }
 
@@ -908,29 +976,56 @@ export class VirtualSelect {
     this.afterSetOptions(keepValue);
   }
 
-  setDisabledOptionsMethod(disabledOptions) {
+  setDisabledOptionsMethod(disabledOptions, keepValue = false) {
     this.setDisabledOptions(disabledOptions, true);
-    this.setValueMethod(null);
+
+    if (!keepValue) {
+      this.setValueMethod(null);
+      this.toggleAllOptionsClass();
+    }
+
     this.setVisibleOptions();
   }
 
-  setDisabledOptions(disabledOptions = [], setOptionsProp = false) {
-    disabledOptions = disabledOptions.map((d) => d.toString());
-    this.disabledOptions = disabledOptions;
+  setDisabledOptions(disabledOptions, setOptionsProp = false) {
+    let disabledOptionsArr = [];
 
-    let disabledOptionsMapping = {};
+    if (!disabledOptions) {
+      if (setOptionsProp) {
+        this.options.forEach((d) => {
+          d.isDisabled = false;
 
-    disabledOptions.forEach((d) => {
-      disabledOptionsMapping[d] = true;
-    });
+          return d;
+        });
+      }
+    } else if (disabledOptions === true) {
+      if (setOptionsProp) {
+        this.options.forEach((d) => {
+          d.isDisabled = true;
 
-    if (setOptionsProp && disabledOptions.length) {
-      this.options.forEach((d) => {
-        d.isDisabled = disabledOptionsMapping[d.value] === true;
+          disabledOptionsArr.push(d.value);
 
-        return d;
+          return d;
+        });
+      }
+    } else {
+      disabledOptionsArr = disabledOptions.map((d) => d.toString());
+      let disabledOptionsMapping = {};
+
+      disabledOptionsArr.forEach((d) => {
+        disabledOptionsMapping[d] = true;
       });
+
+      if (setOptionsProp) {
+        this.options.forEach((d) => {
+          d.isDisabled = disabledOptionsMapping[d.value] === true;
+
+          return d;
+        });
+      }
     }
+
+    this.disabledOptions = disabledOptionsArr;
   }
 
   setOptions(options) {
@@ -946,8 +1041,9 @@ export class VirtualSelect {
     let aliasKey = this.aliasKey;
     let hasOptionDescription = this.hasOptionDescription;
     let getString = Utils.getString;
+    let secureText = this.secureText.bind(this);
     let convertToBoolean = Utils.convertToBoolean;
-    let getAlias = this.getAlias;
+    let getAlias = this.getAlias.bind(this);
     let index = 0;
     let hasOptionGroup = false;
     let disabledOptionsMapping = {};
@@ -957,13 +1053,13 @@ export class VirtualSelect {
     });
 
     let prepareOption = (d) => {
-      let value = getString(d[valueKey]);
+      let value = secureText(getString(d[valueKey]));
       let childOptions = d.options;
       let isGroupTitle = childOptions ? true : false;
       let option = {
         index,
         value,
-        label: getString(d[labelKey]),
+        label: secureText(getString(d[labelKey])),
         alias: getAlias(d[aliasKey]),
         isVisible: convertToBoolean(d.isVisible, true),
         isNew: d.isNew || false,
@@ -980,7 +1076,7 @@ export class VirtualSelect {
       }
 
       if (hasOptionDescription) {
-        option.description = getString(d[descriptionKey]);
+        option.description = secureText(getString(d[descriptionKey]));
       }
 
       preparedOptions.push(option);
@@ -1001,9 +1097,13 @@ export class VirtualSelect {
 
     options.forEach(prepareOption);
 
+    let optionsLength = preparedOptions.length;
+    let $ele = this.$ele;
+    $ele.options = preparedOptions;
+    $ele.length = optionsLength;
     this.options = preparedOptions;
-    this.visibleOptionsCount = preparedOptions.length;
-    this.lastOptionIndex = this.options.length - 1;
+    this.visibleOptionsCount = optionsLength;
+    this.lastOptionIndex = optionsLength - 1;
     this.newValues = [];
     this.hasOptionGroup = hasOptionGroup;
     this.setSortedOptions();
@@ -1140,7 +1240,7 @@ export class VirtualSelect {
     });
   }
 
-  setValue(value, triggerEvent) {
+  setValue(value, { disableEvent = false, disableValidation = false } = {}) {
     if (!value) {
       this.selectedValues = [];
     } else if (Array.isArray(value)) {
@@ -1151,14 +1251,26 @@ export class VirtualSelect {
 
     let newValue = this.multiple ? this.selectedValues : this.selectedValues[0] || '';
     this.$ele.value = newValue;
-    this.$hiddenInput.value = newValue;
     this.isMaxValuesSelected = this.maxValues && this.maxValues <= this.selectedValues.length ? true : false;
+
+    this.toggleAllOptionsClass();
     this.setValueText();
+
     DomUtils.toggleClass(this.$allWrappers, 'has-value', Utils.isNotEmpty(this.selectedValues));
     DomUtils.toggleClass(this.$allWrappers, 'max-value-selected', this.isMaxValuesSelected);
 
-    if (triggerEvent) {
-      DomUtils.dispatchEvent(this.$ele, 'change');
+    if (this.setValueAsArray && this.multiple && newValue && newValue.length) {
+      this.$hiddenInput.value = JSON.stringify(newValue);
+    } else {
+      this.$hiddenInput.value = newValue;
+    }
+
+    if (!disableValidation) {
+      this.validate();
+    }
+
+    if (!disableEvent) {
+      DomUtils.dispatchEvent(this.$ele, 'change', true);
     }
   }
 
@@ -1202,7 +1314,7 @@ export class VirtualSelect {
 
           if (selectedValuesCount <= noOfDisplayValues) {
             if (showValueAsTags) {
-              let valueTagHtml = `<span class="vscomp-value-tag" data-value="${value}">
+              let valueTagHtml = `<span class="vscomp-value-tag" data-index="${d.index}">
                   <span class="vscomp-value-tag-content">${label}</span>
                   <span class="vscomp-value-tag-clear-button">
                     <i class="vscomp-clear-icon"></i>
@@ -1245,6 +1357,9 @@ export class VirtualSelect {
               $valueText.innerHTML = `${this.allOptionsSelectedText} (${selectedLength})`;
             } else if (showValueAsTags) {
               $valueText.innerHTML = valueTooltip.join('');
+              this.$valueTags = $valueText.querySelectorAll('.vscomp-value-tag');
+
+              this.setValueTagAttr();
             } else {
               /** replace comma delimitted list of selections with shorter text indicating selection count */
               let optionsSelectedText = selectedLength === 1 ? this.optionSelectedText : this.optionsSelectedText;
@@ -1380,8 +1495,8 @@ export class VirtualSelect {
     if (newOption) {
       let newIndex = newOption.index;
 
-      this.setOptionProp(newIndex, 'value', value);
-      this.setOptionProp(newIndex, 'label', value);
+      this.setOptionProp(newIndex, 'value', this.secureText(value));
+      this.setOptionProp(newIndex, 'label', this.secureText(value));
     } else {
       let data = {
         value,
@@ -1441,6 +1556,60 @@ export class VirtualSelect {
 
     DomUtils.setStyle(this.$dropboxContainer, 'max-width', width);
   }
+
+  setDropboxStyles() {
+    let styles = {
+      'z-index': this.zIndex,
+    };
+
+    if (!this.showAsPopup) {
+      if (this.dropboxWidth) {
+        styles.width = this.dropboxWidth;
+      }
+    }
+
+    DomUtils.setStyles(this.$dropboxContainer, styles);
+  }
+
+  setOptionAttr() {
+    let $visibleOptions = this.$visibleOptions;
+    let options = this.options;
+    let optionHeight = this.optionHeight + 'px';
+    let setStyle = DomUtils.setStyle;
+    let getData = DomUtils.getData;
+    let setData = DomUtils.setData;
+
+    if ($visibleOptions && $visibleOptions.length) {
+      $visibleOptions.forEach(($option) => {
+        let optionDetails = options[getData($option, 'index')];
+
+        setStyle($option, 'height', optionHeight);
+        setData($option, 'value', optionDetails.value);
+      });
+    }
+  }
+
+  setValueTagAttr() {
+    let $valueTags = this.$valueTags;
+
+    if (!$valueTags || !$valueTags.length) {
+      return;
+    }
+
+    let getData = DomUtils.getData;
+    let setData = DomUtils.setData;
+    let options = this.options;
+
+    $valueTags.forEach(($valueTag) => {
+      let index = getData($valueTag, 'index');
+
+      if (typeof index !== 'undefined') {
+        let optionDetails = options[index];
+
+        setData($valueTag, 'value', optionDetails.value);
+      }
+    });
+  }
   /** set methods - end */
 
   /** get methods - start */
@@ -1488,11 +1657,13 @@ export class VirtualSelect {
     }
 
     let getString = Utils.getString;
+    let secureText = this.secureText.bind(this);
+
     let newOption = {
       index: data.index,
-      value: getString(data.value),
-      label: getString(data.label),
-      description: getString(data.description),
+      value: secureText(getString(data.value)),
+      label: secureText(getString(data.label)),
+      description: secureText(getString(data.description)),
       alias: this.getAlias(data.alias),
       isCurrentNew: data.isCurrentNew || false,
       isNew: data.isNew || false,
@@ -1515,15 +1686,13 @@ export class VirtualSelect {
   getOptionIndex(value) {
     let index;
 
-    if (value) {
-      this.options.some((d) => {
-        if (d.value == value) {
-          index = d.index;
+    this.options.some((d) => {
+      if (d.value == value) {
+        index = d.index;
 
-          return true;
-        }
-      });
-    }
+        return true;
+      }
+    });
 
     return index;
   }
@@ -1668,7 +1837,9 @@ export class VirtualSelect {
   openDropbox(isSilent) {
     this.isSilentOpen = isSilent;
 
-    if (!isSilent) {
+    if (isSilent) {
+      DomUtils.setStyle(this.$dropboxContainer, 'display', 'inline-flex');
+    } else {
       DomUtils.dispatchEvent(this.$ele, 'beforeOpen');
     }
 
@@ -1676,7 +1847,7 @@ export class VirtualSelect {
 
     DomUtils.removeClass(this.$allWrappers, 'closed');
 
-    if (this.dropboxPopover) {
+    if (this.dropboxPopover && !isSilent) {
       this.dropboxPopover.show();
     } else {
       this.afterShowPopper();
@@ -1710,11 +1881,13 @@ export class VirtualSelect {
       return;
     }
 
-    if (!isSilent) {
+    if (isSilent) {
+      DomUtils.setStyle(this.$dropboxContainer, 'display', '');
+    } else {
       DomUtils.dispatchEvent(this.$ele, 'beforeClose');
     }
 
-    if (this.dropboxPopover) {
+    if (this.dropboxPopover && !isSilent) {
       this.dropboxPopover.hide();
     } else {
       this.afterHidePopper();
@@ -1850,7 +2023,7 @@ export class VirtualSelect {
     this.toggleFocusedProp(null);
   }
 
-  selectOption($ele) {
+  selectOption($ele, { event } = {}) {
     if (!$ele) {
       return;
     }
@@ -1871,7 +2044,10 @@ export class VirtualSelect {
 
     let selectedValues = this.selectedValues;
     let selectedValue = DomUtils.getData($ele, 'value');
-    let selectedIndex = DomUtils.getData($ele, 'index');
+    let selectedIndex = DomUtils.getData($ele, 'index', 'number');
+    let shouldSelectRange = false;
+    let lastSelectedOptionIndex = this.lastSelectedOptionIndex;
+    this.lastSelectedOptionIndex = null;
 
     this.toggleSelectedProp(selectedIndex, isAdding);
 
@@ -1879,6 +2055,11 @@ export class VirtualSelect {
       if (this.multiple) {
         selectedValues.push(selectedValue);
         this.toggleAllOptionsClass();
+        this.toggleGroupOptionsParent($ele);
+
+        if (event && event.shiftKey) {
+          shouldSelectRange = true;
+        }
       } else {
         if (selectedValues.length) {
           this.toggleSelectedProp(this.getOptionIndex(selectedValues[0]), false);
@@ -1894,12 +2075,15 @@ export class VirtualSelect {
         this.closeDropbox();
       }
 
+      this.lastSelectedOptionIndex = selectedIndex;
+
       DomUtils.toggleClass($ele, 'selected');
     } else {
       if (this.multiple) {
         DomUtils.toggleClass($ele, 'selected');
         Utils.removeItemFromArray(selectedValues, selectedValue);
         this.toggleAllOptionsClass(false);
+        this.toggleGroupOptionsParent($ele, false);
       }
     }
 
@@ -1907,11 +2091,75 @@ export class VirtualSelect {
       this.beforeSelectNewValue();
     }
 
-    this.setValue(selectedValues, true);
+    this.setValue(selectedValues);
+
+    if (shouldSelectRange) {
+      this.selectRangeOptions(lastSelectedOptionIndex, selectedIndex);
+    }
   }
 
   selectFocusedOption() {
     this.selectOption(this.$dropboxContainer.querySelector('.vscomp-option.focused'));
+  }
+
+  selectRangeOptions(lastSelectedOptionIndex, selectedIndex) {
+    if (typeof lastSelectedOptionIndex !== 'number' || this.maxValues) {
+      return;
+    }
+
+    let selectedValues = this.selectedValues;
+    let hasOptionGroup = this.hasOptionGroup;
+    let groupIndexes = {};
+    let startIndex;
+    let endIndex;
+
+    if (lastSelectedOptionIndex < selectedIndex) {
+      startIndex = lastSelectedOptionIndex;
+      endIndex = selectedIndex;
+    } else {
+      startIndex = selectedIndex;
+      endIndex = lastSelectedOptionIndex;
+    }
+
+    this.options.forEach((d) => {
+      if (d.isDisabled || d.isGroupTitle || !d.isVisible || d.isSelected) {
+        return;
+      }
+
+      let index = d.index;
+
+      if (index > startIndex && index < endIndex) {
+        if (hasOptionGroup) {
+          let groupIndex = d.groupIndex;
+
+          if (typeof groupIndex === 'number') {
+            groupIndexes[groupIndex] = true;
+          }
+        }
+
+        d.isSelected = true;
+
+        selectedValues.push(d.value);
+      }
+    });
+
+    this.toggleAllOptionsClass();
+    this.setValue(selectedValues);
+
+    groupIndexes = Object.keys(groupIndexes);
+
+    if (groupIndexes.length) {
+      let toggleGroupTitleProp = this.toggleGroupTitleProp.bind(this);
+
+      groupIndexes.forEach((i) => {
+        toggleGroupTitleProp(parseInt(i));
+      });
+    }
+
+    /** using setTimeout to fix the issue of dropbox getting closed on select */
+    setTimeout(() => {
+      this.renderOptions();
+    }, 0);
   }
 
   toggleAllOptions(isSelected) {
@@ -1927,7 +2175,7 @@ export class VirtualSelect {
     let selectAllOnlyVisible = this.selectAllOnlyVisible;
 
     this.options.forEach((d) => {
-      if (d.isDisabled || d.isCurrentNew || d.isGroupTitle) {
+      if (d.isDisabled || d.isCurrentNew) {
         return;
       }
 
@@ -1936,12 +2184,14 @@ export class VirtualSelect {
       } else {
         d.isSelected = true;
 
-        selectedValues.push(d.value);
+        if (!d.isGroupTitle) {
+          selectedValues.push(d.value);
+        }
       }
     });
 
     this.toggleAllOptionsClass(isSelected);
-    this.setValue(selectedValues, true);
+    this.setValue(selectedValues);
     this.renderOptions();
   }
 
@@ -1968,13 +2218,105 @@ export class VirtualSelect {
   isAllOptionsSelected() {
     let isAllSelected = false;
 
-    if (this.options.length) {
+    if (this.options.length && this.selectedValues.length) {
       isAllSelected = !this.options.some((d) => {
         return !d.isSelected && !d.isDisabled && !d.isGroupTitle;
       });
     }
 
     return isAllSelected;
+  }
+
+  isAllGroupOptionsSelected(groupIndex) {
+    let isAllSelected = false;
+
+    if (this.options.length) {
+      isAllSelected = !this.options.some((d) => {
+        return !d.isSelected && !d.isDisabled && !d.isGroupTitle && d.groupIndex === groupIndex;
+      });
+    }
+
+    return isAllSelected;
+  }
+
+  toggleGroupOptionsParent($option, isSelected) {
+    if (!this.hasOptionGroup || this.disableOptionGroupCheckbox || !$option) {
+      return;
+    }
+
+    let groupIndex = DomUtils.getData($option, 'groupIndex', 'number');
+    let $group = this.$options.querySelector(`.vscomp-option[data-index="${groupIndex}"]`);
+    let isAllSelected = typeof isSelected === 'boolean' ? isSelected : this.isAllGroupOptionsSelected(groupIndex);
+
+    this.toggleGroupTitleCheckbox($group, isAllSelected);
+  }
+
+  toggleGroupTitleProp(groupIndex, isSelected) {
+    let isAllSelected = typeof isSelected === 'boolean' ? isSelected : this.isAllGroupOptionsSelected(groupIndex);
+
+    this.toggleSelectedProp(groupIndex, isAllSelected);
+  }
+
+  toggleGroupOptions($ele, isSelected) {
+    if (!this.hasOptionGroup || this.disableOptionGroupCheckbox || !$ele) {
+      return;
+    }
+
+    let groupIndex = DomUtils.getData($ele, 'index', 'number');
+    let selectedValues = this.selectedValues;
+    let selectAllOnlyVisible = this.selectAllOnlyVisible;
+    let valuesMapping = {};
+    let removeItemFromArray = Utils.removeItemFromArray;
+
+    selectedValues.forEach((d) => {
+      valuesMapping[d] = true;
+    });
+
+    this.options.forEach((d) => {
+      if (d.isDisabled || d.groupIndex !== groupIndex) {
+        return;
+      }
+
+      let value = d.value;
+
+      if (!isSelected || (selectAllOnlyVisible && !d.isVisible)) {
+        d.isSelected = false;
+
+        if (valuesMapping[value]) {
+          removeItemFromArray(selectedValues, value);
+        }
+      } else {
+        d.isSelected = true;
+
+        if (!valuesMapping[value]) {
+          selectedValues.push(value);
+        }
+      }
+    });
+
+    this.toggleAllOptionsClass(isSelected ? null : false);
+    this.setValue(selectedValues);
+
+    /** using setTimeout to fix the issue of dropbox getting closed on select */
+    setTimeout(() => {
+      this.renderOptions();
+    }, 0);
+  }
+
+  toggleGroupTitleCheckbox($ele, isSelected) {
+    if (!$ele) {
+      return;
+    }
+
+    let selectedIndex = DomUtils.getData($ele, 'index', 'number');
+
+    this.toggleSelectedProp(selectedIndex, isSelected);
+
+    if (isSelected) {
+      DomUtils.addClass($ele, 'selected');
+    } else {
+      DomUtils.removeClass($ele, 'selected');
+    }
   }
 
   toggleFocusedProp(index, isFocused = false) {
@@ -2008,14 +2350,18 @@ export class VirtualSelect {
     }
   }
 
-  reset() {
+  reset(formReset = false) {
     this.options.forEach((d) => {
       d.isSelected = false;
     });
 
     this.beforeValueSet(true);
-    this.setValue(null, true);
+    this.setValue(null, { disableValidation: formReset });
     this.afterValueSet();
+
+    if (formReset) {
+      DomUtils.removeClass(this.$allWrappers, 'has-error');
+    }
 
     DomUtils.dispatchEvent(this.$ele, 'reset');
   }
@@ -2167,6 +2513,40 @@ export class VirtualSelect {
     this.setValueMethod(selectedValues);
   }
 
+  focus() {
+    this.$wrapper.focus();
+  }
+
+  enable() {
+    this.$ele.disabled = false;
+
+    this.$ele.removeAttribute('disabled');
+    this.$hiddenInput.removeAttribute('disabled');
+  }
+
+  disable() {
+    this.$ele.disabled = true;
+
+    this.$ele.setAttribute('disabled', '');
+    this.$hiddenInput.setAttribute('disabled', '');
+  }
+
+  validate() {
+    if (this.disableValidation) {
+      return true;
+    }
+
+    let hasError = false;
+
+    if (this.required && Utils.isEmpty(this.selectedValues)) {
+      hasError = true;
+    }
+
+    DomUtils.toggleClass(this.$allWrappers, 'has-error', hasError);
+
+    return !hasError;
+  }
+
   destroy() {
     let $ele = this.$ele;
     $ele.virtualSelect = undefined;
@@ -2181,6 +2561,28 @@ export class VirtualSelect {
     DomUtils.removeClass($ele, 'vscomp-ele');
   }
 
+  createSecureTextElements() {
+    this.$secureDiv = document.createElement('div');
+    this.$secureText = document.createTextNode('');
+
+    this.$secureDiv.appendChild(this.$secureText);
+  }
+
+  secureText(text) {
+    if (!text || !this.enableSecureText) {
+      return text;
+    }
+
+    this.$secureText.nodeValue = text;
+
+    return this.$secureDiv.innerHTML;
+  }
+
+  toggleRequired(isRequired) {
+    this.required = Utils.convertToBoolean(isRequired);
+    this.$ele.required = this.required;
+  }
+
   /** static methods - start */
   static init(options) {
     let $eleArray = options.ele;
@@ -2192,14 +2594,14 @@ export class VirtualSelect {
     let singleEle = false;
 
     if (typeof $eleArray === 'string') {
-      $eleArray = document.querySelector($eleArray);
+      $eleArray = document.querySelectorAll($eleArray);
 
-      if (!$eleArray) {
+      if ($eleArray.length === 0) {
         return;
       }
     }
 
-    if ($eleArray.length === undefined) {
+    if ($eleArray.length === undefined || $eleArray.forEach === undefined) {
       $eleArray = [$eleArray];
       singleEle = true;
     }
@@ -2207,13 +2609,56 @@ export class VirtualSelect {
     let instances = [];
     $eleArray.forEach(($ele) => {
       options.ele = $ele;
+
+      if ($ele.tagName === 'SELECT') {
+        VirtualSelect.setPropsFromSelect(options);
+      }
+
       instances.push(new VirtualSelect(options));
     });
 
     return singleEle ? instances[0] : instances;
   }
 
-  static resetForm(e) {
+  static setPropsFromSelect(props) {
+    const $ele = props.ele;
+    const $options = $ele.querySelectorAll('option');
+    const options = [];
+    const disabledOptions = [];
+    const selectedValue = [];
+
+    /** getting options */
+    $options.forEach(function ($option) {
+      let value = $option.value;
+
+      options.push({
+        label: $option.innerHTML,
+        value,
+      });
+
+      if ($option.disabled) {
+        disabledOptions.push(value);
+      }
+
+      if ($option.selected) {
+        selectedValue.push(value);
+      }
+    });
+
+    /** creating div element to initiate plugin and removing native element */
+    const $newEle = document.createElement('div');
+
+    DomUtils.setAttrFromEle($ele, $newEle, Object.keys(attrPropsMapping), valueLessProps);
+    $ele.parentNode.insertBefore($newEle, $ele);
+    $ele.remove();
+
+    props.ele = $newEle;
+    props.options = options;
+    props.disabledOptions = disabledOptions;
+    props.selectedValue = selectedValue;
+  }
+
+  static onFormReset(e) {
     let $form = e.target.closest('form');
 
     if (!$form) {
@@ -2221,24 +2666,48 @@ export class VirtualSelect {
     }
 
     $form.querySelectorAll('.vscomp-ele-wrapper').forEach(($ele) => {
-      $ele.parentElement.virtualSelect.reset();
+      $ele.parentElement.virtualSelect.reset(true);
     });
+  }
+
+  static onFormSubmit(e) {
+    if (!VirtualSelect.validate(e.target.closest('form'))) {
+      e.preventDefault();
+    }
+  }
+
+  static validate($container) {
+    if (!$container) {
+      return true;
+    }
+
+    let hasError = false;
+
+    $container.querySelectorAll('.vscomp-ele-wrapper').forEach(($ele) => {
+      let result = $ele.parentElement.virtualSelect.validate();
+
+      if (!hasError && !result) {
+        hasError = true;
+      }
+    });
+
+    return !hasError;
   }
 
   static reset() {
     this.virtualSelect.reset();
   }
 
-  static setValueMethod(value, silentChange) {
-    this.virtualSelect.setValueMethod(value, silentChange);
+  static setValueMethod(...params) {
+    this.virtualSelect.setValueMethod(...params);
   }
 
-  static setOptionsMethod(options, keepValue) {
-    this.virtualSelect.setOptionsMethod(options, keepValue);
+  static setOptionsMethod(...params) {
+    this.virtualSelect.setOptionsMethod(...params);
   }
 
-  static setDisabledOptionsMethod(options) {
-    this.virtualSelect.setDisabledOptionsMethod(options);
+  static setDisabledOptionsMethod(...params) {
+    this.virtualSelect.setDisabledOptionsMethod(...params);
   }
 
   static toggleSelectAll(isSelected) {
@@ -2273,8 +2742,28 @@ export class VirtualSelect {
     return this.virtualSelect.closeDropbox();
   }
 
+  static focusMethod() {
+    return this.virtualSelect.focus();
+  }
+
+  static enableMethod() {
+    return this.virtualSelect.enable();
+  }
+
+  static disableMethod() {
+    return this.virtualSelect.disable();
+  }
+
   static destroyMethod() {
     return this.virtualSelect.destroy();
+  }
+
+  static validateMethod() {
+    return this.virtualSelect.validate();
+  }
+
+  static toggleRequiredMethod(isRequired) {
+    return this.virtualSelect.toggleRequired(isRequired);
   }
 
   static onResizeMethod() {
@@ -2285,7 +2774,13 @@ export class VirtualSelect {
   /** static methods - end */
 }
 
-document.addEventListener('reset', VirtualSelect.resetForm);
+document.addEventListener('reset', VirtualSelect.onFormReset);
+document.addEventListener('submit', VirtualSelect.onFormSubmit);
 window.addEventListener('resize', VirtualSelect.onResizeMethod);
 
 window.VirtualSelect = VirtualSelect;
+
+/** polyfill to fix an issue in ie browser */
+if (typeof NodeList !== 'undefined' && NodeList.prototype && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
