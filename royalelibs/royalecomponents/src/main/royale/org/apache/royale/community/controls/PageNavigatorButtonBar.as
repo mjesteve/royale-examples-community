@@ -4,7 +4,6 @@ package org.apache.royale.community.controls
     import org.apache.royale.jewel.ToggleButtonBar;
     import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
-    import org.apache.royale.core.IStyledUIBase;
     import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.html.getStyle;
     import org.apache.royale.core.ElementWrapper;
@@ -47,8 +46,7 @@ package org.apache.royale.community.controls
         public function PageNavigatorButtonBar() {
             super();
             //typeNames = "jewelext pagenavigator";
-            //typeNames = "jewel buttonbar";
-            //element.style.flexWrap = "wrap";
+            
             addEventListener("beadsAdded", beadsAddedHandler);
         }
 
@@ -59,6 +57,7 @@ package org.apache.royale.community.controls
 		    var control:IClassSelectorListSupport = this as IClassSelectorListSupport;
 			var style:CSSStyleDeclaration = getStyle(control as ElementWrapper);
 			style["flex-wrap"] = "wrap";
+			style["flex"] = "none";
         }
 
         private var currentMaxNavButtons:int = -1;
@@ -166,7 +165,7 @@ package org.apache.royale.community.controls
             loc_startIndex = (newPage - 1) * loc_pageSize;
             loc_endIndex = Math.min(loc_startIndex + loc_pageSize - 1, loc_totalItems - 1);
 
-            if (loc_totalPages <= loc_maxNavButtons) 
+            if (loc_totalPages <= 1+loc_maxNavButtons+1) //pag.1 - pag0..pagmaxNavButton + last.pag.
             {
                 loc_startPage = 1;
                 loc_endPage = loc_totalPages;

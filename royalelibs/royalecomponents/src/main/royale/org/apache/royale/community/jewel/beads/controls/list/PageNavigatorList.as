@@ -10,6 +10,8 @@ package org.apache.royale.community.jewel.beads.controls.list
     import org.apache.royale.community.controls.PageNavigatorButtonBar;
     import org.apache.royale.community.vo.PageNavigatorButtonBarVO;
     import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IStrandWithModelView;
 
     public class PageNavigatorList  extends Bead
     {
@@ -115,7 +117,9 @@ package org.apache.royale.community.jewel.beads.controls.list
 			applyFilter();
         }
 
-        protected function applyFilter(proposedPage:int = -1):void
+		public var dataProviderUnpaginated:ArrayList;
+
+        public function applyFilter(proposedPage:int = -1):void
         {
 			if(!_pageNavigator)
 				return;
@@ -125,13 +129,15 @@ package org.apache.royale.community.jewel.beads.controls.list
 			var ar:Array = !_dataProvider ? new Array() : _dataProvider.source;
             var asourceSearch:ArrayListView = new ArrayListView(new ArrayList(ar));
 			
-			if( filterFunction && ar.length > 0 )
+			if( _filterFunction && ar.length > 0 )
 			{
-				asourceSearch.filterFunction = filterFunction;
+				asourceSearch.filterFunction = _filterFunction;
             	asourceSearch.refresh();
 				ar = asourceSearch.toArray();
 				asourceSearch = new ArrayListView(new ArrayList(ar));
 			}
+			
+			dataProviderUnpaginated = new ArrayList(ar);
 
 			if(ar.length <= 0)
 			{
@@ -198,6 +204,38 @@ package org.apache.royale.community.jewel.beads.controls.list
 				applyFilter();
 
 		}
+		/**
+		 * It will display, in the list, the data page where the item with the indicated index is located.
+		 * Si itemindex = -1 se cogerá el selectedIndex del strand
+		 * @param itemindex Refers to the "absolute index" of the item to be displayed.
+		 */
+        public function selectedItemIndex(itemindex:int = -1):int
+        {	
+			var index:int = itemindex;
+			var propindex:int = -1;
+			var pageSize:int = _pageNavigator.pageSize;
+
+			if(index <= -1)
+				index = ISelectionModel((_strand as IStrandWithModelView).model).selectedIndex;
+            if(dataProviderUnpaginated && dataProviderUnpaginated.length>0 && index > -1)
+            {
+				if(index >= dataProviderUnpaginated.length)
+					index = dataProviderUnpaginated.length-1;
+				
+				var proposed_page:int = Math.ceil( (index+1)/pageSize);
+				//Al recibir el valuecommit nos posionaremos en el selectedindex correcto.
+				if( index+1 <= pageSize)
+					propindex = index;
+				else
+					propindex = index%pageSize;
+				
+				if(_pageNavigator.currentPage != proposed_page)
+					_pageNavigator.currentPage = proposed_page;
+            }
+
+			return propindex;
+			
+        }
 
     }
 }
