@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	xmlns:views="org.apache.royale.community.views.*"
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.community.virtualselect.OptionsInit;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+        }
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;
+
+        private function makeDP(init:Boolean = false):void
+        {
+            var ar:Array = new Array();
+
+            var index:int = 0
+            for(index = 0; index < 10; index++)
+            {
+                ar.push({ label: 'Desc: '+index.toString()+'***************************', value: index.toString() });
+            }
+            dpClassBig = new ArrayList(ar);
+
+        }
+
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<!--<js:ViewDataBinding/>-->
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+        <j:BarRow localId="barRow">
+            <j:BarSection>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.9-SNAPSHOT ]"/>
+            </j:BarSection>
+        </j:BarRow>
+    </j:TopAppBar>
+
+     <j:FooterBar localId="footerbar" fixed="true" >
+        <j:BarRow>
+
+            <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:HGroup gap="10">
+                    <j:Label localId="labelCompany" html="{new Date()}" />
+                </j:HGroup>
+            </j:BarSection>
+        </j:BarRow>
+     </j:FooterBar>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+        <j:ScrollableSectionContent>
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
+            <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+                <j:CardHeader>
+                    <j:BarSection width="100%" gap="10">
+                        <html:H3 text="ComboBox - Debugger" className="primary-dark"/>
+                    </j:BarSection>
+                </j:CardHeader>
+
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+  
+                <j:HGroup width="150" gap="3" >
+                    <j:ComboBox percentWidth="100" dataProvider="{dpClassBig}" />
+                </j:HGroup>
+                    
+                </j:CardPrimaryContent>
+
+            </j:Card>
+
+        </j:ScrollableSectionContent>
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>

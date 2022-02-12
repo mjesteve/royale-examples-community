@@ -46,10 +46,11 @@
 	</j:valuesImpl>
 	
 	<j:initialView>		
-		<mainviews:MainView/> 
+		<mainviews:MainComboBox_CSS/> 
 <!--		
-		<mainviews:MainExample_Hiedra/>
+		<mainviews:MainView/> 
 		<mainviews:MainVirtualComboBox/> 
+		<mainviews:MainExample_Hiedra/>
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
 -->
