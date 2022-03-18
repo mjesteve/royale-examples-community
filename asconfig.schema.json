@@ -236,7 +236,7 @@
         "airOptionsExtdir": {
             "type": "array",
             "description": "One or more specified directories that contain ANE files for native extensions that the application uses.",
-"items": {
+            "items": {
                 "type": "string"
             }
         },
@@ -635,7 +635,7 @@
                 "js-define": {
                     "type": "array",
                     "description": "In an Apache Royale project, defines a global constant at compile time for the generated JavaScript output.",
-    "items": {
+                    "items": {
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
@@ -669,21 +669,21 @@
                 "external-library-path": {
                     "type": "array",
                     "description": "Specifies a list of SWC files, or directories containing SWC files, to exclude from linking in the generated output. This option provides compile-time link checking for external components that are dynamically linked.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
                 "js-external-library-path": {
                     "type": "array",
                     "description": "In an Apache Royale project, specifies a list of SWC files, or directories containing SWC files, to exclude from linking in only the generated JavaScript output.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
                 "swf-external-library-path": {
                     "type": "array",
                     "description": "In an Apache Royale project, specifies a list of SWC files, or directories containing SWC files, to exclude from linking in only the generated SWF output.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
@@ -748,7 +748,7 @@
                 "js-compiler-option": {
                     "type": "array",
                     "description": "In an Apache Royale project, passes additional options to the Closure Compiler for a release build.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
@@ -778,14 +778,14 @@
                 "library-path": {
                     "type": "array",
                     "description": "Links SWC libraries to the generated output of the build. The compiler only links in those classes for the SWC file that are required. You can specify a directory or individual SWC files.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
                 "js-library-path": {
                     "type": "array",
                     "description": "In an Apache Royale project, links SWC libraries to only the generated JavaScript output of the build.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
@@ -817,7 +817,7 @@
                 "js-load-config": {
                     "type": "array",
                     "description": "In an Apache Royale project, specifies the locations of XML configuration files that define extra compiler options only for the generated JavaScript output.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
@@ -832,7 +832,7 @@
                 "namespace": {
                     "type": "array",
                     "description": "Specifies MXML namespaces. Each namespace must include a URI and the location of the manifest file that defines the contents of the namespace.",
-    "items": {
+                    "items": {
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
@@ -886,7 +886,7 @@
                 "source-path": {
                     "type": "array",
                     "description": "Adds directories or files to the source path. The compiler searches directories in the source path for MXML, AS, or CSS source files that are used in your applications and includes those that are required at compile time.",
-    "items": {
+                    "items": {
                         "type": "string"
                     }
                 },
@@ -901,7 +901,7 @@
                 "swf-version": {
                     "type": "number",
                     "description": "In a SWF project, specifies the SWF file format version. Features requiring a later version of the SWF file format are not compiled into the application. This is different from the target-player version in that it refers to the SWF specification versioning scheme.",
-    "minimum": 9,
+                    "minimum": 9,
                     "multipleOf": 1
                 },
                 "targets": {
@@ -914,7 +914,7 @@
                 "target-player": {
                     "type": "string",
                     "description": "In a SWF project, specifies the runtime version. Features requiring a later version of the runtime are not compiled into the application.",
-    "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+                    "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
                 },
                 "theme": {
                     "anyOf": [

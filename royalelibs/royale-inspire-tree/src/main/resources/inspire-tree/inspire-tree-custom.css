@@ -82,6 +82,9 @@
   -o-appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
+  transform: translateY(-50%);
+  vertical-align: top;
+  top: 38%;
 }
 .inspire-tree input[type="checkbox"]::before {
   background: linear-gradient(white, #f3f3f3);
@@ -448,7 +451,7 @@
 .inspire-tree .title {
   padding-left: 85px;
 }
-.inspire-tree .icon::before {
+.inspire-tree .icon::after, .inspire-tree .icon::before {
   height: 16px;
   width: 16px;
 }
@@ -462,16 +465,19 @@
   background-repeat: no-repeat;
   content: " ";
   cursor: pointer;
-  height: 18px;
   position: absolute;
-  right: 3px;
-  top: 18%;
-  width: 16px;
+  right: 5px;
   z-index: 3;
+  transform: translateY(-50%);
+  vertical-align: top;
+  top: 45%;
 }
 
 .editrevert.inspire-tree .title {
-  padding-right: 20px;
+  padding-right: 25px;
+}
+.editrevert.inspire-tree > ol > li[type="disabled"] > div > a.title.icon::after {
+  display: none;
 }
 
 .inspire-tree.noneicon .title {
@@ -530,6 +536,11 @@
   color: #b9f7fd;
 }
 
+.inspire-tree .wholerow[type="disabled"]:hover,
+.inspire-tree .title-wrap:hover + .wholerow[type="disabled"] {
+  background-color: inherit;
+}
+
 .inspire-tree .matched > .wholerow,
 .inspire-tree .matched > .wholerow:hover,
 .inspire-tree .matched > .title-wrap:hover + .wholerow {
@@ -540,13 +551,55 @@
   color: #808080;
 }
 .inspire-tree > ol > li > div > a:hover {
-  color: #b9f7fd;
+  color: white;
 }
 .inspire-tree > ol > li > ol > li > div > a {
   color: #808080;
 }
 .inspire-tree > ol > li > ol > li > div > a:hover {
-  color: #b9f7fd;
+  color: white;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div > a {
+  color: silver !important;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div > a:hover {
+  color: silver !important;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"] {
+  pointer-events: none;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"]:checked::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"]:indeterminate::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div.rejected > input[type="checkbox"] {
+  pointer-events: none;
+}
+.inspire-tree > ol > li > ol > li[type="disabled"] > div.rejected > input[type="checkbox"]:indeterminate::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
+}
+.inspire-tree > ol > li[type="disabled"] > div > a {
+  color: silver !important;
+}
+.inspire-tree > ol > li[type="disabled"] > div > a:hover {
+  color: silver !important;
+}
+.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"] {
+  pointer-events: none;
+}
+.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"]:checked::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"]:indeterminate::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center;
+}
+.inspire-tree > ol > li[type="disabled"] > div.rejected > input[type="checkbox"] {
+  pointer-events: none;
+}
+.inspire-tree > ol > li[type="disabled"] > div.rejected > input[type="checkbox"]:indeterminate::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
 }
 
 .inspire-tree .selected > .wholerow {
@@ -554,10 +607,19 @@
   color: #b9f7fd;
 }
 
+.inspire-tree .selected > .wholerow[type="disabled"] {
+  background-color: inherit;
+}
+
 .inspire-tree .selected > .wholerow:hover,
 .inspire-tree .selected > .title-wrap:hover + .wholerow {
   background-color: #05bacc;
   color: #b9f7fd;
+}
+
+.inspire-tree .selected > .wholerow[type="disabled"]:hover,
+.inspire-tree .selected > .title-wrap:hover + .wholerow[type="disabled"] {
+  background-color: inherit;
 }
 
 .inspire-tree .selected > .title-wrap a.title.icon {

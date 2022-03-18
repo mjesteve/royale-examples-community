@@ -1,4 +1,4 @@
-package 
+package
 {
 
 	/**
@@ -15,21 +15,14 @@ package
 			import InspireTreeDOM; InspireTreeDOM;
 	        import TreeNode; TreeNode;
 			import TreeNodes; TreeNodes;
-			
-			import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead; InspireTreeCheckBoxModeBead;
-			import org.apache.royale.community.inspiretree.beads.InspireTreeEventsBead; InspireTreeEventsBead;
-			import org.apache.royale.community.inspiretree.beads.InspireTreeIconBead; InspireTreeIconBead;
-			import org.apache.royale.community.inspiretree.beads.InspireTreePaginateBead; InspireTreePaginateBead;
-			import org.apache.royale.community.inspiretree.beads.InspireTreeReadOnlyCheckBead; InspireTreeReadOnlyCheckBead;
-			
+
 			import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel; InspireTreeModel;
-			
-			import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl; InspireTreeBasicControl;			
+
 			import org.apache.royale.community.inspiretree.vos.ItemTreeNode; ItemTreeNode;
 			import org.apache.royale.community.inspiretree.vos.ConfigDOM; ConfigDOM;
 			import org.apache.royale.community.inspiretree.vos.OptionsTree; OptionsTree;
 			import org.apache.royale.community.inspiretree.supportClasses.IInspireTree; IInspireTree;
-		}		
+		}
 	}
 }
 

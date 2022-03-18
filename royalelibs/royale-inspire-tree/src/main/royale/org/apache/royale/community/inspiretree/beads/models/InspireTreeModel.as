@@ -8,7 +8,7 @@ package org.apache.royale.community.inspiretree.beads.models
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
-	
+
 	//COMPILE::JS
 	public class InspireTreeModel extends ArrayListSelectionModel
 	{
@@ -50,14 +50,14 @@ package org.apache.royale.community.inspiretree.beads.models
 			else
 				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array);
 		}
-		
+
 		private var _treeData:Array = new Array();
 		/**
 		 * DataProvider assigned to the Tree. It undergoes the same changes as the JS object.
 		 */
 		public function get treeData():Array { return _treeData; }
 		public function set treeData(value:Array):void
-		{ 
+		{
 			if (value == _treeData) return;
 
 			_treeData = value;
@@ -78,7 +78,7 @@ package org.apache.royale.community.inspiretree.beads.models
 				dispatchEvent(new Event("childrenFieldChanged"));
 			}
 		}
-		
+
 		private var _boundField:String = "";
 		/**
 		 * When a non-hierarchical dataProvider is set, 'boundField', shall indicate the grouping attribute
@@ -93,44 +93,44 @@ package org.apache.royale.community.inspiretree.beads.models
 		}
 		/**
 		 * Function to obtain the description of the parent nodes.
-		 * <p>The <code>labelFunctionParent</code> property takes a reference to a function. 
+		 * <p>The <code>labelFunctionParent</code> property takes a reference to a function.
      	 * The function takes a single argument which is the item in the data provider and returns a String:</p>
-    	 * 
+    	 *
 		 *  <pre>myLabelFunction(item:Object):String</pre>
-      	 * 
-     	 *  @param item The data item. Null items return the empty string. 
+      	 *
+     	 *  @param item The data item. Null items return the empty string.
 		 */
 		private var _labelFunctionParent:Function = null;
 		public function get labelFunctionParent():Function
 		{
-			if(!_labelFunctionParent) 
+			if(!_labelFunctionParent)
 				return itemToLabel;
 			else
-				return _labelFunctionParent; 
+				return _labelFunctionParent;
 		}
 		public function set labelFunctionParent(value:Function):void{ _labelFunctionParent = value; }
 		/**
 		 * Function to obtain the description of the parent nodes.
-		 * <p>The <code>labelFunctionChild</code> property takes a reference to a function. 
+		 * <p>The <code>labelFunctionChild</code> property takes a reference to a function.
      	 * The function takes a single argument which is the item in the data provider and returns a String:</p>
-    	 * 
+    	 *
 		 *  <pre>myLabelFunction(item:Object):String</pre>
-      	 * 
-     	 *  @param item The data item. Null items return the empty string. 
+      	 *
+     	 *  @param item The data item. Null items return the empty string.
 		 */
 		private var _labelFunctionChild:Function = null;
 		public function get labelFunctionChild():Function
 		{
-			if(!_labelFunctionChild) 
+			if(!_labelFunctionChild)
 				return itemToLabel;
 			else
-				return _labelFunctionChild; 
+				return _labelFunctionChild;
 		}
 		public function set labelFunctionChild(value:Function):void{ _labelFunctionChild = value; }
 
 		private var _checkboxMode:Boolean = false;
 		public function get checkboxMode():Boolean { return _checkboxMode; }
-		/** 
+		/**
 		 * Show checkbox on each node
 		*/
 		public function set checkboxMode(value:Boolean):void
@@ -148,7 +148,7 @@ package org.apache.royale.community.inspiretree.beads.models
 
 		private var _showCheckboxes:Boolean = false;
 		public function get showCheckboxes():Boolean { return _showCheckboxes; }
-		/** 
+		/**
 		 * Show checkbox on each node
 		*/
 		public function set showCheckboxes(value:Boolean):void
@@ -168,7 +168,7 @@ package org.apache.royale.community.inspiretree.beads.models
 		private var _allowDragAndDrop:Boolean = false;
 		public function get allowDragAndDrop():Boolean { return _allowDragAndDrop; }
 		public function set allowDragAndDrop(value:Boolean):void
-		{ 
+		{
 			if(_allowDragAndDrop != value)
 			{
 				_allowDragAndDrop = value;
@@ -182,7 +182,7 @@ package org.apache.royale.community.inspiretree.beads.models
 		{
 			if (value == _checkedIsSelected) return;
 
-			_checkedIsSelected = value; 
+			_checkedIsSelected = value;
 			configOption.selection["checkedIsSelected"] = value;
 		}
 
@@ -193,24 +193,24 @@ package org.apache.royale.community.inspiretree.beads.models
 		private var _paginate:Boolean = false;
 		public function get paginate():Boolean{ return _paginate; }
 		public function set paginate(value:Boolean):void
-		{ 
+		{
 			if(_paginate != value)
-			{			
+			{
 				_paginate = value;
                 sendEvent(this,"paginateChanged");
 			}
 		}
         /**
-         *  How many nodes are rendered/loaded at once. 
+         *  How many nodes are rendered/loaded at once.
          *  Used with deferrals. Defaults to nodes which fit in the container.
          */
         private var _numNodesPage:Number = -1;
         public function get numNodesPage():Number{ return _numNodesPage; }
         public function set numNodesPage(value:Number):void
-		{ 
+		{
 			if(_numNodesPage != value)
 			{
-				_numNodesPage = value;	
+				_numNodesPage = value;
 				if(isNaN(_numNodesPage))
 					_numNodesPage = 10;
                 sendEvent(this,"numNodesPageChanged");
@@ -220,11 +220,11 @@ package org.apache.royale.community.inspiretree.beads.models
 		private var _configOption:OptionsTree;
 		public function get configOption():OptionsTree
 		{
-			if(!_configOption) 
+			if(!_configOption)
 			{
 				_configOption = new OptionsTree();
 				_configOption.selection = {
-					autoDeselect: true, 
+					autoDeselect: true,
 					autoSelectChildren: false,
 					disableDirectDeselection: true,
 					mode: 'tree',
@@ -234,20 +234,20 @@ package org.apache.royale.community.inspiretree.beads.models
 				};
 				_configOption.data = [];
 			}
-			return _configOption; 
+			return _configOption;
 		}
-		public function set configOption(value:OptionsTree):void		
+		public function set configOption(value:OptionsTree):void
 		{
 			if(_configOption != value)
 			{
-				_configOption = value; 	
+				_configOption = value;
                 sendEvent(this,"ConfigOptionChanged");
 			}
 		}
 
 		private var _configOptionView:ConfigDOM;
 		public function get configOptionView():ConfigDOM
-		{ 
+		{
 			if(!_configOptionView)
 			{
 				_configOptionView = new ConfigDOM();
@@ -256,18 +256,19 @@ package org.apache.royale.community.inspiretree.beads.models
 				_configOptionView.deferredRendering = false;
 				_configOptionView.dragAndDrop = false;
 			}
-			return _configOptionView; 
+			return _configOptionView;
 		}
 		public function set configOptionView(value:ConfigDOM):void
 		{
 			if(_configOptionView != value)
 			{
-				_configOptionView = value; 	
+				_configOptionView = value;
                 sendEvent(this,"ConfigOptionViewChanged");
 			}
 		}
 
 		public var useCustomStyle:Boolean = false;
+		public var useCustomRenderer:Boolean = false;
 
 		private function itemToLabel(item:Object):String
 		{
@@ -276,11 +277,11 @@ package org.apache.royale.community.inspiretree.beads.models
 
 			if(labelField && item.hasOwnProperty(labelField))
 				return item[labelField];
-			
+
 			return '';
 		}
-		
-		
+
+
 	}
 
 }

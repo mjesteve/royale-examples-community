@@ -7,12 +7,14 @@ $color-checkboxBackground: linear-gradient(#88e2dc, #5fd8cf) //color of checkbox
 
 $primary-color: rgba(#04a3b3, 1)
 
+$default-font-color: #808080
+
 $lighten-color: lighten($primary-color, 5%)
 $lighten-font-color: lighten($primary-color, 10%)
 $extralighten-font-color: lighten($primary-color, 50%)
 
 $disabled-color: lighten($lighten-color, 55%)
-$disabled-font-color: darken($disabled-color, 5%)
+$disabled-font-color: silver //darken($disabled-color, 5%)
 
 $primary-color-darkback: darken($primary-color, 5%)
 $primary-font-color-darkback: darken($primary-color, 10%)
@@ -98,6 +100,9 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 		-o-appearance: none
 		-webkit-appearance: none
 		cursor: pointer
+		transform: translateY(-50%)
+		vertical-align: top
+		top: 38%
 	input[type="checkbox"]::before
 		background: linear-gradient(white, #f3f3f3)
 		border-radius: 3px
@@ -441,6 +446,8 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	.title
 		padding-left: 85px
 	.icon
+	.icon
+		&::after,
 		&::before
 			height: 16px
 			width: 16px
@@ -454,16 +461,27 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	background-repeat: no-repeat
 	content: " "
 	cursor: pointer
-	height: 18px
 	position: absolute
-	right: 3px
-	top: 18%
-	width: 16px
+	right: 5px
 	z-index: 3
+	transform: translateY(-50%)
+	vertical-align: top
+	top: 45%
+
 .editrevert
 	&.inspire-tree
 		.title
-			padding-right: 20px
+			padding-right: 25px
+		& > ol
+			& > li[type="disabled"]
+				& > div
+					& > a.title.icon
+						&::after
+							display: none
+
+//.editrevert.inspire-tree > ol > li[type="disabled"] > div > a.title.icon::after
+//	display: none
+
 .inspire-tree
 	&.noneicon
 		.title
@@ -524,41 +542,87 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	background-color: $lighten-color
 	color: $extralighten-font-color
 
+.inspire-tree .wholerow[type="disabled"]:hover,
+.inspire-tree .title-wrap:hover + .wholerow[type="disabled"]
+	background-color: inherit
+
 .inspire-tree .matched > .wholerow,
 .inspire-tree .matched > .wholerow:hover,
 .inspire-tree .matched > .title-wrap:hover + .wholerow
 	background-color: $lighten-color
 
-.inspire-tree 
-	& > ol 
-		& > li 
-			& > div 
-				& > a 
-					color: #808080 
-					&:hover 
-						color: $extralighten-font-color
-			& > ol 
-				& > li 
-					& > div 
-						& > a 
-							color: #808080 
-							&:hover 
-								color: $extralighten-font-color
+.inspire-tree
+	& > ol
+		& > li
+			& > div
+				& > a
+					color: $default-font-color
+					&:hover
+						color: white
+			& > ol
+				& > li
+					& > div
+						& > a
+							color: $default-font-color
+							&:hover
+								color: white
+				& > li[type="disabled"]
+					& > div
+						& > a
+							color: $disabled-font-color !important
+							&:hover
+								color: $disabled-font-color !important
+						& > input[type="checkbox"]
+							pointer-events: none
+							&:checked::after
+								background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+							&:indeterminate::after
+								background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center
+						&.rejected
+							& > input[type="checkbox"]
+								pointer-events: none
+								&:indeterminate::after
+									background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
+
+		& > li[type="disabled"]
+			& > div
+				& > a
+					color: $disabled-font-color !important
+					&:hover
+						color: $disabled-font-color !important
+				& > input[type="checkbox"]
+					pointer-events: none
+					&:checked::after
+						background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+					&:indeterminate::after
+						background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center
+				&.rejected
+					& > input[type="checkbox"]
+						pointer-events: none
+						&:indeterminate::after
+							background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
 
 .inspire-tree .selected > .wholerow
 	background-color: $primary-color-darkback
 	color: $extralighten-font-color
+
+.inspire-tree .selected > .wholerow[type="disabled"]
+	background-color: inherit
 
 .inspire-tree .selected > .wholerow:hover,
 .inspire-tree .selected > .title-wrap:hover + .wholerow
 	background-color: $lighten-color
 	color: $extralighten-font-color
 
+.inspire-tree .selected > .wholerow[type="disabled"]:hover,
+.inspire-tree .selected > .title-wrap:hover + .wholerow[type="disabled"]
+	background-color: inherit
+
 .inspire-tree
 	.selected
 		& > .title-wrap
 			& a.title.icon
-				color: white 
+				color: white
 			.icon-folder
 				&::before
 					background-image: $icon-folder-svg-selected
