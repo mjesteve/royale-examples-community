@@ -20,8 +20,6 @@ package org.apache.royale.community.inspiretree.controls
     	import org.apache.royale.events.Event;
     	import org.apache.royale.utils.MXMLDataInterpreter;
     	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
-    	import org.apache.royale.community.inspiretree.beads.InspireTreeRendererBead;
-    	import org.apache.royale.core.IBead;
     	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
     	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
 	}

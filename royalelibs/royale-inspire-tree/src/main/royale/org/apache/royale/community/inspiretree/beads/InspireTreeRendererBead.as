@@ -1,5 +1,6 @@
 package org.apache.royale.community.inspiretree.beads
 {
+	import TreeNode;
 
 	/**
 	 *  @langversion 3.0
@@ -10,14 +11,10 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
-	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
-	import org.apache.royale.collections.IArrayList;
-	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
 
     COMPILE::JS
@@ -100,17 +97,17 @@ package org.apache.royale.community.inspiretree.beads
 		 * <p>The <code>activeItemFunction</code> property takes a reference to a function.
      	 * The function takes a single argument which is the item of the data provider and returns a boolean:</p>
     	 *
-		 *  <pre>myLabelFunction(item:Object):Boolean</pre>
+		 *  <pre>myActiveFunction(item:Object):Boolean</pre>
       	 *
      	 *  @param item The data item. Null items return false.
 		 */
-		private var _activeItemFunction:Function = itemChildChecked;
+		private var _activeItemFunction:Function = itemChildActived;
 		public function get activeItemFunction():Function{return _activeItemFunction; }
 		public function set activeItemFunction(value:Function):void{ _activeItemFunction = value;}
 
-		private function itemChildChecked(itemTreeData:Object, itemDataProv:Object):Boolean
+		private function itemChildActived(itemDataProv:Object):Boolean
 		{
-			if(!itemTreeData || !itemDataProv || !activeItemField)
+			if(!itemDataProv || !activeItemField)
 				return false;
 
 			if( itemDataProv[activeItemField] == null )
@@ -143,31 +140,44 @@ package org.apache.royale.community.inspiretree.beads
 			var idxNode:int = 0;
 			for (var idxGen:int=0; idxGen < hostComponent.dataProvider.length; idxGen++)
         	{
-				if(hostComponent.jsTree.model[idxNode].itree !=null)
-					if(hostComponent.jsTree.model[idxNode].itree.ref.childNodes !=null)
-						if(hostComponent.jsTree.model[idxNode].itree.ref.childNodes[0].childNodes !=null)
-							if(hostComponent.jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length > 1)
-							{
-								var idxIcon:int = hostComponent.jsTree.model[idxNode].itree.ref.childNodes[0].childNodes.length-1;
-
-								if(hostComponent.dataProvider.source[idxGen].icon !="")
-									hostComponent.jsTree.model[idxNode].itree.ref.childNodes[0].childNodes[idxIcon].style =  " background-image:url('"+hostComponent.dataProvider.source[idxGen].icon+"'); background-repeat: no-repeat; background-position: 30px 10px;";
-
-							}
-
-				if(hostComponent.jsTree.model[idxNode].children!=null)
-					for (var idxChild:int=0; idxChild < hostComponent.jsTree.model[idxNode].children.length; idxChild++)
+				var treenode:Object = hostComponent.jsTree.model[idxNode];
+				if(treenode.children!=null)
+				{
+					var numnoactive:int = 0;
+					var actived:Boolean;
+					var row:HTMLElement;
+					var wholerow:HTMLElement;
+					for (var idxChild:int=0; idxChild < treenode.children.length; idxChild++)
 					{
-						idxGen++;
 						if( idxGen < hostComponent.dataProvider.length)
 						{
-							var idxIconChild:int = hostComponent.jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes.length-1;
-
-							if(hostComponent.dataProvider.source[idxGen].icon !="")
-								hostComponent.jsTree.model[idxNode].children[idxChild].itree.ref.childNodes[0].childNodes[idxIconChild].style =  " background-image:url('"+hostComponent.dataProvider.source[idxGen].icon+"'); background-repeat: no-repeat; background-position: 30px 10px;";
-
+							actived = activeItemFunction(hostComponent.dataProvider[idxGen]);
+							row = treenode.children[idxChild].itree.ref as HTMLElement;						
+							wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
+							if( actived )
+							{
+								row.removeAttribute("type");
+								wholerow.removeAttribute("type");
+								numnoactive++;
+							}else{
+								row.setAttribute('type',"disabled");
+								wholerow.setAttribute('type',"disabled");
+							}
 						}
+						idxGen++;
 					}
+
+					row = treenode.itree.ref as HTMLElement;						
+					wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
+					if(numnoactive == 0) //Disabled root
+					{
+						row.setAttribute('type',"disabled");
+						wholerow.setAttribute('type',"disabled");
+					}else{
+						row.removeAttribute("type");
+						wholerow.removeAttribute("type");
+					}
+				}
 				idxNode++;
 			}
 		}
