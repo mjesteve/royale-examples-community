@@ -80,7 +80,6 @@ package org.apache.royale.community.inspiretree.beads
 			if(treeModel)
 			{
 				treeModel.useCustomRenderer = true;
-                //updateHost(null);
 			    initialized = true;
 			}
 		}
@@ -130,7 +129,7 @@ package org.apache.royale.community.inspiretree.beads
 
 		private function updateHost(event:Event = null):void
 		{
-			if(!strand)
+			if(!strand || !initialized)
 				return;
 
 			var hostComponent:InspireTreeBasicControl = strand as InspireTreeBasicControl;
