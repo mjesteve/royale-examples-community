@@ -13,6 +13,8 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
        
     COMPILE::JS
 	public class InspireTreeEventsBead  extends Strand implements IBead
@@ -58,20 +60,41 @@ package org.apache.royale.community.inspiretree.beads
 		public function set strand(value:IStrand):void
 		{
             _strand = value;
-			(_strand as IEventDispatcher).addEventListener("onCreationComplete", createListeners)
+			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
 		} 
+
+		private function removeListeners():void
+		{
+			(_strand as IEventDispatcher).removeEventListener("onBeforeCreation", removeListeners);
+			(_strand as IEventDispatcher).addEventListener("onCreationComplete", createListeners);
+
+			if( !(_strand as IInspireTree).jsTree )
+				return;
+
+			if(_nodeClick)
+				(_strand as IInspireTree).jsTree.off('node.click', onClickHandler);
+			if(_nodeDblClick)
+				(_strand as IInspireTree).jsTree.off('node.dblclick', onDblClickHandler);
+			if(_nodeContextmenu)
+				(_strand as IInspireTree).jsTree.off('node.contextmenu', onNodeContextmenuHandler);
+
+		}
 
 		private function createListeners():void
 		{
-			//We do not delete the listener because the jsTree can be recreated and the callBacks must be recreated.
-			//(_strand as IEventDispatcher).removeEventListener("onCreationComplete", createListeners);
-			
+			(_strand as IEventDispatcher).removeEventListener("onCreationComplete", createListeners);
+			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
+
+			if( !(_strand as IInspireTree).jsTree )
+				return;
+
 			if(_nodeClick)
 				(_strand as IInspireTree).jsTree.on('node.click', onClickHandler);
 			if(_nodeDblClick)
 				(_strand as IInspireTree).jsTree.on('node.dblclick', onDblClickHandler);
 			if(_nodeContextmenu)
 				(_strand as IInspireTree).jsTree.on('node.contextmenu', onNodeContextmenuHandler);
+
 		}
 		
         private var _nodeClick:Function;
@@ -111,6 +134,10 @@ package org.apache.royale.community.inspiretree.beads
 			// 					...
 			//					[14] Windows
 			_nodeClick( evt, new ItemTreeNode(treeNode));
+			//With "stopPropagation" --> mapped directly with inspiretree.evt.stopPropagation --> evt.cancelBubble is true
+			//With "preventDefault" --> not mapped --> evt.defaultPrevented is true
+			if( evt.cancelBubble || evt.defaultPrevented )
+				evt.treeDefaultPrevented = true; //Cancel event in inspiretree
 			
 			//-----
 			// test - Override our default DOM event handlers
@@ -128,9 +155,11 @@ package org.apache.royale.community.inspiretree.beads
 		 * @param value Callback function User double-clicked node.
 		 */
         public function set nodeDblClick(value:Function):void {	_nodeDblClick = value; }
-		public function onDblClickHandler():void
+		public function onDblClickHandler(evt:*, treeNode:Object, handler:Function):void
 		{
-			_nodeDblClick( arguments[0], new ItemTreeNode(arguments[1]));
+			_nodeDblClick( evt, new ItemTreeNode(treeNode));
+			if( evt.cancelBubble || evt.defaultPrevented )
+				evt.treeDefaultPrevented = true;
 		}
 
         private var _nodeContextmenu:Function;
@@ -140,9 +169,11 @@ package org.apache.royale.community.inspiretree.beads
 		 * @param value Callback function User right-clicked node.
 		 */
         public function set nodeContextmenu (value:Function):void {	_nodeContextmenu = value; }
-		public function onNodeContextmenuHandler():void
+		public function onNodeContextmenuHandler(evt:*, treeNode:Object):void
 		{
-			_nodeContextmenu(arguments[0], new ItemTreeNode(arguments[1]));
+			_nodeContextmenu(evt, new ItemTreeNode(treeNode));
+			if( evt.cancelBubble || evt.defaultPrevented )
+				evt.treeDefaultPrevented = true;
 		}
 
 

@@ -445,7 +445,7 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	border: 1px solid #d3d3d3
 	.title
 		padding-left: 85px
-	.icon
+		font-size: inherit
 	.icon
 		&::after,
 		&::before
@@ -473,13 +473,13 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 		.title
 			padding-right: 25px
 		& > ol
-			& > li[type="disabled"]
+			& > li[type="markInactived"]
 				& > div
 					& > a.title.icon
 						&::after
 							display: none
 
-//.editrevert.inspire-tree > ol > li[type="disabled"] > div > a.title.icon::after
+//.editrevert.inspire-tree > ol > li[type="markInactived"] > div > a.title.icon::after
 //	display: none
 
 .inspire-tree
@@ -542,8 +542,8 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	background-color: $lighten-color
 	color: $extralighten-font-color
 
-.inspire-tree .wholerow[type="disabled"]:hover,
-.inspire-tree .title-wrap:hover + .wholerow[type="disabled"]
+.inspire-tree .wholerow[type="markInactived"]:hover,
+.inspire-tree .title-wrap:hover + .wholerow[type="markInactived"]
 	background-color: inherit
 
 .inspire-tree .matched > .wholerow,
@@ -566,7 +566,7 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 							color: $default-font-color
 							&:hover
 								color: white
-				& > li[type="disabled"]
+				& > li[type="markInactived"]
 					& > div
 						& > a
 							color: $disabled-font-color !important
@@ -584,7 +584,7 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 								&:indeterminate::after
 									background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
 
-		& > li[type="disabled"]
+		& > li[type="markInactived"]
 			& > div
 				& > a
 					color: $disabled-font-color !important
@@ -606,7 +606,7 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	background-color: $primary-color-darkback
 	color: $extralighten-font-color
 
-.inspire-tree .selected > .wholerow[type="disabled"]
+.inspire-tree .selected > .wholerow[type="markInactived"]
 	background-color: inherit
 
 .inspire-tree .selected > .wholerow:hover,
@@ -614,8 +614,8 @@ $extralighten-font-color-two: lighten($primary-color-two, 50%)
 	background-color: $lighten-color
 	color: $extralighten-font-color
 
-.inspire-tree .selected > .wholerow[type="disabled"]:hover,
-.inspire-tree .selected > .title-wrap:hover + .wholerow[type="disabled"]
+.inspire-tree .selected > .wholerow[type="markInactived"]:hover,
+.inspire-tree .selected > .title-wrap:hover + .wholerow[type="markInactived"]
 	background-color: inherit
 
 .inspire-tree

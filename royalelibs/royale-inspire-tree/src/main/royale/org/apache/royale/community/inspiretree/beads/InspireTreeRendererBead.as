@@ -1,7 +1,5 @@
 package org.apache.royale.community.inspiretree.beads
 {
-	import TreeNode;
-
 	/**
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -80,43 +78,57 @@ package org.apache.royale.community.inspiretree.beads
 			if(treeModel)
 			{
 				treeModel.useCustomRenderer = true;
+				if( stringTypeMarkDOM )
+					treeModel.stringTypeMarkDOM = stringTypeMarkDOM;
 			    initialized = true;
 			}
 		}
 
-		private var _activeItemField:String = "";
+		private var _markDOMField:String = "";
 		/**
 		 * Name of the attribute, in the dataProvider, where the active value is defined.
 		 * Expected values: 0/1 or true/false
 		 */
-		public function get activeItemField():String {return _activeItemField; }
-		public function set activeItemField(value:String):void{ _activeItemField = value;}
+		public function get markDOMField():String {return _markDOMField; }
+		public function set markDOMField(value:String):void{ _markDOMField = value;}
 		/**
 		 * Function to get the active status of the child nodes.
-		 * <p>The <code>activeItemFunction</code> property takes a reference to a function.
+		 * <p>The <code>markDOMFunction</code> property takes a reference to a function.
      	 * The function takes a single argument which is the item of the data provider and returns a boolean:</p>
     	 *
 		 *  <pre>myActiveFunction(item:Object):Boolean</pre>
       	 *
      	 *  @param item The data item. Null items return false.
 		 */
-		private var _activeItemFunction:Function = itemChildActived;
-		public function get activeItemFunction():Function{return _activeItemFunction; }
-		public function set activeItemFunction(value:Function):void{ _activeItemFunction = value;}
+		private var _markDOMFunction:Function = itemMarkDOMFunction;
+		public function get markDOMFunction():Function{return _markDOMFunction; }
+		public function set markDOMFunction(value:Function):void{ _markDOMFunction = value;}
 
-		private function itemChildActived(itemDataProv:Object):Boolean
+		private var _stringTypeMarkDOM:String;
+		public function get stringTypeMarkDOM():String
+		{ 
+			return _stringTypeMarkDOM; 
+		}
+		public function set stringTypeMarkDOM(value:String):void
+		{ 
+			_stringTypeMarkDOM = value; 
+			if( treeModel )
+				treeModel.stringTypeMarkDOM = value;
+		}
+
+		private function itemMarkDOMFunction(itemDataProv:Object):Boolean
 		{
-			if(!itemDataProv || !activeItemField)
+			if(!itemDataProv || !markDOMField)
 				return false;
 
-			if( itemDataProv[activeItemField] == null )
+			if( itemDataProv[markDOMField] == null )
 				return false;
 
-			if( itemDataProv[activeItemField] is Number )
-				return Number(itemDataProv[activeItemField])>0 ? true:false;
+			if( itemDataProv[markDOMField] is Number )
+				return Number(itemDataProv[markDOMField])>0 ? true:false;
 
-			if( itemDataProv[activeItemField] is Boolean )
-				return itemDataProv[activeItemField] as Boolean;
+			if( itemDataProv[markDOMField] is Boolean )
+				return itemDataProv[markDOMField] as Boolean;
 
 			return false;
 		}
@@ -145,35 +157,42 @@ package org.apache.royale.community.inspiretree.beads
 					var numnoactive:int = 0;
 					var actived:Boolean;
 					var row:HTMLElement;
+					var titlerow:HTMLElement;
 					var wholerow:HTMLElement;
 					for (var idxChild:int=0; idxChild < treenode.children.length; idxChild++)
 					{
 						if( idxGen < hostComponent.dataProvider.length)
 						{
-							actived = activeItemFunction(hostComponent.dataProvider[idxGen]);
+							actived = markDOMFunction(hostComponent.dataProvider[idxGen]);
 							row = treenode.children[idxChild].itree.ref as HTMLElement;						
+							titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
 							wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
 							if( actived )
 							{
 								row.removeAttribute("type");
+								titlerow.removeAttribute("type");
 								wholerow.removeAttribute("type");
 								numnoactive++;
 							}else{
-								row.setAttribute('type',"disabled");
-								wholerow.setAttribute('type',"disabled");
+								row.setAttribute('type',treeModel.stringTypeMarkDOM);
+								titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+								wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 							}
 						}
 						idxGen++;
 					}
 
-					row = treenode.itree.ref as HTMLElement;						
+					row = treenode.itree.ref as HTMLElement;
+					titlerow = treenode.itree.ref.childNodes[0] as HTMLElement;
 					wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
 					if(numnoactive == 0) //Disabled root
 					{
-						row.setAttribute('type',"disabled");
-						wholerow.setAttribute('type',"disabled");
+						row.setAttribute('type',treeModel.stringTypeMarkDOM);
+						titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+						wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 					}else{
 						row.removeAttribute("type");
+						titlerow.removeAttribute("type");
 						wholerow.removeAttribute("type");
 					}
 				}

@@ -450,6 +450,7 @@
 }
 .inspire-tree .title {
   padding-left: 85px;
+  font-size: inherit;
 }
 .inspire-tree .icon::after, .inspire-tree .icon::before {
   height: 16px;
@@ -476,7 +477,7 @@
 .editrevert.inspire-tree .title {
   padding-right: 25px;
 }
-.editrevert.inspire-tree > ol > li[type="disabled"] > div > a.title.icon::after {
+.editrevert.inspire-tree > ol > li[type="markInactived"] > div > a.title.icon::after {
   display: none;
 }
 
@@ -536,8 +537,8 @@
   color: #b9f7fd;
 }
 
-.inspire-tree .wholerow[type="disabled"]:hover,
-.inspire-tree .title-wrap:hover + .wholerow[type="disabled"] {
+.inspire-tree .wholerow[type="markInactived"]:hover,
+.inspire-tree .title-wrap:hover + .wholerow[type="markInactived"] {
   background-color: inherit;
 }
 
@@ -559,46 +560,46 @@
 .inspire-tree > ol > li > ol > li > div > a:hover {
   color: white;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div > a {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div > a {
   color: silver !important;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div > a:hover {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div > a:hover {
   color: silver !important;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"] {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div > input[type="checkbox"] {
   pointer-events: none;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"]:checked::after {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div > input[type="checkbox"]:checked::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div > input[type="checkbox"]:indeterminate::after {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div > input[type="checkbox"]:indeterminate::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div.rejected > input[type="checkbox"] {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div.rejected > input[type="checkbox"] {
   pointer-events: none;
 }
-.inspire-tree > ol > li > ol > li[type="disabled"] > div.rejected > input[type="checkbox"]:indeterminate::after {
+.inspire-tree > ol > li > ol > li[type="markInactived"] > div.rejected > input[type="checkbox"]:indeterminate::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
 }
-.inspire-tree > ol > li[type="disabled"] > div > a {
+.inspire-tree > ol > li[type="markInactived"] > div > a {
   color: silver !important;
 }
-.inspire-tree > ol > li[type="disabled"] > div > a:hover {
+.inspire-tree > ol > li[type="markInactived"] > div > a:hover {
   color: silver !important;
 }
-.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"] {
+.inspire-tree > ol > li[type="markInactived"] > div > input[type="checkbox"] {
   pointer-events: none;
 }
-.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"]:checked::after {
+.inspire-tree > ol > li[type="markInactived"] > div > input[type="checkbox"]:checked::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%238e121b' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
-.inspire-tree > ol > li[type="disabled"] > div > input[type="checkbox"]:indeterminate::after {
+.inspire-tree > ol > li[type="markInactived"] > div > input[type="checkbox"]:indeterminate::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%238e121b' /%3E%3C/svg%3E") no-repeat center center;
 }
-.inspire-tree > ol > li[type="disabled"] > div.rejected > input[type="checkbox"] {
+.inspire-tree > ol > li[type="markInactived"] > div.rejected > input[type="checkbox"] {
   pointer-events: none;
 }
-.inspire-tree > ol > li[type="disabled"] > div.rejected > input[type="checkbox"]:indeterminate::after {
+.inspire-tree > ol > li[type="markInactived"] > div.rejected > input[type="checkbox"]:indeterminate::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%238e121b' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
 }
 
@@ -607,7 +608,7 @@
   color: #b9f7fd;
 }
 
-.inspire-tree .selected > .wholerow[type="disabled"] {
+.inspire-tree .selected > .wholerow[type="markInactived"] {
   background-color: inherit;
 }
 
@@ -617,8 +618,8 @@
   color: #b9f7fd;
 }
 
-.inspire-tree .selected > .wholerow[type="disabled"]:hover,
-.inspire-tree .selected > .title-wrap:hover + .wholerow[type="disabled"] {
+.inspire-tree .selected > .wholerow[type="markInactived"]:hover,
+.inspire-tree .selected > .title-wrap:hover + .wholerow[type="markInactived"] {
   background-color: inherit;
 }
 

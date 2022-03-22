@@ -267,8 +267,22 @@ package org.apache.royale.community.inspiretree.beads.models
 			}
 		}
 
-		public var useCustomStyle:Boolean = false;
-		public var useCustomRenderer:Boolean = false;
+		public var renderingNeededDataChange:Boolean = false;
+		private var _useCustomStyle:Boolean = false;
+		public function get useCustomStyle():Boolean{ return _useCustomStyle; }
+		public function set useCustomStyle(value:Boolean):void
+		{ 
+			_useCustomStyle = value; 
+			renderingNeededDataChange = true;
+		}
+		public var stringTypeMarkDOM:String = "markInactived";
+		private var _useCustomRenderer:Boolean = false;		
+		public function get useCustomRenderer():Boolean{ return _useCustomRenderer; }
+		public function set useCustomRenderer(value:Boolean):void
+		{ 
+			_useCustomRenderer = value;
+			renderingNeededDataChange = true;
+		}
 
 		private function itemToLabel(item:Object):String
 		{
@@ -277,11 +291,11 @@ package org.apache.royale.community.inspiretree.beads.models
 
 			if(labelField && item.hasOwnProperty(labelField))
 				return item[labelField];
-
+			
 			return '';
 		}
-
-
+		
+		
 	}
 
 }

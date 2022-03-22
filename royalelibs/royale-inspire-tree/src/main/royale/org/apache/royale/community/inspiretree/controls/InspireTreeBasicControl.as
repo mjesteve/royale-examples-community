@@ -300,17 +300,22 @@ package org.apache.royale.community.inspiretree.controls
 				return;
 
 			jsTree.reload();
+			if( InspireTreeModel(model).renderingNeededDataChange )
+            	dispatchEvent(new Event("onCreationComplete"));
         }
 		/**
 		 * Recreate the InspireTree instance with the current options.
 		 */
 		public function reCreateViewTree(onlyView:Boolean=false):void
 		{
+			/*if(jsTree)
+			{
+				jsTree=null;
+				jsTreeDOM=null;
+			}*/
             dispatchEvent(new Event("onBeforeCreation"));
 
-			//if(!onlyView || !jsTree)
 			jsTree = new InspireTree(InspireTreeModel(model).configOption);
-
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
 			uid = element.getAttribute('data-uid'); trace(uid);

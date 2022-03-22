@@ -47,6 +47,7 @@
 			public function onDblClickExample(event:Event, node:ItemTreeNode):void
 			{
 				trace('dblclick:', 'Node Id:', node.id);
+				event.stopPropagation();
 			}
 
 			public function onContextMenuExample(event:Event, node:ItemTreeNode):void
@@ -83,7 +84,8 @@
                                     <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
                                         <trees:beads>
 											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead activeItemFunction="isActiveItem"/>
+                                            <jc:InspireTreeRendererBead markDOMFunction="isActiveItem"/>
+											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample"/>
                                         </trees:beads>
                                     </trees:treePermissions>
 								</j:GridCell>

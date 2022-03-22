@@ -87,7 +87,6 @@
     },
     "copySourcePathAssets": true,
     "additionalOptions": [
-        //"-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
         "-js-dynamic-access-unknown-members=true",
         "-show-binding-warnings=false"
     ],
