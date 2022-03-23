@@ -19,9 +19,6 @@ package org.apache.royale.community.inspiretree.controls
         import org.apache.royale.html.util.addElementToWrapper;
     	import org.apache.royale.events.Event;
     	import org.apache.royale.utils.MXMLDataInterpreter;
-    	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
-    	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
-    	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
 	}
     /**
      *  It triggers just before launching the creation.
@@ -122,6 +119,10 @@ package org.apache.royale.community.inspiretree.controls
 			//The model is loaded
 			if (!_initialized)
 			{
+				if(tmpDataProvider){
+					IDataProviderModel(model).dataProvider = tmpDataProvider;
+					tmpDataProvider=null;
+				}
 				dispatchEvent(new Event("initComplete"));
 
 				if(!InspireTreeModel(model).useCustomStyle)
@@ -174,6 +175,7 @@ package org.apache.royale.community.inspiretree.controls
 		public function get boundField():String { return InspireTreeModel(model).boundField; }
 		public function set boundField(value:String):void{ InspireTreeModel(model).boundField = value; }
 
+		private var tmpDataProvider:Object = null;
         [Bindable("dataProviderChanged")]
 		public function get dataProvider():Object
 		{
@@ -184,8 +186,12 @@ package org.apache.royale.community.inspiretree.controls
 		 */
 		public function set dataProvider(value:Object):void
 		{
-			IDataProviderModel(model).dataProvider = value;
-			updateDataViewTree();
+			if(_initialized){
+				IDataProviderModel(model).dataProvider = value;
+				updateDataViewTree();
+			}else{
+				tmpDataProvider = value;
+			}
 		}
 
         [Bindable("selectionChanged")]
@@ -308,11 +314,6 @@ package org.apache.royale.community.inspiretree.controls
 		 */
 		public function reCreateViewTree(onlyView:Boolean=false):void
 		{
-			/*if(jsTree)
-			{
-				jsTree=null;
-				jsTreeDOM=null;
-			}*/
             dispatchEvent(new Event("onBeforeCreation"));
 
 			jsTree = new InspireTree(InspireTreeModel(model).configOption);

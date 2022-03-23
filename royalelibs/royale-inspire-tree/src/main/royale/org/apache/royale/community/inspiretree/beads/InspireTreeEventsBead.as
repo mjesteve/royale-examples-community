@@ -134,9 +134,9 @@ package org.apache.royale.community.inspiretree.beads
 			// 					...
 			//					[14] Windows
 			_nodeClick( evt, new ItemTreeNode(treeNode));
-			//With "stopPropagation" --> mapped directly with inspiretree.evt.stopPropagation --> evt.cancelBubble is true
+			//With "stopPropagation" --> mapped directly with inspiretree.evt.stopPropagation
 			//With "preventDefault" --> not mapped --> evt.defaultPrevented is true
-			if( evt.cancelBubble || evt.defaultPrevented )
+			if( evt.defaultPrevented )
 				evt.treeDefaultPrevented = true; //Cancel event in inspiretree
 			
 			//-----
@@ -158,7 +158,7 @@ package org.apache.royale.community.inspiretree.beads
 		public function onDblClickHandler(evt:*, treeNode:Object, handler:Function):void
 		{
 			_nodeDblClick( evt, new ItemTreeNode(treeNode));
-			if( evt.cancelBubble || evt.defaultPrevented )
+			if( evt.defaultPrevented )
 				evt.treeDefaultPrevented = true;
 		}
 
@@ -172,7 +172,7 @@ package org.apache.royale.community.inspiretree.beads
 		public function onNodeContextmenuHandler(evt:*, treeNode:Object):void
 		{
 			_nodeContextmenu(evt, new ItemTreeNode(treeNode));
-			if( evt.cancelBubble || evt.defaultPrevented )
+			if( evt.defaultPrevented )
 				evt.treeDefaultPrevented = true;
 		}
 

@@ -8,6 +8,7 @@ package org.apache.royale.community.inspiretree.beads.models
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.collections.ArrayList;
 
 	//COMPILE::JS
 	public class InspireTreeModel extends ArrayListSelectionModel
@@ -29,13 +30,15 @@ package org.apache.royale.community.inspiretree.beads.models
 			if( value == null)
 				value = [];
 
-			super.dataProvider = value;
 
 			if(value is IArrayList)
+			{
+				super.dataProvider = value;
 				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
-			else
+			}else{
+				super.dataProvider = new ArrayList(value as Array);
 				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
-
+			}
 			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
 		}
 

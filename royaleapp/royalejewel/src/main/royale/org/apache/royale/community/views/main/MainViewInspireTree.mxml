@@ -17,6 +17,7 @@
 			import org.apache.royale.jewel.TextInput;
 			import org.apache.royale.community.models.UsersPermissions;
 			import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
+			import org.apache.royale.community.vos.PermissVO;
 
 			[Bindalbe]
 			private var dpUsersPermiss:UsersPermissions = new UsersPermissions();
@@ -36,6 +37,8 @@
 			{
 
                 trace('click:', 'Node:', node);
+				//event.preventDefault();
+				//event.stopPropagation();
                 /*trace('click:', 'Node Id:', node.id);
 				if(event["clientX"] > 300)
 				{
@@ -47,7 +50,8 @@
 			public function onDblClickExample(event:Event, node:ItemTreeNode):void
 			{
 				trace('dblclick:', 'Node Id:', node.id);
-				event.stopPropagation();
+				//event.preventDefault();
+				//event.stopPropagation();
 			}
 
 			public function onContextMenuExample(event:Event, node:ItemTreeNode):void
@@ -57,8 +61,13 @@
 
             public function isMarkedItem(item:Object):Boolean
             {
-                trace(item);
-                return true;
+				if(!item)
+					return false;
+
+				if( (item as PermissVO).idxacc<3)
+					return true;
+				else
+	                return false;
             }
 
 
@@ -85,10 +94,22 @@
                                         <trees:beads>
 											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
                                             <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem"/>
+											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
+                                        </trees:beads>
+                                    </trees:treePermissions>
+								</j:GridCell>
+								<!--
+								<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+									<j:Label text="Icons Set - Custom Icons:" />
+                                    <trees:treePermissions localId="treeTest" percentWidth="100" height="500" >
+                                        <trees:beads>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
+                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem" stringTypeMarkDOM="classTmp"/>
 											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample"/>
                                         </trees:beads>
                                     </trees:treePermissions>
 								</j:GridCell>
+								-->
 							</j:Grid>
 
 						</j:CardPrimaryContent>

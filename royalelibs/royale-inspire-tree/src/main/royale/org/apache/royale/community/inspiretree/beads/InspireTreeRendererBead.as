@@ -14,7 +14,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
-	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
+	import org.apache.royale.core.IDataProviderModel;
 
     COMPILE::JS
 	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
@@ -148,24 +148,27 @@ package org.apache.royale.community.inspiretree.beads
 			var hostComponent:InspireTreeBasicControl = strand as InspireTreeBasicControl;
 			if(!hostComponent.dataProvider)
 				return;
+			var modelDada:Array = IDataProviderModel(hostComponent.model).dataProvider.source;
 			var idxGen:int = 0;
 			var idxChild:int=0;
-			var idxNode:int = 0;
 			var isMarked:Boolean = false;
+			var marked:Boolean;
 			var treenode:Object;
-			for (idxGen=0; idxGen < hostComponent.dataProvider.length; idxGen++)
-        	{
-				treenode = hostComponent.jsTree.model[idxNode];
+
+			hostComponent.jsTree.forEach(function(treenode:Object):void
+			{
 				if(treenode.children!=null)
 				{
 					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
 					{
-						if( idxGen < hostComponent.dataProvider.length)
+						if( idxGen < modelDada.length)
 						{
-							marked = markDOMFunction(hostComponent.dataProvider[idxGen]);
+							var itemdata:Object = modelDada[idxGen];
+							marked = markDOMFunction(itemdata);
 							if( marked ){
 								treenode.children[idxChild].itree.state.checked = false;
 								treenode.children[idxChild].itree.state.indeterminate = true;
+								treenode.children[idxChild].itree.state.selectable = false;
 								isMarked = true;
 							}
 						}
@@ -175,67 +178,64 @@ package org.apache.royale.community.inspiretree.beads
 					{
 						treenode.itree.state.checked = false;
 						treenode.itree.state.indeterminate = true;
+						treenode.itree.state.selectable = false;
 					}
 				}
-				idxNode++;
-			}
+			});
 			if(isMarked)
+			{
+				//We have to reload the data for the DOM to be updated.
 				hostComponent.jsTree.reload();
-			
-			idxNode = 0;
-
-			for (idxGen=0; idxGen < hostComponent.dataProvider.length; idxGen++)
-        	{
-				treenode = hostComponent.jsTree.model[idxNode];
-				if(treenode.children!=null)
+				idxGen=0;
+				hostComponent.jsTree.forEach(function(treenode:Object):void
 				{
-					var numnoactive:int = 0;
-					var marked:Boolean;
-					var row:HTMLElement;
-					var titlerow:HTMLElement;
-					var wholerow:HTMLElement;
-					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
+					if(treenode.children!=null)
 					{
-						if( idxGen < hostComponent.dataProvider.length)
+						var numnoactive:int = 0;
+						var row:HTMLElement;
+						var titlerow:HTMLElement;
+						var wholerow:HTMLElement;
+						for (idxChild=0; idxChild < treenode.children.length; idxChild++)
 						{
-							marked = markDOMFunction(hostComponent.dataProvider[idxGen]);
-							row = treenode.children[idxChild].itree.ref as HTMLElement;						
-							titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
-							wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
-							if( !marked )
+							if( idxGen < modelDada.length)
 							{
-								row.removeAttribute("type");
-								titlerow.removeAttribute("type");
-								wholerow.removeAttribute("type");
-								numnoactive++;
-							}else{
-								row.setAttribute('type',treeModel.stringTypeMarkDOM);
-								titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-								wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-								isMarked = true;
+								var itemdata:Object = modelDada[idxGen];
+								marked = markDOMFunction(itemdata);
+								row = treenode.children[idxChild].itree.ref as HTMLElement;						
+								titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
+								wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
+								if( marked ){								
+									row.setAttribute('type',treeModel.stringTypeMarkDOM);
+									titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+									wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+								}else{
+									row.removeAttribute("type");
+									titlerow.removeAttribute("type");
+									wholerow.removeAttribute("type");
+									numnoactive++;
+								}
 							}
+							idxGen++;
 						}
-						idxGen++;
-					}
 
-					row = treenode.itree.ref as HTMLElement;
-					titlerow = treenode.itree.ref.childNodes[0] as HTMLElement;
-					wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
-					if(numnoactive == 0) //Disabled root
-					{
-						row.setAttribute('type',treeModel.stringTypeMarkDOM);
-						titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-						wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-					}else{
-						row.removeAttribute("type");
-						titlerow.removeAttribute("type");
-						wholerow.removeAttribute("type");
+						row = treenode.itree.ref as HTMLElement;
+						titlerow = treenode.itree.ref.childNodes[0] as HTMLElement;
+						wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
+						if(numnoactive == 0) //Disabled root
+						{
+							row.setAttribute('type',treeModel.stringTypeMarkDOM);
+							titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+							wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+						}else{
+							row.removeAttribute("type");
+							titlerow.removeAttribute("type");
+							wholerow.removeAttribute("type");
+						}
 					}
-				}
-				idxNode++;
+				});
 			}
 		}
-
+		
 	}
 
     COMPILE::SWF
