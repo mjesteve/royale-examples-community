@@ -14,6 +14,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
+	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
 
     COMPILE::JS
 	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
@@ -135,7 +136,7 @@ package org.apache.royale.community.inspiretree.beads
 
         public function prepareRenderer(node:Object):Object
         {
-           // (node as ItemTreeNode).itree.state.selectable = false;
+            //(node as ItemTreeNode).itree.state.indeterminate = true;
             return node;
         }
 
@@ -147,27 +148,61 @@ package org.apache.royale.community.inspiretree.beads
 			var hostComponent:InspireTreeBasicControl = strand as InspireTreeBasicControl;
 			if(!hostComponent.dataProvider)
 				return;
-
+			var idxGen:int = 0;
+			var idxChild:int=0;
 			var idxNode:int = 0;
-			for (var idxGen:int=0; idxGen < hostComponent.dataProvider.length; idxGen++)
+			var isMarked:Boolean = false;
+			var treenode:Object;
+			for (idxGen=0; idxGen < hostComponent.dataProvider.length; idxGen++)
         	{
-				var treenode:Object = hostComponent.jsTree.model[idxNode];
+				treenode = hostComponent.jsTree.model[idxNode];
 				if(treenode.children!=null)
 				{
-					var numnoactive:int = 0;
-					var actived:Boolean;
-					var row:HTMLElement;
-					var titlerow:HTMLElement;
-					var wholerow:HTMLElement;
-					for (var idxChild:int=0; idxChild < treenode.children.length; idxChild++)
+					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
 					{
 						if( idxGen < hostComponent.dataProvider.length)
 						{
-							actived = markDOMFunction(hostComponent.dataProvider[idxGen]);
+							marked = markDOMFunction(hostComponent.dataProvider[idxGen]);
+							if( marked ){
+								treenode.children[idxChild].itree.state.checked = false;
+								treenode.children[idxChild].itree.state.indeterminate = true;
+								isMarked = true;
+							}
+						}
+						idxGen++;
+					}
+					if(isMarked) //Disabled root
+					{
+						treenode.itree.state.checked = false;
+						treenode.itree.state.indeterminate = true;
+					}
+				}
+				idxNode++;
+			}
+			if(isMarked)
+				hostComponent.jsTree.reload();
+			
+			idxNode = 0;
+
+			for (idxGen=0; idxGen < hostComponent.dataProvider.length; idxGen++)
+        	{
+				treenode = hostComponent.jsTree.model[idxNode];
+				if(treenode.children!=null)
+				{
+					var numnoactive:int = 0;
+					var marked:Boolean;
+					var row:HTMLElement;
+					var titlerow:HTMLElement;
+					var wholerow:HTMLElement;
+					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
+					{
+						if( idxGen < hostComponent.dataProvider.length)
+						{
+							marked = markDOMFunction(hostComponent.dataProvider[idxGen]);
 							row = treenode.children[idxChild].itree.ref as HTMLElement;						
 							titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
 							wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
-							if( actived )
+							if( !marked )
 							{
 								row.removeAttribute("type");
 								titlerow.removeAttribute("type");
@@ -177,6 +212,7 @@ package org.apache.royale.community.inspiretree.beads
 								row.setAttribute('type',treeModel.stringTypeMarkDOM);
 								titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 								wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+								isMarked = true;
 							}
 						}
 						idxGen++;

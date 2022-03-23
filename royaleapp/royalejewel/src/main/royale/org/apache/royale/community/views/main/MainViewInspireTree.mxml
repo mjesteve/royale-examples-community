@@ -55,10 +55,10 @@
 				trace('contextmenu:', 'Node Id:', node.id);
 			}
 
-            public function isActiveItem(item:Object):Boolean
+            public function isMarkedItem(item:Object):Boolean
             {
                 trace(item);
-                return false;
+                return true;
             }
 
 
@@ -84,7 +84,7 @@
                                     <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
                                         <trees:beads>
 											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isActiveItem"/>
+                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem"/>
 											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample"/>
                                         </trees:beads>
                                     </trees:treePermissions>
