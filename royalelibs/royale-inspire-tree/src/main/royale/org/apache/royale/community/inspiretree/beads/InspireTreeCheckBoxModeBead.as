@@ -282,7 +282,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			
 			var wParent:Number = (_strand as StyledUIBase).width;
-			var wItem:Number = Number( (node as ItemTreeNode).itree.ref.clientWidth ? (node as ItemTreeNode).itree.ref.clientWidth:0 );
+			var wItem:Number = Number( node.itree.ref.clientWidth ? node.itree.ref.clientWidth:0 );
 			var wScroll:Number = (wParent-wItem);
 			var wIcon:Number = 20;
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )

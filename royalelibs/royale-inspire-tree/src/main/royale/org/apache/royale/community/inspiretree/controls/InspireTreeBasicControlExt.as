@@ -10,6 +10,8 @@ package org.apache.royale.community.inspiretree.controls
     	import org.apache.royale.core.IDataProviderModel;
     	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
     	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
+    	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
+    	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
 	}
 
 	COMPILE::JS
@@ -61,7 +63,9 @@ package org.apache.royale.community.inspiretree.controls
 			if(!args[0])
 				return new Array();
 			var flatNormalizedArray:Array = args[0] as Array;			
-			var treeNormalizedArray:Array = args[1] ? args[1] as Array : new Array;
+			var treeNormalizedArray:Array = args[1];
+			if(!treeNormalizedArray)
+				treeNormalizedArray = new Array;
 			
 			var treeArray:Array = new Array();
 			var lendp:int = flatNormalizedArray.length;
@@ -70,19 +74,20 @@ package org.apache.royale.community.inspiretree.controls
 				var iChildCheckedCount:int = 0;
 				var iChildUnCheckedCount:int = 0;
 				var iChildMarkedCount:int = 0;
-				var itemdp:normalizeDataItem = (flatNormalizedArray[idxGen] as normalizeDataItem);
-				var itemGroup:Object = new ItemTreeNode();
-
-				itemGroup.text = labelFunctionParent(itemdp.data);
+				var itemdp:normalizeDataItem = flatNormalizedArray[idxGen] as normalizeDataItem;
 				var idobjPrev:String = boundField ? itemdp.data[boundField]:'root';
+
+				var itemGroup:Object = new ItemTreeNode();
+				itemGroup.text = labelFunctionParent(itemdp.data);
 
 				for (var idxChild:int=idxGen; idxChild < lendp; idxChild++)
 				{
-					var itemdpchild:normalizeDataItem = (flatNormalizedArray[idxChild] as normalizeDataItem);
+					var itemdpchild:normalizeDataItem = flatNormalizedArray[idxChild] as normalizeDataItem;
 					var idobjCurr:String = boundField ? itemdpchild.data[boundField]:'root';
 					if(idobjPrev == idobjCurr)
 					{
 						var itemDetail:Object = new ItemTreeNode();
+						//var itemDetailNorm:normalizeDataItem = new normalizeDataItem(itemdpchild.data);
 						itemDetail.text = labelFunctionChild(itemdpchild.data);
 
 						if(treeModel.showCheckboxes && treeModel.checkboxFunction)
@@ -90,31 +95,44 @@ package org.apache.royale.community.inspiretree.controls
 							itemdpchild.checked = treeModel.checkboxFunction(itemDetail, itemdpchild.data);
 							itemDetail.itree.state.checked = itemdpchild.checked;
 						}
+
 						if(treeModel.useCustomRenderer && treeModel.markDOMFunction)
 						{
 							itemdpchild.marked = treeModel.markDOMFunction(itemDetail, itemdpchild.data);
 							if(treeModel.markToState && itemdpchild.marked)
 							{
 								iChildMarkedCount++
-								itemDetail.itree.state[treeModel.markToState]=true;
+								if(treeModel.markToState && treeModel.markToState != "unchecked")
+									itemDetail.itree.state[treeModel.markToState]=true;
+
 								if(treeModel.showCheckboxes)
 								{
+									if(treeModel.markToState && treeModel.markToState == "unchecked"){
+										itemDetail.itree.state.checked = false;
+										itemDetail.itree.state.indeterminate = false;									
+									}
+
+									if(itemDetail.itree.state.checked){
+										itemDetail.itree.state.indeterminate = false;
+									}else
 									if(itemDetail.itree.state.indeterminate)
 									{
 										itemDetail.itree.state.checked = false;
 										if(treeModel.markIsDisabled)
 											itemDetail.itree.state.selectable = false;
-									}else if(treeModel.markToState = "unchecked")
-										itemDetail.itree.state.checked = false;
+									}
 								}
 							}
+							itemdpchild.checked = itemDetail.itree.state.checked;
+							itemdpchild.indeterminate = itemDetail.itree.state.indeterminate;
 							if(treeModel.markIsDisabled)
 							{
 								itemdpchild.enabled = !itemdpchild.marked;
 								itemDetail.itree.state.selectable = itemdpchild.enabled;
 							}
 						}
-						itemGroup.children.push(itemDetail);
+						(itemGroup.children as Array).push(itemDetail);
+						//(itemGroupNorm.data.children as Array).push(itemdpchild);
 
 						if(treeModel.showCheckboxes)
 						{
@@ -123,7 +141,6 @@ package org.apache.royale.community.inspiretree.controls
 							else
 								iChildUnCheckedCount++;
 						}
-
 						idxGen++;
 					}
 					else
@@ -133,46 +150,59 @@ package org.apache.royale.community.inspiretree.controls
 					}
 				}
 
-				if(itemGroup.children.length >0)
+				var itemGroupNorm:normalizeDataItem = new normalizeDataItem(itemdp.data);
+
+				if((itemGroup.children as Array).length >0)
 				{
 					if(treeModel.showCheckboxes){
-						if(iChildCheckedCount == itemGroup.children.length)
-							itemGroup.checked = true;
-						else if(iChildUnCheckedCount == itemGroup.children.length)
-							itemGroup.checked = false;
+						if(iChildCheckedCount == (itemGroup.children as Array).length)
+							itemGroup.itree.state.checked = true;
+						else if(iChildUnCheckedCount == (itemGroup.children as Array).length)
+							itemGroup.itree.state.checked = false;
 						else
 							itemGroup.itree.state.indeterminate = true;
 
-						itemGroup.itree.state.checked = itemGroup.checked;
+						itemGroupNorm.checked = itemGroup.itree.state.checked;
+						itemGroupNorm.indeterminate = itemGroup.itree.state.indeterminate;
 					}
 
-					if(treeModel.useCustomRenderer && iChildMarkedCount == itemGroup.children.length)
+					if(treeModel.useCustomRenderer && iChildMarkedCount == (itemGroup.children as Array).length)
 					{
-						itemGroup.marked = true;
-						if(treeModel.markToState)
+						itemGroupNorm.marked = true;
+
+						if(treeModel.markToState && treeModel.markToState != "unchecked")
 							itemGroup.itree.state[treeModel.markToState]=true;
 
 						if(treeModel.showCheckboxes)
 						{
+							if(treeModel.markToState && treeModel.markToState == "unchecked"){
+								itemGroup.itree.state.checked = false;
+								itemGroup.itree.state.indeterminate = false;									
+							}
+
+							if(itemGroup.itree.state.checked){
+								itemGroup.itree.state.indeterminate = false;
+							}else
 							if(itemGroup.itree.state.indeterminate)
 							{
 								itemGroup.itree.state.checked = false;
 								if(treeModel.markIsDisabled)
 									itemGroup.itree.state.selectable = false;
-							}else if(treeModel.markToState = "unchecked")
-								itemGroup.itree.state.checked = false;
-							
-							itemGroup.checked = itemGroup.itree.state.checked;
+							}
 						}
+						itemGroupNorm.checked = itemGroup.itree.state.checked;
+						itemGroupNorm.indeterminate = itemGroup.itree.state.indeterminate;
 						if(treeModel.markIsDisabled)
 						{
-							itemGroup.enabled = !itemGroup.marked;
-							itemGroup.itree.state.selectable = itemGroup.enabled;
+							itemGroupNorm.enabled = !itemGroupNorm.marked;
+							itemGroup.itree.state.selectable = itemGroupNorm.enabled;
 						}
 					}
+
 				}
 
 				treeArray.push(itemGroup);
+				treeNormalizedArray.push(itemGroupNorm);
 			}
 			return treeArray;
 		}
