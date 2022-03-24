@@ -59,17 +59,27 @@
 				trace('contextmenu:', 'Node Id:', node.id);
 			}
 
-            public function isMarkedItem(item:Object):Boolean
+            public function isMarkedItem(itemTreeData:Object, itemFlatData:Object):Boolean
             {
-				if(!item)
+				if(!itemFlatData)
 					return false;
 
-				if( (item as PermissVO).idxacc<3)
+				if( (itemFlatData as PermissVO).idxacc<3)
 					return true;
 				else
 	                return false;
             }
 
+			public function calcStateCheck(itemTreeData:Object, itemFlatData:Object):Boolean
+			{				
+				var res:Boolean =  (itemFlatData as PermissVO).checked>0 ? true:false;
+				return res;
+				
+				//Add. bloq
+				if( res && (itemFlatData as PermissVO).idxacc<3 )
+					res = false;
+				return res;
+			}
 
         ]]>
     </fx:Script>
@@ -84,7 +94,7 @@
 			<j:Grid>
 				<j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
-					<j:Card  height="100%"  width="100%" maxWidth="300" >
+					<j:Card  height="100%"  width="100%" maxWidth="600" >
 						<j:CardPrimaryContent style="border-top: 1px solid #d2dadf;"  height="100%"  width="100%" >
 
 							<j:Grid gap="true">
@@ -92,9 +102,8 @@
 									<j:Label text="Icons Set - Custom Icons:" />
                                     <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
                                         <trees:beads>
-											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem"/>
-											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
+											<jc:InspireTreeCheckBoxModeBeadExt checkboxFunction="calcStateCheck" showCheckboxes="true" revertIcon="true"/>
+                                            <jc:InspireTreeRendererBeadExt markDOMFunction="isMarkedItem"/>
                                         </trees:beads>
                                     </trees:treePermissions>
 								</j:GridCell>
@@ -103,9 +112,8 @@
 									<j:Label text="Icons Set - Custom Icons:" />
                                     <trees:treePermissions localId="treeTest" percentWidth="100" height="500" >
                                         <trees:beads>
-											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem" stringTypeMarkDOM="classTmp"/>
-											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true"/>
+											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
                                         </trees:beads>
                                     </trees:treePermissions>
 								</j:GridCell>

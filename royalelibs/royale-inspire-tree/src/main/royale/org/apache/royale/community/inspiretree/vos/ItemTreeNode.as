@@ -29,18 +29,6 @@ package org.apache.royale.community.inspiretree.vos
 	 */
     public class ItemTreeNode
     {
-        
-		public function ItemTreeNode( treeNode:Object = null){
-            if(treeNode == null)
-            {
-			    itree = getItreeDefault();
-            }else{                
-                this.text = treeNode.text;
-                this.id = treeNode.id;
-                this.children = treeNode.children;
-                this.itree = treeNode.itree;
-            }
-		}
 		/**
          * text - Text used in display.
 		 */
@@ -77,6 +65,18 @@ package org.apache.royale.community.inspiretree.vos
          *         state.selected - Set initial selection.
 		 */
 		public var itree:Object;
+        
+		public function ItemTreeNode( treeNode:Object = null){
+            if(treeNode == null)
+            {
+			    itree = getItreeDefault();
+            }else{                
+                this.text = treeNode.text;
+                this.id = treeNode.id;
+                this.children = treeNode.children;
+                this.itree = treeNode.itree;
+            }
+		}
 		
         /**
          * Items states (in TreeNode.itree)

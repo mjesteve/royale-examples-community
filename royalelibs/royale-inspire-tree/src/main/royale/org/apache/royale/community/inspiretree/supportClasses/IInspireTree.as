@@ -3,7 +3,7 @@ package org.apache.royale.community.inspiretree.supportClasses
     public interface IInspireTree
     {
         function isInitialized():Boolean;
-        function prepareTreeDataFromArray(dpArray:Array):Array;
+        function prepareTreeDataFromArray(... args):Array;
         function reCreateViewTree(onlyView:Boolean=false):void;
         function get jsTree():InspireTree;
         function set jsTree(value:InspireTree):void;

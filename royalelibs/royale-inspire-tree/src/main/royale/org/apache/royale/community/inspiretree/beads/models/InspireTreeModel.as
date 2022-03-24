@@ -21,40 +21,54 @@ package org.apache.royale.community.inspiretree.beads.models
 			super();
 		}
 
+		protected var isExtends:Boolean = false;
+
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.collections.IArrayList
 		 */
 		override public function set dataProvider(value:Object):void
 		{
+			
 			if( value == null)
 				value = [];
-
 
 			if(value is IArrayList)
 			{
 				super.dataProvider = value;
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
 			}else{
 				super.dataProvider = new ArrayList(value as Array);
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
 			}
+			if(isExtends)
+				return;
+
+			var tmpdata:Array;
+			if(value is IArrayList)
+			{
+				tmpdata = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+			}else{
+				tmpdata = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+			}
+			_dataProviderTree = tmpdata;
+			treeData = clone(tmpdata);
 			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
 		}
 
-		private var _dataProviderTree:Array = new Array();
+		protected var _dataProviderTree:Array = new Array();
 		/**
 		 * Original DataProvider formatted as expected by Tree
 		 */
 		public function get dataProviderTree():Array
 		{
+			return _dataProviderTree;
+
 			if(dataProvider is IArrayList)
 				return (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
 			else
 				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array);
 		}
 
-		private var _treeData:Array = new Array();
+		protected var _treeData:Array;// = new Array();
 		/**
 		 * DataProvider assigned to the Tree. It undergoes the same changes as the JS object.
 		 */
@@ -287,7 +301,7 @@ package org.apache.royale.community.inspiretree.beads.models
 			renderingNeededDataChange = true;
 		}
 
-		private function itemToLabel(item:Object):String
+		protected function itemToLabel(item:Object):String
 		{
 			if(!item || item==null)
 				return '';
@@ -297,7 +311,20 @@ package org.apache.royale.community.inspiretree.beads.models
 			
 			return '';
 		}
-		
+
+
+        protected function clone(source:Array):Array
+        {
+            if(!source)
+                return null;
+            else
+			{
+				var ar:Array = new Array();
+				var len:int = source.length;
+				for(var index:int = 0; index < len; index++) {	ar.push( source[index] );	}
+				return ar;
+			}
+        }		
 		
 	}
 

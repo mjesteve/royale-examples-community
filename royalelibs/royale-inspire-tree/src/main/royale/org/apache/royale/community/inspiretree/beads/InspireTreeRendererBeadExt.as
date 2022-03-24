@@ -15,9 +15,10 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
 
     COMPILE::JS
-	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
+	public class InspireTreeRendererBeadExt extends InspireTreeRendererBead
 	{
 		/**
 		 *  constructor
@@ -28,119 +29,68 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @productversion Royale 0.9.7
 		 */
 
-		public function InspireTreeRendererBead()
+		public function InspireTreeRendererBeadExt()
 		{
 			super();
 		}
-        private var _strand:IStrand;
 
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get strand():IStrand
-        {
-            return _strand;
-        }
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set strand(value:IStrand):void
+		override protected function get treeModel():InspireTreeModelExt
 		{
-            _strand = value;
-			(_strand as IEventDispatcher).addEventListener("initComplete", init);
-		}
-
-		protected var initialized:Boolean = false;
-
-		protected var _treeModel:InspireTreeModel;
-		protected function get treeModel():InspireTreeModel{
-			if(_strand && !_treeModel)
+			if(strand && !_treeModel)
 			{
-				_treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
+				_treeModel = strand.getBeadByType(IBeadModel) as InspireTreeModelExt;
 			}
-			return _treeModel;
+			return _treeModel as InspireTreeModelExt;
+		}
+		
+		override public function set markDOMFunction(value:Function):void
+		{ 
+			super.markDOMFunction = value;
+			if(treeModel)
+				treeModel.markDOMFunction = value;
 		}
 
-		protected function init(event:Event):void
+		private var _markIsDisabled:Boolean = true;
+		public function get markIsDisabled():Boolean{ return _markIsDisabled; }
+		public function set markIsDisabled(value:Boolean):void
+		{ 
+			_markIsDisabled = value;
+			if(treeModel)
+				treeModel.markIsDisabled = value;
+		}
+		private var _markToState:String;
+		public function get markToState():String{ return _markToState; }
+		public function set markToState(value:String):void
+		{ 
+			_markToState = value; 
+			if(treeModel)
+				treeModel.markToState = value;
+		}
+
+		override protected function init(event:Event):void
 		{
-			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
-			(_strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+			(strand as IEventDispatcher).removeEventListener("initComplete", init);
+			(strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
 
 			if(treeModel)
 			{
 				treeModel.useCustomRenderer = true;
 				if( stringTypeMarkDOM )
 					treeModel.stringTypeMarkDOM = stringTypeMarkDOM;
+
+				if(!treeModel.markDOMFunction && _markDOMFunction)
+					treeModel.markDOMFunction = _markDOMFunction;
+
+				if( _markToState )
+					treeModel.markToState = _markToState;
+				
+				treeModel.markIsDisabled = _markIsDisabled;
+
 			    initialized = true;
 			}
 		}
 
-		protected var _markDOMField:String = "";
-		/**
-		 * Name of the attribute, in the dataProvider, where the active value is defined.
-		 * Expected values: 0/1 or true/false
-		 */
-		public function get markDOMField():String {return _markDOMField; }
-		public function set markDOMField(value:String):void{ _markDOMField = value;}
-		/**
-		 * Function to get the active status of the child nodes.
-		 * <p>The <code>markDOMFunction</code> property takes a reference to a function.
-     	 * The function takes a single argument which is the item of the data provider and returns a boolean:</p>
-    	 *
-		 *  <pre>myActiveFunction(item:Object):Boolean</pre>
-      	 *
-     	 *  @param item The data item. Null items return false.
-		 */
-		protected var _markDOMFunction:Function = itemMarkDOMFunction;
-		public function get markDOMFunction():Function{return _markDOMFunction; }
-		public function set markDOMFunction(value:Function):void{ _markDOMFunction = value;}
-
-		private var _stringTypeMarkDOM:String;
-		public function get stringTypeMarkDOM():String
-		{ 
-			return _stringTypeMarkDOM; 
-		}
-		public function set stringTypeMarkDOM(value:String):void
-		{ 
-			_stringTypeMarkDOM = value; 
-			if( treeModel )
-				treeModel.stringTypeMarkDOM = value;
-		}
-
-		public function itemMarkDOMFunction(itemDataProv:Object):Boolean
-		{
-			if(!itemDataProv || !markDOMField)
-				return false;
-
-			if( itemDataProv[markDOMField] == null )
-				return false;
-
-			if( itemDataProv[markDOMField] is Number )
-				return Number(itemDataProv[markDOMField])>0 ? true:false;
-
-			if( itemDataProv[markDOMField] is Boolean )
-				return itemDataProv[markDOMField] as Boolean;
-
-			return false;
-		}
-
-        public function prepareRenderer(node:Object):Object
-        {
-            //(node as ItemTreeNode).itree.state.indeterminate = true;
-            return node;
-        }
-
-		protected function updateHost(event:Event = null):void
+		override protected function updateHost(event:Event = null):void
 		{
 			if(!strand || !initialized)
 				return;
@@ -154,7 +104,7 @@ package org.apache.royale.community.inspiretree.beads
 			var isMarked:Boolean = false;
 			var marked:Boolean;
 			var treenode:Object;
-
+/*
 			hostComponent.jsTree.forEach(function(treenode:Object):void
 			{
 				if(treenode.children!=null)
@@ -185,7 +135,7 @@ package org.apache.royale.community.inspiretree.beads
 			if(isMarked)
 			{
 				//We have to reload the data for the DOM to be updated.
-				hostComponent.jsTree.reload();
+				hostComponent.jsTree.reload();*/
 				idxGen=0;
 				hostComponent.jsTree.forEach(function(treenode:Object):void
 				{
@@ -233,13 +183,13 @@ package org.apache.royale.community.inspiretree.beads
 						}
 					}
 				});
-			}
+			//}
 		}
 		
 	}
 
     COMPILE::SWF
-	public class InspireTreeRendererBead
+	public class InspireTreeRendererBeadExt
 	{
     }
 }

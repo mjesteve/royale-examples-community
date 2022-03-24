@@ -24,7 +24,7 @@ package org.apache.royale.community.models
 				}
 			}
 			super(adocu);*/
-			super(permissions);
+			super(permissionsshort);
 		}
 
 		private var permissions:Array = new Array(

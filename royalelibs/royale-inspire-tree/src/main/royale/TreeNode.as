@@ -18,7 +18,7 @@ package
         public var id:String;
         public var itree:Object;
         public var text:String;
-            
+        public var defaultState:Object;
         /**
          * Add a child to this node.
          *
