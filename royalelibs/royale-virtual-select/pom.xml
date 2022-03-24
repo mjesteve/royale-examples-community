@@ -73,7 +73,7 @@
           <includeFiles>
             <include-file>
               <name>virtual-select/*</name>
-              <path>${project.basedir}/src/main/resources/virtual-select/*</path>
+              <path>../src/main/resources/virtual-select/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>

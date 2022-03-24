@@ -71,7 +71,7 @@
           <includeFiles>
             <include-file>
               <name>assets/*</name>
-              <path>${project.basedir}/src/main/resources/assets/*</path>
+              <path>../src/main/resources/assets/*</path>
             </include-file>
             <include-file>
               <name>defaults.css</name>

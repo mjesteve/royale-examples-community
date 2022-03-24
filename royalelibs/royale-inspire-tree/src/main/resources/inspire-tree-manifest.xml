@@ -29,5 +29,6 @@
   <component id="InspireTreePaginateBead" class="org.apache.royale.community.inspiretree.beads.InspireTreePaginateBead"/>
   <component id="InspireTreeReadOnlyCheckBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeReadOnlyCheckBead"/>
   <component id="InspireTreeRendererBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeRendererBead"/>
+  <component id="InspireTreeModel" class="org.apache.royale.community.inspiretree.beads.models.InspireTreeModel"/>
 
 </componentPackage>
