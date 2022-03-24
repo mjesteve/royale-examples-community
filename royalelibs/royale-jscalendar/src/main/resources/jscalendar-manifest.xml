@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <component id="AnnualJSCalendar" class="org.apache.royale.community.jscalendar.AnnualJSCalendar"/>
+    <!--<component id="AnnualJSCalendar" class="org.apache.royale.community.jscalendar.AnnualJSCalendar"/>-->
 
 </componentPackage>

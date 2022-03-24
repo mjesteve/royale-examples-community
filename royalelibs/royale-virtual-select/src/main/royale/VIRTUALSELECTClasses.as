@@ -1,4 +1,4 @@
-package 
+package
 {
 
 	/**
@@ -12,7 +12,6 @@ package
 	{
 		import VirtualSelect; VirtualSelect;
 		import org.apache.royale.community.virtualselect.OptionsInit; OptionsInit;
-		import org.apache.royale.community.controls.VirtualSelectJwExt;	VirtualSelectJwExt;
 	}
 }
 

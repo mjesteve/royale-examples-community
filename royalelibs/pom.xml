@@ -15,8 +15,10 @@
 
   <modules>
     <!-- Comment for work
-    <module>royalefullcalendar</module>
+    <module>royalemobiscroll</module>
+    <module>royale-js-year-calendar</module>
     <module>royale-virtual-select</module>
+    <module>royalefullcalendar</module>
     <module>royale-jscalendar</module>
     <module>royalecomponents</module> -->
     <module>royale-inspire-tree</module>

@@ -1,4 +1,4 @@
-package 
+package
 {
 
 	/**
@@ -12,7 +12,7 @@ package
 	{
 		import jsCalendar; jsCalendar;
 		import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO; DateItemDescribeVO;
-		import org.apache.royale.community.jscalendar.AnnualJSCalendar;	AnnualJSCalendar;
+		//import org.apache.royale.community.jscalendar.AnnualJSCalendar;	AnnualJSCalendar;
 		import org.apache.royale.community.jscalendar.events.SharedEvent; SharedEvent;
 	}
 }
