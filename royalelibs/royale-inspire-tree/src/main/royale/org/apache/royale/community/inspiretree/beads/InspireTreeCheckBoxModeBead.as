@@ -241,15 +241,15 @@ package org.apache.royale.community.inspiretree.beads
 		}
 
 		private var _checkedIsSelected:Boolean = false;
-		public function get checkedIsSelected():Boolean{ 
-			return _checkedIsSelected; 
+		public function get checkedIsSelected():Boolean{
+			return _checkedIsSelected;
 		}
 		public function set checkedIsSelected(value:Boolean):void
 		{
 			if(_treeModel)
 			{
 				if(value == _checkedIsSelected && _treeModel.checkedIsSelected == value) return;
-				
+
 				_treeModel.checkedIsSelected = value;
 				if(IInspireTree(_strand).isInitialized())
 					IInspireTree(_strand).reCreateViewTree( true );
@@ -279,7 +279,7 @@ package org.apache.royale.community.inspiretree.beads
 
 		public function onClickHandler(event:*, node:ItemTreeNode):void
 		{
-			
+
 			var wParent:Number = (_strand as StyledUIBase).width;
 			var wItem:Number = Number( node.itree.ref.clientWidth ? node.itree.ref.clientWidth:0 );
 			var wScroll:Number = (wParent-wItem);
@@ -288,7 +288,12 @@ package org.apache.royale.community.inspiretree.beads
 			//trace('  From ',wParent - (20 + wScroll)," To",wParent);
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
-				revertStateCheckedNode(node.id, true);
+				//revertStateCheckedNode(node.id, true);
+				//Only folder node
+				var treenode:Object = IInspireTree(_strand).jsTree.node(node.id);
+				if( treenode.hasChildren() ){
+					revertStateCheckedNode(node.id, true);
+				}
 			}
 		}
 
@@ -333,7 +338,7 @@ package org.apache.royale.community.inspiretree.beads
 		}
 
 		/**
-		 * Check/Uncheck all nodes 
+		 * Check/Uncheck all nodes
 		 * @param valueChecked [true|false] true Check all nodes
 		 */
 		public function checkAllNode(valueChecked:Boolean):void
