@@ -9,7 +9,6 @@ package org.apache.royale.community.inspiretree.beads
 	 */
 	COMPILE::JS{
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
@@ -18,6 +17,7 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.core.IStrandWithModel;
 	}
     /**
      * Simulates the Read-Only state in checkboxes.
@@ -76,7 +76,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
 
-			var treeModel:InspireTreeModel = (_strand.getBeadByType(IBeadModel) as InspireTreeModel);
+			var treeModel:InspireTreeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			treeModel.addEventListener("checkboxModeChanged", updateHost);
 
 			updateHost();
@@ -116,7 +116,7 @@ package org.apache.royale.community.inspiretree.beads
 
             initialized = true;
 
-            var checkboxMode:Boolean =(_strand.getBeadByType(IBeadModel) as InspireTreeModel).checkboxMode;
+            var checkboxMode:Boolean =((_strand as IStrandWithModel).model as InspireTreeModel).checkboxMode;
             if(!checkboxMode)
                 return;
 

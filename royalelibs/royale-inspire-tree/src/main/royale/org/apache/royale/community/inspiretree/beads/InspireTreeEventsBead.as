@@ -1,7 +1,7 @@
 package org.apache.royale.community.inspiretree.beads
-{	
-	
-	/**  
+{
+
+	/**
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -13,15 +13,13 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.MouseEvent;
-       
+
     COMPILE::JS
 	public class InspireTreeEventsBead  extends Strand implements IBead
 	{
 		/**
 		 *  constructor
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -36,7 +34,7 @@ package org.apache.royale.community.inspiretree.beads
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -61,7 +59,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
             _strand = value;
 			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
-		} 
+		}
 
 		private function removeListeners():void
 		{
@@ -96,7 +94,7 @@ package org.apache.royale.community.inspiretree.beads
 				(_strand as IInspireTree).jsTree.on('node.contextmenu', onNodeContextmenuHandler);
 
 		}
-		
+
         private var _nodeClick:Function;
         public function get nodeClick():Function { return _nodeClick; }
 		/**
@@ -114,7 +112,7 @@ package org.apache.royale.community.inspiretree.beads
 
 			//3 arguments: PointerEvent/Event, TreeNode, f()
 			//args[0] = PointerEvent
-			//args[0].currentTarget = "a.title.icon" | 
+			//args[0].currentTarget = "a.title.icon" |
 			//args[0].path[] : 	[0] a.title.icon
 			//						<a class="title icon" data-uid="e5cfe258-c8e9-4285-89bb-0121ade5ee37" tabindex="1" unselectable="on">1 - Document Setup</a>
 			//					[1] div.title-wrap
@@ -126,7 +124,7 @@ package org.apache.royale.community.inspiretree.beads
 			// 					...
 			//					[14] Windows
 			//args[0] = Event
-			//args[0].currentTarget = "input" | 
+			//args[0].currentTarget = "input" |
 			//args[0].path[0-14] : 	[0] input
 			//						<input type="checkbox">
 			//					[1] div.title-wrap
@@ -138,7 +136,7 @@ package org.apache.royale.community.inspiretree.beads
 			//With "preventDefault" --> not mapped --> evt.defaultPrevented is true
 			if( evt.defaultPrevented )
 				evt.treeDefaultPrevented = true; //Cancel event in inspiretree
-			
+
 			//-----
 			// test - Override our default DOM event handlers
 			// As the original controller is passed as an argument, it allows us to run it when we are ready.
@@ -188,7 +186,7 @@ package org.apache.royale.community.inspiretree.beads
 		node.dragleave - (DragEvent event) - Drag leave.
 		node.dragover - (DragEvent event, int dir) - Node drag over. dir will be -1 for "above", 0 for "into", 1 for "below".
 		node.dragstart - (DragEvent event) - Drag start.
-		node.drop - (DragEvent event, TreeNode source, TreeNode target, int index) - Node was dropped. 
+		node.drop - (DragEvent event, TreeNode source, TreeNode target, int index) - Node was dropped.
 					If target null, node was dropped into the root context.
 		node.edited - (TreeNode node), (string oldValue), (string newValue) - Node text was altered via inline editing.
 

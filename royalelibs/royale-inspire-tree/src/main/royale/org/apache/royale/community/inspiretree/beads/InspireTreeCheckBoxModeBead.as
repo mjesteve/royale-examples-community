@@ -11,7 +11,6 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.Event;
@@ -20,6 +19,7 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.collections.IArrayList;
+    import org.apache.royale.core.IStrandWithModel;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBead  extends Strand implements IBead
@@ -72,7 +72,7 @@ package org.apache.royale.community.inspiretree.beads
 		private function get treeModel():InspireTreeModel{
 			if(_strand && !_treeModel)
 			{
-				_treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
+				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel
 			}
 			return _treeModel;
 		}
