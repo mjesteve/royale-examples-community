@@ -13,8 +13,6 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.MouseEvent;
        
     COMPILE::JS
 	public class InspireTreeEventsBead  extends Strand implements IBead

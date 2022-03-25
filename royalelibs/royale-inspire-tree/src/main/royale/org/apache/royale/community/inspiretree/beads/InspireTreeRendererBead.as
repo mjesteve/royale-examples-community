@@ -7,7 +7,6 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @productversion Royale 0.9.8
 	 */
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
@@ -15,6 +14,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
 	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
@@ -66,7 +66,7 @@ package org.apache.royale.community.inspiretree.beads
 		protected function get treeModel():InspireTreeModel{
 			if(_strand && !_treeModel)
 			{
-				_treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
+				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			}
 			return _treeModel;
 		}
@@ -117,19 +117,19 @@ package org.apache.royale.community.inspiretree.beads
 				treeModel.stringTypeMarkDOM = value;
 		}
 
-		public function itemMarkDOMFunction(itemDataProv:Object):Boolean
+		private function itemMarkDOMFunction(itemTreeData:Object, itemFlatData:Object):Boolean
 		{
-			if(!itemDataProv || !markDOMField)
+			if(!itemFlatData || !markDOMField)
 				return false;
 
-			if( itemDataProv[markDOMField] == null )
+			if( itemFlatData[markDOMField] == null )
 				return false;
 
-			if( itemDataProv[markDOMField] is Number )
-				return Number(itemDataProv[markDOMField])>0 ? true:false;
+			if( itemFlatData[markDOMField] is Number )
+				return Number(itemFlatData[markDOMField])>0 ? true:false;
 
-			if( itemDataProv[markDOMField] is Boolean )
-				return itemDataProv[markDOMField] as Boolean;
+			if( itemFlatData[markDOMField] is Boolean )
+				return itemFlatData[markDOMField] as Boolean;
 
 			return false;
 		}

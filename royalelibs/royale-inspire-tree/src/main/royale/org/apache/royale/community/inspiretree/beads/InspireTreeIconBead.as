@@ -8,7 +8,6 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @productversion Royale 0.9.8
 	 */
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.core.Strand;
@@ -16,6 +15,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
+	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
 	public class InspireTreeIconBead  extends Strand implements IBead
@@ -71,7 +71,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
 
-			var treeModel:InspireTreeModel = (_strand.getBeadByType(IBeadModel) as InspireTreeModel);
+			var treeModel:InspireTreeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			treeModel.addEventListener("checkboxModeChanged", updateHost);
 			treeModel.useCustomStyle = true;
 
@@ -273,7 +273,7 @@ package org.apache.royale.community.inspiretree.beads
 				return;
 
 			//var hostelement:Element = (_strand as StyledUIBase).element;
-			var checkboxMode:Boolean =(_strand.getBeadByType(IBeadModel) as InspireTreeModel).checkboxMode;
+			var checkboxMode:Boolean =((_strand as IStrandWithModel).model as InspireTreeModel).checkboxMode;
             var existClasswithoutCB:Boolean = (_strand as IStyledUIBase).containsClass('withoutcheckbox') ? true : false;
 
             if(checkboxMode && existClasswithoutCB)

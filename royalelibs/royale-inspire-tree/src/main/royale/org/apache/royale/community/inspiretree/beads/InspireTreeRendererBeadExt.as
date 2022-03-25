@@ -6,18 +6,11 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.Strand;
-	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModel;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
-	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
+	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
 	public class InspireTreeRendererBeadExt extends InspireTreeRendererBead
@@ -40,7 +33,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			if(strand && !_treeModel)
 			{
-				_treeModel = strand.getBeadByType(IBeadModel) as InspireTreeModelExt;
+				_treeModel = (strand as IStrandWithModel).model as InspireTreeModelExt;
 			}
 			return _treeModel as InspireTreeModelExt;
 		}
