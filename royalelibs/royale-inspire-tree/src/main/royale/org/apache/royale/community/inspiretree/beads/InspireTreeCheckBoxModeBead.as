@@ -289,9 +289,7 @@ package org.apache.royale.community.inspiretree.beads
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
 				//revertStateCheckedNode(node.id, true);
-				//Only folder node
-				var treenode:Object = IInspireTree(_strand).jsTree.node(node.id);
-				if( treenode.hasChildren() ){
+				if( node.children.length>0 && node.itree.state.selectable){
 					revertStateCheckedNode(node.id, true);
 				}
 			}

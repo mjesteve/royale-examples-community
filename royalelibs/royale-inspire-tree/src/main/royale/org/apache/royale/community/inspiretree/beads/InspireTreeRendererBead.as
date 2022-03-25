@@ -107,12 +107,12 @@ package org.apache.royale.community.inspiretree.beads
 
 		private var _stringTypeMarkDOM:String;
 		public function get stringTypeMarkDOM():String
-		{ 
-			return _stringTypeMarkDOM; 
+		{
+			return _stringTypeMarkDOM;
 		}
 		public function set stringTypeMarkDOM(value:String):void
-		{ 
-			_stringTypeMarkDOM = value; 
+		{
+			_stringTypeMarkDOM = value;
 			if( treeModel )
 				treeModel.stringTypeMarkDOM = value;
 		}
@@ -157,6 +157,7 @@ package org.apache.royale.community.inspiretree.beads
 
 			hostComponent.jsTree.forEach(function(treenode:Object):void
 			{
+                var mark:int = 0;
 				if(treenode.children!=null)
 				{
 					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
@@ -170,11 +171,12 @@ package org.apache.royale.community.inspiretree.beads
 								treenode.children[idxChild].itree.state.indeterminate = true;
 								treenode.children[idxChild].itree.state.selectable = false;
 								isMarked = true;
+                                mark++;
 							}
 						}
 						idxGen++;
 					}
-					if(isMarked) //Disabled root
+					if(mark == treenode.children.length) //Disabled root
 					{
 						treenode.itree.state.checked = false;
 						treenode.itree.state.indeterminate = true;
@@ -201,10 +203,10 @@ package org.apache.royale.community.inspiretree.beads
 							{
 								var itemdata:Object = modelDada[idxGen];
 								marked = markDOMFunction(itemdata);
-								row = treenode.children[idxChild].itree.ref as HTMLElement;						
+								row = treenode.children[idxChild].itree.ref as HTMLElement;
 								titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
 								wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
-								if( marked ){								
+								if( marked ){
 									row.setAttribute('type',treeModel.stringTypeMarkDOM);
 									titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 									wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
@@ -235,7 +237,7 @@ package org.apache.royale.community.inspiretree.beads
 				});
 			}
 		}
-		
+
 	}
 
     COMPILE::SWF
