@@ -7,25 +7,25 @@
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
     className="jsCalendarItemRenderer" >
-    
+
     <fx:Metadata>
-        [Event(name="addselday", type="org.apache.royale.community.jscalendar.events.SharedEvent")]
-        [Event(name="delselday", type="org.apache.royale.community.jscalendar.events.SharedEvent")]
+        [Event(name="addselday", type="org.apache.royale.community.events.SharedCalendarEvent")]
+        [Event(name="delselday", type="org.apache.royale.community.events.SharedCalendarEvent")]
     </fx:Metadata>
 
     <fx:Script>
         <![CDATA[
         import jsCalendar;
-        import org.apache.royale.community.jscalendar.events.SharedEvent;
-        import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
+        import org.apache.royale.community.events.SharedCalendarEvent;
+        import org.apache.royale.community.vo.DateItemDescribeVO;
 
         private var mycalendar:jsCalendar;
 
         private function get parentHostComponent():Object
         {
             return (this.parent as Object).parent;
-        } 
-        
+        }
+
         private var readOnly:Boolean = true;
 
         override public function set data(value:Object):void
@@ -79,13 +79,13 @@
                     if(mycalendar.isSelected(date)) // To unselect
                     {
                         mycalendar.unselect([date]);
-                        dispatchEvent( new SharedEvent(SharedEvent.DEL_SELECTEDDAY, date) );
+                        dispatchEvent( new SharedCalendarEvent(SharedCalendarEvent.DEL_SELECTEDDAY, date) );
                     }
                     else // To select
                     {
-                        mycalendar.select([date]);                   
-                        dispatchEvent( new SharedEvent(SharedEvent.ADD_SELECTEDDAY, date) );
-                    }                   
+                        mycalendar.select([date]);
+                        dispatchEvent( new SharedCalendarEvent(SharedCalendarEvent.ADD_SELECTEDDAY, date) );
+                    }
 
                 });
             }

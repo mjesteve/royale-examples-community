@@ -23,7 +23,8 @@
         "debug": true,
         "targets": ["JSRoyale"],
         "source-path": [
-            "src/main/royale"
+            "src/main/royale",
+            "../royale-jscalendar/src/main/royale/"
         ],
         "include-namespaces": [
             "library://ns.apache.org/royale/community"
@@ -32,6 +33,10 @@
             {
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "src/main/resources/components-manifest.xml"
+            },
+            {
+                "uri": "library://ns.apache.org/royale/community",
+                "manifest": "../royale-jscalendar/src/main/resources/jscalendar-manifest.xml"
             }
         ],
         "include-classes": [

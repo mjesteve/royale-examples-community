@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-    
+
     /**
      *  @private
      *  This class is used to link additional classes into jewel.swc
      *  beyond those that are found by dependecy analysis starting
      *  from the classes specified in manifest.xml.
-     * 
+     *
      *  If the class need to be used in MXML please add only to manifest.xml
      */
     internal class ComponentsClasses
@@ -37,19 +37,20 @@ package
 	    // {
         // import package.ClassName; ClassName;
         // }
-        
+
         // Add here classes for the SWF platform
         // COMPILE::SWF
 	    // {
         // import package.ClassName; ClassName;
         // }
-        
+
         import org.apache.royale.community.beads.models.ISelectionByFieldModel;ISelectionByFieldModel;
         import org.apache.royale.community.events.ITCustomEvent; ITCustomEvent;
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
-        import org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener; ResponsiveResizeListener;
+        import org.apache.royale.community.events.SharedCalendarEvent; SharedCalendarEvent;
         import org.apache.royale.community.jewel.supportClasses.ISelectableWithIndeterminacy; ISelectableWithIndeterminacy;
         import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
         import org.apache.royale.community.vo.PillItemVO; PillItemVO;
+        import org.apache.royale.community.vo.DateItemDescribeVO; DateItemDescribeVO;
     }
 }

@@ -31,7 +31,7 @@
     <component id="ComboBoxRequireSelection" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection"/>
     <component id="ComboBoxReadOnly" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
     <component id="PageNavigatorButtonBarModel" class="org.apache.royale.community.beads.models.PageNavigatorButtonBarModel"/>
-    
+
     <!-- Extends Jewel Beads -->
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
     <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
@@ -51,14 +51,16 @@
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
     <component id="PillsListWithLabelItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListWithLabelItemRenderer"/>
+    <component id="MonthlyItemRenderer" class="org.apache.royale.community.itemRenderers.js.MonthlyItemRenderer"/>
 
     <!-- Custom Controls -->
-    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    
+    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
     <component id="ExampleHeader" class="org.apache.royale.community.controls.ExampleHeader"/><!-- TDJ -->
     <component id="HExampleHeader" class="org.apache.royale.community.controls.HExampleHeader"/>
     <component id="LabelFormWithButtonBar" class="org.apache.royale.community.controls.LabelFormWithButtonBar"/>
+    <component id="AnnualJSCalendar" class="org.apache.royale.community.controls.js.AnnualJSCalendar"/>
 
     <!-- Extends Jewel Controls -->
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>

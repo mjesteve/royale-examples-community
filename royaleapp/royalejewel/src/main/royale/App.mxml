@@ -46,9 +46,9 @@
 	</j:valuesImpl>
 
 	<j:initialView>
-		<mainviews:MainViewInspireTree/>
-<!--
 		<mainviews:MainView/>
+<!--
+		<mainviews:MainViewInspireTree/>
 		<mainviews:MainVirtualComboBox/>
 		<mainviews:MainViewExDebug/>
 		<mainviews:MainVirtualSelectJS/>

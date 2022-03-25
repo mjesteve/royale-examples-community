@@ -52,7 +52,7 @@
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          
+
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/community</uri>
@@ -89,4 +89,16 @@
 
   </build>
 
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.royale.community</groupId>
+      <artifactId>royale-jscalendar</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+
+  </dependencies>
 </project>

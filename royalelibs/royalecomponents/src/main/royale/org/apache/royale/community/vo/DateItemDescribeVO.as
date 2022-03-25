@@ -1,4 +1,4 @@
-package org.apache.royale.community.jscalendar.vo
+package org.apache.royale.community.vo
 {
 
     [Bindable]
@@ -18,7 +18,7 @@ package org.apache.royale.community.jscalendar.vo
 				this.month = date.month;
 				this.day = date.date;
 				this.selDates = arSel;
-			}else 			
+			}else
 			if(item){
 				this.year = item.year;
 				this.month = item.month;

@@ -9,7 +9,7 @@
         <![CDATA[
 
             import org.apache.royale.collections.ArrayList;
-            import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO;
+            import org.apache.royale.community.vo.DateItemDescribeVO;
 
             private function onInit():void
             {
@@ -17,14 +17,14 @@
 
             protected var _year:Number;
             [Bindable]
-            public function get year():Number{                            
+            public function get year():Number{
                 return isNaN(_year) ? new Date().fullYear: _year;
             }
             public function set year(value:Number):void
             {
                 if(isNaN(value))
                     _year = new Date().fullYear;
-                
+
                 if( value != _year)
                 {
                     _year = value;
@@ -47,10 +47,10 @@
                 var lastIdxSel:int = 0;
 
                 if(isNaN(_year))
-                    _year = new Date().fullYear;                
+                    _year = new Date().fullYear;
                 var localYear:Number = _year;
-                
-                //arAnnuary is the year template 
+
+                //arAnnuary is the year template
                 for( var m:int = 0; m<12; m++)
                 {
                     if(localYear != _year)
@@ -79,7 +79,7 @@
                 building = false;
             }
 
-                        
+
             protected var _asourceSelected:Array;
             /**
              * Array Date's
@@ -107,7 +107,7 @@
 
                 if(asourceAnuary)
                     makeAnnuary();
-                
+
             }
             /**
              * Todas las fechas recibidas (Sin filtro de año y sin Ordenar)
@@ -124,13 +124,13 @@
                     var ds:Date = lvalue[index];
                     if(ds.fullYear>_year)
                         break;
-                    
+
                     if(ds.fullYear == _year)
                         arsel.push(ds);
                 }
                 return arsel;
             }
-            
+
             protected var _readOnly:Boolean = false;
             [Bindable]
             public function get readOnly():Boolean
@@ -228,7 +228,7 @@
     </j:beads>
 
     <jc:ListJwExt localId="lstCalendar" percentWidth="100" percentHeight="100" style="flex-wrap: wrap;"
-            dataProvider="{asourceAnuary}" itemRenderer="org.apache.royale.community.jscalendar.itemRenderers.MonthlyItemRenderer" >
+            dataProvider="{asourceAnuary}" itemRenderer="org.apache.royale.community.itemRenderers.js.MonthlyItemRenderer" >
         <jc:beads>
             <j:ListPresentationModel variableRowHeight="false"/>
             <j:HorizontalLayout gap="0"/>
