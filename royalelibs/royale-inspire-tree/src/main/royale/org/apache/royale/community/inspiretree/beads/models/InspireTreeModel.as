@@ -9,6 +9,8 @@ package org.apache.royale.community.inspiretree.beads.models
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.collections.ArrayList;
+	import mx.utils.ObjectUtil;
+	//import org.apache.royale.utils.BinaryData;
 
 	//COMPILE::JS
 	public class InspireTreeModel extends ArrayListSelectionModel
@@ -21,24 +23,37 @@ package org.apache.royale.community.inspiretree.beads.models
 			super();
 		}
 
+		protected var isExtends:Boolean = false;
+
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.collections.IArrayList
 		 */
 		override public function set dataProvider(value:Object):void
 		{
+
 			if( value == null)
 				value = [];
-
 
 			if(value is IArrayList)
 			{
 				super.dataProvider = value;
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
 			}else{
 				super.dataProvider = new ArrayList(value as Array);
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
 			}
+			if(isExtends)
+				return;
+
+			if(value is IArrayList)
+			{
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+			}else{
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+			}
+            //When cloning treeData, the type of the items is lost. (ItemTreeNode)
+            _dataProviderTree = cloneArray(treeData);
 			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
 		}
 
@@ -48,10 +63,16 @@ package org.apache.royale.community.inspiretree.beads.models
 		 */
 		public function get dataProviderTree():Array
 		{
+            return _dataProviderTree;
+/*
+            var newdata:Array;
 			if(dataProvider is IArrayList)
-				return (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
+				newdata = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
 			else
-				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array);
+				newdata = (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array);
+            trace("newdata", newdata);
+            return newdata;
+*/
 		}
 
 		private var _treeData:Array = new Array();
@@ -274,15 +295,15 @@ package org.apache.royale.community.inspiretree.beads.models
 		private var _useCustomStyle:Boolean = false;
 		public function get useCustomStyle():Boolean{ return _useCustomStyle; }
 		public function set useCustomStyle(value:Boolean):void
-		{ 
-			_useCustomStyle = value; 
+		{
+			_useCustomStyle = value;
 			renderingNeededDataChange = true;
 		}
 		public var stringTypeMarkDOM:String = "markInactived";
-		private var _useCustomRenderer:Boolean = false;		
+		private var _useCustomRenderer:Boolean = false;
 		public function get useCustomRenderer():Boolean{ return _useCustomRenderer; }
 		public function set useCustomRenderer(value:Boolean):void
-		{ 
+		{
 			_useCustomRenderer = value;
 			renderingNeededDataChange = true;
 		}
@@ -294,11 +315,28 @@ package org.apache.royale.community.inspiretree.beads.models
 
 			if(labelField && item.hasOwnProperty(labelField))
 				return item[labelField];
-			
+
 			return '';
 		}
-		
-		
+
+        protected function cloneArray(source:Array):Array
+        {
+            if(!source)
+                return null;
+            else
+			{
+                return ObjectUtil.clone(source) as Array;
+			}
+        }
+
+		/*public function clone(source:Object):*{
+			var myBA:BinaryData = new BinaryData();
+			myBA.writeObject(source);
+			myBA.position = 0;
+			return(myBA.readObject());
+		}*/
+
+
 	}
 
 }

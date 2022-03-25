@@ -43,6 +43,12 @@
         "include-sources": [
             "src/main/royale"
         ],
+        "library-path": [
+            "${royalelib}/libs/MXRoyaleBase.swc"
+        ],
+        "js-library-path": [
+            "${royalelib}/js/libs/MXRoyaleBaseJS.swc"
+        ],
         "source-map": true,
         "remove-circulars": true,
         "keep-as3-metadata": [

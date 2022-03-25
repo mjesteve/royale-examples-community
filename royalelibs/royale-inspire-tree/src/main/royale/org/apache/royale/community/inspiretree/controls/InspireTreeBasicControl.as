@@ -256,12 +256,6 @@ package org.apache.royale.community.inspiretree.controls
 		{
 			// The dpArray should be sorted according to the desired display
 			var localdataProviderTree:Array = new Array();
-            /*var renderer:IInspireTreeRenderer;
-
-            if( InspireTreeModel(model).useCustomRenderer )
-            {
-                renderer = getBeadByType(IInspireTreeRenderer) as IInspireTreeRenderer;
-            }*/
 
 			for (var idxGen:int=0; idxGen < dpArray.length; idxGen++)
         	{
@@ -277,13 +271,7 @@ package org.apache.royale.community.inspiretree.controls
 					{
 						var itemDetail:Object = new ItemTreeNode();
 						itemDetail.text = labelFunctionChild(dpArray[idxChild]);
-
-                        /*if(renderer)
-                        {
-                            itemDetail = renderer.prepareRenderer(itemDetail);
-                        }*/
 						itemGroup.children.push(itemDetail);
-
 						idxGen++;
 					}
 					else
@@ -292,7 +280,6 @@ package org.apache.royale.community.inspiretree.controls
 						break;
 					}
 				}
-
 				localdataProviderTree.push(itemGroup);
 			}
 			return localdataProviderTree;

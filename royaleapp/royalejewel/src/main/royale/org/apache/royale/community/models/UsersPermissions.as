@@ -24,7 +24,7 @@ package org.apache.royale.community.models
 				}
 			}
 			super(adocu);*/
-			super(permissions);
+			super(permissionsshort2);
 		}
 
 		private var permissions:Array = new Array(
@@ -232,6 +232,18 @@ package org.apache.royale.community.models
 			new PermissVO(68,'Doc.Level 68',0,'Permiss - 0',0,0,'assets/114-user.svg'),
 			new PermissVO(69,'Doc.Level 69',0,'Permiss - 0',0,0,'assets/114-user.svg'),
 			new PermissVO(69,'Doc.Level 69',1,'Permiss - 1',0,0,'assets/114-user.svg'),
+			new PermissVO(70,'Doc.Level 70',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(81,'Doc.Level 81',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(81,'Doc.Level 81',1,'Permiss - 1',0,0,'assets/114-user.svg'),
+			new PermissVO(81,'Doc.Level 81',2,'Permiss - 2',0,0,'assets/114-user.svg'),
+			new PermissVO(81,'Doc.Level 81',3,'Permiss - 3',0,0,'assets/114-user.svg')
+        );
+
+		private var permissionsshort2:Array = new Array(
+			new PermissVO(60,'Doc.Level 60',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',1,'Permiss - 1',0,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',2,'Permiss - 2',0,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',3,'Permiss - 3',0,0,'assets/114-user.svg'),
 			new PermissVO(70,'Doc.Level 70',0,'Permiss - 0',0,0,'assets/114-user.svg'),
 			new PermissVO(81,'Doc.Level 81',0,'Permiss - 0',0,0,'assets/114-user.svg'),
 			new PermissVO(81,'Doc.Level 81',1,'Permiss - 1',0,0,'assets/114-user.svg'),
