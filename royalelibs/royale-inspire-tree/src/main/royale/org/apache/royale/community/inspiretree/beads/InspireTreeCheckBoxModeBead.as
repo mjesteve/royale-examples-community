@@ -127,13 +127,17 @@ package org.apache.royale.community.inspiretree.beads
 
 			for (var idxGr:int=0; idxGr < treeData.length; idxGr++)
         	{
-				var itemGroup:ItemTreeNode = ItemTreeNode(treeData[idxGr]);
+                //When cloning treeData, the type of the items is lost and the conversion fails. (ItemTreeNode)
+				//var itemGroup:Object = ItemTreeNode(treeData[idxGr]);
+				var itemGroup:Object = treeData[idxGr];
 				var iChildCheckedCount:int = 0;
 				var iChildUnCheckedCount:int = 0;
 
 				for (var idxChild:int=0; idxChild < itemGroup.children.length; idxChild++)
 				{
-					var itemDetail:ItemTreeNode = ItemTreeNode(itemGroup.children[idxChild]);
+                    //When cloning treeData, the type of the items is lost and the conversion fails. (ItemTreeNode)
+					//var itemDetail:ItemTreeNode = ItemTreeNode(itemGroup.children[idxChild]);
+					var itemDetail:Object = itemGroup.children[idxChild];
 					itemDetail.itree.state.checked = _checkboxFunction(itemDetail, data[idxGen+idxChild]);
 
 					if(itemDetail.itree.state.checked == true)
@@ -288,9 +292,8 @@ package org.apache.royale.community.inspiretree.beads
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
 				//Only folder node
-				var treenode:Object = IInspireTree(_strand).jsTree.node(node.id);
-				if( treenode.hasChildren() ){
-					revertStateCheckedNode(node.id, true);					
+				if( node.children.length>0 && node.itree.state.selectable){
+					revertStateCheckedNode(node.id, true);
 				}
 			}
 		}

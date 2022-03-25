@@ -44,6 +44,16 @@ package org.apache.royale.community.inspiretree.beads.models
 			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
 		}
 
+		override public function get dataProviderTree():Array
+		{
+			return _dataProviderTree;
+/*
+			if(dataProvider is IArrayList)
+				return (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
+			else
+				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array); */
+		}
+
 		private function normalizeDataProvider(ar:Array):Array
 		{	
 			if(!ar)

@@ -16,6 +16,8 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTreeRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
+	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
+	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
 
     COMPILE::JS
 	public class InspireTreeRendererBeadExt extends InspireTreeRendererBead
@@ -95,36 +97,38 @@ package org.apache.royale.community.inspiretree.beads
 			if(!strand || !initialized)
 				return;
 
-			var hostComponent:InspireTreeBasicControl = strand as InspireTreeBasicControl;
-			if(!hostComponent.dataProvider)
+			var hostComponent:IInspireTree = strand as IInspireTree;			
+			if(!treeModel.dataProvider)
 				return;
-			var modelDada:Array = IDataProviderModel(hostComponent.model).dataProvider.source;
+			var modelDada:Array = treeModel.dataProvider.source;
 			var idxGen:int = 0;
 			var idxChild:int=0;
 			var isMarked:Boolean = false;
 			var marked:Boolean;
 			var treenode:Object;
-/*
+			/*
 			hostComponent.jsTree.forEach(function(treenode:Object):void
 			{
+                var mark:int = 0;
 				if(treenode.children!=null)
 				{
 					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
 					{
 						if( idxGen < modelDada.length)
 						{
-							var itemdata:Object = modelDada[idxGen];
-							marked = markDOMFunction(itemdata);
+							var itemdata:Object = normalizeDataItem(modelDada[idxGen]).data;
+							marked = markDOMFunction(treenode.children[idxChild],itemdata);
 							if( marked ){
 								treenode.children[idxChild].itree.state.checked = false;
 								treenode.children[idxChild].itree.state.indeterminate = true;
 								treenode.children[idxChild].itree.state.selectable = false;
 								isMarked = true;
+                                mark++;
 							}
 						}
 						idxGen++;
 					}
-					if(isMarked) //Disabled root
+					if(mark == treenode.children.length) //Disabled root
 					{
 						treenode.itree.state.checked = false;
 						treenode.itree.state.indeterminate = true;
@@ -149,8 +153,8 @@ package org.apache.royale.community.inspiretree.beads
 						{
 							if( idxGen < modelDada.length)
 							{
-								var itemdata:Object = modelDada[idxGen];
-								marked = markDOMFunction(itemdata);
+								var itemdata:Object = normalizeDataItem(modelDada[idxGen]).data;
+								marked = markDOMFunction(treenode.children[idxChild],itemdata);
 								row = treenode.children[idxChild].itree.ref as HTMLElement;						
 								titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
 								wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;

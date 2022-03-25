@@ -9,6 +9,7 @@ package org.apache.royale.community.inspiretree.beads.models
 	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.collections.ArrayList;
+	import mx.utils.ObjectUtil;
 
 	//COMPILE::JS
 	public class InspireTreeModel extends ArrayListSelectionModel
@@ -42,15 +43,16 @@ package org.apache.royale.community.inspiretree.beads.models
 			if(isExtends)
 				return;
 
-			var tmpdata:Array;
 			if(value is IArrayList)
 			{
-				tmpdata = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
 			}else{
-				tmpdata = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
 			}
-			_dataProviderTree = tmpdata;
-			treeData = clone(tmpdata);
+            //When cloning treeData, the type of the items is lost. (ItemTreeNode)
+            _dataProviderTree = cloneArray(treeData);
 			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
 		}
 
@@ -61,11 +63,11 @@ package org.apache.royale.community.inspiretree.beads.models
 		public function get dataProviderTree():Array
 		{
 			return _dataProviderTree;
-
-			if(dataProvider is IArrayList)
+			/*if(dataProvider is IArrayList)
 				return (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
 			else
 				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array);
+			*/
 		}
 
 		protected var _treeData:Array;// = new Array();
@@ -324,7 +326,17 @@ package org.apache.royale.community.inspiretree.beads.models
 				for(var index:int = 0; index < len; index++) {	ar.push( source[index] );	}
 				return ar;
 			}
-        }		
+        }
+
+        protected function cloneArray(source:Array):Array
+        {
+            if(!source)
+                return null;
+            else
+			{
+                return ObjectUtil.clone(source) as Array;
+			}
+        }
 		
 	}
 

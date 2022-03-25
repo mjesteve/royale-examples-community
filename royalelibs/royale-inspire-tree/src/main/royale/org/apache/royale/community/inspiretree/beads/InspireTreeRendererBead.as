@@ -157,6 +157,7 @@ package org.apache.royale.community.inspiretree.beads
 
 			hostComponent.jsTree.forEach(function(treenode:Object):void
 			{
+                var mark:int = 0;
 				if(treenode.children!=null)
 				{
 					for (idxChild=0; idxChild < treenode.children.length; idxChild++)
@@ -164,17 +165,18 @@ package org.apache.royale.community.inspiretree.beads
 						if( idxGen < modelDada.length)
 						{
 							var itemdata:Object = modelDada[idxGen];
-							marked = markDOMFunction(itemdata);
+							marked = markDOMFunction(treenode.children[idxChild],itemdata);
 							if( marked ){
 								treenode.children[idxChild].itree.state.checked = false;
 								treenode.children[idxChild].itree.state.indeterminate = true;
 								treenode.children[idxChild].itree.state.selectable = false;
 								isMarked = true;
+                                mark++;
 							}
 						}
 						idxGen++;
 					}
-					if(isMarked) //Disabled root
+					if(mark == treenode.children.length) //Disabled root
 					{
 						treenode.itree.state.checked = false;
 						treenode.itree.state.indeterminate = true;
@@ -200,7 +202,7 @@ package org.apache.royale.community.inspiretree.beads
 							if( idxGen < modelDada.length)
 							{
 								var itemdata:Object = modelDada[idxGen];
-								marked = markDOMFunction(itemdata);
+								marked = markDOMFunction(treenode.children[idxChild],itemdata);
 								row = treenode.children[idxChild].itree.ref as HTMLElement;						
 								titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
 								wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
