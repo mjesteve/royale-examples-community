@@ -252,14 +252,14 @@ package org.apache.royale.community.models
         );
 
 		private var permissionsshort2:Array = new Array(
-			new PermissVO(60,'Doc.Level 60',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',0,'Permiss - 0',1,0,'assets/114-user.svg'),
 			new PermissVO(60,'Doc.Level 60',1,'Permiss - 1',0,0,'assets/114-user.svg'),
-			new PermissVO(60,'Doc.Level 60',2,'Permiss - 2',0,0,'assets/114-user.svg'),
-			new PermissVO(60,'Doc.Level 60',3,'Permiss - 3',0,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',2,'Permiss - 2',1,0,'assets/114-user.svg'),
+			new PermissVO(60,'Doc.Level 60',3,'Permiss - 3',1,0,'assets/114-user.svg'),
 
-			new PermissVO(70,'Doc.Level 70',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(70,'Doc.Level 70',0,'Permiss - 0',1,0,'assets/114-user.svg'),
 			
-			new PermissVO(81,'Doc.Level 81',0,'Permiss - 0',0,0,'assets/114-user.svg'),
+			new PermissVO(81,'Doc.Level 81',0,'Permiss - 0',1,0,'assets/114-user.svg'),
 			new PermissVO(81,'Doc.Level 81',1,'Permiss - 1',0,0,'assets/114-user.svg'),
 			new PermissVO(81,'Doc.Level 81',2,'Permiss - 2',0,0,'assets/114-user.svg'),
 			new PermissVO(81,'Doc.Level 81',3,'Permiss - 3',0,0,'assets/114-user.svg')

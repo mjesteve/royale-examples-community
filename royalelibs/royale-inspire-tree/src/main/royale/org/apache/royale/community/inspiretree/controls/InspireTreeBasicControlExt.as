@@ -7,11 +7,9 @@ package org.apache.royale.community.inspiretree.controls
 	COMPILE::JS
 	{
     	import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
-    	import org.apache.royale.core.IDataProviderModel;
     	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
     	import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
-    	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
-    	import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
+    	import org.apache.royale.core.IDataProviderModel;
 	}
 
 	COMPILE::JS
@@ -56,6 +54,8 @@ package org.apache.royale.community.inspiretree.controls
 		public function set markIsDisabled(value:Boolean):void{ treeModel.markIsDisabled = value; }
 		
 		public function get markToState():String{ return treeModel.markToState; }
+		//"unchecked" and "same" do not correspond to any "state" of InspireTree, they are for convenience.
+        [Inspectable(category="General", enumeration="checked,unchecked,indeterminate,same,selectable")]
 		public function set markToState(value:String):void{ treeModel.markToState = value; }
 
 		override public function prepareTreeDataFromArray(... args):Array
@@ -77,6 +77,7 @@ package org.apache.royale.community.inspiretree.controls
 				var itemdp:normalizeDataItem = flatNormalizedArray[idxGen] as normalizeDataItem;
 				var idobjPrev:String = boundField ? itemdp.data[boundField]:'root';
 
+				var childMark:Array = new Array();
 				var itemGroup:Object = new ItemTreeNode();
 				itemGroup.text = labelFunctionParent(itemdp.data);
 
@@ -87,7 +88,6 @@ package org.apache.royale.community.inspiretree.controls
 					if(idobjPrev == idobjCurr)
 					{
 						var itemDetail:Object = new ItemTreeNode();
-						//var itemDetailNorm:normalizeDataItem = new normalizeDataItem(itemdpchild.data);
 						itemDetail.text = labelFunctionChild(itemdpchild.data);
 
 						if(treeModel.showCheckboxes && treeModel.checkboxFunction)
@@ -102,12 +102,12 @@ package org.apache.royale.community.inspiretree.controls
 							if(treeModel.markToState && itemdpchild.marked)
 							{
 								iChildMarkedCount++
-								if(treeModel.markToState && treeModel.markToState != "unchecked")
+								if(treeModel.markToState && treeModel.markToState != "unchecked" && treeModel.markToState != "same")
 									itemDetail.itree.state[treeModel.markToState]=true;
 
 								if(treeModel.showCheckboxes)
 								{
-									if(treeModel.markToState && treeModel.markToState == "unchecked"){
+									if(treeModel.markToState && treeModel.markToState == "unchecked" && treeModel.markToState != "same"){
 										itemDetail.itree.state.checked = false;
 										itemDetail.itree.state.indeterminate = false;									
 									}
@@ -132,7 +132,7 @@ package org.apache.royale.community.inspiretree.controls
 							}
 						}
 						(itemGroup.children as Array).push(itemDetail);
-						//(itemGroupNorm.data.children as Array).push(itemdpchild);
+						childMark.push(itemdpchild);
 
 						if(treeModel.showCheckboxes)
 						{
@@ -151,6 +151,7 @@ package org.apache.royale.community.inspiretree.controls
 				}
 
 				var itemGroupNorm:normalizeDataItem = new normalizeDataItem(itemdp.data);
+				itemGroupNorm.children = childMark;
 
 				if((itemGroup.children as Array).length >0)
 				{
@@ -170,12 +171,12 @@ package org.apache.royale.community.inspiretree.controls
 					{
 						itemGroupNorm.marked = true;
 
-						if(treeModel.markToState && treeModel.markToState != "unchecked")
+						if(treeModel.markToState && treeModel.markToState != "unchecked" && treeModel.markToState != "same")
 							itemGroup.itree.state[treeModel.markToState]=true;
 
 						if(treeModel.showCheckboxes)
 						{
-							if(treeModel.markToState && treeModel.markToState == "unchecked"){
+							if(treeModel.markToState && treeModel.markToState == "unchecked" && treeModel.markToState != "same"){
 								itemGroup.itree.state.checked = false;
 								itemGroup.itree.state.indeterminate = false;									
 							}

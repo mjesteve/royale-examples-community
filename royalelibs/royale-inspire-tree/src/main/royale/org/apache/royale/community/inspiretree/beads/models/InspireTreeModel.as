@@ -314,7 +314,6 @@ package org.apache.royale.community.inspiretree.beads.models
 			return '';
 		}
 
-
         protected function clone(source:Array):Array
         {
             if(!source)

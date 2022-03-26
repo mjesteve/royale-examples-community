@@ -14,6 +14,8 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
+    import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBeadExt  extends InspireTreeCheckBoxModeBead
@@ -110,7 +112,34 @@ package org.apache.royale.community.inspiretree.beads
 		public function revertStateNode(node:Object):void
 		{
 			var arOrg:Array = treeModel.dataProviderTree;
+			var idxGen:int = 0;
 			
+			(strand as IInspireTree).jsTree.forEach(function(treenode:Object):void
+			{
+				if(treenode.hasChildren())
+				{
+					var lench:int = treenode.children.length;
+					if( treenode.id == node.id)
+					{
+						for (var idxChild:int=0; idxChild < lench; idxChild++)
+						{
+							var itreal:normalizeDataItem = (arOrg[idxGen] as normalizeDataItem).children[idxChild];
+							var itemch:Object = treenode.children[idxChild];
+							if(itreal.checked)
+								(strand as IInspireTree).jsTree.node(itemch.id).check(true);
+							else
+								(strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
+							(strand as IInspireTree).jsTree.node(itemch.id).itree.state.indeterminate = itreal.indeterminate;
+							(strand as IInspireTree).jsTree.node(itemch.id).itree.state.selectable = itreal.enabled;
+							
+						}
+						treenode.refreshIndeterminateState();
+					}
+					idxGen++;
+				}
+				
+			});
+			(strand as IInspireTree).updateDataViewTree(false);
 		}
 
 		override public function revertStateCheckedNode(pNodeFilter:String, byID:Boolean):String

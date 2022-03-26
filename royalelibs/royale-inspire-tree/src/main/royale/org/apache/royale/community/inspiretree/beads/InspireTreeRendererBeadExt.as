@@ -55,6 +55,8 @@ package org.apache.royale.community.inspiretree.beads
 		}
 		private var _markToState:String;
 		public function get markToState():String{ return _markToState; }
+		//"unchecked" and "same" do not correspond to any "state" of InspireTree, they are for convenience.
+        [Inspectable(category="General", enumeration="checked,unchecked,indeterminate,same,selectable")]
 		public function set markToState(value:String):void
 		{ 
 			_markToState = value; 

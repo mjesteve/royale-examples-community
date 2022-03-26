@@ -297,12 +297,12 @@ package org.apache.royale.community.inspiretree.controls
 		// End ---------------------------------------- Data configuration -------------------------------------------------
 
 
-		public function updateDataViewTree():void
+		public function updateDataViewTree(reload:Boolean=true):void
         {
 			if(!_initialized)
 				return;
-
-			jsTree.reload();
+			if(reload)
+				jsTree.reload();
 			if( InspireTreeModel(model).renderingNeededDataChange )
             	dispatchEvent(new Event("onCreationComplete"));
         }

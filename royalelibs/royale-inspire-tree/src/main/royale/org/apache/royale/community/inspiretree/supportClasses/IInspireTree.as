@@ -5,6 +5,7 @@ package org.apache.royale.community.inspiretree.supportClasses
         function isInitialized():Boolean;
         function prepareTreeDataFromArray(... args):Array;
         function reCreateViewTree(onlyView:Boolean=false):void;
+        function updateDataViewTree(reload:Boolean=true):void;
         function get jsTree():InspireTree;
         function set jsTree(value:InspireTree):void;
         function get jsTreeDOM():InspireTreeDOM;

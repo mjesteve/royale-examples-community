@@ -47,11 +47,6 @@ package org.apache.royale.community.inspiretree.beads.models
 		override public function get dataProviderTree():Array
 		{
 			return _dataProviderTree;
-/*
-			if(dataProvider is IArrayList)
-				return (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(dataProvider).source);
-			else
-				return (_strand as IInspireTree).prepareTreeDataFromArray(dataProvider as Array); */
 		}
 
 		private function normalizeDataProvider(ar:Array):Array
@@ -71,7 +66,10 @@ package org.apache.royale.community.inspiretree.beads.models
 		public var markDOMFunction:Function;
 
 		public var markIsDisabled:Boolean = true;
-		public var markToState:String = "indeterminate";
+		
+		//"unchecked" and "same" do not correspond to any "state" of InspireTree, they are for convenience.
+        [Inspectable(category="General", enumeration="checked,unchecked,indeterminate,same,selectable")]
+		public var markToState:String = "same";
 		
 	}
 
