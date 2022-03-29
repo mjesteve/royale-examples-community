@@ -42,7 +42,7 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function get strand():IStrand
+        protected function get strand():IStrand
         {
             return _strand;
         }

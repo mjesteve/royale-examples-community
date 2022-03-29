@@ -304,7 +304,9 @@ package org.apache.royale.community.inspiretree.controls
 			if(reload)
 				jsTree.reload();
 			if( InspireTreeModel(model).renderingNeededDataChange )
+			{
             	dispatchEvent(new Event("onCreationComplete"));
+			}
         }
 		/**
 		 * Recreate the InspireTree instance with the current options.

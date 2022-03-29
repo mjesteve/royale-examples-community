@@ -62,7 +62,7 @@
 				if(!itemFlatData)
 					return false;
 
-				if( (itemFlatData as PermissVO).idxacc<3)
+				if( (itemFlatData as PermissVO).idxacc>2)
 					return true;
 				else
 	                return false;

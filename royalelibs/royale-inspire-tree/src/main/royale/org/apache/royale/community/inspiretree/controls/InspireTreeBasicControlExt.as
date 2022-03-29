@@ -102,34 +102,40 @@ package org.apache.royale.community.inspiretree.controls
 							if(treeModel.markToState && itemdpchild.marked)
 							{
 								iChildMarkedCount++
-								if(treeModel.markToState && treeModel.markToState != "unchecked" && treeModel.markToState != "same")
-									itemDetail.itree.state[treeModel.markToState]=true;
-
-								if(treeModel.showCheckboxes)
+								if(treeModel.markToState != "same")
 								{
-									if(treeModel.markToState && treeModel.markToState == "unchecked" && treeModel.markToState != "same"){
-										itemDetail.itree.state.checked = false;
-										itemDetail.itree.state.indeterminate = false;									
-									}
+									if(treeModel.markToState != "unchecked")
+										itemDetail.itree.state[treeModel.markToState]=true;
 
-									if(itemDetail.itree.state.checked){
-										itemDetail.itree.state.indeterminate = false;
-									}else
-									if(itemDetail.itree.state.indeterminate)
+									if(treeModel.showCheckboxes)
 									{
-										itemDetail.itree.state.checked = false;
-										if(treeModel.markIsDisabled)
-											itemDetail.itree.state.selectable = false;
+										if(treeModel.markToState == "unchecked")
+										{
+											itemDetail.itree.state.checked = false;
+											itemDetail.itree.state.indeterminate = false;
+										}else if(treeModel.markToState == "checked")
+										{
+											itemDetail.itree.state.checked = true;
+											itemDetail.itree.state.indeterminate = false;	
+										}else if(treeModel.markToState == "indeterminate")
+										{
+											itemDetail.itree.state.checked = false;
+										}
 									}
 								}
+
+								if(treeModel.markIsDisabled)
+									itemDetail.itree.state.selectable = false;
 							}
-							itemdpchild.checked = itemDetail.itree.state.checked;
-							itemdpchild.indeterminate = itemDetail.itree.state.indeterminate;
+
 							if(treeModel.markIsDisabled)
 							{
 								itemdpchild.enabled = !itemdpchild.marked;
 								itemDetail.itree.state.selectable = itemdpchild.enabled;
 							}
+
+							itemdpchild.checked = itemDetail.itree.state.checked;
+							itemdpchild.indeterminate = itemDetail.itree.state.indeterminate;
 						}
 						(itemGroup.children as Array).push(itemDetail);
 						childMark.push(itemdpchild);

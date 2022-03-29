@@ -1,6 +1,5 @@
 package org.apache.royale.community.inspiretree.beads.models
 {
-	import org.apache.royale.html.beads.models.ArrayListSelectionModel;
 	import org.apache.royale.community.inspiretree.vos.OptionsTree;
 	import org.apache.royale.community.inspiretree.vos.ConfigDOM;
 	import org.apache.royale.core.HTMLElementWrapper;
@@ -12,7 +11,7 @@ package org.apache.royale.community.inspiretree.beads.models
 	import mx.utils.ObjectUtil;
 
 	//COMPILE::JS
-	public class InspireTreeModel extends ArrayListSelectionModel
+	public class InspireTreeModel extends ArrayListSelectionModelTmp
 	{
 		/**
 		 *  Constructor.

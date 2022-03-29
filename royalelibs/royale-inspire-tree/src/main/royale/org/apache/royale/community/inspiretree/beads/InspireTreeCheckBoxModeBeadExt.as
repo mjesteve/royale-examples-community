@@ -113,33 +113,52 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			var arOrg:Array = treeModel.dataProviderTree;
 			var idxGen:int = 0;
-			
-			(strand as IInspireTree).jsTree.forEach(function(treenode:Object):void
+			//No utilizamos jsTree.forEach porque no podemos salirnos del bucle una vez encontrado el nodo que queremos deshacer.
+			//We do not use jsTree.forEach because we cannot exit the loop once we have found the node we want to undo.
+			//(strand as IInspireTree).jsTree.forEach(function(treenode:Object):void
+			var lenar:int = arOrg.length;
+
+			for (var idxnode:int=0; idxnode < lenar; idxnode++)
 			{
+				var treenode:Object = (strand as IInspireTree).jsTree.model[idxnode];
+				var itreal:normalizeDataItem;
+
 				if(treenode.hasChildren())
 				{
-					var lench:int = treenode.children.length;
 					if( treenode.id == node.id)
 					{
+						var lench:int = treenode.children.length;						
 						for (var idxChild:int=0; idxChild < lench; idxChild++)
 						{
-							var itreal:normalizeDataItem = (arOrg[idxGen] as normalizeDataItem).children[idxChild];
-							var itemch:Object = treenode.children[idxChild];
-							if(itreal.checked)
-								(strand as IInspireTree).jsTree.node(itemch.id).check(true);
-							else
-								(strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
-							(strand as IInspireTree).jsTree.node(itemch.id).itree.state.indeterminate = itreal.indeterminate;
-							(strand as IInspireTree).jsTree.node(itemch.id).itree.state.selectable = itreal.enabled;
-							
+							itreal = (arOrg[idxGen] as normalizeDataItem).children[idxChild];
+							//if( !treeModel || (treeModel.markToState && !itreal.marked) )
+							//{
+								var itemch:Object = treenode.children[idxChild];
+								if(itreal.checked)
+									(strand as IInspireTree).jsTree.node(itemch.id).check(true);
+								else{
+									(strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
+									(strand as IInspireTree).jsTree.node(itemch.id).itree.state.indeterminate = itreal.indeterminate;
+								}
+								(strand as IInspireTree).jsTree.node(itemch.id).itree.state.selectable = itreal.enabled;
+							//}								
 						}
-						treenode.refreshIndeterminateState();
+						
+						itreal = arOrg[idxGen] as normalizeDataItem;
+						if(itreal.checked)
+							(strand as IInspireTree).jsTree.node(treenode.id).check(true);
+						else{
+							(strand as IInspireTree).jsTree.node(treenode.id).uncheck(true);
+							(strand as IInspireTree).jsTree.node(treenode.id).itree.state.indeterminate = itreal.indeterminate;
+						}
+						(strand as IInspireTree).jsTree.node(treenode.id).itree.state.selectable = itreal.enabled;
+						treeModel.revertNode = arOrg[idxGen];
+						//(strand as IInspireTree).updateDataViewTree(true);
+						return;
 					}
 					idxGen++;
 				}
-				
-			});
-			(strand as IInspireTree).updateDataViewTree(false);
+			};
 		}
 
 		override public function revertStateCheckedNode(pNodeFilter:String, byID:Boolean):String

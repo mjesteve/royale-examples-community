@@ -49,6 +49,14 @@ package org.apache.royale.community.inspiretree.beads.models
 			return _dataProviderTree;
 		}
 
+		private var _revertNode:Object;
+		public function get revertNode():Object{ return _revertNode; }
+		public function set revertNode(value:Object):void
+		{ 
+			_revertNode = value; 
+            (_strand as IEventDispatcher).dispatchEvent("revertNodeChanged");
+		}
+
 		private function normalizeDataProvider(ar:Array):Array
 		{	
 			if(!ar)
