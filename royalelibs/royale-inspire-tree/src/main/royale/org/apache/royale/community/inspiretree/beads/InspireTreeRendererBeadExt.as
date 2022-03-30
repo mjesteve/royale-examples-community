@@ -97,7 +97,7 @@ package org.apache.royale.community.inspiretree.beads
 			if( !(strand as IInspireTree).jsTree )
 				return;
 
-			(strand as IInspireTree).jsTree.off('node.checked', onNodeCheckedHandler);
+			//(strand as IInspireTree).jsTree.off('node.checked', onNodeCheckedHandler);
 		}
 
 		override protected function updateHost(event:Event = null):void
@@ -109,8 +109,8 @@ package org.apache.royale.community.inspiretree.beads
 			if(!initialized || !treeModel.dataProviderTree)
 				return;
 
-			(strand as IInspireTree).jsTree.on('node.checked', onNodeCheckedHandler);
-			(strand as IInspireTree).jsTree.on('node.unchecked', onNodeCheckedHandler);
+			//(strand as IInspireTree).jsTree.on('node.checked', onNodeCheckedHandler);
+			//(strand as IInspireTree).jsTree.on('node.unchecked', onNodeCheckedHandler);
 
 			var hostComponent:IInspireTree = strand as IInspireTree;
 			if(treeModel.revertNode)
@@ -129,55 +129,57 @@ package org.apache.royale.community.inspiretree.beads
 				var treenode:Object = hostComponent.jsTree.model[idxnode];
 				var itreal:normalizeDataItem;
 				
-				//if( !treeModel.revertNode || (treeModel.revertNode && treenode.id == treeModel.revertNode.id))
-				//{
-					if(treenode.hasChildren())
+				if(treenode.hasChildren())
+				{
+					var arAct:Array = new Array();					
+					var row:HTMLElement;
+					var titlerow:HTMLElement;
+					var wholerow:HTMLElement;
+					var lench:int = treenode.children.length;
+					for (idxChild=0; idxChild < lench; idxChild++)
 					{
-						var numactive:int = 0;
-						var row:HTMLElement;
-						var titlerow:HTMLElement;
-						var wholerow:HTMLElement;
-						var lench:int = treenode.children.length;
-						for (idxChild=0; idxChild < lench; idxChild++)
-						{
-							itreal = (treeModel.dataProviderTree[idxnode] as normalizeDataItem).children[idxChild];
-							marked = markDOMFunction(treenode.children[idxChild],(itreal as normalizeDataItem).data);
-							row = treenode.children[idxChild].itree.ref as HTMLElement;						
-							titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
-							wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
-							if( marked ){								
-								row.setAttribute('type',treeModel.stringTypeMarkDOM);
-								titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-								wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
-							}else{
-								row.removeAttribute("type");
-								titlerow.removeAttribute("type");
-								wholerow.removeAttribute("type");
-								numactive++;
-							}
-						}
-
-						row = treenode.itree.ref as HTMLElement;
-						titlerow = treenode.itree.ref.childNodes[0] as HTMLElement;
-						wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
-						if(numactive == 0) //Disabled root
-						{
+						itreal = (treeModel.dataProviderTree[idxnode] as normalizeDataItem).children[idxChild];
+						marked = markDOMFunction(treenode.children[idxChild],(itreal as normalizeDataItem).data);
+						row = treenode.children[idxChild].itree.ref as HTMLElement;						
+						titlerow = treenode.children[idxChild].itree.ref.childNodes[0] as HTMLElement;
+						wholerow = treenode.children[idxChild].itree.ref.childNodes[1] as HTMLElement;
+						if( marked ){								
 							row.setAttribute('type',treeModel.stringTypeMarkDOM);
 							titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 							wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
 						}else{
-							if(treeModel.checkboxMode && numactive<lench)
-							{
-								var checkboxRoot:HTMLElement = titlerow.children[1] as HTMLElement;
-								checkboxRoot.addEventListener( "click", checkRootMark, true ); //fase captura
-							}
 							row.removeAttribute("type");
 							titlerow.removeAttribute("type");
 							wholerow.removeAttribute("type");
+							arAct.push(titlerow);
 						}
 					}
-				//}
-				
+
+					row = treenode.itree.ref as HTMLElement;
+					titlerow = treenode.itree.ref.childNodes[0] as HTMLElement;
+					wholerow = treenode.itree.ref.childNodes[1] as HTMLElement;
+					if(arAct.length == 0) //Disabled root
+					{
+						row.setAttribute('type',treeModel.stringTypeMarkDOM);
+						titlerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+						wholerow.setAttribute('type',treeModel.stringTypeMarkDOM);
+					}else{
+						row.removeAttribute("type");
+						titlerow.removeAttribute("type");
+						wholerow.removeAttribute("type");
+						if(treeModel.checkboxMode && arAct.length<lench)
+						{
+							var checkbox:HTMLElement = titlerow.children[1] as HTMLElement;
+							checkbox.addEventListener( "click", checkRootMark, true ); //fase captura
+
+							for (idxChild=0; idxChild < arAct.length; idxChild++)
+							{
+								checkbox = (arAct[idxChild] as HTMLElement).children[0] as HTMLElement;
+								checkbox.addEventListener( "click", checkChildMark, true ); //fase captura
+							}
+						}
+					}
+				}
 			}
 			//);
 		}
@@ -186,32 +188,58 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			event.preventDefault();
 			event.stopImmediatePropagation();
+
+			var vNode:Object = (event.currentTarget as Object).$V;
+			var newstate:String;
+			if( (vNode.props.indeterminate as Boolean) == true || (vNode.props.checked as Boolean) == false )
+				newstate = "checked";
+			else
+				newstate = "unchecked";
+			
 			//event.path[2] = "li" parent - node
 			//attributes[1] = data-uid
 			var idNode:String = event.path[2].attributes[1].value as String;
-			trace(idNode);
-			var treeNode:Object = (strand as IInspireTree).jsTree.node(idNode);
-			var vNode:Object = (event.currentTarget as Object).$V;
-			if( (vNode.props.indeterminate as Boolean) == true )
-			{
-				//go to "checked"
-				trace(vNode);
-			}else if( (vNode.props.checked as Boolean) == true ){
-				//go to "uncheked"
-			}else{
-				//go to "checked"
-			}
-			var oldvalue:Boolean = vNode.props.checked as Boolean;
-			if(oldvalue == false)
-			var newvalue:Boolean = !oldvalue;
-			
+			setTimeout(setRootStateBatch,125,idNode,newstate);
 		}
 
-		public function onNodeCheckedHandler(treeNode:Object, isLoadEvent:Boolean):void
+		private function checkChildMark(event:Event):void
 		{
-			//(strand as IInspireTree).jsTree.off('node.checked', onNodeCheckedHandler);
-			trace(treeNode);
-			//treeNode.uncheck(true);
+			event.preventDefault();
+			/*event.stopImmediatePropagation();
+
+			var vNode:Object = (event.currentTarget as Object).$V;
+			var newstate:String;
+			if( (vNode.props.checked as Boolean) == false )
+				newstate = "checked";
+			else
+				newstate = "unchecked";
+			
+			//event.path[2] = "li" parent - node
+			//attributes[1] = data-uid
+			var idNode:String = event.path[2].attributes[1].value as String;
+			setTimeout(setRootStateBatch,125,idNode,newstate);*/
+		}
+
+		private function setRootStateBatch(idNode:String, newState:String):void
+		{
+			var treenode:Object = (strand as IInspireTree).jsTree.node(idNode);			
+			var lench:int = treenode.children.length;						
+			for (var idxChild:int=0; idxChild < lench; idxChild++)
+			{
+				var itemch:Object = treenode.children[idxChild];
+				var wholerow:HTMLElement = itemch.itree.ref.childNodes[1] as HTMLElement;				
+				if( wholerow.getAttribute('type') != treeModel.stringTypeMarkDOM ){
+					if( newState == "checked")
+						(strand as IInspireTree).jsTree.node(itemch.id).check(true);
+					else
+						(strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
+				}
+			}
+			
+			if( newState == "checked")
+				treenode.check(true);
+			else
+				treenode.uncheck(true);
 		}
 
 		protected function updateHostOld(event:Event = null):void

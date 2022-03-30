@@ -69,9 +69,6 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <additionalCompilerOptions>
             ${project.compiler.options};
-            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
-            -keep-as3-metadata+=Inject,EventHandler,Event,Bindable;
-            -keep-code-with-metadata=Inject;
           </additionalCompilerOptions>
 
         </configuration>
