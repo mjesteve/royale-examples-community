@@ -17,7 +17,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
-	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
+	public class InspireTreeMarkRendererBead  extends Strand implements IBead, IInspireTreeRenderer
 	{
 		/**
 		 *  constructor
@@ -28,7 +28,7 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @productversion Royale 0.9.7
 		 */
 
-		public function InspireTreeRendererBead()
+		public function InspireTreeMarkRendererBead()
 		{
 			super();
 		}
@@ -74,7 +74,7 @@ package org.apache.royale.community.inspiretree.beads
 		protected function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
-			(_strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+			(_strand as IEventDispatcher).addEventListener("creationComplete", updateHost);
 
 			if(treeModel)
 			{
@@ -241,7 +241,7 @@ package org.apache.royale.community.inspiretree.beads
 	}
 
     COMPILE::SWF
-	public class InspireTreeRendererBead
+	public class InspireTreeMarkRendererBead
 	{
     }
 }

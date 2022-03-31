@@ -26,15 +26,15 @@ package org.apache.royale.community.inspiretree.controls
 	 *  It can be captured to make adjustments before creating the js instance.
 	 *  (See InspireTreePaginateBead)
      */
-	[Event(name="onBeforeCreation", type="org.apache.royale.events.Event")]
+	[Event(name="beforeCreation", type="org.apache.royale.events.Event")]
     /**
      *  Indicates that the creation is complete.
      */
-	[Event(name="onCreationComplete", type="org.apache.royale.events.Event")]
+	[Event(name="creationComplete", type="org.apache.royale.events.Event")]
 	/*
 
 	*/
-	[Event(name="onPrepareTreeDataComplete", type="org.apache.royale.events.Event")]
+	[Event(name="prepareTreeDataComplete", type="org.apache.royale.events.Event")]
 
 	COMPILE::JS
 	public class InspireTreeBasicControl extends StyledUIBase implements IMXMLDocument, IInspireTree
@@ -257,29 +257,28 @@ package org.apache.royale.community.inspiretree.controls
 		public function get labelFunctionChild():Function { return InspireTreeModel(model).labelFunctionChild; }
 		public function set labelFunctionChild(value:Function):void{ InspireTreeModel(model).labelFunctionChild = value; }
 
-		public function prepareTreeDataFromArray(... args):Array
+		public function prepareTreeDataFromArray(flatArrayIn:Array):Array
 		{
-			if(!args[0])
-				return new Array();
-			var flatArray:Array = args[0] as Array;	
+			if(!flatArrayIn)
+				return [new Array()];
 
-			// The flatArray should be sorted according to the desired display
+			// The flatArrayIn should be sorted according to the desired display
 			var localdataProviderTree:Array = new Array();
 
-			for (var idxGen:int=0; idxGen < flatArray.length; idxGen++)
+			for (var idxGen:int=0; idxGen < flatArrayIn.length; idxGen++)
         	{
 				var itemGroup:Object = new ItemTreeNode();
-				itemGroup.text = labelFunctionParent(flatArray[idxGen]);
+				itemGroup.text = labelFunctionParent(flatArrayIn[idxGen]);
 
-				var idobjPrev:String = boundField ? flatArray[idxGen][boundField]:'root';
+				var idobjPrev:String = boundField ? flatArrayIn[idxGen][boundField]:'root';
 
-				for (var idxChild:int=idxGen; idxChild < flatArray.length; idxChild++)
+				for (var idxChild:int=idxGen; idxChild < flatArrayIn.length; idxChild++)
 				{
-					var idobjCurr:String = boundField ? flatArray[idxChild][boundField]:'root';
+					var idobjCurr:String = boundField ? flatArrayIn[idxChild][boundField]:'root';
 					if(idobjPrev == idobjCurr)
 					{
 						var itemDetail:Object = new ItemTreeNode();
-						itemDetail.text = labelFunctionChild(flatArray[idxChild]);
+						itemDetail.text = labelFunctionChild(flatArrayIn[idxChild]);
 						itemGroup.children.push(itemDetail);
 						idxGen++;
 					}
@@ -292,7 +291,7 @@ package org.apache.royale.community.inspiretree.controls
 
 				localdataProviderTree.push(itemGroup);
 			}
-			return localdataProviderTree;
+			return [localdataProviderTree];
 		}
 		// End ---------------------------------------- Data configuration -------------------------------------------------
 
@@ -305,7 +304,7 @@ package org.apache.royale.community.inspiretree.controls
 				jsTree.reload();
 			if( InspireTreeModel(model).renderingNeededDataChange )
 			{
-            	dispatchEvent(new Event("onCreationComplete"));
+            	dispatchEvent(new Event("creationComplete"));
 			}
         }
 		/**
@@ -313,16 +312,16 @@ package org.apache.royale.community.inspiretree.controls
 		 */
 		public function reCreateViewTree(onlyView:Boolean=false):void
 		{
-            dispatchEvent(new Event("onBeforeCreation"));
+            dispatchEvent(new Event("beforeCreation"));
 
 			jsTree = new InspireTree(InspireTreeModel(model).configOption);
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
 			uid = element.getAttribute('data-uid'); trace(uid);
 			// To make the view independent from the control, the assignment of icons must be done in the bead and not here...
-			// We will capture in the bead the event "onCreationComplete" and there we will call updateImagesOnParentChild()
+			// We will capture in the bead the event "creationComplete" and there we will call updateImagesOnParentChild()
 		 	//(getBeadByType(InspireTreeIconBead) as InspireTreeIconBead).updateImagesOnParentChild();
-            dispatchEvent(new Event("onCreationComplete"));
+            dispatchEvent(new Event("creationComplete"));
 		}
 
 	}

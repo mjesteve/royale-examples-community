@@ -489,7 +489,7 @@ package org.apache.royale.community.inspiretree.beads
 
 				}else if(_typeIconsSet == 'custom' && lastUID != "")
 				{
-					(_strand as IEventDispatcher).removeEventListener("onCreationComplete", updateHost);
+					(_strand as IEventDispatcher).removeEventListener("creationComplete", updateHost);
 					(_strand as IStyledUIBase).removeClass("itreecustom"+lastUID);
 					var lastStyle:HTMLStyleElement = document.getElementById("itreecustom"+lastUID) as HTMLStyleElement;
 					if(lastStyle)
@@ -525,7 +525,7 @@ package org.apache.royale.community.inspiretree.beads
 				}
 				else if(_typeIconsSet == "customIcons")
 				{
-					(_strand as IEventDispatcher).removeEventListener("onCreationComplete", updateImagesOnParentChild);
+					(_strand as IEventDispatcher).removeEventListener("creationComplete", updateImagesOnParentChild);
 					(_strand as IStyledUIBase).removeClass("customimagerendering");
 				}
 			}
@@ -543,12 +543,12 @@ package org.apache.royale.community.inspiretree.beads
 				plusIcon = "";
 
 				if(prop.typeIconsSet == 'customIcons' && (_typeIconsSet != 'customIcons' || !initialized) )
-					(_strand as IEventDispatcher).addEventListener("onCreationComplete", updateImagesOnParentChild);
+					(_strand as IEventDispatcher).addEventListener("creationComplete", updateImagesOnParentChild);
 			}
 			else //'custom' - 'customClasses'
 			{
 				if(prop.typeIconsSet == 'custom' && (_typeIconsSet != 'custom' || !initialized) )
-					(_strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+					(_strand as IEventDispatcher).addEventListener("creationComplete", updateHost);
 
 				//If we have not changed theSet type, one of the properties has been changed.
 				parentIcon = prop.parentIcon;

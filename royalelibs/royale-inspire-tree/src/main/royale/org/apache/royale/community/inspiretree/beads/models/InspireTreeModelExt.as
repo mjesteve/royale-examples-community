@@ -37,11 +37,14 @@ package org.apache.royale.community.inspiretree.beads.models
 			//tmpdata 			--> flat, normalized
 			//_dataProviderTree --> tree, normalized
 			//treeData 			--> tree, itemTreeNode (* jsTree)
-			treeData = (_strand as IInspireTree).prepareTreeDataFromArray(tmpdata, _dataProviderTree);
+			var arOut:Array = (_strand as IInspireTree).prepareTreeDataFromArray(tmpdata);
+			//treeData = (_strand as IInspireTree).prepareTreeDataFromArray(tmpdata, _dataProviderTree);
+			treeData = arOut[0] as Array;
+			_dataProviderTree = arOut[1] as Array;
 			
 			super.dataProvider = new ArrayList(tmpdata);
 
-			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
+			(_strand as IEventDispatcher).dispatchEvent("prepareTreeDataComplete");
 		}
 
 		override public function get dataProviderTree():Array

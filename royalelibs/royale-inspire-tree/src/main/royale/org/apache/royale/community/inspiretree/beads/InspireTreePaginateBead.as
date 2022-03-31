@@ -59,7 +59,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
             _strand = value;
 			
-			IEventDispatcher(_strand).addEventListener("onBeforeCreation", init);
+			IEventDispatcher(_strand).addEventListener("beforeCreation", init);
 		} 
 		
 		private var treeModel:InspireTreeModel;

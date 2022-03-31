@@ -58,13 +58,13 @@ package org.apache.royale.community.inspiretree.beads
 		public function set strand(value:IStrand):void
 		{
             _strand = value;
-			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
+			(_strand as IEventDispatcher).addEventListener("beforeCreation", removeListeners);
 		} 
 
 		private function removeListeners():void
 		{
-			(_strand as IEventDispatcher).removeEventListener("onBeforeCreation", removeListeners);
-			(_strand as IEventDispatcher).addEventListener("onCreationComplete", createListeners);
+			(_strand as IEventDispatcher).removeEventListener("beforeCreation", removeListeners);
+			(_strand as IEventDispatcher).addEventListener("creationComplete", createListeners);
 
 			if( !(_strand as IInspireTree).jsTree )
 				return;
@@ -80,8 +80,8 @@ package org.apache.royale.community.inspiretree.beads
 
 		private function createListeners():void
 		{
-			(_strand as IEventDispatcher).removeEventListener("onCreationComplete", createListeners);
-			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
+			(_strand as IEventDispatcher).removeEventListener("creationComplete", createListeners);
+			(_strand as IEventDispatcher).addEventListener("beforeCreation", removeListeners);
 
 			if( !(_strand as IInspireTree).jsTree )
 				return;

@@ -7,15 +7,14 @@ package org.apache.royale.community.inspiretree.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	COMPILE::JS{
-	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.core.StyledUIBase;
+	COMPILE::JS{	
     import org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.community.inspiretree.supportClasses.IInspireTree;
     import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
-    import org.apache.royale.community.inspiretree.vos.normalizeDataItem;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBeadExt  extends InspireTreeCheckBoxModeBead

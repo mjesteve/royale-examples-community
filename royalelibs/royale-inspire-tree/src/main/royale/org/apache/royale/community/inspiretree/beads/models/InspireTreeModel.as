@@ -44,15 +44,15 @@ package org.apache.royale.community.inspiretree.beads.models
 
 			if(value is IArrayList)
 			{
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source)[0] as Array;
 				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(IArrayList(value).source);
 			}else{
-				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
+				treeData = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array)[0] as Array;
 				//_dataProviderTree = (_strand as IInspireTree).prepareTreeDataFromArray(value as Array);
 			}
             //When cloning treeData, the type of the items is lost. (ItemTreeNode)
             _dataProviderTree = cloneArray(treeData);
-			(_strand as IEventDispatcher).dispatchEvent("onPrepareTreeDataComplete");
+			(_strand as IEventDispatcher).dispatchEvent("prepareTreeDataComplete");
 		}
 
 		protected var _dataProviderTree:Array = new Array();

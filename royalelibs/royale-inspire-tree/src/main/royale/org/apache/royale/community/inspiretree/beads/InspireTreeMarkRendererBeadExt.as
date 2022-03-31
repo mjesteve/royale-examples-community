@@ -13,7 +13,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
-	public class InspireTreeRendererBeadExt extends InspireTreeRendererBead
+	public class InspireTreeMarkRendererBeadExt extends InspireTreeMarkRendererBead
 	{
 		/**
 		 *  constructor
@@ -24,7 +24,7 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @productversion Royale 0.9.7
 		 */
 
-		public function InspireTreeRendererBeadExt()
+		public function InspireTreeMarkRendererBeadExt()
 		{
 			super();
 		}
@@ -67,8 +67,8 @@ package org.apache.royale.community.inspiretree.beads
 		override protected function init(event:Event):void
 		{
 			(strand as IEventDispatcher).removeEventListener("initComplete", init);
-			(strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
-			//(strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+			//(strand as IEventDispatcher).addEventListener("beforeCreation", removeListeners);
+			(strand as IEventDispatcher).addEventListener("creationComplete", updateHost);
 			(strand as IEventDispatcher).addEventListener("revertNodeChanged", updateHost);
 
 			if(treeModel)
@@ -88,23 +88,23 @@ package org.apache.royale.community.inspiretree.beads
 			    initialized = true;
 			}
 		}
-
+/*
 		private function removeListeners():void
 		{
-			(strand as IEventDispatcher).removeEventListener("onBeforeCreation", removeListeners);
-			(strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+			(strand as IEventDispatcher).removeEventListener("beforeCreation", removeListeners);
+			(strand as IEventDispatcher).addEventListener("creationComplete", updateHost);
 
 			if( !(strand as IInspireTree).jsTree )
 				return;
 
 			//(strand as IInspireTree).jsTree.off('node.checked', onNodeCheckedHandler);
 		}
-
+*/
 		override protected function updateHost(event:Event = null):void
 		{
 				
-			(strand as IEventDispatcher).removeEventListener("onCreationComplete", updateHost);
-			(strand as IEventDispatcher).addEventListener("onBeforeCreation", removeListeners);
+			//(strand as IEventDispatcher).removeEventListener("creationComplete", updateHost);
+			//(strand as IEventDispatcher).addEventListener("beforeCreation", removeListeners);
 
 			if(!initialized || !treeModel.dataProviderTree)
 				return;
@@ -171,12 +171,13 @@ package org.apache.royale.community.inspiretree.beads
 						{
 							var checkbox:HTMLElement = titlerow.children[1] as HTMLElement;
 							checkbox.addEventListener( "click", checkRootMark, true ); //fase captura
-
+/*
 							for (idxChild=0; idxChild < arAct.length; idxChild++)
 							{
 								checkbox = (arAct[idxChild] as HTMLElement).children[0] as HTMLElement;
 								checkbox.addEventListener( "click", checkChildMark, true ); //fase captura
 							}
+*/
 						}
 					}
 				}
@@ -309,7 +310,7 @@ package org.apache.royale.community.inspiretree.beads
 	}
 
     COMPILE::SWF
-	public class InspireTreeRendererBeadExt
+	public class InspireTreeMarkRendererBeadExt
 	{
     }
 }

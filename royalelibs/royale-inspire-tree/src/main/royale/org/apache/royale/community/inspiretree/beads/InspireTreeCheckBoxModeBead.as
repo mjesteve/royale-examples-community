@@ -62,8 +62,8 @@ package org.apache.royale.community.inspiretree.beads
 		{
             _strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", init);
-			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", onBeforeCreationTree);
-			(_strand as IEventDispatcher).addEventListener("onPrepareTreeDataComplete", completeTreeData);
+			(_strand as IEventDispatcher).addEventListener("beforeCreation", onBeforeCreationTree);
+			(_strand as IEventDispatcher).addEventListener("prepareTreeDataComplete", completeTreeData);
 			(_strand as IEventDispatcher).addEventListener("readonlyChange", onReadOnlyChange);
 		}
 
@@ -102,7 +102,7 @@ package org.apache.royale.community.inspiretree.beads
 		private function onBeforeCreationTree(event:Event):void
 		{
 			if(_revertIcon && _showCheckboxes)
-				(_strand as IEventDispatcher).addEventListener("onCreationComplete", createListeners);
+				(_strand as IEventDispatcher).addEventListener("creationComplete", createListeners);
 		}
 
 		protected function completeTreeData(event:Event, revertTreeData:Array = null):Array
@@ -163,7 +163,7 @@ package org.apache.royale.community.inspiretree.beads
 
 		private function createListeners():void
 		{
-			(_strand as IEventDispatcher).removeEventListener("onCreationComplete", createListeners);
+			(_strand as IEventDispatcher).removeEventListener("creationComplete", createListeners);
 			updateHost();
 		}
 

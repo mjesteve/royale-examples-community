@@ -35,7 +35,7 @@
   <component id="InspireTreePaginateBead" class="org.apache.royale.community.inspiretree.beads.InspireTreePaginateBead"/>
   <component id="InspireTreeReadOnlyCheckBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeReadOnlyCheckBead"/>
 
-  <component id="InspireTreeRendererBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeRendererBead"/>
-  <component id="InspireTreeRendererBeadExt" class="org.apache.royale.community.inspiretree.beads.InspireTreeRendererBeadExt"/>
+  <component id="InspireTreeMarkRendererBead" class="org.apache.royale.community.inspiretree.beads.InspireTreeMarkRendererBead"/>
+  <component id="InspireTreeMarkRendererBeadExt" class="org.apache.royale.community.inspiretree.beads.InspireTreeMarkRendererBeadExt"/>
 
 </componentPackage>

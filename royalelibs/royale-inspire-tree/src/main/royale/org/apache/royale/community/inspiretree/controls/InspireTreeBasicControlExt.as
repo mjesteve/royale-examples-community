@@ -58,23 +58,21 @@ package org.apache.royale.community.inspiretree.controls
         [Inspectable(category="General", enumeration="checked,unchecked,indeterminate,same,selectable")]
 		public function set markToState(value:String):void{ treeModel.markToState = value; }
 
-		override public function prepareTreeDataFromArray(... args):Array
+		override public function prepareTreeDataFromArray(flatArrayIn:Array):Array
 		{
-			if(!args[0])
-				return new Array();
-			var flatNormalizedArray:Array = args[0] as Array;			
-			var treeNormalizedArray:Array = args[1];
-			if(!treeNormalizedArray)
-				treeNormalizedArray = new Array;
-			
+			if(!flatArrayIn)
+				return [new Array(), new Array()];
+			//var flatArrayIn:Array = args[0] as Array;			
+			//var treeArrayOut:Array = args[1];
+			var treeArrayOut:Array = new Array();
 			var treeArray:Array = new Array();
-			var lendp:int = flatNormalizedArray.length;
+			var lendp:int = flatArrayIn.length;
 			for (var idxGen:int=0; idxGen < lendp; idxGen++)
         	{
 				var iChildCheckedCount:int = 0;
 				var iChildUnCheckedCount:int = 0;
 				var iChildMarkedCount:int = 0;
-				var itemdp:normalizeDataItem = flatNormalizedArray[idxGen] as normalizeDataItem;
+				var itemdp:normalizeDataItem = flatArrayIn[idxGen] as normalizeDataItem;
 				var idobjPrev:String = boundField ? itemdp.data[boundField]:'root';
 
 				var childMark:Array = new Array();
@@ -83,7 +81,7 @@ package org.apache.royale.community.inspiretree.controls
 
 				for (var idxChild:int=idxGen; idxChild < lendp; idxChild++)
 				{
-					var itemdpchild:normalizeDataItem = flatNormalizedArray[idxChild] as normalizeDataItem;
+					var itemdpchild:normalizeDataItem = flatArrayIn[idxChild] as normalizeDataItem;
 					var idobjCurr:String = boundField ? itemdpchild.data[boundField]:'root';
 					if(idobjPrev == idobjCurr)
 					{
@@ -209,9 +207,9 @@ package org.apache.royale.community.inspiretree.controls
 				}
 
 				treeArray.push(itemGroup);
-				treeNormalizedArray.push(itemGroupNorm);
+				treeArrayOut.push(itemGroupNorm);
 			}
-			return treeArray;
+			return [treeArray, treeArrayOut];
 		}
 
 	}
