@@ -119,7 +119,7 @@
     <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
         <j:BarRow localId="barRow">
             <j:BarSection>
-                <j:BarTitle text="Royale Tests      [ Royale 0.9.9-SNAPSHOT ]"/>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.10-SNAPSHOT ]"/>
             </j:BarSection>
         </j:BarRow>
     </j:TopAppBar>

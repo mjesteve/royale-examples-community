@@ -102,6 +102,7 @@
                                         <trees:beads>
 											<jc:InspireTreeCheckBoxModeBeadExt checkboxFunction="calcStateCheck" showCheckboxes="true" revertIcon="true"/>
                                             <jc:InspireTreeMarkRendererBeadExt markDOMFunction="isMarkedItem" markToState="indeterminate"/>
+                    						<jc:InspireTreeIconBead typeIconsSet="none"/>
                                         </trees:beads>
                                     </trees:treePermissionsExt>
 								</j:GridCell>
