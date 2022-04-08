@@ -4,17 +4,17 @@ package org.apache.royale.community.views.trees
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.events.Event;
-	import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead;
-	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
+	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControlExt;
 	import org.apache.royale.community.models.UsersPermissions;
 	import org.apache.royale.community.vos.PermissVO;
+	import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBeadExt;
 
-	public class treePermissions extends InspireTreeBasicControl
+	public class treePermissionsExt extends InspireTreeBasicControlExt
 	{
 		/**
 		 * Constructor
 		 */
-		public function treePermissions(){
+		public function treePermissionsExt(){
 			super();						
 			addEventListener("beadsAdded", beadsAddedHandler);
 			//addEventListener("initComplete", setData);
@@ -28,11 +28,11 @@ package org.apache.royale.community.views.trees
 			boundField = "idobj";			
 			allowDragAndDrop = false;
 			
-			var _checkBoxBead:IBead = getBeadByType(InspireTreeCheckBoxModeBead);
+			var _checkBoxBead:IBead = getBeadByType(InspireTreeCheckBoxModeBeadExt);
             //var _checkBoxBead:InspireTreeCheckBoxModeBead = loadBeadFromValuesManager(InspireTreeCheckBoxModeBead, "IBeadCheckBox", this) as InspireTreeCheckBoxModeBead;
 			if(_checkBoxBead)
 			{
-				(_checkBoxBead as InspireTreeCheckBoxModeBead).checkedIsSelected = false;
+				(_checkBoxBead as InspireTreeCheckBoxModeBeadExt).checkedIsSelected = false;
 			}
 			setData();
 		}

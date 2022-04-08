@@ -500,6 +500,28 @@ color: #04a3b3;
     background-image: url();
 }
 
+.inspire-tree.IconsSetAssignation .icon-folder::before,
+.inspire-tree.IconsSetAssignation .icon-folder-open::before,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-folder::before,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-folder-open::before {
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300bfff' stroke='%23fff' viewBox='0 0 322 450'%3E%3Cpath d='M288.5 320.5h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-320h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0 160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32z' opacity='.4'/%3E%3Cpath d='M96.5 320.5h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32z'/%3E%3C/svg%3E");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}
+
+
+.inspire-tree.IconsSetAssignation .icon-file-empty::before ,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-file-empty::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300b2ff' viewBox='0 0 448 512'%3E%3Cpath d='M352 128a128 128 0 1 1-256 0 128 128 0 0 1 256 0z' opacity='.4'/%3E%3Cpath d='M313.6 288h-16.7a174.1 174.1 0 0 1-145.8 0h-16.7A134.4 134.4 0 0 0 0 422.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+}
+
+
+
+
+
 .inspire-tree.parentIconUserClass .icon-folder::before {
   background-image: url(assets/116-user-plus.svg);
   background-repeat: no-repeat;

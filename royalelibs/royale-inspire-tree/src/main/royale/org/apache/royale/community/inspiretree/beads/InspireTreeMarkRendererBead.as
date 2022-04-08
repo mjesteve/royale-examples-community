@@ -17,7 +17,7 @@ package org.apache.royale.community.inspiretree.beads
 	import org.apache.royale.core.IStrandWithModel;
 
     COMPILE::JS
-	public class InspireTreeRendererBead  extends Strand implements IBead, IInspireTreeRenderer
+	public class InspireTreeMarkRendererBead  extends Strand implements IBead, IInspireTreeRenderer
 	{
 		/**
 		 *  constructor
@@ -28,7 +28,7 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @productversion Royale 0.9.7
 		 */
 
-		public function InspireTreeRendererBead()
+		public function InspireTreeMarkRendererBead()
 		{
 			super();
 		}
@@ -42,7 +42,7 @@ package org.apache.royale.community.inspiretree.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function get strand():IStrand
+        protected function get strand():IStrand
         {
             return _strand;
         }
@@ -62,19 +62,19 @@ package org.apache.royale.community.inspiretree.beads
 
 		protected var initialized:Boolean = false;
 
-		private var _treeModel:InspireTreeModel;
-		private function get treeModel():InspireTreeModel{
+		protected var _treeModel:InspireTreeModel;
+		protected function get treeModel():InspireTreeModel{
 			if(_strand && !_treeModel)
 			{
-                _treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
+				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			}
 			return _treeModel;
 		}
 
-		private function init(event:Event):void
+		protected function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
-			(_strand as IEventDispatcher).addEventListener("onCreationComplete", updateHost);
+			(_strand as IEventDispatcher).addEventListener("creationComplete", updateHost);
 
 			if(treeModel)
 			{
@@ -85,7 +85,7 @@ package org.apache.royale.community.inspiretree.beads
 			}
 		}
 
-		private var _markDOMField:String = "";
+		protected var _markDOMField:String = "";
 		/**
 		 * Name of the attribute, in the dataProvider, where the active value is defined.
 		 * Expected values: 0/1 or true/false
@@ -101,7 +101,7 @@ package org.apache.royale.community.inspiretree.beads
       	 *
      	 *  @param item The data item. Null items return false.
 		 */
-		private var _markDOMFunction:Function = itemMarkDOMFunction;
+		protected var _markDOMFunction:Function = itemMarkDOMFunction;
 		public function get markDOMFunction():Function{return _markDOMFunction; }
 		public function set markDOMFunction(value:Function):void{ _markDOMFunction = value;}
 
@@ -140,7 +140,7 @@ package org.apache.royale.community.inspiretree.beads
             return node;
         }
 
-		private function updateHost(event:Event = null):void
+		protected function updateHost(event:Event = null):void
 		{
 			if(!strand || !initialized)
 				return;
@@ -241,7 +241,7 @@ package org.apache.royale.community.inspiretree.beads
 	}
 
     COMPILE::SWF
-	public class InspireTreeRendererBead
+	public class InspireTreeMarkRendererBead
 	{
     }
 }

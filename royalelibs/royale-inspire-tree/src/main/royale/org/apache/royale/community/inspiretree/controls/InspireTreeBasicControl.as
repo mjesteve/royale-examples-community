@@ -26,15 +26,15 @@ package org.apache.royale.community.inspiretree.controls
 	 *  It can be captured to make adjustments before creating the js instance.
 	 *  (See InspireTreePaginateBead)
      */
-	[Event(name="onBeforeCreation", type="org.apache.royale.events.Event")]
+	[Event(name="beforeCreation", type="org.apache.royale.events.Event")]
     /**
      *  Indicates that the creation is complete.
      */
-	[Event(name="onCreationComplete", type="org.apache.royale.events.Event")]
+	[Event(name="creationComplete", type="org.apache.royale.events.Event")]
 	/*
 
 	*/
-	[Event(name="onPrepareTreeDataComplete", type="org.apache.royale.events.Event")]
+	[Event(name="prepareTreeDataComplete", type="org.apache.royale.events.Event")]
 
 	COMPILE::JS
 	public class InspireTreeBasicControl extends StyledUIBase implements IMXMLDocument, IInspireTree
@@ -55,7 +55,7 @@ package org.apache.royale.community.inspiretree.controls
 		{
 			super();
 			//typeNames = "inspiretree";
-            addEventListener("beadsAdded", beadsAddedHandler);
+            //addEventListener("beadsAdded", beadsAddedHandler);
         }
 
         private var _mxmlDescriptor:Array;
@@ -108,22 +108,27 @@ package org.apache.royale.community.inspiretree.controls
 		 */
 		public var mxmlContent:Array;
 
-        private function beadsAddedHandler(event:Event):void
+        /*private function beadsAddedHandler(event:Event):void
         {
 			removeEventListener("beadsAdded", beadsAddedHandler);
-        }
+        }*/
+
+		protected var isExtends:Boolean = false;
 
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			//The model is loaded
+			if(isExtends)
+				return;
+
+			//All beads are loaded
 			if (!_initialized)
 			{
+				dispatchEvent(new Event("initComplete"));
 				if(tmpDataProvider){
 					IDataProviderModel(model).dataProvider = tmpDataProvider;
 					tmpDataProvider=null;
 				}
-				dispatchEvent(new Event("initComplete"));
 
 				if(!InspireTreeModel(model).useCustomStyle)
 				{
@@ -139,8 +144,8 @@ package org.apache.royale.community.inspiretree.controls
 		public function get uid():String{ return _uid; }
 		public function set uid(value:String):void{ _uid = value; }
 
-		private var _initialized:Boolean = false;
-        public function isInitialized():Boolean { return _initialized ? true:false;};
+		protected var _initialized:Boolean = false;
+        public function isInitialized():Boolean { return _initialized;};
 
 		private var _jsTree:InspireTree;
 		public function get jsTree():InspireTree{ return _jsTree; }
@@ -150,19 +155,6 @@ package org.apache.royale.community.inspiretree.controls
 		public function set jsTreeDOM(value:InspireTreeDOM):void{ _jsTreeDOM = value; }
 
 		// Init ---------------------------------------- Data configuration [wip] -------------------------------------------------
-
-        [Bindable("labelFieldChanged")]
-		public function get labelField():String
-		{
-			return IDataProviderModel(model).labelField;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function set labelField(value:String):void
-		{
-            IDataProviderModel(model).labelField = value;
-		}
 
 		/**
 		 * Name of the attribute, in the dataProvider, where the child nodes are specified
@@ -175,7 +167,7 @@ package org.apache.royale.community.inspiretree.controls
 		public function get boundField():String { return InspireTreeModel(model).boundField; }
 		public function set boundField(value:String):void{ InspireTreeModel(model).boundField = value; }
 
-		private var tmpDataProvider:Object = null;
+		protected var tmpDataProvider:Object = null;
         [Bindable("dataProviderChanged")]
 		public function get dataProvider():Object
 		{
@@ -229,6 +221,19 @@ package org.apache.royale.community.inspiretree.controls
 			InspireTreeModel(model).allowDragAndDrop = value;
 		}
 
+        [Bindable("labelFieldChanged")]
+		public function get labelField():String
+		{
+			return IDataProviderModel(model).labelField;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 */
+		public function set labelField(value:String):void
+		{
+            IDataProviderModel(model).labelField = value;
+		}
+
 		/**
 		 * Function to obtain the description of the parent nodes.
 		 * <p>The <code>labelFunctionParent</code> property takes a reference to a function.
@@ -252,25 +257,28 @@ package org.apache.royale.community.inspiretree.controls
 		public function get labelFunctionChild():Function { return InspireTreeModel(model).labelFunctionChild; }
 		public function set labelFunctionChild(value:Function):void{ InspireTreeModel(model).labelFunctionChild = value; }
 
-		public function prepareTreeDataFromArray(dpArray:Array):Array
+		public function prepareTreeDataFromArray(flatArrayIn:Array):Array
 		{
-			// The dpArray should be sorted according to the desired display
+			if(!flatArrayIn)
+				return [new Array()];
+
+			// The flatArrayIn should be sorted according to the desired display
 			var localdataProviderTree:Array = new Array();
 
-			for (var idxGen:int=0; idxGen < dpArray.length; idxGen++)
+			for (var idxGen:int=0; idxGen < flatArrayIn.length; idxGen++)
         	{
 				var itemGroup:Object = new ItemTreeNode();
-				itemGroup.text = labelFunctionParent(dpArray[idxGen]);
+				itemGroup.text = labelFunctionParent(flatArrayIn[idxGen]);
 
-				var idobjPrev:String = boundField ? dpArray[idxGen][boundField]:'root';
+				var idobjPrev:String = boundField ? flatArrayIn[idxGen][boundField]:'root';
 
-				for (var idxChild:int=idxGen; idxChild < dpArray.length; idxChild++)
+				for (var idxChild:int=idxGen; idxChild < flatArrayIn.length; idxChild++)
 				{
-					var idobjCurr:String = boundField ? dpArray[idxChild][boundField]:'root';
+					var idobjCurr:String = boundField ? flatArrayIn[idxChild][boundField]:'root';
 					if(idobjPrev == idobjCurr)
 					{
 						var itemDetail:Object = new ItemTreeNode();
-						itemDetail.text = labelFunctionChild(dpArray[idxChild]);
+						itemDetail.text = labelFunctionChild(flatArrayIn[idxChild]);
 						itemGroup.children.push(itemDetail);
 						idxGen++;
 					}
@@ -282,35 +290,37 @@ package org.apache.royale.community.inspiretree.controls
 				}
 				localdataProviderTree.push(itemGroup);
 			}
-			return localdataProviderTree;
+			return [localdataProviderTree];
 		}
 		// End ---------------------------------------- Data configuration -------------------------------------------------
 
 
-		public function updateDataViewTree():void
+		public function updateDataViewTree(reload:Boolean=true):void
         {
 			if(!_initialized)
 				return;
-
-			jsTree.reload();
+			if(reload)
+				jsTree.reload();
 			if( InspireTreeModel(model).renderingNeededDataChange )
-            	dispatchEvent(new Event("onCreationComplete"));
+			{
+            	dispatchEvent(new Event("creationComplete"));
+			}
         }
 		/**
 		 * Recreate the InspireTree instance with the current options.
 		 */
 		public function reCreateViewTree(onlyView:Boolean=false):void
 		{
-            dispatchEvent(new Event("onBeforeCreation"));
+            dispatchEvent(new Event("beforeCreation"));
 
 			jsTree = new InspireTree(InspireTreeModel(model).configOption);
 			jsTreeDOM = new InspireTreeDOM(jsTree, InspireTreeModel(model).configOptionView);
 
 			uid = element.getAttribute('data-uid'); trace(uid);
 			// To make the view independent from the control, the assignment of icons must be done in the bead and not here...
-			// We will capture in the bead the event "onCreationComplete" and there we will call updateImagesOnParentChild()
+			// We will capture in the bead the event "creationComplete" and there we will call updateImagesOnParentChild()
 		 	//(getBeadByType(InspireTreeIconBead) as InspireTreeIconBead).updateImagesOnParentChild();
-            dispatchEvent(new Event("onCreationComplete"));
+            dispatchEvent(new Event("creationComplete"));
 		}
 
 	}

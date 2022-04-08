@@ -76,7 +76,7 @@ package org.apache.royale.community.inspiretree.beads
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
 
-			var treeModel:InspireTreeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
+			var treeModel:InspireTreeModel = ((_strand as IStrandWithModel).model as InspireTreeModel);
 			treeModel.addEventListener("checkboxModeChanged", updateHost);
 
 			updateHost();

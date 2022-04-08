@@ -13,6 +13,8 @@
         <![CDATA[
 
 			import org.apache.royale.events.Event;
+			import org.apache.royale.jewel.RadioButton;
+			import org.apache.royale.jewel.TextInput;
 			import org.apache.royale.community.models.UsersPermissions;
 			import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
 
@@ -83,13 +85,37 @@
 				trace('contextmenu:', 'Node Id:', node.id);
 			}
 
-            public function isMarkedItem(itemTreeData:Object, itemFlatData:Object):Boolean
-            {
-				if(!itemFlatData)
-					return false;
+			[Bindable]
+			private var typeIcon:String = 'default';
+			private function iconImplChange(event:Event):void
+			{
+				var objConfig:Object;
 
-				if( (itemFlatData as PermissVO).idxacc>2)
-					return true;
+				groupText0.visible = false;
+				groupText.visible = false;
+
+				var typeIcons:String = (event.currentTarget as RadioButton).value.toLocaleString();
+				if( typeIcons == "custom")
+				{
+					groupText.visible = true;
+					objConfig = {typeIconsSet:typeIcons, parentIcon:'assets/115-users.svg', parentOpenIcon:'assets/118-user-check.svg',
+		   	 		parentSelectedIcon:'assets/116-user-plus.svg', parentOpenSelectedIcon:'assets/117-user-minus.svg',
+		  		 	childIcon:'assets/114-user.svg', childSelectedIcon:'assets/118-user-check.svg',
+		  		 	minusIcon:'', plusIcon:''};
+				}
+				else if(typeIcons == "customClass")
+				{
+					groupText0.visible = true;
+					objConfig = {typeIconsSet:typeIcons, className:'customClass'};
+				}
+				else if(typeIcons == "customClasses")
+				{
+					groupText.visible = true;
+					objConfig = {typeIconsSet:typeIcons, parentIcon:'parentIconUserClass', parentOpenIcon:'parentOpenIconUserClass',
+		   	 		parentSelectedIcon:'parentSelectedIconUserClass', parentOpenSelectedIcon:'parentOpenSelectedIconUserClass',
+		  		 	childIcon:'iconUserClass', childSelectedIcon:'iconUserSelectedClass',
+		  		 	minusIcon:'iconUserMinusClass', plusIcon:'iconUserPlusClass'};
+				}
 				else
 				{
 					objConfig = {typeIconsSet:typeIcons};
@@ -98,15 +124,61 @@
 				treeTestIconsCheck.setIcons( objConfig );
 			}
 
-			public function calcStateCheck(itemTreeData:Object, itemFlatData:Object):Boolean
+			private function changeIcon(txt:String):void
 			{
-				var res:Boolean =  (itemFlatData as PermissVO).checked>0 ? true:false;
-				return res;
+				switch(txt)
+				{
+					case 'txtClassName':
+						treeTestIcons.className = txtClassName.text;
+						treeTestIconsCheck.className = txtClassName.text;
+						break;
+					case 'txtparentIcon':
+						treeTestIcons.parentIcon = txtparentIcon.text;
+						treeTestIconsCheck.parentIcon = txtparentIcon.text;
+						break;
+					case 'txtparentOpenIcon':
+						treeTestIcons.parentOpenIcon = txtparentOpenIcon.text;
+						treeTestIconsCheck.parentOpenIcon = txtparentOpenIcon.text;
+						break;
+					case 'txtparentSelectedIcon':
+						treeTestIcons.parentSelectedIcon = txtparentSelectedIcon.text;
+						treeTestIconsCheck.parentSelectedIcon = txtparentSelectedIcon.text;
+						break;
+					case 'txtparentOpenSelectedIcon':
+						treeTestIcons.parentOpenSelectedIcon = txtparentOpenSelectedIcon.text;
+						treeTestIconsCheck.parentOpenSelectedIcon = txtparentOpenSelectedIcon.text;
+						break;
+					case 'txtchildIcon':
+						treeTestIcons.childIcon = txtchildIcon.text;
+						treeTestIconsCheck.childIcon = txtchildIcon.text;
+						break;
+					case 'txtchildSelectedIcon':
+						treeTestIcons.childSelectedIcon = txtchildSelectedIcon.text;
+						treeTestIconsCheck.childSelectedIcon = txtchildSelectedIcon.text;
+						break;
+					case 'txtminusIcon':
+						if(txtminusIcon.text == "null"){
+                            treeTestIcons.minusIcon = null;
+                            treeTestIconsCheck.minusIcon = null;
+                        }else{
+							treeTestIcons.minusIcon = txtminusIcon.text;
+							treeTestIconsCheck.minusIcon = txtminusIcon.text;
+                        }
+						break;
+					case 'txtplusIcon':
+						if(txtplusIcon.text == "null"){
+							treeTestIcons.plusIcon = null;
+							treeTestIconsCheck.plusIcon = null;
+                        }
+						else{
+							treeTestIcons.plusIcon = txtplusIcon.text;
+							treeTestIconsCheck.plusIcon = txtplusIcon.text;
+                        }
+						break;
 
-				//Add. bloq
-				if( res && (itemFlatData as PermissVO).idxacc<3 )
-					res = false;
-				return res;
+					default:
+						break;
+				}
 			}
 
         ]]>
@@ -237,22 +309,22 @@
 						</j:CardPrimaryContent>
 					</j:Card>
 				</j:GridCell>
-
+				
 				<j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
-					<j:Card  height="100%"  width="100%" maxWidth="600" >
+					<j:Card  height="100%"  width="100%" >
 						<j:CardPrimaryContent style="border-top: 1px solid #d2dadf;"  height="100%"  width="100%" >
 
 							<j:Grid gap="true">
 								<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-									<j:Label text="Icons Set - Custom Icons:" />
-                                    <trees:treePermissionsExt localId="treeTest5_1" percentWidth="100" height="500" >
+									<j:Label text="Icons Set - Default:" />
+                                    <trees:treePermissions localId="treeTest1" percentWidth="100" height="500" >
                                         <trees:beads>
-											<jc:InspireTreeCheckBoxModeBeadExt checkboxFunction="calcStateCheck" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeMarkRendererBeadExt markDOMFunction="isMarkedItem" markToState="indeterminate"/>
-                    						<jc:InspireTreeIconBead typeIconsSet="none"/>
+                                            <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                            <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                            <jc:InspireTreeIconBead />
                                         </trees:beads>
-                                    </trees:treePermissionsExt>
+                                    </trees:treePermissions>
 								</j:GridCell>
 
 								<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -340,9 +412,10 @@
 									<j:Label text="Icons Set - Custom Icons:" />
                                     <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
                                         <trees:beads>
-											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem"/>
-											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
+                                            <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                            <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                            <jc:InspireTreeIconBead typeIconsSet="customIcons"/>
                                         </trees:beads>
                                     </trees:treePermissions>
 								</j:GridCell>

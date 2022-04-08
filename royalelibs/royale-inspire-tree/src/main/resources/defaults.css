@@ -20,3 +20,6 @@
 jc|InspireTreeBasicControl {
     IBeadModel: ClassReference("org.apache.royale.community.inspiretree.beads.models.InspireTreeModel");
 }
+jc|InspireTreeBasicControlExt {
+    IBeadModel: ClassReference("org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt");
+}

@@ -17,7 +17,7 @@ package org.apache.royale.community.controls
     /**
      *  Indicates that the creation is complete.  
      */
-	[Event(name="onCreationComplete", type="org.apache.royale.events.Event")]
+	[Event(name="creationComplete", type="org.apache.royale.events.Event")]
     /**
      *  Indicates that the initialization of the Instance is complete.  
      */
@@ -87,7 +87,7 @@ package org.apache.royale.community.controls
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-            dispatchEvent(new Event("onCreationComplete"));
+            dispatchEvent(new Event("creationComplete"));
             // When properties are not of simple type (String, Number,...), even if they are set in the mxml tag, 
             // they are set after creation.
             setTimeout(init,125);

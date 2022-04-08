@@ -16,7 +16,6 @@ package org.apache.royale.community.inspiretree.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.core.IStrandWithModel;
@@ -63,21 +62,21 @@ package org.apache.royale.community.inspiretree.beads
 		{
             _strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", init);
-			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", onBeforeCreationTree);
-			(_strand as IEventDispatcher).addEventListener("onPrepareTreeDataComplete", completeTreeData);
+			(_strand as IEventDispatcher).addEventListener("beforeCreation", onBeforeCreationTree);
+			(_strand as IEventDispatcher).addEventListener("prepareTreeDataComplete", completeTreeData);
 			(_strand as IEventDispatcher).addEventListener("readonlyChange", onReadOnlyChange);
 		}
 
-		private var _treeModel:InspireTreeModel;
-		private function get treeModel():InspireTreeModel{
+		protected var _treeModel:InspireTreeModel;
+		protected function get treeModel():InspireTreeModel{
 			if(_strand && !_treeModel)
 			{
-				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel
+				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			}
 			return _treeModel;
 		}
 
-		private function init(event:Event):void
+		protected function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
 
@@ -103,10 +102,10 @@ package org.apache.royale.community.inspiretree.beads
 		private function onBeforeCreationTree(event:Event):void
 		{
 			if(_revertIcon && _showCheckboxes)
-				(_strand as IEventDispatcher).addEventListener("onCreationComplete", createListeners);
+				(_strand as IEventDispatcher).addEventListener("creationComplete", createListeners);
 		}
 
-		private function completeTreeData(event:Event, revertTreeData:Array = null):Array
+		protected function completeTreeData(event:Event, revertTreeData:Array = null):Array
 		{
 			if( !_treeModel) return null;
 
@@ -164,11 +163,11 @@ package org.apache.royale.community.inspiretree.beads
 
 		private function createListeners():void
 		{
-			(_strand as IEventDispatcher).removeEventListener("onCreationComplete", createListeners);
+			(_strand as IEventDispatcher).removeEventListener("creationComplete", createListeners);
 			updateHost();
 		}
 
-		private var _showCheckboxes:Boolean = true;
+		protected var _showCheckboxes:Boolean = true;
 		/**
 		 * Show checkbox on each node
 		*/
@@ -189,7 +188,7 @@ package org.apache.royale.community.inspiretree.beads
 			}
 			_showCheckboxes = value;
 		}
-		private var _checkboxField:String = "";
+		protected var _checkboxField:String = "";
 		/**
 		 * Name of the attribute, in the dataProvider, where the checked value is defined.
 		 * Expected values: 0/1 or true/false
@@ -201,27 +200,27 @@ package org.apache.royale.community.inspiretree.beads
 		 * <p>The <code>checkboxFunction</code> property takes a reference to a function.
      	 * The function takes a single argument which is the item of the data provider and returns a boolean:</p>
     	 *
-		 *  <pre>myLabelFunction(item:Object):Boolean</pre>
+		 *  <pre>myLabelFunction(itemTreeData:Object, itemFlatData:Object):Boolean</pre>
       	 *
      	 *  @param item The data item. Null items return false.
 		 */
-		private var _checkboxFunction:Function = itemChildChecked;
+		protected var _checkboxFunction:Function = itemChildChecked;
 		public function get checkboxFunction():Function{return _checkboxFunction; }
 		public function set checkboxFunction(value:Function):void{ _checkboxFunction = value;}
 
-		private function itemChildChecked(itemTreeData:Object, itemDataProv:Object):Boolean
+		public function itemChildChecked(itemTreeData:Object, itemFlatData:Object):Boolean
 		{
-			if(!itemTreeData || !itemDataProv || !checkboxField)
+			if(!itemTreeData || !itemFlatData || !checkboxField)
 				return false;
 
-			if( itemDataProv[checkboxField] == null )
+			if( itemFlatData[checkboxField] == null )
 				return false;
 
-			if( itemDataProv[checkboxField] is Number )
-				return Number(itemDataProv[checkboxField])>0 ? true:false;
+			if( itemFlatData[checkboxField] is Number )
+				return Number(itemFlatData[checkboxField])>0 ? true:false;
 
-			if( itemDataProv[checkboxField] is Boolean )
-				return itemDataProv[checkboxField] as Boolean;
+			if( itemFlatData[checkboxField] is Boolean )
+				return itemFlatData[checkboxField] as Boolean;
 
 			return false;
 		}
@@ -244,7 +243,7 @@ package org.apache.royale.community.inspiretree.beads
 				lastRevertVal = value;
 		}
 
-		private var _checkedIsSelected:Boolean = false;
+		protected var _checkedIsSelected:Boolean = false;
 		public function get checkedIsSelected():Boolean{
 			return _checkedIsSelected;
 		}
@@ -261,9 +260,9 @@ package org.apache.royale.community.inspiretree.beads
 			_checkedIsSelected = value;
 		}
 
-		private var lastRevertVal:Boolean = false;
-		private var readOnly:Boolean = false;
-		private function onReadOnlyChange(event:ValueEvent):void
+		protected var lastRevertVal:Boolean = false;
+		protected var readOnly:Boolean = false;
+		protected function onReadOnlyChange(event:ValueEvent):void
 		{
 			if(event)
 				readOnly = Boolean(event.value);
@@ -281,18 +280,17 @@ package org.apache.royale.community.inspiretree.beads
 			updateHost();
 		}
 
-		public function onClickHandler(event:*, node:ItemTreeNode):void
+		//node:ItemTreeNode
+		public function onClickHandler(event:*, node:Object):void
 		{
 
 			var wParent:Number = (_strand as StyledUIBase).width;
 			var wItem:Number = Number( node.itree.ref.clientWidth ? node.itree.ref.clientWidth:0 );
 			var wScroll:Number = (wParent-wItem);
 			var wIcon:Number = 20;
-			//trace('wParent',wParent,"offsetX",event["offsetX"],'wItem',wItem,'wScroll',wScroll);
-			//trace('  From ',wParent - (20 + wScroll)," To",wParent);
 			if( Number(event["offsetX"]) >= wParent - (wIcon + wScroll) )
 			{
-				//revertStateCheckedNode(node.id, true);
+				//Only folder node
 				if( node.children.length>0 && node.itree.state.selectable){
 					revertStateCheckedNode(node.id, true);
 				}
@@ -320,7 +318,8 @@ package org.apache.royale.community.inspiretree.beads
 						{
 							var itemch:Object = it.children[idxnch];
 							itemch.id = itreal.children[idxnch].id;
-
+							if(!itemch.itree.state.selectable)
+								continue;
 							if(!itemch.itree.state.checked)
 								(_strand as IInspireTree).jsTree.node(itemch.id).uncheck(true);
 							else
@@ -379,7 +378,7 @@ package org.apache.royale.community.inspiretree.beads
 
 		}
 
-		private function updateHost(event:Event = null):void
+		protected function updateHost(event:Event = null):void
 		{
 			if(!strand)
 				return;

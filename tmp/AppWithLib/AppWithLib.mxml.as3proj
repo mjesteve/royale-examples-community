@@ -48,7 +48,7 @@
     <option benchmark="False"/>
     <option showBindingWarnings="True"/>
     <option warnings="True"/>
-    <option customSDK="/Users/christofer.dutz/Downloads/MoonshineSDKs/Royale_SDK/apache-royale-0.9.9-bin-js/royale-asjs"/>
+    <option customSDK="/Users/christofer.dutz/Downloads/MoonshineSDKs/Royale_SDK/apache-royale-0.9.10-bin-js/royale-asjs"/>
     <option showActionScriptWarnings="True"/>
     <option antBuildPath="build/build.xml"/>
     <option verboseStackTraces="False"/>

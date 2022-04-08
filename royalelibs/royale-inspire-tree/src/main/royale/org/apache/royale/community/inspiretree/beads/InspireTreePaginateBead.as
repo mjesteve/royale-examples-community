@@ -59,14 +59,14 @@ package org.apache.royale.community.inspiretree.beads
 		{
             _strand = value;
 
-			IEventDispatcher(_strand).addEventListener("onBeforeCreation", init);
+			IEventDispatcher(_strand).addEventListener("beforeCreation", init);
 		}
 
 		private var treeModel:InspireTreeModel;
 
 		private function init(event:Event):void
 		{
-			treeModel = (_strand as IStrandWithModel).model as InspireTreeModel
+			treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			if(treeModel)
 			{
 				treeModel.addEventListener("paginateChanged", updateHost);
