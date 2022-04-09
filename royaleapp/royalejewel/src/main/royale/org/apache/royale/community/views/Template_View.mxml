@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+
+        public function onInitComplete():void
+        {
+
+        }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="JS Virtual Select - Royale Wrapper">
+        <jc:description>
+            <![CDATA[Tests <strong>Configuration Options</strong> [WIP] (<a href="https://sa-si-dev.github.io/virtual-select/#/" target="_blank">https://sa-si-dev.github.io/virtual-select</a>)]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    <!-- -->
+    </j:GridCell>
+</j:Grid>

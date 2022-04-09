@@ -17,8 +17,8 @@
     <fx:Script>
         <![CDATA[
             import org.apache.royale.community.vos.NavigationLinkVO;
-            
-            private function init():void 
+
+            private function init():void
             {
                 goToHome();
             }
@@ -29,10 +29,10 @@
                 navigateTo();
             }
 
-            private function navigateTo():void 
+            private function navigateTo():void
             {
                 main.selectedContent = drawer.currentNavOption.hash;
-                
+
                 //if(drawer.currentNavOption.hash == "fullcalendar_panel")
                 //    vFullCalendar.refreshSizeCalendar();
             }
@@ -109,7 +109,7 @@
         <!-- -->
         <j:SectionContent name="SizeContainer_panel">
             <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
-        </j:SectionContent>        
+        </j:SectionContent>
         <j:ScrollableSectionContent name="Debug_Pills_panel">
             <views:Debug_Pills />
         </j:ScrollableSectionContent>
@@ -117,11 +117,18 @@
             <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
 
+        <!-- -->
         <j:ScrollableSectionContent name="Debug_ComboTODO_Search_panel">
             <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_ComboTODO_panel">
             <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="MainViewInspireTree_panel">
+            <viewsTree:MainViewInspireTree percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="MainViewInspireTree_TestMarker_panel">
+            <viewsTree:MainViewInspireTree_TestMarker percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
 
     </j:ApplicationMainContent>

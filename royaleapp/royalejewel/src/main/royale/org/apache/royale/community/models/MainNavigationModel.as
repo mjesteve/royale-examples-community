@@ -26,7 +26,7 @@ package org.apache.royale.community.models
 
         private var _collapsibleNavMainMenu:ArrayList;
         public function get collapsibleNavMainMenu():ArrayList {
-            if (_collapsibleNavMainMenu) 
+            if (_collapsibleNavMainMenu)
                 return _collapsibleNavMainMenu;
 
             var armenu:Array = new Array();
@@ -59,11 +59,13 @@ package org.apache.royale.community.models
             arnav = new Array();
             arnav.push(new NavigationLinkVO("Jewel ComboBox", "Debug_ComboTODO_panel"));
             arnav.push(new NavigationLinkVO("Jewel ComboBox - SearchFilter", "Debug_ComboTODO_Search_panel"));
+            arnav.push(new NavigationLinkVO("Inspire-Tree - Global Tests", "MainViewInspireTree_panel"));
+            arnav.push(new NavigationLinkVO("Inspire-Tree - Mark Test", "MainViewInspireTree_TestMarker_panel"));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 
             _collapsibleNavMainMenu = new ArrayList(armenu);
-            
+
             return _collapsibleNavMainMenu;
         }
 

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html"
 	xmlns:trees="org.apache.royale.community.views.trees.*"
-	initComplete="InitCompleteHandler()"
+	initComplete="InitCompleteHandler()">
 
-    >
-
-     <fx:Script>
+    <fx:Script>
         <![CDATA[
 
 			import org.apache.royale.events.Event;
@@ -70,58 +68,65 @@
 	                return false;
             }
 
+			public function calcStateCheck(itemTreeData:Object, itemFlatData:Object):Boolean
+			{
+				var res:Boolean =  (itemFlatData as PermissVO).checked>0 ? true:false;
+				return res;
+
+				//Add. bloq
+				if( res && (itemFlatData as PermissVO).idxacc<3 )
+					res = false;
+				return res;
+			}
+
 
         ]]>
     </fx:Script>
 
     <j:beads>
-		<js:ViewDataBinding/>
-		<js:BrowserResizeListener/>
-	</j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
+    </j:beads>
 
-    <j:ApplicationMainContent  localId="main" hasTopAppBar="true" selectedContent="firstexample">
-        <j:ScrollableSectionContent name="firstexample">
-			<j:Grid>
-				<j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    <jc:ExampleHeader title="JS Inspire-Tree - Royale Wrapper">
+        <jc:description>
+            <![CDATA[Tests <strong>Inspirte Tree</strong> Javascript UI Tree (<a href="http://inspire-tree.com/" target="_blank">http://inspire-tree.com/</a> <strong>[WIP]</strong>)]]>
+        </jc:description>
+    </jc:ExampleHeader>
 
-					<j:Card  height="100%"  width="100%" maxWidth="300" >
-						<j:CardPrimaryContent style="border-top: 1px solid #d2dadf;"  height="100%"  width="100%" >
+    <j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
-							<j:Grid gap="true">
-								<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-									<j:Label text="Icons Set - Custom Icons:" />
-                                    <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
-                                        <trees:beads>
-											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem"/>
-											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
-                                        </trees:beads>
-                                    </trees:treePermissions>
-								</j:GridCell>
-								<!--
-								<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-									<j:Label text="Icons Set - Custom Icons:" />
-                                    <trees:treePermissions localId="treeTest" percentWidth="100" height="500" >
-                                        <trees:beads>
-											<jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
-                                            <jc:InspireTreeRendererBead markDOMFunction="isMarkedItem" stringTypeMarkDOM="classTmp"/>
-											<jc:InspireTreeEventsBead nodeDblClick="onDblClickExample"/>
-                                        </trees:beads>
-                                    </trees:treePermissions>
-								</j:GridCell>
-								-->
-							</j:Grid>
+        <j:Card  height="100%"  width="100%" maxWidth="600" >
+            <j:CardPrimaryContent style="border-top: 1px solid #d2dadf;"  height="100%"  width="100%" >
 
-						</j:CardPrimaryContent>
-					</j:Card>
+                <j:Grid gap="true">
 
-				</j:GridCell>
-<!--
- -->
-			</j:Grid>
+                    <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:Label text="Mark v0:" />
+                        <trees:treePermissions localId="treeTest5" percentWidth="100" height="500" >
+                            <trees:beads>
+                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
+                                <jc:InspireTreeMarkRendererBead markDOMFunction="isMarkedItem"/>
+                                <jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
+                            </trees:beads>
+                        </trees:treePermissions>
+                    </j:GridCell>
 
-        </j:ScrollableSectionContent>
-    </j:ApplicationMainContent>
+                    <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:Label text="Mark v1:" />
+                        <trees:treePermissionsExt localId="treeTest5_1" percentWidth="100" height="500" >
+                            <trees:beads>
+                                <jc:InspireTreeCheckBoxModeBeadExt checkboxFunction="calcStateCheck" showCheckboxes="true" revertIcon="true"/>
+                                <jc:InspireTreeMarkRendererBeadExt markDOMFunction="isMarkedItem" markToState="indeterminate"/>
+                                <jc:InspireTreeIconBead typeIconsSet="none"/>
+                            </trees:beads>
+                        </trees:treePermissionsExt>
+                    </j:GridCell>
+                </j:Grid>
 
+            </j:CardPrimaryContent>
+        </j:Card>
 
-</j:ResponsiveView>
+    </j:GridCell>
+</j:Grid>
