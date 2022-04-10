@@ -40,22 +40,6 @@
     </dependency>
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
-      <artifactId>royalemobiscroll</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-      <type>swc</type>
-      <scope>provided</scope>
-      <classifier>js</classifier>
-    </dependency>
-	  <dependency>
-      <groupId>org.apache.royale.community</groupId>
-      <artifactId>royale-js-year-calendar</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-      <type>swc</type>
-      <scope>provided</scope>
-      <classifier>js</classifier>
-    </dependency>
-	  <dependency>
-      <groupId>org.apache.royale.community</groupId>
       <artifactId>royalefullcalendar</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
@@ -70,7 +54,40 @@
       <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
-	
+	  <dependency>
+      <groupId>org.apache.royale.community</groupId>
+      <artifactId>royale-virtual-select</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+	  <dependency>
+      <groupId>org.apache.royale.community</groupId>
+      <artifactId>royale-inspire-tree</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+    <!-- 
+	  <dependency>
+      <groupId>org.apache.royale.community</groupId>
+      <artifactId>royalemobiscroll</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+	  <dependency>
+      <groupId>org.apache.royale.community</groupId>
+      <artifactId>royale-js-year-calendar</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency> -->
+    <!-- 
 	 <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-dtsel</artifactId>
@@ -78,7 +95,7 @@
       <type>swc</type>
       <scope>provided</scope>
       <classifier>js</classifier>
-    </dependency>
+    </dependency> -->
     <!-- <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>SampleLib</artifactId>
@@ -139,7 +156,7 @@
 
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MXRoyale</artifactId>
+      <artifactId>MXRoyaleBase</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
       <classifier>js</classifier>
@@ -216,94 +233,6 @@
       <scope>theme</scope>
       <classifier>js</classifier>
     </dependency>
-
-<!--
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Collections</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Formatters</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Graphics</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Icons</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Network</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Reflection</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MXRoyale</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Crux</artifactId>
-      <version>${royale.framework.version}</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-
--->
 
   </dependencies>
 

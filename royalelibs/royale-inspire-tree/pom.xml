@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.royale.community</groupId>
+    <artifactId>royalelibs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <name>Royale Lib Component Inspire Tree - JS</name>
+
+  <artifactId>royale-inspire-tree</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <build>
+    
+    <sourceDirectory>src/main/royale</sourceDirectory>
+
+    <plugins>
+
+      <!-- Include sass compilation -->
+		  <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <version>3.7.2</version>
+        <configuration>
+          <resources>
+            <resource>
+              <source>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                  <include>**/*.sass</include>
+                </includes>
+              </source>
+              <destination>${basedir}/src/main/resources/inspire-tree</destination>
+            </resource>
+          </resources>
+        </configuration>
+        <executions>
+              <execution>
+                  <id>generate-css-using-sass</id>
+                  <goals>
+                      <goal>update-stylesheets</goal>
+                  </goals>
+              </execution>
+        </executions>
+      </plugin>
+    
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
+        <extensions>true</extensions>
+
+        <configuration>
+          <targets>JSRoyale</targets>
+          <debug>false</debug>
+          <skipAS>true</skipAS>
+          <skipExtern>true</skipExtern>
+          <includeLookupOnly>true</includeLookupOnly>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+
+          <additionalCompilerOptions>
+            ${project.compiler.options}
+          </additionalCompilerOptions>
+
+          <namespaces>
+            <!-- Make the classes listed in the manifest be available under the given namespace -->
+            <namespace>
+              <uri>library://ns.apache.org/royale/community</uri>
+              <manifest>${project.basedir}/src/main/resources/inspire-tree-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+              <type>as</type>
+              <uri>library://ns.apache.org/royale/community</uri>
+              <manifest>${project.basedir}/src/main/resources/inspire-tree-as-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <!-- Tell the compiler which classes to compile and include -->
+          <includeClasses>
+            <includeClass>INSPIRETREEClasses</includeClass>
+          </includeClasses>
+
+          <includeFiles>
+            <include-file>
+              <name>inspire-tree/*</name>
+              <path>../src/main/resources/inspire-tree/*</path>
+            </include-file>
+            <include-file>
+              <name>defaults.css</name>
+              <path>${project.basedir}/src/main/resources/defaults.css</path>
+            </include-file>
+          </includeFiles>
+
+        </configuration>
+
+      </plugin>
+    
+    </plugins>
+
+  </build>
+
+</project>

@@ -27,7 +27,7 @@
 
     <j:beads>
         <js:ViewDataBinding/>
-		<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
     </j:beads>
 
     <jc:ExampleHeader title="Custom Controls">

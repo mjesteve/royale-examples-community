@@ -16,7 +16,7 @@
     <maven.version>3.6.2</maven.version>
 
      <!-- Royale Library versions -->
-    <royale.version>0.9.8-SNAPSHOT</royale.version>
+    <royale.version>0.9.10-SNAPSHOT</royale.version>
 
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
@@ -52,6 +52,7 @@
           <artifactId>royale-maven-plugin</artifactId>
           <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
+
           <configuration>
             <targetPlayer>${player.version}</targetPlayer>
             <debug>${royale.debug}</debug>
@@ -171,6 +172,25 @@
             </execution>
 
             <execution>
+              <id>copy-resources-debug-Tests</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>src/main/resources</directory>
+                    <includes>
+                        <include>Tests.html</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+            <execution>
               <id>copy-resources-debug-components</id>
               <phase>package</phase>
               <goals>
@@ -188,6 +208,7 @@
               </configuration>
             </execution>
 
+                <!-- 
 			      <execution>
               <id>copy-resources-debug-mobiscroll</id>
               <phase>package</phase>
@@ -195,7 +216,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-debug}/mobiscroll</outputDirectory>
                 <resources>
                   <resource>
@@ -213,7 +233,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-debug}/js-year-calendar</outputDirectory>
                 <resources>
                   <resource>
@@ -223,6 +242,7 @@
                 </resources>
               </configuration>
             </execution>
+                 -->
 
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
@@ -252,6 +272,40 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-debug-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-debug-inspire-tree</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/inspire-tree</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
@@ -316,7 +370,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
                 <resources>
                   <resource>
@@ -327,6 +380,7 @@
               </configuration>
             </execution>
 
+                <!--
 			      <execution>
               <id>copy-resources-release-mobiscroll</id>
               <phase>package</phase>
@@ -334,7 +388,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/mobiscroll</outputDirectory>
                 <resources>
                   <resource>
@@ -352,7 +405,6 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <!-- Copy the assets to the assets output directory -->
                 <outputDirectory>${compiler.output-dir-release}/js-year-calendar</outputDirectory>
                 <resources>
                   <resource>
@@ -362,7 +414,7 @@
                 </resources>
               </configuration>
             </execution>
-
+             -->
 			      <execution>
               <id>copy-resources-release-fullcalendar</id>
               <phase>package</phase>
@@ -391,6 +443,40 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-virtual-select</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/virtual-select</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-release-inspire-tree</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-release}/inspire-tree</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
@@ -437,47 +523,21 @@
     </pluginManagement>
   </build>
 
-  <profiles>
-    <profile>
-      <id>local</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-                <execution>
-                    <id>copy-local-resources-release</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>copy-resources</goal>
-                    </goals>
-                    <configuration>
-                        <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
-                        <encoding>ISO-8859-1</encoding>
-                        <resources>
-                          <resource>
-                              <directory>src/main/resources/local-assets</directory>
-                              <filtering>true</filtering>
-                          </resource>
-                        </resources>
-                    </configuration>
-                </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
   <dependencies>
+    <!-- Needed for Flash compilation -->
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
+      <!--<groupId>com.adobe.flash.framework</groupId>
       <artifactId>playerglobal</artifactId>
       <version>${player.version}</version>
       <type>swc</type>
-      <scope>runtime</scope>
+      <scope>runtime</scope>-->
+      
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale-typedefs-playerglobal</artifactId>
+      <version>${royale.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+      <scope>runtime</scope> 
     </dependency>
 
     <dependency>
@@ -488,6 +548,11 @@
       <scope>provided</scope>
       <classifier>typedefs</classifier>
     </dependency>
+        <!--
+        By declaring this dependency here, we force the royale-externs-js to be
+        added to the external library path of all modules. Without this it would
+        have gone to the library path.
+        -->
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-js</artifactId>
@@ -520,17 +585,6 @@
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>jspresso</id>
-      <url>http://repository.jspresso.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>

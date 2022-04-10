@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"  xmlns="http://www.w3.org/1999/xhtml"
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
     initComplete="onInit()"
-	percentWidth="100" percentHeight="100">
+    gap="5" percentHeight="100" percentWidth="100" >
 
     <fx:Script>
         <![CDATA[
@@ -73,11 +74,24 @@
         ]]>
     </fx:Script>
 
-    <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
-        <j:CardHeader>
-            <j:BarSection width="100%" gap="10">
-                <html:H3 text="JS FullCalendar - Debugger" className="primary-dark block-with-text "/>
-            </j:BarSection>
+    <j:beads>
+        <js:ContainerDataBinding/>
+		<js:Paddings paddingTop="5" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+    </j:beads>
+
+    <jc:HExampleHeader title="JS FullCalendar - Royale Wrapper">
+        <jc:description>
+            <![CDATA[Tests <strong>JS FullCalendar</strong> (<a href="https://fullcalendar.io/" target="_blank">https://fullcalendar.io/</a>)]]>
+        </jc:description>
+    </jc:HExampleHeader>
+
+    <j:Card percentHeight="100" percentWidth="100">
+
+        <j:CardHeader height="100">
+            <j:VGroup gap="5" percentWidth="100">
+                <j:CardTitle text="Simple wrapper " className="primary-normal" percentWidth="100"/>            
+                <html:H5 text="[WIP]"  className="primary-dark" style="margin-bottom:15px;"/>
+            </j:VGroup>
         </j:CardHeader>
 
         <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">            
@@ -95,4 +109,5 @@
         </j:CardPrimaryContent>
 
     </j:Card>
+
 </j:VGroup>

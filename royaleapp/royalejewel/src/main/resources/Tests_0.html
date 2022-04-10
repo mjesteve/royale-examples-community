@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Custom Template for injecting custom style CSS">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <script type="text/javascript">
+    var link = document.createElement("link");
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", "./fullcalendar/main.css");
+    document.head.appendChild(link);
+   
+    var script = document.createElement("script");
+    script.setAttribute("src", "./fullcalendar/main.js");
+    document.head.appendChild(script);
+   
+    var link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet");
+    link_jscalendar.setAttribute("type", "text/css");
+    link_jscalendar.setAttribute("href", "./jscalendar/source/jsCalendar.css");
+    document.head.appendChild(link_jscalendar);
+   
+    var script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./jscalendar/source/jsCalendar.js");
+    document.head.appendChild(script_jscalendar);
+   
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.be.js"); script_jscalendar.setAttribute("integrity", "sha384-czOMAb4auqx/S7EgTYgb/Sb3xNKzvCN3heba5z2IR80vAI72y55KvGpYQMOJF0Ul"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.ca.js"); script_jscalendar.setAttribute("integrity", "sha384-qzGOaC9zqJRFiV0hpjawSZ5AZyBN/5LfGURBE+pQVG6jZZG4hZjJI7l8ob7UUsfI"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.de.js"); script_jscalendar.setAttribute("integrity", "sha384-i0GkTTXTirBg3whOHw5AqlI80IINcvOfx2HjQ/x4uqJ+wsB465gvhaekGGxPlxVX"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.es.js"); script_jscalendar.setAttribute("integrity", "sha384-HnSecKq1jgs1/eJQQpOiIb4Wtq7hlMC6nsooaNN+1JPTdzYSbiMP9f8xqKjque1e"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.fr.js"); script_jscalendar.setAttribute("integrity", "sha384-Ob75mVgpo9t5GyveJWKmg21yW1VCLgGe15lpXGHPbfizJmbuG0JnxdwOg7sbYelv"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.gr.js"); script_jscalendar.setAttribute("integrity", "sha384-PRRiiI0gLDo7hU5jD+aJQxbUSjjXHJeL0CdFAynqIWD9XATAYPQpKQkwrqjM+b8t"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.hu.js"); script_jscalendar.setAttribute("integrity", "sha384-yP2k8rRYSOiAc2PfxQ/WAFjMVRoA8AMxGZhlutbHXDc9vGMeokM2qyF2fLHaGPxo"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.it.js"); script_jscalendar.setAttribute("integrity", "sha384-3PiSuWThRXpAvOjasZXyIrVl5H2x296VPhp9D0NebW9V5rcHzCSx4Dh5WRd+pQVO"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.ja.js"); script_jscalendar.setAttribute("integrity", "sha384-O/JkPTslqFkNst65hIikWD7NVsNBRN2vGvprEt9n9tXPKFwocawTwKvwAnPOOZRc"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.nl.js"); script_jscalendar.setAttribute("integrity", "sha384-pitfgw0cn6lUL67KU0jVykK7GIZnS0xqH4nBIIgGo6rSSADgyHdWfoDvoR78juHd"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.no.js"); script_jscalendar.setAttribute("integrity", "sha384-exBlQuh0Apw5DoBAJVxPYJRKYrQjOScXHmQHX9ZA/jZb92Ec6NQjOddl/GexPkCS"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.pt.js"); script_jscalendar.setAttribute("integrity", "sha384-NF3X/E9s0p9PqeJxs+kx2xFHOAfiuNlGpIiwzLBET1Y0pejnfmOm5DJhn6ioTpCr"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.ru.js"); script_jscalendar.setAttribute("integrity", "sha384-xVQY3RcL7F/s9lcv9KNRyquT4kypFWf4OsQPGvpOcB70qhCvQ5P5KdhSygsc6GQg"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.sk.js"); script_jscalendar.setAttribute("integrity", "sha384-fusvqbkUQKgP3X7NX3lUxQEc5yG0V1vbZx8q246R4Bsl/Mzichrn3n8rOWOvJpSB"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.sv.js"); script_jscalendar.setAttribute("integrity", "sha384-fisTE5VLKPsxo5RbFtTLJ1T0j6y8a3SlylIzHZaXSErsJNIy3P82uGhomnRoPc4m"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.tr.js"); script_jscalendar.setAttribute("integrity", "sha384-9u6ZxP0FkigNhAYvsyxqA97/kjtLLv3cdS5isu5KP/vjQlguqdG76uS4UOEoNk7y"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.uk.js"); script_jscalendar.setAttribute("integrity", "sha384-tVzYxj0/QLUOY8QNd3YSzik+Zi4ShGbZTMd72rTA3xTtQMyrFquKRPsp1nsZdMJl"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+    script_jscalendar = document.createElement("script"); script_jscalendar.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.lang.zh.js"); script_jscalendar.setAttribute("integrity", "sha384-V0QPacMFDmO6dM4PsEqgwCew+6CzJCk0LaaL/cRM1+LQZjoh5GH64OHX+RNLuORd"); script_jscalendar.setAttribute("crossorigin", "anonymous"); document.head.appendChild(script_jscalendar);
+      
+    //------------ Optional Themes -------------
+    link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet"); link_jscalendar.setAttribute("type", "text/css"); link_jscalendar.setAttribute("href", "./jscalendar/themes/jsCalendar.clean.css");
+    document.head.appendChild(link_jscalendar);
+   
+    link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet"); link_jscalendar.setAttribute("type", "text/css"); link_jscalendar.setAttribute("href", "./jscalendar/themes/jsCalendar.darkseries.css");
+    document.head.appendChild(link_jscalendar);
+   
+    link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet"); link_jscalendar.setAttribute("type", "text/css"); link_jscalendar.setAttribute("href", "./jscalendar/themes/jsCalendar.micro.css");
+    document.head.appendChild(link_jscalendar);
+   
+    link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet"); link_jscalendar.setAttribute("type", "text/css"); link_jscalendar.setAttribute("href", "./jscalendar/themes/jsCalendar.medium.css");
+    document.head.appendChild(link_jscalendar);
+   
+    //------------ Optional Extensions -------------
+    script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./jscalendar/extensions/jsCalendar.datepicker.js"); document.head.appendChild(script_jscalendar);
+   
+    script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./jscalendar/extensions/jsCalendar.datepicker.js"); document.head.appendChild(script_jscalendar);
+   
+    link_jscalendar = document.createElement("link");
+    link_jscalendar.setAttribute("rel", "stylesheet"); link_jscalendar.setAttribute("type", "text/css");
+    link_jscalendar.setAttribute("href", "./jscalendar/extensions/jsCalendar.eventmarks.css");
+    document.head.appendChild(link_jscalendar);
+   
+    script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./jscalendar/extensions/jsCalendar.eventmarks.js");
+    document.head.appendChild(script_jscalendar);
+   
+    var link_virtualselect = document.createElement("link");
+    link_virtualselect.setAttribute("rel", "stylesheet");
+    link_virtualselect.setAttribute("type", "text/css");
+    link_virtualselect.setAttribute("href", "./virtual-select/virtual-select.min.css");
+    document.head.appendChild(link_virtualselect);
+   
+    var script_virtualselect = document.createElement("script");
+    script_virtualselect.setAttribute("src", "./virtual-select/virtual-select.min.js");
+    document.head.appendChild(script_virtualselect);
+   
+    link_virtualselect = document.createElement("link");
+    link_virtualselect.setAttribute("rel", "stylesheet");
+    link_virtualselect.setAttribute("type", "text/css");
+    link_virtualselect.setAttribute("href", "./virtual-select/tooltip.min.css");
+    document.head.appendChild(link_virtualselect);
+   
+    script_virtualselect = document.createElement("script");
+    script_virtualselect.setAttribute("src", "./virtual-select/tooltip.min.js");
+    document.head.appendChild(script_virtualselect);
+  </script>
+
+  <style>
+    .vscomp-options-container {
+      scrollbar-color: rgba(0, 0, 0, 0.6) rgba(156, 156, 156, 0.6);
+      scrollbar-width: thin;
+    }
+
+    .vscomp-options-container::-webkit-scrollbar {
+      background: rgba(156, 156, 156, 0.6);
+      width: 8px;
+      cursor: pointer;
+    }
+
+    .vscomp-options-container::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    /*.checkbox-icon{
+    display:none !important;
+  }*/
+    .vscomp-search-clear {
+      display: none;
+    }
+
+    .vscomp-wrapper.has-select-all .vscomp-search-input {
+      width: calc(100% - 35px);
+    }
+
+    .vscomp-option.selected {
+      background-color: rgba(62, 78, 91, 0.1);
+    }
+
+    .vscomp-option {
+      padding: 0px 10px;
+    }
+
+    .vscomp-option.focused {
+      background-color: rgba(62, 78, 91, 0.05);
+    }
+
+    .vscomp-wrapper .checkbox-icon::after {
+      border: 1px solid #3e4e5b;
+    }
+
+    .vscomp-wrapper.multiple .vscomp-option.selected .checkbox-icon::after,
+    .vscomp-wrapper .checkbox-icon.checked::after {
+      border-color: #3e4e5b;
+      border-left-color: transparent;
+      border-top-color: transparent;
+    }
+
+    .vscomp-wrapper {
+      color: #3e4e5b !important;
+      font-size: 14px;
+    }
+
+    .vscomp-dropbox {
+      background-color: #af73ab;
+      border: 2px solid #fade52 !important;
+    }
+
+    .vscomp-search-container {
+      padding: 0px 10px;
+      border-bottom-color: #3e4e5b;
+    }
+
+    .vscomp-search-container .vscomp-search-input {
+      border: 1px solid #3e4e5b;
+      background: transparent;
+      padding: 0 4px;
+      height: 30px;
+      color: #3e4e5b !important;
+    }
+
+    .vscomp-search-container .vscomp-search-input::placeholder {
+      color: #3e4e5b !important;
+    }
+
+    .vscomp-search-container .vscomp-search-clear {
+      color: #3e4e5b;
+    }
+
+    .vscomp-wrapper.has-search-value .vscomp-toggle-all-button {
+      opacity: 0.5;
+    }
+
+    .keep-always-open .vscomp-toggle-button {
+      display: none;
+    }
+
+    .vscomp-toggle-button {
+      background-color: #af73ab;
+      border: 2px solid #fade52;
+    }
+
+    .vscomp-toggle-button .vscomp-arrow::after {
+      border-right-color: #3e4e5b;
+      border-bottom-color: #3e4e5b;
+    }
+
+    .vscomp-toggle-button .vscomp-value {
+      opacity: 1 !important;
+    }
+
+    .container {
+      float: left;
+      width: 300px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="height: 500px; width: 500px; background-color: darkcyan;">
+
+    <div id="sample-select"></div>
+
+  </div>
+  <div>
+
+    <h1>Multi select</h1>
+
+    <div class="container">
+      <h3>List (no search)</h3>
+      <div id="list1"></div>
+    </div>
+    <div class="container">
+      <h3>List (with search)</h3>
+      <div id="list2"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (no search)</h3>
+      <div id="dropdown1"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (with search)</h3>
+      <div id="dropdown2"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (no search/no select all)</h3>
+      <div id="dropdown3"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    VirtualSelect.init({
+      ele: '#sample-select',
+      options: [
+        { label: 'Options 1', value: '1' },
+        { label: 'Options 2', value: '2' },
+        { label: 'Options 3', value: '3' }
+      ]
+    });
+    //  https://codepen.io/dams591/pen/zYojWNb?editors=1010
+    const items = 10;
+    const fontSize = '29px';
+
+    const data = [];
+
+    for (let idx = 1; idx <= items; idx++) {
+      data.push({ label: `Label ${idx}`, value: idx });
+    }
+
+    VirtualSelect.init({
+      ele: '#list1',
+      multiple: true,
+      keepAlwaysOpen: true,
+      options: data,
+      disableSelectAll: true,
+      search: false,
+      showSelectedOptionsFirst: true
+    });
+
+    VirtualSelect.init({
+      ele: '#list2',
+      multiple: false,
+      keepAlwaysOpen: true,
+      options: data,
+      search: false
+    });
+
+
+    VirtualSelect.init({
+      ele: '#dropdown1',
+      search: false,
+      multiple: true,
+      // optionHeight: fontSize, // font size *2 + 1 ?
+      options: data,
+      hideClearButton: true,
+      showSelectedOptionsFirst: true
+    });
+
+
+    VirtualSelect.init({
+      ele: '#dropdown2',
+      search: true,
+      searchPlaceholder: 'test',
+      multiple: true,
+      //optionHeight: fontSize, // font size *2 + 1 ?
+      options: data,
+      hideClearButton: true,
+    });
+
+    VirtualSelect.init({
+      ele: '#dropdown3',
+      search: false,
+      multiple: true,
+      options: data,
+      hideClearButton: true,
+      // optionHeight: fontSize, // font size *2 + 1 ?
+      disableSelectAll: true
+    });
+
+  </script>
+
+</body>
+
+</html>

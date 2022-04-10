@@ -16,13 +16,15 @@ package org.apache.royale.community.beads.models {
         public function PageNavigatorButtonBarModel() {
         }
 
-        private var _maxNavButtons:int = 0;
+        private var _maxNavButtons:int = 1;
 
         public function get maxNavButtons():int {
             return _maxNavButtons;
         }
 
         public function set maxNavButtons(value:int):void {
+            if(value < 1)
+                value = 1;
             if(_maxNavButtons != value){
                 _maxNavButtons = value;
 			    dispatchEvent(new Event("maxNavButtonsChanged"));
@@ -36,6 +38,8 @@ package org.apache.royale.community.beads.models {
         }
 
         public function set pageSize(value:int):void {
+            if(value < 1)
+                value = 1;
             if(_pageSize != value){
                 _pageSize = value;
 			    dispatchEvent(new Event("pageSizeChanged"));
@@ -65,7 +69,6 @@ package org.apache.royale.community.beads.models {
             if(_currentPage != value){
                 _currentPage = value;
 			    dispatchEvent(new Event("currentPageChanged"));
-                /** Podríamos añadir una función buildPager() que se podría overridear en el .as del componente? */
             }
         }
 
@@ -106,6 +109,7 @@ package org.apache.royale.community.beads.models {
 			    dispatchEvent(new Event("endIndexChanged"));
             }
         }
+
     }
 
 

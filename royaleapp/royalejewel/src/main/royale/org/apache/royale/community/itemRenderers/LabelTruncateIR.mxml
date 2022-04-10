@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html">
+
+    <j:beads>
+        <js:ItemRendererDataBinding />
+        <j:ToolTip localId="tt"  toolTip="{text}"/>
+        <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
+    </j:beads>
+
+    <j:Label text="{text}" style="max-width:100%; baclground-color: #ccc;">
+        <j:beads>
+            <js:Paddings paddingRight="8"/>
+            <js:EllipsisOverflow/>
+        </j:beads>
+    </j:Label>
+
+    <!-- También sería válido: -->
+    <!--
+    <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter">
+        <j:beads>
+            <js:Paddings paddingRight="8"/>
+        </j:beads>
+        <j:Label text="{text}">
+            <j:beads>
+                <js:EllipsisOverflow/>
+            </j:beads>
+        </j:Label>
+    </j:HGroup>
+    -->
+</j:ListItemRenderer>

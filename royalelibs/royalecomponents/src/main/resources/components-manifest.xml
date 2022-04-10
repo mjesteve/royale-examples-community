@@ -25,34 +25,48 @@
     <component id="ClipImageJwExt" class="org.apache.royale.community.jewel.beads.ClipImageJwExt"/>
     <component id="ErrorImageExt" class="org.apache.royale.community.beads.ErrorImageExt"/>
     <component id="ReadOnly" class="org.apache.royale.community.beads.ReadOnly"/>
-    <component id="ThreeCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
-    <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
+    <component id="TriStateCheckBoxLabelState" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
+    <component id="TriStateCheckBoxState" class="org.apache.royale.community.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState"/>
+    <component id="PageNavigatorList" class="org.apache.royale.community.jewel.beads.controls.list.PageNavigatorList"/>
+    <component id="ComboBoxRequireSelection" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxRequireSelection"/>
+    <component id="ComboBoxReadOnly" class="org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
+    <component id="PageNavigatorButtonBarModel" class="org.apache.royale.community.beads.models.PageNavigatorButtonBarModel"/>
 
     <!-- Extends Jewel Beads -->
-    <component id="BadgeOnClick" class="org.apache.royale.community.jewel.beads.controls.BadgeOnClick"/>
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
     <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
     <component id="SearchFilterJwExt" class="org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt"/>
     <component id="SearchFilterForDataGrid" class="org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid"/>
     <component id="ResponsiveResizeListener" class="org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener"/>
+    <component id="BadgeJwExt" class="org.apache.royale.community.jewel.beads.controls.BadgeJwExt"/>
+    <component id="BadgeWithMouseClickJwExt" class="org.apache.royale.community.jewel.beads.controls.BadgeWithMouseClickJwExt"/>
+    <component id="ComboBoxModelJwExt" class="org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt"/>
+    <component id="ComboBoxByFieldModel" class="org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel"/>
+    <component id="ComboBoxControllerJwExt" class="org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt"/>
+    <component id="ListViewJwExt" class="org.apache.royale.community.jewel.beads.views.ListViewJwExt"/>
+    <component id="ListSingleSelectionMouseControllerJwExt" class="org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt"/>
+    <component id="ArrayListSelectionModelJwExt" class="org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt"/>
 
     <!-- itemRenderers -->
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
-    <component id="PillsListItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListItemRenderer"/>
+    <component id="PillsListWithLabelItemRenderer" class="org.apache.royale.community.itemRenderers.PillsListWithLabelItemRenderer"/>
+    <component id="MonthlyItemRenderer" class="org.apache.royale.community.itemRenderers.js.MonthlyItemRenderer"/>
 
     <!-- Custom Controls -->
-    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>    
+    <component id="PageNavigatorButtonBar" class="org.apache.royale.community.controls.PageNavigatorButtonBar"/>
     <component id="TriCheckBox" class="org.apache.royale.community.controls.TriCheckBox"/>
     <component id="VisualWaitingDisplay" class="org.apache.royale.community.views.modal.VisualWaitingDisplay"/>
     <component id="ExampleHeader" class="org.apache.royale.community.controls.ExampleHeader"/><!-- TDJ -->
+    <component id="HExampleHeader" class="org.apache.royale.community.controls.HExampleHeader"/>
     <component id="LabelFormWithButtonBar" class="org.apache.royale.community.controls.LabelFormWithButtonBar"/>
+    <component id="AnnualJSCalendar" class="org.apache.royale.community.controls.js.AnnualJSCalendar"/>
 
     <!-- Extends Jewel Controls -->
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
     <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
-    <component id="ThreeCheckBox" class="org.apache.royale.community.jewel.ThreeCheckBox"/>
+    <component id="TriStateCheckBox" class="org.apache.royale.community.jewel.TriStateCheckBox"/>
     <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
 
 </componentPackage>

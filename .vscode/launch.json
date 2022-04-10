@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [    
+        
         {
             "name": "Launch Chrome - localhost - Royal App (Debug version)",
             "type": "chrome",
@@ -10,8 +11,25 @@
             "webRoot": "${workspaceFolder}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-debug"
         },    
         {
-            "name": "Launch Chrome - localhost - Royal App (Debug release)",
+            "name": "Launch Chrome - localhost - Test",
             "type": "chrome",
+            "request": "launch",
+            "sourceMaps": true,
+            "url": "http://localhost:8080/royale.community.example.debug/tests.html",
+            "webRoot": "${workspaceFolder}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-debug"
+        },    
+        {
+            "name": "Launch File Allow File Access - Tests",
+            "type": "chrome",
+            "request": "launch",
+            "sourceMaps": true,
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
+            "url": "file:///${workspaceRoot}/royaleapp/royalejewel/target/javascript/bin/js-debug/tests.html",
+            "webRoot": "${workspaceRoot}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-debug"
+        },
+        {
+            "name": "Launch FireFox - localhost - Royal App (Debug version)",
+            "type": "firefox",
             "request": "launch",
             "url": "http://localhost:8080/royale.community.example.release/index-release.html",
             "webRoot": "${workspaceFolder}\\royaleapp\\royalejewel\\target\\javascript\\bin\\js-release"

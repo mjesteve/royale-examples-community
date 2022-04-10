@@ -3,15 +3,15 @@
         xmlns:j="library://ns.apache.org/royale/jewel"
         xmlns:js="library://ns.apache.org/royale/basic"
         xmlns:html="library://ns.apache.org/royale/html"
-        xmlns:jc="library://ns.apache.org/royale/community" 
+        xmlns:jc="library://ns.apache.org/royale/community"
 	    itemsExpand="false">
 
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.community.jscalendar.events.SharedEvent;
-            import org.apache.royale.community.jscalendar.AnnualJSCalendar;
+            import org.apache.royale.community.events.SharedCalendarEvent;
+            import org.apache.royale.community.controls.js.AnnualJSCalendar;
 
-            private var myevent:SharedEvent;
+            private var myevent:SharedCalendarEvent;
             private var ee:AnnualJSCalendar;
 
             private function oninit(parameters:Object):void
@@ -25,10 +25,10 @@
     <j:beads>
 		<js:ContainerDataBinding/>
 	</j:beads>
-    
+
     <j:CardHeader>
         <j:BarSection width="100%" gap="10">
-            <html:H3 text="jsCalendar - Select" className="primary-darkest block-with-text "/>
+            <html:H3 text="jsCalendar - Select" className="primary-darkest"/>
         </j:BarSection>
     </j:CardHeader>
     <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter" className="primary-dark">

@@ -24,6 +24,7 @@
                 <artifactId>royale-maven-plugin</artifactId>
                 <version>${royale.compiler.version}</version>
                 <extensions>true</extensions>
+                
                 <configuration>
                     <mainClass>App.mxml</mainClass>
                     <targets>JSRoyale</targets>
@@ -33,7 +34,7 @@
                         ${project.compiler.options};
                         -js-dynamic-access-unknown-members=true <!-- to access JSON object graph subobjects -->
 						
-                        -compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-js.swc:defaults.css;
+                        <!-- -compiler.exclude-defaults-css-files=MXRoyale-0.9.10-SNAPSHOT-js.swc:defaults.css; -->
                         -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
                         -keep-code-with-metadata=Inject;
                         -show-binding-warnings=false;

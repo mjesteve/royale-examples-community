@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    itemsVerticalAlign="itemsSameHeight"
+    initComplete="onInitComplete()">
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+
+
+        [Bindable]
+        private var dpString:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringWider:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpStringBigWider:ArrayList = new ArrayList;
+
+        [Bindable]
+        private var dpClass:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassWider:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassBig:ArrayList = new ArrayList;
+        [Bindable]
+        private var dpClassBigWider:ArrayList = new ArrayList;
+
+        private var totalCases:Number = 0;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+        }
+
+        private function makeDP(init:Boolean = false):void
+        {
+            var prefix:String="";
+
+            if(!init)
+            {
+                prefix = "** ";
+            }
+            var ar:Array = new Array();
+            var ar2:Array = new Array();
+            var ar3:Array = new Array();
+            var ar4:Array = new Array();
+            var varray:Array = new Array();
+            var varray2:Array = new Array();
+            var varray3:Array = new Array();
+            var varray4:Array = new Array();
+            for(var index:int = 0; index < 2000; index++)
+            {
+                var desc:String = prefix+'Item String: '+index.toString();
+                var objdesc:Object = {codigo:index,displaytext:desc};
+
+                var descwider:String = prefix+'Item [ '+index.toString()+ ' ] Desc.: '+index.toString()+' - '+ new String('*******************************************************************');
+                var objdescwider:Object = {codigo:index,displaytext:descwider};
+                
+                if(index < 100){
+                    ar.push(desc);
+                    ar2.push(desc);
+                    ar3.push(descwider);
+                    ar4.push(descwider);
+                }
+                varray.push(objdesc);
+                varray2.push(objdesc);
+                varray3.push(objdescwider);
+                varray4.push(objdescwider);
+            }
+            dpString = new ArrayList(ar);
+            dpStringWider = new ArrayList(ar3);
+            dpStringBig = new ArrayList(ar2);
+            dpStringBigWider = new ArrayList(ar4);
+
+            dpClass = new ArrayList(varray);
+            dpClassWider = new ArrayList(varray3);
+            dpClassBig = new ArrayList(varray2);
+            dpClassBigWider = new ArrayList(varray4);
+
+        }
+		
+        private function clearDataProvider():void
+		{
+			cbdisablednodata.dataProvider = null;
+            vcbdisablednodata.dataProvider = null;
+            cbreadnodata.dataProvider = null;
+            vcbreadnodata.dataProvider = null;
+		}
+		
+		private function loadDataProvider():void
+		{
+            cbdisablednodata.dataProvider = dpString;
+            vcbdisablednodata.dataProvider = dpString;
+            cbreadnodata.dataProvider = dpString;
+            vcbreadnodata.dataProvider = dpString;
+		}
+/*
+*/
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+    </j:beads>
+
+    <jc:ExampleHeader title="ComboBoxJwExt / VirtualComboBoxJwExt - Custom Controls">
+        <jc:description>
+            <![CDATA[<strong>ComboBoxJwExt</strong> and <strong>VirtualComboBoxJwExt</strong> are extensions of Jewel's ComboBox and VirtualComboBox controls respectively.<p><b/>Almost all the features of these implementations go against the PAYG directives and should therefore be read as examples to automate recurring needs, in these controls, within our application.</p>]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="New Properties - Automatic loading of beads" className="primary-normal"/>
+            </j:CardHeader>
+            <j:CardExpandedContent className="formatHeader">
+                <j:HGroup percentWidth="100" gap="3">
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>ComboBox</strong> version]]></j:html>
+                    </j:Label>
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>VirtualComboBox</strong> version]]></j:html>
+                    </j:Label>
+                </j:HGroup>
+
+            </j:CardExpandedContent>
+            <j:CardPrimaryContent>
+<!--  
+ -->
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Setting the <strong>activeTextPrompt</strong> property to <strong>true</strong> loads the Jewel <strong>ComboBoxTruncateText</strong> bead. The default prompt is <strong>'\u21F2 ...'</strong> and we can change it with the <strong>textPrompt</strong> property.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3" itemsVerticalAlign="itemsCenter">
+                    <j:Label percentWidth="50" text="Set the text prompt to: " style="text-align: right;"/>
+                    <j:TextInput percentWidth="50" localId="txtPrompt" change="{cbtextprompt.textPrompt = txtPrompt.text; vcbtextprompt.textPrompt = txtPrompt.text;}"/>
+                </j:HGroup>
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt localId="cbtextprompt" percentWidth="50" activeTextPromp="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:ComboBoxJwExt>
+                    <jc:VirtualComboBoxJwExt localId="vcbtextprompt" percentWidth="50" activeTextPromp="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:VirtualComboBoxJwExt>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Automatically loads the <strong>ComboBoxTruncateText</strong> bead. <br/>In this example we use a new <strong>ComboBoxRequireSelection</strong> bead.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3">
+                    <j:VGroup percentWidth="50" itemsVerticalAlign="itemsCenter" >
+                        <jc:ComboBoxJwExt width="150" dataProvider="{dpString}" >
+                            <jc:beads>
+                                <jc:ComboBoxRequireSelection requireSelection="true"/>
+                            </jc:beads>
+                        </jc:ComboBoxJwExt>
+                    </j:VGroup>
+                    <j:VGroup percentWidth="50" itemsVerticalAlign="itemsCenter" >
+                        <jc:VirtualComboBoxJwExt width="150" dataProvider="{dpString}">
+                            <jc:beads>
+                                <jc:ComboBoxRequireSelection requireSelection="true"/>
+                            </jc:beads>
+                        </jc:VirtualComboBoxJwExt>
+                    </j:VGroup>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>
+                 
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>The <strong>itemRendererTruncateByDefault</strong> property to true will set <strong>LabelTruncateItemRenderer</strong> as default Itemrenderer (a customised Jewel ListitemRenderer consisting of a Jewel Label with the EllipsisOverflow account)</p>]]></j:html>
+                </j:Label>  
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" dataProvider="{dpStringWider}" activeTextPromp="true" itemRendererTruncateByDefault="true"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" dataProvider="{dpStringBigWider}" activeTextPromp="true" itemRendererTruncateByDefault="true"/>
+                </j:HGroup>
+<!-- 
+-->
+                <html:Hr className="separador"/>
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>When a <strong>custom itemRenderer</strong> is specified only <strong>mouse click on the component's canvas</strong> will be captured as the <strong>PopUp close event</strong>. This is great for when our ItemRenderer contains an active CheckBox, but not when it is a simple Label. To override this behaviour there is the <strong>Jewel ComboBoxListCloseOnClick</strong> bead.</p>]]></j:html>
+                </j:Label>
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<strong>Jewel ComboBox</strong> and <strong>VirtualComboBox</strong> : <br/>(If you look at it, hovering the mouse over the popup items does NOT show the "hand" pointer on all of them and clicking on it will select the item but will not close the popup.)]]></j:html>
+                </j:Label>
+                <j:HGroup percentWidth="100" gap="3" >
+                    <j:ComboBox percentWidth="50" dataProvider="{dpStringWider}"/>
+                    <j:VirtualComboBox percentWidth="50" dataProvider="{dpStringBigWider}"/>
+                </j:HGroup>               
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Setting the <strong>activePopupControl</strong> property to <strong>false</strong> tells the control that the configured ItemRenderer is read-only and automatically loading the <strong>ComboBoxListCloseOnClick</strong> bead.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpString}"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" activePopupControls="false" dataProvider="{this.dpStringBig}"/>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>          
+
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Setting the <strong>activeSearch</strong> property to <strong>true</strong> to load the Jewel <strong>SearchFilter</strong> bead automatically.</p>]]></j:html>
+                </j:Label>
+
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt percentWidth="50" activeTextPromp="true" activeSearch="true" dataProvider="{this.dpString}"/>
+                    <jc:VirtualComboBoxJwExt percentWidth="50" activeTextPromp="true" activeSearch="true" dataProvider="{this.dpStringBig}"/>
+                </j:HGroup>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="New Features" className="primary-normal"/>
+            </j:CardHeader>
+            
+            <j:CardExpandedContent className="formatHeader">
+                <j:HGroup percentWidth="100" gap="3">
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>ComboBox</strong> version]]></j:html>
+                    </j:Label>
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<strong>VirtualComboBox</strong> version]]></j:html>
+                    </j:Label>
+                </j:HGroup>
+
+            </j:CardExpandedContent>
+
+            <j:CardPrimaryContent>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>If we need to leave the control inactive when the data source is empty we can set the <strong>emptyDisabled</strong> or <strong>emptyReadOnly</strong> properties to true (Automatically loads the <strong>ComboBoxDisabled</strong> or new <strong>ComboBoxReadOnly</strong> beads)</p>]]></j:html>
+                </j:Label>
+                
+                <j:HGroup percentWidth="100" gap="3"  itemsVerticalAlign="itemsCenter">                
+                    <j:Label multiline="true" percentWidth="50">
+                        <j:html><![CDATA[<p>The <strong>emptyDisabled</strong> property to <strong>true</strong>:</p>]]></j:html>
+                    </j:Label>
+                    <j:HGroup percentWidth="50" gap="3" itemsHorizontalAlign="itemsRight">
+                        
+                        <j:IconButton click="clearDataProvider()" emphasis="secondary" outlined="true">
+                            <j:beads>
+                                <j:ToolTip toolTip="Clear Data"/>
+                            </j:beads>
+                            <j:icon>
+                                <js:MaterialIcon text="{MaterialIconType.CLEAR}" />
+                            </j:icon>
+                        </j:IconButton>
+                        <j:IconButton click="loadDataProvider()" emphasis="primary" outlined="true">
+                            <j:beads>
+                                <j:ToolTip toolTip="Load Data"/>
+                            </j:beads>
+                            <j:icon>
+                                <js:MaterialIcon text="{MaterialIconType.VIEW_HEADLINE}" />
+                            </j:icon>
+                        </j:IconButton>
+                    </j:HGroup>
+                </j:HGroup>
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt localId="cbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:ComboBoxJwExt>
+                    <jc:VirtualComboBoxJwExt localId="vcbdisablednodata" percentWidth="50" activeTextPromp="true" emptyDisabled="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:VirtualComboBoxJwExt>
+                </j:HGroup>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>The <strong>emptyReadOnly</strong> property to <strong>true</strong>:</p>]]></j:html>
+                </j:Label>
+               
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt localId="cbreadnodata" percentWidth="50" activeTextPromp="true" emptyReadOnly="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:ComboBoxJwExt>
+                    <jc:VirtualComboBoxJwExt localId="vcbreadnodata" percentWidth="50" activeTextPromp="true" emptyReadOnly="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:VirtualComboBoxJwExt>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>
+<!--       
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>
+                </j:Label>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Teclas desplazamiento</p>]]></j:html>
+                </j:Label>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>Respetar el item seleccionado en una actualización de Dataprovider</p>]]></j:html>
+                </j:Label>
+-->          
+            </j:CardPrimaryContent>
+        </j:Card>
+    </j:GridCell>
+    
+</j:Grid>

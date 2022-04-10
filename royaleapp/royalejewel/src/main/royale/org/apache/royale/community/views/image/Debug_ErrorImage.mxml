@@ -18,7 +18,7 @@
             sw ++;
             if(sw == 0){
                 lblStep.text = "Source found";
-                avatar="http://localhost:8080/WPNetSuite.Plus/DOCSPERSONAL/Fotos/Foto5.jpg";
+                avatar="http://images.clipartpanda.com/-4f35041b1877aee25e131739d5f04a8a.jpg";
             }else if(sw == 1){
                 //avatarJewel.applyImageData("");  
                 lblStep.text = "Source empty string";
@@ -29,7 +29,7 @@
                 avatar = null;              
             }else{
                 lblStep.text = "Source not found";
-                avatar="http://localhost:8080/WPNetSuite.Plus/DOCSPERSONAL/Fotos/2165301.jp";
+                avatar="http://images.clipartpanda.com/-4f35041b1877aee25e131739d5f04a8a.jp";
                 sw = -1;
             }
         }

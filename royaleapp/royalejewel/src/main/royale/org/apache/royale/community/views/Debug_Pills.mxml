@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:j="library://ns.apache.org/royale/jewel"
-        xmlns:js="library://ns.apache.org/royale/basic"
-        xmlns:html="library://ns.apache.org/royale/html"
-	    xmlns:views="org.apache.royale.community.views.*"
-        initComplete="initCompletetHandler()">
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    initComplete="initCompletetHandler()">
     
     <fx:Script>
         <![CDATA[
@@ -17,7 +17,7 @@
                 var ar:Array = new Array();
                 for(var index:int = 0; index < 14; index++)
                 {
-                    ar.push('Pill-'+index.toString());
+                    ar.push('Filter '+index.toString());
                 }
                 sourcePills = new ArrayList(ar);
                 lstPills.addEventListener("removePill",removePillHandler);
@@ -41,52 +41,81 @@
 
     <j:beads>
         <js:ContainerDataBinding/>
-	</j:beads>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+    </j:beads>
 
-    <j:Card itemsExpand="false" percentHeight="100" percentWidth="50">
-        <j:CardHeader>
-            <j:BarSection width="100%" gap="10">
-                <html:H3 text="Page Navigator - Debugger" className="primary-dark block-with-text "/>
-            </j:BarSection>
-        </j:CardHeader>
-        <j:CardPrimaryContent height="100%" >
-            <j:VGroup width="400" gap="10">
-              <!--        itemRenderer="{PillsListItemRenderer2}"
-                <j:List localId="lstPills0" percentWidth="100" minHeight="35"                    
-                        dataProvider="{sourcePills0}" style="background: transparent; border: 0px;">
-                    <j:beads>
-                        <j:ListPresentationModel rowHeight="35" variableRowHeight="false"/>
-                        <j:TileHorizontalLayout />
-                    </j:beads>
-                </j:List> 
-                -->
-                <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
-                        dataProvider="{sourcePills}"
-                        className="pillListStyle" style="background: transparent; border: 0px;" >
-                    <j:beads>
-                        <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>
-                        <j:TileHorizontalLayout />
-                    </j:beads><!-- -->
-                </j:List>
-            </j:VGroup>
+    <jc:ExampleHeader title="BadgeWithMouseClick Bead ">
+        <jc:description>
+            <![CDATA[The <strong>Badge</strong> class provides a small status descriptors for UI elements.<p>A <strong>Badge</strong> is an onscreen notification element consists of a small circle, typically containing a number or other characters, that appears in proximity to another object.</p><p>The <strong>BadgeWithMouseClick</strong> class is a Badge extension that dispatches the <strong>MouseClick</strong> Event.</p><p>(Included in the SDK since version 0.9.8)</p>]]>
+        </jc:description>
+    </jc:ExampleHeader>
 
-        </j:CardPrimaryContent>
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 
-    </j:Card>
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="1st Example" className="primary-normal"/>
+            </j:CardHeader>
 
-    <j:Card itemsExpand="false" percentHeight="100" percentWidth="50">
-        <j:CardHeader>
-            <html:H3 text="ComboBox with active Badges (Simulation)" className="secondary-normal"/>
-        </j:CardHeader>
+            <j:CardPrimaryContent>
 
-        <j:CardPrimaryContent>
-            <j:Group width="200" className="pillComboStyle" >
-                <j:beads>
-                    <j:BadgeWithMouseClick text="↶" click="emptySelected()"/>
-                </j:beads>
-                <j:ComboBox localId="cbPills" percentWidth="100" dataProvider="{sourcePills}"/>
-            </j:Group>
-        </j:CardPrimaryContent>
+                <j:VGroup percentWidth="100">
 
-    </j:Card>
-</j:HGroup>
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>List of selection criteria to filter a data set.</p><p>A <strong>Jewel List</strong> is used with a custom ItemRenderer composed of a <strong>Jewel Button</strong> with the Bead <strong>BadgeWithMouseClick</strong>.</p><p>The click on the badge bubbles, up to the List, like '<strong>removePill</strong>'.</p></p><p>The style of the List and the ItemRenderer components is defined under the CSS class '<strong>pillListStyle</strong> and <strong>pillButtonStyle</strong>'.</p>]]></j:html>
+                    </j:Label>
+                    <j:List localId="lstPills" percentWidth="100" minHeight="35"                    
+                            dataProvider="{sourcePills}"
+                            className="pillListStyle">
+                        <j:beads>
+                            <j:ListPresentationModel rowHeight="35" variableRowHeight="true"/>
+                            <j:TileHorizontalLayout />
+                        </j:beads>
+                    </j:List>
+                </j:VGroup>
+
+            </j:CardPrimaryContent>
+
+        </j:Card>
+    </j:GridCell>
+
+    <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="2nd Example" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+
+                <j:VGroup gap="3" percentWidth="100">
+            
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>We add a '<strong>Reset</strong>' button to a <strong>Jewel ComboBox</strong>.</p><p>In this proposal, the <strong>BadgeWithMouseClick</strong> bead is added to the ComboBox Control. We rectify the style and positioning with the CSS class <strong> resetComboBadgeTransStyle </strong>.</p>]]></j:html>
+                    </j:Label>
+            
+                    <j:ComboBox localId="cbPills" width="200" className="resetComboBadgeStyle" dataProvider="{sourcePills}">
+                        <j:beads>
+                            <j:BadgeWithMouseClick text="×" click="emptySelected()" preindex="true" overlap="true"/>
+                        </j:beads>
+                    </j:ComboBox>
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>In this proposal a <strong>ComboBoxJwExt</strong> is wrapped in a Jewel Group. The <strong>BadgeWithMouseClick</strong> bead is added to the ComboBox control, with the property <strong>subindex=true</strong> and with a custom CSS class '<strong>resetComboBadgeTransStyle</strong>' that provides the icon, applies a clip-path polygon to the bead and rectifies its position.</p>]]></j:html>
+                    </j:Label>
+
+                    <j:Group width="200" className="resetComboBadgeTransStyle" height="40">
+                        <jc:ComboBoxJwExt localId="cbPills2" percentWidth="100" dataProvider="{sourcePills}">
+                            <jc:beads>
+                                <jc:BadgeWithMouseClickJwExt text="/" subindex="true" click="cbPills2.reset()"/>
+                            </jc:beads>
+                        </jc:ComboBoxJwExt>
+                    </j:Group>
+        
+                </j:VGroup>
+            
+            </j:CardPrimaryContent>
+
+        </j:Card>
+    </j:GridCell>
+</j:Grid>

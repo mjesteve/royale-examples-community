@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html"
+	xmlns:trees="org.apache.royale.community.views.trees.*"
+	initComplete="InitCompleteHandler()">
+
+    <fx:Script>
+        <![CDATA[
+
+			import org.apache.royale.events.Event;
+			import org.apache.royale.jewel.RadioButton;
+			import org.apache.royale.jewel.TextInput;
+			import org.apache.royale.community.models.UsersPermissions;
+			import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
+			import org.apache.royale.community.vos.PermissVO;
+
+			[Bindalbe]
+			private var dpUsersPermiss:UsersPermissions = new UsersPermissions();
+
+			private function InitCompleteHandler():void
+			{
+				//var dp:ArrayList = new UsersPermissions();
+				trace();
+			}
+
+			  public function restoreANode():void{
+				//treeTest.fn_RevertSpecificNode("1-Personal", true);
+				//treeTest.fn_RevertSpecificNode("2-Horarios", true);
+			  }
+
+			public function onClickExample(event:Event, node:ItemTreeNode):void
+			{
+
+                trace('click:', 'Node:', node);
+				//event.preventDefault();
+				//event.stopPropagation();
+                /*trace('click:', 'Node Id:', node.id);
+				if(event["clientX"] > 300)
+				{
+					treeTest.fn_RevertSpecificNode(node.id, false);
+					// treeTest.fn_RevertSpecificNode(node.text, true);
+				}*/
+			}
+
+			public function onDblClickExample(event:Event, node:ItemTreeNode):void
+			{
+				trace('dblclick:', 'Node Id:', node.id);
+				//event.preventDefault();
+				//event.stopPropagation();
+			}
+
+			public function onContextMenuExample(event:Event, node:ItemTreeNode):void
+			{
+				trace('contextmenu:', 'Node Id:', node.id);
+			}
+
+            public function isMarkedItem(itemTreeData:Object, itemFlatData:Object):Boolean
+            {
+				if(!itemFlatData)
+					return false;
+
+				if( (itemFlatData as PermissVO).idxacc<3)
+					return true;
+				else
+	                return false;
+            }
+
+			public function calcStateCheck(itemTreeData:Object, itemFlatData:Object):Boolean
+			{
+				var res:Boolean =  (itemFlatData as PermissVO).checked>0 ? true:false;
+				return res;
+
+				//Add. bloq
+				if( res && (itemFlatData as PermissVO).idxacc<3 )
+					res = false;
+				return res;
+			}
+
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="JS Inspire-Tree - Royale Wrapper">
+        <jc:description>
+            <![CDATA[Tests <strong>Inspirte Tree</strong> Javascript UI Tree (<a href="http://inspire-tree.com/" target="_blank">http://inspire-tree.com/</a> <strong>[WIP]</strong>)]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="2" desktopDenominator="3" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+
+        <j:Card  height="100%"  width="100%" maxWidth="600" >
+            <j:CardPrimaryContent style="border-top: 1px solid #d2dadf;"  height="100%"  width="100%" >
+
+                <j:Grid gap="true">
+
+                    <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:Label text="Mark v0:" />
+                        <trees:treePermissions localId="treeTest5" percentWidth="100" height="500" >
+                            <trees:beads>
+                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="true"/>
+                                <jc:InspireTreeMarkRendererBead markDOMFunction="isMarkedItem"/>
+                                <jc:InspireTreeEventsBead nodeDblClick="onDblClickExample" nodeClick="onClickExample"/>
+                            </trees:beads>
+                        </trees:treePermissions>
+                    </j:GridCell>
+
+                    <j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+                        <j:Label text="Mark v1:" />
+                        <trees:treePermissionsExt localId="treeTest5_1" percentWidth="100" height="500" >
+                            <trees:beads>
+                                <jc:InspireTreeCheckBoxModeBeadExt checkboxFunction="calcStateCheck" showCheckboxes="true" revertIcon="true"/>
+                                <jc:InspireTreeMarkRendererBeadExt markDOMFunction="isMarkedItem" markToState="indeterminate"/>
+                                <jc:InspireTreeIconBead typeIconsSet="none"/>
+                            </trees:beads>
+                        </trees:treePermissionsExt>
+                    </j:GridCell>
+                </j:Grid>
+
+            </j:CardPrimaryContent>
+        </j:Card>
+
+    </j:GridCell>
+</j:Grid>

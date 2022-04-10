@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-    
+
     /**
      *  @private
      *  This class is used to link additional classes into jewel.swc
      *  beyond those that are found by dependecy analysis starting
      *  from the classes specified in manifest.xml.
-     * 
+     *
      *  If the class need to be used in MXML please add only to manifest.xml
      */
     internal class ComponentsClasses
@@ -37,55 +37,20 @@ package
 	    // {
         // import package.ClassName; ClassName;
         // }
-        
+
         // Add here classes for the SWF platform
         // COMPILE::SWF
 	    // {
         // import package.ClassName; ClassName;
         // }
-        
-        import org.apache.royale.community.controls.ComboBoxJwExt; ComboBoxJwExt;
-        import org.apache.royale.community.controls.VirtualComboBoxJwExt; VirtualComboBoxJwExt;
 
-        import org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt; ComboBoxModelJwExt;
-        import org.apache.royale.community.jewel.beads.models.ComboBoxByFieldModel; ComboBoxByFieldModel;
         import org.apache.royale.community.beads.models.ISelectionByFieldModel;ISelectionByFieldModel;
-        import org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt; ComboBoxControllerJwExt;
-        import org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer;LabelTruncateItemRenderer;
-        //Temporal
-        import org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt; SearchFilterJwExt;
-
-        import org.apache.royale.community.controls.ListJwExt; ListJwExt;
-        import org.apache.royale.community.jewel.beads.views.ListViewJwExt; ListViewJwExt;
-        import org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt; ListSingleSelectionMouseControllerJwExt;
-        import org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt; ArrayListSelectionModelJwExt;
-        import org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead; ListItemRendererPropertiesBead;
-        import org.apache.royale.community.itemRenderers.ListItemRendererProperties; ListItemRendererProperties;
-
-        import org.apache.royale.community.jewel.beads.controls.datagrid.SearchFilterForDataGrid; SearchFilterForDataGrid;
-
-        import org.apache.royale.community.beads.models.PageNavigatorButtonBarModel;PageNavigatorButtonBarModel;
-        import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
-
-        import org.apache.royale.community.beads.controls.tricheckbox.TriCheckBoxLabelByValue;TriCheckBoxLabelByValue;
-        import org.apache.royale.community.jewel.beads.ClipImageJwExt;ClipImageJwExt;
-        import org.apache.royale.community.jewel.beads.controls.DisabledToolTip; DisabledToolTip;
-        import org.apache.royale.community.jewel.beads.layouts.ResponsiveResizeListener; ResponsiveResizeListener;
-        import org.apache.royale.community.jewel.GridCell; GridCell;
-
-        import org.apache.royale.community.itemRenderers.PillsListItemRenderer; PillsListItemRenderer;
-        import org.apache.royale.community.jewel.beads.controls.BadgeOnClick; BadgeOnClick;
         import org.apache.royale.community.events.ITCustomEvent; ITCustomEvent;
-        import org.apache.royale.community.vo.PillItemVO; PillItemVO;
-        import org.apache.royale.community.vo.TabBarButtonVO; TabBarButtonVO;
-
         import org.apache.royale.community.events.NavigationEvent; NavigationEvent;
-        import org.apache.royale.community.controls.LabelFormWithButtonBar; LabelFormWithButtonBar;
-
-        import org.apache.royale.community.jewel.supportClasses.ISelectableToggle; ISelectableToggle;
-        import org.apache.royale.community.jewel.ThreeCheckBox; ThreeCheckBox;
-        import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState; ThreeCheckBoxLabelState;
-        import org.apache.royale.community.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues; ThreeCheckBoxStatesValues;
-        import org.apache.royale.community.beads.ReadOnly; ReadOnly;
+        import org.apache.royale.community.events.SharedCalendarEvent; SharedCalendarEvent;
+        import org.apache.royale.community.jewel.supportClasses.ISelectableWithIndeterminacy; ISelectableWithIndeterminacy;
+        import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
+        import org.apache.royale.community.vo.PillItemVO; PillItemVO;
+        import org.apache.royale.community.vo.DateItemDescribeVO; DateItemDescribeVO;
     }
 }

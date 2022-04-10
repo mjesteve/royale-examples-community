@@ -6,7 +6,7 @@ package org.apache.royale.community.jewel.beads.models
   	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt;
 	import org.apache.royale.collections.IArrayList;
-	import mx.utils.ObjectUtil;
+
 	/**
 	 *  The ComboBoxByFieldModel class bead extends extends org.apache.royale.community.jewel.beads.models.ComboBoxModelJwExt
 	 *  and adds the valueField and selectedValue properties.

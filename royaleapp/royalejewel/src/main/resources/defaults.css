@@ -14,186 +14,571 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-@namespace "http://www.w3.org/1999/xhtml";
-@namespace j "library://ns.apache.org/royale/jewel";
-@namespace jc "library://ns.apache.org/royale/community";
-
-@media (min-width: 0px){
-
-  .Application {
-      font-family: 'Open Sans', serif, sans-serif;
-      color: #434343;
-    }
-    .jewel.application{
-      font-family: 'Open Sans', serif, sans-serif;
-      color: #333333;
-    }
-
-    .jewel.topappbar .topBarAppHeader {
-      background: #333333;
-      border: 0;
-      color: #04a3b3;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: fixed;
-      text-shadow: none;
-      width: 100%;
-      z-index: 20;
-    }
-
-    /*.toggleButtonUnboxed>.jewel.togglebutton.unboxed.selected {
-        color: #be390e;
-      background-color: #B3B3B3;
-    }*/
-    .menubar {
-      min-width: 0;
-      background: #333333 !important;
-      padding: 0;
-      margin-right: 10px;
-    }
-    .menubarMark {
-      box-shadow: #04a3b3 5px 0 0 0 inset;
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-    .jewel.togglebutton.toggleButtonUnboxed .fonticon {
-      /* color: #674104; */
-    }
-    .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
-      color: #04a3b3;
-    }    
-    
-    .primary-lightest {
-            color: #ecede8;
-    }
-    
-    
-    .primary-light {
-            color: #7cdbe4;
-    }
-    
-    
-    .primary-normal {
-            color: #04a3b3;
-    }
-    
-    
-    .primary-dark {
-            color: #13505B;
-    }
-    
-    
-    .primary-darkest {
-            color: #0b3036;
-    }
-    
-
-    .jewel.button{
-    text-transform: none;
-    }
-    .jewel.datagrid .jewel.buttonbar.header{
-      overflow: hidden;
-    }
-    .jewel.card .card-header{
-      border-bottom: 1px solid #d2dadf;
-    }
-
-    .jewel.card .card-actions{
-        border-top: 1px solid #d2dadf;
-    }
-
-    .jewel.label{
-      line-height: 1.2em;
-    }
-
-    .relative{
-      position: relative;
-      height: 100%;
-    }
-
-    .absolute{
-      position: absolute;
-      z-index: 1;
-    }
-
-    .center{
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    .navigation-section-title.jewel.label {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
-    .navigation-section-group .navigationlink {
-      padding-left: 34px;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-    
-    .echarts-content > * {
-      flex: 1 0 auto;
-    }
-
-  /* List Pills CSS */
-  .pillListStyle{
-    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PillsListItemRenderer2");
-    background: transparent !important;
-    border: none !important;
-  }
-  .pillListStyle>.jewel.item.hovered {
-    background: transparent;
-  }
-  .pillListStyle>.jewel.item.selected{
-  background: transparent;
-  }
-  .pillListStyle>.jewel.item.primary {
-    background: transparent;
-    cursor: default !important;
-  }
-  .pillListStyle>.jewel.item.selectable:active {
-    background: transparent;
-  }
-  .pillListStyle .jewel.badge {
-    background: linear-gradient(#e6e6e6, #cccccc);
-    border-radius: 25px;
-    border: 1px solid #b3b3b3;
-    box-shadow: inset 0 1px 0 white;
-    color: #808080;
-    cursor: pointer;
-    font-size: .70em !important;
-    font-weight: bold;
-    text-align: center;
-  }
-  .pillComboStyle .jewel.badge {
-    background: linear-gradient(#e6e6e6, #cccccc);
-    border-radius: 25px;
-    border: 1px solid #b3b3b3;
-    box-shadow: inset 0 1px 0 white;
-    color: #3cadf1;
-    cursor: pointer;
-    font-size: 1.2em !important;
-    font-weight: bold;
-    right: calc(50% - .6em);
-    text-align: center;
-  }
-  .pillButtonStyle {
-    background-color: rgb(158, 158, 158) !important;
-    border-radius: 12px !important;
-    border: none !important;
-    color: white !important;
-    cursor: default !important;
-    font-weight: normal !important;
-    justify-content: left !important;
-    margin: 8px 8px 0px 0px !important;
-    padding: 5px 10px !important;
-    text-overflow: ellipsis;
-    text-transform: none !important;
-  }
-
+ @namespace "http://www.w3.org/1999/xhtml";
+ @namespace j "library://ns.apache.org/royale/jewel";
+ @namespace jc "library://ns.apache.org/royale/community";
+ 
+ /*
+ @media (min-width: 0px){
+ */
+.Application {
+  font-family: "Open Sans", serif, sans-serif !important;
+  color: #434343;
 }
 
+/* scrollbar ----------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #04a3b3 transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #04a3b3;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #04a3b3;
+}
+/* End scrollbar ----------------------------------------- */
+
+     .jewel.application{
+      font-family: "Open Sans", serif, sans-serif !important;
+       color: #333333;
+     }
+ 
+     .jewel.topappbar .topBarAppHeader {
+       background: linear-gradient(#404040, #262626);
+       border-bottom: 1px solid black;
+       border-top: 1px solid #595959;
+       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+       color: #04a3b3;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       position: fixed;
+       width: 100%;
+       z-index: 20;
+     }
+ 
+     .contentMainViews {
+       background-color:#B3B3B3;
+     }
+ 
+     /* Custom tabbar ----------------------------------- */
+     
+     .CustomTabBar .jewel.card {
+       border-radius: 0;
+     }
+ 
+     .CustomTabBar.menubuttonbarcard {
+       border-radius: 0;
+       background: #333333 !important;
+       padding: 0 !important;
+     }
+ 
+     .CustomTabBar.menubuttonbar {
+       box-shadow: #04a3b3 5px 0 0 0 inset;
+       padding: 0 0 0 5px !important;
+       border-bottom: 1px solid #04a3b3 !important;
+     }
+ 
+     .CustomTabBar.menubuttonbarcontent {
+       padding: 0 !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton {
+       color: #8d8d8d;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.hovered {
+       background: rgba(179, 179, 179, 0.15);
+     }
+     
+     .CustomTabBar .jewel.tabbarbutton.selected {
+       background: rgba(179, 179, 179, 0.25);
+       color: #04a3b3;
+     }    
+     
+     .CustomTabBar .jewel.tabbarbutton.selectable:active {
+       background: rgba(179, 179, 179, 0.25);
+       color: #04a3b3;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.layout.horizontal {
+       padding: 12px 12px !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton.layout.vertical {
+       padding: 12px 12px !important;
+     }
+ 
+     .CustomTabBar .jewel.tabbarbutton .indicator>.indicator-content {
+       background-color: #04a3b3;
+     }
+ 
+     .CustomTabBar .jewel.tabbar.layout.vertical .indicator>.indicator-content {
+       width: 5px;
+     }
+ 
+     .tabBarGroupJSCalendarItemRenderer{
+         IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarGroupCustomIconItemRenderer");
+     }
+ 
+     .tabBarJSCalendarItemRenderer{
+         IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.TabBarCustomIconItemRenderer");
+         width: 60px;
+     }
+     
+ 
+     /* ------------------------------------------------------- */
+ 
+     .jewel.togglebutton.toggleButtonUnboxed.selected .fonticon {
+       color: #04a3b3;
+     }    
+     
+     .primary-lightest {
+             color: #ecede8;
+     }
+     
+     
+     .primary-light {
+             color: #7cdbe4;
+     }
+     
+     
+     .primary-normal {
+             color: #04a3b3;
+     }
+     
+     
+     .primary-dark {
+             color: #13505B;
+     }
+     
+     
+     .primary-darkest {
+             color: #0b3036;
+     }
+     
+ 
+     .jewel.button{
+     text-transform: none;
+     }
+     .jewel.datagrid .jewel.buttonbar.header{
+       overflow: hidden;
+     }
+ 
+     .jewel.label{
+       line-height: 1.2em;
+     }
+ 
+     .relative{
+       position: relative;
+       height: 100%;
+     }
+ 
+     .absolute{
+       position: absolute;
+       z-index: 1;
+     }
+ 
+     .center{
+       margin-left: auto;
+       margin-right: auto;
+       text-align: center;
+     }
+ 
+   /* List Pills CSS */
+   .pillListStyle{
+     IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.PillsListItemRenderer");
+     background: transparent !important;
+     border: none !important;
+     box-shadow: none !important;
+   }
+   .pillListStyle>.jewel.item.hovered {
+     background: transparent;
+   }
+   .pillListStyle>.jewel.item.selected{
+   background: transparent;
+   }
+   .pillListStyle>.jewel.item.primary {
+     background: transparent;
+     cursor: default !important;
+   }
+   .pillListStyle>.jewel.item.selectable:active {
+     background: transparent;
+   }
+   .pillListStyle .jewel.badge {
+     background: linear-gradient(#e6e6e6, #cccccc);
+     border-radius: 25px;
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0 1px 0 white;
+     color: #808080;
+     cursor: pointer;
+     font-size: .70em !important;
+     font-weight: bold;
+     text-align: center;
+   }
+   .pillButtonStyle {
+     background-color: rgb(158, 158, 158) !important;
+     border-radius: 12px !important;
+     border: none !important;
+     color: white !important;
+     cursor: default !important;
+     font-weight: normal !important;
+     justify-content: left !important;
+     margin: 8px 8px 0px 0px !important;
+     padding: 5px 10px !important;
+     text-overflow: ellipsis;
+     text-transform: none !important;
+   }
+ 
+   /* ComboBox Pills CSS */
+ 
+   /* Style 1 - Button */
+   .resetComboBadgeStyle .jewel.badge {
+     background: linear-gradient(#e6e6e6, #cccccc);
+     border-radius: 0.25rem 0px 0px 0.25rem;
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0 1px 0 white;
+     color: #29A89F;
+     cursor: pointer;
+     font-size: 1.37em !important;
+     left: 20px !important;
+     top: auto !important;
+     text-align: center;
+     min-width: 0 !important;
+     width: 38px;
+   }
+ 
+   .resetComboBadgeStyle .jewel.textinput {
+     padding-left: 37px;
+   }
+   .resetComboBadgeStyle .jewel.textinput input {
+     border-radius: 0 !important;
+   }  
+   
+   .resetComboBadgeStyle .jewel.badge:hover {
+     background: linear-gradient(#d9d9d9, silver);
+     border: 1px solid #a6a6a6;
+     color: #808080;
+   }
+   .resetComboBadgeStyle .jewel.badge:hover:focus {
+     background: linear-gradient(#d9d9d9, silver);
+     border: 1px solid #a6a6a6;
+     color: #808080;
+   }  
+   .resetComboBadgeStyle .jewel.badge:focus {
+     border: 1px solid #b3b3b3;
+     box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+     color: #808080;
+   }
+   
+   /* Style 2 - Button */
+   .resetComboBadgeTransStyle .jewel.badge {
+     background-color: #29A89F;
+     border-radius: 0 0 .25rem 0;
+     position: absolute;
+     right: 1px;
+     bottom: 0px;
+     height: 26px;
+     width: 26px;
+     min-width: 0;
+     cursor: pointer;
+     /* The compiler does not accept this property or at least not in this way ...    
+     An assets / defaultsextern.css file has been created, included in the jewel-app-index-template.html template, where this property is included.    
+     clip-path: polygon(100% 0%, 0% 100%, 100% 100%);*/    
+    }
+    
+    .resetComboBadgeTransStyle .jewel.badge::after {
+     color: #fff;
+     content: "×";
+     display: flex;
+     font-size: initial;
+     position: absolute;
+     right: 2px;
+     bottom: 2px;
+     box-sizing: border-box;
+    }
+    
+    .resetComboBadgeTransStyle .jewel.badge:hover::after {
+      font-weight: bold;
+    }
+ /*}*/
+ 
+ /* Does not recognise the default.css file of virtual-select ------------------------------------------ */
+ 
+ .vscomp-wrapper {
+   display:inline-flex;
+   position:relative;
+   width:100%;
+   font-family: 'Open Sans', serif, sans-serif !important;
+   color: #333333 !important;
+   font-size: inherit !important;
+ }
+ 
+ .vscomp-option-text span > mark  {
+   background-color: #04a3b3;
+ }
+ 
+ span > mark {
+   background-color: #04a3b3;
+ }
+ 
+ mark {
+   background-color: #04a3b3;
+ }
+ 
+ .vscomp-royale {
+   background-color: #333333 !important;
+   color: #04a3b3 !important;
+ }
+ 
+ /* Navigator - Drawer CSS --------------------------------------------------------------- */
+
+ .jewel.drawer .drawermain {
+   background-color: #333333 !important;
+   border-left: 0;
+   /* border-right: 1px solid #d9d9d9; */
+   display: inline-flex;
+   flex-direction: column;
+   height: 100%;
+   left: 0;
+   overflow: hidden;
+   right: auto;
+   touch-action: none;
+   transform: translateX(-104%);
+   transition: transform 250ms 0ms;
+   width: 240px;
+   will-change: transform;
+ }
+ 
+ .jewel.drawerheader {
+   align-items: center;
+   /* background: linear-gradient(#2ebcb2, #24948c); */
+   background: linear-gradient(#404040, #262626);
+   /* border-bottom: 1px solid #155651; */
+   border-bottom: 1px solid black;
+   border-top: 1px solid #595959;
+   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+   color: #04a3b3;
+   display: flex;
+   flex-direction: column;
+   flex-shrink: 0;
+   padding: 16px;
+   position: relative;
+ }
+ 
+ .jewel.navigation {
+   background-color: transparent;
+ }
+ 
+ .navSectionItemRenderer{
+     IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer");
+ }
+
+.jewel.navigationgroup .header-fixed {
+  border-left: 4px solid #000000;
+}
+
+/* First anchor = cab sub-menu*/
+.jewel.navigationgroup[selected] > a {
+        border-left: 5px solid #04a3b3;
+}
+
+ .jewel.navigationlink {
+     color: #04a3b3;
+ }
+ 
+ .jewel.navigationlink:hover {
+         background-color: #04a3b3 !important;
+         color: #16767f;
+         font-weight: bold;
+ }
+
+ .jewel.navigationlink.selectable {
+     background: linear-gradient(#404040, #262626);
+ }
+ 
+ .separador {
+   background-color: #04a3b3;
+   width: 100%;
+   margin-top: 34px !important;
+ }
+ 
+ /* The compiler does not accept the 'filter' property. We move these classes to the attached defaultsextern.css file. ... */
+ /* https://tests.christianoliff.com/hex-to-css-filter-generator/ */
+ /* #000 */    
+ /*.jewel.navigationlink:hover .svgmenu {   
+   filter: invert(0%) sepia(1%) saturate(3%) hue-rotate(326deg) brightness(97%) contrast(104%);
+ }*/
+ /* #04a3b3 */ 
+ /*
+ .jewel.navigationlink .svgmenu {
+   filter: invert(48%) sepia(70%) saturate(590%) hue-rotate(137deg) brightness(92%) contrast(97%);
+ }*/
+ 
+.navigation-section-group{
+    IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.NavigationIconLinkItemRenderer");
+    /*
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;*/
+}
+
+.navigation-section-group .navigationlink {
+  padding-left: 34px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #B3B3B3 !important;
+  font-weight: lighter;
+}
+
+.navigation-section-group .navigationlink.hovered {
+  background: rgba(179, 179, 179, 0.15) !important;
+  font-weight: 500;
+}
+.navigation-section-group .navigationlink[selected] {
+        background-color: #16767f !important;
+        border-right: 5px solid #262626;
+        color: #262626 !important;
+        font-weight: 500;
+}   
+
+.jewel.navigationlink[selected]:hover {
+color: #04a3b3 !important;
+border-right: 5px solid #16767f;
+font-weight: 500;
+background-color: #262626 !important;
+}   
+
+.navigation-section-title.jewel.label {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Custom CSS Selectors */
+
+.formatHeader
+{
+padding: 17px;
+background: linear-gradient(#404040, #262626);
+color: #04a3b3;
+}
+
+.codeExample
+{
+  border-radius: 10px;
+  border: 0px solid;
+}
+
+/* Custom Inspire-Tree CSS */
+
+.inspire-tree {
+  background: white;
+}
+
+.inspire-tree.IconsSetPermiss .icon-folder::before,
+.inspire-tree.IconsSetPermiss .icon-folder-open::before,
+.inspire-tree.IconsSetPermiss .selected>.title-wrap .icon-folder::before,
+.inspire-tree.IconsSetPermiss .selected>.title-wrap .icon-folder-open::before {
+    /* icon "link"
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 16px 16px;*/
+    /* icon "puzle" (optimized) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='16' height='16' viewBox='0 0 172 172' style=' fill:%23000000;'%3E%3Cg fill='none' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cpath d='M0,172v-172h172v172z' fill='none'%3E%3C/path%3E%3Cg fill='%23666666'%3E%3Cpath d='M82.41667,0c-9.89717,0 -17.91667,8.0195 -17.91667,17.91667v10.75h-43v43h9.72819c9.374,0 17.90166,6.74518 18.84049,16.06901c1.075,10.72849 -7.31235,19.76432 -17.81868,19.76432h-10.75v43h43v-9.72819c0,-9.374 6.74518,-17.90166 16.06901,-18.84049c10.72849,-1.075 19.76432,7.31235 19.76432,17.81868v10.75h43v-43h10.75c9.89717,0 17.91667,-8.0195 17.91667,-17.91667c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667h-10.75v-43h-43v-10.75c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.inspire-tree.IconsSetPermiss .icon-file-empty::before,
+.inspire-tree.IconsSetPermiss .selected > .title-wrap .icon-file-empty::before {
+    background-image: url();
+}
+
+.inspire-tree.IconsSetAssignation .icon-folder::before,
+.inspire-tree.IconsSetAssignation .icon-folder-open::before,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-folder::before,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-folder-open::before {
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300bfff' stroke='%23fff' viewBox='0 0 322 450'%3E%3Cpath d='M288.5 320.5h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-320h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0 160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32z' opacity='.4'/%3E%3Cpath d='M96.5 320.5h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm0-160h-64a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32h64a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32z'/%3E%3C/svg%3E");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}
+
+
+.inspire-tree.IconsSetAssignation .icon-file-empty::before ,
+.inspire-tree.IconsSetAssignation .selected>.title-wrap .icon-file-empty::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300b2ff' viewBox='0 0 448 512'%3E%3Cpath d='M352 128a128 128 0 1 1-256 0 128 128 0 0 1 256 0z' opacity='.4'/%3E%3Cpath d='M313.6 288h-16.7a174.1 174.1 0 0 1-145.8 0h-16.7A134.4 134.4 0 0 0 0 422.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+}
+
+
+
+
+
+.inspire-tree.parentIconUserClass .icon-folder::before {
+  background-image: url(assets/116-user-plus.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenIconUserClass .icon-folder-open::before {
+  background-image: url(assets/117-user-minus.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserClass .icon-file-empty::before {
+  background-image: url(assets/114-user.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+.inspire-tree.parentSelectedIconUserClass .selected > .title-wrap .icon-folder::before {
+  background-image: url(assets/folder-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenSelectedIconUserClass .selected > .title-wrap .icon-folder-open::before {
+  background-image: url(assets/folder-open-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserSelectedClass .selected > .title-wrap .icon-file-empty::before {
+  background-image: url(assets/paper.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserMinusClass .icon-collapse::before {
+  background-image: url(assets/minus.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.iconUserPlusClass .icon-expand::before {
+  background-image: url(assets/plus.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+
+.inspire-tree.parentIconUserClass1 .icon-folder::before {
+  background-image: url(assets/folder-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+.inspire-tree.parentOpenIconUserClass1 .icon-folder-open::before {
+  background-image: url(assets/folder-open-icon.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
 

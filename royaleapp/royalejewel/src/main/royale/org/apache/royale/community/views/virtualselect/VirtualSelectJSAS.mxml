@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" >  
+
+    <fx:Metadata>
+        [Event(name="resfreshData", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+        import VirtualSelect
+        import org.apache.royale.community.virtualselect.OptionsInit;
+        import org.apache.royale.community.virtualselect.OptionsInit;
+
+        [Bindable]
+        private var arStringBig:Array = new Array();
+        [Bindable]
+        public var arClassBig:Array = new Array();
+        [Bindable]
+        public var arHClassBig:Array = new Array();
+
+        private var myvlist:Array = new Array();
+        private var myvhlist:Array = new Array();
+        private var opinit:Array = new Array();
+        private var opvinit:Array = new Array();
+
+        private function getDefaultOptions(domElement:Element):OptionsInit
+        {
+                var op:OptionsInit = new OptionsInit();
+                op.ele = domElement;
+                op.silentInitialValueSet = true;
+                op.markSearchResults = true;
+                op.optionHeight = "34px"; // _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
+                op.zIndex = 80;
+                op.dropboxWrapper = 'body';
+                op.showValueAsTags = false;
+                op.position = 'auto';
+                op.options = [];
+                return op;
+        }
+        public function makeVList():void
+        {
+           // setTimeout(function():void{
+
+                var op:OptionsInit = getDefaultOptions(myVSel1.element);
+                op.options = arClassBig;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[0] as Object));
+
+                op = getDefaultOptions(myVSelH1.element);
+                op.options = arHClassBig;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[0] as Object));
+
+                op = getDefaultOptions(myVSel2.element);
+                op.options = arClassBig;
+                op.search = true;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[1] as Object));
+
+                op = getDefaultOptions(myVSelH2.element);
+                op.options = arHClassBig;
+                op.search = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[1] as Object));
+
+                op = getDefaultOptions(myVSel3.element);
+                op.options = arClassBig;
+                op.search = true;
+                op.multiple = true;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[2] as Object));
+
+                op = getDefaultOptions(myVSelH3.element);
+                op.options = arHClassBig;
+                op.search = true;
+                op.multiple = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[2] as Object));
+
+                op = getDefaultOptions(myVSel3_1.element);
+                op.options = arClassBig;
+                op.search = false;
+                op.multiple = true;
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[3] as Object));
+
+                op = getDefaultOptions(myVSelH3_1.element);
+                op.options = arHClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.showDropboxAsPopup = true;
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[3] as Object));
+
+                op = getDefaultOptions(myVSel3_2.element);
+                op.options = arClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.disabledOptions = [0,1,2];
+                op.position = "top";
+                opinit.push(op);
+                myvlist.push(VirtualSelect.init(opinit[4] as Object));
+
+                op = getDefaultOptions(myVSelH3_2.element);
+                op.options = arHClassBig;
+                op.search = false;
+                op.multiple = true;
+                op.disabledOptions = [0,1,2];
+                op.position = "top";
+                opvinit.push(op);
+                myvhlist.push(VirtualSelect.init(opvinit[4] as Object));
+            //    },300);
+
+         }
+
+         private function refreshData():void
+         {
+             dispatchEvent(new Event("resfreshData"));
+         }
+
+         public function refreshData_Res():void
+         {
+             makeVList();
+         }
+
+
+        ]]>
+    </fx:Script>
+
+    <j:CardHeader gap="5">
+        <j:VGroup gap="5" percentWidth="50">
+            <j:CardTitle text="Simple dataProvider" className="primary-normal" percentWidth="100"/>            
+            <html:H5 text="Direct @externs AS"  className="primary-dark"/>
+        </j:VGroup>
+        <j:VGroup gap="5" percentWidth="50" itemsHorizontalAlign="itemsRight">
+            <j:CardTitle text="Hierarchical dataProvider" className="primary-normal" percentWidth="100"/>
+            <j:IconButton emphasis="primary" unboxed="true" style="margin-top: 0;" click="refreshData()">
+                <j:beads>
+                    <j:ToolTip toolTip="Refresh Data"/>
+                </j:beads>
+                <j:icon>
+                    <js:MaterialIcon text="{MaterialIconType.REFRESH}" />
+                </j:icon>
+            </j:IconButton>
+        </j:VGroup>
+    </j:CardHeader>
+
+    <j:CardPrimaryContent>
+
+        <j:VGroup percentWidth="100">
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <html:Div localId="myVSel1" percentWidth="45"/>
+                <html:Div localId="myVSelH1" percentWidth="45"/>
+            </j:HGroup>
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <html:Div localId="myVSel2" percentWidth="45" />
+                <html:Div localId="myVSelH2" percentWidth="45"/>
+            </j:HGroup>
+
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Multiple select</strong> With search box.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <html:Div localId="myVSel3" percentWidth="45" />
+                <html:Div localId="myVSelH3" percentWidth="45"/>
+            </j:HGroup>
+            
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <html:Div localId="myVSel3_1" percentWidth="45" />
+                <html:Div localId="myVSelH3_1" percentWidth="45"/>
+            </j:HGroup>
+            
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Disabled options</strong> (First 3 options disabled) - Open top</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <html:Div localId="myVSel3_2" percentWidth="45"/>
+                <html:Div localId="myVSelH3_2" percentWidth="45"/>
+            </j:HGroup>
+
+        </j:VGroup>
+        
+    </j:CardPrimaryContent>
+    
+</j:Card>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Drawer xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:models="org.apache.royale.community.models.*">
+
+    <fx:Metadata>
+        [Event(name="goToHome", type="org.apache.royale.events.Event")]
+        [Event(name="onChangeView", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+
+            import org.apache.royale.community.vos.NavigationLinkVO;
+            import org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer;
+            import org.apache.royale.community.itemRenderers.NavigationGroupExampleItemRenderer;
+
+            [Bindable("currentNavOptionChange")]
+            public var currentNavOption:NavigationLinkVO;
+
+            private function goToHome():void
+            {
+                dispatchEvent(new Event("goToHome"));
+            }
+
+            private function collapsibleChangeHandler(event:Event):void
+            {
+                var itchange:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
+                currentNavOption = itchange.selectedChild;
+                
+                dispatchEvent( new Event("onChangeView"));
+
+                changeStyleSelectedSubMenu();
+
+                if(!fixed)
+                    close();
+            }
+
+            /**
+             * When a level item is selected, it is marked as "selected" and the top level item is marked as "selected". 
+             * We make sure that the selection is unique, so that when a second level item is selected, 
+             * the item that may have been selected before must be deselected.
+             * 
+             * With CSS selectors we apply the style associated with the "[selected]" attribute.
+             */
+            private function changeStyleSelectedSubMenu():void{
+                var ir:NavigationGroupExampleItemRenderer;
+                var irSubMenu:NavigationLinkItemRenderer;
+                var numElements:int = collapsibleNavigation.numElements;
+
+                while (numElements--){
+                    ir = collapsibleNavigation.getElementAt(numElements) as NavigationGroupExampleItemRenderer;
+                    var irNumElements:int = ir.childNav.numElements;
+                    var submenuselected:Boolean = false;
+                    while(irNumElements--){
+                        irSubMenu = ir.childNav.getElementAt(irNumElements) as NavigationLinkItemRenderer;
+                        if(irSubMenu.data === currentNavOption){
+                            //irSubMenu.className = 'selectedSubMenu navigation-section-group jewel navigation layout vertical variableRowHeight viewport clipped scroll';
+                            //irSubMenu.toggleClass("selectedSubMenu",true);
+                            irSubMenu.element.setAttribute("selected","");
+                            submenuselected = true;
+                        }else{
+                            //irSubMenu.className = 'navigation-section-group jewel navigation layout vertical variableRowHeight viewport clipped scroll';
+                            //irSubMenu.toggleClass("selectedSubMenu",false);
+                            irSubMenu.element.removeAttribute("selected");
+                        }
+                    }
+                    if(!submenuselected)
+                        ir.element.removeAttribute("selected");
+                    else                            
+                        ir.element.setAttribute("selected","");
+                }
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:model>
+        <models:MainNavigationModel localId="mainNavigationModel"/>
+    </j:model>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:DrawerHeader>
+        <j:ImageButton src="assets/community-royale-jewel-04a3b3.svg" height="140" click="goToHome()"/>
+    </j:DrawerHeader>
+
+    <j:DrawerContent localId="drawerContent">
+        <j:Navigation localId="collapsibleNavigation" change="collapsibleChangeHandler(event)"
+            className="navSectionItemRenderer">
+            <j:beads>
+                <!--<j:NavigationActionNotifier/>-->
+                <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="collapsibleNavMainMenu" destinationPropertyName="dataProvider"/>
+            </j:beads>
+        </j:Navigation>
+
+    </j:DrawerContent>
+
+    <j:DrawerFooter localId="drawerFooter">
+        <j:BarSection>
+            <j:IconButton>
+                <j:icon>
+                    <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
+                </j:icon>
+            </j:IconButton>
+        </j:BarSection>
+    </j:DrawerFooter>
+
+</j:Drawer>

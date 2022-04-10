@@ -8,11 +8,13 @@ package org.apache.royale.community.jewel.beads.controls.combobox
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.events.IEventDispatcher;
-	import mx.events.MouseEvent;
+	import org.apache.royale.events.MouseEvent;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
      *  a Jewel ComboBox to filter options as we type
+	 * 
+	 *  This extension is intended for local debugging
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

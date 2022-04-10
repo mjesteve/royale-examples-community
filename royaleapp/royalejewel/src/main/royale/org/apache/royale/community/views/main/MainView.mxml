@@ -1,31 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:j="library://ns.apache.org/royale/jewel"
-        xmlns:js="library://ns.apache.org/royale/basic"
-	    xmlns:views="org.apache.royale.community.views.*">
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:views="org.apache.royale.community.views.*"
+    xmlns:localControls="org.apache.royale.community.controls.*"
+    xmlns:viewsImg="org.apache.royale.community.views.image.*"
+	xmlns:viewsJscal="org.apache.royale.community.views.calendars.jscalendar.*"
+	xmlns:viewsFullcal="org.apache.royale.community.views.calendars.fullcalendar.*"
+    xmlns:viewsJc="org.apache.royale.community.views.customcontrols.*"
+    xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    xmlns:viewsCb="org.apache.royale.community.views.combobox.*"
+    xmlns:viewsTree="org.apache.royale.community.views.trees.*"
+    initComplete="init()">
 
     <fx:Script>
         <![CDATA[
+            import org.apache.royale.community.vos.NavigationLinkVO;
 
+            private function init():void
+            {
+                goToHome();
+            }
+
+            private function goToHome():void
+            {
+                drawer.currentNavOption = new NavigationLinkVO("Welcome", "welcome_panel", null);
+                navigateTo();
+            }
+
+            private function navigateTo():void
+            {
+                main.selectedContent = drawer.currentNavOption.hash;
+
+                //if(drawer.currentNavOption.hash == "fullcalendar_panel")
+                //    vFullCalendar.refreshSizeCalendar();
+            }
 
 
         ]]>
     </fx:Script>
 
     <j:beads>
-		<!--<js:ContainerDataBinding/>-->
         <js:ViewDataBinding/>
 	</j:beads>
 
-    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+    <localControls:DrawerMain localId="drawer" goToHome="goToHome()" onChangeView="navigateTo()">
+        <localControls:beads>
+            <j:ResponsiveDrawer auto="true"/>
+        </localControls:beads>
+    </localControls:DrawerMain>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:BarRow localId="barRow">
             <j:BarSection>
-                <j:BarTitle text="Royale Tests      [ Royale 0.9.8-SNAPSHOT ]"/>
+                <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
+                    <j:beads>
+                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false" />
+                    </j:beads>
+                    <j:icon>
+                        <js:MaterialIcon text="{MaterialIconType.MENU}" />
+                    </j:icon>
+                </j:IconButton>
+                <j:BarTitle text="Apache Royale Tests      [ Royale 0.9.10-SNAPSHOT ]"/>
+            </j:BarSection>
+            <j:BarSection>
             </j:BarSection>
         </j:BarRow>
     </j:TopAppBar>
 
-     <j:FooterBar localId="footerbar" fixed="true" >
+     <j:FooterBar localId="footerbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:BarRow>
 
             <j:BarSection itemsHorizontalAlign="itemsRight">
@@ -36,8 +80,56 @@
         </j:BarRow>
      </j:FooterBar>
 
-     <j:ApplicationMainContent localId="mainContent" hasTopAppBar="true" hasFooterBar="true" selectedContent="viewWizard">
-        <views:WizardView localId="viewWizard" name="viewWizard"/>
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="contentMainViews">
+        <views:WelcomeSection name="welcome_panel"/>
+        <!-- -->
+        <j:ScrollableSectionContent name="virtualselect_panel">
+            <viewsVSel:VirtualSelectJS/>
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="jscalendar_panel">
+            <viewsJscal:JsCalendarView localId="vJsCalendar"/>
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="fullcalendar_panel">
+            <viewsFullcal:FullCalendarView_new localId="vFullCalendar"/>
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="inspiretree_panel">
+            <viewsTree:InspireTree />
+        </j:ScrollableSectionContent>
+
+        <j:ScrollableSectionContent name="TriStateCheckBox_panel">
+            <viewsJc:TriStateCheckBox_Test/>
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="Debug_PageNavigator_panel">
+            <viewsJc:Debug_PageNavigator />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="ComboBoxJwExt_panel">
+            <viewsJc:ComboBoxJwExt_Test/>
+        </j:ScrollableSectionContent>
+
+        <!-- -->
+        <j:SectionContent name="SizeContainer_panel">
+            <viewsLab:SizeContainer percentHeight="100" percentWidth="100" />
+        </j:SectionContent>
+        <j:ScrollableSectionContent name="Debug_Pills_panel">
+            <views:Debug_Pills />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="Debug_ErrorImage_panel">
+            <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+
+        <!-- -->
+        <j:ScrollableSectionContent name="Debug_ComboTODO_Search_panel">
+            <viewsCb:Debug_ComboTODO_Search percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="Debug_ComboTODO_panel">
+            <viewsCb:Debug_ComboTODO percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="MainViewInspireTree_panel">
+            <viewsTree:MainViewInspireTree percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="MainViewInspireTree_TestMarker_panel">
+            <viewsTree:MainViewInspireTree_TestMarker percentHeight="100" percentWidth="100" />
+        </j:ScrollableSectionContent>
 
     </j:ApplicationMainContent>
 

@@ -20,11 +20,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="Custom Template for injecting custom style CSS">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <!-- 
+      It is advisable that the main css is the first one (${application}.css = App.css). 
+      If we use 'dynamic selectors', as for example in the bead 'ListAlternateRowColor' we will avoid problems.
+      
+      (When retrieving the css created dynamically with 'getClassStyle'. 
+      'getClassStyle' is coupled to the “first” stylesheet referenced in the html template. 
+      With the current implementation, if you have more than one, getClassStyle will fail to find the appropriate items 
+      if the item being looked for is not within the first file)${body}
+    -->
     <link rel="stylesheet" type="text/css" href="${application}.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/defaultsextern.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 ${head}
 </head>
 <body>
-${body}
+<script type="text/javascript">  
+  new App().start();
+</script>
 </body>
 </html>
