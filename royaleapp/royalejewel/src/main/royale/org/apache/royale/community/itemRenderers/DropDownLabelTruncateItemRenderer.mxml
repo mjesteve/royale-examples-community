@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:DropDownListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic" minHeight="35">
+
+    <fx:Script>
+        <![CDATA[
+            override public function set data(value:Object):void
+            {
+                super.data = value;
+
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ItemRendererDataBinding />
+    </j:beads>
+
+    <j:HGroup percentWidth="100" minHeight="35" itemsVerticalAlign="itemsCenter">
+        <j:Label text="{data}" height="35" style="max-width:100%;">
+            <j:beads>
+                <js:Paddings paddingRight="8"/>
+                <js:EllipsisOverflow/>
+            </j:beads>
+        </j:Label>
+    </j:HGroup>
+</j:DropDownListItemRenderer>

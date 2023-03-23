@@ -4,10 +4,10 @@ package org.apache.royale.community.jewel.beads.controls.combobox
 	{
 	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	}
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.community.beads.ReadOnly;
+	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	
 	/**
 	 *  The ComboBoxReadOnly bead class is a specialty ReadOnly bead that can be used to lock a Jewel ComboBox.
@@ -30,7 +30,7 @@ package org.apache.royale.community.jewel.beads.controls.combobox
 		 *  @productversion Royale 0.9.6
 		 */
 		public function ComboBoxReadOnly()
-		{
+		{ 
 		}
 
 		COMPILE::JS
@@ -42,7 +42,7 @@ package org.apache.royale.community.jewel.beads.controls.combobox
 		{
 			COMPILE::JS
 			{
-			var view:ComboBoxView = (_strand as UIBase).view as ComboBoxView;
+			var view:IViewWithTextInputAndButton = (_strand as UIBase).view as IViewWithTextInputAndButton;
 
 			if (view) {
 				var pos:HTMLElement = (_strand as IUIBase).positioner;

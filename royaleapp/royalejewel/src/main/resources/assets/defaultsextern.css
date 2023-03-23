@@ -54,3 +54,9 @@
   -webkit-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
   -moz-clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
   }
+
+/* Styles not supported by the current compiler. */
+mark {
+  background-color: #04a3b3;
+  color: #fff;
+}

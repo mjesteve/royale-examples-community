@@ -4,8 +4,8 @@ package org.apache.royale.community.views.trees
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.events.Event;
-	import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBead;
-	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControl;
+	import org.apache.royale.externsjs.inspiretree.beads.InspireTreeCheckBoxModeBead;
+	import org.apache.royale.externsjs.inspiretree.controls.InspireTreeBasicControl;
 	import org.apache.royale.community.models.UsersPermissions;
 	import org.apache.royale.community.vos.PermissVO;
 

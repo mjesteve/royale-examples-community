@@ -30,7 +30,7 @@
 
         <configuration>
           <targets>JSRoyale</targets>
-          <debug>false</debug>
+          <debug>${royale.debug}</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>

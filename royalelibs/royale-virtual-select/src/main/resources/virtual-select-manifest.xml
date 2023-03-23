@@ -21,6 +21,8 @@
 
 <componentPackage>
 
-    <component id="VirtualSelectJwExt" class="org.apache.royale.community.controls.VirtualSelectJwExt"/>
+    <component id="VirtualSelectJwExt" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectJwExt"/>
+    <component id="VirtualSelectListJwExt" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectListJwExt"/>
+    <component id="OptionsInit" class="org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit"/>
 
 </componentPackage>

@@ -29,11 +29,11 @@
             "src/main/royale"
         ],
         "include-namespaces": [
-            "library://ns.apache.org/royale/community"
+            "library://ns.apache.org/royale/externsjs/inspiretree"
         ],
         "namespace": [
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/inspiretree",
                 "manifest": "src/main/resources/inspire-tree-manifest.xml"
             }
         ],

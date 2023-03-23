@@ -28,7 +28,7 @@
                 <configuration>
                     <mainClass>App.mxml</mainClass>
                     <targets>JSRoyale</targets>
-                    <debug>${project.compiler.debug}</debug>
+                    <debug>${royale.debug}</debug>
                     <htmlTemplate>${basedir}/src/main/resources/jewel-app-index-template.html</htmlTemplate>
                     <additionalCompilerOptions>
                         ${project.compiler.options};
@@ -72,12 +72,12 @@
                         <configuration>
                             <fileSets>
                                 <fileSet>
-                                    <sourceFile>${compiler.output-dir-release}/index.html</sourceFile>
-                                    <destinationFile>${compiler.output-dir-release}/index-release.html</destinationFile>
-                                </fileSet>
-                                <fileSet>
                                     <sourceFile>${compiler.output-dir-debug}/index.html</sourceFile>
                                     <destinationFile>${compiler.output-dir-debug}/index-debug.html</destinationFile>
+                                </fileSet>
+                                <fileSet>
+                                    <sourceFile>${compiler.output-dir-release}/index.html</sourceFile>
+                                    <destinationFile>${compiler.output-dir-release}/index-release.html</destinationFile>
                                 </fileSet>
                             </fileSets>
                         </configuration>

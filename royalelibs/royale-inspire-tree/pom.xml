@@ -76,7 +76,7 @@
 
         <configuration>
           <targets>JSRoyale</targets>
-          <debug>false</debug>
+          <debug>${royale.debug}</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
@@ -89,12 +89,12 @@
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.apache.org/royale/community</uri>
+              <uri>library://ns.apache.org/royale/externsjs/inspiretree</uri>
               <manifest>${project.basedir}/src/main/resources/inspire-tree-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/community</uri>
+              <uri>library://ns.apache.org/royale/externsjs/inspiretree</uri>
               <manifest>${project.basedir}/src/main/resources/inspire-tree-as-manifest.xml</manifest>
             </namespace>
           </namespaces>

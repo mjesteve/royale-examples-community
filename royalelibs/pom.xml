@@ -14,13 +14,15 @@
   <name>Royale Libs</name>
 
   <modules>
-    <!-- Comment for work
-    <module>royalemobiscroll</module> -->
-    <module>royale-virtual-select</module>
+    <!--
+    <module>royale-js-year-calendar</module> -->
+    <!-- Comment for work -->
+    <!-- 
     <module>royalefullcalendar</module>
     <module>royale-jscalendar</module>
     <module>royale-inspire-tree</module>
-    <module>royalecomponents</module>
+    <module>royale-virtual-select</module>
+    <module>royalecomponents</module>-->
   </modules>
 
   <properties>

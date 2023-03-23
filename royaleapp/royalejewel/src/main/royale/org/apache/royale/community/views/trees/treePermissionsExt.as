@@ -4,10 +4,10 @@ package org.apache.royale.community.views.trees
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
     import org.apache.royale.events.Event;
-	import org.apache.royale.community.inspiretree.controls.InspireTreeBasicControlExt;
+	import org.apache.royale.externsjs.inspiretree.controls.InspireTreeBasicControlExt;
 	import org.apache.royale.community.models.UsersPermissions;
 	import org.apache.royale.community.vos.PermissVO;
-	import org.apache.royale.community.inspiretree.beads.InspireTreeCheckBoxModeBeadExt;
+	import org.apache.royale.externsjs.inspiretree.beads.InspireTreeCheckBoxModeBeadExt;
 
 	public class treePermissionsExt extends InspireTreeBasicControlExt
 	{

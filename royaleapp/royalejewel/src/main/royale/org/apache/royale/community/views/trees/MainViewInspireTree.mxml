@@ -3,6 +3,7 @@
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:itree="library://ns.apache.org/royale/externsjs/inspiretree"
     xmlns:html="library://ns.apache.org/royale/html"
 	xmlns:trees="org.apache.royale.community.views.trees.*"
 	initComplete="InitCompleteHandler()">
@@ -14,7 +15,7 @@
 			import org.apache.royale.jewel.RadioButton;
 			import org.apache.royale.jewel.TextInput;
 			import org.apache.royale.community.models.UsersPermissions;
-			import org.apache.royale.community.inspiretree.vos.ItemTreeNode;
+			import org.apache.royale.externsjs.inspiretree.vos.ItemTreeNode;
 
 			[Bindalbe]
 			private var dpUsersPermiss:UsersPermissions = new UsersPermissions();
@@ -290,15 +291,15 @@
                             <j:HGroup percentWidth="100">
                                 <trees:treePermissions localId="treeTest" percentWidth="50" height="300" >
                                     <trees:beads>
-                                        <jc:InspireTreeIconBead localId="treeTestIcons" />
-                                        <jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
+                                        <itree:InspireTreeIconBead localId="treeTestIcons" />
+                                        <itree:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
                                     </trees:beads>
                                 </trees:treePermissions>
                                 <trees:treePermissions localId="treeTestCheck" percentWidth="50" height="300" >
                                     <trees:beads>
-                                        <jc:InspireTreeCheckBoxModeBead localId="beadCheckTest" checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                        <jc:InspireTreeIconBead localId="treeTestIconsCheck" />
-                                        <jc:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
+                                        <itree:InspireTreeCheckBoxModeBead localId="beadCheckTest" checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                        <itree:InspireTreeIconBead localId="treeTestIconsCheck" />
+                                        <itree:InspireTreeReadOnlyCheckBead readOnly="{chReadOnly.selected}"/>
                                     </trees:beads>
                                 </trees:treePermissions>
                             </j:HGroup>
@@ -322,9 +323,9 @@
                         <j:Label text="Icons Set - Default:" />
                         <trees:treePermissions localId="treeTest1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeIconBead />
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeIconBead />
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -333,9 +334,9 @@
                         <j:Label text="Icons Set - None:" />
                         <trees:treePermissions localId="treeTest2" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeIconBead typeIconsSet="none"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeIconBead typeIconsSet="none"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -344,9 +345,9 @@
                         <j:Label text="Icons Set - Custom images:" />
                         <trees:treePermissions localId="treeTest3" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeIconBead typeIconsSet="custom" childIcon="assets/114-user.svg" parentIcon="assets/114-user.svg"  parentOpenIcon="assets/114-user.svg"  parentSelectedIcon="assets/114-user.svg" parentOpenSelectedIcon="assets/114-user.svg" childSelectedIcon="assets/114-user.svg"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeIconBead typeIconsSet="custom" childIcon="assets/114-user.svg" parentIcon="assets/114-user.svg"  parentOpenIcon="assets/114-user.svg"  parentSelectedIcon="assets/114-user.svg" parentOpenSelectedIcon="assets/114-user.svg" childSelectedIcon="assets/114-user.svg"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -355,9 +356,9 @@
                         <j:Label text="Icons Set - Custom Classes:" />
                         <trees:treePermissions localId="treeTest4" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeIconBead typeIconsSet="customClasses" childIcon="iconUserClass" parentIcon="parentIconUserClass" parentOpenIcon="parentOpenIconUserClass" parentOpenSelectedIcon="parentOpenSelectedIconUserClass" parentSelectedIcon="parentSelectedIconUserClass"  childSelectedIcon="iconUserSelectedClass" minusIcon="iconUserMinusClass" plusIcon="iconUserPlusClass"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeIconBead typeIconsSet="customClasses" childIcon="iconUserClass" parentIcon="parentIconUserClass" parentOpenIcon="parentOpenIconUserClass" parentOpenSelectedIcon="parentOpenSelectedIconUserClass" parentSelectedIcon="parentSelectedIconUserClass"  childSelectedIcon="iconUserSelectedClass" minusIcon="iconUserMinusClass" plusIcon="iconUserPlusClass"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -366,10 +367,10 @@
                         <j:Label text="Icons Set - Default:" />
                         <trees:treePermissions localId="treeTest1_1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                <jc:InspireTreeIconBead />
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                <itree:InspireTreeIconBead />
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -378,10 +379,10 @@
                         <j:Label text="Icons Set - None:" />
                         <trees:treePermissions localId="treeTest2_1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                <jc:InspireTreeIconBead typeIconsSet="none"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                <itree:InspireTreeIconBead typeIconsSet="none"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -390,10 +391,10 @@
                         <j:Label text="Icons Set - Custom Images:" />
                         <trees:treePermissions localId="treeTest3_1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                <jc:InspireTreeIconBead typeIconsSet="custom" childIcon="assets/114-user.svg" parentIcon="assets/114-user.svg"  parentOpenIcon="assets/114-user.svg"  parentSelectedIcon="assets/114-user.svg" parentOpenSelectedIcon="assets/114-user.svg" childSelectedIcon="assets/114-user.svg"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                <itree:InspireTreeIconBead typeIconsSet="custom" childIcon="assets/114-user.svg" parentIcon="assets/114-user.svg"  parentOpenIcon="assets/114-user.svg"  parentSelectedIcon="assets/114-user.svg" parentOpenSelectedIcon="assets/114-user.svg" childSelectedIcon="assets/114-user.svg"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -402,10 +403,10 @@
                         <j:Label text="Icons Set - Custom Classes:" />
                         <trees:treePermissions localId="treeTest4_1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                <jc:InspireTreeIconBead typeIconsSet="customClasses" childIcon="iconUserClass" parentIcon="parentIconUserClass" parentOpenIcon="parentOpenIconUserClass" parentOpenSelectedIcon="parentOpenSelectedIconUserClass" parentSelectedIcon="parentSelectedIconUserClass"  childSelectedIcon="iconUserSelectedClass" minusIcon="iconUserMinusClass" plusIcon="iconUserPlusClass"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                <itree:InspireTreeIconBead typeIconsSet="customClasses" childIcon="iconUserClass" parentIcon="parentIconUserClass" parentOpenIcon="parentOpenIconUserClass" parentOpenSelectedIcon="parentOpenSelectedIconUserClass" parentSelectedIcon="parentSelectedIconUserClass"  childSelectedIcon="iconUserSelectedClass" minusIcon="iconUserMinusClass" plusIcon="iconUserPlusClass"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>
@@ -414,10 +415,10 @@
                         <j:Label text="Icons Set - Custom Icons:" />
                         <trees:treePermissions localId="treeTest5_1" percentWidth="100" height="500" >
                             <trees:beads>
-                                <jc:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
-                                <jc:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
-                                <jc:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
-                                <jc:InspireTreeIconBead typeIconsSet="customIcons"/>
+                                <itree:InspireTreeEventsBead nodeClick="onClickExample" nodeDblClick="onDblClickExample" nodeContextmenu="onContextMenuExample"/>
+                                <itree:InspireTreePaginateBead paginate="{chPaginate.selected}" numNodesPage="5"/>
+                                <itree:InspireTreeCheckBoxModeBead checkboxField="checked" showCheckboxes="true" revertIcon="{chRevert.selected}"/>
+                                <itree:InspireTreeIconBead typeIconsSet="customIcons"/>
                             </trees:beads>
                         </trees:treePermissions>
                     </j:GridCell>

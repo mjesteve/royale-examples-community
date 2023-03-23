@@ -5,7 +5,7 @@ package
 	 * @externs
 	 */
 	COMPILE::JS
-	public class jsCalendar{
+	public class jsCalendar_reduct{
 
 		/**
 		 * <inject_script>

@@ -4,23 +4,21 @@
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
-	xmlns:views="org.apache.royale.community.views.*"
-    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
     initComplete="onInitComplete()">
 
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.community.virtualselect.OptionsInit;
+        import org.apache.royale.externsjs.virtualselect.OptionsInit;
 
         public function onInitComplete():void
         {
             makeDP(true);
             makeVList();
         }
-        /*
         [Bindable]
         private var dpString:ArrayList = new ArrayList;
+        /*
         [Bindable]
         private var dpClass:ArrayList = new ArrayList;
         [Bindable]
@@ -45,7 +43,7 @@
             }else {
                 prefix = "";
             }
-            //var ar:Array = new Array();
+            var ar:Array = new Array();
             //var ar2:Array = new Array();
             //var varray:Array = new Array();
             var varray2:Array = new Array();
@@ -54,17 +52,17 @@
             var index:int = 0
             for(index = 0; index < 15000; index++)
             {
-                //if(index < 100){
-                    //ar.push(prefix+'String: '+index.toString());
+                if(index < 100){
+                    ar.push(prefix+'String: '+index.toString());
                     //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
-                //}
+                }
                 //varray.push(prefix+'String: '+index.toString());
                 //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
                 varray3.push({ label: prefix+'Desc: '+index.toString()+'***************************', value: index.toString() });
                 varray2.push(prefix+'Desc: '+index.toString());
             }
-            /*dpString = new ArrayList(ar);
-            dpClass = new ArrayList(ar2);
+            dpString = new ArrayList(ar);
+            /*dpClass = new ArrayList(ar2);
             dpStringBig = new ArrayList(varray);
             dpClassBig = new ArrayList(varray2);*/
             arStringBig = varray2.slice();
@@ -148,12 +146,15 @@
                 </j:CardHeader>
 
                 <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
-  
-                <j:HGroup width="150" gap="3" >
-                    <jc:VirtualComboBoxJwExt percentWidth="100" dataProvider="{dpClassBig}" 
-                                            itemRendererTruncateByDefault="true"/>
-                </j:HGroup>
-                    
+                        <jc:ComboBoxJwExtDefs width="200" dataProvider="{dpString}" >
+                            <jc:beads>
+                                <j:ComboBoxDisabled disabled="{chEna.selected}"/>
+                            </jc:beads>
+                        </jc:ComboBoxJwExtDefs>
+                    <j:CheckBox localId="chEna" selected="false" text="Disabled"/>
+                    <!-- <j:HGroup width="150" gap="3" >
+                        <jc:VirtualComboBoxJwExt percentWidth="100" dataProvider="{dpString}" itemRendererTruncateByDefault="true"/>
+                    </j:HGroup> -->
                 </j:CardPrimaryContent>
 
             </j:Card>

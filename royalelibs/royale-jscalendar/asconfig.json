@@ -30,11 +30,11 @@
             //"../royalecomponents/src/main/royale/"
         ],
         "include-namespaces": [
-            "library://ns.apache.org/royale/community"
+            "library://ns.apache.org/royale/externsjs/jscalendar"
         ],
         "namespace": [
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/jscalendar",
                 "manifest": "src/main/resources/jscalendar-manifest.xml"
             }//,
             //{

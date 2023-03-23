@@ -8,11 +8,12 @@ package org.apache.royale.community.jewel.beads.controllers
 	{
 	import org.apache.royale.utils.html.isFocused;
     }
+	import org.apache.royale.community.jewel.beads.controls.combobox.IComboBoxViewJwExt;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -22,11 +23,13 @@ package org.apache.royale.community.jewel.beads.controllers
 	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.community.jewel.supportClasses.IStrandWithResetButton;
 
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -52,7 +55,7 @@ package org.apache.royale.community.jewel.beads.controllers
 		{
 		}
 
-		protected var viewBead:IComboBoxView;
+		protected var viewBead:IComboBoxViewJwExt;
 		private var list:List;
 		private var model:IComboBoxModel;
 
@@ -70,8 +73,9 @@ package org.apache.royale.community.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			model = (_strand as IStrandWithModelView).model as IComboBoxModel;
+			viewBead = (_strand as IStrandWithModelView).view as IComboBoxViewJwExt;
+			
 			if (viewBead) {
 				finishSetup();
 			} else {
@@ -94,6 +98,9 @@ package org.apache.royale.community.jewel.beads.controllers
 			IEventDispatcher(viewBead.button).addEventListener(MouseEvent.CLICK, clickHandler);
             IEventDispatcher(viewBead.textinput).addEventListener(MouseEvent.CLICK, clickHandler);
 			IEventDispatcher(viewBead.textinput).addEventListener(KeyboardEvent.KEY_DOWN, textInputKeyEventHandler);
+			if( _strand is IStrandWithResetButton && (_strand as IStrandWithResetButton).withResetButton )
+				IEventDispatcher(viewBead.resetButton).addEventListener(MouseEvent.CLICK, resetHandler);
+
             COMPILE::JS{
 			//keyboard navigation from textfield should also close the popup
 			viewBead.textinput.element.addEventListener('blur', handleTextInputFocusOut);
@@ -134,6 +141,17 @@ package org.apache.royale.community.jewel.beads.controllers
 				//it needs to stay with the ComboBox (for selection bindings to work)
                 IJewelSelectionModel(model).dispatcher = IEventDispatcher(_strand);
             }
+		}
+
+		/**
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		private function resetHandler(event:Event):void
+		{
+			event.stopImmediatePropagation();
+			model.selectedItem = null;
+			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		/**
@@ -208,6 +226,25 @@ package org.apache.royale.community.jewel.beads.controllers
 				//this should be less than 300
                 setTimeout(textInputDismissPopUp, 280); // ret
             }
+
+			//verify selected value is not null
+			var selec:Boolean = model.selectedItem && model.selectedIndex != -1 ? true:false;
+			if(selec)
+			{
+				//real selection? ¿text in _textInput?
+				var inputtext:String = (viewBead.textinput as TextInput).input.value;
+				var displaytext:String = getLabelFromData(model, model.selectedItem);
+				if( inputtext != displaytext )
+					selec=false;
+			}
+			if(!selec)
+			{
+				if(model.selectedIndex != -1)
+					model.selectedIndex = -1;
+				else
+					model.selectedItem = null;
+				IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
+			}
         }
 
 		protected function textInputDismissPopUp():void

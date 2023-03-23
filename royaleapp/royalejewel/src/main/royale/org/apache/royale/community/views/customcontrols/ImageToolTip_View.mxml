@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+
+        public function onInitComplete():void
+        {
+
+        }
+
+        ]]>
+    </fx:Script>
+
+    <fx:Style>
+        @namespace js "library://ns.apache.org/royale/basic";
+        @namespace j "library://ns.apache.org/royale/jewel";
+        @namespace jc "library://ns.apache.org/royale/community";
+        
+        .defaultImageToolTip {
+            max-width: 200px;
+        }
+    </fx:Style>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+    <jc:ExampleHeader title="Image ToolTip">
+        <jc:description>
+            <![CDATA[The <strong>ImageToolTip</strong> class is a specialty bead that can be used with any control. The bead floats a image over a control if the user hovers over the control with a mouse [Basic - WIP]]]>
+        </jc:description>
+    </jc:ExampleHeader>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    
+        <j:Card>
+            <j:CardHeader>
+                <j:CardTitle text="1st Example" className="primary-normal"/>
+            </j:CardHeader>
+
+            <j:CardPrimaryContent>
+
+                <j:VGroup percentWidth="100">
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>If src not found:</p>]]></j:html>
+                    </j:Label>
+
+                    <j:IconButton>
+                        <j:icon>
+                            <js:FontAwesomeIcon localId="icon1" 
+                            text="{FontAwesome5IconType.PORTRAIT}" faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
+                        </j:icon>
+                        <j:beads>
+                            <jc:ImageToolTip toolTip="assets/royale.png" className="defaultImageToolTip"/>
+                        </j:beads>
+                    </j:IconButton>
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p>If src is OK:</p>]]></j:html>
+                    </j:Label>
+
+                    <js:FontAwesomeIcon localId="icon2" emphasis="primary"
+                    text="{FontAwesome5IconType.PORTRAIT}" faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}">
+                        <js:beads>
+                            <jc:ImageToolTip toolTip="assets/royale_spheres.png" className="defaultImageToolTip"/>
+                        </js:beads>
+                    </js:FontAwesomeIcon>
+
+                </j:VGroup>
+
+            </j:CardPrimaryContent>
+
+        </j:Card>
+
+    </j:GridCell>
+
+    <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+    <!-- -->
+    </j:GridCell>
+</j:Grid>

@@ -3,7 +3,7 @@ package
 	COMPILE::JS
     {
         import InspireTree;
-        import org.apache.royale.community.inspiretree.vos.ConfigDOM;
+        import org.apache.royale.externsjs.inspiretree.vos.ConfigDOM;
     }
 
 	/**

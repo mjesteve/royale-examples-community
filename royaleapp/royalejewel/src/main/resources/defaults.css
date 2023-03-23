@@ -17,6 +17,10 @@
  @namespace "http://www.w3.org/1999/xhtml";
  @namespace j "library://ns.apache.org/royale/jewel";
  @namespace jc "library://ns.apache.org/royale/community";
+ @namespace vsel "library://ns.apache.org/royale/externsjs/virtualselect";
+ @namespace jscal "library://ns.apache.org/royale/externsjs/jscalendar";
+ @namespace itree "library://ns.apache.org/royale/externsjs/inspiretree";
+ 
  
  /*
  @media (min-width: 0px){
@@ -24,6 +28,15 @@
 .Application {
   font-family: "Open Sans", serif, sans-serif !important;
   color: #434343;
+}
+.alignTextLeft {
+    text-align: left !important;
+}
+.alignTextRight{
+    text-align: right !important;
+}
+.alignTextCenter{
+    text-align: center !important;
 }
 
 /* scrollbar ----------------------------------------- */
@@ -312,33 +325,6 @@
     }
  /*}*/
  
- /* Does not recognise the default.css file of virtual-select ------------------------------------------ */
- 
- .vscomp-wrapper {
-   display:inline-flex;
-   position:relative;
-   width:100%;
-   font-family: 'Open Sans', serif, sans-serif !important;
-   color: #333333 !important;
-   font-size: inherit !important;
- }
- 
- .vscomp-option-text span > mark  {
-   background-color: #04a3b3;
- }
- 
- span > mark {
-   background-color: #04a3b3;
- }
- 
- mark {
-   background-color: #04a3b3;
- }
- 
- .vscomp-royale {
-   background-color: #333333 !important;
-   color: #04a3b3 !important;
- }
  
  /* Navigator - Drawer CSS --------------------------------------------------------------- */
 
@@ -581,4 +567,28 @@ color: #04a3b3;
   background-repeat: no-repeat;
   background-size: 16px 16px;
 }
+/*
+j|DropDownList {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DropDownListModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DropDownLabelTruncateItemRenderer");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController"); }
+*/
+.DropDownIt{
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DropDownLabelTruncateItemRenderer");
+}
 
+
+/*
+.jewel.datefield.includetime .jewel.button::after {
+  background: url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill='%233CADF1'%3E %3Cg%3E %3Ctitle%3ELayer 1%3C/title%3E %3Cg id='svg_3'%3E %3Cpath id='svg_1' d='m0,0l24,0l0,24l-24,0l0,-24z' opacity='undefined' fill='none'/%3E %3Cpath id='svg_2' d='m20,3l-1,0l0,-2l-2,0l0,2l-10,0l0,-2l-2,0l0,2l-1,0c-1.1,0 -2,0.9 -2,2l0,16c0,1.1 0.9,2 2,2l16,0c1.1,0 2,-0.9 2,-2l0,-16c0,-1.1 -0.9,-2 -2,-2zm0,18l-16,0l0,-13l16,0l0,13z'/%3E %3Cline stroke-linecap='undefined' stroke-linejoin='undefined' id='svg_5' y2='16.33971' x2='12.27027' y1='10.57416' x1='12.27027' fill='none' stroke-width='2' stroke='%233CADF1'/%3E %3Cline stroke-linecap='undefined' stroke-linejoin='undefined' id='svg_6' y2='18.6245' x2='8.22019' y1='15.09316' x1='12.5482' fill='none' stroke-width='2' stroke='%233CADF1' transform='rotate(10.145 10.3842 16.8588)'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E") no-repeat center center;
+}
+
+
+.jewel.datefield.includetime .jewel.button[disabled]::after {
+  background: url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill='%23cccccc'%3E %3Cg%3E %3Ctitle%3ELayer 1%3C/title%3E %3Cg id='svg_3'%3E %3Cpath id='svg_1' d='m0,0l24,0l0,24l-24,0l0,-24z' opacity='undefined' fill='none'/%3E %3Cpath id='svg_2' d='m20,3l-1,0l0,-2l-2,0l0,2l-10,0l0,-2l-2,0l0,2l-1,0c-1.1,0 -2,0.9 -2,2l0,16c0,1.1 0.9,2 2,2l16,0c1.1,0 2,-0.9 2,-2l0,-16c0,-1.1 -0.9,-2 -2,-2zm0,18l-16,0l0,-13l16,0l0,13z'/%3E %3Cline stroke-linecap='undefined' stroke-linejoin='undefined' id='svg_5' y2='16.33971' x2='12.27027' y1='10.57416' x1='12.27027' fill='none' stroke-width='2' stroke='%23cccccc'/%3E %3Cline stroke-linecap='undefined' stroke-linejoin='undefined' id='svg_6' y2='18.6245' x2='8.22019' y1='15.09316' x1='12.5482' fill='none' stroke-width='2' stroke='%23cccccc' transform='rotate(10.145 10.3842 16.8588)'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E") no-repeat center center;
+}
+*/

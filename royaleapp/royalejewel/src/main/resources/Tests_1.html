@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Custom Template for injecting custom style CSS">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <script type="text/javascript">
+
+    var link = document.createElement("link");
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", "./fullcalendar/main.css");
+    document.head.appendChild(link);
+   
+    var script = document.createElement("script");
+    script.setAttribute("src", "./fullcalendar/main.js");
+    document.head.appendChild(script);
+      
+    var script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./jscalendar/jscalendarloader.js");
+    document.head.appendChild(script_jscalendar);
+      
+    var script_jscalendar = document.createElement("script");
+    script_jscalendar.setAttribute("src", "./virtual-select/virtualselectloader.js");
+    document.head.appendChild(script_jscalendar);
+  
+    window.addEventListener('load', function() 
+    {   
+      //  https://codepen.io/dams591/pen/zYojWNb?editors=1010
+      const items = 10;
+      const fontSize = '29px';
+
+      const data = [];
+
+      for (let idx = 1; idx <= items; idx++) {
+        data.push({ label: `Label ${idx}`, value: idx });
+      }
+
+      VirtualSelect.init({
+        ele: '#list1',
+        multiple: true,
+        keepAlwaysOpen: true,
+        options: data,
+        disableSelectAll: true,
+        search: false,
+        showSelectedOptionsFirst: true
+      });
+
+      VirtualSelect.init({
+        ele: '#list2',
+        multiple: false,
+        keepAlwaysOpen: true,
+        options: data,
+        search: false
+      });
+
+
+      VirtualSelect.init({
+        ele: '#dropdown1',
+        search: false,
+        multiple: true,
+        // optionHeight: fontSize, // font size *2 + 1 ?
+        options: data,
+        hideClearButton: true,
+        showSelectedOptionsFirst: true
+      });
+
+
+      VirtualSelect.init({
+        ele: '#dropdown2',
+        search: true,
+        searchPlaceholder: 'test',
+        multiple: true,
+        //optionHeight: fontSize, // font size *2 + 1 ?
+        options: data,
+        hideClearButton: true,
+      });
+
+      VirtualSelect.init({
+        ele: '#dropdown3',
+        search: false,
+        multiple: true,
+        options: data,
+        hideClearButton: true,
+        // optionHeight: fontSize, // font size *2 + 1 ?
+        disableSelectAll: true
+      });
+
+    var misel =  VirtualSelect.init({
+        ele: '#sample-select',
+        options: data,
+        hideClearButton: true,
+        optionsCount: 10,
+        optionHeight:"35px",
+        initialSelectedValue:"20",
+        multiple: false, 
+        search: false 
+      });
+    }, false);
+    
+    function getValue(){
+      alert(document.getElementById('sample-select').value);
+    }
+    function setValue(){
+      var myc = document.getElementById('sample-select');
+      myc.setValue(10);
+      alert(myc.value);
+    }
+    
+  </script>
+
+  <style>
+    .vscomp-options-container {
+      scrollbar-color: rgba(0, 0, 0, 0.6) rgba(156, 156, 156, 0.6);
+      scrollbar-width: thin;
+    }
+
+    .vscomp-options-container::-webkit-scrollbar {
+      background: rgba(156, 156, 156, 0.6);
+      width: 8px;
+      cursor: pointer;
+    }
+
+    .vscomp-options-container::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    /*.checkbox-icon{
+    display:none !important;
+  }*/
+    .vscomp-search-clear {
+      display: none;
+    }
+
+    .vscomp-wrapper.has-select-all .vscomp-search-input {
+      width: calc(100% - 35px);
+    }
+
+    .vscomp-option.selected {
+      background-color: rgba(62, 78, 91, 0.1);
+    }
+
+    .vscomp-option {
+      padding: 0px 10px;
+    }
+
+    .vscomp-option.focused {
+      background-color: rgba(62, 78, 91, 0.05);
+    }
+
+    .vscomp-wrapper .checkbox-icon::after {
+      border: 1px solid #3e4e5b;
+    }
+
+    .vscomp-wrapper.multiple .vscomp-option.selected .checkbox-icon::after,
+    .vscomp-wrapper .checkbox-icon.checked::after {
+      border-color: #3e4e5b;
+      border-left-color: transparent;
+      border-top-color: transparent;
+    }
+
+    .vscomp-wrapper {
+      color: #3e4e5b !important;
+      font-size: 14px;
+    }
+
+    .vscomp-dropbox {
+      background-color: #af73ab;
+      border: 2px solid #fade52 !important;
+    }
+
+    .vscomp-search-container {
+      padding: 0px 10px;
+      border-bottom-color: #3e4e5b;
+    }
+
+    .vscomp-search-container .vscomp-search-input {
+      border: 1px solid #3e4e5b;
+      background: transparent;
+      padding: 0 4px;
+      height: 30px;
+      color: #3e4e5b !important;
+    }
+
+    .vscomp-search-container .vscomp-search-input::placeholder {
+      color: #3e4e5b !important;
+    }
+
+    .vscomp-search-container .vscomp-search-clear {
+      color: #3e4e5b;
+    }
+
+    .vscomp-wrapper.has-search-value .vscomp-toggle-all-button {
+      opacity: 0.5;
+    }
+
+    .keep-always-open .vscomp-toggle-button {
+      display: none;
+    }
+
+    .vscomp-toggle-button {
+      background-color: #af73ab;
+      border: 2px solid #fade52;
+    }
+
+    .vscomp-toggle-button .vscomp-arrow::after {
+      border-right-color: #3e4e5b;
+      border-bottom-color: #3e4e5b;
+    }
+
+    .vscomp-toggle-button .vscomp-value {
+      opacity: 1 !important;
+    }
+
+    .container {
+      float: left;
+      width: 300px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="height: 500px; width: 500px; background-color: darkcyan;">
+
+    <div id="sample-select"></div>
+    <button type="button" onclick="getValue()">Get value</button>
+    <button type="button" onclick="setValue()">Set value 10</button>
+  </div>
+  <div>
+
+    <h1>Multi select</h1>
+
+    <div class="container">
+      <h3>List (no search)</h3>
+      <div id="list1"></div>
+    </div>
+    <div class="container">
+      <h3>List (with search)</h3>
+      <div id="list2"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (no search)</h3>
+      <div id="dropdown1"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (with search)</h3>
+      <div id="dropdown2"></div>
+    </div>
+    <div class="container">
+      <h3>Dropdown (no search/no select all)</h3>
+      <div id="dropdown3"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

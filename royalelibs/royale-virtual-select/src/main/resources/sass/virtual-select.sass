@@ -1,0 +1,777 @@
+@namespace "http://www.w3.org/1999/xhtml"
+@namespace j "library://ns.apache.org/royale/jewel"
+@namespace vsel "library://ns.apache.org/royale/externsjs/virtualselect"
+
+// Variables
+@import "colors"
+@import "theme"
+@import "variables"
+@import "mixins"
+@import "functions"
+
+// Global
+@import "global"
+
+$primary-color: #3CADF1
+$primary-forSVG: '%233CADF1'
+
+$primary-bg: #ffffff
+
+$font-theme-color: #FFFFFF
+
+$light-color: #d9d9d9
+$font-light-color: #808080
+
+$dark-color: #595959
+$font-dark-color: #FFFFFF
+
+$error-color: #EC1C24
+$action-color: #FFD740
+
+$footer-color: #333333
+
+$font-color: #333333
+$font-color-light: #666666
+$error-color: #b00020
+$border-color: #ddd
+$focus-color: #ccc
+$selected-color: #eee
+$arrow-color: #111
+$checkbox-color: #888
+$icon-hover-color: $font-color 
+$overlay-bg: rgba(0, 0, 0, 0.5)
+@-webkit-keyframes vscomp-animation-spin
+  to
+    transform: rotateZ(360deg)
+
+@keyframes vscomp-animation-spin
+  to
+    transform: rotateZ(360deg)
+
+.vscomp-popup-active
+  overflow: hidden !important
+
+.vscomp-ele
+  display: inline-block
+  max-width: 250px
+  width: 100%
+
+.vscomp-wrapper
+  color: $font-color
+  display: inline-flex
+  flex-wrap: wrap
+  font-family: sans-serif
+  font-size: 14px
+  position: relative
+  text-align: left
+  width: 100%
+
+  *
+    box-sizing: border-box
+
+    &::before, &::after
+      box-sizing: border-box
+
+  &:focus
+    outline: none
+
+.vscomp-dropbox-wrapper
+  left: 0
+  position: absolute
+  top: 0
+
+.vscomp-toggle-button
+  align-items: center
+  background-color: $primary-bg
+  border: 1px solid $border-color
+  cursor: pointer
+  display: flex
+  padding: 7px 30px 7px 10px
+  position: relative
+  width: 100%
+
+.vscomp-value
+  height: 20px
+  line-height: 20px
+  max-width: 100%
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.vscomp-arrow
+  align-items: center
+  display: flex
+  height: 100%
+  justify-content: center
+  position: absolute
+  right: 0
+  top: 0
+  width: 30px
+  &:hover
+    background: #cccccc
+    color: #808080
+    &:focus
+      background: #cccccc
+      color: #808080
+  /*&::after
+    transform: rotate(45deg)
+    border: 1px solid transparent
+    border-bottom-color: $arrow-color
+    border-right-color: $arrow-color
+    content: ""
+    height: 8px
+    margin-top: -6px
+    width: 8px*/
+
+.vscomp-clear-icon
+  height: 12px
+  position: relative
+  width: 12px
+  
+.vscomp-clear-button
+  align-items: center
+  border-radius: 50%
+  display: inline-flex
+  height: 16px
+  justify-content: center
+  position: absolute
+  right: -20px
+  top: 50%
+  width: 16px
+  bottom: 2px
+
+.vscomp-dropbox-close-button
+  align-items: center
+  background-color: $primary-bg
+  border-radius: 50%
+  bottom: -48px
+  cursor: pointer
+  display: none
+  height: 40px
+  justify-content: center
+  left: 50%
+  margin-left: -20px
+  position: absolute
+  width: 40px
+
+.vscomp-value-tag.more-value-count
+  white-space: nowrap
+
+.vscomp-dropbox-container
+  width: 100%
+  z-index: 2
+
+.vscomp-dropbox
+  background-color: $primary-bg
+  width: 100%
+
+.vscomp-options-container
+  max-height: 210px
+  overflow: auto
+  position: relative
+
+.vscomp-options-bottom-freezer
+  bottom: 0
+  height: 2px
+  left: 0
+  position: absolute
+  right: 0
+
+.vscomp-option
+  align-items: center
+  cursor: pointer
+  display: flex
+  flex-wrap: wrap
+  height: 40px
+  padding: 0 15px
+  position: relative
+
+  &.selected
+    background-color: $selected-color
+
+  &.focused
+    background-color: $focus-color
+
+  &.disabled
+    cursor: default
+    opacity: .5
+
+  &.group-title
+    .vscomp-option-text
+      cursor: default
+      opacity: .6
+
+    &.selected
+      background-color: transparent
+
+  &.group-option
+    padding-left: 30px
+
+.vscomp-new-option-icon
+  height: 30px
+  position: absolute
+  right: 0
+  top: 0
+  width: 30px
+
+  &::before
+    border: 15px solid $primary-color
+    border-bottom-color: transparent
+    border-left-color: transparent
+    content: ""
+    position: absolute
+    right: 0
+    top: 0
+
+  &::after
+    align-items: center
+    color: $primary-bg
+    content: "+"
+    display: flex
+    font-size: 18px
+    height: 15px
+    justify-content: center
+    position: absolute
+    right: 1px
+    top: 0
+    width: 15px
+
+.vscomp-option-text
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  width: 100%
+
+.vscomp-option-description
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  color: $font-color-light
+  font-size: 13px
+  line-height: 15px
+  width: 100%
+
+.vscomp-search-container
+  align-items: center
+  border-bottom: 1px solid $border-color
+  display: flex
+  height: 40px
+  padding: 0 5px 0 15px
+  position: relative
+
+.vscomp-search-input
+  background-color: transparent
+  border: 0
+  color: inherit
+  font-size: 15px
+  height: 38px
+  padding: 10px 0
+  width: calc(100% - 30px)
+
+  &:focus
+    outline: none
+
+.vscomp-search-clear
+  align-items: center
+  color: #999
+  cursor: pointer
+  display: flex
+  font-size: 25px
+  height: 30px
+  justify-content: center
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  visibility: hidden
+  width: 30px
+
+  &:hover
+    color: inherit
+
+.vscomp-no-options, .vscomp-no-search-results
+  align-items: center
+  display: none
+  justify-content: center
+  padding: 20px 10px
+
+.vscomp-options-loader
+  display: none
+  padding: 20px 0
+  text-align: center
+
+  &::before
+    -webkit-animation: vscomp-animation-spin .8s infinite linear
+    animation: vscomp-animation-spin .8s infinite linear
+    background-color: $primary-bg
+    border-radius: 50%
+    box-shadow: -4px -5px 3px -3px rgba(0, 0, 0, 0.3)
+    content: ""
+    display: inline-block
+    height: 40px
+    opacity: .7
+    width: 40px
+
+.vscomp-ele[disabled]
+  cursor: not-allowed
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+  .vscomp-wrapper
+    opacity: .7
+    pointer-events: none
+
+.vscomp-wrapper
+  .checkbox-icon
+    background: linear-gradient(white, #f3f3f3)
+    border-radius: 3px
+    border: 1px solid #d9d9d9
+    content: " "
+    height: 22px
+    position: relative
+    top: 0px
+    width: 22px
+    margin-right: 10px
+    display: inline-flex
+    @if $flat
+      background: lighten($default-color, 15%)
+      border: 1px solid $default-color
+    @else
+      background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+      border: 1px solid darken($default-color, 15%)
+    &::after
+      transition-duration: .2s
+      content: ""
+      display: inline-block
+      height: 100%
+      width: 100%
+
+    &.checked::after
+      border-left-color: transparent
+      border-top-color: transparent
+      width: 50%
+
+  &.show-as-popup
+    .vscomp-dropbox-container
+      align-items: center
+      background-color: rgba(0, 0, 0, 0.5)
+      display: flex
+      height: 100vh
+      justify-content: center
+      left: 0
+      opacity: 1
+      overflow: auto
+      padding: 0 10px
+      position: fixed
+      top: 0
+      width: 100vw
+
+    .vscomp-dropbox
+      margin-top: -24px
+      max-height: calc(80% - 48px)
+      max-width: 500px
+      position: relative
+      width: 80%
+
+    .vscomp-dropbox-close-button
+      display: flex
+
+  &.popup-position-left .vscomp-dropbox-container
+    justify-content: flex-start
+
+  &.popup-position-right .vscomp-dropbox-container
+    justify-content: flex-end
+
+  &.has-select-all
+    .vscomp-toggle-all-button
+      align-items: center
+      cursor: pointer
+      display: flex
+
+    .vscomp-search-input
+      width: calc(100% - 55px)
+
+    .vscomp-toggle-all-label
+      width: calc(100% - 55px)
+      display: none
+
+  &:not(.has-search-input)
+    .vscomp-toggle-all-button
+      width: 100%
+
+    .vscomp-toggle-all-label
+      display: inline-block
+
+  &.multiple .vscomp-option
+    .vscomp-option-text
+      width: calc(100% - 35px)
+
+    .vscomp-option-description
+      padding-left: 25px
+
+    &.selected .checkbox-icon::after
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%2329A89F' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+      opacity: 1
+      transform: scale(1)
+      border-left-color: transparent
+      border-top-color: transparent
+
+  &.focused .vscomp-toggle-button, &:focus .vscomp-toggle-button
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+
+  &.closed
+    .vscomp-dropbox-container, &.vscomp-dropbox-wrapper
+      display: none
+
+  &:not(.has-value) .vscomp-value
+    opacity: .5
+
+  &.has-clear-button
+    &.has-value .vscomp-clear-button
+      display: flex
+
+    .vscomp-toggle-button
+      padding-right: 54px
+
+  &.has-no-options .vscomp-options-container, &.has-no-search-results .vscomp-options-container
+    display: none
+
+  &.has-no-options .vscomp-no-options, &.has-no-search-results .vscomp-no-search-results
+    display: flex
+
+  &.has-search-value .vscomp-search-clear
+    visibility: visible
+
+  &.has-no-options .vscomp-toggle-all-button
+    opacity: .5
+    pointer-events: none
+
+  &.keep-always-open
+    .vscomp-toggle-button
+      padding-right: 24px
+
+    .vscomp-arrow
+      display: none
+
+    .vscomp-dropbox-container
+      position: relative
+      z-index: 1
+
+    .vscomp-dropbox
+      transition-duration: 0s
+      border: 1px solid $border-color
+      box-shadow: none
+
+    &.focused, &:focus, &:hover
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+
+  &.server-searching
+    .vscomp-options-list
+      display: none
+
+    .vscomp-options-loader
+      display: block
+
+  &.has-error .vscomp-toggle-button
+    border-color: $error-color
+
+  &.show-value-as-tags
+    .vscomp-toggle-button
+      padding: 4px 22px 0 10px
+
+    .vscomp-value
+      display: flex
+      flex-wrap: wrap
+      height: auto
+      min-height: 28px
+      overflow: auto
+      text-overflow: unset
+      white-space: normal
+
+    .vscomp-value-tag
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      align-items: center
+      border: 1px solid $border-color
+      border-radius: 20px
+      display: inline-flex
+      font-size: 12px
+      line-height: 16px
+      margin: 0 4px 4px 0
+      max-width: 100%
+      padding: 2px 3px 2px 8px
+
+      &.more-value-count
+        padding-right: 8px
+
+    .vscomp-value-tag-content
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      width: calc(100% - 20px)
+
+    .vscomp-value-tag-clear-button
+      align-items: center
+      display: flex
+      height: 20px
+      justify-content: center
+      width: 20px
+
+      .vscomp-clear-icon
+        transform: scale(0.8)
+
+    .vscomp-arrow
+      height: 36.25px !important
+
+    .vscomp-clear-button
+      margin-top: 0
+      top: 5px
+
+    &.has-value
+      .vscomp-arrow
+        display: none
+
+      .vscomp-clear-button
+        right: 2px
+
+    &:not(.has-value)
+      .vscomp-toggle-button
+        padding-bottom: 2px
+
+      .vscomp-value
+        align-items: center
+        padding-bottom: 3px
+
+  &.text-direction-rtl
+    direction: rtl
+
+    .vscomp-toggle-button
+      padding: 7px 10px 7px 30px
+
+    .vscomp-arrow
+      left: 0
+      right: auto
+
+    .vscomp-clear-button
+      left: 30px
+      right: auto !important
+
+    .checkbox-icon
+      margin-left: 10px
+      margin-right: 0
+
+      &.checked::after
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%2329A89F' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+        opacity: 1
+        transform: scale(1)
+
+    .vscomp-search-container
+      padding: 0 15px 0 5px
+
+    .vscomp-toggle-all-label
+      text-align: right
+
+    .vscomp-option
+      text-align: right
+
+      &.group-option
+        padding-right: 30px
+
+    .vscomp-new-option-icon
+      left: 0
+      right: auto
+
+      &::before
+        border-left-color: $primary-color
+        border-right-color: transparent
+
+      &::after
+        left: 1px
+        right: auto
+
+    &.multiple .vscomp-option.selected .checkbox-icon::after
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%2329A89F' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+      opacity: 1
+      transform: scale(1)
+
+    &.has-clear-button .vscomp-toggle-button
+      padding-left: 54px
+
+    &.keep-always-open
+      .vscomp-toggle-button
+        padding-left: 24px
+
+    &.show-value-as-tags
+      .vscomp-toggle-button
+        padding: 4px 10px 0 22px
+
+      .vscomp-value-tag
+        margin: 0 0 4px 4px
+        padding: 2px 8px 2px 3px
+
+        &.more-value-count
+          padding-left: 8px
+
+      &.has-value .vscomp-clear-button
+        left: 2px
+
+/*!
+ * Popover v1.0.7
+ * https://sa-si-dev.github.io/popover
+ * Licensed under MIT (https://github.com/sa-si-dev/popover/blob/master/LICENSE)
+
+.pop-comp-wrapper
+  display: none
+  position: absolute
+  top: 0
+  left: 0
+  opacity: 0
+  color: #000
+  background-color: $primary-bg
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+  text-align: left
+  flex-wrap: wrap
+  z-index: 1
+
+.pop-comp-arrow
+  position: absolute
+  z-index: 1
+  width: 16px
+  height: 16px
+  overflow: hidden
+
+  &::before
+    content: ''
+    position: absolute
+    top: 8px
+    left: 8px
+    width: 16px
+    height: 16px
+    background-color: $primary-bg
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+    -webkit-transform-origin: left top
+    transform-origin: left top
+    -webkit-transform: rotate(45deg)
+    transform: rotate(45deg)
+
+.pop-comp-content
+  position: relative
+  z-index: 2
+
+.pop-comp-wrapper
+  &.position-bottom .pop-comp-arrow
+    margin-left: -8px
+    left: 0
+    top: -15px
+
+    &::before
+      box-shadow: 0px 0px 2px 0 rgba(0, 0, 0, 0.14)
+
+  &.position-top .pop-comp-arrow
+    margin-left: -8px
+    left: 0
+    bottom: -15px
+
+  &.position-right .pop-comp-arrow
+    margin-top: -8px
+    top: 0
+    left: -15px
+
+  &.position-left .pop-comp-arrow
+    margin-top: -8px
+    top: 0
+    right: -15px
+
+.pop-comp-disable-events
+  pointer-events: none
+
+.vscomp-wrapper
+  font-family: 'Open Sans', serif, sans-serif !important
+  color: $font-color !important
+
+.vscomp-option-text span > mark
+  background-color: $primary-color !important
+  color: $primary-bg !important
+
+.vscomp-royale
+  color: $primary-color !important
+
+
+.vscomp-option
+  background-color: white !important
+  &.selected
+    background-color: darken($primary-color,5%) !important
+    color: white
+    &:hover
+      background-color: darken($primary-color,5%) !important
+      color: white
+  &:hover
+    background-color: $primary-color !important
+    color: white
+.vscomp-toggle-button
+  color: #333333 !important
+  padding: 0.679em 14px !important
+  border: 1px solid #d9d9d9 !important
+  cursor: default !important
+  border-radius: 0.25rem 0.25rem 0.25rem 0.25rem
+  height: 36.25px !important
+.vscomp-options
+  color: $font-light-color !important
+.vscomp-search-input, .vscomp-no-search-results
+  color: black !important
+.vscomp-arrow
+  display: flex
+  right: -1px !important
+  top: -1px !important
+  bottom: -1px !important
+  width: 36.31px
+  align-items: center
+  background: linear-gradient(#e6e6e6, #cccccc)
+  //border: 1px solid #d9d9d9 !important
+  //box-shadow: inset 0 1px 0 white
+  color: #808080 !important
+  cursor: pointer
+  display: inline-flex
+  font-weight: bold
+  justify-content: center
+  line-height: normal !important
+  margin: 0
+  outline: none
+  overflow: hidden
+  padding: 0.679em 1.12em
+  text-align: center
+  text-decoration: none
+  text-shadow: none
+  text-transform: none
+  user-select: none
+  vertical-align: middle
+  white-space: nowrap
+  height: auto
+  //height: 36.25px !important
+  border-radius: 0 0.25rem 0.25rem 0
+  &::after
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-forSVG}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
+    content: " "
+    height: 22px
+    left: calc(50% - 8px)
+    position: absolute
+    top: calc(50% - 11px)
+    width: 14px
+.vscomp-clear-button
+  right: -20px
+  width: 20px
+  bottom: 5px
+
+.vscomp-clear-icon
+  position: inherit
+  background-image: url("data:image/svg+xml;,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><defs><style>.fa-secondary%7Bopacity:.4%7D</style></defs><path fill='#{$primary-forSVG}' d='M512 428v40a12 12 0 0 1-12 12H144a48 48 0 0 1-33.94-14.06l-96-96a48 48 0 0 1 0-67.88l136-136 227.88 227.88L355.88 416H500a12 12 0 0 1 12 12z' class='fa-secondary'/><path d='M377.94 393.94l120-120a48 48 0 0 0 0-67.88l-160-160a48 48 0 0 0-67.88 0l-120 120 45.25 45.25z' fill='#{$primary-forSVG}' class='fa-primary'/></svg>")
+.vscomp-toggle-all-checkbox
+  &.checked
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%2329A89F' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	xmlns:views="org.apache.royale.community.views.*"
+    xmlns:viewsMob="org.apache.royale.community.views.main.*"
+	xmlns:viewsCC="org.apache.royale.community.views.customcontrols.*"
+    xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
+    initComplete="init()">
+
+    <fx:Declarations>
+        <js:ArrayList localId="arNRegPag" source="{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,45,50,100]}"/>
+    </fx:Declarations>
+
+    <fx:Script>
+    <![CDATA[
+
+        private function init():void
+        {
+
+        }	
+
+        ]]>
+    </fx:Script>
+    <fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
+        @namespace jc "library://ns.apache.org/royale/community";
+    button {
+        display: inline-block;
+        margin: 5px 5px 0 0;
+        padding: 10px 30px;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        background: #5185a8;
+        color: #fff;
+        text-decoration: none;
+        font-family: arial, verdana, sans-serif;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    /*input {
+        width: 100%;
+        margin: 0 0 5px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        font-family: arial, verdana, sans-serif;
+        font-size: 14px;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+    }*/
+
+    .my-multi-lines-item {
+        font-size: 14px;
+        white-space: initial;
+        display: flex;
+        height: 60px;
+        line-height: normal;
+    }
+
+    .my-multi-lines-text {
+        /*margin-top: auto;
+        margin-bottom: auto;*/
+        padding-left: 10px;
+    }
+    </fx:Style>
+    <j:beads>
+        <js:ViewDataBinding />
+    </j:beads>
+	 
+	<j:ApplicationMainContent localId="main">
+        <j:ScrollableSectionContent>
+            <html:Label width="100" style="margin:0;">
+			    <html:Input localId="combo"/>
+            </html:Label>
+			    <html:Input localId="combo2" width="100" style="margin:0;"/>
+
+        </j:ScrollableSectionContent>
+                
+    </j:ApplicationMainContent>
+	
+</j:ResponsiveView>

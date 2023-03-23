@@ -1,0 +1,44 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="Custom Template for injecting custom style CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <!-- 
+      It is advisable that the main css is the first one (${application}.css = App.css). 
+      If we use 'dynamic selectors', as for example in the bead 'ListAlternateRowColor' we will avoid problems.
+      
+      (When retrieving the css created dynamically with 'getClassStyle'. 
+      'getClassStyle' is coupled to the “first” stylesheet referenced in the html template. 
+      With the current implementation, if you have more than one, getClassStyle will fail to find the appropriate items 
+      if the item being looked for is not within the first file)${body}
+    -->
+    <link rel="stylesheet" type="text/css" href="${application}.css">
+    <link rel="stylesheet" type="text/css" href="assets/defaultsextern.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+${head}
+</head>
+<body>
+<script type="text/javascript">  
+  new App().start();
+</script>
+</body>
+</html>

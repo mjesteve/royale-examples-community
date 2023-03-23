@@ -26,7 +26,6 @@
         "source-path": [
             "src/main/resources",
             "../../royalelibs/royalecomponents/src/main/royale/",
-			"../../royalelibs/royalemobiscroll/src/main/royale/",
 			"../../royalelibs/royale-js-year-calendar/src/main/royale/",
 			"../../royalelibs/royalefullcalendar/src/main/royale/",
 			"../../royalelibs/royale-jscalendar/src/main/royale/",
@@ -38,10 +37,6 @@
                 "uri": "library://ns.apache.org/royale/community",
                 "manifest": "../../royalelibs/royalecomponents/src/main/resources/components-manifest.xml"
             },
-			{
-                "uri": "library://ns.apache.org/royale/community",
-                "manifest": "../../royalelibs/royalemobiscroll/src/main/resources/mobiscroll-manifest.xml"
-            },
             {
                "uri": "library://ns.apache.org/royale/community",
                "manifest": "../../royalelibs/royale-js-year-calendar/src/main/resources/year-calendar-manifest.xml"
@@ -51,15 +46,15 @@
                 "manifest": "../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/jscalendar",
                 "manifest": "../../royalelibs/royale-jscalendar/src/main/resources/jscalendar-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/virtualselect",
                 "manifest": "../../royalelibs/royale-virtual-select/src/main/resources/virtual-select-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/inspiretree",
                 "manifest": "../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree-manifest.xml"
             }
         ],

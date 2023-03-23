@@ -27,6 +27,8 @@
 	<fx:Style source="../../main/resources/defaults.css"/>
 	<fx:Script>
 		<![CDATA[
+			import org.apache.royale.jewel.Alert;
+
 
 			public function setUp():void
 			{
@@ -44,14 +46,14 @@
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
-
-	<j:initialView>
-		<mainviews:MainView/>
-<!--
-		<mainviews:MainViewInspireTree/>
-		<mainviews:MainVirtualComboBox/>
-		<mainviews:MainViewExDebug/>
-		<mainviews:MainVirtualSelectJS/>
+	
+	<j:initialView>		
+		<mainviews:MainView/> 
+<!--		
+		<mainviews:MainViewExDebug/> 
+		<mainviews:MainVirtualSelectJS/> 
+		<mainviews:MainViewExDebug1/> 
+		<mainviews:MainVirtualComboBox/> 
 -->
 	</j:initialView>
 </j:Application>

@@ -39,23 +39,6 @@ package
 		{
 			return null;
 		}
-		// public static function datepicker(e:Object):Object
-		// {
-		// return null;
-		// }
-/*
-<input id="scroller" />
-mobiscroll.date('#scroller');
-mobiscroll.time('#scroller');
-mobiscroll.datetime('#scroller');
-<div id="calendar"></div>
-mobiscroll.datepicker('#calendar', {
-    controls: ['calendar'],
-    display: 'inline'
-});
-var inst = mobiscroll.date('#calendar');
-inst.show(); // Call the show method
- */
 
 	}
 }

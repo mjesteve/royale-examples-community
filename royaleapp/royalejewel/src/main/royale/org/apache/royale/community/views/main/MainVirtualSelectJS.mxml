@@ -4,20 +4,34 @@
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:vsel="library://ns.apache.org/royale/externsjs/virtualselect" 
 	xmlns:views="org.apache.royale.community.views.*"
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    xmlns:virtualselect="org.apache.royale.externsjs.virtualselect.*" 
     initComplete="onInitComplete()">
 
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.community.virtualselect.OptionsInit;
-
+        import org.apache.royale.externsjs.virtualselect.OptionsInit;
+        
         public function onInitComplete():void
         {
+            /*arPages = [{label:1,value:1}, {label:2,value:2}, {label:3,value:3}, {label:4,value:4}, {label:5,value:5}, {label:6,value:6}, 
+            {label:7,value:7}, {label:8,value:8}, {label:9,value:9}, {label:10,value:10},{label:11,value:11}, {label:12,value:12}, 
+            {label:13,value:13}, {label:14,value:14}, {label:15,value:15}, {label:16,value:16}, {label:17,value:17}, {label:18,value:18}, 
+            {label:19,value:19}, {label:20,value:20}, {label:25,value:25}, {label:30,value:30}, {label:35,value:35}, {label:40,value:40}, 
+            {label:45,value:45}, {label:50,value:50}, {label:100,value:100}];*/
+            
+            arPages = [{nregpag:1}, {nregpag:2}, {nregpag:3}, {nregpag:4}, {nregpag:5}, {nregpag:6}, {nregpag:7}, {nregpag:8}, {nregpag:9}, {nregpag:10}, 
+            {nregpag:11}, {nregpag:12}, {nregpag:13}, {nregpag:14}, {nregpag:15}, {nregpag:16}, {nregpag:17}, {nregpag:18}, {nregpag:19}, {nregpag:20}, 
+            {nregpag:25}, {nregpag:30}, {nregpag:35}, {nregpag:40}, {nregpag:45}, {nregpag:50}, {nregpag:100}];
+            
             makeDP(true);
             makeVList();
         }
+        [Bindable]
+        private var arPages:Array;
         /*
         [Bindable]
         private var dpString:ArrayList = new ArrayList;
@@ -94,16 +108,32 @@
 
         }
 
-        private var myvlist:Object;
-        private var opinit:OptionsInit = new OptionsInit();
         private function makeVList():void
         {
-           /* if(!myvlist)
-            {
-                opinit.ele = myContainerVList.element;
-                opinit.options = arClassBig;
-                myvlist = VirtualSelect.init(opinit as Object);
-            }*/
+           
+                var opinit:OptionsInit = getDefaultOptions(myContainerVList.element);
+                opinit.options = arHClassBig;
+                opinit.search = false;
+                opinit.multiple = false;
+                opinit.zIndex = 1;
+                opinit.showDropboxAsPopup = true;
+                opinit.keepAlwaysOpen = true;
+                VirtualSelect.init(opinit);
+        }
+
+        private function getDefaultOptions(domElement:HTMLElement):OptionsInit
+        {
+                var op:OptionsInit = new OptionsInit();
+                op.ele = domElement;
+                op.silentInitialValueSet = true;
+                op.markSearchResults = true;
+                op.optionHeight = "34px"; // _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
+                op.zIndex = 80;
+                op.dropboxWrapper = 'body';
+                op.showValueAsTags = false;
+                op.position = 'auto';
+                op.options = [];
+                return op;
         }
 
 
@@ -139,7 +169,7 @@
             <j:beads>
                 <js:Paddings padding="50"/>
             </j:beads>
-            <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+            <j:Card itemsExpand="false" percentWidth="100">
                 <j:CardHeader>
                     <j:BarSection width="100%" gap="10">
                         <html:H3 text="JS Virtual Select - Debugger" className="primary-dark"/>
@@ -147,10 +177,7 @@
                 </j:CardHeader>
 
                 <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
-  
-                    <j:Label multiline="true">
-                        <j:html><![CDATA[<p><strong>Preselect value/s</strong> (Left, first 3 options selected - Right, 2 value selected)</p>]]></j:html>
-                    </j:Label>
+  <!--
                     <j:HGroup localId="parentGroup" gap="5" percentHeight="100" percentWidth="100" minHeight="300">
 
                         <j:IconButton emphasis="primary" unboxed="true" style="margin-top: 0;" click="makeDP()">
@@ -161,37 +188,68 @@
                                 <js:MaterialIcon text="{MaterialIconType.REFRESH}" />
                             </j:icon>
                         </j:IconButton>
-                        
-                        <jc:VirtualSelectJwExt localId="myVSel4" width="250" dataProvider="{arClassBig}" 
-                        search="false" multiple="true" showValueAsTags="false"/>
-                        
-                        <jc:VirtualSelectJwExt localId="myVSel4_1" width="250" dataProvider="{arClassBig}" 
-                        search="false" multiple="true" showValueAsTags="true"/>
-                        
-                        <jc:VirtualSelectJwExt localId="myVSel4_2" percentWidth="45" dataProvider="{arClassBig}"
-                        search="true" multiple="true" type="list"/>
-                        <!--
-                        <jc:VirtualSelectJwExt localId="myVSel5" width="450" dataProvider="{arClassBig}"
-                        search="false" multiple="true" initialSelectedValue="{[0,1,2]}" position="bottom"/>
-
-                        <jc:VirtualSelectJwExt localId="myVSel5_1" width="450" dataProvider="{arClassBig}"
-                        search="false" multiple="true" initialSelectedValue="2"/>
-
-                        <jc:VirtualComboBoxJwExt localId="jevcb1" width="250" itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
-                            dataProvider="{dpClassBig}" labelField="displaytext">
-                            <jc:beads>
-                                <j:SearchFilter/>
-                            </jc:beads>
-                        </jc:VirtualComboBoxJwExt>
-
- -->
-
+                          
+                        <vsel:VirtualSelectJwExt localId="myVSel" width="100" dataProvider="{arPages}">
+                            <vsel:configOption>
+                                <vsel:OptionsInit hideClearButton="true" optionsCount="10" optionHeight="45px"
+                                                            labelKey="nregpag" valueKey="nregpag" selectedValue="20"/>
+                            </vsel:configOption>
+                        </vsel:VirtualSelectJwExt>
+                        <j:Button text="Set 50" click="myVSel.selectedValue=50;"/>
+                        <j:Label text="{myVSel.selectedValue}"/>
+                        <j:Label text="{myVSel.selectedLabel}"/>
                     </j:HGroup>   
+
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
+                    </j:Label>
+                    <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                        <vsel:VirtualSelectJwExt localId="myVSel1" percentWidth="45" dataProvider="{arStringBig}">
+                            <vsel:configOption>
+                                <vsel:OptionsInit position="bottom"/>
+                            </vsel:configOption>
+                        </vsel:VirtualSelectJwExt>
+                        <vsel:VirtualSelectJwExt localId="myVSelH1" percentWidth="45" dataProvider="{arHClassBig}">
+                            <vsel:configOption>
+                                <vsel:OptionsInit position="bottom"/>
+                            </vsel:configOption>
+                        </vsel:VirtualSelectJwExt>
+                    </j:HGroup>
+                <vsel:VirtualSelectListJwExt localId="myVSel4" percentWidth="45" dataProvider="{arClassBig}">
+                    <vsel:configOption>
+                        <vsel:OptionsInit  search="true" multiple="false" additionalClasses="vscomp-royale"/>
+                    </vsel:configOption>
+                </vsel:VirtualSelectListJwExt>
+            -->
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p><strong>Keep dropbox always open</strong>  with fixed height</p>]]></j:html>
+            </j:Label>
+            <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
+                <vsel:VirtualSelectListJwExt percentWidth="45" dataProvider="{arClassBig}" height="500">
+                    <vsel:configOption>
+                        <vsel:OptionsInit optionsCount="-1" showSelectDisplay="false" search="true" additionalClasses="vscomp-royale"/>
+                    </vsel:configOption>
+                </vsel:VirtualSelectListJwExt>
+                
+                <html:Div localId="myContainerVList" percentWidth="45"/>
+                <!--<vsel:VirtualSelectJwExt localId="myVSelH4" percentWidth="45" dataProvider="{arHClassBig}"
+                 search="false" multiple="true" keepAlwaysOpen="true"/> -->
+
+                <jc:VirtualComboBoxJwExt localId="myVSelH4" percentWidth="45" 
+                    itemRenderer="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"
+                    dataProvider="{new ArrayList(arClassBig)}" labelField="label">
+                    <jc:beads>
+                        <j:SearchFilter/>
+                    </jc:beads>
+                </jc:VirtualComboBoxJwExt>
+
+            </j:HGroup>
+
                 </j:CardPrimaryContent>
 
             </j:Card>
-
-            <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" />
+<!--
+            <viewsVSel:VirtualSelectJS percentHeight="100" percentWidth="100" /> -->
         </j:ScrollableSectionContent>
     </j:ApplicationMainContent>
 

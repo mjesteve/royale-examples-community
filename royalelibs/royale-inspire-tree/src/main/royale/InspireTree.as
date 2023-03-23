@@ -4,9 +4,9 @@ package
     {
         import TreeNode;
         import TreeNodes;
-        import org.apache.royale.community.inspiretree.vos.OptionsTree;
-        import org.apache.royale.community.inspiretree.vos.ConfigTree;
-        import org.apache.royale.community.inspiretree.vos.OptionsTree;
+        import org.apache.royale.externsjs.inspiretree.vos.OptionsTree;
+        import org.apache.royale.externsjs.inspiretree.vos.ConfigTree;
+        import org.apache.royale.externsjs.inspiretree.vos.OptionsTree;
     }
 
 	/**

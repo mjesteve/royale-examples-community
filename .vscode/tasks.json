@@ -5,18 +5,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "[Project] Build with Maven",
-            "type": "shell",
-            "command": "mvn",
-            "args": [
-                "clean",
-                "install",
-                "-DskipTests"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "[Project] Build with Maven - Droyalelib - ROYALE_HOME",
+            "label": "[Project] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -32,24 +21,39 @@
             }
         },
         {
-            "label": "[Project-royalejewel] Build with Maven -",
+            "label": "[Project] Build with Maven - Droyalelib - ONLY APP",
             "type": "shell",
             "command": "mvn",
             "args": [
                 "clean",
                 "install",
-                "-f.\\royaleapp\\royalejewel\\pom.xml",
+                "-f.\\pomOnlyApp.xml",
                 "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
                 "-DskipTests"
             ],
             "problemMatcher": [],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             }
         },
         {
-            "label": "[Project-royalelibs-Complete] Build with Maven -",
+            "label": "[Project] Build with Maven - Droyalelib - COPY ALL RESOURCE",
+            "type": "shell",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f.\\pomComplete.xml",
+                "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
+                "-DskipTests"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "[Project-royalelibs-Complete] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -62,7 +66,7 @@
             "problemMatcher": []
         },
         {
-            "label": "[Project-royalecomponents] Build with Maven -",
+            "label": "[Project-royalecomponents] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -75,7 +79,7 @@
             "problemMatcher": []
         },
         {
-            "label": "[Project-royale-inspire-tree] Build with Maven -",
+            "label": "[Project-royale-inspire-tree] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -88,7 +92,7 @@
             "problemMatcher": []
         },
         {
-            "label": "[Project-royale-jscalendar] Build with Maven -",
+            "label": "[Project-royale-JSCALENDAR] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
@@ -101,58 +105,26 @@
             "problemMatcher": []
         },
         {
-            "label": "[Project-royale-jscalendar] Build with Maven - TO FILE",
-            "type": "shell",
-            "command": "mvn",
-            "args": [
-                "clean",
-                "install",
-                "-f.\\royalelibs\\royale-jscalendar\\pom.xml",
-                "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
-                "-DskipTests",
-                "-e",
-                "-X",
-                ">build_jscalendar.log"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "[Project-royale-virtual-select] Build with Maven -",
-            "type": "shell",
-            "command": "mvn",
-            "args": [
-                "clean",
-                "install",
-                "-f.\\royalelibs\\royale-virtual-select\\pom.xml",
-                "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
-                "-DskipTests"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "[Project-royale-virtual-select] Build with Maven - TO FILE",
-            "type": "shell",
-            "command": "mvn",
-            "args": [
-                "clean",
-                "install",
-                "-f.\\royalelibs\\royale-virtual-select\\pom.xml",
-                "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
-                "-DskipTests",
-                "-e",
-                "-X",
-                ">build_virtualselect.log"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "[Project-royale-fullcalendar] Build with Maven -",
+            "label": "[Project-royale-FULLCALENDAR] Build with Maven - DEBUG LIB",
             "type": "shell",
             "command": "mvn",
             "args": [
                 "clean",
                 "install",
                 "-f.\\royalelibs\\royalefullcalendar\\pom.xml",
+                "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
+                "-DskipTests"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "[Project-royale-VIRTUAL-SELECT] Build with Maven - DEBUG LIB",
+            "type": "shell",
+            "command": "mvn",
+            "args": [
+                "clean",
+                "install",
+                "-f.\\royalelibs\\royale-virtual-select\\pom.xml",
                 "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
                 "-DskipTests"
             ],

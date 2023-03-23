@@ -15,11 +15,11 @@
  *  limitations under the License.
  */
 @namespace "http://www.w3.org/1999/xhtml";
-@namespace jc "library://ns.apache.org/royale/community";
+@namespace itree "library://ns.apache.org/royale/externsjs/inspiretree";
 
-jc|InspireTreeBasicControl {
-    IBeadModel: ClassReference("org.apache.royale.community.inspiretree.beads.models.InspireTreeModel");
+itree|InspireTreeBasicControl {
+    IBeadModel: ClassReference("org.apache.royale.externsjs.inspiretree.beads.models.InspireTreeModel");
 }
-jc|InspireTreeBasicControlExt {
-    IBeadModel: ClassReference("org.apache.royale.community.inspiretree.beads.models.InspireTreeModelExt");
+itree|InspireTreeBasicControlExt {
+    IBeadModel: ClassReference("org.apache.royale.externsjs.inspiretree.beads.models.InspireTreeModelExt");
 }

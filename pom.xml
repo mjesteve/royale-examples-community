@@ -33,7 +33,7 @@
     <compiler.output-dir>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir>
     <compiler.output-dir-release>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir-release>
     <compiler.output-dir-debug>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-debug</compiler.output-dir-debug>
-	  <project.compiler.debug>false</project.compiler.debug>
+
     <source.map>true</source.map>
 
     <buildTimestamp>DEV</buildTimestamp>
@@ -208,41 +208,22 @@
               </configuration>
             </execution>
 
-                <!-- 
 			      <execution>
-              <id>copy-resources-debug-mobiscroll</id>
+              <id>copy-resources-debug-virtual-select</id>
               <phase>package</phase>
               <goals>
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/mobiscroll</outputDirectory>
+                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${basedir}/../../royalelibs/royalemobiscroll/src/main/resources/mobiscroll</directory>
+                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
               </configuration>
             </execution>
-
-			      <execution>
-              <id>copy-resources-debug-js-year-calendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/js-year-calendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-js-year-calendar/src/main/resources/js-year-calendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-                 -->
 
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
@@ -279,23 +260,6 @@
             </execution>
 
 			      <execution>
-              <id>copy-resources-debug-virtual-select</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
               <id>copy-resources-debug-inspire-tree</id>
               <phase>package</phase>
               <goals>
@@ -311,41 +275,12 @@
                 </resources>
               </configuration>
             </execution>
+<!-- For "Compilation debug=true" the resource copy is not needed -->
+<!-- 
+ -->
+<!-- For "Compilation debug=true" the resource copy is not needed -->
 <!--
-            <execution>
-              <id>copy-resources-debug-echarts-js</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/echarts/js</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royaleecharts/src/main/resources/echarts/js</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
 
-            <execution>
-              <id>copy-resources-debug-echarts-themes</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/echarts/themes</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royaleecharts/src/main/resources/echarts/themes</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
--->
             <execution>
               <id>copy-resources-release</id>
               <phase>package</phase>
@@ -374,143 +309,6 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royalecomponents/src/main/resources/assets</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-                <!--
-			      <execution>
-              <id>copy-resources-release-mobiscroll</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/mobiscroll</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royalemobiscroll/src/main/resources/mobiscroll</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-release-js-year-calendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/js-year-calendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-js-year-calendar/src/main/resources/js-year-calendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-             -->
-			      <execution>
-              <id>copy-resources-release-fullcalendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/fullcalendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-release-jsCalendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/jscalendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-release-virtual-select</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/virtual-select</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-release-inspire-tree</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/inspire-tree</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-<!--
-            <execution>
-              <id>copy-resources-release-echarts-js</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/echarts/js</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royaleecharts/src/main/resources/echarts/js</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-            <execution>
-              <id>copy-resources-release-echarts-themes</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/echarts/themes</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royaleecharts/src/main/resources/echarts/themes</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

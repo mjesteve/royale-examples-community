@@ -11,7 +11,7 @@ package
 	internal class VIRTUALSELECTClasses
 	{
 		import VirtualSelect; VirtualSelect;
-		import org.apache.royale.community.virtualselect.OptionsInit; OptionsInit;
+		import org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit; OptionsInit;
 	}
 }
 

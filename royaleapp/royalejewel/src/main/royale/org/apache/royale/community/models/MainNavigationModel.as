@@ -45,6 +45,7 @@ package org.apache.royale.community.models
             arnav.push(new NavigationLinkVO("TriState CheckBox", "TriStateCheckBox_panel",MaterialIconType.CHECK_BOX));
             arnav.push(new NavigationLinkVO("Basic PageNavigator", "Debug_PageNavigator_panel",MaterialIconType.LAST_PAGE));
             arnav.push(new NavigationLinkVO("ComboBox extended", "ComboBoxJwExt_panel",MaterialIconType.CREDIT_CARD));
+            arnav.push(new NavigationLinkVO("Image ToolTip", "ImageToolTip_panel","switch_account"));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 

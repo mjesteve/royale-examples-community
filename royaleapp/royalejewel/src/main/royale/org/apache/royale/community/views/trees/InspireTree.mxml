@@ -3,14 +3,15 @@
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:itree="library://ns.apache.org/royale/externsjs/inspiretree"
     xmlns:html="library://ns.apache.org/royale/html" 
     initComplete="onInitComplete()">
 
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.community.models.UsersPermissions;
         import org.apache.royale.community.vos.PermissVO;
+        import org.apache.royale.community.models.UsersPermissions;
         
         public function onInitComplete():void
         {
@@ -83,10 +84,10 @@
                         <j:html><![CDATA[<p><strong>Basic</strong> configuration.</p>]]></j:html>
                     </j:Label>
                     
-                    <jc:InspireTreeBasicControl localId="treeBasic" percentWidth="100" percentHeight="100" maxHeight="500"
+                    <itree:InspireTreeBasicControl localId="treeBasic" percentWidth="100" percentHeight="100" maxHeight="500"
                         dataProvider="{new UsersPermissions();}"
                         boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
-                    </jc:InspireTreeBasicControl>
+                    </itree:InspireTreeBasicControl>
                 </j:VGroup>
 
             </j:CardPrimaryContent>
@@ -112,13 +113,13 @@
                         <j:Label multiline="true" text="Default setting: checked and selected are the same thing."/>
                     </j:VGroup>
                     
-                    <jc:InspireTreeBasicControl localId="treeCheckIsData" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
+                    <itree:InspireTreeBasicControl localId="treeCheckIsData" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
                         dataProvider="{new UsersPermissions(1);}"
                         boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
-                        <jc:beads>
-                            <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="true"/>
-                        </jc:beads>
-                    </jc:InspireTreeBasicControl>
+                        <itree:beads>
+                            <itree:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="true"/>
+                        </itree:beads>
+                    </itree:InspireTreeBasicControl>
 
                     <j:VGroup gap="3" percentWidth="100" itemsVerticalAlign="itemsCenter" >
                         <j:Label multiline="true">
@@ -126,13 +127,13 @@
                         </j:Label>
                     </j:VGroup>
                     
-                    <jc:InspireTreeBasicControl localId="treeCheckIsData2" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
+                    <itree:InspireTreeBasicControl localId="treeCheckIsData2" percentWidth="100" percentHeight="100" maxHeight="200" minHeight="70"
                         dataProvider="{new UsersPermissions(1);}"
                         boundField="idobj" labelFunctionParent = "itemToLabelParent" labelFunctionChild = "itemToLabelChild" >
-                        <jc:beads>
-                            <jc:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="false"/>
-                        </jc:beads>
-                    </jc:InspireTreeBasicControl>
+                        <itree:beads>
+                            <itree:InspireTreeCheckBoxModeBead checkboxField = "checked" revertIcon="true" checkedIsSelected="false"/>
+                        </itree:beads>
+                    </itree:InspireTreeBasicControl>
 
                 </j:VGroup>
             </j:CardPrimaryContent>

@@ -35,7 +35,7 @@
                 "manifest": "src/main/resources/components-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/jscalendar",
                 "manifest": "../royale-jscalendar/src/main/resources/jscalendar-manifest.xml"
             }
         ],

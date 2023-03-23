@@ -52,5 +52,6 @@ package
         import org.apache.royale.community.vo.PageNavigatorButtonBarVO;PageNavigatorButtonBarVO;
         import org.apache.royale.community.vo.PillItemVO; PillItemVO;
         import org.apache.royale.community.vo.DateItemDescribeVO; DateItemDescribeVO;
+        import org.apache.royale.community.jewel.beads.controls.combobox.IComboBoxViewJwExt; IComboBoxViewJwExt;
     }
 }

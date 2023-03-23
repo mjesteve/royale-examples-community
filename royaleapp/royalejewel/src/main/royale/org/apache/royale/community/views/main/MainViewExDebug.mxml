@@ -26,7 +26,8 @@
         <j:ScrollableSectionContent>
         <!--<viewsCC:Test1 localId="test1" percentWidth="100" percentHeight="100"/> -->
         <!--<views:Debug_PageNavigator/> -->
-            <views:Debug_Pills percentHeight="100" percentWidth="100"/>
+        <!--<views:Debug_Pills percentHeight="100" percentWidth="100"/> -->
+        <views:AdvancedToolTip_View percentHeight="100" percentWidth="100"/>
         </j:ScrollableSectionContent>
     </j:ApplicationMainContent>
 	

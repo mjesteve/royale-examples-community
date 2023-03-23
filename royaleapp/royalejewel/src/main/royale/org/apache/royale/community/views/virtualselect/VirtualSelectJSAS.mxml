@@ -12,8 +12,7 @@
     <fx:Script>
         <![CDATA[
         import VirtualSelect
-        import org.apache.royale.community.virtualselect.OptionsInit;
-        import org.apache.royale.community.virtualselect.OptionsInit;
+        import org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit;
 
         [Bindable]
         private var arStringBig:Array = new Array();
@@ -27,7 +26,7 @@
         private var opinit:Array = new Array();
         private var opvinit:Array = new Array();
 
-        private function getDefaultOptions(domElement:Element):OptionsInit
+        private function getDefaultOptions(domElement:HTMLElement):OptionsInit
         {
                 var op:OptionsInit = new OptionsInit();
                 op.ele = domElement;

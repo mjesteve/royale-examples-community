@@ -29,11 +29,11 @@
             "src/main/royale"
         ],
         "include-namespaces": [
-            "library://ns.apache.org/royale/community"
+            "library://ns.apache.org/royale/externsjs/virtualselect"
         ],
         "namespace": [
             {
-                "uri": "library://ns.apache.org/royale/community",
+                "uri": "library://ns.apache.org/royale/externsjs/virtualselect",
                 "manifest": "src/main/resources/virtual-select-manifest.xml"
             }
         ],

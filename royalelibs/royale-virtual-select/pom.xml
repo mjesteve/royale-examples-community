@@ -39,7 +39,34 @@
     <sourceDirectory>src/main/royale</sourceDirectory>
 
     <plugins>
-    
+      
+      <!-- Include sass compilation -->
+		  <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <version>3.7.2</version>
+        <configuration>
+          <resources>
+            <resource>
+              <source>
+                <directory>${basedir}/src/main/resources/sass</directory>
+                <includes>
+                  <include>**/*.sass</include>
+                </includes>
+              </source>
+              <destination>${basedir}/src/main/resources/virtual-select</destination>
+            </resource>
+          </resources>
+        </configuration>
+        <executions>
+              <execution>
+                  <id>generate-css-using-sass</id>
+                  <goals>
+                      <goal>update-stylesheets</goal>
+                  </goals>
+              </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
@@ -48,7 +75,7 @@
 
         <configuration>
           <targets>JSRoyale</targets>
-          <debug>false</debug>
+          <debug>${royale.debug}</debug>
           <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
           <includeLookupOnly>true</includeLookupOnly>
@@ -56,12 +83,12 @@
           <namespaces>
             <!-- Make the classes listed in the manifest be available under the given namespace -->
             <namespace>
-              <uri>library://ns.apache.org/royale/community</uri>
+              <uri>library://ns.apache.org/royale/externsjs/virtualselect</uri>
               <manifest>${project.basedir}/src/main/resources/virtual-select-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/community</uri>
+              <uri>library://ns.apache.org/royale/externsjs/virtualselect</uri>
               <manifest>${project.basedir}/src/main/resources/virtual-select-as-manifest.xml</manifest>
             </namespace>
           </namespaces>
@@ -77,7 +104,7 @@
             </include-file>
             <include-file>
               <name>defaults.css</name>
-              <path>${project.basedir}/src/main/resources/defaults.css</path>
+              <path>${project.basedir}/src/main/resources/virtual-select/defaults.css</path>
             </include-file>
           </includeFiles>
 

@@ -8,7 +8,7 @@ package org.apache.royale.community.controls {
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.VirtualComboBox;
     import org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled;
-    import org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick;
+    import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxListCloseOnClick;
     import org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt;
     import org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText;
     import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -17,6 +17,7 @@ package org.apache.royale.community.controls {
     import org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer;
     import org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt;
     import org.apache.royale.community.jewel.beads.controls.combobox.ComboBoxReadOnly;
+    import org.apache.royale.community.jewel.supportClasses.IStrandWithResetButton;
 
 	[Event(name="selectedValueChange", type="org.apache.royale.events.Event")]
     /**
@@ -30,7 +31,7 @@ package org.apache.royale.community.controls {
      *      The ComboBoxTextPrompt bead is automatically loaded.
      * 
      */
-    public class VirtualComboBoxJwExt extends VirtualComboBox {
+    public class VirtualComboBoxJwExt extends VirtualComboBox implements IStrandWithResetButton {
 
         private static const COMBO_BOX_TEXT_PROMPT:String = "\u21F2 ...";
 
@@ -122,7 +123,7 @@ package org.apache.royale.community.controls {
         private function loadTextPromp():void
         {
             if(_activeTextPromp)
-            {               
+            {
                 //Opcionales por tag o por Css
                 textPromptBead = loadBeadFromValuesManager(ComboBoxTextPrompt, "comboBoxTextPrompt", this) as ComboBoxTextPrompt;
                 if(textPromptBead == null)
@@ -167,7 +168,7 @@ package org.apache.royale.community.controls {
             _activePopupControls = value;
         }
         private function loadActivePopupControls():void
-        {            
+        {
             if(!_activePopupControls || _itemRendererTruncateByDefault)
             {
                 //If the itemRenderer is read-only, clicking on any graphical part should trigger the click and close the popup.
@@ -202,10 +203,11 @@ package org.apache.royale.community.controls {
 
             if (!_disabledBead && !_readOnlyBead) return;
             if (!_emptyDisabled && !_emptyReadOnly) return;
-            if (_disabled) return;
+            if (_disabled || _readOnly) return;
 
             if(_emptyDisabled)
                 _disabledBead.disabled = (lengthDataProvider() <= 0);
+                
             else if(_emptyReadOnly)
                 _readOnlyBead.readOnly = (lengthDataProvider() <= 0);
         }
@@ -218,8 +220,10 @@ package org.apache.royale.community.controls {
         public function set emptyDisabled(value:Boolean):void
         {
             _emptyDisabled = value;
-            if(!isCreateComplete)
-                return;                
+            if( value && _emptyReadOnly) _emptyReadOnly = false;
+
+            if(!isCreateComplete) return;
+
             updateDisabled();
         }
 
@@ -231,14 +235,15 @@ package org.apache.royale.community.controls {
         public function set emptyReadOnly(value:Boolean):void
         {
             _emptyReadOnly = value;
-            if(!isCreateComplete)
-                return;                
+            if( value && _emptyDisabled) _emptyDisabled = false;
+
+            if(!isCreateComplete) return;
+
             updateDisabled();
         }
 
         private var _disabled:Boolean = false;
         private var _disabledBead:ComboBoxDisabled;
-        private var _readOnlyBead:ComboBoxReadOnly;
         /**
          * Disabled-Bead. Direct setter
          * @return
@@ -250,77 +255,104 @@ package org.apache.royale.community.controls {
 
         public function set disabled(value:Boolean):void
         {
-            if(!isCreateComplete)
-                return;
-            if(_disabled == value)
-                return;
+            if(!isCreateComplete) return;
+            if(_disabled == value) return;
+
             _disabled = value;
             updateDisabled();
         }
+
+        private var _readOnly:Boolean = false;
+        private var _readOnlyBead:ComboBoxReadOnly;
+        /**
+         * ReadOnly-Bead. Direct setter
+         * @return
+         */
+        public function get readOnly():Boolean
+        {
+            return _readOnlyBead ?_readOnlyBead.readOnly : _readOnly;
+        }
+
+        public function set readOnly(value:Boolean):void
+        {
+            if(!isCreateComplete) return;
+            if(_readOnly == value) return;
+
+            _readOnly = value;
+            updateDisabled();
+        }
+
+		private var _withResetButton:Boolean = false;
+		public function get withResetButton():Boolean { return _withResetButton; }
+		public function set withResetButton(value:Boolean):void
+		{ 
+			_withResetButton = value; 
+		}
 
         public function updateDisabled():void
         {
             if(!isCreateComplete)
                 return;
 
-            if( _disabled || 
-                (!_disabled && _disabledBead)  || 
-                (!_disabled && _readOnlyBead) || 
-                _emptyDisabled || _emptyReadOnly )
+            if( _disabled || (!_disabled && _disabledBead) || _emptyDisabled )
             { 
-                if(_emptyDisabled){
-                    if( _disabledBead == null)
-                    {
-                        _disabledBead = new ComboBoxDisabled();
-                        addBead(_disabledBead);
-                    }
-                    _disabledBead.disabled = _disabled;
-                }
-                else if(_emptyReadOnly) 
+                if( _disabledBead == null)
                 {
-                    if( _readOnlyBead == null)
-                    {
-                        _readOnlyBead = new ComboBoxReadOnly();
-                        addBead(_readOnlyBead);
-                    }
-                    _readOnlyBead.readOnly = _disabled;
+                    _disabledBead = new ComboBoxDisabled();
+                    addBead(_disabledBead);
                 }
+                _disabledBead.disabled = _disabled;
             }
 
-            if( (_emptyDisabled || _emptyReadOnly) && !_disabled)
+            if( _readOnly || (!_readOnly && _readOnlyBead) || _emptyReadOnly )
+            { 
+                if( _readOnlyBead == null)
+                {
+                    _readOnlyBead = new ComboBoxReadOnly();
+                    addBead(_readOnlyBead);
+                }
+                _readOnlyBead.readOnly = _readOnly;
+            }
+
+            if( _emptyDisabled && !_disabled )
             {
-                if(_emptyDisabled)
-                    _disabledBead.disabled = (lengthDataProvider() <= 0);
-                else if(_emptyReadOnly)
-                    _readOnlyBead.readOnly = (lengthDataProvider() <= 0);
+                _disabledBead.disabled = (lengthDataProvider() <= 0);
+            }
+
+            if( _emptyReadOnly && !_readOnly )
+            {
+                _readOnlyBead.readOnly = (lengthDataProvider() <= 0);
             }
         }
 
         private function loadEmptyBead():void
         {
-			_disabled = false;
-            _disabledBead = loadBeadFromValuesManager(ComboBoxDisabled, "comboBoxDisabled", this) as ComboBoxDisabled;
-            if(_disabledBead == null && _emptyDisabled)
+            if(_emptyDisabled)
             {
-                _disabledBead = new ComboBoxDisabled();
-                addBead(_disabledBead);
-            }
-            //By default the Disabled bead is initialized to true. In this case, we force false.
-            if(_disabledBead) 
-                _disabledBead.disabled = _disabled;
-            else
+                _disabledBead = loadBeadFromValuesManager(ComboBoxDisabled, "comboBoxDisabled", this) as ComboBoxDisabled;
+                if(_disabledBead == null)
+                {
+                    _disabled = false;//By default the Disabled bead is initialized to true. In this case, we force false.
+                    _disabledBead = new ComboBoxDisabled();
+                    addBead(_disabledBead);
+                }
+                
+                if(_disabledBead && _emptyDisabled) 
+                    _disabledBead.disabled = _disabled;
+            }else
+            if(_emptyReadOnly) 
             {
                 _readOnlyBead = loadBeadFromValuesManager(ComboBoxReadOnly, "comboBoxReadOnly", this) as ComboBoxReadOnly;
-                if(_readOnlyBead == null && _emptyReadOnly) 
+                if(_readOnlyBead == null) 
                 {
+                    _readOnly = false;
                     _readOnlyBead = new ComboBoxReadOnly();
-                    addBead(_readOnlyBead);                
+                    addBead(_readOnlyBead);
                 }
-                if(_readOnlyBead)                    
-                    _readOnlyBead.readOnly = _disabled;
-
+                
+                if(_readOnlyBead && _emptyReadOnly)                    
+                    _readOnlyBead.readOnly = _readOnly;
             }
-
         }
 
         public function lengthDataProvider():int 
@@ -410,6 +442,7 @@ package org.apache.royale.community.controls {
 
         public function reset():void
         {
+
             if(model is ISelectionByFieldModel && valueField != "")
             {
                 ISelectionByFieldModel(model).selectedValue = null;
@@ -419,9 +452,9 @@ package org.apache.royale.community.controls {
             }
         }
 
-        override public function dispatchEvent(event:Event):Boolean {
+        /*override public function dispatchEvent(event:Event):Boolean {
             return super.dispatchEvent(event);
-        }
+        }*/
 
     }
 }
