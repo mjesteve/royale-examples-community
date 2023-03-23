@@ -10,6 +10,7 @@
     <fx:Script>
         <![CDATA[
 			import FullCalendar.Calendar;
+    //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
 
 			private var mycalendar:Calendar;
 			private function onInit():void

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.royale.community</groupId>
+    <artifactId>royalelibs</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>royale-fullcalendar</artifactId>
+  <packaging>swc</packaging>
+
+  <name>Royale Lib Component FullCalendar</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/royale</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
+        <extensions>true</extensions>
+
+        <configuration>
+          <targets>JSRoyale</targets>
+          <debug>${royale.debug}</debug>
+          <skipAS>true</skipAS>
+          <skipExtern>true</skipExtern>
+          <includeLookupOnly>true</includeLookupOnly>
+          <namespaces>
+            <!-- Make the classes listed in the manifest be available under the given namespace -->
+            <namespace>
+              <uri>library://ns.apache.org/royale/externsjs/fullcalendar</uri>
+              <manifest>${project.basedir}/src/main/resources/fullcalendar-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+              <type>as</type>
+              <uri>library://ns.apache.org/royale/externsjs/fullcalendar</uri>
+              <manifest>${project.basedir}/src/main/resources/fullcalendar-as-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <!-- Tell the compiler which classes to compile and include -->
+          <includeClasses>
+            <includeClass>FULLCALENDARClasses</includeClass>
+          </includeClasses>
+
+          <includeFiles>
+            <include-file>
+              <name>fullcalendar/*</name>
+              <path>../src/main/resources/fullcalendar/*</path>
+            </include-file>
+           
+          </includeFiles>
+
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <additionalCompilerOptions>
+            ${project.compiler.options};
+            <!-- -keep-as3-metadata+=Inject,EventHandler,Event,Bindable; -->
+          </additionalCompilerOptions>
+
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

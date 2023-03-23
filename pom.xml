@@ -235,7 +235,7 @@
                 <outputDirectory>${compiler.output-dir-debug}/fullcalendar</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/fullcalendar</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

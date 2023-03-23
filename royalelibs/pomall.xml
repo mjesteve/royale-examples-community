@@ -16,7 +16,7 @@
   <modules>
     <!--
     <module>royale-js-year-calendar</module> -->
-    <module>royalefullcalendar</module>
+    <module>royale-fullcalendar</module>
     <module>royale-virtual-select</module>
     <module>royalecomponents</module>
     <module>royale-jscalendar</module>

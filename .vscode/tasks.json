@@ -111,7 +111,7 @@
             "args": [
                 "clean",
                 "install",
-                "-f.\\royalelibs\\royalefullcalendar\\pom.xml",
+                "-f.\\royalelibs\\royale-fullcalendar\\pom.xml",
                 "-Droyalelib=${env:ROYALE_HOME}\\frameworks",
                 "-DskipTests"
             ],
