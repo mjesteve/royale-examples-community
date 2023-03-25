@@ -224,7 +224,7 @@
                 </resources>
               </configuration>
             </execution>
-
+<!--
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
               <phase>package</phase>
@@ -236,6 +236,23 @@
                 <resources>
                   <resource>
                     <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/fullcalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+-->
+			      <execution>
+              <id>copy-resources-debug-fullcalendar-yearview</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/fullcalendar-yearview</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar-yearview/src/main/resources/fullcalendar-yearview</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

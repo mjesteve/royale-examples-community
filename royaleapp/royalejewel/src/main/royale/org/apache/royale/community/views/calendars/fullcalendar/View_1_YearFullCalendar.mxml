@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+	xmlns:views="org.apache.royale.community.views.*"
+    initComplete="onInit()">
+
+    <fx:Script>
+    <![CDATA[
+			import FullCalendar.Calendar;
+    //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
+            private const VIEW_DAYGRIDMONTH:String = 'dayGridMonth';
+            private const VIEW_DAYGRIDYEAR:String = 'dayGridYear';
+            private const VIEW_MULTIMONTHYEAR:String = 'multiMonthYear';
+
+			private var mycalendar:Calendar;
+			private function onInit():void
+			{
+				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                    timeZone: 'local',
+                    weekNumberCalculation: 'ISO',
+                    firstDay: 1,
+                    weekNumbers: true,
+                    initialView: VIEW_MULTIMONTHYEAR,
+                    showNonCurrentDates: false,
+                    locales: ['es','en'],
+                    locale: 'es',
+                    editable: true,
+                    selectable: true,
+                    buttonText: {today: 'Hoy'},
+                    showNonCurrentDates: true,
+                    fixedWeekCount: false,
+                    dayHeaderClassNames: 'CustomTabBar menubuttonbar'
+                    }
+                );
+				mycalendar.render();
+			}
+
+        ]]>
+    </fx:Script>
+
+    <fx:Style>
+        .fc-day-sun.fc-daygrid-day, 
+        .fc-day-sat.fc-daygrid-day{
+            background-color: #3cadf1;
+        }
+
+        .fc-day-sun.fc-day-future,
+        .fc-day-sat.fc-day-future{
+            background-color: #0c69a2;
+        }
+
+        .fc-day-sun.fc-day-past,
+        .fc-day-sat.fc-day-past{
+            background-color: #cccccc;
+        }
+
+        .fc-day-mon.fc-day-past,
+        .fc-day-tue.fc-day-past,
+        .fc-day-wed.fc-day-past,
+        .fc-day-thu.fc-day-past,
+        .fc-day-fri.fc-day-past{
+            background-color: #b3b3b3;
+        }
+
+
+    </fx:Style>
+
+    <j:beads>
+        <js:ViewDataBinding />
+    </j:beads>
+	 
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+        <j:ScrollableSectionContent>
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
+            <j:Card itemsExpand="false">
+                <j:CardHeader>
+                    <j:BarSection width="100%" gap="10">
+                        <html:H3 text="FullCalendar - Debugger" className="primary-dark"/>
+                    </j:BarSection>
+                </j:CardHeader>
+
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+                    <j:Label multiline="true">
+                        <j:html><![CDATA[<p><strong>Keep dropbox always open</strong>  with fixed height</p>]]></j:html>
+                    </j:Label>
+                    
+                    <html:Div id="myContainerCalendar" style="min-width: 100%;min-height:100%"/>
+
+                </j:CardPrimaryContent>
+
+            </j:Card>
+        </j:ScrollableSectionContent>
+                
+    </j:ApplicationMainContent>
+	
+</j:ResponsiveView>

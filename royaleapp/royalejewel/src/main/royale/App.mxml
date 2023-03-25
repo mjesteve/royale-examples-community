@@ -49,7 +49,7 @@
 	</j:valuesImpl>
 	
 	<j:initialView>		
-		<viewsFullcal:View_0_MultiMonthYear/> 
+		<viewsFullcal:View_1_YearFullCalendar/> 
 <!--		
 		<mainviews:MainView/> 
 		<mainviews:MainViewExDebug/> 
