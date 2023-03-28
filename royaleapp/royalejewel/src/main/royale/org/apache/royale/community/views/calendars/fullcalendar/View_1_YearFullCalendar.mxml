@@ -9,36 +9,92 @@
 
     <fx:Script>
     <![CDATA[
-			import FullCalendar.Calendar;
-    //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
-            private const VIEW_DAYGRIDMONTH:String = 'dayGridMonth';
-            private const VIEW_DAYGRIDYEAR:String = 'dayGridYear';
-            private const VIEW_MULTIMONTHYEAR:String = 'multiMonthYear';
+        import FullCalendar.Calendar;
+//xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
+        private const VIEW_DAYGRIDMONTH:String = 'dayGridMonth';
+        private const VIEW_DAYGRIDYEAR:String = 'dayGridYear';
+        private const VIEW_MULTIMONTHYEAR:String = 'multiMonthYear';
+        private const VIEW_YEAR:String = 'year';
 
-			private var mycalendar:Calendar;
-			private function onInit():void
-			{
-				mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
-                    timeZone: 'local',
-                    weekNumberCalculation: 'ISO',
-                    firstDay: 1,
-                    weekNumbers: true,
-                    initialView: VIEW_MULTIMONTHYEAR,
-                    showNonCurrentDates: false,
-                    locales: ['es','en'],
-                    locale: 'es',
-                    editable: true,
-                    selectable: true,
-                    buttonText: {today: 'Hoy'},
-                    showNonCurrentDates: true,
-                    fixedWeekCount: false,
-                    dayHeaderClassNames: 'CustomTabBar menubuttonbar'
+        private var mycalendar:Calendar;
+        private function onInit():void
+        {
+            /*mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
+                timeZone: 'local',
+                weekNumberCalculation: 'ISO',
+                firstDay: 1,
+                weekNumbers: true,
+                initialView: VIEW_MULTIMONTHYEAR,
+                showNonCurrentDates: false,
+                locales: ['es','en'],
+                locale: 'es',
+                editable: true,
+                selectable: true,
+                buttonText: {today: 'Hoy'},
+                showNonCurrentDates: true,
+                fixedWeekCount: false,
+                dayHeaderClassNames: 'CustomTabBar menubuttonbar'
+                }
+            );
+            mycalendar.render();
+            */
+
+        }
+
+        private function OpenCalen():void
+        {
+            //Works well both ways:
+            // 1) mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
+            // 2)
+            mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                defaultView: VIEW_YEAR,
+                plugins: ['interaction', 'dayGrid', 'yearView'],
+                timeZone: 'UTC',
+                weekNumberCalculation: 'ISO',
+                firstDay: 1,
+                locales: ['en','es','ca','fr','pt','it'],
+                locale: 'es',
+                //header: {
+                //    left: 'prevYear today',
+                //    center: 'title',
+                //    right: 'year,dayGridMonth,dayGridWeek nextYear'
+                //},
+                //buttonText: {today: 'Hoy', year: "Anual", month: "Mensual", week: "Semanal"},
+                selectable: true,
+                editable: true,
+                dateClick: function(info:Object):void {
+                alert('clicked ' + info.dateStr);
+                },
+                select: function(info:Object):void {
+                alert('selected ' + info.startStr + ' to ' + info.endStr);
+                },
+
+                defaultDate: '2023-01-01',
+                // navLinks: true, can click day/week names to navigate views
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {
+                        title: '001',
+                        start: '2023-01-01', end: '2023-01-01',
+                        allDay: true,
+                        url: '#fafafa'
                     }
-                );
-				mycalendar.render();
-			}
-
-        ]]>
+                    /*,
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-09T16:00:00'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2019-08-16T16:00:00'
+                    }*/
+                ]
+            });
+            mycalendar.render();
+        }
+    ]]>
     </fx:Script>
 
     <fx:Style>
@@ -85,9 +141,7 @@
                 </j:CardHeader>
 
                 <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
-                    <j:Label multiline="true">
-                        <j:html><![CDATA[<p><strong>Keep dropbox always open</strong>  with fixed height</p>]]></j:html>
-                    </j:Label>
+                    <j:Button localId="btopencalen" text="Load Calen" click="OpenCalen()"/>
                     
                     <html:Div id="myContainerCalendar" style="min-width: 100%;min-height:100%"/>
 
