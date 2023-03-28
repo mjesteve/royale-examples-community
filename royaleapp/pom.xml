@@ -37,7 +37,7 @@
       <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
-<!--
+
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-fullcalendar</artifactId>
@@ -46,7 +46,7 @@
       <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
--->
+<!--
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-fullcalendar-yearview</artifactId>
@@ -54,7 +54,7 @@
       <type>swc</type>
       <scope>provided</scope>
       <classifier>js</classifier>
-    </dependency>
+    </dependency>-->
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-jscalendar</artifactId>

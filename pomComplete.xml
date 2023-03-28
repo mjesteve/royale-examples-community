@@ -399,6 +399,7 @@
                 </resources>
               </configuration>
             </execution>
+             -->
 
 			      <execution>
               <id>copy-resources-release-fullcalendar</id>
@@ -416,7 +417,6 @@
                 </resources>
               </configuration>
             </execution>
-             -->
 
 			      <execution>
               <id>copy-resources-release-fullcalendar-yearview</id>

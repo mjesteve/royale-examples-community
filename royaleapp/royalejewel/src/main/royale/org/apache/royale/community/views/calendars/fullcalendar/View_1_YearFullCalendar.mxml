@@ -18,7 +18,7 @@
 			private var mycalendar:Calendar;
 			private function onInit():void
 			{
-				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+				mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
                     timeZone: 'local',
                     weekNumberCalculation: 'ISO',
                     firstDay: 1,

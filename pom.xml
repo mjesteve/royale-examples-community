@@ -224,7 +224,6 @@
                 </resources>
               </configuration>
             </execution>
-<!--
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
               <phase>package</phase>
@@ -241,7 +240,7 @@
                 </resources>
               </configuration>
             </execution>
--->
+<!--
 			      <execution>
               <id>copy-resources-debug-fullcalendar-yearview</id>
               <phase>package</phase>
@@ -259,6 +258,7 @@
               </configuration>
             </execution>
 
+-->
 			      <execution>
               <id>copy-resources-debug-jsCalendar</id>
               <phase>package</phase>
