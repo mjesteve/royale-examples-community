@@ -19,7 +19,7 @@
                     refreshSizeCalendar();
                     return;
                 }
-				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+				/*mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
                     timeZone: 'local',
                     initialView: 'dayGridMonth',
                     showNonCurrentDates: false,
@@ -33,8 +33,38 @@
                     windowResize: function(arg:Object):void {
                         //alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
                     }}
-                );
-				mycalendar.render();
+                );*/
+                mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                    defaultView: 'year',
+                    plugins: ['interaction', 'dayGrid', 'yearView'],
+                    timeZone: 'local',
+                    weekNumberCalculation: 'ISO',
+                    firstDay: 1,
+                    locales: ['en','es','ca','fr','pt','it'],
+                    locale: 'es',
+                    selectable: true,
+                    editable: true,
+                    dateClick: function(info:Object):void {
+                        alert('clicked ' + info.dateStr);
+                    },
+                    select: function(info:Object):void {
+                        alert('selected ' + info.startStr + ' to ' + info.endStr);
+                    },
+                    defaultDate: '2023-01-01',
+                    // navLinks: true, can click day/week names to navigate views
+                    eventLimit: true, // allow "more" link when too many events
+                    events: [
+                        {
+                            title: '001',
+                            start: '2023-01-01', end: '2023-01-01',
+                            allDay: true,
+                            editable: true,
+                            extendedProps: {TipoFestivo: 'laboral', Color:'#ccc'}
+                        }
+                    ]
+                });
+                mycalendar.render();
+                //    mycalendar.updateSize();
 			}
 
             public function refreshSizeCalendar():void

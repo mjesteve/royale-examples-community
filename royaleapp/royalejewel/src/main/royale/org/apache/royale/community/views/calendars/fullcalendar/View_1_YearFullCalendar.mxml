@@ -19,7 +19,7 @@
         private var mycalendar:Calendar;
         private function onInit():void
         {
-            mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
+            /*mycalendar = new FullCalendar['Calendar'](myContainerCalendar.element, {
                 timeZone: 'local',
                 weekNumberCalculation: 'ISO',
                 firstDay: 1,
@@ -37,7 +37,7 @@
                 }
             );
             mycalendar.render();
-            
+            */
 
         }
 
@@ -93,34 +93,21 @@
                 ]
             });
             mycalendar.render();
+            //    mycalendar.updateSize();
         }
     ]]>
     </fx:Script>
 
     <fx:Style>
-        .fc-day-sun.fc-daygrid-day, 
-        .fc-day-sat.fc-daygrid-day{
-            background-color: #3cadf1;
+        .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
+            float: right;
+            font-size: 0.75em;
         }
 
-        .fc-day-sun.fc-day-future,
-        .fc-day-sat.fc-day-future{
-            background-color: #0c69a2;
+        .fc-year-container .fc-sat, 
+        .fc-year-container .fc-sun {
+            background-color: rgb(245, 241, 188);
         }
-
-        .fc-day-sun.fc-day-past,
-        .fc-day-sat.fc-day-past{
-            background-color: #cccccc;
-        }
-
-        .fc-day-mon.fc-day-past,
-        .fc-day-tue.fc-day-past,
-        .fc-day-wed.fc-day-past,
-        .fc-day-thu.fc-day-past,
-        .fc-day-fri.fc-day-past{
-            background-color: #b3b3b3;
-        }
-
 
     </fx:Style>
 
@@ -140,10 +127,10 @@
                     </j:BarSection>
                 </j:CardHeader>
 
-                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="75" percentWidth="75">  
                     <j:Button localId="btopencalen" text="Load Calen" click="OpenCalen()"/>
                     
-                    <html:Div id="myContainerCalendar" style="min-width: 100%;min-height:100%"/>
+                    <html:Div id="myContainerCalendar" />
 
                 </j:CardPrimaryContent>
 

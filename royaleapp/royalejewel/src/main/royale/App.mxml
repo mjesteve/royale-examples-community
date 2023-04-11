@@ -49,9 +49,9 @@
 	</j:valuesImpl>
 	
 	<j:initialView>		
-		<viewsFullcal:View_1_YearFullCalendar/> 
-<!--		
 		<mainviews:MainView/> 
+<!--		
+		<viewsFullcal:View_1_YearFullCalendar/> 
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
 		<mainviews:MainVirtualComboBox/> 

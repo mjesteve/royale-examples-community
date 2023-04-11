@@ -33,8 +33,8 @@
             {
                 main.selectedContent = drawer.currentNavOption.hash;
 
-                //if(drawer.currentNavOption.hash == "fullcalendar_panel")
-                //    vFullCalendar.refreshSizeCalendar();
+                if(drawer.currentNavOption.hash == "fullcalendar_panel")
+                    vFullCalendar.onInit();
             }
 
 
@@ -90,7 +90,7 @@
             <viewsJscal:JsCalendarView localId="vJsCalendar"/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="fullcalendar_panel">
-            <viewsFullcal:FullCalendarView_new localId="vFullCalendar"/>
+            <viewsFullcal:FullCalendarView_yearview localId="vFullCalendar"/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="inspiretree_panel">
             <viewsTree:InspireTree />
