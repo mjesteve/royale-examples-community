@@ -231,50 +231,33 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/fullcalendar</outputDirectory>
+                <outputDirectory>${compiler.output-dir-debug}/@fullcalendar</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/fullcalendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-			      <execution>
-              <id>copy-resources-debug-fullcalendar-yearview</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/fullcalendar-yearview</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/fullcalendar-yearview</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-<!--
-			      <execution>
-              <id>copy-resources-debug-fullcalendar-yearview</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/fullcalendar-yearview</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-fullcalendar-yearview/src/main/resources/fullcalendar-yearview</directory>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/@fullcalendar</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>
               </configuration>
             </execution>
 
--->
+			      <execution>
+              <id>copy-resources-debug-fullcalendar-moment</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/moment</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/moment</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
 			      <execution>
               <id>copy-resources-debug-jsCalendar</id>
               <phase>package</phase>

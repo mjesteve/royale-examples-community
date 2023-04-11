@@ -53,8 +53,12 @@
 
           <includeFiles>
             <include-file>
-              <name>fullcalendar/*</name>
-              <path>../src/main/resources/fullcalendar/*</path>
+              <name>@fullcalendar/*</name>
+              <path>../src/main/resources/@fullcalendar/*</path>
+            </include-file>
+            <include-file>
+              <name>moment/*</name>
+              <path>../src/main/resources/moment/*</path>
             </include-file>
            
           </includeFiles>
