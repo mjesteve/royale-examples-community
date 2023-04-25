@@ -13,12 +13,14 @@
         buttonText: {
             prev: "Ant",
             next: "Sig",
+            prevYear: 'Año anterior',
+            nextYear: 'Año siguiente',
+            year: "Año",
             today: "Hoy",
             month: "Mes",
             week: "Semana",
             day: "Día",
-            list: "Agenda",
-			year: "Año"
+            list: "Agenda"
         },
         weekLabel: "Sm",
         allDayHtml: "Todo<br/>el día",

@@ -33,8 +33,9 @@
             {
                 main.selectedContent = drawer.currentNavOption.hash;
 
-                if(drawer.currentNavOption.hash == "fullcalendar_panel")
-                    vFullCalendar.onInit();
+                if(drawer.currentNavOption.hash == "fullcalendar_panel"){
+                    vFullCalendar.makeCalendar();
+                }
             }
 
 

@@ -358,7 +358,7 @@ Docs & License: https://fullcalendar.io/
                         // create a container that occupies or more columns. append the event element.
                         td = core.createElement('td', { className: 'fc-event-container' }, seg.el);
                         if (leftCol !== rightCol) {
-                            td.colSpan = rightCol - leftCol; //+ 1 Hiedra
+                            td.colSpan = rightCol - leftCol; // + 1 Hiedra
                         }
                         else { // a single-column segment
                             loneCellMatrix[i][col] = td;
@@ -498,12 +498,12 @@ Docs & License: https://fullcalendar.io/
         __extends(DayGridFillRenderer, _super);
         function DayGridFillRenderer(dayGrid) {
             var _this = _super.call(this, dayGrid.context) || this;
-            _this.fillSegTag = 'td'; // override the default tag name
+            _this.fillSegTag = 'td'; //  override the default tag name
             _this.dayGrid = dayGrid;
             return _this;
         }
         DayGridFillRenderer.prototype.renderSegs = function (type, segs) {
-            // don't render timed background events
+            //  don't render timed background events
             if (type === 'bgEvent') {
                 segs = segs.filter(function (seg) {
                     return seg.eventRange.def.allDay;
@@ -524,19 +524,19 @@ Docs & License: https://fullcalendar.io/
             }
             return els;
         };
-        // Generates the HTML needed for one row of a fill. Requires the seg's el to be rendered.
+        //  Generates the HTML needed for one row of a fill. Requires the seg's el to be rendered.
         DayGridFillRenderer.prototype.renderFillRow = function (type, seg) {
             var dayGrid = this.dayGrid;
             var colCnt = dayGrid.colCnt, isRtl = dayGrid.isRtl;
             var leftCol = isRtl ? (colCnt - 1 - seg.lastCol) : seg.firstCol;
             var rightCol = isRtl ? (colCnt - 1 - seg.firstCol) : seg.lastCol;
-            //Hiedra: skip invalid dates
-            if (!isRtl) { //TODO: isRtl
+            // Hiedra: skip invalid dates
+            if (!isRtl) { // TODO: isRtl
                 var aa = dayGrid.calendar.state.currentDate.getFullYear();
                 rightCol = Math.min(rightCol, moment__default(new Date(aa, seg.row, 1)).daysInMonth() - 1);
             }
             var startCol = leftCol;
-            var endCol = rightCol; // + 1 Hiedra
+            var endCol = rightCol; //  + 1 Hiedra
             var className;
             var skeletonEl;
             var trEl;
@@ -552,17 +552,17 @@ Docs & License: https://fullcalendar.io/
             trEl = skeletonEl.getElementsByTagName('tr')[0];
             if (startCol > 0) {
                 core.appendToElement(trEl, 
-                // will create (startCol + 1) td's
+                //  will create (startCol + 1) td's
                 new Array(startCol + 1).join(EMPTY_CELL_HTML));
             }
-            seg.el.colSpan = endCol - startCol + 1; //hiedra (add +1)
+            seg.el.colSpan = endCol - startCol + 1; // hiedra (add +1)
             trEl.appendChild(seg.el);
-            //if (endCol < colCnt) { //hiedra
+            // if (endCol < colCnt) { // hiedra
             if (endCol < colCnt - 1) {
                 core.appendToElement(trEl, 
-                // will create (colCnt - endCol) td's
-                //new Array(colCnt - endCol + 1).join(EMPTY_CELL_HTML)
-                new Array(colCnt - endCol).join(EMPTY_CELL_HTML) //hiedra
+                //  will create (colCnt - endCol) td's
+                // new Array(colCnt - endCol + 1).join(EMPTY_CELL_HTML)
+                new Array(colCnt - endCol).join(EMPTY_CELL_HTML) // hiedra
                 );
             }
             var introHtml = dayGrid.renderProps.renderIntroHtml();
@@ -1578,7 +1578,7 @@ Docs & License: https://fullcalendar.io/
                         cells.push({
                             date: null
                         });
-                        if (inrow.idxini == -1) {
+                        if (inrow.idxini === -1) {
                             inrow.idxini = tinvalid + i + 1;
                             inrow.idxfin = tinvalid + i + 1;
                         }
@@ -1587,8 +1587,9 @@ Docs & License: https://fullcalendar.io/
                         }
                         tinvalid++;
                     }
-                    if (inrow.idxini != -1)
+                    if (inrow.idxini !== -1) {
                         inrows.push(inrow);
+                    }
                     rows.push(cells);
                     cells = [];
                 }
@@ -1605,23 +1606,27 @@ Docs & License: https://fullcalendar.io/
             var segs = [];
             if (seriesSeg) {
                 var firstIndex = seriesSeg.firstIndex, lastIndex = seriesSeg.lastIndex;
-                //Hiedra: skip invalid dates                
+                // Hiedra: skip invalid dates
                 for (var r = 0; r < this.invalidIndex.length; r++) {
-                    if (this.invalidIndex[r].idxini != -1) {
+                    if (this.invalidIndex[r].idxini !== -1) {
                         var value = 0;
                         if (firstIndex >= this.invalidIndex[r].idxini) {
-                            if (firstIndex >= this.invalidIndex[r].idxfin)
+                            if (firstIndex >= this.invalidIndex[r].idxfin) {
                                 value = this.invalidIndex[r].idxfin - this.invalidIndex[r].idxini + 1;
-                            else
+                            }
+                            else {
                                 value = firstIndex - this.invalidIndex[r].idxini + 1;
+                            }
                             firstIndex += value;
                             lastIndex += value;
                         }
                         else if (lastIndex >= this.invalidIndex[r].idxini) {
-                            if (lastIndex >= this.invalidIndex[r].idxfin)
+                            if (lastIndex >= this.invalidIndex[r].idxfin) {
                                 value = this.invalidIndex[r].idxfin - this.invalidIndex[r].idxini + 1;
-                            else
+                            }
+                            else {
                                 value = firstIndex - this.invalidIndex[r].idxini + 1;
+                            }
                             lastIndex += value;
                         }
                         else {
@@ -1633,7 +1638,7 @@ Docs & License: https://fullcalendar.io/
                 while (index <= lastIndex) {
                     var row = Math.floor(index / colCnt);
                     var nextIndex = Math.min((row + 1) * colCnt, lastIndex + 1);
-                    //invalid date?
+                    // invalid date?
                     segs.push({
                         row: row,
                         firstCol: index % colCnt,
@@ -1654,8 +1659,8 @@ Docs & License: https://fullcalendar.io/
         function DayGridView(_context, viewSpec, dateProfileGenerator, parentEl) {
             var _this = _super.call(this, _context, viewSpec, dateProfileGenerator, parentEl) || this;
             _this.buildDayTable = core.memoize(buildDayTable);
-            //set moment locale
-            moment.locale(_this.context.dateEnv.locale.codeArg.toString()); //Hiedra
+            // set moment locale
+            moment.locale(_this.context.dateEnv.locale.codeArg.toString()); // Hiedra
             if (_this.opt('columnHeader')) {
                 _this.header = new core.DayHeader(_this.context, _this.el.querySelector('.fc-head-container'));
             }
@@ -1703,7 +1708,7 @@ Docs & License: https://fullcalendar.io/
         return new DayTable(daySeries, /year|month|week/.test(dateProfile.currentRangeUnit));
     }
 
-    //import './main.scss'
+    // import './main.scss'
     var main = core.createPlugin({
         defaultView: 'year',
         views: {

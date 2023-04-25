@@ -35,7 +35,7 @@ package
          * scriptfullcal.onload = function () {
          * 
          *      scriptfullcal = document.createElement("script");
-         *      scriptfullcal.setAttribute("src", "@fullcalendar/core/locales-all.js");
+         *      scriptfullcal.setAttribute("src", "@fullcalendar/core/locales-all-custom.js");
          *      document.head.appendChild(scriptfullcal);
          *      
          *      scriptfullcal = document.createElement("script");
@@ -55,6 +55,5 @@ package
          * </inject_script>
         */
         public function FullCalendar(){}
-        
     }
 }

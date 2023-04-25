@@ -11,8 +11,11 @@
             doy: 4 // The week that contains Jan 4th is the first week of the year.
         },
         buttonText: {
-            prev: "Anterior",
-            next: "Següent",
+            prev: "Ant",
+            next: "Seg",
+            prevYear: 'Any anterior',
+            nextYear: 'Any següent',
+            year: "Any",
             today: "Avui",
             month: "Mes",
             week: "Setmana",

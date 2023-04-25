@@ -1,3 +1,13 @@
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries */
+/* https://stackoverflow.com/questions/16056591/font-scaling-based-on-size-of-container/74977615#74977615 */
+.fc {
+  container-type: size; /* inline-size (only with); */
+}
+
+.fc table {
+  font-size: 0.9cqw;
+}
+
 /* DayGridView
 --------------------------------------------------------------------------------------------------*/
 /* day row structure */
@@ -6,6 +16,14 @@
   /* week and day number styling */
   /* when week/day number have own column */
   /* Add.Hiedra. .fc-row .fc-highlight-skeleton. The selection must be moved by the width of the "month name" column. */
+  /* Global Event Styles
+  --------------------------------------------------------------------------------------------------*/
+  /* hit area */
+  /* DayGrid events
+  ----------------------------------------------------------------------------------------------------
+  We use the full "fc-day-grid-event" class instead of using descendants because the event won't
+  be a descendant of the grid when it is being dragged.
+  */
 }
 .fc-year-container .fc-dayGridWeek-view .fc-content-skeleton,
 .fc-year-container .fc-dayGridDay-view .fc-content-skeleton {
@@ -13,7 +31,7 @@
   padding-bottom: 1em; /* ensure a space at bottom of cell for user selecting/clicking */
 }
 .fc-year-container .fc-dayGrid-view .fc-body .fc-row {
-  min-height: 4em; /* ensure that all rows are at least this tall */
+  min-height: 1em; /* ensure that all rows are at least this tall */
 }
 .fc-year-container .fc-row.fc-rigid {
   overflow: hidden;
@@ -21,7 +39,7 @@
 .fc-year-container .fc-row.fc-rigid .fc-content-skeleton {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 1.2cqw;
   right: 0;
 }
 .fc-year-container .fc-day-top.fc-other-month {
@@ -34,6 +52,7 @@
 .fc-year-container .fc-dayGrid-view th.fc-week-number,
 .fc-year-container .fc-dayGrid-view th.fc-day-number {
   padding: 0 2px; /* column headers can't have as much v space */
+  /* font-size: 0.75em; */
 }
 .fc-year-container .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
   float: right;
@@ -61,17 +80,18 @@
 .fc-year-container .fc-dayGrid-view td.fc-week-number > * {
   /* work around the way we do column resizing and ensure a minimum width */
   display: inline-block;
-  min-width: 1.25em;
+  min-width: 1.2em;
 }
 .fc-year-container .fc-row-monthname {
   height: 100%;
-  width: 1.25em;
+  width: 1.2cqw; /* 1.25em; */
   position: absolute;
   text-align: center;
   border-right-width: 1px;
   border-right-style: solid;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  font-size: 1cqw;
 }
 .fc-year-container .fc-row-monthname span {
   display: block;
@@ -80,13 +100,71 @@
   top: 50%;
 }
 .fc-year-container .fc-bg, .fc-year-container .fc-content-skeleton {
-  left: 1.25em !important;
+  left: 1.2cqw; /* 1.25em */
 }
 .fc-year-container .fc-row .fc-highlight-skeleton {
-  left: 1.25em;
+  left: 1.2cqw; /* 1.25em */
   z-index: 3;
 }
 .fc-year-container .fc-day-number-weekday {
   padding-right: 0.3em;
   color: #aaa;
+}
+.fc-year-container .fc-sat,
+.fc-year-container .fc-sun {
+  background-color: rgb(245, 241, 188);
+}
+.fc-year-container .fc-event {
+  font-size: 1cqw;
+  line-height: 2cqw;
+  background-color: transparent !important;
+  border-radius: 0;
+  border: 0px;
+  color: black;
+  min-height: 2cqw;
+  margin: 0;
+}
+.fc-year-container .fc-row .fc-content-skeleton {
+  padding-bottom: 0;
+}
+.fc-year-container .fc-event.fc-selected .fc-resizer:before {
+  /* 40x40 touch area */
+  content: "";
+  position: absolute;
+  z-index: 9999;
+  background-color: transparent !important;
+  /* user of this util can scope within a lower z-index */
+  /* top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px; */
+}
+.fc-year-container .fc-day-grid-event {
+  margin: 1px 2px 0;
+  /* spacing between events and edges */
+  padding: 0 1px;
+}
+.fc-year-container tr:first-child > td > .fc-day-grid-event {
+  margin-top: 0;
+  /* a little bit more space before the first event */
+}
+.fc-year-container .fc-mirror-skeleton tr:first-child > td > .fc-day-grid-event {
+  margin-top: 0;
+  /* except for mirror skeleton */
+}
+.fc-year-container .fc-row table {
+  /* don't put left/right border on anything within a fake row.
+     the outer tbody will worry about this */
+  border-left: 0 hidden transparent;
+  border-right: 0 hidden transparent;
+  /* no bottom borders on rows */
+  border-bottom: 0 hidden transparent;
+}
+.fc-year-container .fc-row .fc-content-skeleton tbody td,
+.fc-year-container .fc-row .fc-mirror-skeleton tbody td {
+  /* don't put a border between event cells */
+  border-top: 0;
+  text-align: center;
 }

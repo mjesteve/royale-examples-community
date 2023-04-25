@@ -8,12 +8,13 @@
 
     <fx:Script>
         <![CDATA[
+			import FullCalendar;
 			import FullCalendar.Calendar;
     //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
     //initComplete="onInit()"
 
-			private var mycalendar:Calendar;
-			public function onInit():void
+			private var mycalendar:Object; //:Calendar;
+			public function makeCalendar():void
 			{
                 if(mycalendar){
                     refreshSizeCalendar();
@@ -42,7 +43,15 @@
                     firstDay: 1,
                     locales: ['en','es','ca','fr','pt','it'],
                     locale: 'es',
+                    header: {
+                    left: 'prev,next today',
+                        center: 'title',
+                        right: 'year,dayGridMonth'
+                    },
+                    height: 'parent',
                     selectable: true,
+                    selectMirror: true,
+			        selectHelper: true,
                     editable: true,
                     dateClick: function(info:Object):void {
                         alert('clicked ' + info.dateStr);
@@ -111,7 +120,7 @@
                 //debemos fijar también el percentWidth y el percentHeight.
                 parentContentCalendar.percentWidth = 100;                
                 parentContentCalendar.percentHeight = 100;
-                mycalendar.setOption('height', '100%');
+                mycalendar.setOption('height', 'parent'); // '100%'
                 mycalendar.updateSize();
             }
         ]]>

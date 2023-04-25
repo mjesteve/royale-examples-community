@@ -27,7 +27,7 @@
             "src/main/resources",
             "../../royalelibs/royalecomponents/src/main/royale/",
 			"../../royalelibs/royale-js-year-calendar/src/main/royale/",
-			"../../royalelibs/royale-fullcalendar-yearview/src/main/royale/",
+			"../../royalelibs/royale-fullcalendar/src/main/royale/",
 			"../../royalelibs/royale-jscalendar/src/main/royale/",
 			"../../royalelibs/royale-virtual-select/src/main/royale/",
 			"../../royalelibs/royale-inspire-tree/src/main/royale/"
@@ -42,8 +42,8 @@
                "manifest": "../../royalelibs/royale-js-year-calendar/src/main/resources/year-calendar-manifest.xml"
             },
             {
-                "uri": "library://ns.apache.org/royale/externsjs/fullcalendar-yearview",
-                "manifest": "../../royalelibs/royale-fullcalendar-yearview/src/main/resources/fullcalendar-yearview-manifest.xml"
+                "uri": "library://ns.apache.org/royale/externsjs/fullcalendar",
+                "manifest": "../../royalelibs/royale-fullcalendar/src/main/resources/fullcalendar-manifest.xml"
             },
             {
                 "uri": "library://ns.apache.org/royale/externsjs/jscalendar",

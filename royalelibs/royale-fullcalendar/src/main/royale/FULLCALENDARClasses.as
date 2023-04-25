@@ -12,7 +12,7 @@ package
 		import FullCalendar; FullCalendar;
 		import FullCalendar.Calendar; Calendar;
 
-		/*import org.apache.royale.community.io.fullcalendar.daygrid;	daygrid;
+		/* import org.apache.royale.community.io.fullcalendar.daygrid;	daygrid;
 		import org.apache.royale.community.io.fullcalendar.interaction; interaction;
 		import org.apache.royale.community.io.fullcalendar.Event; Event;		*/		
 	}

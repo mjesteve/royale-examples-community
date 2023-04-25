@@ -184,6 +184,7 @@
                     <directory>src/main/resources</directory>
                     <includes>
                         <include>Tests.html</include>
+                        <include>year-view-selectable.html</include>
                     </includes>
                   </resource>
                 </resources>
