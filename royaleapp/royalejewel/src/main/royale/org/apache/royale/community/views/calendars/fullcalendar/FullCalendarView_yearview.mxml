@@ -4,76 +4,105 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
-    gap="5" percentHeight="100" percentWidth="100" >
+    gap="5" percentHeight="100" percentWidth="100" initComplete="onInit()">
 
     <fx:Script>
         <![CDATA[
 			import FullCalendar;
 			import FullCalendar.Calendar;
     //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
-    //initComplete="onInit()"
 
-			private var mycalendar:Object; //:Calendar;
+            private var festivos:Array;
+            private function onInit():void {
+                
+                festivos = [
+                    {start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                ]
+            }
+
+			private var mycalendar:Calendar;
+            private var mytooltip:Tooltip;
 			public function makeCalendar():void
 			{
                 if(mycalendar){
                     refreshSizeCalendar();
                     return;
                 }
-				/*mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
-                    timeZone: 'local',
-                    initialView: 'dayGridMonth',
-                    showNonCurrentDates: false,
-                    locales: ['en','es'],
-                    locale: 'en',
-                    editable: true,
-                    selectable: true,
-                    height: '100%',
-                    //width: '50%', <-- Always set the width to 100% of the parent container
-                    expandRows: false,
-                    windowResize: function(arg:Object):void {
-                        //alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
-                    }}
-                );*/
+//dblclick: function (seg, ev) { return view.trigger('eventDoubleClick', this, seg.event, ev);
                 mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
                     defaultView: 'year',
-                    plugins: ['interaction', 'dayGrid', 'yearView'],
+                    plugins: ['interaction', 'dayGrid', 'timeGrid', 'yearView'],
                     timeZone: 'local',
                     weekNumberCalculation: 'ISO',
                     firstDay: 1,
                     locales: ['en','es','ca','fr','pt','it'],
                     locale: 'es',
                     header: {
-                    left: 'prev,next today',
+                        left: 'prev,next today',
                         center: 'title',
-                        right: 'year,dayGridMonth'
+                        right: 'year,dayGridMonth,timeGridWeek,timeGridDay'
                     },
                     height: 'parent',
                     selectable: true,
                     selectMirror: true,
 			        selectHelper: true,
                     editable: true,
-                    dateClick: function(info:Object):void {
-                        alert('clicked ' + info.dateStr);
+                    dayRender: function(info:Object):void {
+                        //console.log(date, td);
+                        info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
                     },
+
+                    dayClick: function(info:Object):void {
+                        console.log(info.date, info.allDay);
+                    },
+                   /* dateClick: function(info:Object):void {
+                        //alert('clicked ' + info.dateStr);
+                    },*/
                     select: function(info:Object):void {
-                        alert('selected ' + info.startStr + ' to ' + info.endStr);
+                        //alert('selected ' + info.startStr + ' to ' + info.endStr);
+                        var title:String = prompt('Event Title:');
+                        if (title) {
+                            mycalendar.addEvent({
+                                title: title,
+                                start: info.start,
+                                end: info.end,
+                                allDay: info.allDay
+                            })
+                        };
+                        mycalendar.unselect();
+                    },
+                    eventRender: function(info:Object):void {
+                        /*info.el.tooltip({
+                            title: info.event.title
+                        });
+                        info.el.bind('dblclick', function():void {
+                            alert('doubleclick');
+                        });*/
+                        var tooltip:Tooltip = new Tooltip(info.el, {
+                            title: info.event.title,
+                            placement: 'top-end',
+                            trigger: 'hover',
+                            html: true,
+                            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
+                            container: parentContentCalendar.element, //'body'
+                                modifiers: [
+                                    {
+                                    name: 'offset',
+                                    options: { offset: [0, 18] }
+                                    }
+                                ]
+                        });
                     },
                     defaultDate: '2023-01-01',
                     // navLinks: true, can click day/week names to navigate views
                     eventLimit: true, // allow "more" link when too many events
-                    events: [
-                        {
-                            title: '001',
-                            start: '2023-01-01', end: '2023-01-01',
-                            allDay: true,
-                            editable: true,
-                            extendedProps: {TipoFestivo: 'laboral', Color:'#ccc'}
-                        }
-                    ]
+                    events: festivos
                 });
                 mycalendar.render();
-                //    mycalendar.updateSize();
+               
+                mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});
+                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
 			}
 
             public function refreshSizeCalendar():void
@@ -85,44 +114,6 @@
                 mycalendar.updateSize();
             }
 
-            private function clickBtResize():void
-            {
-                trace(primaryContent.width,primaryContent.height);
-                trace(parentContentCalendar.width,parentContentCalendar.height);
-                //[en] To change the width of the calendar we have to change the width of the parent container...
-                parentContentCalendar.width = parentContentCalendar.width/2;
-                
-                //[en] ...However, the height can be set directly on the calendar container.
-                //When we set the width, the Calendar content is resized but the same does not happen with 
-                //the Height which does not quite fit the new height of the container and shows a scroll.
-                //[es] ...Sin embargo, la altura se puede establecer directamente en el contenedor del calendario.
-                //Cuando establecemos la anchura, el contenido del Calendario se redimensiona pero no ocurre lo mismo con 
-                //la Altura que no se ajusta del todo a la nueva altura del contenedor y muestra un scroll.
-                // AspectRatio:
-                var asr:Number = Number(mycalendar.getOption('aspectRatio'));
-                //mycalendar.setOption('height', parentContentCalendar.width/asr);
-                //[en] The aspectRatio does not match the actual ratio between width and height (must be by specifically setting 100%).
-                //[es] El aspectRatio no coincide con la relación real entre la anchura y la altura (debe ser estableciendo específicamente 100%).
-                parentContentCalendar.height = parentContentCalendar.width/asr;
-                
-                mycalendar.updateSize();
-            }
-            private function clickBtRestoreSize():void
-            {
-                //We adopted the strategy of resizing the container instead of the calendar.
-                parentContentCalendar.width = primaryContent.width-40; //40px padding
-                parentContentCalendar.height = primaryContent.height-40; //40px padding
-                //[en] Theoretically, by setting the width and height back to 100% it should resize correctly but it does not. 
-                //We must set the exact width and height, and in addition if we want to keep the Responsive behavior 
-                //we must also set the percentWidth and percentHeight.
-                //[es] Teóricamente, volviendo a poner el ancho y alto al 100% debería redimensionarse correctamente pero no es así. 
-                //Debemos establecer el ancho y alto exactos, y además si queremos mantener el comportamiento Responsive 
-                //debemos fijar también el percentWidth y el percentHeight.
-                parentContentCalendar.percentWidth = 100;                
-                parentContentCalendar.percentHeight = 100;
-                mycalendar.setOption('height', 'parent'); // '100%'
-                mycalendar.updateSize();
-            }
         ]]>
     </fx:Script>
 
@@ -148,9 +139,7 @@
 
         <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">            
             <j:HGroup itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
-                style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >
-                <j:Button localId="btResize" text="Resize 50%" click="clickBtResize()"/>
-                <j:Button localId="btRestoreSize" text="Restore Size 100%" click="clickBtRestoreSize()"/>               
+                style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >             
             </j:HGroup>
         </j:CardExpandedContent>
 

@@ -1720,6 +1720,14 @@ Docs & License: https://fullcalendar.io/
         }
     });
 
+    exports.AbstractDayGridView = DayGridView;
+    exports.DayBgRow = DayBgRow;
+    exports.DayGrid = DayGrid;
+    exports.DayGridSlicer = DayGridSlicer;
+    exports.DayGridView = DayGridView$1;
+    exports.DayTable = DayTable;
+    exports.SimpleDayGrid = SimpleDayGrid;
+    exports.buildBasicDayTable = buildDayTable;
     exports.default = main;
 
     Object.defineProperty(exports, '__esModule', { value: true });

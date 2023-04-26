@@ -185,6 +185,7 @@
                     <includes>
                         <include>Tests.html</include>
                         <include>year-view-selectable.html</include>
+                        <include>event-tooltip-demo.html</include>
                     </includes>
                   </resource>
                 </resources>

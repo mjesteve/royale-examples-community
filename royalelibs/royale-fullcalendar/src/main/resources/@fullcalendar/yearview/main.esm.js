@@ -1716,3 +1716,4 @@ var main = createPlugin({
 });
 
 export default main;
+export { DayGridView as AbstractDayGridView, DayBgRow, DayGrid, DayGridSlicer, DayGridView$1 as DayGridView, DayTable, SimpleDayGrid, buildDayTable as buildBasicDayTable };

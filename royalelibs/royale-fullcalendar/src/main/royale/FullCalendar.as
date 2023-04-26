@@ -37,20 +37,24 @@ package
          *      scriptfullcal = document.createElement("script");
          *      scriptfullcal.setAttribute("src", "@fullcalendar/core/locales-all-custom.js");
          *      document.head.appendChild(scriptfullcal);
-         *      
-         *      scriptfullcal = document.createElement("script");
-         *      scriptfullcal.setAttribute("src", "@fullcalendar/daygrid/main.js");
-         *      document.head.appendChild(scriptfullcal);
          * 
          *      scriptfullcal = document.createElement("script");
          *      scriptfullcal.setAttribute("src", "@fullcalendar/interaction/main.js");
          *      document.head.appendChild(scriptfullcal);
          *      
          *      scriptfullcal = document.createElement("script");
+         *      scriptfullcal.setAttribute("src", "@fullcalendar/daygrid/main.js");
+         *      document.head.appendChild(scriptfullcal);
+         * 
+         *      scriptfullcal = document.createElement("script");
+         *      scriptfullcal.setAttribute("src", "@fullcalendar/timegrid/main.js");
+         *      document.head.appendChild(scriptfullcal);
+         *      
+         *      scriptfullcal = document.createElement("script");
          *      scriptfullcal.setAttribute("src", "@fullcalendar/yearview/main.js");
          *      document.head.appendChild(scriptfullcal);
          *      
-         * };
+         * };  
          * 
          * </inject_script>
         */

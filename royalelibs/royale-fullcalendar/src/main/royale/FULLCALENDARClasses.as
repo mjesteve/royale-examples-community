@@ -11,6 +11,7 @@ package
 	{
 		import FullCalendar; FullCalendar;
 		import FullCalendar.Calendar; Calendar;
+		import Tooltip; Tooltip;
 
 		/* import org.apache.royale.community.io.fullcalendar.daygrid;	daygrid;
 		import org.apache.royale.community.io.fullcalendar.interaction; interaction;

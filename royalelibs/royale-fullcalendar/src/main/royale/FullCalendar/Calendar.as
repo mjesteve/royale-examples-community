@@ -20,5 +20,9 @@ package FullCalendar
       public function updateSize():void{}
 
       public function next():void{}
+
+      public function addEvent(eventInput: Object, sourceInput:Object=null):void{};
+
+      public function unselect():void{}
     }
 }
