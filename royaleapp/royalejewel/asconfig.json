@@ -30,7 +30,8 @@
 			"../../royalelibs/royalefullcalendar/src/main/royale/",
 			"../../royalelibs/royale-jscalendar/src/main/royale/",
 			"../../royalelibs/royale-virtual-select/src/main/royale/",
-			"../../royalelibs/royale-inspire-tree/src/main/royale/"
+			"../../royalelibs/royale-inspire-tree/src/main/royale/",
+			"../../royalelibs/royale-splide/src/main/royale/"
         ],
         "namespace": [
             {
@@ -52,6 +53,10 @@
             {
                 "uri": "library://ns.apache.org/royale/externsjs/virtualselect",
                 "manifest": "../../royalelibs/royale-virtual-select/src/main/resources/virtual-select-manifest.xml"
+            },
+            {
+                "uri": "library://ns.apache.org/royale/externsjs/splide",
+                "manifest": "../../royalelibs/royale-splide/src/main/resources/splide-manifest.xml"
             },
             {
                 "uri": "library://ns.apache.org/royale/externsjs/inspiretree",

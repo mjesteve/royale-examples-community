@@ -226,6 +226,23 @@
             </execution>
 
 			      <execution>
+              <id>copy-resources-debug-splide</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/splide</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-splide/src/main/resources/splide</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
               <phase>package</phase>
               <goals>
