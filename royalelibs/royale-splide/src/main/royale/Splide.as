@@ -17,11 +17,11 @@ package
 		 * var link_splide = document.createElement("link");
          * link_splide.setAttribute("rel", "stylesheet");
          * link_splide.setAttribute("type", "text/css");
-         * link_splide.setAttribute("href", "splide/source/splide.css");
+         * link_splide.setAttribute("href", "splide/css/splide.min.css");
          * document.head.appendChild(link_splide);
 		 * 
 		 * var script_splide = document.createElement("script");
-		 * script_splide.setAttribute("src", "splide/source/splide.js");
+		 * script_splide.setAttribute("src", "splide/js/splide.js");
 		 * document.head.appendChild(script_splide); 
 		 * </inject_script>
 		*/
