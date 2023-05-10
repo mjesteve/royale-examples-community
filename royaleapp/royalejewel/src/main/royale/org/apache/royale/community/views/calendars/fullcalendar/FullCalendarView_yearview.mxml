@@ -50,7 +50,7 @@
                     editable: true,
                     dayRender: function(info:Object):void {
                         //console.log(date, td);
-                        info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
+                        //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
                     },
 
                     dayClick: function(info:Object):void {

@@ -36,10 +36,10 @@
             "src/main/royale"
         ],
         "library-path": [
-            "${royalelib}/libs/MXRoyale.swc"
+            "${royalelib}/libs/MXRoyaleBase.swc"
         ],
         "js-library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/js/libs/MXRoyaleBaseJS.swc"
         ],
         "source-map": true,
         "remove-circulars": true,
