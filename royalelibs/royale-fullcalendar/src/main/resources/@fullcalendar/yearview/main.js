@@ -1607,30 +1607,38 @@ Docs & License: https://fullcalendar.io/
             if (seriesSeg) {
                 var firstIndex = seriesSeg.firstIndex, lastIndex = seriesSeg.lastIndex;
                 // Hiedra: skip invalid dates
-                for (var r = 0; r < this.invalidIndex.length; r++) {
-                    if (this.invalidIndex[r].idxini !== -1) {
-                        var value = 0;
-                        if (firstIndex >= this.invalidIndex[r].idxini) {
-                            if (firstIndex >= this.invalidIndex[r].idxfin) {
-                                value = this.invalidIndex[r].idxfin - this.invalidIndex[r].idxini + 1;
+                for (var _i = 0, _a = this.invalidIndex; _i < _a.length; _i++) {
+                    var cellinvalid = _a[_i];
+                    var value = 0;
+                    if (cellinvalid.idxini != -1) {
+                        if (firstIndex != lastIndex) {
+                            if (firstIndex >= cellinvalid.idxini) {
+                                if (firstIndex >= cellinvalid.idxfin)
+                                    value = cellinvalid.idxfin - cellinvalid.idxini + 1;
+                                else
+                                    value = firstIndex - cellinvalid.idxini + 1;
+                                firstIndex += value;
+                                lastIndex += value;
                             }
-                            else {
-                                value = firstIndex - this.invalidIndex[r].idxini + 1;
+                            else if (lastIndex >= cellinvalid.idxini) {
+                                if (lastIndex >= cellinvalid.idxfin)
+                                    value = cellinvalid.idxfin - cellinvalid.idxini + 1;
+                                else
+                                    value = firstIndex - cellinvalid.idxini + 1;
+                                lastIndex += value;
                             }
-                            firstIndex += value;
-                            lastIndex += value;
-                        }
-                        else if (lastIndex >= this.invalidIndex[r].idxini) {
-                            if (lastIndex >= this.invalidIndex[r].idxfin) {
-                                value = this.invalidIndex[r].idxfin - this.invalidIndex[r].idxini + 1;
-                            }
-                            else {
-                                value = firstIndex - this.invalidIndex[r].idxini + 1;
-                            }
-                            lastIndex += value;
+                            else
+                                break;
                         }
                         else {
-                            break;
+                            if (firstIndex >= cellinvalid.idxini) {
+                                value = cellinvalid.idxfin - cellinvalid.idxini + 1;
+                                firstIndex += value;
+                                lastIndex += value;
+                            }
+                            else {
+                                break;
+                            }
                         }
                     }
                 }
