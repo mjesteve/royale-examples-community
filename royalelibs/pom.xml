@@ -23,6 +23,7 @@
     <module>royale-inspire-tree</module>
     <module>royale-virtual-select</module>
     <module>royalecomponents</module>-->
+    <module>royale-splide</module>
   </modules>
 
   <properties>

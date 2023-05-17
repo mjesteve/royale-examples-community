@@ -21,6 +21,5 @@
 
 <componentPackage>
     <component id="Splide" class="Splide"/>
-    <component id="modernizr" class="modernizr"/>
 
 </componentPackage>

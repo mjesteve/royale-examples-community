@@ -82,9 +82,10 @@
 
      <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="contentMainViews">
         <views:WelcomeSection name="welcome_panel"/>
-        <!-- -->
+        
         <j:ScrollableSectionContent name="virtualselect_panel">
-            <viewsVSel:VirtualSelectJS/>
+            <!-- <viewsVSel:VirtualSelectJS/>-->
+            <viewsVSel:example/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="jscalendar_panel">
             <viewsJscal:JsCalendarView localId="vJsCalendar"/>

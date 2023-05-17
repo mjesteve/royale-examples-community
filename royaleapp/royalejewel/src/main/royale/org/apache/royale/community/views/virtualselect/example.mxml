@@ -13,13 +13,20 @@
         import org.apache.royale.events.Event;
 
        // import Splide;
-       import modernizr;
+       import Modernizr;
         public function onInitComplete():void
         {
             makeDP(true);
             makeVList();
-           var obj:modernizr = new modernizr();
-           obj = obj;
+            //Modernizr "not is a instantiate class"
+           /*Modernizr.on('testname', function( result:Object ):void {
+            if (result) {
+               trace('The test passed!');
+            }
+            else {
+                trace('The test failed!');
+            }
+            });*/
         }
         /*
         [Bindable]

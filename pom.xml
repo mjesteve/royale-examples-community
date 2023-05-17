@@ -243,6 +243,23 @@
             </execution>
 
 			      <execution>
+              <id>copy-resources-debug-megadropdown</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/megadropdown</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-splide/src/main/resources/megadropdown</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
               <phase>package</phase>
               <goals>

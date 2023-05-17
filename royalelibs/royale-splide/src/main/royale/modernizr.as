@@ -1,14 +1,13 @@
 package
 {
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
 	/**
 	 * @externs
 	 */
 	COMPILE::JS
-    public class modernizr extends UIBase {
+    public class Modernizr {
 		/**
 		 * <inject_script>
          *          
@@ -28,9 +27,9 @@ package
 		 * document.head.appendChild(a); 
 		 * </inject_script>
 		*/
-        public function modernizr() {
-			
-		}
+        public function Modernizr(){}
+
+        //public static function on(txtTest:String, callbackfn:Function):void {}
 
     }
 }
