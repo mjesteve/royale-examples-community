@@ -1,17 +1,14 @@
 package
 {
-	
-	import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.elements.Div;
     import org.apache.royale.html.util.addElementToWrapper;
-    
 	/**
 	 * @externs
 	 */
 	COMPILE::JS
-    public class Splide extends org.apache.royale.core.UIBase {
-        
-        private var _options:Object;
-    	/**
+    public class Splide extends Div {
+		/**
 		 * <inject_script>
          *          
 		 * var link_splide = document.createElement("link");
@@ -27,15 +24,33 @@ package
 		*/
         public function Splide() {
             super();
+
+            addEventListener("initComplete", init);
         }
-        
-        override public function addedToParent():void {
-            super.addedToParent();
-           // createSplide();
+
+        private function init():void {
+            var splideElement:WrappedHTMLElement = element as WrappedHTMLElement;
+            var options:Object = getOptions();
+			COMPILE::JS{
+            var splideJS:Object = addElementToWrapper(this, "div") as Object;
+            splideJS.className = "splide";
+            splideElement.appendChild(splideJS.element);
+
+            new (window["Splide"] as Class)(splideJS.element, options);
+			}
         }
-        
-       
+
+        private function getOptions():Object {
+            var options:Object = {};
+
+            // Set your SplideJS options here
+            options.type = "loop";
+            options.perPage = 3;
+            options.perMove = 1;
+            options.gap = "1rem";
+
+            return options;
+        }
     }
-
-
 }
+
