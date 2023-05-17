@@ -4,16 +4,21 @@
     xmlns:js="library://ns.apache.org/royale/basic"    
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:html="library://ns.apache.org/royale/html" 
-    initComplete="onInit()"
     gap="5" percentHeight="100" percentWidth="100" >
 
     <fx:Script>
         <![CDATA[
 			import FullCalendar.Calendar;
+    //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
+    //initComplete="onInit()"
 
 			private var mycalendar:Calendar;
-			private function onInit():void
+			public function onInit():void
 			{
+                if(mycalendar){
+                    refreshSizeCalendar();
+                    return;
+                }
 				mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
                     timeZone: 'local',
                     initialView: 'dayGridMonth',
@@ -34,8 +39,10 @@
 
             public function refreshSizeCalendar():void
             {
-                //Since the view is not visible when it is loaded, the calendar control is NOT REDIMENSED 
+                //[en] Since the view is not visible when it is loaded, the calendar control is NOT REDIMENSED 
                 //and must be refreshed when it is made visible.
+                //[es] Como la vista no es visible cuando se carga, el control de calendario NO SE REDIMENSA 
+                //y debe ser refrescado cuando se hace visible.
                 mycalendar.updateSize();
             }
 
@@ -43,17 +50,20 @@
             {
                 trace(primaryContent.width,primaryContent.height);
                 trace(parentContentCalendar.width,parentContentCalendar.height);
-                //To change the width of the calendar we have to change the width of the parent container...
+                //[en] To change the width of the calendar we have to change the width of the parent container...
                 parentContentCalendar.width = parentContentCalendar.width/2;
                 
-                //...However, the height can be set directly on the calendar container.
+                //[en] ...However, the height can be set directly on the calendar container.
                 //When we set the width, the Calendar content is resized but the same does not happen with 
                 //the Height which does not quite fit the new height of the container and shows a scroll.
+                //[es] ...Sin embargo, la altura se puede establecer directamente en el contenedor del calendario.
+                //Cuando establecemos la anchura, el contenido del Calendario se redimensiona pero no ocurre lo mismo con 
+                //la Altura que no se ajusta del todo a la nueva altura del contenedor y muestra un scroll.
                 // AspectRatio:
                 var asr:Number = Number(mycalendar.getOption('aspectRatio'));
                 //mycalendar.setOption('height', parentContentCalendar.width/asr);
-
-                //The aspectRatio does not match the actual ratio between width and height (must be by specifically setting 100%).
+                //[en] The aspectRatio does not match the actual ratio between width and height (must be by specifically setting 100%).
+                //[es] El aspectRatio no coincide con la relación real entre la anchura y la altura (debe ser estableciendo específicamente 100%).
                 parentContentCalendar.height = parentContentCalendar.width/asr;
                 
                 mycalendar.updateSize();
@@ -63,9 +73,12 @@
                 //We adopted the strategy of resizing the container instead of the calendar.
                 parentContentCalendar.width = primaryContent.width-40; //40px padding
                 parentContentCalendar.height = primaryContent.height-40; //40px padding
-                //Theoretically, by setting the width and height back to 100% it should resize correctly but it does not. 
+                //[en] Theoretically, by setting the width and height back to 100% it should resize correctly but it does not. 
                 //We must set the exact width and height, and in addition if we want to keep the Responsive behavior 
                 //we must also set the percentWidth and percentHeight.
+                //[es] Teóricamente, volviendo a poner el ancho y alto al 100% debería redimensionarse correctamente pero no es así. 
+                //Debemos establecer el ancho y alto exactos, y además si queremos mantener el comportamiento Responsive 
+                //debemos fijar también el percentWidth y el percentHeight.
                 parentContentCalendar.percentWidth = 100;                
                 parentContentCalendar.percentHeight = 100;
                 mycalendar.setOption('height', '100%');

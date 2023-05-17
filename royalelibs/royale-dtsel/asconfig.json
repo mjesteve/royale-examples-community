@@ -30,7 +30,7 @@
             "../royalecomponents/src/main/royale/"
         ],
         "include-namespaces": [
-            "library://ns.apache.org/royale/community"
+            "library://ns.apache.org/royale/externsjs/jsdtsel"
         ],
         "namespace": [
             {

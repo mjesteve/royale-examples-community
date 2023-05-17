@@ -184,6 +184,8 @@
                     <directory>src/main/resources</directory>
                     <includes>
                         <include>Tests.html</include>
+                        <include>year-view-selectable.html</include>
+                        <include>event-tooltip-demo.html</include>
                     </includes>
                   </resource>
                 </resources>
@@ -224,7 +226,6 @@
                 </resources>
               </configuration>
             </execution>
-
 			      <execution>
               <id>copy-resources-debug-fullcalendar</id>
               <phase>package</phase>
@@ -232,10 +233,27 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/fullcalendar</outputDirectory>
+                <outputDirectory>${compiler.output-dir-debug}/@fullcalendar</outputDirectory>
                 <resources>
                   <resource>
-                    <directory>${basedir}/../../royalelibs/royalefullcalendar/src/main/resources/fullcalendar</directory>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/@fullcalendar</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+			      <execution>
+              <id>copy-resources-debug-fullcalendar-moment</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${compiler.output-dir-debug}/moment</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/moment</directory>
                     <filtering>true</filtering>
                   </resource>
                 </resources>

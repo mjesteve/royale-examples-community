@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <link href='../node_modules/@fullcalendar/core/main.css' rel='stylesheet'/>
+    <link href='../node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet'/>
+    <link href='main.css' rel='stylesheet'/>
+    <script src='../node_modules/moment/min/moment-with-locales.min.js'></script>
+    <script src='../node_modules/@fullcalendar/core/main.js'></script>
+    <script src='../node_modules/@fullcalendar/core/locales-all.js'></script>
+    <script src='../node_modules/@fullcalendar/daygrid/main.js'></script>
+    <script src='../node_modules/@fullcalendar/interaction/main.js'></script>
+    <link href="main.css" rel="stylesheet">
+    <script src="main.js"></script>
+    <script>
+        var event1 =  [
+        {   title: "Business Lunch",             start: "2023-09-03T13:00:00",            constraint: "businessHours"        },
+        {   title: "Meeting",                    start: "2023-09-13T11:00:00",            constraint: "availableForMeeting",             color: '#0092c0'        },
+        {   title: "Conference",                 start: "2023-09-18",           end: "2023-09-20"        },
+        {   title: "Party",                      start: "2023-09-29T20:00:00"        },
+        // areas where "Meeting" must be dropped
+        {   groupId: "availableForMeeting",      start: "2023-09-11",           end: "2023-09-11",            display: "background"        },
+        {   groupId: "availableForMeeting",      start: "2023-09-13",           end: "2023-09-13",            display: "background"        },
+        // red areas where no events can be dropped
+        {   start: "2023-09-24",            end: "2023-09-28",            overlap: false,            display: "background",            color: '#c30b4e'        },
+        {   start: "2023-09-06",            end: "2023-09-08",            overlap: false,            display: "background",            color: '#c30b4e'        }
+        ];
+
+        var event2 = [
+        {   title: '001',            start: '2023-01-01',           end: '2023-01-01',            allDay: true,            editable: true,            textColor:'#ccc',
+            backgroundColor: '#3fff !important'
+        },
+        // red areas where no events can be dropped
+        {   title: '001',            start: '2023-08-24',           end: '2023-08-26',            allDay: true,            overlap: true,            rendering: 'background',            color: '#ff9f89'
+        },
+        {   title: '001',            start: '2023-08-06',            end: '2023-08-06',            allDay: true,            overlap: false,            rendering: 'background',            color: '#ff9f89'
+        }
+        ];
+
+        var festivos = [
+            {start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+            {start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+        ]
+
+        var calendar;
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                defaultView: 'year',
+                plugins: ['interaction', 'dayGrid', 'yearView'],
+                timeZone: 'local',
+                weekNumberCalculation: 'ISO',
+                firstDay: 1,
+                locales: ['en','es','ca','fr','pt','it'],
+                locale: 'es',
+                header: {
+                    left: 'prevYear,prev,next,nextYear today',
+                    center: 'title',
+                    right: 'year,dayGridMonth'
+                },
+                height: 'parent',
+                selectable: true,
+                editable: true,
+                dateClick: function(info) {
+                    document.getElementById('lblstatus').value = info.dateStr;
+                },
+			    selectHelper: true,
+                /*eventRender: function(event, element){
+                    element.popover({
+                        animation:true,
+                        delay: 300,
+                        content: '<b>Inicio</b>:'+event.start+"</br><b>Fin</b>:"+event.end,
+                        trigger: 'hover', html: "true"
+                    });
+                },*/
+                selectMirror: true,
+                select: function(arg) {
+                    document.getElementById('lblstatus').value = arg.startStr + ' to ' + arg.endStr;
+                    var title = prompt('Event Title:');
+                    if (title) {
+                    calendar.addEvent({
+                        title: title,
+                        start: arg.start,
+                        end: arg.end,
+                        allDay: arg.allDay
+                    })
+                    }
+                    calendar.unselect()
+                },
+                defaultDate: '2023-01-01',
+                // navLinks: true, can click day/week names to navigate views
+                eventLimit: true, // allow "more" link when too many events
+                events: festivos
+            });
+
+            calendar.render();
+
+            calendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});
+            calendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
+        });
+
+        function getEvents(){
+            var arrevents = calendar.getEvents();
+            console.log(arrevents);
+        }
+
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            margin: 0 auto;
+        }
+        #lblstatus{
+            height: 25px;
+            width: 100%;
+            background-color: burlywood;
+        }
+
+        /* .fc-year-container .fc-sat, .fc-year-container .fc-sun {
+            background-color: rgb(245, 241, 188);
+        }
+
+        .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
+        float: right;
+        font-size: 0.75em;
+        } */
+
+    </style>
+</head>
+<body>
+
+    <input id="lblstatus" value="0 de 0"/>
+    <button id="btget" onclick="getEvents()">Get Events</button>
+    <div id='calendar'></div>
+
+</body>
+</html>

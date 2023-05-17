@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    gap="5" percentHeight="100" percentWidth="100" initComplete="onInit()">
+
+    <fx:Script>
+        <![CDATA[
+			import FullCalendar;
+			import FullCalendar.Calendar;
+    //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
+
+            private var festivos:Array;
+            private function onInit():void {
+                
+                festivos = [
+                    {start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                ]
+            }
+
+			private var mycalendar:Calendar;
+            private var mytooltip:Tooltip;
+			public function makeCalendar():void
+			{
+                if(mycalendar){
+                    refreshSizeCalendar();
+                    return;
+                }
+//dblclick: function (seg, ev) { return view.trigger('eventDoubleClick', this, seg.event, ev);
+                mycalendar = new FullCalendar.Calendar(myContainerCalendar.element, {
+                    defaultView: 'year',
+                    plugins: ['interaction', 'dayGrid', 'timeGrid', 'yearView'],
+                    timeZone: 'local',
+                    weekNumberCalculation: 'ISO',
+                    firstDay: 1,
+                    locales: ['en','es','ca','fr','pt','it'],
+                    locale: 'es',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'year,dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    height: 'parent',
+                    selectable: true,
+                    selectMirror: true,
+			        selectHelper: true,
+                    editable: true,
+                    dayRender: function(info:Object):void {
+                        //console.log(date, td);
+                        //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
+                    },
+
+                    dayClick: function(info:Object):void {
+                        console.log(info.date, info.allDay);
+                    },
+                   /* dateClick: function(info:Object):void {
+                        //alert('clicked ' + info.dateStr);
+                    },*/
+                    select: function(info:Object):void {
+                        //alert('selected ' + info.startStr + ' to ' + info.endStr);
+                        var title:String = prompt('Event Title:');
+                        if (title) {
+                            mycalendar.addEvent({
+                                title: title,
+                                start: info.start,
+                                end: info.end,
+                                allDay: info.allDay
+                            })
+                        };
+                        mycalendar.unselect();
+                    },
+                    eventRender: function(info:Object):void {
+                        /*info.el.tooltip({
+                            title: info.event.title
+                        });
+                        info.el.bind('dblclick', function():void {
+                            alert('doubleclick');
+                        });*/
+                        var tooltip:Tooltip = new Tooltip(info.el, {
+                            title: info.event.title,
+                            placement: 'top-end',
+                            trigger: 'hover',
+                            html: true,
+                            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
+                            container: parentContentCalendar.element, //'body'
+                                modifiers: [
+                                    {
+                                    name: 'offset',
+                                    options: { offset: [0, 18] }
+                                    }
+                                ]
+                        });
+                    },
+                    defaultDate: '2023-01-01',
+                    // navLinks: true, can click day/week names to navigate views
+                    eventLimit: true, // allow "more" link when too many events
+                    events: festivos
+                });
+                mycalendar.render();
+               
+                mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});
+                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
+			}
+
+            public function refreshSizeCalendar():void
+            {
+                //[en] Since the view is not visible when it is loaded, the calendar control is NOT REDIMENSED 
+                //and must be refreshed when it is made visible.
+                //[es] Como la vista no es visible cuando se carga, el control de calendario NO SE REDIMENSA 
+                //y debe ser refrescado cuando se hace visible.
+                mycalendar.updateSize();
+            }
+
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+		<js:Paddings paddingTop="5" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+    </j:beads>
+
+    <jc:HExampleHeader title="JS FullCalendar - Royale Wrapper">
+        <jc:description>
+            <![CDATA[Tests <strong>JS FullCalendar</strong> (<a href="https://fullcalendar.io/" target="_blank">https://fullcalendar.io/</a>)]]>
+        </jc:description>
+    </jc:HExampleHeader>
+
+    <j:Card percentHeight="100" percentWidth="100">
+
+        <j:CardHeader height="100">
+            <j:VGroup gap="5" percentWidth="100">
+                <j:CardTitle text="Simple wrapper " className="primary-normal" percentWidth="100"/>            
+                <html:H5 text="[WIP]"  className="primary-dark" style="margin-bottom:15px;"/>
+            </j:VGroup>
+        </j:CardHeader>
+
+        <j:CardExpandedContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">            
+            <j:HGroup itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCentered" gap="3"
+                style="margin:20px 20px 0px 20px;" percentWidth="100" height="60" >             
+            </j:HGroup>
+        </j:CardExpandedContent>
+
+        <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
+            <j:Group localId="parentContentCalendar" percentHeight="100" percentWidth="100">
+                <html:Div id="myContainerCalendar" percentWidth="100"/>
+            </j:Group>     
+        </j:CardPrimaryContent>
+
+    </j:Card>
+
+</j:VGroup>
