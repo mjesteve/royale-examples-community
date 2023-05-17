@@ -11,6 +11,7 @@ package
 	internal class splideClasses
 	{
 		import Splide; Splide;
+		import modernizr; modernizr;
 		//import org.apache.royale.community.splide.vo.DateItemDescribeVO; DateItemDescribeVO;
 		//import org.apache.royale.community.splide.Annualsplide;	Annualsplide;
 		//import org.apache.royale.community.splide.events.SharedEvent; SharedEvent;

@@ -72,6 +72,10 @@
 
           <includeFiles>
             <include-file>
+              <name>megadropdown/*</name>
+              <path>../src/main/resources/megadropdown/*</path>
+            </include-file>
+			<include-file>
               <name>splide/*</name>
               <path>../src/main/resources/splide/*</path>
             </include-file>
