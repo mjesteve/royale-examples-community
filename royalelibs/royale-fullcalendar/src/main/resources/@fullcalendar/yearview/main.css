@@ -8,6 +8,23 @@
   font-size: 0.9cqw;
 }
 
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+.fc-highlight { /* when user is selecting cells */
+  background: #bce8f1;
+  opacity: 0.3;
+}
+
+.fc-bgevent { /* default look for background events */
+  background: transparent;
+  opacity: 1;
+}
+
+.fc-nonbusiness { /* default look for non-business-hours areas */
+  /* will inherit .fc-bgevent's styles */
+  background: #d7d7d7;
+}
+
 /* DayGridView
 --------------------------------------------------------------------------------------------------*/
 /* day row structure */
