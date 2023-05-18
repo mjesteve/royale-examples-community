@@ -27,19 +27,19 @@ package
 		 * document.head.appendChild(a); 
 		 * </inject_script>
          * 
-         * var a = document.createElement("script");
-		 * a.setAttribute("src", "megadropdown/js/jquery-2.1.1.js.js");
-		 * document.head.appendChild(a); 
+         * var b = document.createElement("script");
+		 * b.setAttribute("src", "megadropdown/js/jquery-2.1.1.js.js");
+		 * document.head.appendChild(b); 
 		 * </inject_script>
          * 
-         * var a = document.createElement("script");
-		 * a.setAttribute("src", "megadropdown/js/jquery.menu-aim.js");
-		 * document.head.appendChild(a); 
+         * var c = document.createElement("script");
+		 * c.setAttribute("src", "megadropdown/js/jquery.menu-aim.js");
+		 * document.head.appendChild(c); 
 		 * </inject_script>
          * 
-         *  var a = document.createElement("script");
-		 * a.setAttribute("src", "megadropdown/js/main.js");
-		 * document.head.appendChild(a); 
+         * var d = document.createElement("script");
+		 * d.setAttribute("src", "megadropdown/js/main.js");
+		 * document.head.appendChild(d); 
 		 * </inject_script>
          * 
 		*/
