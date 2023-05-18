@@ -48,17 +48,23 @@
                     selectMirror: true,
 			        selectHelper: true,
                     editable: true,
+                    showNonCurrentDates: true,
                     dayRender: function(info:Object):void {
                         //console.log(date, td);
                         //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
+                        var today:String = new Date().toISOString().split('T')[0]; // Obtén la fecha actual en formato ISO (YYYY-MM-DD)
+                        //console.log(info.view.calendar.getNow(), new Date())
+                        //console.log (info.date.toISOString().split('T')[0],today, Date.parse(info.date), Date.parse(today));
+                        //if (Date.parse(info.date) === Date.parse(today)) { //ok
+                        if (info.date.toISOString().split('T')[0] === today) {
+                            info.el.classList.remove('fc-today'); // Elimina la clase fc-today para evitar el resaltado
+                            // info.el.innerText = '\nHOY'; //oK- escribe un texto 
+                            info.el.innerHTML = "<input type=\"checkbox\">AM<br>";
+                        }
                     },
-
-                    dayClick: function(info:Object):void {
+                    dateClick: function(info:Object):void {
                         console.log(info.date, info.allDay);
-                    },
-                   /* dateClick: function(info:Object):void {
-                        //alert('clicked ' + info.dateStr);
-                    },*/
+                    },/*
                     select: function(info:Object):void {
                         //alert('selected ' + info.startStr + ' to ' + info.endStr);
                         var title:String = prompt('Event Title:');
@@ -71,7 +77,7 @@
                             })
                         };
                         mycalendar.unselect();
-                    },
+                    },*/
                     eventRender: function(info:Object):void {
                         /*info.el.tooltip({
                             title: info.event.title
