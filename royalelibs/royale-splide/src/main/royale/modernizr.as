@@ -27,7 +27,7 @@ package
 		 * document.head.appendChild(a); 
          * 
          * var b = document.createElement("script");
-		 * b.setAttribute("src", "megadropdown/js/jquery-2.1.1.js.js");
+		 * b.setAttribute("src", "megadropdown/js/jquery-2.1.1.js");
 		 * document.head.appendChild(b); 
          * 
          * var c = document.createElement("script");
