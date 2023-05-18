@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"    
+    xmlns:jc="library://ns.apache.org/royale/community"
+    xmlns:sp="library://ns.apache.org/royale/externsjs/splide"
+    xmlns:html="library://ns.apache.org/royale/html" 
+    initComplete="onInitComplete()"> 
+    
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.events.Event;
+
+       // import Splide;
+       import Modernizr;
+       import org.apache.royale.core.UIBase;
+       import org.apache.royale.html.elements.Div;
+import org.apache.royale.html.elements.Li;
+import org.apache.royale.html.elements.Ul;
+import org.apache.royale.html.elements.Form;
+import org.apache.royale.html.elements.A;
+import org.apache.royale.html.elements.H2;
+
+public function createMenu(menuItems:Array):void {
+  
+
+    var wrapperDiv:Div = new Div();
+    wrapperDiv.className = "cd-dropdown-wrapper";
+    addElement(wrapperDiv);
+
+    var triggerA:A = new A();
+    triggerA.className = "cd-dropdown-trigger";
+    triggerA.href = "#0";
+    triggerA.text = "Dropdown";
+    wrapperDiv.addElement(triggerA);
+
+    var dropdownDiv:Div = new Div();
+    dropdownDiv.className = "cd-dropdown";
+    wrapperDiv.addElement(dropdownDiv);
+
+    var titleH2:H2 = new H2();
+    titleH2.text = "Title";
+    dropdownDiv.addElement(titleH2);
+
+    var closeA:A = new A();
+    closeA.href = "#0";
+    closeA.className = "cd-close";
+    closeA.text = "Title";
+    dropdownDiv.addElement(closeA);
+
+    var contentUl:Ul = new Ul();
+    contentUl.className = "cd-dropdown-content";
+    dropdownDiv.addElement(contentUl);
+
+    for each (var menuItem:Object in menuItems) {
+        var li:Li = new Li();
+        contentUl.addElement(li);
+
+        var menuItemLink:A = new A();
+        menuItemLink.href = menuItem.href;
+        menuItemLink.text = menuItem.text;
+        li.addElement(menuItemLink);
+
+        if (menuItem.hasChildren) {
+            var subMenuUl:Ul = new Ul();
+            subMenuUl.className = "cd-secondary-dropdown is-hidden";
+            li.addElement(subMenuUl);
+/*
+            var goBackLi:Li = new Li();
+            subMenuUl.addElement(goBackLi);
+
+            var goBackLink:A = new A();
+            goBackLink.href = "#0";
+            goBackLink.text = "Menu";
+            goBackLi.addElement(goBackLink);
+
+            var seeAllLi:Li = new Li();
+            subMenuUl.addElement(seeAllLi);
+
+            var seeAllLink:A = new A();
+            seeAllLink.href = menuItem.seeAllHref;
+            seeAllLink.text = "All Clothing";
+            seeAllLi.addElement(seeAllLink);
+*/
+                var subMenuLi:Li = new Li();
+                subMenuLi.className = "has-children";
+                subMenuUl.addElement(subMenuLi);
+
+            for each (var subMenuItem:Object in menuItem.children) {
+                
+                var subMenuItemLink:A = new A();
+                subMenuItemLink.href = subMenuItem.href;
+                subMenuItemLink.text = subMenuItem.text;
+                subMenuLi.addElement(subMenuItemLink);
+            }
+        }
+    }
+    
+    var mainDiv:Div = new Div();
+    mainDiv.className = "cd-main-content";
+    addElement(mainDiv);
+
+}
+
+        public function onInitComplete():void
+        {
+var obj:Object = Modernizr;
+obj = obj;
+
+    var menuItems:Array = [
+    { text: 'Clothing', href: '#0', hasChildren: true, children: [
+        { text: 'Jeans', href: 'http://codyhouse.co/?p=748' },
+        { text: 'Trouser', href: 'http://codyhouse.co/?p=748' },
+        { text: 'Top', href: 'http://codyhouse.co/?p=748' }
+        
+    ]
+    },
+        { text: 'Accessories', href: '#0', hasChildren: false}
+
+    ];
+createMenu(menuItems);
+
+            //Modernizr "not is a instantiate class"
+           /*Modernizr.on('testname', function( result:Object ):void {
+            if (result) {
+               trace('The test passed!');
+            }
+            else {
+                trace('The test failed!');
+            }
+            });*/
+        }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+		<js:Paddings paddingTop="0" paddingLeft="45" paddingRight="45" paddingBottom="45"/>
+        <j:ScrollingViewport/>
+    </j:beads>
+
+
+
+</j:HGroup>
