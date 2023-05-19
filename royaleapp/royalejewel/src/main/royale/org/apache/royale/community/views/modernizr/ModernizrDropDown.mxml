@@ -86,19 +86,34 @@ public function createMenu(menuItems:Array):void {
                 var subMenuLi:Li = new Li();
                 subMenuLi.className = "has-children";
                 subMenuUl.addElement(subMenuLi);
-
+    
             for each (var subMenuItem:Object in menuItem.children) {
-                
+               
                 var subMenuItemLink:A = new A();
                 subMenuItemLink.href = subMenuItem.href;
                 subMenuItemLink.text = subMenuItem.text;
                 subMenuLi.addElement(subMenuItemLink);
+                if (subMenuItem.hasChildren) {
+                    var subsubMenuLi:Li = new Li();
+                    subsubMenuLi.className = "has-children";
+                    subMenuLi.addElement(subsubMenuLi);
+                    for each (var subsubMenuItem:Object in subMenuItem.children) {
+                             var subsubsubMenuLi:Li = new Li();
+                   
+                                var subsubMenuItemLink:A = new A();
+                                subsubMenuItemLink.href = subsubMenuItem.href;
+                                subsubMenuItemLink.text = subsubMenuItem.text;
+                                subsubsubMenuLi.addElement(subsubMenuItemLink);
+                                subMenuLi.addElement(subsubsubMenuLi);
+                                }
+                }
             }
         }
     }
     
     var mainDiv:Div = new Div();
     mainDiv.className = "cd-main-content";
+    mainDiv.style = "background-color:transparent !important;";
     addElement(mainDiv);
 
 }
@@ -109,15 +124,27 @@ var obj:Object = Modernizr;
 obj = obj;
 
     var menuItems:Array = [
-    { text: 'Clothing', href: '#0', hasChildren: true, children: [
-        { text: 'Jeans', href: 'http://codyhouse.co/?p=748' },
-        { text: 'Trouser', href: 'http://codyhouse.co/?p=748' },
-        { text: 'Top', href: 'http://codyhouse.co/?p=748' }
-        
-    ]
+    { text: 'Clothing', href: '#0', hasChildren: true, 
+                    children:[
+                                { text: 'Jeans', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Trouser', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Top', href: 'http://codyhouse.co/?p=748' }
+                                
+                            ]
     },
-        { text: 'Accessories', href: '#0', hasChildren: false}
-
+    { text: 'Accessories', href: '#0', hasChildren: false},
+    { text: 'Services', href: '#0', hasChildren: true, 
+        children: [
+            { text: 'Service-A', href: 'http://codyhouse.co/?p=748', hasChildren: true, 
+                    children:[
+                                { text: 'Service-AA1', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Service-AA2', href: 'http://codyhouse.co/?p=748' }
+                            ]        
+            },
+            { text: 'Service-B', href: 'http://codyhouse.co/?p=748' },
+            { text: 'Service-C', href: 'http://codyhouse.co/?p=748' }    
+        ]
+    }
     ];
 createMenu(menuItems);
 
