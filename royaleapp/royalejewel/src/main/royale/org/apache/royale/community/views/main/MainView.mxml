@@ -97,7 +97,9 @@
         <j:ScrollableSectionContent name="inspiretree_panel">
             <viewsTree:InspireTree />
         </j:ScrollableSectionContent>
-
+        <j:ScrollableSectionContent name="modernizr_panel">
+            <viewsModernizr:ModernizrView/>
+        </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="TriStateCheckBox_panel">
             <viewsJc:TriStateCheckBox_Test/>
         </j:ScrollableSectionContent>
@@ -117,9 +119,6 @@
         </j:SectionContent>
         <j:ScrollableSectionContent name="Debug_Pills_panel">
             <views:Debug_Pills />
-        </j:ScrollableSectionContent>
-        <j:ScrollableSectionContent name="modernizr_panel">
-            <viewsModernizr:ModernizrView/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_ErrorImage_panel">
             <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
