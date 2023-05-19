@@ -982,7 +982,7 @@ header {
 }
 
 .cd-main-content {
-  background-color: #e6e6e6;
+  background-color: transparent;
   min-height: calc(100vh - 100px);
   padding: 2em 5%;
   line-height: 2;
