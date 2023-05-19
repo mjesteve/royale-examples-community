@@ -54,6 +54,7 @@ public function createMenu(menuItems:Array):void {
 
     for each (var menuItem:Object in menuItems) {
         var li:Li = new Li();
+        li.className = "has-children";
         contentUl.addElement(li);
 
         var menuItemLink:A = new A();
