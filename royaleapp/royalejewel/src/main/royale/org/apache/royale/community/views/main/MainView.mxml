@@ -10,8 +10,10 @@
     xmlns:viewsJc="org.apache.royale.community.views.customcontrols.*"
     xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    xmlns:viewsModernizr="org.apache.royale.community.views.modernizr.*"
     xmlns:viewsCb="org.apache.royale.community.views.combobox.*"
     xmlns:viewsTree="org.apache.royale.community.views.trees.*"
+    
     initComplete="init()">
 
     <fx:Script>
@@ -84,8 +86,7 @@
         <views:WelcomeSection name="welcome_panel"/>
         
         <j:ScrollableSectionContent name="virtualselect_panel">
-            <!-- <viewsVSel:VirtualSelectJS/>-->
-            <viewsVSel:example/>
+             <viewsVSel:VirtualSelectJS/>
         </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="jscalendar_panel">
             <viewsJscal:JsCalendarView localId="vJsCalendar"/>
@@ -117,6 +118,9 @@
         <j:ScrollableSectionContent name="Debug_Pills_panel">
             <views:Debug_Pills />
         </j:ScrollableSectionContent>
+        <j:ScrollableSectionContent name="modernizr_panel">
+            <viewsModernizr:ModernizrView/>
+        </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="Debug_ErrorImage_panel">
             <viewsImg:Debug_ErrorImage percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
@@ -134,7 +138,7 @@
         <j:ScrollableSectionContent name="MainViewInspireTree_TestMarker_panel">
             <viewsTree:MainViewInspireTree_TestMarker percentHeight="100" percentWidth="100" />
         </j:ScrollableSectionContent>
-
+         
     </j:ApplicationMainContent>
 
 </j:ResponsiveView>

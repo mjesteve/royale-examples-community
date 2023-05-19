@@ -5,7 +5,7 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:sp="library://ns.apache.org/royale/externsjs/splide"
     xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    xmlns:views="org.apache.royale.community.views.modernizr.*"
     initComplete="onInitComplete()"> 
     
     <fx:Script>
@@ -49,7 +49,7 @@ obj = obj;
 
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >	
-     <viewsVSel:ModernizrDropDown />
+     <views:ModernizrDropDown />
          <!-- <sp:modernizr />  -->
      
     </j:GridCell>

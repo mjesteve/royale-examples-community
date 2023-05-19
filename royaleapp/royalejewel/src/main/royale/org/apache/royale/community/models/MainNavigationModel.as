@@ -53,6 +53,7 @@ package org.apache.royale.community.models
             arnav = new Array();
             arnav.push(new NavigationLinkVO("Container Resizing", "SizeContainer_panel"));
             arnav.push(new NavigationLinkVO("Badges - Test", "Debug_Pills_panel", "mark_chat_unread"));
+            arnav.push(new NavigationLinkVO("Modernizr Dropdown - Test", "modernizr_panel", MaterialIconType.MENU));
             item.subMenu = new ArrayList(arnav);
             armenu.push(item);
 
