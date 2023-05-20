@@ -6,33 +6,41 @@
     xmlns:sp="library://ns.apache.org/royale/externsjs/splide"
     xmlns:html="library://ns.apache.org/royale/html" 
     xmlns:views="org.apache.royale.community.views.modernizr.*"
-    initComplete="onInitComplete()"> 
+    > 
     
     <fx:Script>
         <![CDATA[
         import org.apache.royale.events.Event;
+       
 
-       // import Splide;
-       import Modernizr;
-       import org.apache.royale.core.UIBase;
-       import org.apache.royale.html.elements.Div;
+        [Bindable]
+ public var shopmenuItems:Array = [
+    { text: 'Clothing', href: '#0', hasChildren: true, 
+                    children:[
+                                { text: 'Jeans', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Trouser', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Top', href: 'http://codyhouse.co/?p=748' }
+                                
+                            ]
+    },
+    { text: 'Accessories', href: '#0', hasChildren: false},
+    { text: 'Services', href: '#0', hasChildren: true, 
+        children: [
+            { text: 'Service-A', href: 'http://codyhouse.co/?p=748', hasChildren: true, 
+                    children:[
+                                { text: 'Service-AA1', href: 'http://codyhouse.co/?p=748' },
+                                { text: 'Service-AA2', href: 'http://codyhouse.co/?p=748' }
+                            ]        
+            },
+            { text: 'Service-B', href: 'http://codyhouse.co/?p=748' },
+            { text: 'Service-C', href: 'http://codyhouse.co/?p=748' }    
+        ]
+    }
+    ];
+    
         public function onInitComplete():void
         {
-            
-var obj:Object = Modernizr;
-obj = obj;
-
-            //Modernizr "not is a instantiate class"
-           /*Modernizr.on('testname', function( result:Object ):void {
-            if (result) {
-               trace('The test passed!');
-            }
-            else {
-                trace('The test failed!');
-            }
-            });*/
-        }
-        
+        }       
         ]]>
     </fx:Script>
 
@@ -49,9 +57,8 @@ obj = obj;
 
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >	
-     <views:ModernizrDropDown />
-         <!-- <sp:modernizr />  -->
-     
+     <views:ModernizrDropDown dataProvider="{shopmenuItems}" title="Shop" />
+
     </j:GridCell>
 
 </j:Grid>

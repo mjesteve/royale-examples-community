@@ -12,14 +12,29 @@
         import org.apache.royale.events.Event;
 
        // import Splide;
-       import Modernizr;
-       import org.apache.royale.core.UIBase;
-       import org.apache.royale.html.elements.Div;
-import org.apache.royale.html.elements.Li;
-import org.apache.royale.html.elements.Ul;
-import org.apache.royale.html.elements.Form;
-import org.apache.royale.html.elements.A;
-import org.apache.royale.html.elements.H2;
+        import Modernizr;
+        import org.apache.royale.html.elements.Div;
+        import org.apache.royale.html.elements.Li;
+        import org.apache.royale.html.elements.Ul;
+        import org.apache.royale.html.elements.A;
+        import org.apache.royale.html.elements.H2;
+
+private var _dataProvider:Array;
+private var _title:String;
+
+[Bindable]
+ public function set dataProvider(value:Array):void{
+    var obj:Object = Modernizr;
+    obj = obj;
+ _dataProvider = value;
+        createMenu(value as Array);
+
+ }
+ 
+[Bindable]
+ public function set title(value:String):void{
+    _title = value;
+ }
 
 public function createMenu(menuItems:Array):void {
   
@@ -31,7 +46,7 @@ public function createMenu(menuItems:Array):void {
     var triggerA:A = new A();
     triggerA.className = "cd-dropdown-trigger";
     triggerA.href = "#0";
-    triggerA.text = "Dropdown";
+    triggerA.text = _title; //"Dropdown";
     wrapperDiv.addElement(triggerA);
 
     var dropdownDiv:Div = new Div();
@@ -113,40 +128,14 @@ public function createMenu(menuItems:Array):void {
     
     var mainDiv:Div = new Div();
     mainDiv.className = "cd-main-content";
-    mainDiv.style = "background-color:transparent !important;";
     addElement(mainDiv);
 
 }
 
         public function onInitComplete():void
         {
-var obj:Object = Modernizr;
-obj = obj;
 
-    var menuItems:Array = [
-    { text: 'Clothing', href: '#0', hasChildren: true, 
-                    children:[
-                                { text: 'Jeans', href: 'http://codyhouse.co/?p=748' },
-                                { text: 'Trouser', href: 'http://codyhouse.co/?p=748' },
-                                { text: 'Top', href: 'http://codyhouse.co/?p=748' }
-                                
-                            ]
-    },
-    { text: 'Accessories', href: '#0', hasChildren: false},
-    { text: 'Services', href: '#0', hasChildren: true, 
-        children: [
-            { text: 'Service-A', href: 'http://codyhouse.co/?p=748', hasChildren: true, 
-                    children:[
-                                { text: 'Service-AA1', href: 'http://codyhouse.co/?p=748' },
-                                { text: 'Service-AA2', href: 'http://codyhouse.co/?p=748' }
-                            ]        
-            },
-            { text: 'Service-B', href: 'http://codyhouse.co/?p=748' },
-            { text: 'Service-C', href: 'http://codyhouse.co/?p=748' }    
-        ]
-    }
-    ];
-createMenu(menuItems);
+   
 
             //Modernizr "not is a instantiate class"
            /*Modernizr.on('testname', function( result:Object ):void {
