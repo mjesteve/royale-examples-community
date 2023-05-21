@@ -5,7 +5,7 @@
     xmlns:jc="library://ns.apache.org/royale/community"
     xmlns:sp="library://ns.apache.org/royale/externsjs/splide"
     xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns:views="org.apache.royale.community.views.modernizr.*"
+    xmlns:views="org.apache.royale.community.views.aggrid.*"
     initComplete="onInitComplete()"
     > 
     
@@ -33,7 +33,7 @@ COMPILE::JS{
                 { make: "Ford", model: "Mustang", price: 45000 }
             ]
         };
-        agGrid.Grid(myGrid.element, gridOptions);
+      agGrid.Grid(myGrid.element, gridOptions);
         }       
  }       
         ]]>
@@ -52,7 +52,7 @@ COMPILE::JS{
 
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >	
-    <html:Div localId="myGrid" />
+    <html:Div localId="myGrid"  className="ag-theme-alpine" style="height:600px;" />
 
     </j:GridCell>
 

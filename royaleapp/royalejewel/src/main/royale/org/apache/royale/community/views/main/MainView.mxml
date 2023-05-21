@@ -11,6 +11,7 @@
     xmlns:viewsLab="org.apache.royale.community.views.laboratory.*"
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
     xmlns:viewsModernizr="org.apache.royale.community.views.modernizr.*"
+    xmlns:viewsAgGrid="org.apache.royale.community.views.aggrid.*"
     xmlns:viewsCb="org.apache.royale.community.views.combobox.*"
     xmlns:viewsTree="org.apache.royale.community.views.trees.*"
     
@@ -97,9 +98,13 @@
         <j:ScrollableSectionContent name="inspiretree_panel">
             <viewsTree:InspireTree />
         </j:ScrollableSectionContent>
+		<j:ScrollableSectionContent name="aggrid_panel">
+            <viewsAgGrid:AgGridView/>
+        </j:ScrollableSectionContent>
         <j:ScrollableSectionContent name="modernizr_panel">
             <viewsModernizr:ModernizrView/>
         </j:ScrollableSectionContent>
+		
         <j:ScrollableSectionContent name="TriStateCheckBox_panel">
             <viewsJc:TriStateCheckBox_Test/>
         </j:ScrollableSectionContent>

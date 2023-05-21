@@ -37,6 +37,7 @@ package org.apache.royale.community.models
             arnav.push(new NavigationLinkVO("JS Calendar", "jscalendar_panel", MaterialIconType.DATE_RANGE));
             arnav.push(new NavigationLinkVO("FullCalendar", "fullcalendar_panel","calendar_view_month"));
             arnav.push(new NavigationLinkVO("Inspire-Tree", "inspiretree_panel","account_tree"));
+			arnav.push(new NavigationLinkVO("AG-Grid", "aggrid_panel", MaterialIconType.GRID_ON));
 			arnav.push(new NavigationLinkVO("Modernizr Dropdown", "modernizr_panel", MaterialIconType.MENU));
 
             item.subMenu = new ArrayList(arnav);
