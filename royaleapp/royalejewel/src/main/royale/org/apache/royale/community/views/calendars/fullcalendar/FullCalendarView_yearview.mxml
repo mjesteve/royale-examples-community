@@ -16,8 +16,8 @@
             private function onInit():void {
                 
                 festivos = [
-                    {start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
-                    {start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {title: '001',start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {title: '001',start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
                 ]
             }
 
@@ -49,6 +49,7 @@
 			        selectHelper: true,
                     editable: true,
                     showNonCurrentDates: true,
+  	theme: true,
                     dayRender: function(info:Object):void {
                         //console.log(date, td);
                         //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
@@ -61,6 +62,7 @@
                             // info.el.innerText = '\nHOY'; //oK- escribe un texto 
                             info.el.innerHTML = "<input type=\"checkbox\">AM<br>";
                         }
+
                     },
                     dateClick: function(info:Object):void {
                         console.log(info.date, info.allDay);
@@ -85,29 +87,59 @@
                         info.el.bind('dblclick', function():void {
                             alert('doubleclick');
                         });*/
-                        var tooltip:Tooltip = new Tooltip(info.el, {
-                            title: info.event.title,
-                            placement: 'top-end',
-                            trigger: 'hover',
-                            html: true,
-                            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
-                            container: parentContentCalendar.element, //'body'
-                                modifiers: [
-                                    {
-                                    name: 'offset',
-                                    options: { offset: [0, 18] }
-                                    }
-                                ]
-                        });
+                        var event:Object = info.event;
+                        if (event.rendering === 'background') {
+                            // Crea un elemento personalizado para el evento
+                            //TEST - En js funciona pero en as no. Error appenChild porque customElement no es un nodo.
+                            /*var customElement:Div = new Div();
+                            (customElement.element as Element).classList.add('custom-event');
+                            customElement.innerHTML = '<b>' + event.title + '</b>';
+                            // Reemplaza el contenido del evento con el elemento personalizado
+                            info.el.innerHTML = '';
+                            info.el.appendChild(customElement);
+                            */
+
+                            var myrenderer:HTMLDivElement = document.createElement("div") as HTMLDivElement;
+                            myrenderer.classList.add('custom-event');
+                            myrenderer.innerHTML = '<b>' + event.title + '</b>';
+                            info.el.innerHTML = '';
+                            info.el.appendChild(myrenderer);
+
+                            //Test - Work
+                            //var str:String = '<div class="custom-event"><b>***' + event.title + '</b></div>';
+                            //info.el.insertAdjacentHTML('beforeend', str);
+
+                            info.el.setAttribute('data-tooltip', event.title);
+                            //info.el.classList.add('tooltip'); 
+
+                        }else{
+                            /*var tooltip:Tooltip = new Tooltip(info.el, {
+                                title: info.event.title,
+                                placement: 'top-end',
+                                trigger: 'hover',
+                                html: true,
+                                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
+                                container: parentContentCalendar.element, //'body'
+                                    modifiers: [
+                                        {
+                                        name: 'offset',
+                                        options: { offset: [0, 18] }
+                                        }
+                                    ]
+                            });*/
+                        }
                     },
                     defaultDate: '2023-01-01',
                     // navLinks: true, can click day/week names to navigate views
                     eventLimit: true, // allow "more" link when too many events
-                    events: festivos
+                    events: festivos,
+                    weekNumbers: true,
+                    weekNumbersWithinDays: true, //true: nº de semana aparece TODOS los lunes | false:Columna inicial nº de semana que donde se encuentra el día 1
+                    weekNumberCalculation: 'ISO'
                 });
                 mycalendar.render();
                
-                mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});
+                /*mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});*/
                 mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
 			}
 
