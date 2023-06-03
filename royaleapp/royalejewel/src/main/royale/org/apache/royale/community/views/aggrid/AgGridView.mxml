@@ -19,24 +19,74 @@
 
 COMPILE::JS{
    var obj:agGrid;
-// JavaScript
-        //agGrid.Grid.init();
         var gridOptions = {
             columnDefs: [
                 { headerName: "Make", field: "make" },
+                { headerName: "Owner", field: "owner" },
                 { headerName: "Model", field: "model" },
                 { headerName: "Price", field: "price" }
             ],
             rowData: [
-                { make: "Toyota", model: "Camry", price: 25000 },
-                { make: "Honda", model: "Accord", price: 30000 },
-                { make: "Ford", model: "Mustang", price: 45000 }
-            ]
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 },
+                {owner:"Alina Kazi", make: "Toyota", model: "Camry", price: 25000 },
+                {owner:"Irhaa", make: "Honda", model: "Accord", price: 30000 },
+                {owner:"Arham", make: "Toyota", model: "Revo", price: 2500000 },
+                {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 }
+            
+            ],
+            defaultColDef: {sortable: true, filter: true},
+        
+            rowSelection: 'multiple', // allow rows to be selected
+            animateRows: true,
+            pagination:true
         };
       agGrid.Grid(myGrid.element, gridOptions);
-        }       
- }       
-        ]]>
+
+             
+ }    
+ 
+      }   
+    public function download():void
+    {
+            ((agGrid as Object).gridOptions as Object).api.exportDataAsCsv();
+
+    } 
+]]>
     </fx:Script>
 
     <j:beads>
@@ -52,8 +102,8 @@ COMPILE::JS{
 
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >	
+     <j:Button click="download();" text="Export to CSV" />
     <html:Div localId="myGrid"  className="ag-theme-alpine" style="height:600px;" />
-
     </j:GridCell>
 
 </j:Grid>
