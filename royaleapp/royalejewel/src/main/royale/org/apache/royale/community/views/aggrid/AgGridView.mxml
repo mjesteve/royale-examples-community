@@ -69,11 +69,21 @@ COMPILE::JS{
                 {owner:"Pashmina", make: "Ford", model: "Mustang", price: 45000 }
             
             ],
-            defaultColDef: {sortable: true, filter: true},
+            defaultColDef: {
+                editable: true,
+                enableRowGroup: true,
+                enablePivot: true,
+                enableValue: true,
+                sortable: true,
+                resizable: true,
+                filter: true,
+                flex: 1,
+                minWidth: 100},
         
             rowSelection: 'multiple', // allow rows to be selected
-            animateRows: true,
+            animateRows:true,
             pagination:true
+            
         };
       agGrid.Grid(myGrid.element, gridOptions);
 
@@ -103,7 +113,7 @@ COMPILE::JS{
     <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >	
      <j:Button click="download();" text="Export to CSV" />
-    <html:Div localId="myGrid"  className="ag-theme-alpine" style="height:600px;" />
+    <html:Div localId="myGrid"  className="ag-theme-alpine" style="height:400px;" />
     </j:GridCell>
 
 </j:Grid>
