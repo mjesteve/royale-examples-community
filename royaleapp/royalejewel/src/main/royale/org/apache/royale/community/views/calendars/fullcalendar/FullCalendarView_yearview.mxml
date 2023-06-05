@@ -11,13 +11,13 @@
 			import FullCalendar;
 			import FullCalendar.Calendar;
     //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
-
+                    
             private var festivos:Array;
             private function onInit():void {
                 
                 festivos = [
-                    {title: '001',start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
-                    {title: '001',start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {title: '001',start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0',popup: {title:'Laboral',content: '001'}},
+                    {title: '002',start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0',popup: {title:'Laboral',content: '002'}}
                 ]
             }
 
@@ -49,7 +49,6 @@
 			        selectHelper: true,
                     editable: true,
                     showNonCurrentDates: true,
-  	theme: true,
                     dayRender: function(info:Object):void {
                         //console.log(date, td);
                         //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
@@ -128,6 +127,49 @@
                                     ]
                             });*/
                         }
+                    },eventMouseEnter: function(info:Object):void 
+                    {
+                        //https://stackoverflow.com/questions/9802179/tooltip-for-fullcalendar-in-year-view
+                        console.log('eventMouseEnter:', info);
+                        //var tis:HTMLElement = info.el;
+                        //var popup:Object = info.event.popup;
+                        //var tooltip:String = '<div class="tooltipevent" style="top:'+($(tis).offset().top-5)+'px;left:'+($(tis).offset().left+($(tis).width())/2)+'px"><div>' + popup.title + '</div><div>' + popup.content + '</div></div>';
+                        //var $tooltip = $(tooltip).appendTo('body');
+
+                        //            If you want to move the tooltip on mouse movement then you can uncomment it
+                        //            $(tis).mouseover(function(e) {
+                        //                $(tis).css('z-index', 10000);
+                        //                $tooltip.fadeIn('500');
+                        //                $tooltip.fadeTo('10', 1.9);
+                        //            }).mousemove(function(e) {
+                        //                $tooltip.css('top', e.pageY + 10);
+                        //                $tooltip.css('left', e.pageX + 20);
+                        //            });
+
+                       /* mytooltip = new Tooltip(info.el, {
+                                title: info.event.title,
+                                placement: 'top-end',
+                                trigger: 'hover',
+                                html: true,
+                                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>**<div class="tooltip-inner"></div></div>',
+                                container: parentContentCalendar.element, //'body'
+                                    modifiers: [
+                                        {
+                                        name: 'offset',
+                                        options: { offset: [0, 10] }
+                                        }
+                                    ]
+                            });*/
+
+                    },
+                    eventMouseLeave: function(info:Object):void {
+                        console.log('eventMouseLeave');
+                        if( mytooltip) {
+                            mytooltip.hide()
+                            mytooltip.dispose();
+                        }
+                        //$(info.el).css('z-index', 8);
+                        //$('.tooltipevent').remove();
                     },
                     defaultDate: '2023-01-01',
                     // navLinks: true, can click day/week names to navigate views
@@ -137,10 +179,11 @@
                     weekNumbersWithinDays: true, //true: nº de semana aparece TODOS los lunes | false:Columna inicial nº de semana que donde se encuentra el día 1
                     weekNumberCalculation: 'ISO'
                 });
+
                 mycalendar.render();
                
                 /*mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});*/
-                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
+                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true,popup: {title:'Laboral',content: '001'}});
 			}
 
             public function refreshSizeCalendar():void
