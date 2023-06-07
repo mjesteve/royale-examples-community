@@ -11,7 +11,7 @@
 			import FullCalendar;
 			import FullCalendar.Calendar;
     //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
-                    
+            
             private var festivos:Array;
             private function onInit():void {
                 
@@ -27,6 +27,8 @@
 			{
                 if(mycalendar){
                     refreshSizeCalendar();
+                    replaceDayNumberWeekday();
+                    addHeaderForDays();
                     return;
                 }
 //dblclick: function (seg, ev) { return view.trigger('eventDoubleClick', this, seg.event, ev);
@@ -38,6 +40,7 @@
                     firstDay: 1,
                     locales: ['en','es','ca','fr','pt','it'],
                     locale: 'es',
+                    
                     header: {
                         left: 'prev,next today',
                         center: 'title',
@@ -184,7 +187,67 @@
                
                 /*mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});*/
                 mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true,popup: {title:'Laboral',content: '001'}});
-			}
+                replaceDayNumberWeekday();
+                addHeaderForDays();
+            }
+            public function replaceDayNumberWeekday():void {
+
+                var dayNumberElements = document.getElementsByClassName('fc-day-number');
+
+                for (var i = 0; i < dayNumberElements.length; i++) {
+                var dayNumberElement = dayNumberElements[i];
+                var weekdayElement = dayNumberElement.querySelector('.fc-day-number-weekday');
+
+                if (weekdayElement) {
+                dayNumberElement.innerHTML = weekdayElement.outerHTML;
+                }
+                }
+            }
+            public function addHeaderForDays():void {
+            var element = document.querySelector('div.fc-row.fc-widget-header');
+            
+            if (element) {
+                var newContent = '<table style="height:32px;margin-left: 14.65px;">' +
+                '<tbody>' +
+                '<tr>' +
+                '<td><span class="fc-day-number">1</span></td>' +
+                '<td><span class="fc-day-number">2</span></td>' +
+                '<td><span class="fc-day-number">3</span></td>' +
+                '<td><span class="fc-day-number">4</span></td>' +
+                '<td><span class="fc-day-number">5</span></td>' +
+                '<td><span class="fc-day-number">6</span></td>' +
+                '<td><span class="fc-day-number">7</span></td>' +
+                '<td><span class="fc-day-number">8</span></td>' +
+                '<td><span class="fc-day-number">9</span></td>' +
+                '<td><span class="fc-day-number">10</span></td>' +
+                '<td><span class="fc-day-number">11</span></td>' +
+                '<td><span class="fc-day-number">12</span></td>' +
+                '<td><span class="fc-day-number">13</span></td>' +
+                '<td><span class="fc-day-number">14</span></td>' +
+                '<td><span class="fc-day-number">15</span></td>' +
+                '<td><span class="fc-day-number">16</span></td>' +
+                '<td><span class="fc-day-number">17</span></td>' +
+                '<td><span class="fc-day-number">18</span></td>' +
+                '<td><span class="fc-day-number">19</span></td>' +
+                '<td><span class="fc-day-number">20</span></td>' +
+                '<td><span class="fc-day-number">21</span></td>' +
+                '<td><span class="fc-day-number">22</span></td>' +
+                '<td><span class="fc-day-number">23</span></td>' +
+                '<td><span class="fc-day-number">24</span></td>' +
+                '<td><span class="fc-day-number">25</span></td>' +
+                '<td><span class="fc-day-number">26</span></td>' +
+                '<td><span class="fc-day-number">27</span></td>' +
+                '<td><span class="fc-day-number">28</span></td>' +
+                '<td><span class="fc-day-number">29</span></td>' +
+                '<td><span class="fc-day-number">30</span></td>' +
+                '<td><span class="fc-day-number">31</span></td>' +
+                '</tr>' +
+                '</tbody>' +
+                '</table>';
+                
+                element.innerHTML = newContent;
+            }
+            }
 
             public function refreshSizeCalendar():void
             {
