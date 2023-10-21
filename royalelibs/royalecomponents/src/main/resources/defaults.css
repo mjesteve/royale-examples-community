@@ -68,6 +68,7 @@ jc|ComboBoxJwExt{
   IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
   /* Customs */
   comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+  IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"); 
   /* comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"); */
   /* comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"); */
 }
@@ -84,21 +85,58 @@ jc|VirtualComboBoxJwExt{
   IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ComboBoxControllerJwExt");
   /* Customs */
   comboBoxTruncateText: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText");
+  /* IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"); */
+  IPopUp: ClassReference("org.apache.royale.community.jewel.supportClasses.combobox.VirtualComboBoxPopUp");
   /* comboBoxDisabled: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"); */
   /* comboBoxTextPrompt: ClassReference("org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"); */
 }
+jc|VirtualComboBoxPopUp {
+  IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.VirtualComboBoxPopUpView");
+  /* IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualComboBoxPopUpView"); */
+}
+
 .jewel.combobox.itemrenderertruncate{  
   IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"); 
 }
 
-  jc|ListJwExt {
-    /* Custom scrollToIndex */
-    IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.ListViewJwExt");
-    /* Custom selectedHandler only realchange*/
-    IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt");
-    /* Custom ArrayListSelectionModelJwExt - TODO - IComparable */
-    IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt");
-  }
+/*j|List {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.ListKeyDownController");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ListItemRendererInitializer");
+  ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView"); 
+} 
+j|VirtualList {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualListView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VirtualListVerticalLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView");
+  IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.VirtualListKeyDownController"); 
+}*/
+
+jc|ListJwExt {
+  /* Custom scrollToIndex */
+  IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.ListViewJwExt");
+  /* Custom selectedHandler only realchange*/
+  IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt");
+  /* Custom ArrayListSelectionModelJwExt - TODO - IComparable */
+  IBeadModel: ClassReference("org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt");
+}
+
+jc|VirtualListJwExt {
+  /* Custom scrollToIndex */
+  IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.VirtualListView");
+  /* Custom selectedHandler only realchange
+  IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.ListKeyDownController");*/
+  IBeadController: ClassReference("org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt");
+  IBeadKeyController: ClassReference("org.apache.royale.community.jewel.beads.controllers.VirtualListKeyDownController"); 
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.community.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView");
+  IBeadLayout: ClassReference("org.apache.royale.community.jewel.beads.layouts.VirtualListVerticalLayout");
+}
   
 /* Style - LabelFormWithButtonBar */
 

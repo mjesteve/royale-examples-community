@@ -49,7 +49,14 @@
     <component id="ListSingleSelectionMouseControllerJwExt" class="org.apache.royale.community.jewel.beads.controllers.ListSingleSelectionMouseControllerJwExt"/>
     <component id="ArrayListSelectionModelJwExt" class="org.apache.royale.community.jewel.beads.models.ArrayListSelectionModelJwExt"/>
     <component id="ImageToolTip" class="org.apache.royale.community.jewel.beads.controls.ImageToolTip"/>
-
+    
+    <component id="VirtualListView"                                 class="org.apache.royale.community.jewel.beads.views.VirtualListView"/>
+    <component id="VirtualComboBoxPopUpView"                        class="org.apache.royale.community.jewel.beads.views.VirtualComboBoxPopUpView"/>
+    <component id="VirtualComboBoxPopUp"                            class="org.apache.royale.community.jewel.supportClasses.combobox.VirtualComboBoxPopUp"/>
+    <component id="VirtualDataItemRendererFactoryForCollectionView" class="org.apache.royale.community.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView"/>
+    <component id="VirtualListKeyDownController"                    class="org.apache.royale.community.jewel.beads.controllers.VirtualListKeyDownController"/>
+    <component id="VirtualListVerticalLayout"                       class="org.apache.royale.community.jewel.beads.layouts.VirtualListVerticalLayout"/>
+    
     <!-- itemRenderers -->
     <component id="LabelTruncateItemRenderer" class="org.apache.royale.community.itemRenderers.LabelTruncateItemRenderer"/>
     <component id="ListItemRendererProperties" class="org.apache.royale.community.itemRenderers.ListItemRendererProperties"/>
@@ -70,6 +77,7 @@
     <component id="ComboBoxJwExtDefs" class="org.apache.royale.community.controls.ComboBoxJwExtDefs"/>
     <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
+    <component id="VirtualListJwExt" class="org.apache.royale.community.controls.VirtualListJwExt"/>
     <component id="TriStateCheckBox" class="org.apache.royale.community.jewel.TriStateCheckBox"/>
     <component id="VirtualComboBoxJwExt" class="org.apache.royale.community.controls.VirtualComboBoxJwExt"/>
     <component id="VirtualComboBoxJwExtDefs" class="org.apache.royale.community.controls.VirtualComboBoxJwExtDefs"/>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:jc="library://ns.apache.org/royale/community"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.collections.ArrayListView;
+	    import mx.utils.ObjectUtil;
+
+        public function onInitComplete():void
+        {
+            makeDP(true);
+        }
+        [Bindable]
+        private var arlasourceFullScopeSmall:ArrayList = new ArrayList;
+        [Bindable]
+        private var arlasourceFullScope:ArrayList = new ArrayList;
+        [Bindable]
+        private var arasourceFullScope:Array = new Array;
+        private var prefix:String="";
+        private var _avSourceAll:ArrayListView;
+
+        private function makeDP(init:Boolean = false):void
+        {
+
+            if(init){
+                prefix = "";
+            }else if(prefix == ""){
+                prefix = "** ";
+            }else {
+                prefix = "";
+            }
+            var ar:Array = new Array();
+            var varray3:Array = new Array();
+            
+            var index2:int = -1;
+            for(var index:int = 0; index < 100; index++)
+            {
+                if(index2<9)
+                    index2++;
+                else
+                    index2=0;
+                if( index<150 )
+                    ar.push({ label: prefix+'Desc: '+index.toString()+'***************************', value: index.toString(), vez:index2 });
+                varray3.push({ label: prefix+'Desc: '+index.toString()+'***************************', value: index.toString(), vez:index2 });
+            }
+            arlasourceFullScopeSmall = new ArrayList(ar);
+            arlasourceFullScope = new ArrayList(varray3);
+            arasourceFullScope = varray3;            
+            asourceFullScopeChangeHandler();
+        }
+
+        private function onSetSmall():void
+        {
+            if( arlasourceFullScope.length == 1 )
+                arlasourceFullScope = new ArrayList(arasourceFullScope);
+            else
+                arlasourceFullScope = new ArrayList([{ label: 'Solo uno ***************************', value: "0", vez:0 }]);
+                
+        }
+
+        private function onFilter():void
+        {
+            asourceFullScopeChangeHandler();
+        }
+        protected var _aSourceFiltered:ArrayList;
+        public function get aSourceFiltered():ArrayList{ return _aSourceFiltered; }
+        [Bindable]
+        public function set aSourceFiltered(value:ArrayList):void
+        {
+            _aSourceFiltered = value;
+            //We force the filter. No bindings
+            //pageNavBead.dataProvider = _aSourceFiltered;
+            onSearchText(true); //Apply filter text
+        }
+
+        private function onSearchText(notFilter:Boolean = false):void
+        {
+            //if(!notFilter)
+            //    pageNavBead.applyFilter();
+        }
+
+        [Bindable]
+        private var totall:int=0;
+        [Bindable]
+        private var total1:int=0;
+        [Bindable]
+        private var total2:int=0;
+        public function asourceFullScopeChangeHandler():void
+        {
+            //Nuestro dt inicial [ar] (Todos los NO ASIGNADOS (typeAssignment = 0) ó los ASIGNADOS (typeAssignment = 1))
+            var ar:Array = clone(arasourceFullScope);
+            totall = ar.length;
+            ar = ar.filter(filterTypeAssignment); //Assigned - Not Assigned
+            total1 = ar.length;
+            _avSourceAll = new ArrayListView(new ArrayList(ar));
+            _avSourceAll.filterFunction = filterFunction;
+            _avSourceAll.sort = null;
+
+            applyFilter();  //Requery-Filter + aSourceFiltered fill
+            total2 = aSourceFiltered.length;
+        }
+
+        private function filterTypeAssignment(item:Object):Boolean
+        {
+            if(!item)
+                return false;
+            if(!currentFilter.text || currentFilter.text.length == 0)
+                return true;
+            return item.vez == currentFilter.text ? true : false;
+        }
+
+        public function filterFunction(item:Object):Boolean
+        {
+            var res:Boolean = false;
+            if(!item)
+                return res;
+
+            if(currentFilter.text && currentFilter.text.length > 0)
+            {
+                if(item.label.indexOf(currentFilter.text)>-1)
+                    res = true;
+            }else
+                res = true;
+
+            return res;
+        }
+
+        private function applyFilter(event:Event = null):void
+        {
+            if(_avSourceAll)
+            {
+                _avSourceAll.refresh();
+                aSourceFiltered = new ArrayList(_avSourceAll.toArray());
+            }else{
+                aSourceFiltered = new ArrayList();
+            }
+        }
+
+        public static function clone(source:Array):Array
+        {
+            if(!source)
+                return null;
+            else
+                return cloneObj(source) as Array;
+        }
+
+		public static function cloneObj(source:Object):*{
+			return ObjectUtil.clone(source);
+		}
+
+        ]]>
+    </fx:Script>
+
+    <fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
+        @namespace jc "library://ns.apache.org/royale/community";
+        
+        
+        /*.listItemRenderer{
+        IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.Label_Value");
+        background-color: #ccc;
+        border-color: red;
+        }*/
+
+    </fx:Style>
+
+
+    <j:beads>
+		<!--<js:ViewDataBinding/>-->
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:TopAppBar localId="topappbar" id="topappbar" fixed="true">
+        <j:BarRow localId="barRow">
+            <j:BarSection>
+                <j:BarTitle text="Royale Tests      [ Royale 0.9.10-SNAPSHOT ]"/>
+            </j:BarSection>
+        </j:BarRow>
+    </j:TopAppBar>
+
+     <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainbg1">
+        <j:ScrollableSectionContent>
+            <j:beads>
+                <js:Paddings padding="50"/>
+            </j:beads>
+            <j:Card itemsExpand="false" percentHeight="100" percentWidth="100">
+                <j:CardHeader>
+                    <j:BarSection width="100%" gap="10">
+                        <html:H3 text="VirtualComboBoxJwExt - Debugger" className="primary-dark"/>
+                    </j:BarSection>
+                </j:CardHeader>
+
+                <j:CardActions localId="secHeader1">
+                    <j:HGroup localId="grppaginatorView" itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCenter" gap="5" 
+                    percentWidth="100" minHeight="35">
+                        <jc:PageNavigatorButtonBar localId="paginatorView" emphasis="primary" maxNavButtons="1" pageSize="50">
+                            <jc:beads>
+                                <j:ListPresentationModel rowHeight="35" variableRowHeight="false" />
+                            </jc:beads>
+                        </jc:PageNavigatorButtonBar>
+                        <j:TextInput localId="currentFilter" width="50"/>
+                        <j:Button text="btfilter" click="onFilter()"/>
+                        <j:Label text="{totall}"/>
+                        <j:Label text="{total1}"/>
+                        <j:Label text="{total2}"/>
+                    </j:HGroup>
+                </j:CardActions>
+
+                <j:CardActions>
+                    <j:HGroup itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCenter" gap="5" 
+                    percentWidth="100" minHeight="35">
+
+                        <j:Button text="btSetSmall" click="onSetSmall()"/>
+                    <!--
+                        <j:VirtualComboBox percentWidth="50" dataProvider="{arlasourceFullScope}" 
+                        labelField="label"/> -->
+                    
+                        <jc:ComboBoxJwExt percentWidth="50" dataProvider="{arlasourceFullScopeSmall}" 
+                        labelField="label">
+                            <jc:beads>
+                                <j:ComboBoxPresentationModel rowHeight="35" rowCount="5" variableRowHeight="false"/>
+                            </jc:beads>
+                        </jc:ComboBoxJwExt>
+                    
+                        <jc:VirtualComboBoxJwExt percentWidth="50" dataProvider="{arlasourceFullScope}" 
+                        labelField="label">
+                            <jc:beads>
+                                <j:ComboBoxPresentationModel rowHeight="35" rowCount="5" variableRowHeight="false"/>
+                            </jc:beads>
+                        </jc:VirtualComboBoxJwExt>
+
+                    </j:HGroup>
+                </j:CardActions>
+
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">
+                    <j:HGroup percentHeight="100" percentWidth="100">
+                        <jc:ListJwExt localId="list" percentWidth="50" height="350"  dataProvider="{arlasourceFullScope}"
+                        className="listItemRenderer">
+                            <jc:beads>
+                                <j:ListPresentationModel rowHeight="35" variableRowHeight="false"/>
+                                <!--<jc:PageNavigatorList localId="pageNavBead" pageNavigator="{paginatorView}"/>-->
+                            </jc:beads>
+                        </jc:ListJwExt>
+                        <jc:VirtualListJwExt localId="vlist" percentWidth="50"  height="350"  dataProvider="{arlasourceFullScope}"
+                        className="listItemRenderer">
+                            <jc:beads>
+                                <j:ListPresentationModel rowHeight="35" variableRowHeight="false"/>
+                                <!--<jc:PageNavigatorList localId="pageNavBead" pageNavigator="{paginatorView}"/>-->
+                            </jc:beads>
+                        </jc:VirtualListJwExt>
+                    </j:HGroup>
+                    
+                    <j:HGroup percentHeight="100" percentWidth="100">
+                        <j:Button text="set index" click="list.selectedIndex=int(txtIndex.text);vlist.selectedIndex=int(txtIndex.text);"/>
+                        <j:TextInput localId="txtIndex" text="25" />
+                    </j:HGroup>
+
+                </j:CardPrimaryContent>
+
+            </j:Card>
+
+        </j:ScrollableSectionContent>
+    </j:ApplicationMainContent>
+
+</j:ResponsiveView>

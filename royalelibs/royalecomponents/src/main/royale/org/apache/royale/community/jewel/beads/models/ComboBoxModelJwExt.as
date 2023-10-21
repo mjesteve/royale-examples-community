@@ -126,43 +126,108 @@ package org.apache.royale.community.jewel.beads.models
 		 */
 		public function getItemIndex(item:Object, strictEqualityCheck:Boolean = false):int
 		{
-			if(!_dataProvider || _dataProvider.length == 0)
+			if(!_dataProvider || _dataProvider.length == 0 || item == null)
 				return -1;
 
-			var props:Array = ObjectUtil.getEnumerableProperties(_dataProvider[0]);
-			if(props.length == 0)
-				return _dataProvider.getItemIndex(item);
-				
-			var propsItIn:Array = ObjectUtil.getEnumerableProperties(item);
-
-			for (var idx:int; idx < _dataProvider.length; idx++)
+			for (var idx:int, lendp:int = _dataProvider.length; idx < lendp; idx++)
 			{
 				var itdp:Object = _dataProvider[idx];				
-				var isequal:Boolean = true;
-
-				for each(var propIn:String in propsItIn)
-				{					
-					if(!itdp.hasOwnProperty(propIn))
-					{
-						isequal = false;
-						break;
-					}					
-					if(!strictEqualityCheck && itdp[propIn] != item[propIn])
-					{
-						isequal = false;
-						break;
-					}
-					if(strictEqualityCheck && itdp[propIn] !== item[propIn])
-					{
-						isequal = false;
-						break;
-					}					
-				}
-				if(isequal)
+				if( ObjectUtil.compare(item,itdp) == 0)
 					return idx;
 			}
 			return -1;
 		}
+
+		/*public function getItemIndex(item:Object, strictEqualityCheck:Boolean = false):int
+		{
+			if(!_dataProvider || _dataProvider.length == 0 || item == null)
+				return -1;
+
+			var props:Array, propsItIn:Array;
+			//0: dynamic object, 1: typing object
+			var typeItDP:int=-1;
+			var typeItIn:int=-1;
+			trace( "isPrototypeOf(item)",isPrototypeOf(item), "item.__proto__.ROYALE_CLASS_INFO", item.__proto__.ROYALE_CLASS_INFO );
+			
+			typeItIn = item.__proto__.ROYALE_CLASS_INFO == undefined ? 0:1;
+			props = ObjectUtil.getEnumerableProperties(item);
+			if(props.length == 0)
+			{
+				if(item.__proto__.ROYALE_CLASS_INFO == undefined)
+					return _dataProvider.getItemIndex(item);
+				else
+					props = item.__proto__.ROYALE_CLASS_INFO.localTraits.props;
+
+				if(props.length == 0)
+					return _dataProvider.getItemIndex(item);
+
+			}
+
+			typeItDP = _dataProvider[0].__proto__.ROYALE_CLASS_INFO == undefined ? 0:1;
+			propsItIn = ObjectUtil.getEnumerableProperties(_dataProvider[0]);
+			if(propsItIn.length == 0)
+			{
+				if(_dataProvider[0].__proto__.ROYALE_CLASS_INFO == undefined)
+					return _dataProvider.getItemIndex(item);
+				else
+					propsItIn = _dataProvider[0].__proto__.ROYALE_CLASS_INFO.localTraits.props;
+
+				if(propsItIn.length == 0)
+					return _dataProvider.getItemIndex(item);
+
+			}
+
+			for (var idx:int, lendp:int = _dataProvider.length; idx < lendp; idx++)
+			{
+				var itdp:Object = _dataProvider[idx];				
+				var isequal:Boolean = true;
+				var npNoPrim:int = 0;
+
+				for (var idxprop:int, lenprops:int = propsItIn.length; idxprop < lenprops; idxprop++)
+				{
+					var propIn:String = propsItIn[idxprop] as String;
+
+					var theType:String = typeof item[propIn];
+					trace( propIn, "Type",theType );
+					if( (theType==="object" && !(item[propIn] is Date)) || theType==="function" ){
+						npNoPrim++;
+						continue;
+					}
+
+					if(props.indexOf(propIn) == -1)
+					{
+						isequal = false;
+						break;
+					}
+					if(item[propIn] is Date || itdp[propIn] is Date)
+					{
+						if( ObjectUtil.dateCompare(itdp[propIn] as Date,item[propIn] as Date) != 0 )
+						{
+							isequal = false;
+							break;
+						}
+					}else{
+						if(!strictEqualityCheck && itdp[propIn] != item[propIn])
+						{
+							isequal = false;
+							break;
+						}
+						if(strictEqualityCheck && itdp[propIn] !== item[propIn])
+						{
+							isequal = false;
+							break;
+						}
+					}					
+				}
+				if(isequal){
+					if(npNoPrim == propsItIn.length)
+						return _dataProvider.getItemIndex(item);
+
+					return idx;
+				}
+			}
+			return -1;
+		}*/
 
 	}
 }

@@ -91,7 +91,7 @@ package org.apache.royale.community.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.11
+		 *  @productversion Royale 0.9.10
 		 */
 
 		public function get resetButton():IconReset
@@ -101,7 +101,7 @@ package org.apache.royale.community.jewel.beads.views
 
 		private var combobox:IStrandWithResetButton;
 		private var _comboPopUp:ComboBoxPopUp;
-		private var _list:List;
+		protected var _list:List;
 
 		/**
 		 *  The pop-up list component of the ComboBox.
@@ -176,7 +176,7 @@ package org.apache.royale.community.jewel.beads.views
 				_textinput.text = "";
         }
 
-		private var model:IComboBoxModel;
+		protected var model:IComboBoxModel;
 
 		private var _popUpClass:Class;
 		/**
@@ -235,7 +235,17 @@ package org.apache.royale.community.jewel.beads.views
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
 
 					//popup width needs to be set before position inside bounding client to work ok
+                    COMPILE::JS
+                    {
+					if (isNaN((host as ComboBox).percentWidth))
+						_list.width = host.width;
+					else
+						_list.width = host.element.offsetWidth;
+                    }
+                    COMPILE::SWF
+                    {
 					_list.width = host.width;
+                    }
 
                     COMPILE::JS
                     {
