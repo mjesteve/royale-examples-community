@@ -158,10 +158,9 @@ package org.apache.royale.community.jewel.beads.views
 					scrollToProposed = oldScroll + rowHeight - offset;
 					scrollArea.scrollTop = Math.min(scrollToProposed, totalHeight);
 				}
-
-				//The verticalScrollPosition will only be changed if the element is not currently visible.
 				else if(scrollToProposed >= scrollMaxVisible || scrollToProposed < oldScroll)
 				{
+				//The verticalScrollPosition will only be changed if the element is not currently visible.
 					scrollArea.scrollTop = Math.min(scrollToProposed, totalHeight);
 				}
 

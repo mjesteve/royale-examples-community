@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html">
+
+    <fx:Script>
+        <![CDATA[
+            override public function set data(value:Object):void
+            {
+                super.data = value;
+
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ItemRendererDataBinding />
+        <j:ToolTip localId="tt"  toolTip="{text}"/>
+        <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
+    </j:beads>
+
+    <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter" gap="5">
+        <j:beads>
+            <js:Paddings paddingRight="8"/>
+        </j:beads>
+        <j:Label text="{data.vez}"/>
+        <j:Label text="{data.value}"/>
+        <j:Label text="{data.label}"/>
+    </j:HGroup>
+</j:ListItemRenderer>
