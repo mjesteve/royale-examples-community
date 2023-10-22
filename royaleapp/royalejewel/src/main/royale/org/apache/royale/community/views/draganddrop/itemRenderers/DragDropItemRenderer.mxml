@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    mouseDown="onMouseDown(event)"
+    mouseOver="handleMouseOver(event)"
+    mouseOut="handleMouseOut(event)"
+    itemsHorizontalAlign="itemsLeft"
+    percentWidth="100" className="horItem">
+
+    <fx:Metadata>
+        [Event(name="onDragging", type="org.apache.royale.events.Event")]
+        [Event(name="onCancel", type="org.apache.royale.events.DragEvent")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+
+            import org.apache.royale.html.beads.controllers.DragMouseController;
+            import org.apache.royale.jewel.supportClasses.popup.PopUpContent;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeDragDropDisplay;
+            import org.apache.royale.community.views.draganddrop.supportClasses.DragDropAutoList;
+            import org.apache.royale.community.views.draganddrop.supportClasses.DragDropList;
+
+            private var _dataItem:CTypeDragDropDisplay;
+            [Bindable]
+            public function get dataItem():CTypeDragDropDisplay
+            {
+                if(!_dataItem)
+                    _dataItem = new CTypeDragDropDisplay();
+                return _dataItem;
+            }
+            public function set dataItem(value:CTypeDragDropDisplay):void
+            {
+                _dataItem = value;
+            }
+
+            protected function handleControlMouseDown(event:MouseEvent):void
+            {
+                event.stopImmediatePropagation();
+            }
+            
+            private const DRAG_OFFSET:int = -20;
+            private var localX:Number = 0;
+            private var localY:Number = 0;
+
+            private function onMouseDown(event:MouseEvent):void
+            {
+                localX = event.localX;
+                localY = event.localY;
+            }
+
+            private function onDragStart(event:DragEvent):void
+            {
+                DragMouseController.dragImageOffsetX = (localX * -1) + DRAG_OFFSET;
+                DragMouseController.dragImageOffsetY = (localY * -1) + DRAG_OFFSET;
+                DragMouseController.dragImage = this;
+
+                DragEvent.dragSource = this;
+
+                dispatchEvent(new Event("onDragging"));
+            }
+
+            private function onDragEnd(event:DragEvent):void
+            {
+                var isValid:Boolean = false;
+                var relItem:Object = event.relatedObject;
+                while(true){
+                    if(relItem is DragDropAutoList || relItem is DragDropList){
+                        isValid = true;
+                        break;
+                    }else if (relItem is PopUpContent){
+                        dispatchEvent(new Event("onCancel"));
+                        break;
+                    }
+                    relItem = relItem.parent;
+                }
+            }
+
+            private function handleMouseOver(event:MouseEvent):void
+            {
+                if(event.buttonDown && !containsClass("overAddBefore")){
+                    addClass("overAddBefore");
+                }
+            }
+
+            private function handleMouseOut(event:MouseEvent):void
+            {
+                if(containsClass("overAddBefore")){
+                    removeClass("overAddBefore");
+                }
+            }
+            
+		]]>
+    </fx:Script>
+    
+    <j:beads>
+        <js:ViewDataBinding/>
+        <js:ItemRendererDataBinding />
+        <js:DragMouseController dragStart="onDragStart(event)" dragEnd="onDragEnd(event)"/>
+        <j:ToolTip localId="tt"  toolTip="{dataItem.codigo} - {dataItem.descripcion}"/>
+        <j:HorizontalLayout itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsCenter" />
+    </j:beads>
+
+    <j:HGroup itemsHorizontalAlign="itemsLeft" itemsVerticalAlign="itemsCenter" percentWidth="100">
+        <js:FontAwesomeIcon text="{FontAwesome5IconType.CLOCK}" faStyle="{FontAwesomeIcon.DUOTONE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"
+                            style="margin-right: 8px;" /> 
+        <j:Label localId="label" percentWidth="100" html="&lt;strong&gt;{dataItem.codigo} &lt;/strong&gt; - {dataItem.descripcion}">
+            <j:beads>
+                <j:SizeControl size="small"/>
+                <j:TruncateText/>
+            </j:beads>
+            <!-- <j:html><![CDATA[<strong>{dataItem.codigo} </strong>  - {dataItem.displaytext}]]></j:html> -->
+        </j:Label>
+    
+    </j:HGroup>
+
+</j:HGroup>

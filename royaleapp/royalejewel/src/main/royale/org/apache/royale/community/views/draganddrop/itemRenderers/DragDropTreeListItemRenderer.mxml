@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    mouseDown="onMouseDown(event)"
+    initComplete="onInitComplete()"
+    style="margin: 0px 3px 6px 3px;">
+
+    <fx:Metadata>
+        [Event(name="onDragging", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.events.DragEvent;
+            import org.apache.royale.icons.FontAwesomeIcon;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeLink;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeDragDropDisplay;
+            import org.apache.royale.community.views.draganddrop.itemRenderers.DragDropItemRenderer;
+
+            private var _dataItem:CTypeLink;
+            [Bindable]
+            public function get dataItem():CTypeLink
+            {
+                return _dataItem as CTypeLink;
+            }
+            public function set dataItem(value:CTypeLink):void
+            {
+                _dataItem = value;
+            }
+
+            private function onInitComplete():void{
+                for each(var value:CTypeDragDropDisplay in dataItem.horarios)
+                {   
+                    addItemDD(value, -1);
+                }
+            }
+
+            public function addItemDD(value:CTypeDragDropDisplay,idx:int):void{
+                var element:DragDropItemRenderer = new DragDropItemRenderer();
+                element.addEventListener("onDragging",onDraggingEvent);
+                element.addEventListener("onCancel",onCancelEvent);
+                element.dataItem = value;
+                list.addElementAt(element,idx);
+            }
+
+            public function onDraggingEvent():void
+            {
+                dispatchEvent(new Event("onDragging"));
+            }
+            
+            public function onCancelEvent(event:DragEvent):void
+            {
+                var source:Object = DragEvent.dragSource as Object;
+                addItemDD(source.dataItem, -1);
+            }
+
+            protected function handleControlMouseDown(event:MouseEvent):void
+            {
+                event.stopImmediatePropagation();
+            }
+            
+            private const DRAG_OFFSET:int = -20;
+
+            private var localX:Number = 0;
+            private var localY:Number = 0;
+
+            private function onMouseDown(event:MouseEvent):void
+            {
+                localX = event.localX;
+                localY = event.localY; //relativeSize="sm"
+            }
+		]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ViewDataBinding/>
+        <js:ItemRendererDataBinding />
+    </j:beads>
+
+    <j:VGroup style=" padding: 8px; border: solid 1px lightgray; border-radius: 3px;" gap="1">
+        <j:HGroup percentWidth="100">
+            <js:FontAwesomeIcon text="{FontAwesome5IconType.LINK}" faStyle="{FontAwesomeIcon.SOLID}"
+                                style="margin-right: 8px;"/> 
+            <j:Label text="{dataItem.idx}" percentWidth="100"/>
+        </j:HGroup>
+        <j:VGroup localId="list" gap="0"/>
+    </j:VGroup>
+
+</j:HGroup>

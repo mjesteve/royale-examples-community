@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    percentWidth="100" percentHeight="100"
+    style="overflow-y: scroll;">
+
+    <fx:Metadata>
+        [Event(name="onDragging", type="org.apache.royale.events.Event")]
+        [Event(name="onDropping", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.events.DragEvent;
+            import org.apache.royale.collections.ArrayList
+            import org.apache.royale.community.views.draganddrop.vos.CTypeLink;
+            import org.apache.royale.community.views.draganddrop.itemRenderers.DragDropItemRenderer;
+            import org.apache.royale.community.views.draganddrop.itemRenderers.DragDropTreeListItemRenderer;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeDragDropDisplay;
+
+            protected function handleControlMouseDown(event:MouseEvent):void
+            {
+                event.stopImmediatePropagation();
+            }
+
+            private function onDragEnd(event:DragEvent):void
+            {
+                var source:Object = DragEvent.dragSource as Object;
+                var element:DragDropTreeListItemRenderer;
+                if(event.relatedObject is DragDropAutoList )
+                {
+                    element = new DragDropTreeListItemRenderer();
+                    element.addEventListener("onDragging",onDraggingEvent);
+                    element.dataItem = new CTypeLink(list.numElements,source.dataItem);
+                    list.addElement(element);
+                }else
+                {
+                    var relItem:Object = event.relatedObject;
+                    while(true)
+                    {
+                        if(relItem is DragDropTreeListItemRenderer)
+                        {
+                            var idx:int = 0;
+                            while(idx < (list.getElementAt(relItem.dataItem.idx) as DragDropTreeListItemRenderer).list.numElements){
+                                if(((list.getElementAt(relItem.dataItem.idx) as DragDropTreeListItemRenderer).list.getElementAt(idx) as DragDropItemRenderer).containsClass("overAddBefore"))
+                                    break;
+                                idx++;
+                            }
+                            (list.getElementAt(relItem.dataItem.idx) as DragDropTreeListItemRenderer).addItemDD(source.dataItem as CTypeDragDropDisplay,idx);
+                            break;
+                        }else 
+                        if(relItem is DragDropAutoList)
+                        {
+                            var horList:ArrayList = new ArrayList();
+                            var it:DragDropItemRenderer = source as DragDropItemRenderer;
+                            horList.addItem(it.dataItem);
+
+                            var itemDrag:CTypeLink = new CTypeLink(list.numElements,horList);
+                            element = new DragDropTreeListItemRenderer();
+                            element.addEventListener("onDragging",onDraggingEvent);
+                            element.dataItem = itemDrag;
+                            list.addElement(element);
+                            break;
+                        }
+                        relItem = relItem.parent;
+                    }
+                }
+
+                dispatchEvent(new Event("onDropping"));
+            }
+
+            public function onDraggingEvent():void
+            {
+                dispatchEvent(new Event("onDragging"));
+            }
+
+            public function fixList():void
+            {
+                var idx:int = 0;
+                while(list.numElements > idx){
+                    if((list.getElementAt(idx) as DragDropTreeListItemRenderer ).list.numElements == 0){
+                        //When Schedule group is empty
+                        list.removeElement(list.getElementAt(idx));
+                    }
+                    idx += 1;
+                }
+                idx = 0;
+                while(list.numElements > idx){
+                    //Reasign Schedule group IDX
+                    (list.getElementAt(idx) as DragDropTreeListItemRenderer).dataItem.idx = idx;
+                    idx += 1;
+                }
+            }
+
+            private var _dataProvider:ArrayList;
+            [Bindable]
+            public function get dataProvider():ArrayList
+            {
+            	return _dataProvider;
+            }
+
+            public function set dataProvider(value:ArrayList):void
+            {
+                _dataProvider = value;
+                var idx:int = 0;
+                for each(var item:CTypeLink in value.source){
+                    var element:DragDropTreeListItemRenderer = new DragDropTreeListItemRenderer();
+                    element.addEventListener("onDragging",onDraggingEvent);
+                    element.dataItem = item;
+                    list.addElement(element);
+                    idx += 1;
+                }
+            }
+
+		]]>
+    </fx:Script>
+    <j:beads>
+        <js:ViewDataBinding/>
+        <js:DropMouseController dragDrop="onDragEnd(event)"/>
+    </j:beads>
+
+    <j:Group localId="list" percentWidth="100" percentHeight="100" style="padding: 10px; flex-wrap: wrap; align-content: flex-start;">
+        <j:beads>
+            <j:HorizontalLayout localId="thl" gap="0" variableRowHeight="true"/>
+        </j:beads>
+    </j:Group>
+</j:HGroup>

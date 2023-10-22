@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Grid
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:viewslocals="org.apache.royale.community.views.draganddrop.supportClasses.*"
+    style="padding: 0px; background:none;" className="relativeGridContent"
+    initComplete="onInitComplete()">
+
+    <fx:Script>
+        <![CDATA[
+
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.community.views.draganddrop.supportClasses.DragDropItemEvent;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeDragDropDisplay;
+            import org.apache.royale.community.views.draganddrop.supportClasses.ArrayUtilExt;
+
+            [Bindable]
+            private var dtDragDroparios:ArrayList = new ArrayList;
+
+            public function onInitComplete():void
+            {
+                makeDP(true);
+                loadAll();
+            }
+
+            private function makeDP(init:Boolean = false):void
+            {
+                var prefix:String="";
+
+                if(!init)
+                {
+                    prefix = "** ";
+                }
+                var ar:Array = new Array();
+                for(var index:int = 0; index < 10; index++)
+                {
+                    var item:CTypeDragDropDisplay = new CTypeDragDropDisplay();
+                    item.codigo = index.toString();
+                    item.descripcion = 'Desc: '+index.toString();
+                    ar.push(item);
+                }
+                dtDragDroparios = new ArrayList(ar);
+            }
+
+            private function loadAll(toBack:Boolean = false):void
+            {
+                var hor:CTypeDragDropDisplay = new CTypeDragDropDisplay();
+                var arrl:ArrayList = new ArrayList();
+                
+                ardisponibles = new ArrayList(dtDragDroparios.source.concat());
+                arenlazados = new ArrayList();
+
+                horList.dataProvider = ardisponibles;
+                hourAutoList.dataProvider = arenlazados;
+            }
+
+            private var _ardisponibles:ArrayList = new ArrayList();
+            [Bindable]
+            private function get ardisponibles():ArrayList
+            {
+            	return _ardisponibles;
+            }
+
+            private function set ardisponibles(value:ArrayList):void
+            {
+            	_ardisponibles = value;
+            }
+            private var _arenlazados:ArrayList = new ArrayList();
+            [Bindable]
+            private function get arenlazados():ArrayList
+            {
+            	return _arenlazados;
+            }
+
+            private function set arenlazados(value:ArrayList):void
+            {
+            	_arenlazados = value;
+            }
+
+            private function onDroppingEvent():void{
+                hourAutoList.fixList()
+            }
+
+            private function refreshLists():void
+            {
+                emptyAllLists();
+                loadAll();
+            }
+
+            private function emptyAllLists():void
+            {
+                var idx:int=0;
+                while(true){
+                    horList.list.removeElement(horList.list.getElementAt(0));
+                    if(horList.list.numElements==0)
+                        break;
+                    idx += 1;
+                }
+
+                idx=0;
+
+                while(true){
+                    hourAutoList.list.removeElement(hourAutoList.list.getElementAt(0));
+                    if(hourAutoList.list.numElements==0)
+                        break;
+                    idx += 1;
+                }
+            }
+        ]]>
+    </fx:Script>
+
+<j:beads>
+    <js:ViewDataBinding/>
+</j:beads>
+
+    <j:Card style="padding: 0px" percentHeight="100" percentWidth="100">
+
+        <j:CardHeader itemsVerticalAlign="itemsCenter">
+            <j:Label text="Test Drag And Drop"/>
+        </j:CardHeader>
+
+        <j:CardPrimaryContent localId="contentCard" className="chartCardPrimaryContent" percentHeight="100">
+
+            <j:Grid percentHeight="100" percentWidth="100" itemsVerticalAlign="itemsSameHeight">
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2"
+                            tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup percentHeight="100" gap="3" style="margin-right: 20px;">
+                        <j:Label text="Available"/>
+                        <viewslocals:DragDropList localId="horList" percentWidth="100" percentHeight="100" 
+                        style="border: 1px solid #888888;" onDropping="onDroppingEvent()"/>
+                    </j:VGroup>
+                </j:GridCell>
+
+                <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2"
+                            tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
+                    <j:VGroup percentHeight="100" gap="3" style="margin-left: 20px;">
+                        <j:Label text="Assigned"/>
+                        <viewslocals:DragDropAutoList localId="hourAutoList" percentWidth="100" 
+                        style="border: 1px solid #888888;" onDropping="onDroppingEvent()"/>
+                    </j:VGroup>
+                </j:GridCell>
+            </j:Grid>
+
+        </j:CardPrimaryContent>
+
+    </j:Card>
+</j:Grid>

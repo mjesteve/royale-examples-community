@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    percentWidth="100" style="overflow-y: scroll;">
+
+    <fx:Metadata>
+        [Event(name="onDropping", type="org.apache.royale.events.Event")]
+    </fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.events.DragEvent;
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.community.views.draganddrop.itemRenderers.DragDropItemRenderer;
+            import org.apache.royale.community.views.draganddrop.vos.CTypeDragDropDisplay;
+            
+            private function onDragEnd(event:DragEvent):void
+            {
+                var source:DragDropItemRenderer = DragEvent.dragSource as DragDropItemRenderer;
+                var idx:int = 0;
+                while(idx < list.numElements){
+                    if((list.getElementAt(idx) as DragDropItemRenderer).containsClass("overAddBefore"))
+                        break;
+                    idx++;
+                }
+                addItemDD(source.dataItem,idx);
+                dispatchEvent(new Event("onDropping"));
+            }
+
+            private var _dataProvider:ArrayList;
+            [Bindable]
+            public function get dataProvider():ArrayList
+            {
+            	return _dataProvider;
+            }
+
+            public function set dataProvider(value:ArrayList):void
+            {
+            	_dataProvider = value;
+                var idx:int = 0;
+                for each(var item:CTypeDragDropDisplay in value.source){
+                    addItemDD(item,-1);
+                    idx += 1;
+                }
+            }
+ 
+            public function addItemDD(value:CTypeDragDropDisplay,idx:int):void{
+                var element:DragDropItemRenderer = new DragDropItemRenderer();
+                element.addEventListener("onCancel",onCancelEvent);
+                element.dataItem = value;
+                list.addElementAt(element,idx);
+            }
+                        
+            public function onCancelEvent(event:DragEvent):void
+            {
+                var source:Object = DragEvent.dragSource as Object;
+                addItemDD(source.dataItem as CTypeDragDropDisplay,-1);
+            }
+
+		]]>
+    </fx:Script>
+    <j:beads>
+        <js:ViewDataBinding/>
+        <js:DropMouseController dragDrop="onDragEnd(event)"/>
+    </j:beads>
+
+    <j:VGroup localId="list" percentWidth="100" style="padding: 10px;">
+    </j:VGroup>
+
+</j:HGroup>

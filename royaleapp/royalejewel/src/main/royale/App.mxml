@@ -47,10 +47,15 @@
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
+
+	<j:beads>
+        <js:ExtraReflectionDataBead />
+	</j:beads>
 	
 	<j:initialView>		
-		<mainviews:MainView/> 
+		<mainviews:MainViewExDebug/> 
 <!--		
+		<mainviews:MainView/> 
 		<viewsFullcal:View_1_YearFullCalendar/> 
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 

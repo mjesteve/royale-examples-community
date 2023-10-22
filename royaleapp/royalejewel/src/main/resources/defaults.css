@@ -199,6 +199,13 @@
        position: absolute;
        z-index: 1;
      }
+
+     .relativeGridContent {
+       position: relative;
+       height: 100%;
+       overflow: unset;
+       flex: auto !important;
+     }
  
      .center{
        margin-left: auto;
@@ -576,6 +583,27 @@ j|DropDownList {
 */
 .DropDownIt{
   IItemRenderer: ClassReference("org.apache.royale.community.itemRenderers.DropDownLabelTruncateItemRenderer");
+}
+
+
+.chartCardPrimaryContent .grid .cell {
+  width: 100%;
+  flex: none;
+  height: 100%;
+}
+.horItem {
+        min-height: 34px;
+        padding: 5px;
+}
+.horItem:hover {
+        background-color: #7cdbe4;
+        color: #13505B;
+}
+.horItem:active {
+        background-color: #04a3b3;
+        color: #ecede8;
+        font-weight: bold;
+        padding: 3px;
 }
 
 
