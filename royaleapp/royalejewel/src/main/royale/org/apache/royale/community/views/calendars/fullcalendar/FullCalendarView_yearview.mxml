@@ -11,13 +11,13 @@
 			import FullCalendar;
 			import FullCalendar.Calendar;
     //xmlns:fullcal="library://ns.apache.org/royale/externsjs/fullcalendar"
-
+            
             private var festivos:Array;
             private function onInit():void {
                 
                 festivos = [
-                    {start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
-                    {start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0'},
+                    {title: '001',start: '2023-01-01', end:'2023-01-01', allDay:true, overlap:true, rendering: 'background', color: '#0092c0',popup: {title:'Laboral',content: '001'}},
+                    {title: '002',start: '2023-12-24', end:'2023-12-26', allDay:true, overlap:true, rendering: 'background', color: '#0092c0',popup: {title:'Laboral',content: '002'}}
                 ]
             }
 
@@ -27,6 +27,8 @@
 			{
                 if(mycalendar){
                     refreshSizeCalendar();
+                    replaceDayNumberWeekday();
+                    addHeaderForDays();
                     return;
                 }
 //dblclick: function (seg, ev) { return view.trigger('eventDoubleClick', this, seg.event, ev);
@@ -38,6 +40,7 @@
                     firstDay: 1,
                     locales: ['en','es','ca','fr','pt','it'],
                     locale: 'es',
+                    
                     header: {
                         left: 'prev,next today',
                         center: 'title',
@@ -48,17 +51,24 @@
                     selectMirror: true,
 			        selectHelper: true,
                     editable: true,
+                    showNonCurrentDates: true,
                     dayRender: function(info:Object):void {
                         //console.log(date, td);
                         //info.el.find('.fc-day-content').prepend('this is the ' + info.date.getDate());
-                    },
+                        var today:String = new Date().toISOString().split('T')[0]; // Obtén la fecha actual en formato ISO (YYYY-MM-DD)
+                        //console.log(info.view.calendar.getNow(), new Date())
+                        //console.log (info.date.toISOString().split('T')[0],today, Date.parse(info.date), Date.parse(today));
+                        //if (Date.parse(info.date) === Date.parse(today)) { //ok
+                        if (info.date.toISOString().split('T')[0] === today) {
+                            info.el.classList.remove('fc-today'); // Elimina la clase fc-today para evitar el resaltado
+                            // info.el.innerText = '\nHOY'; //oK- escribe un texto 
+                            info.el.innerHTML = "<input type=\"checkbox\">AM<br>";
+                        }
 
-                    dayClick: function(info:Object):void {
-                        console.log(info.date, info.allDay);
                     },
-                   /* dateClick: function(info:Object):void {
-                        //alert('clicked ' + info.dateStr);
-                    },*/
+                    dateClick: function(info:Object):void {
+                        console.log(info.date, info.allDay);
+                    },/*
                     select: function(info:Object):void {
                         //alert('selected ' + info.startStr + ' to ' + info.endStr);
                         var title:String = prompt('Event Title:');
@@ -71,7 +81,7 @@
                             })
                         };
                         mycalendar.unselect();
-                    },
+                    },*/
                     eventRender: function(info:Object):void {
                         /*info.el.tooltip({
                             title: info.event.title
@@ -79,31 +89,165 @@
                         info.el.bind('dblclick', function():void {
                             alert('doubleclick');
                         });*/
-                        var tooltip:Tooltip = new Tooltip(info.el, {
-                            title: info.event.title,
-                            placement: 'top-end',
-                            trigger: 'hover',
-                            html: true,
-                            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
-                            container: parentContentCalendar.element, //'body'
-                                modifiers: [
-                                    {
-                                    name: 'offset',
-                                    options: { offset: [0, 18] }
-                                    }
-                                ]
-                        });
+                        var event:Object = info.event;
+                        if (event.rendering === 'background') {
+                            // Crea un elemento personalizado para el evento
+                            //TEST - En js funciona pero en as no. Error appenChild porque customElement no es un nodo.
+                            /*var customElement:Div = new Div();
+                            (customElement.element as Element).classList.add('custom-event');
+                            customElement.innerHTML = '<b>' + event.title + '</b>';
+                            // Reemplaza el contenido del evento con el elemento personalizado
+                            info.el.innerHTML = '';
+                            info.el.appendChild(customElement);
+                            */
+
+                            var myrenderer:HTMLDivElement = document.createElement("div") as HTMLDivElement;
+                            myrenderer.classList.add('custom-event');
+                            myrenderer.innerHTML = '<b>' + event.title + '</b>';
+                            info.el.innerHTML = '';
+                            info.el.appendChild(myrenderer);
+
+                            //Test - Work
+                            //var str:String = '<div class="custom-event"><b>***' + event.title + '</b></div>';
+                            //info.el.insertAdjacentHTML('beforeend', str);
+
+                            info.el.setAttribute('data-tooltip', event.title);
+                            //info.el.classList.add('tooltip'); 
+
+                        }else{
+                            /*var tooltip:Tooltip = new Tooltip(info.el, {
+                                title: info.event.title,
+                                placement: 'top-end',
+                                trigger: 'hover',
+                                html: true,
+                                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>--<div class="tooltip-inner"></div></div>',
+                                container: parentContentCalendar.element, //'body'
+                                    modifiers: [
+                                        {
+                                        name: 'offset',
+                                        options: { offset: [0, 18] }
+                                        }
+                                    ]
+                            });*/
+                        }
+                    },eventMouseEnter: function(info:Object):void 
+                    {
+                        //https://stackoverflow.com/questions/9802179/tooltip-for-fullcalendar-in-year-view
+                        console.log('eventMouseEnter:', info);
+                        //var tis:HTMLElement = info.el;
+                        //var popup:Object = info.event.popup;
+                        //var tooltip:String = '<div class="tooltipevent" style="top:'+($(tis).offset().top-5)+'px;left:'+($(tis).offset().left+($(tis).width())/2)+'px"><div>' + popup.title + '</div><div>' + popup.content + '</div></div>';
+                        //var $tooltip = $(tooltip).appendTo('body');
+
+                        //            If you want to move the tooltip on mouse movement then you can uncomment it
+                        //            $(tis).mouseover(function(e) {
+                        //                $(tis).css('z-index', 10000);
+                        //                $tooltip.fadeIn('500');
+                        //                $tooltip.fadeTo('10', 1.9);
+                        //            }).mousemove(function(e) {
+                        //                $tooltip.css('top', e.pageY + 10);
+                        //                $tooltip.css('left', e.pageX + 20);
+                        //            });
+
+                       /* mytooltip = new Tooltip(info.el, {
+                                title: info.event.title,
+                                placement: 'top-end',
+                                trigger: 'hover',
+                                html: true,
+                                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div>**<div class="tooltip-inner"></div></div>',
+                                container: parentContentCalendar.element, //'body'
+                                    modifiers: [
+                                        {
+                                        name: 'offset',
+                                        options: { offset: [0, 10] }
+                                        }
+                                    ]
+                            });*/
+
+                    },
+                    eventMouseLeave: function(info:Object):void {
+                        console.log('eventMouseLeave');
+                        if( mytooltip) {
+                            mytooltip.hide()
+                            mytooltip.dispose();
+                        }
+                        //$(info.el).css('z-index', 8);
+                        //$('.tooltipevent').remove();
                     },
                     defaultDate: '2023-01-01',
                     // navLinks: true, can click day/week names to navigate views
                     eventLimit: true, // allow "more" link when too many events
-                    events: festivos
+                    events: festivos,
+                    weekNumbers: true,
+                    weekNumbersWithinDays: true, //true: nº de semana aparece TODOS los lunes | false:Columna inicial nº de semana que donde se encuentra el día 1
+                    weekNumberCalculation: 'ISO'
                 });
+
                 mycalendar.render();
                
-                mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});
-                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true});
-			}
+                /*mycalendar.addEvent({title: '001', start: '2023-01-01', end: '2023-01-01', allDay: true});*/
+                mycalendar.addEvent({title: '001', start: '2023-01-02', end: '2023-01-02', allDay: true,popup: {title:'Laboral',content: '001'}});
+                replaceDayNumberWeekday();
+                addHeaderForDays();
+            }
+            public function replaceDayNumberWeekday():void {
+
+                var dayNumberElements = document.getElementsByClassName('fc-day-number');
+
+                for (var i = 0; i < dayNumberElements.length; i++) {
+                var dayNumberElement = dayNumberElements[i];
+                var weekdayElement = dayNumberElement.querySelector('.fc-day-number-weekday');
+
+                if (weekdayElement) {
+                dayNumberElement.innerHTML = weekdayElement.outerHTML;
+                }
+                }
+            }
+            public function addHeaderForDays():void {
+            var element = document.querySelector('div.fc-row.fc-widget-header');
+            
+            if (element) {
+                var newContent = '<table style="height:32px;margin-left: 14.65px;">' +
+                '<tbody>' +
+                '<tr>' +
+                '<td><span class="fc-day-number">1</span></td>' +
+                '<td><span class="fc-day-number">2</span></td>' +
+                '<td><span class="fc-day-number">3</span></td>' +
+                '<td><span class="fc-day-number">4</span></td>' +
+                '<td><span class="fc-day-number">5</span></td>' +
+                '<td><span class="fc-day-number">6</span></td>' +
+                '<td><span class="fc-day-number">7</span></td>' +
+                '<td><span class="fc-day-number">8</span></td>' +
+                '<td><span class="fc-day-number">9</span></td>' +
+                '<td><span class="fc-day-number">10</span></td>' +
+                '<td><span class="fc-day-number">11</span></td>' +
+                '<td><span class="fc-day-number">12</span></td>' +
+                '<td><span class="fc-day-number">13</span></td>' +
+                '<td><span class="fc-day-number">14</span></td>' +
+                '<td><span class="fc-day-number">15</span></td>' +
+                '<td><span class="fc-day-number">16</span></td>' +
+                '<td><span class="fc-day-number">17</span></td>' +
+                '<td><span class="fc-day-number">18</span></td>' +
+                '<td><span class="fc-day-number">19</span></td>' +
+                '<td><span class="fc-day-number">20</span></td>' +
+                '<td><span class="fc-day-number">21</span></td>' +
+                '<td><span class="fc-day-number">22</span></td>' +
+                '<td><span class="fc-day-number">23</span></td>' +
+                '<td><span class="fc-day-number">24</span></td>' +
+                '<td><span class="fc-day-number">25</span></td>' +
+                '<td><span class="fc-day-number">26</span></td>' +
+                '<td><span class="fc-day-number">27</span></td>' +
+                '<td><span class="fc-day-number">28</span></td>' +
+                '<td><span class="fc-day-number">29</span></td>' +
+                '<td><span class="fc-day-number">30</span></td>' +
+                '<td><span class="fc-day-number">31</span></td>' +
+                '</tr>' +
+                '</tbody>' +
+                '</table>';
+                
+                element.innerHTML = newContent;
+            }
+            }
 
             public function refreshSizeCalendar():void
             {

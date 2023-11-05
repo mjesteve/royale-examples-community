@@ -1593,7 +1593,11 @@ var DayTable = /** @class */ (function () {
         return rows;
     };
     DayTable.prototype.buildHeaderDates = function () {
-        return [];
+        var dates = [];
+        for (var col = 0; col < this.colCnt; col++) {
+            dates.push(this.cells[0][col].date);
+        }
+        return dates;
     };
     DayTable.prototype.sliceRange = function (range) {
         var colCnt = this.colCnt;
@@ -1604,37 +1608,17 @@ var DayTable = /** @class */ (function () {
             // Hiedra: skip invalid dates
             for (var _i = 0, _a = this.invalidIndex; _i < _a.length; _i++) {
                 var cellinvalid = _a[_i];
-                var value = 0;
+                var value = cellinvalid.idxfin - cellinvalid.idxini + 1;
                 if (cellinvalid.idxini != -1) {
-                    if (firstIndex != lastIndex) {
-                        if (firstIndex >= cellinvalid.idxini) {
-                            if (firstIndex >= cellinvalid.idxfin)
-                                value = cellinvalid.idxfin - cellinvalid.idxini + 1;
-                            else
-                                value = firstIndex - cellinvalid.idxini + 1;
-                            firstIndex += value;
-                            lastIndex += value;
-                        }
-                        else if (lastIndex >= cellinvalid.idxini) {
-                            if (lastIndex >= cellinvalid.idxfin)
-                                value = cellinvalid.idxfin - cellinvalid.idxini + 1;
-                            else
-                                value = firstIndex - cellinvalid.idxini + 1;
-                            lastIndex += value;
-                        }
-                        else
-                            break;
+                    if (firstIndex >= cellinvalid.idxini) {
+                        firstIndex += value;
+                        lastIndex += value;
                     }
-                    else {
-                        if (firstIndex >= cellinvalid.idxini) {
-                            value = cellinvalid.idxfin - cellinvalid.idxini + 1;
-                            firstIndex += value;
-                            lastIndex += value;
-                        }
-                        else {
-                            break;
-                        }
+                    else if (lastIndex >= cellinvalid.idxini) {
+                        lastIndex += value;
                     }
+                    else
+                        break;
                 }
             }
             var index = firstIndex;

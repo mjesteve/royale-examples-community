@@ -28,6 +28,10 @@
 /* DayGridView
 --------------------------------------------------------------------------------------------------*/
 /* day row structure */
+.fc-year-view .fc-row.fc-widget-header {
+  padding-left: 2cqw;
+}
+
 .fc-year-container {
   /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
   /* week and day number styling */
@@ -56,7 +60,7 @@
 .fc-year-container .fc-row.fc-rigid .fc-content-skeleton {
   position: absolute;
   top: 0;
-  left: 1.2cqw;
+  left: 2cqw;
   right: 0;
 }
 .fc-year-container .fc-day-top.fc-other-month {
@@ -101,7 +105,7 @@
 }
 .fc-year-container .fc-row-monthname {
   height: 100%;
-  width: 1.2cqw; /* 1.25em; */
+  width: 2cqw; /* 1.25em; */
   position: absolute;
   text-align: center;
   border-right-width: 1px;
@@ -117,10 +121,10 @@
   top: 50%;
 }
 .fc-year-container .fc-bg, .fc-year-container .fc-content-skeleton {
-  left: 1.2cqw; /* 1.25em */
+  left: 2cqw; /* 1.25em */
 }
 .fc-year-container .fc-row .fc-highlight-skeleton {
-  left: 1.2cqw; /* 1.25em */
+  left: 2cqw; /* 1.25em */
 }
 .fc-year-container .fc-day-number-weekday {
   padding-right: 0.3em;
@@ -187,5 +191,5 @@
 .fc-year-container .fc-bgevent-skeleton,
 .fc-year-container .fc-highlight-skeleton,
 .fc-year-container .fc-mirror-skeleton {
-  left: 1.2cqw;
+  left: 2cqw;
 }
