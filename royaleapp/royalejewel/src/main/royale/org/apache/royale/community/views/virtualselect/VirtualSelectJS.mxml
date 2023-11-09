@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <j:Grid gap="true" xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic"    
-    xmlns:jc="library://ns.apache.org/royale/community"
-    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:jc="library://ns.iest.com/winplusweb"
+    xmlns:html="library://ns.apache.org/royale/html"
     xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
-    initComplete="onInitComplete()"> 
-    
+    initComplete="onInitComplete()">
+
     <fx:Script>
         <![CDATA[
         import org.apache.royale.events.Event;
+        import org.apache.royale.jewel.PopUp;
 
 
         public function onInitComplete():void
@@ -59,7 +60,7 @@
                 //}
                 //varray.push(prefix+'String: '+index.toString());
                 //varray2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
-                varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString() });
+                varray3.push({ label: prefix+'Desc: '+index.toString(), value: index.toString(), classNames: 'customrenderer' });
                 varray2.push(prefix+'Desc: '+index.toString());
             }
             /*dpString = new ArrayList(ar);
@@ -68,7 +69,7 @@
             dpClassBig = new ArrayList(varray2);*/
             arStringBig = varray2.slice();
             arClassBig = varray3.slice();
-            
+
             var varray4:Array = new Array();
             var archil:Array;
             var itemHeader:Object;
@@ -82,7 +83,7 @@
                 }
                 archil = new Array();
                 itemHeader = { label: 'Option Group: '+idx.toString() };
-                
+
                 for(var idxc:int = 0; idxc < 10; idxc++)
                 {
                     archil.push({ label: prefix+'Desc: '+idx.toString()+' - '+idxc.toString(), value: index.toString() });
@@ -114,11 +115,12 @@
         <j:ScrollingViewport/>
     </j:beads>
 
-    <jc:ExampleHeader title="JS Virtual Select - Royale Wrapper">
-        <jc:description>
-            <![CDATA[Tests <strong>Configuration Options</strong> [WIP] (<a href="https://sa-si-dev.github.io/virtual-select/#/" target="_blank">https://sa-si-dev.github.io/virtual-select</a>)]]>
-        </jc:description>
-    </jc:ExampleHeader>
+ <j:GridCell>
+    <j:VGroup>
+        <html:H1 text="Tests Configuration Options [WIP]" className="primary-dark"/>
+	</j:VGroup>
+ </j:GridCell>
+
 
     <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1"
      >

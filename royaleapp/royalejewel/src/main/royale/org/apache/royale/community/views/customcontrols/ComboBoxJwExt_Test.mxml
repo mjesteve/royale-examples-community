@@ -307,6 +307,23 @@
                 </j:HGroup>
 
                 <html:Hr className="separador"/>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>The <strong>withResetButton</strong> property to <strong>true</strong>:</p>]]></j:html>
+                </j:Label>
+               
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt localId="cbreset" percentWidth="50" activeTextPromp="true" withResetButton="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:ComboBoxJwExt>
+                    <jc:VirtualComboBoxJwExt localId="vcbreset" percentWidth="50" activeTextPromp="true" withResetButton="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:VirtualComboBoxJwExt>
+                </j:HGroup>
 <!--       
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>

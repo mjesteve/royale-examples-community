@@ -17,49 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// DEVICE DIMENSIONS
-$phone: 0px
-$tablet: 768px
-$desktop: 992px
-$widescreen: 1200px
-$full: 1600px
-
-// TRANSITIONS
-$transitions-enable: false
-$transition-duration: .3s
-$transition-timing: easein
-
-// FONTS
-$font-stack: 'Lato', sans-serif
-$font-weight-normal: 400
-
-// FONT-SIZES
-$font-size-xsmall: .6em
-$font-size-small: .8em
-$font-size: 1em
-$font-size-large: 1.2em
-$font-size-xlarge: 1.4em
-
-// VARIABLES
-$border-radius: .25rem
-
-$default-color: $light-color
-@if $dark
-    $default-color: $dark-color
-
-$default-font-color: $font-light-color
-@if $dark
-    $default-font-color: $font-dark-color
-
-// DISABLED
-$disabled-color: lighten($light-color, 10%)
-@if $dark
-    $disabled-color: darken($dark-color, 10%)
-
-$disabled-font-color: darken($disabled-color, 20%)
-@if $dark
-    $disabled-font-color: lighten($disabled-color, 20%)
-
-$disabled-border-color: darken($disabled-color, 10%)
-@if $dark
-    $disabled-border-color: darken($disabled-color, 20%)
+//Theme variables (Flat/No Flat - Dark/Light - Primary/Secondary/Emphasized Color
+$flat: true;
+$dark: false;
+$primary-color: $turquoise;
+$secondary-color: $topaz;
+$emphasized-color: $emerald;

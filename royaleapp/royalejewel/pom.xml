@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.apache.royale.community</groupId>
@@ -24,7 +23,7 @@
                 <artifactId>royale-maven-plugin</artifactId>
                 <version>${royale.compiler.version}</version>
                 <extensions>true</extensions>
-                
+
                 <configuration>
                     <mainClass>App.mxml</mainClass>
                     <targets>JSRoyale</targets>
@@ -32,18 +31,18 @@
                     <htmlTemplate>${basedir}/src/main/resources/jewel-app-index-template.html</htmlTemplate>
                     <additionalCompilerOptions>
                         ${project.compiler.options};
-                        -js-dynamic-access-unknown-members=true <!-- to access JSON object graph subobjects -->
-						
+                        <!-- to access JSON object graph subobjects -->
+                        -js-dynamic-access-unknown-members=true;
                         <!-- -compiler.exclude-defaults-css-files=MXRoyale-0.9.11-SNAPSHOT-js.swc:defaults.css; -->
                         -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
                         -keep-code-with-metadata=Inject;
                         -show-binding-warnings=false;
 
-                        -export-public-symbols=false
-                        -prevent-rename-protected-symbols=false
-                        -prevent-rename-internal-symbols=false
-                        -prevent-rename-public-static-methods=false
-                        -prevent-rename-public-instance-methods=false
+                        -export-public-symbols=false;
+                        -prevent-rename-protected-symbols=false;
+                        -prevent-rename-internal-symbols=false;
+                        -prevent-rename-public-static-methods=false;
+                        -prevent-rename-public-instance-methods=false;
                     </additionalCompilerOptions>
                     <defines>
                         <property>
@@ -84,7 +83,262 @@
                     </execution>
                 </executions>
             </plugin>
-<!-- TODO. Generate custom Theme Community
+
+            <!-- Copy the resources to the compiler output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+
+                    <execution>
+                        <id>copy-resources-debug</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/assets</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/assets</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-Tests</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>Tests.html</include>
+                                        <include>year-view-selectable.html</include>
+                                        <include>event-tooltip-demo.html</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-components</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Copy the assets to the assets output directory -->
+                            <outputDirectory>${compiler.output-dir-debug}/assets</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royalecomponents/src/main/resources/assets</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-virtual-select</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-debug-fullcalendar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/@fullcalendar</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/@fullcalendar</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-fullcalendar-moment</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/moment</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/moment</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-jsCalendar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/jscalendar</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-debug-inspire-tree</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-debug}/inspire-tree</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <!-- For "Compilation debug=true" the resource copy is not needed -->
+                    <!-- -->
+                    <execution>
+                        <id>copy-resources-release</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/assets</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-release-virtual-select</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/virtual-select</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-release-fullcalendar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/@fullcalendar</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/@fullcalendar</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-release-fullcalendar-moment</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/moment</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/moment</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-release-jsCalendar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/jscalendar</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-resources-release-inspire-tree</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${compiler.output-dir-release}/inspire-tree</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <!-- TODO. Generate custom Theme Community
             <plugin>
                 <groupId>nl.geodienstencentrum.maven</groupId>
                 <artifactId>sass-maven-plugin</artifactId>
@@ -113,7 +367,7 @@
             </plugin>
  -->
         </plugins>
-    
+
     </build>
 
 </project>

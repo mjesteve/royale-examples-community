@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:HGroup minWidth="900" minHeight="400" className="cardWPStyle"
+itemsHorizontalAlign="itemsCentered" itemsVerticalAlign="itemsCentered"
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:wp="library://ns.apache.org/royale/community"	
+    xmlns:viewsVSel="org.apache.royale.community.views.virtualselect.*"
+    style="padding: 0px; background:none" >
+
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+	</j:beads>
+
+
+
+    <j:Card  minWidth="800" className="cardWPStyle" style="padding: 0px" >
+        <j:CardHeader  className="chartCardHeader" itemsVerticalAlign="itemsCenter">
+
+            <j:BarSection itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered" >
+                <j:IconButton className="iest-button-l2" unboxed="true" >
+                    <j:icon>
+                        <js:FontAwesomeIcon text="{FontAwesome5IconType.WINDOW_CLOSE}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
+                    </j:icon>
+                </j:IconButton>
+            </j:BarSection>
+        </j:CardHeader>
+
+        <j:CardPrimaryContent localId="contentCard" className="chartCardPrimaryContent">
+
+                    				<viewsVSel:VirtualSelectJS  percentHeight="100" percentWidth="100"/>
+
+                
+        </j:CardPrimaryContent>
+    </j:Card>
+</j:HGroup>
+
+
+

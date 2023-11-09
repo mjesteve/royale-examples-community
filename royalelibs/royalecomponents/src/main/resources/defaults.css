@@ -354,11 +354,11 @@ jc|VirtualListJwExt {
 
 /* Button Reset - Custom controls*/
 .jewel.combobox .button-reset {
-  margin-left: 6px !important;
   background-color: transparent !important;
   color: #29A89F !important;
   /*font-size: 0.66em !important;*/
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: all !important;
   width: 22px;
 }
 .jewel.combobox .button-reset.border {

@@ -26,22 +26,24 @@
 // Function to encode a SVG to use as inline data in CSS
 // This makes SVGs work in IE11, Chrome, Firefox, Safari,...
 // It procudces a shorter result than base64
-@function encodeSVG($svgImage)
-    $svgImage: replace-text($svgImage, '<', '%3C')
-    $svgImage: replace-text($svgImage, '>', '%3E')
-    $svgImage: replace-text($svgImage, '&', '%26')
-    $svgImage: replace-text($svgImage, '#', '%23')
+@function encodeSVG($svgImage) {
+  $svgImage: replace-text($svgImage, '<', '%3C');
+  $svgImage: replace-text($svgImage, '>', '%3E');
+  $svgImage: replace-text($svgImage, '&', '%26');
+  $svgImage: replace-text($svgImage, '#', '%23');
     // $svgImage: replace-text($svgImage, '"', "'")
-    @return url("data:image/svg+xml,#{$svgImage}")
-    
-@function replace-text($string, $search, $replace: '')
-    $index: str-index($string, $search)
-    @if $index
-        @return str-slice($string, 1, $index - 1) + $replace + replace-text(str-slice($string, $index + str-length($search)), $search, $replace)
-    @return $string
+  @return url("data:image/svg+xml,#{$svgImage}");
+}
+@function replace-text($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + replace-text(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
 
 
 //$animation-curve-timing-function: cubic-bezier(.3, 0, .1, 2) !default
-@function animation-standard($name, $duration, $delay: 0ms)
-    @return $name $duration $delay //$animation-curve-timing-function
-
+}
+@function animation-standard($name, $duration, $delay: 0ms) {
+  @return $name $duration $delay;
+};

@@ -20,9 +20,13 @@
 
 
 <componentPackage>
+    <component id="VirtualMultiSelectRoyale" class="org.apache.royale.externsjs.virtualselect.controls.VirtualMultiSelectRoyale"/>
+    <component id="VirtualMultiSelectListRoyale" class="org.apache.royale.externsjs.virtualselect.controls.VirtualMultiSelectListRoyale"/>
+    <component id="VirtualSelectRoyale" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectRoyale"/>
+    <component id="VirtualSelectListRoyale" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectListRoyale"/>
+    <component id="virtualSelectOptions" class="org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptions"/>
 
     <component id="VirtualSelectJwExt" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectJwExt"/>
     <component id="VirtualSelectListJwExt" class="org.apache.royale.externsjs.virtualselect.controls.VirtualSelectListJwExt"/>
-    <component id="OptionsInit" class="org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit"/>
-
+    <component id="virtualSelectOptionsClass" class="org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptionsClass"/>
 </componentPackage>

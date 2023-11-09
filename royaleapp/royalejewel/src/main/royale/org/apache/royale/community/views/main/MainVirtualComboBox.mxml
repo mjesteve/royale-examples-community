@@ -9,7 +9,6 @@
     <fx:Script>
         <![CDATA[
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.externsjs.virtualselect.OptionsInit;
 
         public function onInitComplete():void
         {
@@ -53,7 +52,7 @@
             for(index = 0; index < 15000; index++)
             {
                 if(index < 100){
-                    ar.push(prefix+'String: '+index.toString());
+                    ar.push(prefix+'String: '+index.toString()+'***************************');
                     //ar2.push({codigo:index,displaytext:prefix+'Desc: '+index.toString()});
                 }
                 //varray.push(prefix+'String: '+index.toString());
@@ -93,16 +92,8 @@
 
         }
 
-        private var myvlist:Object;
-        private var opinit:OptionsInit = new OptionsInit();
         private function makeVList():void
         {
-           /* if(!myvlist)
-            {
-                opinit.ele = myContainerVList.element;
-                opinit.options = arClassBig;
-                myvlist = VirtualSelect.init(opinit as Object);
-            }*/
         }
 
 
@@ -145,16 +136,24 @@
                     </j:BarSection>
                 </j:CardHeader>
 
-                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">  
-                        <jc:ComboBoxJwExtDefs width="200" dataProvider="{dpString}" >
-                            <jc:beads>
-                                <j:ComboBoxDisabled disabled="{chEna.selected}"/>
-                            </jc:beads>
-                        </jc:ComboBoxJwExtDefs>
-                    <j:CheckBox localId="chEna" selected="false" text="Disabled"/>
-                    <!-- <j:HGroup width="150" gap="3" >
-                        <jc:VirtualComboBoxJwExt percentWidth="100" dataProvider="{dpString}" itemRendererTruncateByDefault="true"/>
-                    </j:HGroup> -->
+                <j:CardPrimaryContent localId="primaryContent" percentHeight="100" percentWidth="100">
+                      
+                    <j:HGroup percentWidth="100" gap="3" >  
+                        <j:VGroup percentWidth="50" gap="3" >
+                            <j:CheckBox localId="chEna" selected="false" text="Disabled"/>
+                            <jc:ComboBoxJwExtDefs width="200" dataProvider="{dpString}" withResetButton="true" >
+                                <jc:beads>
+                                    <j:ComboBoxDisabled disabled="{chEna.selected}"/>
+                                </jc:beads>
+                            </jc:ComboBoxJwExtDefs>
+                        </j:VGroup>
+                        <!-- <jc:VirtualComboBoxJwExt percentWidth="100" dataProvider="{dpString}" itemRendererTruncateByDefault="true"/> -->
+                        <j:IconTextInput localId="txticon" width="200" rightPosition="true">
+                            <j:icon>
+                                <js:MaterialIcon text="{MaterialIconType.SEARCH}" />
+                            </j:icon>
+                        </j:IconTextInput>
+                    </j:HGroup>
                 </j:CardPrimaryContent>
 
             </j:Card>

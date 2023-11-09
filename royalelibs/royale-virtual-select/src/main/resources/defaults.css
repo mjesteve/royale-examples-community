@@ -1,0 +1,14 @@
+
+@namespace vsel "library://ns.apache.org/royale/externsjs/virtualselect";
+
+vsel|VirtualSelectRoyale,
+vsel|VirtualSelectListRoyale {
+	IBeadModel:  ClassReference("org.apache.royale.externsjs.virtualselect.models.VirtualSelectModel");
+	IBeadView:  ClassReference("org.apache.royale.externsjs.virtualselect.views.VirtualSelectView");
+}
+
+vsel|VirtualMultiSelectRoyale,
+vsel|VirtualMultiSelectListRoyale {
+	IBeadModel:  ClassReference("org.apache.royale.externsjs.virtualselect.models.VirtualMultiSelectModel");
+	IBeadView:  ClassReference("org.apache.royale.externsjs.virtualselect.views.VirtualSelectView");
+}

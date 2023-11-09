@@ -15,10 +15,11 @@ package org.apache.royale.externsjs.virtualselect.supportClass
     * @property {virtualSelectOption[]} [options] - List of options for option group
     */
 
-    public class OptionsInit
+	COMPILE::JS
+    public class virtualSelectOptionsSimple
     {
         
-        public function OptionsInit(){}
+        public function virtualSelectOptionsSimple(){}
         //## Properties
         //vers.1.0.29
         /**
@@ -65,7 +66,8 @@ package org.apache.royale.externsjs.virtualselect.supportClass
          */
         public var multiple:Boolean = false;
         /**
-         * @property {boolean} [search=false] - Enable search
+         * Enable search feature
+         * @property {boolean} false - for single select | true - for multi-select
          */
         public var search:Boolean = false;
         /**
@@ -77,7 +79,9 @@ package org.apache.royale.externsjs.virtualselect.supportClass
          */
         public var disabled:Boolean = false;
         /**
-         * @property {boolean} [required=false] - Enable required validation
+         * @property {boolean} [required=false] - Enable required validation.
+         * It would be triggered automatically on form submit and value change.
+         * To trigger it manually use validate() method
          */
         public var required:Boolean = false;
         /**
@@ -182,7 +186,7 @@ package org.apache.royale.externsjs.virtualselect.supportClass
         /**
          * @property {string} [additionalClasses] - Additional classes for wrapper element
          */
-        public var additionalClasses:String;
+        public var additionalClasses:String ="vscomp-royale";
         /**
          * @property {boolean} [showDropboxAsPopup=true] - Show dropbox as popup on small screen like mobile
          */
@@ -332,8 +336,60 @@ package org.apache.royale.externsjs.virtualselect.supportClass
          * (i.e + 10 more...)
          */
         public var moreText:String = 'more...';
-
-        [Transient]
-        public var showSelectDisplay:Boolean = true;
+        /**
+         * 1.0.30
+         * Search options by startsWith() method
+         * Default false
+         */
+        public var searchByStartsWith:Boolean = false;
+        /**
+         * 1.0.31
+         * Throttle time for updating dropbox position on scroll event (in milliseconds)
+         * Default 100
+         */
+        public var updatePositionThrottle:Number = 100;
+        /**
+         * 1.0.36
+         * By default, no.of options selected text would be shown when there is no enough 
+         * space to show all selected values. Set true to show labels even though there is no enough space.
+         * 
+         * Default false
+         */
+        public var alwaysShowSelectedOptionsLabel:Boolean = false;
+        /**
+         * 1.0.37
+         * Scroll selected option to viewport on dropbox open.
+         * 
+         * Default true
+         */
+        public var focusSelectedOptionOnOpen:Boolean = true;
+        /**
+         * 1.0.38
+         * Allow searching by label ignoring diacritics
+         * 
+         * Default false
+         */
+        public var searchNormalize:Boolean = false;
+        /**
+         * 1.0.38
+         * Option used to enhance accessibility when using the search functionality on the dropdowns
+         * 
+         * Default 'Search'
+         */
+        public var searchFormLabel:String = 'Search';
+        /**
+         * 1.0.38
+         * Option used to enhance accessibility when using the search functionality on the dropdowns
+         * 
+         * Default 'Options list'
+         */
+        public var ariaLabelText:String = 'Options list';
+        /**
+         * 1.0.39.1
+         * Hide SelectDisplay OnkeepAlwaysOpen
+         * 
+         * Default true
+         */
+        public var hideSelectDisplayOnKeepAlwaysOpen:Boolean = true;
     }
 }

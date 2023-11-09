@@ -12,26 +12,26 @@ package org.apache.royale.community.jewel.beads.views
 	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ComboBox;
+	import org.apache.royale.jewel.IconTextInput;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.community.jewel.IconReset;
 	import org.apache.royale.community.jewel.beads.controls.combobox.IComboBoxViewJwExt;
-	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.community.jewel.supportClasses.IStrandWithResetButton;
-	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IPopUp;
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
@@ -50,7 +50,7 @@ package org.apache.royale.community.jewel.beads.views
 			super();
 		}
 
-		private var _textinput:TextInput;
+		private var _textinput:IconTextInput;
 		/**
 		 *  The TextInput component of the ComboBox.
 		 *
@@ -128,25 +128,23 @@ package org.apache.royale.community.jewel.beads.views
 			super.strand = value;
 			combobox = value as IStrandWithResetButton;
 
-			_textinput = new TextInput();
-            /*COMPILE::JS {
-                _textinput.element.addEventListener('blur', handleFocusOut);
-            }*/
-
+			_textinput = new IconTextInput();
 			_button = new Button();
         	_button.tabIndex = -1;
 			_button.text = '\u25BC';
 
 			if( combobox.withResetButton )
+			{
 				_resetbutton = new IconReset();
+				_textinput.icon = _resetbutton;
+				_textinput.rightPosition=true;
+			}
 
 			initSize();
 
 			var parent:IParent = host as ComboBox;
-			parent.addElement(_textinput);
+			parent.addElement(_textinput);			
 			parent.addElement(_button);
-			if( combobox.withResetButton )
-				parent.addElement(_resetbutton);
 
 			model = (value as IStrandWithModel).model as IComboBoxModel;
 
@@ -327,10 +325,13 @@ package org.apache.royale.community.jewel.beads.views
 		protected function initSize():void
 		{
 			_button.width = DEFAULT_BUTTON_WIDTH;
-			if( combobox.withResetButton ){
+			/* if( combobox.withResetButton ){
+				_resetbutton.positioner.style["align-items"] = "center";
 				_resetbutton.positioner.style["display"] = "none";
-				_resetbutton.positioner.style["align-items"] = "end";
-			}
+				_resetbutton.positioner.style["height"] = "100%";
+				_resetbutton.positioner.style["position"] = "absolute";
+				_resetbutton.positioner.style["right"] = "5px";
+			} */
 
 			var cmb:ILayoutChild = host as ILayoutChild;
 
@@ -408,10 +409,11 @@ package org.apache.royale.community.jewel.beads.views
 				
 			if( !model.selectedItem){
 				_resetbutton.positioner.style["display"] = "none";
-				_button.width = DEFAULT_BUTTON_WIDTH;
+				//_button.width = DEFAULT_BUTTON_WIDTH;
 			}else{
 				_resetbutton.positioner.style["display"] = "inherit";
-				_button.width = DEFAULT_BUTTON_WIDTH - _resetbutton.width;
+				//_resetbutton.positioner.style["display"] = "flex";
+				//_button.width = DEFAULT_BUTTON_WIDTH - _resetbutton.width;
 			}
 		}
 	}

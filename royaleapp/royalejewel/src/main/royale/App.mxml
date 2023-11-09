@@ -47,15 +47,19 @@
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
-	
+
+	<j:beads>
+        <js:ExtraReflectionDataBead />
+	</j:beads>
+
 	<j:initialView>		
-		<mainviews:MainVirtualList/> 
+		<mainviews:MainVirtualComboBox/> 
 <!--		
-		<mainviews:MainView/> 
+		<mainviews:MainVirtualList/> 
 		<viewsFullcal:View_1_YearFullCalendar/> 
 		<mainviews:MainViewExDebug/> 
 		<mainviews:MainVirtualSelectJS/> 
-		<mainviews:MainVirtualComboBox/> 
+		<mainviews:MainView/> 
 -->
 	</j:initialView>
 </j:Application>

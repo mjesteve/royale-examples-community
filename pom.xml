@@ -25,6 +25,7 @@
     <royale.framework.version>${royale.version}</royale.framework.version>
 
     <royale.debug>true</royale.debug>
+    <source.map>true</source.map>
 
      <!-- Flash player version -->
     <player.version>15.0</player.version>
@@ -33,8 +34,6 @@
     <compiler.output-dir>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir>
     <compiler.output-dir-release>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-release</compiler.output-dir-release>
     <compiler.output-dir-debug>${basedir}/../../royaleapp/royalejewel/target/javascript/bin/js-debug</compiler.output-dir-debug>
-
-    <source.map>true</source.map>
 
     <buildTimestamp>DEV</buildTimestamp>
   </properties>
@@ -146,193 +145,7 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.5.1</version>
         </plugin>
-
-        <!-- Copy the resources to the compiler output directory -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-
-            <execution>
-              <id>copy-resources-debug</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/assets</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>src/main/resources/assets</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-            <execution>
-              <id>copy-resources-debug-Tests</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>src/main/resources</directory>
-                    <includes>
-                        <include>Tests.html</include>
-                        <include>year-view-selectable.html</include>
-                        <include>event-tooltip-demo.html</include>
-                    </includes>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-            <execution>
-              <id>copy-resources-debug-components</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <!-- Copy the assets to the assets output directory -->
-                <outputDirectory>${compiler.output-dir-debug}/assets</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royalecomponents/src/main/resources/assets</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-debug-virtual-select</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/virtual-select</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-virtual-select/src/main/resources/virtual-select</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-			      <execution>
-              <id>copy-resources-debug-fullcalendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/@fullcalendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/@fullcalendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-debug-fullcalendar-moment</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/moment</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-fullcalendar/src/main/resources/moment</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-debug-jsCalendar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/jscalendar</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-jscalendar/src/main/resources/jscalendar</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-			      <execution>
-              <id>copy-resources-debug-inspire-tree</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-debug}/inspire-tree</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royale-inspire-tree/src/main/resources/inspire-tree</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-<!-- For "Compilation debug=true" the resource copy is not needed -->
-<!--
-
-            <execution>
-              <id>copy-resources-release</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>src/main/resources/assets</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-
-            <execution>
-              <id>copy-resources-release-components</id>
-              <phase>package</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${compiler.output-dir-release}/assets</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/../../royalelibs/royalecomponents/src/main/resources/assets</directory>
-                    <filtering>true</filtering>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
--->
-          </executions>
-        </plugin>
+        
       </plugins>
     </pluginManagement>
   </build>

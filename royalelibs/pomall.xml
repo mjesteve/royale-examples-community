@@ -67,7 +67,7 @@
       <artifactId>Core</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -76,7 +76,7 @@
       <artifactId>Language</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -85,7 +85,7 @@
       <artifactId>Binding</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -94,7 +94,7 @@
       <artifactId>Collections</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -103,7 +103,7 @@
       <artifactId>HTML</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -112,7 +112,7 @@
       <artifactId>Icons</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -121,7 +121,7 @@
       <artifactId>Network</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -130,7 +130,7 @@
       <artifactId>Reflection</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -139,7 +139,7 @@
       <artifactId>MXRoyaleBase</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -148,7 +148,7 @@
       <artifactId>Jewel</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
 
@@ -157,7 +157,7 @@
       <artifactId>Crux</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
     

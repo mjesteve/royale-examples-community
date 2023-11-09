@@ -36,7 +36,6 @@
                     defaultView: 'year',
                     plugins: ['interaction', 'dayGrid', 'timeGrid', 'yearView'],
                     timeZone: 'local',
-                    weekNumberCalculation: 'ISO',
                     firstDay: 1,
                     locales: ['en','es','ca','fr','pt','it'],
                     locale: 'es',
@@ -192,22 +191,23 @@
             }
             public function replaceDayNumberWeekday():void {
 
-                var dayNumberElements = document.getElementsByClassName('fc-day-number');
+                var dayNumberElements:NodeList = document.getElementsByClassName('fc-day-number');
+                var n:int = dayNumberElements.length;
 
-                for (var i = 0; i < dayNumberElements.length; i++) {
-                var dayNumberElement = dayNumberElements[i];
-                var weekdayElement = dayNumberElement.querySelector('.fc-day-number-weekday');
+                for (var i:int = 0; i < n; i++) {
+                    var dayNumberElement:HTMLElement = dayNumberElements[i];
+                    var weekdayElement:Element = dayNumberElement.querySelector('.fc-day-number-weekday');
 
-                if (weekdayElement) {
-                dayNumberElement.innerHTML = weekdayElement.outerHTML;
-                }
+                    if (weekdayElement) {
+                        dayNumberElement.innerHTML = weekdayElement.outerHTML;
+                    }
                 }
             }
             public function addHeaderForDays():void {
-            var element = document.querySelector('div.fc-row.fc-widget-header');
+            var element:Element = document.querySelector('div.fc-row.fc-widget-header');
             
             if (element) {
-                var newContent = '<table style="height:32px;margin-left: 14.65px;">' +
+                var newContent:String = '<table style="height:32px;margin-left: 14.65px;">' +
                 '<tbody>' +
                 '<tr>' +
                 '<td><span class="fc-day-number">1</span></td>' +

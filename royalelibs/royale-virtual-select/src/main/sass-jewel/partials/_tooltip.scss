@@ -1,0 +1,13 @@
+ .tooltip-comp {
+    font-family: inherit;
+    font-size: $font-size !important;
+    line-height: calc($font-size + 6px);
+    color: $font-theme-color;
+    background-color: darken($dark-color, 10%) !important;
+  }
+
+  .tooltip-comp-arrow {
+    &::before {
+      background-color: darken($dark-color, 10%);
+    }
+  }

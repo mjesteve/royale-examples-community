@@ -1,0 +1,24 @@
+@use 'sass:math';
+
+// variables y colores lib org
+@import './../sass/partials/variable';
+@import './partials/colors';
+@import "../../../../royalecustomtheme/src/main/sass/custom/customcolors";
+@import "../../../../royalecustomtheme/src/main/sass/custom/customtheme";
+@import "../../../../royalecustomtheme/src/main/sass/custom/customvariables";
+@import './partials/functions';
+@import './partials/icons-svg';
+@import "../../../../royalecustomtheme/src/main/sass/custom/components-primary/text";
+@import "../../../../royalecustomtheme/src/main/sass/custom/components-primary/textinput";
+@import "../../../../royalecustomtheme/src/main/sass/components-primary/combobox";
+@import "../../../../royalecustomtheme/src/main/sass/components-primary/checkbox";
+@import './partials/variable-iest';
+@import './../sass/partials/mixins';
+@import './partials/mixins';
+@import './../sass/partials/animations';
+@import './../sass/partials/virtual-select';
+@import './../sass/partials/rtl';
+@import './partials/virtual-select';
+@import './../sass-tooltip/styles';
+@import './partials/tooltip';
+@import './../sass-popover/styles';
