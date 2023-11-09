@@ -353,12 +353,13 @@ jc|VirtualListJwExt {
 
 
 /* Button Reset - Custom controls*/
-
-.jewel.combobox .jewel.textinput.icon i.button-reset.fonticon {
-  background-color: transparent;
-  color: #29A89F;
-  cursor: pointer;
-  pointer-events: all;
+.jewel.combobox .button-reset {
+  background-color: transparent !important;
+  color: #29A89F !important;
+  /*font-size: 0.66em !important;*/
+  cursor: pointer !important;
+  pointer-events: all !important;
+  width: 22px;
 }
 .jewel.combobox .jewel.textinput.icon i.button-reset.fonticon.border {
   border: solid 1px #1a6b65;

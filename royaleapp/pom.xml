@@ -34,7 +34,6 @@
       <artifactId>royalecomponents</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -43,7 +42,6 @@
       <artifactId>royale-fullcalendar</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 <!--
@@ -52,7 +50,6 @@
       <artifactId>royale-fullcalendar-yearview</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>-->
 	  <dependency>
@@ -60,23 +57,22 @@
       <artifactId>royale-jscalendar</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
+
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-virtual-select</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
+
 	  <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>royale-inspire-tree</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
     <!-- 
@@ -85,7 +81,6 @@
       <artifactId>royale-js-year-calendar</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency> -->
     <!-- 
@@ -94,14 +89,12 @@
       <artifactId>royale-dtsel</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency> -->
     <!-- <dependency>
       <groupId>org.apache.royale.community</groupId>
       <artifactId>SampleLib</artifactId>
       <version>1.0.0-SNAPSHOT</version>
-      <scope>provided</scope>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency> -->
@@ -210,10 +203,18 @@
 -->    
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>JewelTheme</artifactId>
+      <version>0.9.11-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Blue-Theme</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>theme</scope>
+      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -222,7 +223,7 @@
       <artifactId>Jewel-Light-NoFlat-Secondary-Sunflower-Theme</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>theme</scope>
+      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -231,7 +232,7 @@
       <artifactId>Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>theme</scope>
+      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 

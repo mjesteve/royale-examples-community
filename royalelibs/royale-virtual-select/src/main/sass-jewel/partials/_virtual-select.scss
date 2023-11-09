@@ -1,0 +1,311 @@
+.vscomp-wrapper {
+	font-size: $font-size !important;
+	font-family: inherit !important;
+
+	&.focused .vscomp-toggle-button,
+	&:focus .vscomp-toggle-button {
+		box-shadow: none !important;
+	}
+
+	.vscomp-dropbox {
+		border: 1px solid $border-color;
+		box-shadow: none;
+	}
+
+	&.keep-always-open {
+
+		&.focused,
+		&:focus,
+		&:hover {
+			box-shadow: none !important;
+		}
+	}
+
+	&.noborder {
+		&.keep-always-open {
+			.vscomp-dropbox {
+				border: none;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+.vscomp-arrow {
+	align-items: center;
+	height: 100%;
+	justify-content: center;
+	position: absolute;
+	width: $arrow-width;
+
+	@if $flat {
+		background: #d9d9d9;
+		border: none;
+		box-shadow: none;
+	}
+
+	@else {
+		background: linear-gradient(#e6e6e6, #cccccc);
+		border: 1px solid #b3b3b3;
+		box-shadow: inset 0 1px 0 white;
+	}
+
+	cursor: pointer;
+	display: inline-flex;
+
+
+	&:hover {
+		background: #cccccc;
+		color: #808080;
+
+		&:focus {
+			background: #cccccc;
+			color: #808080;
+		}
+	}
+
+	&::before {
+		line-height: $combobox-button-size;
+	}
+
+	&::after {
+		@include prefix(transform, none);
+		border: none;
+		margin-top: 0;
+		background-size: 66%;
+		background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center;
+		width: ($combobox-button-size - 8);
+		height: $combobox-button-size;
+
+		left: $combobox-button-xoffset;
+		top: $combobox-button-yoffset;
+	}
+}
+
+.vscomp-clear-button {
+	right: $arrow-width + 5px;
+
+	&:hover {
+		background: $focus-color;
+
+		.vscomp-clear-icon {
+
+			&::before,
+			&::after {
+				background-color: $icon-hover-color;
+			}
+		}
+	}
+}
+
+.vscomp-clear-icon {
+	height: $clear-icon-size;
+	position: inherit;
+	width: $clear-icon-size;
+	background: $clear-svg-ext;
+
+	&::before {
+		content: none;
+		@include prefix(transform, none);
+		background-color: transparent;
+	}
+
+	&::after {
+		content: none;
+		@include prefix(transform, none);
+		background-color: transparent;
+	}
+
+	&.checked {
+		// background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='#{$primary-forSVG}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center !important;
+		background: $checkbox-svg-checked;
+	}
+}
+
+.vscomp-option {
+	background-color: $primary-bg;
+
+	&.selected {
+		background-color: $selected-color;
+		&.focused {
+			background-color: $selected-color;
+			color: inherit;
+		}
+	}
+
+	&.focused,
+	&.hover {
+		background-color: $focus-color;
+		color: $font-theme-color;
+	}
+
+	&.disabled {
+		cursor: default;
+		opacity: 0.5;
+	}
+
+	&.group-title {
+		.vscomp-option-text {
+			cursor: default;
+			opacity: 0.6;
+		}
+
+		&.selected {
+			background-color: transparent;
+		}
+	}
+
+	&.group-option {
+		padding-left: 30px;
+	}
+}
+
+.vscomp-option-text {
+	@include ellipse;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	width: 100%;
+}
+
+.vscomp-search-input {
+	background-color: transparent;
+	border: 0;
+	color: inherit;
+	font-size: inherit;
+	height: #{$search-height - 2px};
+	padding: 10px 0;
+	width: calc(100% - #{$search-clear-width});
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.vscomp-search-clear {
+	align-items: center;
+	color: #999;
+	cursor: pointer;
+	display: flex;
+	font-size: 25px;
+	height: $search-clear-width;
+	justify-content: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	visibility: hidden;
+	width: $search-clear-width;
+
+	&:hover {
+		color: inherit;
+	}
+}
+
+.vscomp-ele {
+	display: inline-block;
+	max-width: 100% !important;
+	width: 100%;
+
+	&[disabled] {
+		cursor: not-allowed;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		.vscomp-wrapper {
+			opacity: 0.7;
+			pointer-events: none;
+		}
+	}
+}
+
+.vscomp-wrapper {
+	.checkbox-icon {
+
+		@if $flat {
+			background: lighten($default-color, 15%);
+			border: 1px solid $default-color;
+		}
+
+		@else {
+			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%));
+			border: 1px solid darken($default-color, 15%);
+		}
+
+		border-radius: $border-radius;
+		content: ' ';
+		height: $checkbox-size;
+		position: relative;
+		top: 0px;
+		width: $checkbox-size;
+		margin-right: $option-checkbox-margin;
+		display: inline-flex;
+
+		&::after {
+			@include prefix(transition-duration, 0.2s);
+			border: none;
+			content: '';
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+		}
+
+		&.checked::after {
+			@include checkbox-checked;
+		}
+	}
+
+	&.multiple {
+		.vscomp-option {
+			.vscomp-option-text {
+				width: calc(100% - #{$checkbox-full-width});
+			}
+
+			.vscomp-option-description {
+				padding-left: $checkbox-full-width;
+			}
+
+			&.selected .checkbox-icon::after {
+				@include checkbox-checked;
+			}
+		}
+	}
+
+	&.show-as-popup {
+		.vscomp-dropbox-close-button {
+			display: flex;
+		}
+	}
+}
+
+.vscomp-dropbox-close-button {
+	align-items: center;
+	background-color: $primary-bg;
+	border-radius: 50%;
+	bottom: -#{$dropbox-close-button-width + $dropbox-close-button-offset};
+	cursor: pointer;
+	display: none;
+	height: $dropbox-close-button-width;
+	justify-content: center;
+	left: 50%;
+	margin-left: math.div($dropbox-close-button-width, -2);
+	position: absolute;
+	width: $dropbox-close-button-width;
+}
+
+div[role="option"] {
+	&.nopadding {
+		padding: 0;
+	}
+
+	&.nopaddingleft {
+		padding-left: 0;
+	}
+
+	&.nopaddingright {
+		padding-right: 0;
+	}
+}

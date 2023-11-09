@@ -1,7 +1,7 @@
 package org.apache.royale.externsjs.virtualselect.controls
 {
 
-	import org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit;
+	import org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptionsClass;
 
 	public class VirtualSelectListJwExt extends VirtualSelectJwExt
     {
@@ -11,30 +11,19 @@ package org.apache.royale.externsjs.virtualselect.controls
         public function VirtualSelectListJwExt()
 		{
 			super();
+            typeControl = 'list';
 		}
 
-        override protected function initConfig():void
-        {   
-            super.initConfig();
-            _configOption.keepAlwaysOpen = true;
-            _configOption.zIndex = 1;
-            _configOption.optionsCount = -1;
-            _configOption.dropboxWrapper = 'self';
-            typeControl = 'list';
-        }
-
-        override public function set configOption(value:OptionsInit):void
+        override public function get fixInitConfig():virtualSelectOptionsClass
         {
-            initConfig();
-
-            if(!value)
-                return;
-
-            value.keepAlwaysOpen = true;
-            value.zIndex = 1;
-            value.dropboxWrapper = 'self';
-            super.configOption = value;
+            if(super.fixInitConfig){
+                _fixInitConfig.keepAlwaysOpen = true;
+                _fixInitConfig.zIndex = 1;
+                _fixInitConfig.optionsCount = 8;
+                _fixInitConfig.dropboxWrapper = 'self';
+                _fixInitConfig.searchPlaceholderText = " ... 🔎︎";
+            }
+            return _fixInitConfig;
         }
-
 	}
 }

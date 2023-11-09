@@ -1,0 +1,42 @@
+// $primary-color: _customtheme.sass;
+$primary-bg: #fff;
+@if $flat {
+    $primary-bg: lighten($default-color, 15%); // _list.sass
+    $border-color: $default-color; // _list.sass
+} @else {
+    $primary-bg: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%)); // _list.sass
+    $border-color: darken($default-color, 15%); // _list.sass
+}
+$font-color: $default-font-color;
+$font-color-light: $light-color;
+// $error-color: rgba(153, 18, 23, 0.8) in _customizedcolors.sass
+$focus-color: $theme-color-one; // customizedcolors.sass;
+$selected-color: $theme-color-two;
+$arrow-color: $theme-color-one;
+$checkbox-color: #888;
+$icon-hover-color: $font-color;
+$overlay-bg: rgba(0, 0, 0, 0.5);
+
+$font-family: $font-stack;
+// $font-size: 1em; in _variables.sass
+// $font-size-small: .8em; in _variables.sass
+$dropbox-height: 250px;
+$search-height: 40px;
+$new-option-icon-width: 30px;
+$search-clear-width: 30px;
+$value-tag-clear-width: 20px;
+$option-height: 40px;
+$arrow-width: 32px;
+$arrow-size: 8px;
+$clear-button-width: 24px;
+$clear-icon-size: 12px;
+$dropbox-close-button-width: 40px;
+$dropbox-close-button-offset: 8px;
+$options-loader-size: 40px;
+$option-checkbox-margin: $checkbox-label-separation;
+
+$checkbox-size: 22px; // new
+$checkbox-full-width: #{$checkbox-size + $option-checkbox-margin};
+$z-index: 1;
+
+$box-shadow1: none;

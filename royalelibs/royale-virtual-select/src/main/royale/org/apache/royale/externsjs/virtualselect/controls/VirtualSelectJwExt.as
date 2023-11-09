@@ -8,9 +8,8 @@ package org.apache.royale.externsjs.virtualselect.controls
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.utils.observeElementSize;
     import VirtualSelect;
-    import org.apache.royale.utils.ObjectUtil;
-    import org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit;
-	//import mx.utils.ObjectUtil;
+    import org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptionsClass;
+	import org.apache.royale.externsjs.virtualselect.supportClass.Utils;
 	
     /**
      *  Click in the component
@@ -50,10 +49,11 @@ package org.apache.royale.externsjs.virtualselect.controls
      */
 	[Event(name="onReset", type="org.apache.royale.events.Event")]
 
-	[DefaultProperty("inst")]
+	[DefaultProperty("configOption")]
 
 	public class VirtualSelectJwExt extends StyledUIBase
     {
+        protected var typeControl:String = 'select';
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -72,132 +72,220 @@ package org.apache.royale.externsjs.virtualselect.controls
         public function VirtualSelectJwExt()
 		{
 			super();			
-			typeNames = "";
+			typeNames = "virtual-select";
 
-            //The default values assigned in the variable definitions, of the _configOption class, are not really taken.
-            //Any default values that we want to "make effective" we have to set specifically:
-            initConfig();
+            this.addEventListener('beadsAdded', init);
 		}
-
-        protected function initConfig():void
-        {   
-            _configOption = new OptionsInit
-            _configOption.ele = element;
-            _configOption.markSearchResults = true;
-            _configOption.optionHeight = "35px"; // TODO: _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
-            _configOption.tooltipFontSize = "14px"; //TODO get font-size CSS
-            //By default we override the 250px max-width restriction. Together with the modification of the CSS class ".vscomp-ele".
-            _configOption.maxWidth = null;
-            _configOption.zIndex = 80;
-            _configOption.optionsCount = 5;
-            _configOption.dropboxWrapper = 'body';
-            _configOption.showValueAsTags = false;
-            _configOption.position = 'bottom left';
-            _configOption.keepAlwaysOpen = false;
-        }
         
 		override public function addedToParent():void
 		{
 			super.addedToParent();
             dispatchEvent(new Event("creationComplete"));
-            setTimeout(init,125);
-		}
-    
-        protected var typeControl:String = 'select';
-		/**
-		 * Creates an visual-select instance.
-		 * @param make Configuration item and data after init.
-		 */
-		protected function init(make:Boolean = false):void
-		{
-            if(instance)
-                instance.destroy();
-            trace(configOption);
-            instance = VirtualSelect.init(configOption);
-		}
-        /**
-         * Test. Debug all dispatched events
-         */
-        /*override public function dispatchEvent(event:Event):Boolean {
-            //trace("********** VirtualSelectJwExt: EVENT ", event);
-            return super.dispatchEvent(event);
-        }*/
 
-        protected var _configOption:OptionsInit;
-        [Bindable("configOptionChange")]
-        public function get configOption():OptionsInit{ 
-            return _configOption; 
-        }
-        public function set configOption(value:OptionsInit):void
-        {
-            if(!value){
-                initConfig();
-                return;
-            }
-
-            ObjectUtil.shallowCopy(value,_configOption);
-            _configOption.ele = element;
-        }
-
-        public var inst:Object;
-        protected var _instance:VirtualSelect;
-        protected function get instance():VirtualSelect{ return _instance; }
-        protected function set instance(value:VirtualSelect):void
-        {
-            if( _instance )
-                _instance.destroy();
-                
-            _instance = value;
-            inst = value.$ele;
-
-            var nlist:NodeList = element.getElementsByClassName('vscomp-toggle-button');
-            if(nlist && nlist.length>0)
-            {
-                var etxt:HTMLDivElement = nlist[0] as HTMLDivElement;
-                etxt.addEventListener('click', clickHandler);
-                if(!_configOption.showSelectDisplay)
-                    etxt.style['display']='none';
-            }
-            
             observeElementSize(element,onSizeChangeMyContainer);
             element.addEventListener('change', changeHandler);
             element.addEventListener('beforeOpen', beforeOpenHandler);
             element.addEventListener('afterOpen', afterOpenHandler);
             element.addEventListener('reset', resetHandler);
+		}
+    
+		/**
+		 * Creates an visual-select jsInstance.
+		 * @param make Configuration item and data after init.
+		 */
+		protected function init(event:Event):void
+		{
+            this.removeEventListener('beadsAdded', init);
+            jsInstance = VirtualSelect.init(configOption.optsInit);
+		}
+
+        protected var _fixInitConfig:virtualSelectOptionsClass;
+        public function get fixInitConfig():virtualSelectOptionsClass
+        {
+            if(!_fixInitConfig){
+                _fixInitConfig = new virtualSelectOptionsClass();
+                _fixInitConfig.markSearchResults = true;
+                _fixInitConfig.optionHeight = "35px"; // TODO: _itemRenderer.sass - ListItemRenderer variables - $item-min-height: 34px
+                _fixInitConfig.tooltipFontSize = "14px"; //TODO get font-size CSS
+                //By default we override the 250px max-width restriction. Together with the modification of the CSS class ".vscomp-ele".
+                _fixInitConfig.maxWidth = null;
+                _fixInitConfig.zIndex = 80;
+                _fixInitConfig.optionsCount = 5;
+                _fixInitConfig.dropboxWrapper = 'body';
+                _fixInitConfig.showValueAsTags = false;
+                _fixInitConfig.position = 'bottom left';
+                _fixInitConfig.keepAlwaysOpen = false;
+                _fixInitConfig.placeholder = "\u21F2 ...";
+            }
+            return _fixInitConfig;
+        }
+
+        protected var _configOption:virtualSelectOptionsClass;
+        //[Bindable("configOptionChange")]
+        //Clonamos los objetos para asegurarnos de controlar el seteo de la configuración
+        public function get configOption():virtualSelectOptionsClass
+        { 
+            if(!_configOption)
+                _configOption = fixInitConfig;
+            return _configOption;
+        }
+        public function set configOption(opts:virtualSelectOptionsClass):void
+        {
+            if(!opts)
+                return;
+            Utils.shallowCopy(opts.optsInit,configOption.optsInit);
+            // seteamos manualmente las propiedades personalizadas que no están en optsInit
+            configOption.ele = element;
+        }
+
+        public function setConfigOptions(opts:virtualSelectOptionsClass):void
+        {
+            configOption = opts;
+            if(jsInstance)
+                recreateComponent();            
+        }
+
+        public var _jsElement:Object;
+        protected var _jsInstance:VirtualSelect;
+        public function get jsInstance():VirtualSelect{ return _jsInstance; }
+        public function set jsInstance(value:VirtualSelect):void
+        {
+            _jsInstance = value;
+            _jsElement = value.$ele;
+
+            /*var nlist:NodeList = element.getElementsByClassName('vscomp-toggle-button');
+            if(nlist && nlist.length>0)
+            {
+                var etxt:HTMLDivElement = nlist[0] as HTMLDivElement;
+                if(configOption.hideSelectDisplayOnKeepAlwaysOpen)
+                    etxt.style['display']='none';
+                else
+                    etxt.addEventListener('click', clickHandler);
+            }*/
 
             dispatchEvent(new Event("onCompleteInicialize"));
         }
-        
+
+        protected function recreateComponent():void
+        {
+            if(jsInstance)
+            {
+                // Al utilizar, en set dataprovider, la función Array.concat() en vez de ObjectUtil.clone (porque tarda mucho)
+                // el dataprovider interno queda unido con el asignado actualizándolo al seleccionar los items.
+                // Reseteamos para anular cualquier posible selección.
+                jsInstance.reset();
+                jsInstance.destroy();
+            }
+                
+            jsInstance = VirtualSelect.init(configOption.optsInit);
+            render();
+        }
+        //Cuando actualicemos a la versión 1.0.39 no hará falta esta variable porque
+        //existe customData
+        public var rawDataProvider:Array;
         public function get dataProvider():Array
         { 
-            if(_instance)
-                return _instance.sortedOptions;
+            if(_jsInstance)
+                return _jsInstance.sortedOptions;
             else
-                return _configOption.options; 
+                return rawDataProvider; 
         }
 
-        [Bindable("dataProviderChange")]
+        //[Bindable("dataProviderChange")]
         public function set dataProvider(value:Array):void
         { 
-            var dp:Array = new Array();
-            //hasta la versión 1.29.0 no se reconocen los array's de strings.
-            //los simulamos.
-            if(value && value.length>0 && (value[0] is String || value[0] is Number) ) {
-                var len:int = value.length;
-                for(var index:int = 0; index < len; index++)
-                {
-                    dp.push( {label:value[index], value:value[index]});
-                }
-            }else if(value)
-                dp = value;
+            if( rawDataProvider == value)
+                return;
             
-            _configOption.options = dp;
-            if(_instance){
-                //_instance.setOptions(value);
-               _instance.setServerOptions(dp);
-            }
+            // Con mx.ObjectUtil.copy | clone con 15.000 registros tarda mucho
+            // 
+            if( value )
+                rawDataProvider = value.concat();
+            else
+                rawDataProvider = new Array();
+            render();
         }
 
+        protected function render():void
+        {
+            var dp:Array = new Array();
+            
+            if(rawDataProvider && rawDataProvider.length>0)
+            {
+                var len:int = rawDataProvider.length;
+                //hasta la versión 1.29.0 no se reconocen los array's de strings.
+                //los simulamos.
+                var item:Object = rawDataProvider[0];
+                var isOptionString:Boolean = item is String || item is Number ? true:false;
+                //rectificamos el padding a 0. Para ello utilizamos la propiedad "classNames" de cada option
+                //debemos agregar manualmente el atributo si no existe.
+                var cssinrow:Boolean = false;
+                if(item.hasOwnProperty('classNames'))
+                    cssinrow = true;
+                
+                var fixCssItemRender:Boolean = configOption.labelRenderer || cssinrow || classNamesLabelRenderer ? true:false;
+                if( isOptionString || fixCssItemRender )
+                {
+                    // Additional class for each itemrenderer set by the user.
+                    var itemClassName:String = !classNamesLabelRenderer?'':classNamesLabelRenderer;
+                    for(var index:int = 0; index < len; index++)
+                    {
+                        item = rawDataProvider[index];
+                        if(isOptionString)
+                            item = {label: item, value: item};
+                            
+                        if( fixCssItemRender ) {
+                            if(index==0){
+                                // Additional class set in each item of the dataprovider.(value[1..n]['classNames'])
+                                if (!cssinrow && _configOption.labelRenderer && !itemClassName && !_configOption.multiple)
+                                    itemClassName = 'nopadding';
+                            }
+                            var cssrow:String = !item['classNames']?'':item['classNames']+'';
+                            if(cssrow!='')
+                                cssrow = (itemClassName?' ':'')+cssrow;
+                            item['classNames'] = itemClassName+cssrow;
+                        }  
+                        dp.push(item);
+                    }                    
+                }else
+                    dp = rawDataProvider;
+            }
+            //_configOption.options = dp;
+            if(_jsInstance){
+                //_jsInstance.setOptions(value);
+               _jsInstance.setServerOptions(dp);
+            }
+        }
+        /**
+         * selectedItem devolverá el item seleccionado con toda la información existente y no sólo
+         * los datos resumidos (label, value, alias)
+         */
+        private var _returnFullDetailsItem:Boolean = false;
+        public function get returnFullDetailsItem():Boolean{ return _returnFullDetailsItem; }
+        public function set returnFullDetailsItem(value:Boolean):void{ _returnFullDetailsItem = value; }
+        /**
+         * El nº de opciones visibles se calculará en función del alto real del dropdownbox.
+         * Solo aplicable cuando keepAlwaysOpen = true
+         */
+        private var _autoOptionsCount:Boolean = false;
+        public function get autoOptionsCount():Boolean{ return _autoOptionsCount; }
+        public function set autoOptionsCount(value:Boolean):void
+        { 
+            _autoOptionsCount = value; 
+        }
+        /**
+         * options[].classNames
+         * Se añadirá un atributo a cada item, del dataprovider, 
+         */
+        private var _classNamesLabelRenderer:String;
+        public function get classNamesLabelRenderer():String
+        {
+            return _classNamesLabelRenderer; 
+        }
+        public function set classNamesLabelRenderer(value:String):void
+        {
+            _classNamesLabelRenderer = value; 
+        }
         /**
          * List of values to disable options <br/>e.g - [2, 3, 9]
          */
@@ -206,8 +294,9 @@ package org.apache.royale.externsjs.virtualselect.controls
         public function set disabledOptions(value:Array):void
         { 
             _configOption.disabledOptions = value; 
-            if(inst){
-                inst.setDisabledOptions(value);
+            if(_jsElement){
+                //_jsElement.setDisabledOptions(value);
+                _jsInstance.setDisabledOptionsMethod(value);
             }
         }
         /**
@@ -215,26 +304,75 @@ package org.apache.royale.externsjs.virtualselect.controls
          */
         public function get selectedValue():Object
         {
-            if(inst)
-                return inst.value;
+            if(_jsElement)
+                return _jsElement.value;
             else
                 return null;
         }
         [Bindable("onChange")]
         public function set selectedValue(value:Object):void
         {
-            if(inst)
-                inst.setValue(value);
+            _configOption.selectedValue = value;
+            if(_jsElement)
+            {
+                // Hay métodos que solo funcionan si son llamados desde el Element y no desde la Instancia del control
+                // https://github.com/sa-si-dev/virtual-select/blob/c3eb001e2af339c9dff538e84f89da426ac9afe6/src/virtual-select.js#L866
+                //_jsElement.setValue(value);
+                _jsInstance.setValueMethod(value,false);
+            }
+        }
+        public function get selectedValues():Array
+        {
+            if(_jsInstance)
+                return _jsInstance.selectedValues;
             else
-                _configOption.selectedValue = value;
+                return null;
+        }
+
+        //private var _rawSelectedItem:Object;
+        public function get rawSelectedItem():Object
+        { 
+            var _rawSelectedItem:Object;
+            if(rawDataProvider && rawDataProvider.length != 0)
+            {
+                var index:Number = selectedIndex;
+                if(index != -1)
+                    _rawSelectedItem = rawDataProvider[index];
+            }
+            return _rawSelectedItem; 
+        }
+
+        private var _selectedItems:Array;
+        public function get selectedItems():Array{ 
+            return _selectedItems; 
+        }
+        [Bindable("onChange")]
+        public function set selectedItems(value:Array):void{ 
+            
+            if(rawDataProvider && rawDataProvider.length!=0 && _jsElement){
+                //_jsElement.setValue(value);
+                //jsInstance.setValue(value);
+                jsInstance.setValueMethod(value,false);
+                _selectedItems = _jsInstance.getSelectedOptions({fullDetails: _returnFullDetailsItem, keepSelectionOrder: true});
+            }else
+                _selectedItems = null;
+
         }
         /**
          * Get selected option's details. It would contains isNew: true property for options added newly by allowNewOption
          */
         public function get selectedItem():Object
         {
-            if(inst)
-                return _instance.getSelectedOptions();
+            if(rawDataProvider && rawDataProvider.length!=0 && _jsElement){
+                _selectedItems = _jsInstance.getSelectedOptions({fullDetails: _returnFullDetailsItem, keepSelectionOrder: true});
+                if( _selectedItems) {
+                    if( _selectedItems is Array && _selectedItems.length != 0)
+                        return _selectedItems[0];
+                    else
+                        return _selectedItems;
+                }else
+                    return null;
+            }
             else
                 return null;
         }
@@ -244,30 +382,26 @@ package org.apache.royale.externsjs.virtualselect.controls
             var valueItem:Object;
             if(_configOption.valueKey && value)
                 valueItem = value[_configOption.valueKey];
-            
-            trace(valueItem);
 
-            if(inst){
-                trace(selectedItem);
+            if(_jsElement){
                 if(!valueItem){
-                    inst.reset();
+                    _jsElement.reset();
                     return;
                 }
-                inst.setValue(valueItem);
+                _jsElement.setValue(valueItem);
             }
             else
                 _configOption.selectedValue = valueItem;
-            
-            trace(inst.value);
         }
+        
         /**
          * Get selected option's display value (i.e label)
          */
         [Bindable("onChange")]
         public function get selectedLabel():Object
         {
-            if(inst)
-                return _instance.getDisplayValue();
+            if(_jsElement)
+                return _jsInstance.getDisplayValue();
             else
                 return null;
         }
@@ -284,7 +418,7 @@ package org.apache.royale.externsjs.virtualselect.controls
         [Bindable("onChange")]
         public function set selectedIndex(value:int):void
         {
-            if(inst)
+            if(_jsElement)
             {
                 if(value == -1)
                     selectedValue = null;
@@ -313,10 +447,42 @@ package org.apache.royale.externsjs.virtualselect.controls
         {
             if(localwidth != element.offsetWidth)
             {
-                trace("CHANGE WIDTH", localwidth, element.offsetWidth);
+                //trace("CHANGE WIDTH", localwidth, element.offsetWidth);
                 localwidth = element.offsetWidth;
             }
+            if(_configOption.keepAlwaysOpen && _autoOptionsCount )
+            {
+                //AutoHeight. Pendiente porque la librería no permite el cambio de opciones después de la inicialización.
+                var ith:Number = Math.ceil(height/Number(getNumCharacters( _configOption.optionHeight)));
+                if( _configOption.optionsCount != ith )
+                {
+                    _configOption.optionsCount = ith;
+                }
+            }
         }
+		public static function getNumCharacters( content:String ):String{
+			var patron:RegExp = /\d+/g;
+			var resultado:String = content.match(patron).toString();
+			resultado = changeCharacter(",","",resultado)
+			return resultado;
+		}
+
+		public static function changeCharacter(carorigen:String,cardestino:String,str:String):String
+		{
+			var i:int;
+			var c:String;
+			var f:String="";
+
+			for (i=0; i<=str.length-1;i++){
+				c=str.substr(i,1);
+				if (c==carorigen){
+					if (cardestino.length>0){f=f+cardestino;}
+				}else{
+					f=f+c;
+				}
+			}
+			return(f);
+		}
 
         protected function clickHandler(event:Event):void
         {
@@ -326,6 +492,24 @@ package org.apache.royale.externsjs.virtualselect.controls
         protected var _selectedItem:Object;
         protected function changeHandler(event:Event):void
         {
+            if(event.target.innerText.toString().indexOf("Select") != -1)
+            {
+                event.target.querySelector(".vscomp-toggle-button").style = "width:100% !important";
+                event.target.querySelector(".vscomp-clear-button").style = "width:0% !important";
+                event.target.querySelector(".vscomp-clear-icon").style = "width:0% !important";
+                event.target.querySelector(".vscomp-option-text").style = "width:100% !important";
+
+
+
+            }
+            else
+            {
+                event.target.querySelector(".vscomp-toggle-button").style = "width:94% !important";
+                event.target.querySelector(".vscomp-clear-button").style = "width:6% !important";
+                event.target.querySelector(".vscomp-clear-icon").style = "width:14px !important";
+                event.target.querySelector(".vscomp-option-text").style = "width:94% !important";
+
+            }
             _selectedItem = selectedItem;
             dispatchEvent(new Event("onChange"));
         }
@@ -344,5 +528,11 @@ package org.apache.royale.externsjs.virtualselect.controls
         {
             dispatchEvent(new Event("onReset"));
         }
+
+        public function reset():void{
+            if(rawDataProvider && rawDataProvider.length!=0 && jsInstance && _selectedItems && _selectedItems.length>0)
+                jsInstance.reset();
+        }
+        
 	}
 }

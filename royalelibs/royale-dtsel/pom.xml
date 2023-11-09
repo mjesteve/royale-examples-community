@@ -103,7 +103,7 @@
       <artifactId>royalecomponents</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
+      
       <classifier>js</classifier>
     </dependency>
     

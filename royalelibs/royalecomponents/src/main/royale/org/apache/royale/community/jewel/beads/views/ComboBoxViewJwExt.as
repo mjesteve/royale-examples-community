@@ -30,9 +30,9 @@ package org.apache.royale.community.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.community.jewel.supportClasses.IStrandWithResetButton;
 	import org.apache.royale.community.jewel.IconReset;
 	import org.apache.royale.community.jewel.beads.controls.combobox.IComboBoxViewJwExt;
+	import org.apache.royale.community.jewel.supportClasses.IStrandWithResetButton;
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
@@ -137,7 +137,6 @@ package org.apache.royale.community.jewel.beads.views
 			if( combobox.withResetButton )
 			{
 				_resetbutton = new IconReset();
-				_resetbutton.positioner.style["display"] = "none";
 				_textinput.icon = _resetbutton;
 				_textinput.rightPosition=true;
 			}
@@ -411,8 +410,11 @@ package org.apache.royale.community.jewel.beads.views
 				
 			if( !model.selectedItem){
 				_resetbutton.positioner.style["display"] = "none";
+				//_button.width = DEFAULT_BUTTON_WIDTH;
 			}else{
 				_resetbutton.positioner.style["display"] = "inherit";
+				//_resetbutton.positioner.style["display"] = "flex";
+				//_button.width = DEFAULT_BUTTON_WIDTH - _resetbutton.width;
 			}
 		}
 	}

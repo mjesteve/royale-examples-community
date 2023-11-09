@@ -14,7 +14,8 @@
         <![CDATA[
         import org.apache.royale.events.Event;
         import org.apache.royale.collections.ArrayList;
-        import org.apache.royale.externsjs.virtualselect.controls.VirtualSelectJwExt;
+        import org.apache.royale.externsjs.virtualselect.controls.VirtualMultiSelectRoyale;
+        import org.apache.royale.externsjs.virtualselect.controls.VirtualMultiSelectListRoyale;
 
         [Bindable]
         private var arStringBig:Array = new Array();
@@ -41,13 +42,13 @@
 
         private function onChangeVS(event:Event):void
         {
-            var ar:Object = (event.target as VirtualSelectJwExt).selectedItem;
-            if(!ar)
-                localSelectedValue = "";
-            else if( (event.target as VirtualSelectJwExt).configOption.multiple )
-                localSelectedValue = (ar as Array).length.toString() + ' Registros seleccionados';
+            localSelectedValue = "";
+            if( event.target is VirtualMultiSelectListRoyale || event.target is VirtualMultiSelectRoyale )
+            {
+                localSelectedValue = event.target.selectedIndices ? event.target.selectedIndices.join(' - '):'[-1]';
+            }
             else
-                localSelectedValue = ar.value + '-' + ar.label;
+                localSelectedValue = event.target.selectedLabel;
         }
 
         ]]>
@@ -83,64 +84,64 @@
                 <j:html><![CDATA[<p><strong>Default dropdown</strong> single value.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel1" percentWidth="45" dataProvider="{arStringBig}" onChange="onChangeVS(event)">
+                <vsel:VirtualSelectRoyale localId="myVSel1" percentWidth="45" dataProvider="{arStringBig}" onChange="onChangeVS(event)">
                     <vsel:configOption>
-                        <vsel:OptionsInit position="bottom"/>
+                        <vsel:virtualSelectOptions position="bottom"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH1" percentWidth="45" dataProvider="{arHClassBig}" onChange="onChangeVS(event)">
+                </vsel:VirtualSelectRoyale>
+                <vsel:VirtualSelectRoyale localId="myVSelH1" percentWidth="45" dataProvider="{arHClassBig}" onChange="onChangeVS(event)">
                     <vsel:configOption>
-                        <vsel:OptionsInit position="bottom"/>
+                        <vsel:virtualSelectOptions position="bottom"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualSelectRoyale>
             </j:HGroup>
 
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>With search box</strong> Single value.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel2" percentWidth="45" dataProvider="{arClassBig}">
+                <vsel:VirtualSelectRoyale localId="myVSel2" percentWidth="45" dataProvider="{arClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="true"/>
+                        <vsel:virtualSelectOptions search="true"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH2" percentWidth="45" dataProvider="{arHClassBig}">
+                </vsel:VirtualSelectRoyale>
+                <vsel:VirtualSelectRoyale localId="myVSelH2" percentWidth="45" dataProvider="{arHClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="true"/>
+                        <vsel:virtualSelectOptions search="true"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualSelectRoyale>
             </j:HGroup>
 
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Multiple select</strong> With search box. (Maximum 4 items selected)</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel3" percentWidth="45" dataProvider="{arClassBig}" onChange="onChangeVS(event)">
+                <vsel:VirtualMultiSelectRoyale localId="myVSel3" percentWidth="45" dataProvider="{arClassBig}" onChange="onChangeVS(event)">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="true" multiple="true" maxValues="4"/>
+                        <vsel:virtualSelectOptions search="true" multiple="true" maxValues="4"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH3" percentWidth="45" dataProvider="{arHClassBig}">
+                </vsel:VirtualMultiSelectRoyale>
+                <vsel:VirtualMultiSelectRoyale localId="myVSelH3" percentWidth="45" dataProvider="{arHClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="true" multiple="true" maxValues="4"/>
+                        <vsel:virtualSelectOptions search="true" multiple="true" maxValues="4"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualMultiSelectRoyale>
             </j:HGroup>
             
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel3_1" percentWidth="45" dataProvider="{arClassBig}">
+                <vsel:VirtualMultiSelectRoyale localId="myVSel3_1" percentWidth="45" dataProvider="{arClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="false" multiple="true"/>
+                        <vsel:virtualSelectOptions search="false" multiple="true"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH3_1" percentWidth="45" dataProvider="{arHClassBig}">
+                </vsel:VirtualMultiSelectRoyale>
+                <vsel:VirtualMultiSelectRoyale localId="myVSelH3_1" percentWidth="45" dataProvider="{arHClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="false" multiple="true"/>
+                        <vsel:virtualSelectOptions search="false" multiple="true"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualMultiSelectRoyale>
             </j:HGroup>
             
             <j:HGroup percentWidth="100" gap="10">
@@ -150,29 +151,29 @@
             <j:Button text="set disabled [3,4,5]" click="myVSel3_2.disabledOptions=[3,4,5];"/>
             </j:HGroup>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel3_2" percentWidth="45" dataProvider="{arClassBig}">
+                <vsel:VirtualMultiSelectRoyale localId="myVSel3_2" percentWidth="45" dataProvider="{arClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
+                        <vsel:virtualSelectOptions search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH3_2" percentWidth="45" dataProvider="{arHClassBig}">
+                </vsel:VirtualMultiSelectRoyale>
+                <vsel:VirtualMultiSelectRoyale localId="myVSelH3_2" percentWidth="45" dataProvider="{arHClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
+                        <vsel:virtualSelectOptions search="false" multiple="true" disabledOptions="{[0,1,2]}"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualMultiSelectRoyale>
             </j:HGroup>
             
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Keep dropbox always open</strong>  with fixed height</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectListJwExt localId="myVSel4" percentWidth="45" dataProvider="{arClassBig}">
+                <vsel:VirtualSelectListRoyale localId="myVSel4" percentWidth="45" dataProvider="{arClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit  search="true" multiple="false" additionalClasses="vscomp-royale"/>
+                        <vsel:virtualSelectOptions  search="true" multiple="false" additionalClasses="vscomp-royale"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectListJwExt>
+                </vsel:VirtualSelectListRoyale>
                 
-                <!--<vsel:VirtualSelectJwExt localId="myVSelH4" percentWidth="45" dataProvider="{arHClassBig}"
+                <!--<vsel:VirtualMultiSelectRoyale localId="myVSelH4" percentWidth="45" dataProvider="{arHClassBig}"
                  search="false" multiple="true" keepAlwaysOpen="true"/> -->
 
                 <jc:VirtualComboBoxJwExt localId="myVSelH4" percentWidth="45" 
@@ -188,16 +189,16 @@
                 <j:html><![CDATA[<p><strong>Preselect value/s</strong> (Left, first 3 options selected - Right, 2 value selected)</p>]]></j:html>
             </j:Label>
             <j:HGroup percentWidth="100" itemsHorizontalAlign="itemsSpaceAround">
-                <vsel:VirtualSelectJwExt localId="myVSel5" percentWidth="45" dataProvider="{arClassBig}">
+                <vsel:VirtualMultiSelectRoyale localId="myVSel5" percentWidth="45" dataProvider="{arClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit  search="false" multiple="true" selectedValue="{[0,1,2]}"/>
+                        <vsel:virtualSelectOptions  search="false" multiple="true" selectedValue="{[0,1,2]}"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
-                <vsel:VirtualSelectJwExt localId="myVSelH5" percentWidth="45" dataProvider="{arHClassBig}">
+                </vsel:VirtualMultiSelectRoyale>
+                <vsel:VirtualMultiSelectRoyale localId="myVSelH5" percentWidth="45" dataProvider="{arHClassBig}">
                     <vsel:configOption>
-                        <vsel:OptionsInit search="false" multiple="true" selectedValue="2"/>
+                        <vsel:virtualSelectOptions search="false" multiple="true" selectedValue="2"/>
                     </vsel:configOption>
-                </vsel:VirtualSelectJwExt>
+                </vsel:VirtualMultiSelectRoyale>
             </j:HGroup>
 
         </j:VGroup>

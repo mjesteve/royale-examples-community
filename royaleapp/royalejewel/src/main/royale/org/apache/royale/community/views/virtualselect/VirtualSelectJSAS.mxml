@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic"    
-    xmlns:jc="library://ns.apache.org/royale/community"
-    xmlns:html="library://ns.apache.org/royale/html" >  
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html" >
 
     <fx:Metadata>
         [Event(name="resfreshData", type="org.apache.royale.events.Event")]
     </fx:Metadata>
-    
+
     <fx:Script>
         <![CDATA[
         import VirtualSelect
-        import org.apache.royale.externsjs.virtualselect.supportClass.OptionsInit;
+        import org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptionsClass;
 
         [Bindable]
         private var arStringBig:Array = new Array();
@@ -26,9 +25,11 @@
         private var opinit:Array = new Array();
         private var opvinit:Array = new Array();
 
-        private function getDefaultOptions(domElement:HTMLElement):OptionsInit
+        private function getDefaultOptions(domElement:HTMLElement):Object
         {
-                var op:OptionsInit = new OptionsInit();
+                // No podemos utilizar nuestra clase "org.apache.royale.externsjs.virtualselect.supportClass.virtualSelectOptionsClass"
+                // porque la librería VirtualSelect no la reconoce.
+                var op:Object = new Object();
                 op.ele = domElement;
                 op.silentInitialValueSet = true;
                 op.markSearchResults = true;
@@ -44,7 +45,7 @@
         {
            // setTimeout(function():void{
 
-                var op:OptionsInit = getDefaultOptions(myVSel1.element);
+                var op:Object = getDefaultOptions(myVSel1.element);
                 op.options = arClassBig;
                 opinit.push(op);
                 myvlist.push(VirtualSelect.init(opinit[0] as Object));
@@ -132,7 +133,7 @@
 
     <j:CardHeader gap="5">
         <j:VGroup gap="5" percentWidth="50">
-            <j:CardTitle text="Simple dataProvider" className="primary-normal" percentWidth="100"/>            
+            <j:CardTitle text="Simple dataProvider" className="primary-normal" percentWidth="100"/>
             <html:H5 text="Direct @externs AS"  className="primary-dark"/>
         </j:VGroup>
         <j:VGroup gap="5" percentWidth="50" itemsHorizontalAlign="itemsRight">
@@ -175,7 +176,7 @@
                 <html:Div localId="myVSel3" percentWidth="45" />
                 <html:Div localId="myVSelH3" percentWidth="45"/>
             </j:HGroup>
-            
+
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Multiple select</strong> Without search box.</p>]]></j:html>
             </j:Label>
@@ -183,7 +184,7 @@
                 <html:Div localId="myVSel3_1" percentWidth="45" />
                 <html:Div localId="myVSelH3_1" percentWidth="45"/>
             </j:HGroup>
-            
+
             <j:Label multiline="true">
                 <j:html><![CDATA[<p><strong>Disabled options</strong> (First 3 options disabled) - Open top</p>]]></j:html>
             </j:Label>
@@ -193,7 +194,7 @@
             </j:HGroup>
 
         </j:VGroup>
-        
+
     </j:CardPrimaryContent>
-    
+
 </j:Card>

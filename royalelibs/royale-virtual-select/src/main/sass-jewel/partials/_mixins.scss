@@ -1,0 +1,40 @@
+@mixin prefix($property, $value) {
+  #{'-webkit-' + $property}: $value;
+  #{$property}: $value;
+}
+
+@mixin checkbox-checked {
+  // @include prefix(transform, rotate(45deg) translate(1px, -4px));
+
+  background: $checkbox-svg-checked;
+  opacity: 1;
+  @include prefix(transform, scale(1));
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  width: 100%;
+}
+
+@mixin checkbox-checked-rtl {
+  // @include prefix(transform, rotate(45deg) translate(-4px, 1px));
+
+  background: $checkbox-svg-checked;
+  opacity: 1;
+  @include prefix(transform, scale(1));
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+  width: 100%;
+}
+
+@mixin close-icon {
+  background: $clear-svg;
+}
+
+@mixin ellipse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
