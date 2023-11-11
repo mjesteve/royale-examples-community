@@ -315,25 +315,61 @@ jc|VirtualComboBoxJwExt{
 
 
 /* Button Reset - Custom controls*/
-.jewel.combobox .button-reset {
-  margin-left: 6px !important;
-  background-color: transparent !important;
-  color: #29A89F !important;
-  /*font-size: 0.66em !important;*/
+
+.jewel.combobox .jewel.textinput.icon i.button-reset.fonticon {
+  background-color: transparent;
+  color: #29A89F;
   cursor: pointer;
-  width: 22px;
+  pointer-events: all;
 }
-.jewel.combobox .button-reset.border {
-  border: solid 1px #1a6b65 !important;
+.jewel.combobox .jewel.textinput.icon i.button-reset.fonticon.border {
+  border: solid 1px #1a6b65;
 }
-.jewel.combobox .button-reset:hover {
-  color: #1a6b65 !important;
+.jewel.combobox .jewel.textinput.icon i.button-reset.fonticon:hover {
+  color: #1a6b65;
 }
-.jewel.combobox .button-reset:active {
-  background-color: transparent !important;
-  color: #29A89F !important;
+.jewel.combobox .jewel.textinput.icon i.button-reset.fonticon:active {
+  background-color: transparent;
+  color: #29A89F;
 }
-.jewel.combobox[disabled] .button-reset {
-  color: #cccccc !important;
+.jewel.combobox[disabled] .jewel.textinput.icon i.button-reset.fonticon {
+  color: #cccccc;
+  cursor: none !important;
+  pointer-events: none !important;
+}
+.jewel.combobox[read-only] .jewel.textinput.icon i.button-reset.fonticon {
+  display: none !important;
 }
 
+jc|DateFieldJwExt {
+	IBeadView: ClassReference("org.apache.royale.community.jewel.beads.views.DateFieldViewJwExt");
+	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
+	IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
+	IFormatter: ClassReference("org.apache.royale.html.accessories.StringDateFormatter");
+	IPopUp: ClassReference("org.apache.royale.jewel.DateChooser");
+}
+
+.jewel.datefield .jewel.textinput.icon i.button-reset.fonticon {
+  background-color: transparent;
+  color: #29A89F;
+  cursor: pointer;
+  pointer-events: all;
+}
+.jewel.datefield .jewel.textinput.icon i.button-reset.fonticon.border {
+  border: solid 1px #1a6b65;
+}
+.jewel.datefield .jewel.textinput.icon i.button-reset.fonticon:hover {
+  color: #1a6b65;
+}
+.jewel.datefield .jewel.textinput.icon i.button-reset.fonticon:active {
+  background-color: transparent;
+  color: #29A89F;
+}
+.jewel.datefield[disabled] .jewel.textinput.icon i.button-reset.fonticon {
+  color: #cccccc;
+  cursor: none !important;
+  pointer-events: none !important;
+}
+.jewel.datefield[read-only] .jewel.textinput.icon i.button-reset.fonticon {
+  display: none !important;
+}

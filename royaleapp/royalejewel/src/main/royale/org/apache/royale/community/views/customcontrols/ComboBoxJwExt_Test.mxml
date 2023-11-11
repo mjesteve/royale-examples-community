@@ -307,6 +307,25 @@
                 </j:HGroup>
 
                 <html:Hr className="separador"/>
+               
+                <j:Label multiline="true">
+                    <j:html><![CDATA[<p>With the <strong>withResetButton</strong> property set to true an <strong>icon</strong> will appear that will <strong>clear</strong> the control's value.</p>]]></j:html>
+                </j:Label>
+               
+                <j:HGroup percentWidth="100" gap="3" >
+                    <jc:ComboBoxJwExt localId="cbwithresetbutton" percentWidth="50" activeTextPromp="true" withResetButton="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:ComboBoxJwExt>
+                    <jc:VirtualComboBoxJwExt localId="vcbwithresetbutton" percentWidth="50" activeTextPromp="true" withResetButton="true">
+                        <jc:dataProvider>
+                            <js:ArrayList source="{['Item 1', 'Item 2', 'Item 3', 'Item 4']}" />
+                        </jc:dataProvider>
+                    </jc:VirtualComboBoxJwExt>
+                </j:HGroup>
+
+                <html:Hr className="separador"/>
 <!--       
                 <j:Label multiline="true">
                     <j:html><![CDATA[<p>Problema con el bead SearchFilterJwExt</p>]]></j:html>

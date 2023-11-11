@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -32,7 +33,7 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.6.2</maven.version>
 
-     <!-- Royale Library versions -->
+    <!-- Royale Library versions -->
     <royale.version>0.9.11-SNAPSHOT</royale.version>
 
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
@@ -42,8 +43,8 @@
     <royale.framework.version>${royale.version}</royale.framework.version>
 
     <project.compiler.options>
-        -js-default-initializers=true;
-        -source-map=${source.map};
+        -js-default-initializers=true; 
+        -source-map=${source.map}; 
         -source-map-source-root=${project.basedir}/src/main/royale/;
         <!-- email Josh:
         With js-dynamic-access-unknown-members, the "dynamic-access" part of the name refers to how the JS is generated.
@@ -54,12 +55,12 @@
         If js-dynamic-access-unknown-members is false, then it will remain as obj.setTheme() in the generated JS, which may or may not be renamed by Closure in the release build.
         (in some cases, Closure decides not to rename things, for whatever magical reasons it has... yes, even after months of wrangling Closure,
         I still don't completely understand everything that it does) -->
-        -js-dynamic-access-unknown-members=true;
+         -js-dynamic-access-unknown-members=true;
         <!-- -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient; -->
         <!-- -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,Bindable,Transient; -->
-        <!-- -keep-as3-metadata+=PostConstruct,PreDestroy,ViewAdded,ViewRemoved; -->
-        -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
-        -keep-code-with-metadata=Inject;
+        <!-- -keep-as3-metadata+=PostConstruct,PreDestroy,ViewAdded,ViewRemoved; --> 
+        -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient; 
+        -keep-code-with-metadata=Inject; 
         -show-binding-warnings=false;
     </project.compiler.options>
   </properties>
@@ -80,7 +81,14 @@
       <artifactId>Core</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
       <classifier>js</classifier>
     </dependency>
 
@@ -89,7 +97,6 @@
       <artifactId>Language</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -98,7 +105,6 @@
       <artifactId>Binding</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -107,7 +113,6 @@
       <artifactId>Collections</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -116,7 +121,6 @@
       <artifactId>HTML</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -125,7 +129,6 @@
       <artifactId>Icons</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -134,7 +137,6 @@
       <artifactId>Network</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -143,7 +145,6 @@
       <artifactId>Reflection</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -152,7 +153,6 @@
       <artifactId>MXRoyaleBase</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -161,7 +161,6 @@
       <artifactId>Jewel</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
       <classifier>js</classifier>
     </dependency>
 
@@ -170,7 +169,14 @@
       <artifactId>Crux</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>XML</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
       <classifier>js</classifier>
     </dependency>
 

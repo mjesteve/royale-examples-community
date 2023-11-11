@@ -35,6 +35,7 @@
 
     <!-- Extends Jewel Beads -->
     <component id="ComboBoxViewJwExt" class="org.apache.royale.community.jewel.beads.views.ComboBoxViewJwExt"/>
+    <component id="DateFieldViewJwExt" class="org.apache.royale.community.jewel.beads.views.DateFieldViewJwExt"/>
     <component id="DisabledToolTip" class="org.apache.royale.community.jewel.beads.controls.DisabledToolTip"/>
     <component id="ListItemRendererPropertiesBead" class="org.apache.royale.community.jewel.beads.itemRenderers.ListItemRendererPropertiesBead"/>
     <component id="SearchFilterJwExt" class="org.apache.royale.community.jewel.beads.controls.combobox.SearchFilterJwExt"/>
@@ -68,6 +69,7 @@
     <!-- Extends Jewel Controls -->
     <component id="ComboBoxJwExt" class="org.apache.royale.community.controls.ComboBoxJwExt"/>
     <component id="ComboBoxJwExtDefs" class="org.apache.royale.community.controls.ComboBoxJwExtDefs"/>
+    <component id="DateFieldJwExt" class="org.apache.royale.community.controls.DateFieldJwExt"/>
     <component id="GridCell" class="org.apache.royale.community.jewel.GridCell"/>
     <component id="ListJwExt" class="org.apache.royale.community.controls.ListJwExt"/>
     <component id="TriStateCheckBox" class="org.apache.royale.community.jewel.TriStateCheckBox"/>
