@@ -42,16 +42,14 @@
 			}
 		]]>
 	</fx:Script>
-    <j:beads>
+    
+	<j:beads>
         <js:ExtraReflectionDataBead />
     </j:beads>
+
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>
-
-	<j:beads>
-        <js:ExtraReflectionDataBead />
-	</j:beads>
 
 	<j:initialView>		
 		<mainviews:MainVirtualComboBox/> 
