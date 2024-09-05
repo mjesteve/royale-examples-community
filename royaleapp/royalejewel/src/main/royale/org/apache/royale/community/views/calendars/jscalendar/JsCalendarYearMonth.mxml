@@ -8,7 +8,6 @@
 
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.community.views.calendars.jscalendar.JsCalendarViewYear;
             import org.apache.royale.events.Event;
 
             private var _initialized:Boolean = false;
@@ -22,11 +21,10 @@
                 year =  new Date().fullYear;
 
                 var calendarElement:HTMLElement = myYearCalendar.element;
-                yearCalendar = new jsCalendarYearMonth(calendarElement, {
+                yearCalendar = new jsCalendarYearMonth(calendarElement, year, {
                     themeClasses: ["medium-theme"], language: 'es', 
-                    year: year,
                     minYear: ctYear.minimum, maxYear: ctYear.maximum,
-                    yearNavigator: false, // Mostrar el navegador de años
+                    yearNavigator: true, // Mostrar el navegador de años
                     /* yearNavigatorPosition: 'left',
                     navIcons: 'fontawesome', // You need to include both the font-awesome css file
                     fontawesomePrefix: 'fas', //ver. 6 */
@@ -63,7 +61,8 @@
                 calendarElement.addEventListener('onYearChanged', function(event:Object):void {
                     var newYear:int = event.detail.newYear;
                     console.log("El año ha cambiado a:", newYear, event.detail.oldYear);
-                    //year = newYear;
+                    if(newYear != year)
+                        year = newYear;
                 });
 
                 calendarElement.addEventListener('onDateClick', function(event:Object):void {
@@ -80,7 +79,7 @@
                 if(year != newyear )
                 {
                     year = newyear;
-                    yearCalendar.updateYear(year);
+                    yearCalendar.gotoYear(year);
                 }
             }
         ]]>

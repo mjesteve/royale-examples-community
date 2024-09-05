@@ -192,11 +192,11 @@
             }
             public function replaceDayNumberWeekday():void {
 
-                var dayNumberElements = document.getElementsByClassName('fc-day-number');
+                var dayNumberElements:Object = document.getElementsByClassName('fc-day-number');
 
-                for (var i = 0; i < dayNumberElements.length; i++) {
-                var dayNumberElement = dayNumberElements[i];
-                var weekdayElement = dayNumberElement.querySelector('.fc-day-number-weekday');
+                for (var i:int = 0; i < dayNumberElements.length; i++) {
+                var dayNumberElement:Object = dayNumberElements[i];
+                var weekdayElement:Object = dayNumberElement.querySelector('.fc-day-number-weekday');
 
                 if (weekdayElement) {
                 dayNumberElement.innerHTML = weekdayElement.outerHTML;
@@ -204,10 +204,10 @@
                 }
             }
             public function addHeaderForDays():void {
-            var element = document.querySelector('div.fc-row.fc-widget-header');
+            var element:Object = document.querySelector('div.fc-row.fc-widget-header');
             
             if (element) {
-                var newContent = '<table style="height:32px;margin-left: 14.65px;">' +
+                var newContent:String = '<table style="height:32px;margin-left: 14.65px;">' +
                 '<tbody>' +
                 '<tr>' +
                 '<td><span class="fc-day-number">1</span></td>' +

@@ -15,87 +15,96 @@ package
          * link_jscalendar.setAttribute("href", "jscalendar/source/jsCalendar.css");
          * document.head.appendChild(link_jscalendar);
 		 * 
-		 * var script_jscalendar = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * 
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.be.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ca.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.de.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.es.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.fr.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.gr.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.hu.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.it.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ja.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.nl.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.no.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.pt.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ru.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.sk.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.sv.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.tr.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.uk.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * script = document.createElement("script");
-		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.zh.js");
-		 * document.head.appendChild(script_jscalendar);
-		 * 
 		 * //------------ Optional Themes ------------- 
-		 * link = document.createElement("link");
+		 * link_jscalendar = document.createElement("link");
          * link_jscalendar.setAttribute("rel", "stylesheet");
          * link_jscalendar.setAttribute("type", "text/css");
          * link_jscalendar.setAttribute("href", "jscalendar/themes/jsCalendar.clean.css");
          * document.head.appendChild(link_jscalendar);
-		 * link = document.createElement("link");
+		 * link_jscalendar = document.createElement("link");
          * link_jscalendar.setAttribute("rel", "stylesheet");
          * link_jscalendar.setAttribute("type", "text/css");
          * link_jscalendar.setAttribute("href", "jscalendar/themes/jsCalendar.darkseries.css");
          * document.head.appendChild(link_jscalendar);
-		 * link = document.createElement("link");
+		 * link_jscalendar = document.createElement("link");
          * link_jscalendar.setAttribute("rel", "stylesheet");
          * link_jscalendar.setAttribute("type", "text/css");
          * link_jscalendar.setAttribute("href", "jscalendar/themes/jsCalendar.micro.css");
          * document.head.appendChild(link_jscalendar);
-		 * link = document.createElement("link");
+		 * link_jscalendar = document.createElement("link");
          * link_jscalendar.setAttribute("rel", "stylesheet");
          * link_jscalendar.setAttribute("type", "text/css");
          * link_jscalendar.setAttribute("href", "jscalendar/themes/jsCalendar.medium.css");
          * document.head.appendChild(link_jscalendar);
 		 * 
+		 * var script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * 
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.be.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ca.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.de.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.es.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.fr.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.gr.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.hu.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.it.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ja.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.nl.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.no.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.pt.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.ru.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.sk.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.sv.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.tr.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.uk.js");
+		 * document.head.appendChild(script_jscalendar);
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendar.lang.zh.js");
+		 * document.head.appendChild(script_jscalendar);
+         *          
+		 * link_jscalendar = document.createElement("link");
+         * link_jscalendar.setAttribute("rel", "stylesheet");
+         * link_jscalendar.setAttribute("type", "text/css");
+         * link_jscalendar.setAttribute("href", "jscalendar/source/jsCalendarYearMonth.css");
+         * document.head.appendChild(link_jscalendar);
+		 * 
+		 * script_jscalendar = document.createElement("script");
+		 * script_jscalendar.setAttribute("src", "jscalendar/source/jsCalendarYearMonth.js");
+		 * document.head.appendChild(script_jscalendar);
 		 * </inject_script>
 		*/
         public function jsCalendar(target:HTMLElement, date:Object=null, options:Object=null){
@@ -270,6 +279,15 @@ package
         public function onMonthRender(callback:Function):void
         {
         }
+        public function freeze():void
+        {
+        }
+        public function unfreeze():void
+        {
+        }
+		public function isFrozen():Boolean{
+            return null;
+		}
 
 	}
 }
