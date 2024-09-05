@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:j="library://ns.apache.org/royale/jewel"
+        xmlns:js="library://ns.apache.org/royale/basic"
+        xmlns:html="library://ns.apache.org/royale/html"
+        xmlns:jc="library://ns.apache.org/royale/community" 
+	    itemsExpand="false" initComplete="onInit(event)">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.community.views.calendars.jscalendar.JsCalendarViewYear;
+            import org.apache.royale.events.Event;
+
+            private var _initialized:Boolean = false;
+
+            [Bindable]
+            private var year:Number;
+            private var yearCalendar:Object;
+
+            private function onInit(event:Event):void
+            {
+                year =  new Date().fullYear;
+
+                var calendarElement:HTMLElement = myYearCalendar.element;
+                yearCalendar = new jsCalendarYearMonth(calendarElement, {
+                    themeClasses: ["medium-theme"], language: 'es', 
+                    year: year,
+                    minYear: ctYear.minimum, maxYear: ctYear.maximum,
+                    yearNavigator: false, // Mostrar el navegador de años
+                    /* yearNavigatorPosition: 'left',
+                    navIcons: 'fontawesome', // You need to include both the font-awesome css file
+                    fontawesomePrefix: 'fas', //ver. 6 */
+                    responsiveLayout: false,
+                    monthsPerRow: 6,
+                    selectedDates: [
+                        "2024-01-15",
+                        "2024-02-22",
+                        "2024-03-10",
+                        "2024-04-25",
+                        "2024-05-30",
+                        "2024-06-14",
+                        "2024-07-19",
+                        "2024-08-21",
+                        "2024-09-02",
+                        "2024-10-31",
+                        "2024-11-01",
+                        "2024-12-25"
+                    ]
+                    /*, customYearTitle: function(year:int):String {
+                        return "Año: " + year.toString() + '<strong> (FontAwesome 4.7) </strong>';  // Ejemplo de personalización
+                    }, */
+                    /* onPrevYear: function():void {
+                        yearCalendar.updateYear(year - 1);
+                        year -= 1;
+                    },
+                    onNextYear: function():void {
+                        yearCalendar.updateYear(year + 1);
+                        year += 1;
+                    } */
+                });
+
+                // Capturar el evento onYearChanged
+                calendarElement.addEventListener('onYearChanged', function(event:Object):void {
+                    var newYear:int = event.detail.newYear;
+                    console.log("El año ha cambiado a:", newYear, event.detail.oldYear);
+                    //year = newYear;
+                });
+
+                calendarElement.addEventListener('onDateClick', function(event:Object):void {
+                    console.log("Day click:", event.detail.date);                    
+                    //print_date.value = jsCalendar.tools.dateToString(event.detail.date, 'DAY, DD MONTH YYYY', 'es');
+                });
+
+                _initialized=true;
+            }
+
+            private function setYear(newyear:int):void
+            {
+                if(!_initialized) return;
+                if(year != newyear )
+                {
+                    year = newyear;
+                    yearCalendar.updateYear(year);
+                }
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+    <j:CardHeader>
+        <j:BarSection percentWidth="100">
+        <j:VGroup gap="5" percentWidth="100">
+            <j:CardTitle text="jsCalendar - Royale Custom Control" className="primary-normal" percentWidth="100"/>
+            <html:H5 text="Control JSCalendarYearMonth (https://github.com/mjesteve/jsCalendar)"  className="primary-dark"/>
+        </j:VGroup>
+        </j:BarSection>
+        
+        <j:BarSection width="150" itemsVerticalAlign="itemsCenter" itemsHorizontalAlign="itemsRight">
+            <j:NumericStepper localId="ctYear" minimum="2019" maximum="2026" percentWidth="100" style="font-weight: bold;" 
+            value="{year}" valueChange="setYear(ctYear.value)">
+                <j:beads>
+                    <j:TextAlign align="right"/>
+                </j:beads>
+            </j:NumericStepper>
+        </j:BarSection>
+    </j:CardHeader>
+
+    <j:CardPrimaryContent>
+       <html:Div localId="myYearCalendar" percentWidth="100" percentHeight="100" />
+
+    </j:CardPrimaryContent>
+
+</j:Card>

@@ -11,6 +11,7 @@ package
 	internal class JSCALENDARClasses
 	{
 		import jsCalendar; jsCalendar;
+		import jsCalendarYearMonth; jsCalendarYearMonth;
 		//import org.apache.royale.community.jscalendar.vo.DateItemDescribeVO; DateItemDescribeVO;
 		//import org.apache.royale.community.jscalendar.AnnualJSCalendar;	AnnualJSCalendar;
 		//import org.apache.royale.community.jscalendar.events.SharedEvent; SharedEvent;

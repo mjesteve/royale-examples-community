@@ -42,8 +42,9 @@
 			}
 		]]>
 	</fx:Script>
-<!--
--->
+    <j:beads>
+        <js:ExtraReflectionDataBead />
+    </j:beads>
 	<j:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</j:valuesImpl>

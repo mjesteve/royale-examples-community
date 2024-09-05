@@ -29,6 +29,7 @@
                 itG = new TabBarGroupButtonVO("", "", "supervised_user_circle");
                 itG.subButtonBar = new ArrayList();
                 itG.subButtonBar.addItem(new TabBarGroupButtonVO("", "anual_panel", MaterialIconType.DATE_RANGE));
+                itG.subButtonBar.addItem(new TabBarGroupButtonVO("", "yearmonth_panel", MaterialIconType.CALENDAR_APPS_SCRIPT));
                 arG.push(itG);
 
                 tabBarTop.dataProvider = new ArrayList(arG);
@@ -88,6 +89,9 @@
                         </j:SectionContent>
                         <j:SectionContent name="select_panel">
                             <viewsJscal:JsCalendarViewAuto_Select localId="vAutoSelected" percentHeight="100" percentWidth="100"/>
+                        </j:SectionContent>
+                        <j:SectionContent name="yearmonth_panel">
+                            <viewsJscal:JsCalendarYearMonth localId="vYearMonth" percentHeight="100" percentWidth="100"/>
                         </j:SectionContent>
                     </j:TabBarContent>
 
