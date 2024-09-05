@@ -24,6 +24,7 @@
     <module>royale-inspire-tree</module>
     <module>royale-virtual-select</module>
     <module>royale-fullcalendar</module> -->
+    <module>royale-fullcalendar</module>
     <module>royalecomponents</module>
   </modules>
 
